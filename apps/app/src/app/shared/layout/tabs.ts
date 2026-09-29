@@ -50,7 +50,7 @@ export class Tabs {
 	private readonly _codePanel = contentChild(Code, { descendants: true });
 	/** The example source when it is runnable, otherwise null (hides the toolbar button). */
 	protected readonly _runnableCode = computed(() => {
-		const code = this._codePanel()?.codeValue();
+		const code = this._codePanel()?.runnableSource();
 		return isRunnableExample(code) ? code : null;
 	});
 
@@ -59,7 +59,7 @@ export class Tabs {
 		// so tell the projected code panel to hide its own to avoid a duplicate.
 		effect(() => {
 			const panel = this._codePanel();
-			if (panel && isRunnableExample(panel.codeValue())) {
+			if (panel && isRunnableExample(panel.runnableSource())) {
 				panel.suppressStackblitzButton();
 			}
 		});

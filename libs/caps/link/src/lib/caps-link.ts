@@ -1,21 +1,7 @@
 import { computed, Directive, inject } from '@angular/core';
 import { classes } from '@spartan-ng/helm/utils';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { CAPS_LINK_CONTEXT } from './caps-link.token';
-
-export const linkVariants = cva('caps-link', {
-	variants: {
-		variant: {
-			default: 'caps-link-variant-default',
-			breadcrumb: 'caps-link-variant-breadcrumb',
-		},
-	},
-	defaultVariants: {
-		variant: 'default',
-	},
-});
-
-export type LinkVariants = VariantProps<typeof linkVariants>;
+import { linkVariants } from './caps-link.variants';
 
 /**
  * Styling-only link directive. It has no router dependency: add `href` or `routerLink` yourself.

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { CapsLink } from '@capsule-ng/caps/link';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 import { CapsBreadcrumbImports } from '../index';
 
 @Component({
 	selector: 'caps-breadcrumb-host',
-	imports: [CapsBreadcrumbImports, CapsLink],
+	imports: [CapsBreadcrumbImports, CapsLinkImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<caps-breadcrumb [aria-label]="label()" class="text-lg">
@@ -25,7 +25,7 @@ class BreadcrumbHost {
 
 @Component({
 	selector: 'caps-breadcrumb-current-host',
-	imports: [CapsBreadcrumbImports, CapsLink],
+	imports: [CapsBreadcrumbImports, CapsLinkImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<caps-breadcrumb>
@@ -52,6 +52,22 @@ function renderCurrent(inputs: { homeCurrent?: boolean; lastCurrent?: boolean } 
 		items: Array.from(root.querySelectorAll<HTMLElement>('caps-breadcrumb-item')),
 		links: Array.from(root.querySelectorAll<HTMLAnchorElement>('a')),
 	};
+}
+
+@Component({
+	selector: 'caps-breadcrumb-dynamic-host',
+	imports: [CapsBreadcrumbImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	template: `
+		<caps-breadcrumb>
+			@for (label of labels(); track label) {
+				<caps-breadcrumb-item>{{ label }}</caps-breadcrumb-item>
+			}
+		</caps-breadcrumb>
+	`,
+})
+class DynamicHost {
+	public readonly labels = input<string[]>([]);
 }
 
 function render(inputs: { label?: string } = {}) {
@@ -154,5 +170,17 @@ describe('caps-breadcrumb', () => {
 
 	it('merges the consumer class on the host', () => {
 		expect(render().breadcrumb.classList).toContain('text-lg');
+	});
+
+	it('keeps separators and the current item in sync when items change', () => {
+		const fixture = TestBed.createComponent(DynamicHost);
+		fixture.componentRef.setInput('labels', ['Home', 'Docs']);
+		fixture.detectChanges();
+		fixture.componentRef.setInput('labels', ['Home', 'Docs', 'Breadcrumb']);
+		fixture.detectChanges();
+
+		const items = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('caps-breadcrumb-item'));
+		expect(items.map((item) => item.getAttribute('aria-current'))).toEqual([null, null, 'page']);
+		expect(items.map((item) => item.querySelectorAll('[data-slot="breadcrumb-separator"]').length)).toEqual([0, 1, 1]);
 	});
 });

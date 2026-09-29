@@ -12,7 +12,8 @@
 }
 
 .caps-breadcrumb-separator {
-	@apply [&>ng-icon]:text-[length:--spacing(3.5)];
+	/* Keep the muted colour even inside a current item, which is `text-foreground`. */
+	@apply text-muted-foreground [&>ng-icon]:text-[length:--spacing(3.5)];
 }
 
 /* MARK: Link */

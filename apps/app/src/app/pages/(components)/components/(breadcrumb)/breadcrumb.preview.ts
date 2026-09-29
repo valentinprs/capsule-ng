@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
-import { CapsLink } from '@capsule-ng/caps/link';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 
 @Component({
 	selector: 'spartan-breadcrumb-preview',
-	imports: [CapsBreadcrumbImports, CapsLink, RouterLink],
+	imports: [CapsBreadcrumbImports, CapsLinkImports, RouterLink],
 	template: `
 		<caps-breadcrumb>
 			<caps-breadcrumb-item>
@@ -22,7 +22,7 @@ export class BreadcrumbPreview {}
 
 export const defaultImports = `
 import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
-import { CapsLink } from '@capsule-ng/caps/link';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 `;
 
 export const defaultSkeleton = `

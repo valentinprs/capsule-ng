@@ -19,6 +19,11 @@ function optionalBooleanAttribute(value: CurrentInput): boolean | undefined {
 	return value === undefined || value === null ? undefined : booleanAttribute(value);
 }
 
+/**
+ * An item of a `<caps-breadcrumb>`. Items must be direct content of the breadcrumb, and an item's
+ * `capsLink` must be in the item's own content (not inside another component's template), so the
+ * breadcrumb and the item can find them.
+ */
 @Component({
 	selector: 'caps-breadcrumb-item',
 	imports: [NgIcon],
@@ -58,7 +63,7 @@ export class CapsBreadcrumbItem implements CapsLinkContext {
 		transform: optionalBooleanAttribute,
 	});
 
-	public readonly variant = 'breadcrumb';
+	public readonly variant = 'breadcrumb' as const;
 
 	public readonly isCurrent = computed(() => {
 		const current = this.current();

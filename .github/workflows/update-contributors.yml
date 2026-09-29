@@ -57,6 +57,5 @@ jobs:
           git config user.name Leonidas
           git config user.email leonidas@spartan.ng
           git add "${files[@]}"
-          # docs: is a non-releasing type, so pushing to main does not trigger semantic-release.
           git commit -m 'docs: add new contributors to our 300'
           git push "https://x-access-token:${APP_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"

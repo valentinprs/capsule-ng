@@ -74,8 +74,6 @@ module.exports = {
 				'typography',
 				'nx',
 				'repo',
-				// semantic-release stamps the release commit as `chore(release): <version>`.
-				'release',
 			],
 		],
 		'subject-case': [2, 'never', ['start-case', 'pascal-case', 'upper-case']],

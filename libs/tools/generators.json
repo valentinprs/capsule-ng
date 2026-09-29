@@ -1,10 +1,5 @@
 {
 	"generators": {
-		"set-release-version": {
-			"factory": "./src/generators/set-release-version/generator",
-			"schema": "./src/generators/set-release-version/schema.json",
-			"description": "Sets the published @spartan-ng package versions (brain)"
-		},
 		"brain-secondary-entrypoint": {
 			"factory": "./src/generators/brain-secondary-entrypoint/generator",
 			"schema": "./src/generators/brain-secondary-entrypoint/schema.json",

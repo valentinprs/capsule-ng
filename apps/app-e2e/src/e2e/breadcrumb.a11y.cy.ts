@@ -58,6 +58,8 @@ describe('breadcrumb docs page accessibility', { testIsolation: false }, () => {
 		for (const example of EXAMPLES) {
 			cy.get(`${example} caps-breadcrumb`).should('have.attr', 'role', 'navigation');
 			cy.get(`${example} caps-breadcrumb [aria-current="page"]`).should('have.length', 1);
+			// Linked items render a native <a>: their own (href) or a projected capsLink (routerLink).
+			cy.get(`${example} caps-breadcrumb-item a[href="/components"]`).should('have.length', 1);
 		}
 		cy.get('spartan-breadcrumb-rtl').should('have.attr', 'dir', 'rtl');
 	});

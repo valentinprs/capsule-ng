@@ -23,7 +23,8 @@ Remove the CLI/registry distribution model before starting `caps`:
 
 - `@capsule-ng/caps/breadcrumb`: `CapsBreadcrumb`, `CapsBreadcrumbItem`, `CapsBreadcrumbEllipsis`,
   exported together as `CapsBreadcrumbImports`.
-- `@capsule-ng/caps/link`: `capsLink` directive (styling-only, see ADR).
+- `@capsule-ng/caps/link`: `capsLink` directive (styling-only, see ADR). The breadcrumb item uses
+  it on its internal link.
 - `@capsule-ng/caps/button`: minimal `capsButton` directive — enough variants/sizes for the
   breadcrumb dropdown example (`variant="ghost"`, `size="icon"`).
 - Caps CSS preset with `caps-*` hook classes for these components.
@@ -32,14 +33,18 @@ Remove the CLI/registry distribution model before starting `caps`:
 
 ```html
 <caps-breadcrumb>
-	<caps-breadcrumb-item>
-		<a capsLink routerLink="/">Home</a>
-	</caps-breadcrumb-item>
-	<caps-breadcrumb-item>
-		<a capsLink routerLink="/components">Components</a>
-	</caps-breadcrumb-item>
+	<caps-breadcrumb-item href="/">Home</caps-breadcrumb-item>
+	<caps-breadcrumb-item href="/components">Components</caps-breadcrumb-item>
 	<caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
 </caps-breadcrumb>
+```
+
+For router navigation, project a `capsLink` into the item instead of setting `href`:
+
+```html
+<caps-breadcrumb-item>
+	<a capsLink routerLink="/components">Components</a>
+</caps-breadcrumb-item>
 ```
 
 #### `<caps-breadcrumb>`
@@ -57,11 +62,21 @@ Remove the CLI/registry distribution model before starting `caps`:
 #### `<caps-breadcrumb-item>`
 
 - Host: `role="listitem"`.
+- `href` input (see [ADR 0001, amendment 1](../adr/0001-caps-element-vs-attribute.md)), as in
+  Carbon: when set, the item renders a native `<a href>` (with `capsLink`'s breadcrumb variant)
+  wrapping its content. Without it, the content is rendered as is (plain text for the current page,
+  or e.g. a dropdown trigger). There is no `routerLink` input and caps does not depend on
+  `@angular/router`: for router navigation, project an `<a capsLink routerLink>`.
 - The last item is automatically the current page. A `current` input overrides this behavior.
-- When current, `aria-current="page"` is set on the item's `capsLink` if one is present, otherwise
-  on the item host. There is no dedicated `breadcrumb-page` element.
+- When current, `aria-current="page"` is set on the item's link (its own `href` link, or a
+  projected `capsLink`) if there is one, otherwise on the item host. There is no dedicated `breadcrumb-page`
+  element.
+- A current item with `href` (or a projected `capsLink`) keeps its link, marked `aria-current="page"`, as in the
+  WAI-ARIA APG breadcrumb pattern and Carbon. Omit the link input to render the current page as
+  plain text (what the docs examples do).
 - Provides a DI context consumed by `capsLink` to apply the breadcrumb link variant and
-  `aria-current`.
+  `aria-current`; a projected `<a capsLink>` is the way to use `routerLink` or to take full control
+  over the link.
 
 #### `<caps-breadcrumb-ellipsis>`
 

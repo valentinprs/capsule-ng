@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
 	booleanAttribute,
 	ChangeDetectionStrategy,
@@ -20,13 +21,17 @@ function optionalBooleanAttribute(value: CurrentInput): boolean | undefined {
 }
 
 /**
- * An item of a `<caps-breadcrumb>`. Items must be direct content of the breadcrumb, and an item's
- * `capsLink` must be in the item's own content (not inside another component's template), so the
- * breadcrumb and the item can find them.
+ * An item of a `<caps-breadcrumb>`. Set `href` to render the item's content inside a native `<a>`
+ * styled as a breadcrumb link; without it, the content is rendered as is (plain text for the
+ * current page, or e.g. a dropdown trigger). For router navigation, project an
+ * `<a capsLink routerLink>` instead: the item styles it and sets its `aria-current`.
+ *
+ * Items must be direct content of the breadcrumb, and a projected `capsLink` must be in the item's
+ * own content (not inside another component's template), so the item can find it.
  */
 @Component({
 	selector: 'caps-breadcrumb-item',
-	imports: [NgIcon],
+	imports: [NgTemplateOutlet, NgIcon, CapsLink],
 	providers: [provideIcons({ lucideChevronRight }), { provide: CAPS_LINK_CONTEXT, useExisting: CapsBreadcrumbItem }],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -45,7 +50,12 @@ function optionalBooleanAttribute(value: CurrentInput): boolean | undefined {
 				<ng-icon name="lucideChevronRight" class="rtl:rotate-180" />
 			</span>
 		}
-		<ng-content />
+		<ng-template #content><ng-content /></ng-template>
+		@if (_hasHref()) {
+			<a capsLink [href]="href()"><ng-container *ngTemplateOutlet="content" /></a>
+		} @else {
+			<ng-container *ngTemplateOutlet="content" />
+		}
 	`,
 })
 export class CapsBreadcrumbItem implements CapsLinkContext {
@@ -63,6 +73,12 @@ export class CapsBreadcrumbItem implements CapsLinkContext {
 		transform: optionalBooleanAttribute,
 	});
 
+	/**
+	 * URL of the item. Renders the content inside a native `<a href>`. For router navigation, project
+	 * an `<a capsLink routerLink>` instead.
+	 */
+	public readonly href = input<string | null | undefined>(undefined);
+
 	public readonly variant = 'breadcrumb' as const;
 
 	public readonly isCurrent = computed(() => {
@@ -77,8 +93,16 @@ export class CapsBreadcrumbItem implements CapsLinkContext {
 
 	protected readonly _isFirst = computed(() => this._index() <= 0);
 
-	/** `aria-current` goes on the item's capsLink when there is one, otherwise on the item itself. */
-	protected readonly _hostAriaCurrent = computed(() => (this.isCurrent() && !this._link() ? 'page' : null));
+	/** Whether the item renders its own link. */
+	protected readonly _hasHref = computed(() => this.href() != null);
+
+	/**
+	 * `aria-current` goes on the item's link (its own `href` link, or a projected capsLink) when there is one,
+	 * otherwise on the item itself.
+	 */
+	protected readonly _hostAriaCurrent = computed(() =>
+		this.isCurrent() && !this._hasHref() && !this._link() ? 'page' : null,
+	);
 
 	constructor() {
 		classes(() => 'caps-breadcrumb-item inline-flex items-center');

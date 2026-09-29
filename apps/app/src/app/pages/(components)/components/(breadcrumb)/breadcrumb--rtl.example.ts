@@ -1,36 +1,25 @@
 import { Component, computed, inject } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideDot } from '@ng-icons/lucide';
+import { RouterLink } from '@angular/router';
+import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
 
 @Component({
 	selector: 'spartan-breadcrumb-rtl',
-	imports: [HlmBreadcrumbImports, NgIcon],
-	providers: [provideIcons({ lucideDot })],
+	imports: [CapsBreadcrumbImports, CapsLinkImports, RouterLink],
 	host: {
 		'[dir]': '_dir()',
 	},
 	template: `
-		<nav hlmBreadcrumb>
-			<ol hlmBreadcrumbList>
-				<li hlmBreadcrumbItem>
-					<a hlmBreadcrumbLink link="/">{{ _t()['home'] }}</a>
-				</li>
-				<li hlmBreadcrumbSeparator>
-					<ng-icon name="lucideDot" />
-				</li>
-				<li hlmBreadcrumbItem>
-					<a hlmBreadcrumbLink link="/components">{{ _t()['components'] }}</a>
-				</li>
-				<li hlmBreadcrumbSeparator>
-					<ng-icon name="lucideDot" />
-				</li>
-				<li hlmBreadcrumbItem>
-					<span hlmBreadcrumbPage>{{ _t()['breadcrumb'] }}</span>
-				</li>
-			</ol>
-		</nav>
+		<caps-breadcrumb>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/">{{ _t()['home'] }}</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/components">{{ _t()['components'] }}</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>{{ _t()['breadcrumb'] }}</caps-breadcrumb-item>
+		</caps-breadcrumb>
 	`,
 })
 export class BreadcrumbRtl {

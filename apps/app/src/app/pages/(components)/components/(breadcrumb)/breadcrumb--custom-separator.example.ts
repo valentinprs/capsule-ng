@@ -1,32 +1,27 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSlash } from '@ng-icons/lucide';
-import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
 
 @Component({
 	selector: 'spartan-breadcrumb-custom-separator',
-	imports: [HlmBreadcrumbImports, NgIcon],
+	imports: [CapsBreadcrumbImports, CapsLinkImports, RouterLink, NgIcon],
 	providers: [provideIcons({ lucideSlash })],
 	template: `
-		<nav hlmBreadcrumb>
-			<ol hlmBreadcrumbList>
-				<li hlmBreadcrumbItem>
-					<a hlmBreadcrumbLink link="/">Home</a>
-				</li>
-				<li hlmBreadcrumbSeparator>
-					<ng-icon name="lucideSlash" />
-				</li>
-				<li hlmBreadcrumbItem>
-					<a hlmBreadcrumbLink link="/components">Components</a>
-				</li>
-				<li hlmBreadcrumbSeparator>
-					<ng-icon name="lucideSlash" />
-				</li>
-				<li hlmBreadcrumbItem>
-					<span hlmBreadcrumbPage>Breadcrumb</span>
-				</li>
-			</ol>
-		</nav>
+		<caps-breadcrumb>
+			<ng-template capsBreadcrumbSeparator>
+				<ng-icon name="lucideSlash" />
+			</ng-template>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/">Home</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/components">Components</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
+		</caps-breadcrumb>
 	`,
 })
 export class BreadcrumbCustomSeparator {}

@@ -79,11 +79,14 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
 			<h3 id="examples__custom-separator" spartanH4>Custom separator</h3>
 			<p class="${hlmP} mb-2">
-				Use a custom component as
-				<code class="${hlmCode} mr-0.5">children</code>
-				for
-				<code class="${hlmCode} mr-0.5">HlmBreadcrumbSeparator</code>
-				to create a custom separator.
+				Place an
+				<code class="${hlmCode} mr-0.5">ng-template capsBreadcrumbSeparator</code>
+				inside
+				<code class="${hlmCode} mr-0.5">caps-breadcrumb</code>
+				(or pass text or a template to its
+				<code class="${hlmCode} mr-0.5">separator</code>
+				input) to render a custom separator between every pair of items. Separators are decorative and hidden from
+				assistive technologies.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

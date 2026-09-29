@@ -13,9 +13,9 @@ Remove the CLI/registry distribution model before starting `caps`:
   `prepare-manual-release` in `package.json`).
 - Remove the showcase site's dependencies on these libraries, including the CLI install tabs on
   component pages.
-- The style presets currently live in `libs/registry/src/styles/` (`style-*.css`, defining the
-  `spartan-*` classes used by helm). They must be relocated before `libs/registry` is deleted,
-  since helm and the site still depend on them.
+- The style presets (`style-*.css`, defining the `spartan-*` classes used by helm) have been
+  relocated from `libs/registry/src/styles/` to the standalone `libs/styles` library
+  (`@spartan-ng/styles`), so they survive the deletion of `libs/registry`.
 
 ## Phase 1 — Pilot: breadcrumb, minimal `capsButton`, `capsLink`
 

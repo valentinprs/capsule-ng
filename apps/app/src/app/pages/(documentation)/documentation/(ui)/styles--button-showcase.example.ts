@@ -3,7 +3,7 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { STYLES } from '@spartan-ng/registry';
+import { STYLES } from '@spartan-ng/styles';
 
 @Component({
 	selector: 'spartan-styles-showcase',

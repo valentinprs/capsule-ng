@@ -12,14 +12,14 @@
 
 /* nova = global baseline (the default style) -> its own low-priority layer (see above). The body carries
    `.style-nova` permanently so the baseline actually matches; islands set their own `.style-THEME`. */
-@import '../../../libs/registry/src/styles/style-nova.css' layer(spartan-nova-baseline);
+@import '../../../libs/styles/src/style-nova.css' layer(spartan-nova-baseline);
 
 /* every other style -> one layer above nova; they override the baseline when applied as an island */
-@import '../../../libs/registry/src/styles/style-vega.css' layer(spartan-themes);
-@import '../../../libs/registry/src/styles/style-lyra.css' layer(spartan-themes);
-@import '../../../libs/registry/src/styles/style-maia.css' layer(spartan-themes);
-@import '../../../libs/registry/src/styles/style-mira.css' layer(spartan-themes);
-@import '../../../libs/registry/src/styles/style-luma.css' layer(spartan-themes);
+@import '../../../libs/styles/src/style-vega.css' layer(spartan-themes);
+@import '../../../libs/styles/src/style-lyra.css' layer(spartan-themes);
+@import '../../../libs/styles/src/style-maia.css' layer(spartan-themes);
+@import '../../../libs/styles/src/style-mira.css' layer(spartan-themes);
+@import '../../../libs/styles/src/style-luma.css' layer(spartan-themes);
 
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/preflight.css' layer(base);

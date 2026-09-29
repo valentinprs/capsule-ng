@@ -30,4 +30,4 @@ Styled questionnaire built on `@spartan-ng/brain/questionnaire`.
 </form>
 ```
 
-Import `form`, `FormField`, and `FormRoot` from `@angular/forms/signals` plus `HlmQuestionnaireImports`. Styles live in the registry CSS as `.spartan-questionnaire*`.
+Import `form`, `FormField`, and `FormRoot` from `@angular/forms/signals` plus `HlmQuestionnaireImports`. Styles live in the style presets (`libs/styles`) as `.spartan-questionnaire*`.

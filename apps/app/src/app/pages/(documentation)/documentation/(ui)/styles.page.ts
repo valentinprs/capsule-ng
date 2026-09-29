@@ -12,7 +12,7 @@ import { SectionSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub
 import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
 import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
-import { STYLES } from '@spartan-ng/registry';
+import { STYLES } from '@spartan-ng/styles';
 import { StylesShowcase } from './styles--button-showcase.example';
 import { StylesComplexShowcase } from './styles--complex-showcase.example';
 import { StylesSelector } from './styles--selector.example';

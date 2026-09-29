@@ -1,14 +1,14 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { STYLES } from './styles/style';
+import { STYLES } from './style';
 
 const tooltipBlock = (style: (typeof STYLES)[number]) => {
-	const stylesheet = readFileSync(new URL(`./styles/style-${style}.css`, import.meta.url), 'utf8');
+	const stylesheet = readFileSync(new URL(`./style-${style}.css`, import.meta.url), 'utf8');
 	return stylesheet.match(/\.spartan-chart-tooltip\s*\{([^}]*)\}/)?.[1];
 };
 
 const chartBlock = (style: (typeof STYLES)[number]) => {
-	const stylesheet = readFileSync(new URL(`./styles/style-${style}.css`, import.meta.url), 'utf8');
+	const stylesheet = readFileSync(new URL(`./style-${style}.css`, import.meta.url), 'utf8');
 	return stylesheet.match(/\.spartan-chart\s*\{([^}]*)\}/)?.[1];
 };
 
@@ -34,7 +34,7 @@ describe('chart styles', () => {
 			).toBe(true);
 		});
 
-		it(`keeps chart layout in the ${style} registry style`, () => {
+		it(`keeps chart layout in the ${style} style preset`, () => {
 			expect(chartBlock(style)).toContain('@apply block w-full text-xs;');
 		});
 	}

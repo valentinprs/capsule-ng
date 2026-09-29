@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { StyleService } from '@spartan-ng/app/app/shared/style.service';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { STYLES } from '@spartan-ng/registry';
+import { STYLES } from '@spartan-ng/styles';
 
 @Component({
 	selector: 'spartan-styles-selector',

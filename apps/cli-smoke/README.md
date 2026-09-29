@@ -38,12 +38,12 @@ and builds with themed styles**, but they do not run the app or assert runtime b
   (`vega` is the default the other cells already use). Each generates with that style and asserts the CLI
   replaced the `spartan-*` placeholders with **that style's** registry classes - no leftover
   non-allowlisted placeholders, and at least one class unique to the style (derived from
-  `libs/registry/src/styles`, never hardcoded) reaches the output. The standard build's themed-CSS check is
+  `libs/styles/src`, never hardcoded) reaches the output. The standard build's themed-CSS check is
   style-blind (those vars come from the `--theme`, not the style), so these cells are the only coverage that
   the per-style class replacement works.
 
 Tailwind is fixed at v4. Add or remove combinations in `src/matrix.ts`. When a style is added to or removed
-from `libs/registry/src/styles/style.ts`, update the `styleCells` list in `src/matrix.ts` (and the matching
+from `libs/styles/src/style.ts`, update the `styleCells` list in `src/matrix.ts` (and the matching
 `style-*` entries in `.github/workflows/cli-smoke.yml`).
 
 ## Running

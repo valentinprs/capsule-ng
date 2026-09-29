@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Style } from '@spartan-ng/registry';
+import { Style } from '@spartan-ng/styles';
 
 @Injectable({
 	providedIn: 'root',

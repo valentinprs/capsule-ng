@@ -1,4 +1,4 @@
-import type { Style } from '@spartan-ng/registry';
+import type { Style } from '@spartan-ng/styles';
 import type { PrimitiveSnippets } from '../models/primitives-snippets.model';
 import type { ComponentApiData } from '../models/ui-docs.model';
 import type { ComponentDocsData } from './component-docs';

@@ -36,7 +36,7 @@ export class ButtonGroupComponent {}
 		);
 
 		// Fake style file
-		tree.write('libs/registry/src/styles/style-vega.css', '/* fake css */');
+		tree.write('libs/styles/src/style-vega.css', '/* fake css */');
 
 		// Create the components base directory (Nx Tree expects it)
 		tree.write('apps/app/src/app/pages/(components)/components/button/.keep', '');

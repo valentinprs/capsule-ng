@@ -9,7 +9,7 @@
 
 > Accessible, unstyled UI primitives for Angular. The behavior half of [spartan/ui](https://www.spartan.ng).
 
-`@spartan-ng/brain` is a fully tree-shakable collection of headless Angular primitives - keyboard navigation, focus management, ARIA wiring, and state - with zero opinions about styling. Pair it with [`helm`](https://www.spartan.ng/documentation/installation) styles (copied into your codebase by the [spartan CLI](https://www.npmjs.com/package/@spartan-ng/cli)) for the full shadcn-style experience, or bring your own design system.
+`@spartan-ng/brain` is a fully tree-shakable collection of headless Angular primitives - keyboard navigation, focus management, ARIA wiring, and state - with zero opinions about styling. Pair it with [`helm`](https://www.spartan.ng/documentation/installation) styles for the full shadcn-style experience, or bring your own design system.
 
 Inspired by [Radix UI](https://radix-ui.com) and [shadcn/ui](https://ui.shadcn.com), adapted for the Angular ecosystem.
 

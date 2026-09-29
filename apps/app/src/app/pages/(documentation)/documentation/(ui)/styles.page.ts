@@ -43,9 +43,7 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro name="Styles" lead="Choose a visual style for your components." />
 
 			<p class="${hlmP}">
-				Each style is a CSS preset from
-				<code class="${hlmCode}">&#64;spartan-ng/styles</code>
-				that defines the
+				Each style is a CSS preset that defines the
 				<code class="${hlmCode}">spartan-*</code>
 				classes used by the components. Each style offers a distinct look while maintaining full access to the
 				underlying CSS variables and Tailwind utilities for customization.

@@ -231,7 +231,7 @@ Each primitive is made up of two halves:
 - a headless **`brain`** library in [`libs/brain`](./libs/brain) that provides the behavior, accessibility, and state - published to npm as [`@spartan-ng/brain`](https://www.npmjs.com/package/@spartan-ng/brain).
 - a **`helm`** library in [`libs/helm`](./libs/helm) that adds the styles.
 
-[`libs/styles`](./libs/styles) holds the style presets (nova, vega, lyra, maia, mira, luma), published as `@spartan-ng/styles`.
+[`libs/styles`](./libs/styles) holds the style presets (nova, vega, lyra, maia, mira, luma), consumed in the workspace as `@spartan-ng/styles` (not published yet).
 
 ### Install Dependencies
 
@@ -343,7 +343,6 @@ Run `pnpm nx graph` to see a diagram of the dependencies of the projects.
 
 - [Introduction](https://www.spartan.ng/documentation/introduction)
 - [Installation](https://www.spartan.ng/documentation/installation)
-- [CLI](https://www.spartan.ng/documentation/cli)
 - [Theming](https://www.spartan.ng/documentation/theming)
 - [Components](https://www.spartan.ng/components)
 - [Blocks](https://www.spartan.ng/blocks)

@@ -1,0 +1,129 @@
+/* Caps color tokens - the single source of color truth, aligned with the Figma file Capsule-2
+   (collection `Theme`, modes `shadcn` / `shadcn-dark`). The Figma hierarchy is flattened
+   (`general/primary` -> `--caps-primary`, `sidebar/sidebar-accent` -> `--caps-sidebar-accent`).
+
+   The shadcn tokens used by helm and the Tailwind preset alias the caps tokens below, so theme a
+   whole app by overriding the `--caps-*` tokens in `:root` (light) and `.dark` (dark). */
+
+:root {
+	color-scheme: light;
+	--caps-background: oklch(1 0 0);
+	--caps-foreground: oklch(0.145 0 0);
+	--caps-card: oklch(1 0 0);
+	--caps-card-foreground: oklch(0.145 0 0);
+	--caps-popover: oklch(1 0 0);
+	--caps-popover-foreground: oklch(0.145 0 0);
+	--caps-primary: oklch(0.205 0 0);
+	--caps-primary-foreground: oklch(0.985 0 0);
+	--caps-secondary: oklch(0.97 0 0);
+	--caps-secondary-foreground: oklch(0.205 0 0);
+	--caps-muted: oklch(0.97 0 0);
+	--caps-muted-foreground: oklch(0.556 0 0);
+	--caps-accent: oklch(0.97 0 0);
+	--caps-accent-foreground: oklch(0.205 0 0);
+	--caps-destructive: oklch(0.577 0.245 27.325);
+	--caps-border: oklch(0.922 0 0);
+	--caps-input: oklch(0.922 0 0);
+	--caps-ring: oklch(0.708 0 0);
+	--caps-ring-error: oklch(0.885 0.062 18.334);
+	--caps-sidebar: oklch(0.985 0 0);
+	--caps-sidebar-foreground: oklch(0.145 0 0);
+	--caps-sidebar-primary: oklch(0.205 0 0);
+	--caps-sidebar-primary-foreground: oklch(0.985 0 0);
+	--caps-sidebar-accent: oklch(0.97 0 0);
+	--caps-sidebar-accent-foreground: oklch(0.205 0 0);
+	--caps-sidebar-border: oklch(0.922 0 0);
+	--caps-sidebar-ring: oklch(0.708 0 0);
+	--caps-chart-1: oklch(0.809 0.105 251.813);
+	--caps-chart-2: oklch(0.623 0.214 259.815);
+	--caps-chart-3: oklch(0.546 0.245 262.881);
+	--caps-chart-4: oklch(0.488 0.243 264.376);
+	--caps-chart-5: oklch(0.424 0.199 265.638);
+	--caps-surface: oklch(0.98 0 0);
+	--caps-surface-foreground: var(--caps-foreground);
+}
+
+.dark {
+	color-scheme: dark;
+	--caps-background: oklch(0.145 0 0);
+	--caps-foreground: oklch(0.985 0 0);
+	--caps-card: oklch(0.205 0 0);
+	--caps-card-foreground: oklch(0.985 0 0);
+	--caps-popover: oklch(0.205 0 0);
+	--caps-popover-foreground: oklch(0.985 0 0);
+	--caps-primary: oklch(0.922 0 0);
+	--caps-primary-foreground: oklch(0.205 0 0);
+	--caps-secondary: oklch(0.269 0 0);
+	--caps-secondary-foreground: oklch(0.985 0 0);
+	--caps-muted: oklch(0.269 0 0);
+	--caps-muted-foreground: oklch(0.708 0 0);
+	--caps-accent: oklch(0.269 0 0);
+	--caps-accent-foreground: oklch(0.985 0 0);
+	--caps-destructive: oklch(0.704 0.191 22.216);
+	--caps-border: oklch(1 0 0 / 10%);
+	--caps-input: oklch(1 0 0 / 15%);
+	--caps-ring: oklch(0.556 0 0);
+	--caps-ring-error: oklch(0.396 0.141 25.723);
+	--caps-sidebar: oklch(0.205 0 0);
+	--caps-sidebar-foreground: oklch(0.985 0 0);
+	--caps-sidebar-primary: oklch(0.985 0 0);
+	--caps-sidebar-primary-foreground: oklch(0.205 0 0);
+	--caps-sidebar-accent: oklch(0.269 0 0);
+	--caps-sidebar-accent-foreground: oklch(0.985 0 0);
+	--caps-sidebar-border: oklch(1 0 0 / 10%);
+	--caps-sidebar-ring: oklch(0.556 0 0);
+	--caps-chart-1: oklch(0.809 0.105 251.813);
+	--caps-chart-2: oklch(0.623 0.214 259.815);
+	--caps-chart-3: oklch(0.546 0.245 262.881);
+	--caps-chart-4: oklch(0.488 0.243 264.376);
+	--caps-chart-5: oklch(0.424 0.199 265.638);
+	--caps-surface: oklch(0.2 0 0);
+	--caps-surface-foreground: oklch(0.708 0 0);
+}
+
+/* shadcn aliases. Re-declared on `.dark` so they resolve against the dark caps values wherever
+   `.dark` is applied (a custom property referencing `var()` is computed where it is declared). */
+:root,
+.dark {
+	--background: var(--caps-background);
+	--foreground: var(--caps-foreground);
+	--card: var(--caps-card);
+	--card-foreground: var(--caps-card-foreground);
+	--popover: var(--caps-popover);
+	--popover-foreground: var(--caps-popover-foreground);
+	--primary: var(--caps-primary);
+	--primary-foreground: var(--caps-primary-foreground);
+	--secondary: var(--caps-secondary);
+	--secondary-foreground: var(--caps-secondary-foreground);
+	--muted: var(--caps-muted);
+	--muted-foreground: var(--caps-muted-foreground);
+	--accent: var(--caps-accent);
+	--accent-foreground: var(--caps-accent-foreground);
+	--destructive: var(--caps-destructive);
+	--border: var(--caps-border);
+	--input: var(--caps-input);
+	--ring: var(--caps-ring);
+	--sidebar: var(--caps-sidebar);
+	--sidebar-foreground: var(--caps-sidebar-foreground);
+	--sidebar-primary: var(--caps-sidebar-primary);
+	--sidebar-primary-foreground: var(--caps-sidebar-primary-foreground);
+	--sidebar-accent: var(--caps-sidebar-accent);
+	--sidebar-accent-foreground: var(--caps-sidebar-accent-foreground);
+	--sidebar-border: var(--caps-sidebar-border);
+	--sidebar-ring: var(--caps-sidebar-ring);
+	--chart-1: var(--caps-chart-1);
+	--chart-2: var(--caps-chart-2);
+	--chart-3: var(--caps-chart-3);
+	--chart-4: var(--caps-chart-4);
+	--chart-5: var(--caps-chart-5);
+	--surface: var(--caps-surface);
+	--surface-foreground: var(--caps-surface-foreground);
+}
+
+/* The shadcn colors are registered with Tailwind by `@spartan-ng/brain/hlm-tailwind-preset.css`
+   (`bg-primary` -> `var(--primary)`); these are the colors it does not know about. */
+@theme inline {
+	--color-ring-error: var(--caps-ring-error);
+	--color-surface: var(--surface);
+	--color-surface-foreground: var(--surface-foreground);
+}

@@ -13,6 +13,8 @@ export default defineConfig({
 		// a project's specs go silently undiscovered.
 		reporters: ['default'],
 		environment: 'node',
+		// Vitest blanks CSS modules (even `?raw` imports) unless they are opted in here.
+		css: { include: [/caps-tokens\.css/] },
 		include: ['src/**/*.spec.ts'],
 	},
 	cacheDir: '../../node_modules/.vitest/styles',

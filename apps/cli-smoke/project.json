@@ -4,7 +4,7 @@
 	"projectType": "application",
 	"sourceRoot": "apps/cli-smoke/src",
 	"tags": ["scope:cli-smoke"],
-	"implicitDependencies": ["cli", "brain", "helm"],
+	"implicitDependencies": ["cli", "brain", "helm", "styles"],
 	"targets": {
 		"smoke": {
 			"executor": "@nx/vitest:test",

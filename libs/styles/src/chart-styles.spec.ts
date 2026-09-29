@@ -34,7 +34,7 @@ describe('chart styles', () => {
 			).toBe(true);
 		});
 
-		it(`keeps chart layout in the ${style} registry style`, () => {
+		it(`keeps chart layout in the ${style} style preset`, () => {
 			expect(chartBlock(style)).toContain('@apply block w-full text-xs;');
 		});
 	}

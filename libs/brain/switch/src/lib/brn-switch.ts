@@ -141,7 +141,7 @@ export class BrnSwitch implements AfterContentInit, OnDestroy, ControlValueAcces
 
 	/**
 	 * Size of the switch.
-	 * Drives the size-keyed registry style rules via the `data-size` attribute.
+	 * Drives the size-keyed style preset rules via the `data-size` attribute.
 	 * @default 'default'
 	 */
 	public readonly size = input<BrnSwitchSize>('default');

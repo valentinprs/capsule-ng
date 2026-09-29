@@ -73,7 +73,7 @@ describe('HlmChart', () => {
 		expect(host.style.getPropertyValue('--ts-chart-tooltip-color')).toBe('var(--popover-foreground)');
 	});
 
-	it('leaves style-specific chart layout to the registry', () => {
+	it('leaves style-specific chart layout to the style presets', () => {
 		const fixture = TestBed.createComponent(ChartHost);
 		fixture.detectChanges();
 

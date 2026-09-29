@@ -2,4 +2,5 @@ export interface GenerateUiDocsExecutorSchema {
 	outputDir: string;
 	brainDir: string;
 	helmDir: string;
+	capsDir?: string;
 }

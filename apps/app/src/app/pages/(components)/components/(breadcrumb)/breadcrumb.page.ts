@@ -128,6 +128,9 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
+			<spartan-section-sub-heading id="caps-api">Caps API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
+
 			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
 			<spartan-ui-api-docs docType="helm" />
 

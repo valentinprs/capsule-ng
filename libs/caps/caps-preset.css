@@ -1,0 +1,30 @@
+/* Caps style preset: defines the `caps-*` hook classes set by the caps components.
+   Import it after Tailwind is set up (it uses `@apply`), e.g. from the showcase site's styles.css:
+   @import '../../../libs/caps/caps-preset.css' layer(caps); */
+
+/* MARK: Breadcrumb */
+.caps-breadcrumb-list {
+	@apply text-muted-foreground gap-1.5 text-sm;
+}
+
+.caps-breadcrumb-item {
+	@apply aria-[current=page]:text-foreground gap-1.5;
+}
+
+.caps-breadcrumb-separator {
+	/* Keep the muted colour even inside a current item, which is `text-foreground`. */
+	@apply text-muted-foreground [&>ng-icon]:text-[length:--spacing(3.5)];
+}
+
+/* MARK: Link */
+.caps-link {
+	@apply focus-visible:ring-ring/50 rounded-sm outline-none focus-visible:ring-3;
+}
+
+.caps-link-variant-default {
+	@apply text-primary font-medium underline-offset-4 hover:underline;
+}
+
+.caps-link-variant-breadcrumb {
+	@apply hover:text-foreground aria-[current=page]:text-foreground transition-colors;
+}

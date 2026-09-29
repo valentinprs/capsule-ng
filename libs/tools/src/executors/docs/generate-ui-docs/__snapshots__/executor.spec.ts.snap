@@ -1307,6 +1307,32 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "breadcrumb": {
+    "caps": {
+      "CapsBreadcrumb": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-breadcrumb",
+      },
+      "CapsBreadcrumbItem": {
+        "inputs": [
+          {
+            "name": "current",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-breadcrumb-item",
+      },
+    },
     "helm": {
       "HlmBreadcrumb": {
         "inputs": [
@@ -5782,6 +5808,16 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[hlmLabel]",
+      },
+    },
+  },
+  "link": {
+    "caps": {
+      "CapsLink": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsLink]",
       },
     },
   },

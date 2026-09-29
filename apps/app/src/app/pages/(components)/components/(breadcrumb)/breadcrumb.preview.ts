@@ -1,72 +1,38 @@
 import { Component } from '@angular/core';
-import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { RouterLink } from '@angular/router';
+import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 
 @Component({
 	selector: 'spartan-breadcrumb-preview',
-	imports: [HlmBreadcrumbImports, HlmDropdownMenuImports],
+	imports: [CapsBreadcrumbImports, CapsLinkImports, RouterLink],
 	template: `
-		<nav hlmBreadcrumb>
-			<ol hlmBreadcrumbList>
-				<li hlmBreadcrumbItem>
-					<a hlmBreadcrumbLink link="/">Home</a>
-				</li>
-				<li hlmBreadcrumbSeparator></li>
-				<li hlmBreadcrumbItem>
-					<button [hlmDropdownMenuTrigger]="breadcrumbDropdown">
-						<hlm-breadcrumb-ellipsis />
-						<span class="sr-only">Toggle menu</span>
-					</button>
-					<ng-template #breadcrumbDropdown>
-						<hlm-dropdown-menu>
-							<button hlmDropdownMenuItem id="document">
-								<span>Documentation</span>
-							</button>
-							<button hlmDropdownMenuItem id="themes">
-								<span>Themes</span>
-							</button>
-							<button hlmDropdownMenuItem id="github">
-								<span>Github</span>
-							</button>
-						</hlm-dropdown-menu>
-					</ng-template>
-				</li>
-				<li hlmBreadcrumbSeparator></li>
-				<li hlmBreadcrumbItem>
-					<a hlmBreadcrumbLink link="/components">Components</a>
-				</li>
-				<li hlmBreadcrumbSeparator></li>
-				<li hlmBreadcrumbItem>
-					<span hlmBreadcrumbPage>Breadcrumb</span>
-				</li>
-			</ol>
-		</nav>
+		<caps-breadcrumb>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/">Home</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/components">Components</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
+		</caps-breadcrumb>
 	`,
 })
 export class BreadcrumbPreview {}
 
 export const defaultImports = `
-import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
+import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 `;
 
 export const defaultSkeleton = `
-<nav hlmBreadcrumb>
-  <ol hlmBreadcrumbList>
-    <li hlmBreadcrumbItem>
-      <a hlmBreadcrumbLink link="/">Home</a>
-    </li>
-    <li hlmBreadcrumbSeparator></li>
-    <li hlmBreadcrumbItem>
-      <hlm-breadcrumb-ellipsis />
-    </li>
-    <li hlmBreadcrumbSeparator></li>
-    <li hlmBreadcrumbItem>
-      <a hlmBreadcrumbLink link="/components">Components</a>
-    </li>
-    <li hlmBreadcrumbSeparator></li>
-    <li hlmBreadcrumbItem>
-      <span hlmBreadcrumbPage>Breadcrumb</span>
-    </li>
-  </ol>
-</nav>
+<caps-breadcrumb>
+  <caps-breadcrumb-item>
+    <a capsLink routerLink="/">Home</a>
+  </caps-breadcrumb-item>
+  <caps-breadcrumb-item>
+    <a capsLink routerLink="/components">Components</a>
+  </caps-breadcrumb-item>
+  <caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
+</caps-breadcrumb>
 `;

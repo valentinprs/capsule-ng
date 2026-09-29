@@ -40,8 +40,9 @@ function visitBreadcrumbPage(): void {
 	cy.visit(PAGE);
 	for (const example of EXAMPLES) {
 		// The page is server-rendered; Angular removes the `ngh` attribute once a component is
-		// hydrated. Wait for it so interactions and the audit run against the live app.
-		cy.get(example).should('not.have.attr', 'ngh');
+		// hydrated. Wait for it so interactions and the audit run against the live app. On a cold dev
+		// server the client bundle is also compiled on demand, so hydration can take well over 20s.
+		cy.get(example, { timeout: 120000 }).should('not.have.attr', 'ngh');
 		cy.get(`${example} caps-breadcrumb`).should('exist');
 	}
 	cy.injectAxe();

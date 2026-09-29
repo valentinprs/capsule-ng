@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import {
 	booleanAttribute,
 	ChangeDetectionStrategy,
@@ -6,12 +7,13 @@ import {
 	contentChild,
 	inject,
 	input,
+	TemplateRef,
 } from '@angular/core';
 import { CAPS_LINK_CONTEXT, CapsLink, type CapsLinkContext } from '@capsule-ng/caps/link';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
 import { classes } from '@spartan-ng/helm/utils';
-import { CAPS_BREADCRUMB } from './caps-breadcrumb.token';
+import { CAPS_BREADCRUMB, type CapsBreadcrumbSeparatorContent } from './caps-breadcrumb.token';
 
 type CurrentInput = boolean | '' | 'true' | 'false' | null | undefined;
 
@@ -26,7 +28,7 @@ function optionalBooleanAttribute(value: CurrentInput): boolean | undefined {
  */
 @Component({
 	selector: 'caps-breadcrumb-item',
-	imports: [NgIcon],
+	imports: [NgIcon, NgTemplateOutlet],
 	providers: [provideIcons({ lucideChevronRight }), { provide: CAPS_LINK_CONTEXT, useExisting: CapsBreadcrumbItem }],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -42,7 +44,14 @@ function optionalBooleanAttribute(value: CurrentInput): boolean | undefined {
 				aria-hidden="true"
 				class="caps-breadcrumb-separator flex"
 			>
-				<ng-icon name="lucideChevronRight" />
+				@let separator = _separator();
+				@if (_isTemplate(separator)) {
+					<ng-container *ngTemplateOutlet="separator" />
+				} @else if (separator !== null) {
+					{{ separator }}
+				} @else {
+					<ng-icon name="lucideChevronRight" class="rtl:rotate-180" />
+				}
 			</span>
 		}
 		<ng-content />
@@ -74,6 +83,12 @@ export class CapsBreadcrumbItem implements CapsLinkContext {
 		const isLast = index >= 0 && index === items.length - 1;
 		return isLast && !items.some((item) => item.current() === true);
 	});
+
+	protected readonly _separator = this._breadcrumb.separatorContent;
+
+	protected _isTemplate(separator: CapsBreadcrumbSeparatorContent | null): separator is TemplateRef<void> {
+		return separator instanceof TemplateRef;
+	}
 
 	protected readonly _isFirst = computed(() => this._index() <= 0);
 

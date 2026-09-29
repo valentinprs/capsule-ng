@@ -132,8 +132,7 @@ Questions and requests for support should not be opened as issues and should be 
 ## Commit message guidelines
 
 We have very precise rules over how our git commit messages can be formatted. This leads to **more
-readable messages** that are easy to follow when looking through the **project history**. But also,
-we use the git commit messages to **generate the changelog**.
+readable messages** that are easy to follow when looking through the **project history**.
 
 ### Commit message format
 
@@ -189,8 +188,7 @@ Must be one of the following:
 
 ### Scope
 
-The scope should be the name of the npm package affected (as perceived by the person reading the changelog generated
-from commit messages.
+The scope should be the name of the npm package affected (as perceived by the person reading the project history).
 
 The following is the list of supported scopes:
 

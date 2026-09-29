@@ -170,6 +170,8 @@ describe('popover--near-viewport-edge', () => {
 describe('popover--close-on-scroll', () => {
 	beforeEach(() => {
 		cy.visit('/iframe.html?id=popover--close-on-scroll');
+		// Wait for the trigger directive (it sets data-state), or the click can land before it listens.
+		cy.get('#closing-trigger').should('have.attr', 'data-state', 'closed');
 		cy.get('#closing-trigger').click();
 		cy.get('hlm-popover-content').should('be.visible');
 	});

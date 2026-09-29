@@ -1,6 +1,5 @@
 import type { RouteMeta } from '@analogjs/router';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 
 import { Component, computed, inject } from '@angular/core';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
@@ -40,7 +39,6 @@ export const routeMeta: RouteMeta = {
 	selector: 'spartan-accordion',
 	imports: [
 		MainSection,
-		InstallTabs,
 		Code,
 		SectionIntro,
 		SectionSubHeading,
@@ -53,7 +51,6 @@ export const routeMeta: RouteMeta = {
 		PageBottomNavLink,
 		UIApiDocs,
 		SectionSubSubHeading,
-		InstallTabs,
 		RtlHeader,
 		CodeRtlPreview,
 		AccordionMultiple,
@@ -77,8 +74,6 @@ export const routeMeta: RouteMeta = {
 				</div>
 				<spartan-code secondTab [code]="_defaultCode()" />
 			</spartan-tabs>
-
-			<spartan-install-tabs primitive="accordion" />
 
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<div class="mt-6 space-y-4">

@@ -2,7 +2,6 @@ import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
@@ -32,7 +31,6 @@ export const routeMeta: RouteMeta = {
 	imports: [
 		UIApiDocs,
 		MainSection,
-		InstallTabs,
 		Code,
 		SectionIntro,
 		SectionSubHeading,
@@ -47,7 +45,6 @@ export const routeMeta: RouteMeta = {
 		SonnerTypesExample,
 		SonnerDescriptionExample,
 		SonnerPositionExample,
-		InstallTabs,
 	],
 	template: `
 		<section spartanMainSection>
@@ -59,8 +56,6 @@ export const routeMeta: RouteMeta = {
 				</div>
 				<spartan-code secondTab [code]="_defaultCode()" />
 			</spartan-tabs>
-
-			<spartan-install-tabs primitive="sonner" />
 
 			<p class="${hlmP}">
 				Add the

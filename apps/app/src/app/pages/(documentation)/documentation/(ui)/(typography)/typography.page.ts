@@ -1,6 +1,5 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 import {
 	hlmBlockquote,
 	hlmCode,
@@ -60,7 +59,6 @@ export const routeMeta: RouteMeta = {
 		Tabs,
 		TypographyPreview,
 		CodePreview,
-		InstallTabs,
 	],
 	template: `
 		<section spartanMainSection>
@@ -72,8 +70,6 @@ export const routeMeta: RouteMeta = {
 				</div>
 				<spartan-code secondTab [code]="_themingCode" />
 			</spartan-tabs>
-
-			<spartan-install-tabs primitive="typography" />
 
 			<spartan-section-sub-heading id="h1">h1</spartan-section-sub-heading>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -173,7 +169,7 @@ export const routeMeta: RouteMeta = {
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="figma" label="Figma" />
-				<spartan-page-bottom-nav-link direction="previous" href="cli" label="CLI" />
+				<spartan-page-bottom-nav-link direction="previous" href="rtl" label="RTL" />
 			</spartan-page-bottom-nav>
 		</section>
 

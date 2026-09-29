@@ -23,7 +23,7 @@ export class PrimitiveSnippetsService {
 
 	/**
 	 * When `code` is a template-only `default` (main preview) snippet, returns the full preview file
-	 * it was extracted from (e.g. to run it on StackBlitz); otherwise null.
+	 * it was extracted from; otherwise null.
 	 */
 	getPreviewSource(code: string | null | undefined): string | null {
 		if (!code) return null;

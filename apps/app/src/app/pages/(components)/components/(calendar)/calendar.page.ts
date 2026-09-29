@@ -8,7 +8,6 @@ import { CalendarYearAndMonthDropdownsExample } from '@spartan-ng/app/app/pages/
 import { CodePreview } from '@spartan-ng/app/app/shared/code/code-preview';
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 import { MainSection } from '@spartan-ng/app/app/shared/layout/main-section';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { link } from '@spartan-ng/app/app/shared/typography/link';
@@ -47,7 +46,6 @@ export const routeMeta: RouteMeta = {
 		PageBottomNavLink,
 		PageNav,
 		SectionSubSubHeading,
-		InstallTabs,
 		MainSection,
 		RtlHeader,
 		CodeRtlPreview,
@@ -71,8 +69,6 @@ export const routeMeta: RouteMeta = {
 				</div>
 				<spartan-code secondTab [code]="_defaultCode()" />
 			</spartan-tabs>
-
-			<spartan-install-tabs primitive="calendar" />
 
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<div class="mt-6 space-y-4">

@@ -6,7 +6,6 @@ import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/prim
 import { DataTableRtl } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/data-table--rtl.preview';
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { link } from '@spartan-ng/app/app/shared/typography/link';
 import { HlmAlertImports } from '@spartan-ng/helm/alert';
@@ -59,7 +58,6 @@ export const routeMeta: RouteMeta = {
 	selector: 'spartan-data-table',
 	imports: [
 		MainSection,
-		InstallTabs,
 		Code,
 		HlmAlertImports,
 		SectionIntro,
@@ -127,16 +125,9 @@ export const routeMeta: RouteMeta = {
 				</div>
 			</div>
 
-			<spartan-install-tabs primitive="table">
-				<p class="${hlmP}">
-					Add the
-					<a class="${link}" routerLink="/components/table">Table</a>
-					directives to your project.
-				</p>
-			</spartan-install-tabs>
-
+			<spartan-section-sub-heading id="installation">Installation</spartan-section-sub-heading>
 			<p class="${hlmP} mb-6">
-				Then add the
+				Add the
 				<code class="${hlmCode}">&#64;tanstack/angular-table</code>
 				dependency. This guide uses
 				<a href="https://tanstack.com/table/v9/docs/framework/angular" target="_blank" rel="noreferrer" class="${link}">

@@ -37,6 +37,21 @@ describe('extractPrimitiveCodeGenerator', () => {
 		expect(accordion['accordion']['default']).toContain('spartan-accordion-preview');
 	});
 
+	it('should not emit StackBlitz example sibling files', async () => {
+		tree.write(
+			`${componentsBasePath}/data-table/data-table.preview.ts`,
+			`import { Component } from '@angular/core';
+			import { payments } from './payments';
+			@Component({ selector: 'spartan-data-table-preview', template: '<table></table>' })
+			export class DataTablePreviewComponent { data = payments; }`,
+		);
+		tree.write(`${componentsBasePath}/data-table/payments.ts`, `export const payments = [];`);
+
+		await extractPrimitiveCodeGenerator(tree);
+
+		expect(tree.exists('apps/app/src/public/data/stackblitz-example-files.json')).toBe(false);
+	});
+
 	it('should handle multiple examples for a single primitive', async () => {
 		// Arrange
 		tree.write(

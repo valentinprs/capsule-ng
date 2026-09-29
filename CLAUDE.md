@@ -22,7 +22,7 @@ See `commitlint.config.cjs` and `CONTRIBUTING.md`.
 - Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`,
   `chore`, `revert`.
 - If you include a scope it MUST be one of the `scope-enum` values (the component names plus
-  `cli`, `nx`, `repo`, `trpc`, `typography`). NOTE: `app` is NOT a valid scope - omit the scope
+  `nx`, `repo`, `trpc`, `typography`). NOTE: `app` is NOT a valid scope - omit the scope
   for docs-app changes rather than inventing one.
 - A blank line is required between the subject and the body, and before the footer.
 - No line in the message may exceed 100 characters.

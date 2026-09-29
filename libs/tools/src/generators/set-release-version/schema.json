@@ -2,7 +2,7 @@
 	"$schema": "http://json-schema.org/draft-07/schema",
 	"$id": "SetReleaseVersionGenerator",
 	"title": "Set release version",
-	"description": "Sets the version of the published @spartan-ng packages (brain, cli, mcp) in lockstep.",
+	"description": "Sets the version of the published @spartan-ng packages (brain).",
 	"type": "object",
 	"properties": {
 		"newVersion": {

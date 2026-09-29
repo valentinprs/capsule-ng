@@ -2,7 +2,7 @@ import { readJson, type Tree, writeJson } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import setReleaseVersionGenerator from './generator';
 
-const PACKAGE_JSONS = ['libs/brain/package.json', 'libs/cli/package.json', 'libs/mcp/package.json'];
+const PACKAGE_JSONS = ['libs/brain/package.json'];
 
 describe('set-release-version', () => {
 	let tree: Tree;
@@ -31,6 +31,13 @@ describe('set-release-version', () => {
 		for (const path of PACKAGE_JSONS) {
 			expect(readJson(tree, path).version).toBe('4.5.6');
 		}
+	});
+
+	it('does not require package.json files for removed libraries', async () => {
+		expect(tree.exists('libs/cli/package.json')).toBe(false);
+		expect(tree.exists('libs/mcp/package.json')).toBe(false);
+
+		await expect(setReleaseVersionGenerator(tree, { newVersion: '1.2.3' })).resolves.toBeUndefined();
 	});
 
 	it('throws when no version is provided', async () => {

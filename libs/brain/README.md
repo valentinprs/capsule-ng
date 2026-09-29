@@ -9,7 +9,7 @@
 
 > Accessible, unstyled UI primitives for Angular. The behavior half of [spartan/ui](https://www.spartan.ng).
 
-`@spartan-ng/brain` is a fully tree-shakable collection of headless Angular primitives - keyboard navigation, focus management, ARIA wiring, and state - with zero opinions about styling. Pair it with [`helm`](https://www.spartan.ng/documentation/installation) styles (copied into your codebase by the [spartan CLI](https://www.npmjs.com/package/@spartan-ng/cli)) for the full shadcn-style experience, or bring your own design system.
+`@spartan-ng/brain` is a fully tree-shakable collection of headless Angular primitives - keyboard navigation, focus management, ARIA wiring, and state - with zero opinions about styling. Pair it with [`helm`](https://www.spartan.ng/documentation/installation) styles for the full shadcn-style experience, or bring your own design system.
 
 Inspired by [Radix UI](https://radix-ui.com) and [shadcn/ui](https://ui.shadcn.com), adapted for the Angular ecosystem.
 
@@ -21,14 +21,6 @@ npm install @spartan-ng/brain
 pnpm add @spartan-ng/brain
 # or
 yarn add @spartan-ng/brain
-```
-
-For the easiest setup, use the [spartan CLI](https://www.npmjs.com/package/@spartan-ng/cli) - it installs the right secondary entry points and copies matching helm styles in one command:
-
-```bash
-npm install -D @spartan-ng/cli
-ng g @spartan-ng/cli:init
-ng g @spartan-ng/cli:ui
 ```
 
 ## Usage
@@ -75,7 +67,7 @@ Browse the [components gallery](https://www.spartan.ng/components) for live demo
 
 ## Tailwind Preset
 
-`@spartan-ng/brain` ships with the shared Tailwind preset that powers the helm styles. Most users have the [CLI](https://www.npmjs.com/package/@spartan-ng/cli) wire this up for them, but you can also do it by hand by adding the preset to your CSS:
+`@spartan-ng/brain` ships with the shared Tailwind preset that powers the helm styles. Add the preset to your CSS:
 
 ```css
 @import '@spartan-ng/brain/hlm-tailwind-preset.css';
@@ -97,7 +89,6 @@ spartan/ui requires Tailwind CSS v4.
 ## Documentation
 
 - [Installation guide](https://www.spartan.ng/documentation/installation)
-- [CLI documentation](https://www.spartan.ng/documentation/cli)
 - [Theming](https://www.spartan.ng/documentation/theming)
 - [Components](https://www.spartan.ng/components)
 

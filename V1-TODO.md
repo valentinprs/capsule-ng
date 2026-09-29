@@ -1,8 +1,9 @@
 # v1 Release Readiness — TODO
 
 Moving from cron-driven nightly alpha bumps to **semver + semantic-release** with `alpha`/`beta`
-prereleases, GitHub Releases, and npm publishing for `@spartan-ng/brain`, `@spartan-ng/cli`, and
-`@spartan-ng/mcp`.
+prereleases, GitHub Releases, and npm publishing for `@spartan-ng/brain`. (`@spartan-ng/cli` and
+`@spartan-ng/mcp` were published too until copy-based distribution was removed; the items below that
+mention them, cli-smoke or verdaccio are historical.)
 
 Channel model: `main → latest`, `beta → beta`, `alpha → alpha`.
 

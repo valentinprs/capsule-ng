@@ -3,15 +3,6 @@ import { Component, computed, input, signal } from '@angular/core';
 import { BrnTabs, BrnTabsContent, BrnTabsList, BrnTabsTrigger } from '@spartan-ng/brain/tabs';
 import { Code } from '../code/code';
 
-const cliPackageInstallationCommands = {
-	pnpm: 'pnpm add -D @spartan-ng/cli',
-	npm: 'npm install -D @spartan-ng/cli',
-	yarn: 'yarn add -D @spartan-ng/cli',
-	bun: 'bun add --dev @spartan-ng/cli',
-} as const;
-
-type PackageKey = keyof typeof cliPackageInstallationCommands;
-
 const brnPackageInstallationCommands = {
 	pnpm: 'pnpm add @spartan-ng/brain',
 	npm: 'npm install @spartan-ng/brain',
@@ -19,12 +10,7 @@ const brnPackageInstallationCommands = {
 	bun: 'bun add @spartan-ng/brain',
 } as const;
 
-const brnUpdatePackageInstallationCommands = {
-	pnpm: 'pnpm add @spartan-ng/brain@latest @spartan-ng/cli@latest',
-	npm: 'npm install @spartan-ng/brain@latest @spartan-ng/cli@latest',
-	yarn: 'yarn add @spartan-ng/brain@latest @spartan-ng/cli@latest',
-	bun: 'bun add @spartan-ng/brain@latest @spartan-ng/cli@latest',
-} as const;
+type PackageKey = keyof typeof brnPackageInstallationCommands;
 
 const angularCdkPackageInstallationCommands = {
 	pnpm: 'pnpm add @angular/cdk',
@@ -52,7 +38,7 @@ const globalValue = signal<PackageKey>('pnpm');
 				brnTabsList
 				class="border-border text-muted-foreground mb-4 inline-flex h-9 w-full items-center justify-start rounded-none border-b bg-transparent p-0"
 			>
-				@for (item of cliInstallationCommands() | keyvalue: collationComparator; track item.key) {
+				@for (item of installationCommands() | keyvalue: collationComparator; track item.key) {
 					<button class="${tabBtn}" [brnTabsTrigger]="item.key">{{ item.key }}</button>
 				}
 			</div>
@@ -64,26 +50,15 @@ const globalValue = signal<PackageKey>('pnpm');
 })
 export class PackageInstallerTabs {
 	public readonly value = globalValue;
-	public readonly package = input<'cli' | 'brn' | 'cdk' | 'brn-update'>('cli');
+	public readonly package = input<'brn' | 'cdk'>('brn');
 	public readonly installCommand = computed(() => {
 		const activeTab = this.value();
-		return this.cliInstallationCommands()[activeTab] ?? '';
+		return this.installationCommands()[activeTab] ?? '';
 	});
 	public readonly language = input<'ts' | 'sh' | 'js'>('sh');
 
-	public cliInstallationCommands = computed(() => {
-		switch (this.package()) {
-			case 'cli':
-				return cliPackageInstallationCommands;
-			case 'brn':
-				return brnPackageInstallationCommands;
-			case 'brn-update':
-				return brnUpdatePackageInstallationCommands;
-			case 'cdk':
-				return angularCdkPackageInstallationCommands;
-			default:
-				return cliPackageInstallationCommands;
-		}
+	public installationCommands = computed(() => {
+		return this.package() === 'cdk' ? angularCdkPackageInstallationCommands : brnPackageInstallationCommands;
 	});
 
 	public collationComparator = () => 0;

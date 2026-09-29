@@ -41,4 +41,19 @@ describe('generate-ui-docs executor', () => {
 		const stripped = stripVolatileProperties(generated);
 		expect(stripped).toMatchSnapshot();
 	});
+
+	it('documents the caps components of each caps entry point under the caps library', () => {
+		const generated = readGeneratedJson() as Record<string, Record<string, Record<string, any>>>;
+
+		const breadcrumb = generated['breadcrumb']['caps'];
+		expect(Object.keys(breadcrumb)).toEqual(expect.arrayContaining(['CapsBreadcrumb', 'CapsBreadcrumbItem']));
+		expect(breadcrumb['CapsBreadcrumb'].selector).toBe('caps-breadcrumb');
+		expect(breadcrumb['CapsBreadcrumb'].inputs).toContainEqual(
+			expect.objectContaining({ name: 'aria-label', type: 'string', defaultValue: "'breadcrumb'" }),
+		);
+		expect(breadcrumb['CapsBreadcrumbItem'].selector).toBe('caps-breadcrumb-item');
+		expect(breadcrumb['CapsBreadcrumbItem'].inputs).toContainEqual(expect.objectContaining({ name: 'current' }));
+
+		expect(generated['link']['caps']['CapsLink'].selector).toBe('a[capsLink]');
+	});
 });

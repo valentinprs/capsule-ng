@@ -136,6 +136,19 @@ export class PageNav implements AfterViewInit, OnDestroy {
 			pageLinks.splice(newHlmIndex + 1, 0, ...helmLinks);
 		}
 
+		const capsLinks = apiPageLinks
+			.filter((link) => link.type === 'caps')
+			.map((link) => ({
+				id: link.id,
+				label: link.label,
+				isNested: true,
+			}));
+
+		const capsIndex = pageLinks.findIndex((link) => link.id === 'caps-api');
+		if (capsLinks.length && capsIndex !== -1) {
+			pageLinks.splice(capsIndex + 1, 0, ...capsLinks);
+		}
+
 		return pageLinks;
 	});
 

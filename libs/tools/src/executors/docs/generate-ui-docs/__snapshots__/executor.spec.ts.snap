@@ -1307,6 +1307,49 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "breadcrumb": {
+    "caps": {
+      "CapsBreadcrumb": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-breadcrumb",
+      },
+      "CapsBreadcrumbEllipsis": {
+        "inputs": [
+          {
+            "name": "srOnlyText",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-breadcrumb-ellipsis",
+      },
+      "CapsBreadcrumbItem": {
+        "inputs": [
+          {
+            "name": "current",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+          {
+            "name": "href",
+            "required": false,
+            "type": "string | null | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-breadcrumb-item",
+      },
+    },
     "helm": {
       "HlmBreadcrumb": {
         "inputs": [
@@ -1433,6 +1476,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "a[brnButton], button[brnButton]",
+      },
+    },
+    "caps": {
+      "CapsButton": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant | undefined",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsButtonSize | undefined",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsButton]",
       },
     },
     "helm": {
@@ -5782,6 +5849,16 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[hlmLabel]",
+      },
+    },
+  },
+  "link": {
+    "caps": {
+      "CapsLink": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsLink]",
       },
     },
   },

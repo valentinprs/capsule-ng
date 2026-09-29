@@ -83,7 +83,8 @@
 			"options": {
 				"outputDir": "apps/app/src/public/data",
 				"brainDir": "libs/brain",
-				"helmDir": "libs/helm"
+				"helmDir": "libs/helm",
+				"capsDir": "libs/caps"
 			}
 		},
 		"generate-docs-and-snippets": {

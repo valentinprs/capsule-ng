@@ -36,6 +36,14 @@ export class ApiDocsService {
 				}))
 			: [];
 
-		return [...brainHeaders, ...helmHeaders];
+		const capsHeaders = docs.caps
+			? Object.keys(docs.caps).map((name) => ({
+					id: name.toLowerCase(),
+					label: name,
+					type: 'caps' as const,
+				}))
+			: [];
+
+		return [...brainHeaders, ...helmHeaders, ...capsHeaders];
 	}
 }

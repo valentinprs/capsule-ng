@@ -74,6 +74,6 @@ export type Primitives =
 	| 'tooltip'
 	| 'typography';
 
-export type LibraryType = 'brain' | 'helm';
+export type LibraryType = 'brain' | 'helm' | 'caps';
 
 export type ComponentApiData = Record<Primitives, Partial<Record<LibraryType, LibraryComponents>>>;

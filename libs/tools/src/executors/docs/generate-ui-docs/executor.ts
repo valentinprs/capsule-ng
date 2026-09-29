@@ -17,6 +17,9 @@ export default async function runExecutor(options: GenerateUiDocsExecutorSchema,
 	// Convert relative paths to absolute paths using workspace root
 	const brainDir = path.join(context.root, options.brainDir);
 	const helmDir = path.join(context.root, options.helmDir);
+	// `caps` is read alongside brain/helm while the migration to `caps` components is in progress.
+	const capsDir = options.capsDir ? path.join(context.root, options.capsDir) : undefined;
+	const sourceDirs = [brainDir, helmDir, ...(capsDir ? [capsDir] : [])];
 	const outputDir = path.join(context.root, options.outputDir);
 
 	if (!fs.existsSync(outputDir)) {
@@ -29,12 +32,9 @@ export default async function runExecutor(options: GenerateUiDocsExecutorSchema,
 		skipAddingFilesFromTsConfig: true,
 	});
 	project.addSourceFilesAtPaths([
-		`${brainDir}/**/*.ts`,
-		`${helmDir}/**/*.ts`,
-		`!${brainDir}/**/__tests__/**/*.ts`,
-		`!${helmDir}/**/__tests__/**/*.ts`,
-		`!${brainDir}/**/*.(spec|test).ts`,
-		`!${helmDir}/**/*.(spec|test).ts`,
+		...sourceDirs.map((dir) => `${dir}/**/*.ts`),
+		...sourceDirs.map((dir) => `!${dir}/**/__tests__/**/*.ts`),
+		...sourceDirs.map((dir) => `!${dir}/**/*.(spec|test).ts`),
 	]);
 
 	const extractedData = extractInputsOutputs(project, context.root);

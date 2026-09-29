@@ -7,8 +7,9 @@
    - spartan-themes : the other five skins (vega, lyra, maia, mira, luma). They beat nova at the layer
        rung, so a `.style-lyra` island overrides the nova baseline regardless of specificity ties or
        import order.
+   - caps : the caps preset (`caps-*` classes of the caps components). Not a style: it applies globally.
    `theme` is Tailwind's own layer (do not rename - Tailwind emits into it). */
-@layer theme, base, spartan-nova-baseline, spartan-themes, components, utilities;
+@layer theme, base, spartan-nova-baseline, spartan-themes, caps, components, utilities;
 
 /* nova = global baseline (the default style) -> its own low-priority layer (see above). The body carries
    `.style-nova` permanently so the baseline actually matches; islands set their own `.style-THEME`. */
@@ -20,6 +21,8 @@
 @import '../../../libs/styles/src/style-maia.css' layer(spartan-themes);
 @import '../../../libs/styles/src/style-mira.css' layer(spartan-themes);
 @import '../../../libs/styles/src/style-luma.css' layer(spartan-themes);
+
+@import '../../../libs/caps/caps-preset.css' layer(caps);
 
 @import 'tailwindcss/theme.css' layer(theme);
 @import 'tailwindcss/preflight.css' layer(base);

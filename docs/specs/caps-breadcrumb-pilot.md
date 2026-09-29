@@ -48,7 +48,8 @@ Remove the CLI/registry distribution model before starting `caps`:
 - Renders an internal element with `role="list"` that projects the items.
 - Inserts a separator automatically between consecutive items (never before the first or after the
   last). Separators are decorative (`role="presentation"`, `aria-hidden="true"`).
-- Separator is customizable through an `ng-template` and/or an input; the default is a chevron icon.
+- The separator is always a chevron icon. Custom separators are intentionally not supported: caps
+  does not promote that usage.
 - RTL: the default separator is flipped in RTL contexts, matching the current RTL example
   (`breadcrumb--rtl.example.ts`).
 - Supports the `class` input merged via `classes()`.
@@ -82,8 +83,8 @@ Remove the CLI/registry distribution model before starting `caps`:
 On the breadcrumb page, `apps/app/src/app/pages/(components)/components/(breadcrumb)/`:
 
 - Fully replace the helm examples with `caps` examples: `breadcrumb.preview.ts`,
-  `breadcrumb--custom-separator.example.ts`, `breadcrumb--dropdown.example.ts`,
-  `breadcrumb--collapsed.example.ts`, `breadcrumb--rtl.example.ts`.
+  `breadcrumb--dropdown.example.ts`, `breadcrumb--collapsed.example.ts`,
+  `breadcrumb--rtl.example.ts`. The custom separator example is removed.
 - Remove the CLI install tab from `breadcrumb.page.ts`.
 - Adapt the API docs generator (`@spartan-ng/tools:generate-ui-docs`,
   `libs/tools/src/executors/docs/generate-ui-docs`) so it reads `libs/caps` (today it reads

@@ -10,7 +10,7 @@ import type { Result } from 'axe-core';
 const PAGE = '/components/breadcrumb';
 
 /*
- * `landmark-unique` is disabled: the docs page renders five standalone breadcrumb demos, each one
+ * `landmark-unique` is disabled: the docs page renders four standalone breadcrumb demos, each one
  * a `navigation` landmark with the default `aria-label="breadcrumb"`. On a real page there is a
  * single breadcrumb; when there are several, the consumer names them via the `aria-label` input.
  * Every other rule (roles, aria-current, names, contrast, ...) stays enabled.
@@ -18,7 +18,6 @@ const PAGE = '/components/breadcrumb';
 
 const EXAMPLES = [
 	'spartan-breadcrumb-preview',
-	'spartan-breadcrumb-custom-separator',
 	'spartan-breadcrumb-dropdown',
 	'spartan-breadcrumb-collapsed',
 	'spartan-breadcrumb-rtl',

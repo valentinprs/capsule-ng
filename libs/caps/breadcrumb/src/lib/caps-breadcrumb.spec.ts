@@ -70,42 +70,6 @@ class DynamicHost {
 	public readonly labels = input<string[]>([]);
 }
 
-@Component({
-	selector: 'caps-breadcrumb-separator-host',
-	imports: [CapsBreadcrumbImports],
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	template: `
-		<ng-template #bullet><b class="bullet">•</b></ng-template>
-		<caps-breadcrumb [separator]="useBulletInput() ? bullet : separator()">
-			@if (useContentTemplate()) {
-				<ng-template capsBreadcrumbSeparator><i class="slash">/</i></ng-template>
-			}
-			@for (label of labels(); track label) {
-				<caps-breadcrumb-item>{{ label }}</caps-breadcrumb-item>
-			}
-		</caps-breadcrumb>
-	`,
-})
-class SeparatorHost {
-	public readonly labels = input<string[]>(['Home', 'Components', 'Breadcrumb']);
-	public readonly separator = input<string | undefined>(undefined);
-	public readonly useBulletInput = input(false);
-	public readonly useContentTemplate = input(false);
-}
-
-function renderSeparator(
-	inputs: { labels?: string[]; separator?: string; useBulletInput?: boolean; useContentTemplate?: boolean } = {},
-) {
-	const fixture = TestBed.createComponent(SeparatorHost);
-	for (const [name, value] of Object.entries(inputs)) fixture.componentRef.setInput(name, value);
-	fixture.detectChanges();
-	const root: HTMLElement = fixture.nativeElement;
-	return {
-		fixture,
-		separators: () => Array.from(root.querySelectorAll<HTMLElement>('[data-slot="breadcrumb-separator"]')),
-	};
-}
-
 function render(inputs: { label?: string } = {}) {
 	const fixture = TestBed.createComponent(BreadcrumbHost);
 	if (inputs.label !== undefined) fixture.componentRef.setInput('label', inputs.label);
@@ -169,71 +133,6 @@ describe('caps-breadcrumb', () => {
 			const [separator] = Array.from(separatorsOf(render().breadcrumb));
 
 			expect(separator.querySelector('ng-icon')?.classList).toContain('rtl:rotate-180');
-		});
-
-		const expectDecorative = (separators: HTMLElement[]) => {
-			for (const separator of separators) {
-				expect(separator.getAttribute('role')).toBe('presentation');
-				expect(separator.getAttribute('aria-hidden')).toBe('true');
-				expect(separator.querySelector('ng-icon')).toBeNull();
-			}
-		};
-
-		it('renders a text separator given through the separator input', () => {
-			const { separators } = renderSeparator({ separator: '/' });
-
-			expect(separators().map((s) => s.textContent?.trim())).toEqual(['/', '/']);
-			expectDecorative(separators());
-		});
-
-		it('renders a separator template given through the separator input', () => {
-			const { separators } = renderSeparator({ useBulletInput: true });
-
-			expect(separators().map((s) => s.querySelector('.bullet')?.textContent)).toEqual(['•', '•']);
-			expectDecorative(separators());
-		});
-
-		it('renders a capsBreadcrumbSeparator content template between every pair of items', () => {
-			const { separators } = renderSeparator({ useContentTemplate: true });
-
-			expect(separators().map((s) => s.querySelector('.slash')?.textContent)).toEqual(['/', '/']);
-			expectDecorative(separators());
-		});
-
-		it('gives the separator input precedence over the content template', () => {
-			const { separators } = renderSeparator({ useContentTemplate: true, separator: '>' });
-
-			expect(separators().map((s) => s.textContent?.trim())).toEqual(['>', '>']);
-		});
-
-		it('does not mirror custom separators, which the consumer controls', () => {
-			const { separators } = renderSeparator({ useContentTemplate: true });
-
-			for (const separator of separators()) {
-				expect(separator.outerHTML).not.toContain('rtl:');
-			}
-		});
-
-		it('falls back to the default chevron when the custom separator is removed', () => {
-			const { fixture, separators } = renderSeparator({ useContentTemplate: true, separator: '/' });
-			fixture.componentRef.setInput('separator', undefined);
-			fixture.componentRef.setInput('useContentTemplate', false);
-			fixture.detectChanges();
-
-			expect(separators().map((s) => s.querySelector('ng-icon')?.getAttribute('name'))).toEqual([
-				'lucideChevronRight',
-				'lucideChevronRight',
-			]);
-		});
-
-		it('keeps a custom separator between every pair of items when items change', () => {
-			const { fixture, separators } = renderSeparator({ useContentTemplate: true, labels: ['Home'] });
-			expect(separators()).toHaveLength(0);
-
-			fixture.componentRef.setInput('labels', ['Home', 'Docs', 'API', 'Breadcrumb']);
-			fixture.detectChanges();
-
-			expect(separators().map((s) => s.querySelector('.slash')?.textContent)).toEqual(['/', '/', '/']);
 		});
 	});
 

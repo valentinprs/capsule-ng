@@ -1,0 +1,23 @@
+{
+	"name": "app-e2e",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"sourceRoot": "apps/app-e2e/src",
+	"projectType": "application",
+	"tags": ["scope:e2e"],
+	"implicitDependencies": ["app"],
+	"targets": {
+		"e2e": {
+			"executor": "@nx/cypress:cypress",
+			"options": {
+				"cypressConfig": "apps/app-e2e/cypress.config.cjs",
+				"devServerTarget": "app:serve:e2e",
+				"testingType": "e2e"
+			},
+			"dependsOn": ["app:generate-docs-and-snippets", "app:generate-hlm-component-preview"]
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"outputs": ["{options.outputFile}"]
+		}
+	}
+}

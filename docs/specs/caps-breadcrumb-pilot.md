@@ -97,7 +97,9 @@ On the breadcrumb page, `apps/app/src/app/pages/(components)/components/(breadcr
 - Vitest unit tests for each component covering the public API (inputs, automatic separators,
   automatic/overridden current item, `aria-current` placement) and ARIA roles
   (`navigation`, `list`, `listitem`, decorative separators).
-- Axe accessibility check on the breadcrumb documentation page.
+- Axe accessibility check on the breadcrumb documentation page: `apps/app-e2e` (Cypress +
+  `cypress-axe`), run with `pnpm nx e2e app-e2e` locally and in the CI `e2e` job (see
+  `CONTRIBUTING.md`).
 - Storybook stories are optional.
 
 ## Phase 2 and beyond

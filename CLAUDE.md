@@ -33,3 +33,17 @@ See `commitlint.config.cjs` and `CONTRIBUTING.md`.
 - Always populate `.github/PULL_REQUEST_TEMPLATE.md`: tick the checklist, the PR type, the affected
   package(s), and fill "current behavior" / "new behavior" / breaking-change. Create with
   `gh pr create --body-file <filled-template-file>`.
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in GitHub Issues on valentinprs/capsule-ng (use the `gh` CLI). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: needs-triage, needs-info, ready-for-agent, ready-for-human, wontfix. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.

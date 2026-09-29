@@ -169,6 +169,9 @@ export default defineConfig(({ command, mode }) => {
 			},
 			globals: true,
 			environment: 'jsdom',
+			// Vitest blanks CSS modules (even `?raw` imports) unless they are opted in here; the docs
+			// render the caps color tokens from the stylesheet source.
+			css: { include: [/caps-tokens\.css/] },
 			setupFiles: ['src/test-setup.ts'],
 			include: ['**/*.spec.ts'],
 			// Run the suite in a single forked process. The AppComponent smoke test boots the full app

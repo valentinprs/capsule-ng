@@ -11,6 +11,7 @@ import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-
 import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
 import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
+import { CAPS_TOKENS_CSS } from '@spartan-ng/styles';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Theming' },
@@ -50,18 +51,21 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="how-it-works">How it works</spartan-section-sub-heading>
 
 			<p class="${hlmP}">
-				CSS variables are defined in your
+				Colors are defined once as caps color tokens, such as
+				<code class="${hlmCode}">--caps-primary</code>
+				, aligned with the Figma design system. The shadcn variables referenced by Tailwind utility classes alias them (
+				<code class="${hlmCode}">--primary: var(--caps-primary)</code>
+				). Override a caps token in your
 				<code class="${hlmCode}">styles.css</code>
-				and referenced in Tailwind utility classes. Update the variable, and every component using that color updates
-				automatically.
+				, and every component using that color updates automatically.
 			</p>
 
 			<spartan-code
 				class="mt-6"
 				fileName="styles.css"
 				code=":root {
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --caps-primary: oklch(0.546 0.245 262.881);
+  --caps-primary-foreground: oklch(0.97 0.014 254.604);
 }"
 			/>
 
@@ -118,85 +122,19 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="available-variables">Available variables</spartan-section-sub-heading>
 
 			<p class="${hlmP}">
-				Here are all CSS variables you can customize. Define them in
+				Here are all the caps color tokens you can customize, with the shadcn aliases and the Tailwind colors they
+				register. Override them in
 				<code class="${hlmCode}">:root</code>
 				for light mode and
 				<code class="${hlmCode}">.dark</code>
-				for dark mode:
+				for dark mode.
+				<code class="${hlmCode}">--caps-ring-error</code>
+				is the focus ring of invalid controls, available as
+				<code class="${hlmCode}">ring-ring-error</code>
+				.
 			</p>
 
-			<spartan-code
-				class="mt-6"
-				fileName="styles.css"
-				code=":root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.985 0 0);
-  --sidebar-primary-foreground: oklch(0.205 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-}"
-			/>
+			<spartan-code class="mt-6" fileName="caps-tokens.css" [code]="_capsTokensCss" />
 
 			<div class="mt-6 text-sm" hlmAlert>
 				<div hlmAlertDescription>
@@ -248,72 +186,15 @@ export const routeMeta: RouteMeta = {
 
 			<spartan-section-sub-heading id="base-colors">Base Colors</spartan-section-sub-heading>
 
-			<p class="${hlmP}">The five base colors below share the light and dark chart palettes listed above.</p>
+			<p class="${hlmP}">The five base colors below share the chart colors listed above.</p>
 
 			<h3 id="color-neutral" spartanH4>Neutral</h3>
 
-			<spartan-code
-				class="mt-6"
-				fileName="styles.css"
-				code=":root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.985 0 0);
-  --sidebar-primary-foreground: oklch(0.205 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}"
-			/>
+			<p class="${hlmP}">
+				Neutral is the default: the values of
+				<code class="${hlmCode}">caps-tokens.css</code>
+				above.
+			</p>
 
 			<h3 id="color-stone" spartanH4>Stone</h3>
 
@@ -322,61 +203,61 @@ export const routeMeta: RouteMeta = {
 				fileName="styles.css"
 				code=":root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.147 0.004 49.25);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.147 0.004 49.25);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.147 0.004 49.25);
-  --primary: oklch(0.216 0.006 56.043);
-  --primary-foreground: oklch(0.985 0.001 106.423);
-  --secondary: oklch(0.97 0.001 106.424);
-  --secondary-foreground: oklch(0.216 0.006 56.043);
-  --muted: oklch(0.97 0.001 106.424);
-  --muted-foreground: oklch(0.553 0.013 58.071);
-  --accent: oklch(0.97 0.001 106.424);
-  --accent-foreground: oklch(0.216 0.006 56.043);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.923 0.003 48.717);
-  --input: oklch(0.923 0.003 48.717);
-  --ring: oklch(0.709 0.01 56.259);
-  --sidebar: oklch(0.985 0.001 106.423);
-  --sidebar-foreground: oklch(0.147 0.004 49.25);
-  --sidebar-primary: oklch(0.216 0.006 56.043);
-  --sidebar-primary-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-accent: oklch(0.97 0.001 106.424);
-  --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
-  --sidebar-border: oklch(0.923 0.003 48.717);
-  --sidebar-ring: oklch(0.709 0.01 56.259);
+  --caps-background: oklch(1 0 0);
+  --caps-foreground: oklch(0.147 0.004 49.25);
+  --caps-card: oklch(1 0 0);
+  --caps-card-foreground: oklch(0.147 0.004 49.25);
+  --caps-popover: oklch(1 0 0);
+  --caps-popover-foreground: oklch(0.147 0.004 49.25);
+  --caps-primary: oklch(0.216 0.006 56.043);
+  --caps-primary-foreground: oklch(0.985 0.001 106.423);
+  --caps-secondary: oklch(0.97 0.001 106.424);
+  --caps-secondary-foreground: oklch(0.216 0.006 56.043);
+  --caps-muted: oklch(0.97 0.001 106.424);
+  --caps-muted-foreground: oklch(0.553 0.013 58.071);
+  --caps-accent: oklch(0.97 0.001 106.424);
+  --caps-accent-foreground: oklch(0.216 0.006 56.043);
+  --caps-destructive: oklch(0.577 0.245 27.325);
+  --caps-border: oklch(0.923 0.003 48.717);
+  --caps-input: oklch(0.923 0.003 48.717);
+  --caps-ring: oklch(0.709 0.01 56.259);
+  --caps-sidebar: oklch(0.985 0.001 106.423);
+  --caps-sidebar-foreground: oklch(0.147 0.004 49.25);
+  --caps-sidebar-primary: oklch(0.216 0.006 56.043);
+  --caps-sidebar-primary-foreground: oklch(0.985 0.001 106.423);
+  --caps-sidebar-accent: oklch(0.97 0.001 106.424);
+  --caps-sidebar-accent-foreground: oklch(0.216 0.006 56.043);
+  --caps-sidebar-border: oklch(0.923 0.003 48.717);
+  --caps-sidebar-ring: oklch(0.709 0.01 56.259);
 }
 
 .dark {
-  --background: oklch(0.147 0.004 49.25);
-  --foreground: oklch(0.985 0.001 106.423);
-  --card: oklch(0.216 0.006 56.043);
-  --card-foreground: oklch(0.985 0.001 106.423);
-  --popover: oklch(0.216 0.006 56.043);
-  --popover-foreground: oklch(0.985 0.001 106.423);
-  --primary: oklch(0.923 0.003 48.717);
-  --primary-foreground: oklch(0.216 0.006 56.043);
-  --secondary: oklch(0.268 0.007 34.298);
-  --secondary-foreground: oklch(0.985 0.001 106.423);
-  --muted: oklch(0.268 0.007 34.298);
-  --muted-foreground: oklch(0.709 0.01 56.259);
-  --accent: oklch(0.268 0.007 34.298);
-  --accent-foreground: oklch(0.985 0.001 106.423);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.553 0.013 58.071);
-  --sidebar: oklch(0.216 0.006 56.043);
-  --sidebar-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-primary: oklch(0.985 0.001 106.423);
-  --sidebar-primary-foreground: oklch(0.216 0.006 56.043);
-  --sidebar-accent: oklch(0.268 0.007 34.298);
-  --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.553 0.013 58.071);
+  --caps-background: oklch(0.147 0.004 49.25);
+  --caps-foreground: oklch(0.985 0.001 106.423);
+  --caps-card: oklch(0.216 0.006 56.043);
+  --caps-card-foreground: oklch(0.985 0.001 106.423);
+  --caps-popover: oklch(0.216 0.006 56.043);
+  --caps-popover-foreground: oklch(0.985 0.001 106.423);
+  --caps-primary: oklch(0.923 0.003 48.717);
+  --caps-primary-foreground: oklch(0.216 0.006 56.043);
+  --caps-secondary: oklch(0.268 0.007 34.298);
+  --caps-secondary-foreground: oklch(0.985 0.001 106.423);
+  --caps-muted: oklch(0.268 0.007 34.298);
+  --caps-muted-foreground: oklch(0.709 0.01 56.259);
+  --caps-accent: oklch(0.268 0.007 34.298);
+  --caps-accent-foreground: oklch(0.985 0.001 106.423);
+  --caps-destructive: oklch(0.704 0.191 22.216);
+  --caps-border: oklch(1 0 0 / 10%);
+  --caps-input: oklch(1 0 0 / 15%);
+  --caps-ring: oklch(0.553 0.013 58.071);
+  --caps-sidebar: oklch(0.216 0.006 56.043);
+  --caps-sidebar-foreground: oklch(0.985 0.001 106.423);
+  --caps-sidebar-primary: oklch(0.985 0.001 106.423);
+  --caps-sidebar-primary-foreground: oklch(0.216 0.006 56.043);
+  --caps-sidebar-accent: oklch(0.268 0.007 34.298);
+  --caps-sidebar-accent-foreground: oklch(0.985 0.001 106.423);
+  --caps-sidebar-border: oklch(1 0 0 / 10%);
+  --caps-sidebar-ring: oklch(0.553 0.013 58.071);
 }"
 			/>
 
@@ -387,61 +268,61 @@ export const routeMeta: RouteMeta = {
 				fileName="styles.css"
 				code=":root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.141 0.005 285.823);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  --primary: oklch(0.21 0.006 285.885);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.967 0.001 286.375);
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-  --muted: oklch(0.967 0.001 286.375);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  --accent: oklch(0.967 0.001 286.375);
-  --accent-foreground: oklch(0.21 0.006 285.885);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.92 0.004 286.32);
-  --input: oklch(0.92 0.004 286.32);
-  --ring: oklch(0.705 0.015 286.067);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-border: oklch(0.92 0.004 286.32);
-  --sidebar-ring: oklch(0.705 0.015 286.067);
+  --caps-background: oklch(1 0 0);
+  --caps-foreground: oklch(0.141 0.005 285.823);
+  --caps-card: oklch(1 0 0);
+  --caps-card-foreground: oklch(0.141 0.005 285.823);
+  --caps-popover: oklch(1 0 0);
+  --caps-popover-foreground: oklch(0.141 0.005 285.823);
+  --caps-primary: oklch(0.21 0.006 285.885);
+  --caps-primary-foreground: oklch(0.985 0 0);
+  --caps-secondary: oklch(0.967 0.001 286.375);
+  --caps-secondary-foreground: oklch(0.21 0.006 285.885);
+  --caps-muted: oklch(0.967 0.001 286.375);
+  --caps-muted-foreground: oklch(0.552 0.016 285.938);
+  --caps-accent: oklch(0.967 0.001 286.375);
+  --caps-accent-foreground: oklch(0.21 0.006 285.885);
+  --caps-destructive: oklch(0.577 0.245 27.325);
+  --caps-border: oklch(0.92 0.004 286.32);
+  --caps-input: oklch(0.92 0.004 286.32);
+  --caps-ring: oklch(0.705 0.015 286.067);
+  --caps-sidebar: oklch(0.985 0 0);
+  --caps-sidebar-foreground: oklch(0.141 0.005 285.823);
+  --caps-sidebar-primary: oklch(0.21 0.006 285.885);
+  --caps-sidebar-primary-foreground: oklch(0.985 0 0);
+  --caps-sidebar-accent: oklch(0.967 0.001 286.375);
+  --caps-sidebar-accent-foreground: oklch(0.21 0.006 285.885);
+  --caps-sidebar-border: oklch(0.92 0.004 286.32);
+  --caps-sidebar-ring: oklch(0.705 0.015 286.067);
 }
 
 .dark {
-  --background: oklch(0.141 0.005 285.823);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.21 0.006 285.885);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.21 0.006 285.885);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.92 0.004 286.32);
-  --primary-foreground: oklch(0.21 0.006 285.885);
-  --secondary: oklch(0.274 0.006 286.033);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.274 0.006 286.033);
-  --muted-foreground: oklch(0.705 0.015 286.067);
-  --accent: oklch(0.274 0.006 286.033);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.552 0.016 285.938);
-  --sidebar: oklch(0.21 0.006 285.885);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.985 0 0);
-  --sidebar-primary-foreground: oklch(0.21 0.006 285.885);
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.552 0.016 285.938);
+  --caps-background: oklch(0.141 0.005 285.823);
+  --caps-foreground: oklch(0.985 0 0);
+  --caps-card: oklch(0.21 0.006 285.885);
+  --caps-card-foreground: oklch(0.985 0 0);
+  --caps-popover: oklch(0.21 0.006 285.885);
+  --caps-popover-foreground: oklch(0.985 0 0);
+  --caps-primary: oklch(0.92 0.004 286.32);
+  --caps-primary-foreground: oklch(0.21 0.006 285.885);
+  --caps-secondary: oklch(0.274 0.006 286.033);
+  --caps-secondary-foreground: oklch(0.985 0 0);
+  --caps-muted: oklch(0.274 0.006 286.033);
+  --caps-muted-foreground: oklch(0.705 0.015 286.067);
+  --caps-accent: oklch(0.274 0.006 286.033);
+  --caps-accent-foreground: oklch(0.985 0 0);
+  --caps-destructive: oklch(0.704 0.191 22.216);
+  --caps-border: oklch(1 0 0 / 10%);
+  --caps-input: oklch(1 0 0 / 15%);
+  --caps-ring: oklch(0.552 0.016 285.938);
+  --caps-sidebar: oklch(0.21 0.006 285.885);
+  --caps-sidebar-foreground: oklch(0.985 0 0);
+  --caps-sidebar-primary: oklch(0.985 0 0);
+  --caps-sidebar-primary-foreground: oklch(0.21 0.006 285.885);
+  --caps-sidebar-accent: oklch(0.274 0.006 286.033);
+  --caps-sidebar-accent-foreground: oklch(0.985 0 0);
+  --caps-sidebar-border: oklch(1 0 0 / 10%);
+  --caps-sidebar-ring: oklch(0.552 0.016 285.938);
 }"
 			/>
 
@@ -452,61 +333,61 @@ export const routeMeta: RouteMeta = {
 				fileName="styles.css"
 				code=":root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.13 0.028 261.692);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.13 0.028 261.692);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.13 0.028 261.692);
-  --primary: oklch(0.21 0.034 264.665);
-  --primary-foreground: oklch(0.985 0.002 247.839);
-  --secondary: oklch(0.967 0.003 264.542);
-  --secondary-foreground: oklch(0.21 0.034 264.665);
-  --muted: oklch(0.967 0.003 264.542);
-  --muted-foreground: oklch(0.551 0.027 264.364);
-  --accent: oklch(0.967 0.003 264.542);
-  --accent-foreground: oklch(0.21 0.034 264.665);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.928 0.006 264.531);
-  --input: oklch(0.928 0.006 264.531);
-  --ring: oklch(0.707 0.022 261.325);
-  --sidebar: oklch(0.985 0.002 247.839);
-  --sidebar-foreground: oklch(0.13 0.028 261.692);
-  --sidebar-primary: oklch(0.21 0.034 264.665);
-  --sidebar-primary-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-accent: oklch(0.967 0.003 264.542);
-  --sidebar-accent-foreground: oklch(0.21 0.034 264.665);
-  --sidebar-border: oklch(0.928 0.006 264.531);
-  --sidebar-ring: oklch(0.707 0.022 261.325);
+  --caps-background: oklch(1 0 0);
+  --caps-foreground: oklch(0.13 0.028 261.692);
+  --caps-card: oklch(1 0 0);
+  --caps-card-foreground: oklch(0.13 0.028 261.692);
+  --caps-popover: oklch(1 0 0);
+  --caps-popover-foreground: oklch(0.13 0.028 261.692);
+  --caps-primary: oklch(0.21 0.034 264.665);
+  --caps-primary-foreground: oklch(0.985 0.002 247.839);
+  --caps-secondary: oklch(0.967 0.003 264.542);
+  --caps-secondary-foreground: oklch(0.21 0.034 264.665);
+  --caps-muted: oklch(0.967 0.003 264.542);
+  --caps-muted-foreground: oklch(0.551 0.027 264.364);
+  --caps-accent: oklch(0.967 0.003 264.542);
+  --caps-accent-foreground: oklch(0.21 0.034 264.665);
+  --caps-destructive: oklch(0.577 0.245 27.325);
+  --caps-border: oklch(0.928 0.006 264.531);
+  --caps-input: oklch(0.928 0.006 264.531);
+  --caps-ring: oklch(0.707 0.022 261.325);
+  --caps-sidebar: oklch(0.985 0.002 247.839);
+  --caps-sidebar-foreground: oklch(0.13 0.028 261.692);
+  --caps-sidebar-primary: oklch(0.21 0.034 264.665);
+  --caps-sidebar-primary-foreground: oklch(0.985 0.002 247.839);
+  --caps-sidebar-accent: oklch(0.967 0.003 264.542);
+  --caps-sidebar-accent-foreground: oklch(0.21 0.034 264.665);
+  --caps-sidebar-border: oklch(0.928 0.006 264.531);
+  --caps-sidebar-ring: oklch(0.707 0.022 261.325);
 }
 
 .dark {
-  --background: oklch(0.13 0.028 261.692);
-  --foreground: oklch(0.985 0.002 247.839);
-  --card: oklch(0.21 0.034 264.665);
-  --card-foreground: oklch(0.985 0.002 247.839);
-  --popover: oklch(0.21 0.034 264.665);
-  --popover-foreground: oklch(0.985 0.002 247.839);
-  --primary: oklch(0.928 0.006 264.531);
-  --primary-foreground: oklch(0.21 0.034 264.665);
-  --secondary: oklch(0.278 0.033 256.848);
-  --secondary-foreground: oklch(0.985 0.002 247.839);
-  --muted: oklch(0.278 0.033 256.848);
-  --muted-foreground: oklch(0.707 0.022 261.325);
-  --accent: oklch(0.278 0.033 256.848);
-  --accent-foreground: oklch(0.985 0.002 247.839);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --sidebar: oklch(0.21 0.034 264.665);
-  --sidebar-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-primary: oklch(0.985 0.002 247.839);
-  --sidebar-primary-foreground: oklch(0.21 0.034 264.665);
-  --sidebar-accent: oklch(0.278 0.033 256.848);
-  --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --caps-background: oklch(0.13 0.028 261.692);
+  --caps-foreground: oklch(0.985 0.002 247.839);
+  --caps-card: oklch(0.21 0.034 264.665);
+  --caps-card-foreground: oklch(0.985 0.002 247.839);
+  --caps-popover: oklch(0.21 0.034 264.665);
+  --caps-popover-foreground: oklch(0.985 0.002 247.839);
+  --caps-primary: oklch(0.928 0.006 264.531);
+  --caps-primary-foreground: oklch(0.21 0.034 264.665);
+  --caps-secondary: oklch(0.278 0.033 256.848);
+  --caps-secondary-foreground: oklch(0.985 0.002 247.839);
+  --caps-muted: oklch(0.278 0.033 256.848);
+  --caps-muted-foreground: oklch(0.707 0.022 261.325);
+  --caps-accent: oklch(0.278 0.033 256.848);
+  --caps-accent-foreground: oklch(0.985 0.002 247.839);
+  --caps-destructive: oklch(0.704 0.191 22.216);
+  --caps-border: oklch(1 0 0 / 10%);
+  --caps-input: oklch(1 0 0 / 15%);
+  --caps-ring: oklch(0.551 0.027 264.364);
+  --caps-sidebar: oklch(0.21 0.034 264.665);
+  --caps-sidebar-foreground: oklch(0.985 0.002 247.839);
+  --caps-sidebar-primary: oklch(0.985 0.002 247.839);
+  --caps-sidebar-primary-foreground: oklch(0.21 0.034 264.665);
+  --caps-sidebar-accent: oklch(0.278 0.033 256.848);
+  --caps-sidebar-accent-foreground: oklch(0.985 0.002 247.839);
+  --caps-sidebar-border: oklch(1 0 0 / 10%);
+  --caps-sidebar-ring: oklch(0.551 0.027 264.364);
 }"
 			/>
 
@@ -517,61 +398,61 @@ export const routeMeta: RouteMeta = {
 				fileName="styles.css"
 				code=":root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --caps-background: oklch(1 0 0);
+  --caps-foreground: oklch(0.129 0.042 264.695);
+  --caps-card: oklch(1 0 0);
+  --caps-card-foreground: oklch(0.129 0.042 264.695);
+  --caps-popover: oklch(1 0 0);
+  --caps-popover-foreground: oklch(0.129 0.042 264.695);
+  --caps-primary: oklch(0.208 0.042 265.755);
+  --caps-primary-foreground: oklch(0.984 0.003 247.858);
+  --caps-secondary: oklch(0.968 0.007 247.896);
+  --caps-secondary-foreground: oklch(0.208 0.042 265.755);
+  --caps-muted: oklch(0.968 0.007 247.896);
+  --caps-muted-foreground: oklch(0.554 0.046 257.417);
+  --caps-accent: oklch(0.968 0.007 247.896);
+  --caps-accent-foreground: oklch(0.208 0.042 265.755);
+  --caps-destructive: oklch(0.577 0.245 27.325);
+  --caps-border: oklch(0.929 0.013 255.508);
+  --caps-input: oklch(0.929 0.013 255.508);
+  --caps-ring: oklch(0.704 0.04 256.788);
+  --caps-sidebar: oklch(0.984 0.003 247.858);
+  --caps-sidebar-foreground: oklch(0.129 0.042 264.695);
+  --caps-sidebar-primary: oklch(0.208 0.042 265.755);
+  --caps-sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --caps-sidebar-accent: oklch(0.968 0.007 247.896);
+  --caps-sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --caps-sidebar-border: oklch(0.929 0.013 255.508);
+  --caps-sidebar-ring: oklch(0.704 0.04 256.788);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.984 0.003 247.858);
-  --sidebar-primary-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --caps-background: oklch(0.129 0.042 264.695);
+  --caps-foreground: oklch(0.984 0.003 247.858);
+  --caps-card: oklch(0.208 0.042 265.755);
+  --caps-card-foreground: oklch(0.984 0.003 247.858);
+  --caps-popover: oklch(0.208 0.042 265.755);
+  --caps-popover-foreground: oklch(0.984 0.003 247.858);
+  --caps-primary: oklch(0.929 0.013 255.508);
+  --caps-primary-foreground: oklch(0.208 0.042 265.755);
+  --caps-secondary: oklch(0.279 0.041 260.031);
+  --caps-secondary-foreground: oklch(0.984 0.003 247.858);
+  --caps-muted: oklch(0.279 0.041 260.031);
+  --caps-muted-foreground: oklch(0.704 0.04 256.788);
+  --caps-accent: oklch(0.279 0.041 260.031);
+  --caps-accent-foreground: oklch(0.984 0.003 247.858);
+  --caps-destructive: oklch(0.704 0.191 22.216);
+  --caps-border: oklch(1 0 0 / 10%);
+  --caps-input: oklch(1 0 0 / 15%);
+  --caps-ring: oklch(0.551 0.027 264.364);
+  --caps-sidebar: oklch(0.208 0.042 265.755);
+  --caps-sidebar-foreground: oklch(0.984 0.003 247.858);
+  --caps-sidebar-primary: oklch(0.984 0.003 247.858);
+  --caps-sidebar-primary-foreground: oklch(0.208 0.042 265.755);
+  --caps-sidebar-accent: oklch(0.279 0.041 260.031);
+  --caps-sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --caps-sidebar-border: oklch(1 0 0 / 10%);
+  --caps-sidebar-ring: oklch(0.551 0.027 264.364);
 }"
 			/>
 
@@ -584,4 +465,6 @@ export const routeMeta: RouteMeta = {
 		<spartan-page-nav />
 	`,
 })
-export default class ThemingPage {}
+export default class ThemingPage {
+	protected readonly _capsTokensCss = CAPS_TOKENS_CSS;
+}

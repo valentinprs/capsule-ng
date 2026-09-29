@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { CAPS_TOKENS_CSS } from '@spartan-ng/styles';
 import { StackBlitzMetaService } from '../../core/services/stackblitz-meta.service';
 import {
 	type GeneratedProject,
@@ -125,6 +126,15 @@ export class ThingPreview {}`;
 		expect(appTs).toContain("import { ThingPreview } from './example'");
 		expect(appTs).toContain('<spartan-thing-preview />');
 		expect(appTs).not.toContain('PaymentModel');
+	});
+
+	it('themes the project with the caps color tokens', () => {
+		const { builder } = setup();
+		const styles = builder.buildProject(EXAMPLE, GENERATED)?.files['src/styles.css'];
+
+		expect(styles).toContain(CAPS_TOKENS_CSS);
+		expect(styles).toContain('--primary: var(--caps-primary);');
+		expect(styles).not.toMatch(/--primary:\s*oklch/);
 	});
 
 	it('returns null for a non-runnable snippet', () => {

@@ -18,10 +18,28 @@ import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
 import { BreadcrumbCollapsed } from './breadcrumb--collapsed.example';
-import { BreadcrumbCustomSeparator } from './breadcrumb--custom-separator.example';
 import { BreadcrumbDropdown } from './breadcrumb--dropdown.example';
 import { BreadcrumbRtl } from './breadcrumb--rtl.example';
 import { BreadcrumbPreview, defaultImports, defaultSkeleton } from './breadcrumb.preview';
+
+// Kept out of breadcrumb.preview.ts so they do not leak into the preview's Code tab snippet.
+const routerImports = `
+import { RouterLink } from '@angular/router';
+import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
+`;
+
+const routerSkeleton = `
+<caps-breadcrumb>
+  <caps-breadcrumb-item>
+    <a capsLink routerLink="/">Home</a>
+  </caps-breadcrumb-item>
+  <caps-breadcrumb-item>
+    <a capsLink routerLink="/components">Components</a>
+  </caps-breadcrumb-item>
+  <caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
+</caps-breadcrumb>
+`;
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Breadcrumb', api: 'breadcrumb' },
@@ -47,7 +65,6 @@ export const routeMeta: RouteMeta = {
 		CodeRtlPreview,
 		SectionSubSubHeading,
 		BreadcrumbPreview,
-		BreadcrumbCustomSeparator,
 		BreadcrumbDropdown,
 		BreadcrumbCollapsed,
 		BreadcrumbRtl,
@@ -71,32 +88,38 @@ export const routeMeta: RouteMeta = {
 				<spartan-code [code]="_defaultImports" />
 				<spartan-code [code]="_defaultSkeleton" />
 			</div>
+			<p class="${hlmP}">
+				Set
+				<code class="${hlmCode} mr-0.5">href</code>
+				on a
+				<code class="${hlmCode} mr-0.5">caps-breadcrumb-item</code>
+				to render its content as a native link. Without it, the item renders its content as is. The last item is the
+				current page unless another item sets the
+				<code class="${hlmCode} mr-0.5">current</code>
+				input; the current item gets
+				<code class="${hlmCode} mr-0.5">aria-current="page"</code>
+				on its link when it has one, otherwise on the item itself.
+			</p>
+			<p class="${hlmP}">
+				For navigation with the Angular router, leave
+				<code class="${hlmCode} mr-0.5">href</code>
+				unset and project an
+				<code class="${hlmCode} mr-0.5">a capsLink routerLink</code>
+				into the item: the item styles it as a breadcrumb link and marks it as the current page when needed.
+			</p>
+			<div class="mt-6 space-y-4">
+				<spartan-code [code]="_routerImports" />
+				<spartan-code [code]="_routerSkeleton" />
+			</div>
 
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
-			<h3 id="examples__custom-separator" spartanH4>Custom separator</h3>
-			<p class="${hlmP} mb-2">
-				Use a custom component as
-				<code class="${hlmCode} mr-0.5">children</code>
-				for
-				<code class="${hlmCode} mr-0.5">HlmBreadcrumbSeparator</code>
-				to create a custom separator.
-			</p>
-			<spartan-tabs firstTab="Preview" secondTab="Code">
-				<div spartanCodePreview firstTab>
-					<spartan-breadcrumb-custom-separator />
-				</div>
-				<spartan-code secondTab [code]="_customSeparatorCode()" />
-			</spartan-tabs>
-
-			<hr class="my-4 md:my-8" />
-
 			<h3 id="examples__dropdown" spartanH4>Dropdown</h3>
 			<p class="${hlmP} mb-2">
-				You can compose
-				<code class="${hlmCode} mr-0.5">HlmBreadcrumbItem</code>
-				for
-				<code class="${hlmCode} mr-0.5">HlmDropdownMenu</code>
-				to create a custom separator.
+				Place a
+				<code class="${hlmCode} mr-0.5">caps-breadcrumb-ellipsis</code>
+				inside a
+				<code class="${hlmCode} mr-0.5">capsButton</code>
+				that triggers a dropdown menu listing the collapsed items.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -110,7 +133,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__collapsed" spartanH4>Collapsed</h3>
 			<p class="${hlmP} mb-2">
 				We provide a
-				<code class="${hlmCode} mr-0.5">HlmBreadcrumbEllipsis</code>
+				<code class="${hlmCode} mr-0.5">caps-breadcrumb-ellipsis</code>
 				component to show a collapsed state when the breadcrumb is too long.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -151,8 +174,9 @@ export default class BreadcrumbPage {
 	protected readonly _defaultCode = computed(() => this._snippets()['default']);
 	protected readonly _defaultImports = defaultImports;
 	protected readonly _defaultSkeleton = defaultSkeleton;
+	protected readonly _routerImports = routerImports;
+	protected readonly _routerSkeleton = routerSkeleton;
 
-	protected readonly _customSeparatorCode = computed(() => this._snippets()['customSeparator']);
 	protected readonly _dropdownCode = computed(() => this._snippets()['dropdown']);
 	protected readonly _collapsedCode = computed(() => this._snippets()['collapsed']);
 	protected readonly _rtlCode = computed(() => this._snippets()['rtl']);

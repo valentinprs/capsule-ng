@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, reflectComponentType } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { provideRouter, Router, RouterLink } from '@angular/router';
 import { CapsLinkImports } from '@capsule-ng/caps/link';
-import { CapsBreadcrumbImports } from '../index';
+import { CapsBreadcrumbImports, CapsBreadcrumbItem } from '../index';
 
 @Component({
 	selector: 'caps-breadcrumb-host',
@@ -70,6 +71,34 @@ class DynamicHost {
 	public readonly labels = input<string[]>([]);
 }
 
+@Component({
+	selector: 'caps-breadcrumb-link-host',
+	imports: [CapsBreadcrumbImports, CapsLinkImports, RouterLink],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	template: `
+		<caps-breadcrumb>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/" [queryParams]="{ tab: 'api' }" fragment="top">Home</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item href="#2">Breadcrumb 2</caps-breadcrumb-item>
+			<caps-breadcrumb-item [href]="lastHref()">Current</caps-breadcrumb-item>
+		</caps-breadcrumb>
+	`,
+})
+class LinkHost {
+	public readonly lastHref = input<string | undefined>(undefined);
+}
+
+function renderLinks(inputs: { lastHref?: string } = {}) {
+	TestBed.configureTestingModule({ providers: [provideRouter([])] });
+	const fixture = TestBed.createComponent(LinkHost);
+	if (inputs.lastHref !== undefined) fixture.componentRef.setInput('lastHref', inputs.lastHref);
+	fixture.detectChanges();
+	const root: HTMLElement = fixture.nativeElement;
+	const items = Array.from(root.querySelectorAll<HTMLElement>('caps-breadcrumb-item'));
+	return { fixture, items, linkOf: (item: HTMLElement) => item.querySelector<HTMLAnchorElement>('a') };
+}
+
 function render(inputs: { label?: string } = {}) {
 	const fixture = TestBed.createComponent(BreadcrumbHost);
 	if (inputs.label !== undefined) fixture.componentRef.setInput('label', inputs.label);
@@ -128,6 +157,12 @@ describe('caps-breadcrumb', () => {
 			expect(separator.getAttribute('aria-hidden')).toBe('true');
 			expect(separator.querySelector('ng-icon')?.getAttribute('name')).toBe('lucideChevronRight');
 		});
+
+		it('mirrors the default chevron in RTL contexts', () => {
+			const [separator] = Array.from(separatorsOf(render().breadcrumb));
+
+			expect(separator.querySelector('ng-icon')?.classList).toContain('rtl:rotate-180');
+		});
 	});
 
 	describe('current item', () => {
@@ -165,6 +200,78 @@ describe('caps-breadcrumb', () => {
 				expect(link.classList).toContain('caps-link-variant-breadcrumb');
 				expect(link.classList).not.toContain('caps-link-variant-default');
 			}
+		});
+	});
+
+	describe('href', () => {
+		it('renders a native <a href> wrapping the content when href is set', () => {
+			const { items, linkOf } = renderLinks();
+			const link = linkOf(items[1]);
+
+			expect(link?.getAttribute('href')).toBe('#2');
+			expect(link?.textContent?.trim()).toBe('Breadcrumb 2');
+			expect(link?.classList).toContain('caps-link');
+			expect(link?.classList).toContain('caps-link-variant-breadcrumb');
+		});
+
+		it('renders plain content without a link when href is not set', () => {
+			const { items, linkOf } = renderLinks();
+
+			expect(linkOf(items[2])).toBeNull();
+			expect(items[2].textContent?.trim()).toBe('Current');
+		});
+
+		it('keeps the separator outside of the internal link', () => {
+			const { items, linkOf } = renderLinks();
+
+			expect(items[1].firstElementChild?.getAttribute('data-slot')).toBe('breadcrumb-separator');
+			expect(linkOf(items[1])?.querySelector('[data-slot="breadcrumb-separator"]')).toBeNull();
+		});
+
+		it('puts aria-current on the host of a current item without a link', () => {
+			const { items, linkOf } = renderLinks();
+
+			expect(items.map((item) => item.getAttribute('aria-current'))).toEqual([null, null, 'page']);
+			expect(linkOf(items[0])?.hasAttribute('aria-current')).toBe(false);
+			expect(linkOf(items[1])?.hasAttribute('aria-current')).toBe(false);
+		});
+
+		it('keeps the link of a current item with href and puts aria-current on it', () => {
+			const { items, linkOf } = renderLinks({ lastHref: '/current' });
+
+			expect(linkOf(items[2])?.getAttribute('href')).toBe('/current');
+			expect(linkOf(items[2])?.getAttribute('aria-current')).toBe('page');
+			expect(items.every((item) => !item.hasAttribute('aria-current'))).toBe(true);
+		});
+
+		it('has no router inputs: router navigation goes through a projected capsLink', () => {
+			const inputs = reflectComponentType(CapsBreadcrumbItem)?.inputs.map((i) => i.templateName);
+
+			expect(inputs).toContain('href');
+			expect(inputs).not.toContain('routerLink');
+			expect(inputs).not.toContain('queryParams');
+			expect(inputs).not.toContain('fragment');
+		});
+	});
+
+	describe('projected router link', () => {
+		it('keeps the resolved routerLink href and the breadcrumb variant of a projected capsLink', () => {
+			const { items, linkOf } = renderLinks();
+			const link = linkOf(items[0]);
+
+			expect(link?.getAttribute('href')).toBe('/?tab=api#top');
+			expect(link?.classList).toContain('caps-link-variant-breadcrumb');
+			expect(items[0].querySelectorAll('a')).toHaveLength(1);
+		});
+
+		it('navigates with the router when the projected capsLink is clicked', async () => {
+			const { fixture, items, linkOf } = renderLinks();
+			const router = TestBed.inject(Router);
+
+			linkOf(items[0])?.click();
+			await fixture.whenStable();
+
+			expect(router.url).toBe('/?tab=api#top');
 		});
 	});
 

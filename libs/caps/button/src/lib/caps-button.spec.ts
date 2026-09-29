@@ -7,7 +7,14 @@ import { CapsButtonImports, type CapsButtonSize, type CapsButtonVariant } from '
 	imports: [CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button capsButton [variant]="variant()" [size]="size()" class="font-bold" (click)="clicks.set(clicks() + 1)">
+		<button
+			capsButton
+			[variant]="variant()"
+			[size]="size()"
+			[disabled]="disabled()"
+			class="font-bold"
+			(click)="clicks.set(clicks() + 1)"
+		>
 			Save
 		</button>
 	`,
@@ -15,10 +22,11 @@ import { CapsButtonImports, type CapsButtonSize, type CapsButtonVariant } from '
 class ButtonHost {
 	public readonly variant = input<CapsButtonVariant | undefined>(undefined);
 	public readonly size = input<CapsButtonSize | undefined>(undefined);
+	public readonly disabled = input(false);
 	public readonly clicks = signal(0);
 }
 
-function render(inputs: { variant?: CapsButtonVariant; size?: CapsButtonSize } = {}) {
+function render(inputs: { variant?: CapsButtonVariant; size?: CapsButtonSize; disabled?: boolean } = {}) {
 	const fixture = TestBed.createComponent(ButtonHost);
 	for (const [name, value] of Object.entries(inputs)) fixture.componentRef.setInput(name, value);
 	fixture.detectChanges();
@@ -64,5 +72,22 @@ describe('capsButton', () => {
 
 		button.click();
 		expect(host.clicks()).toBe(1);
+	});
+
+	it('disables the native button through the brain disabled input', () => {
+		const { button, host } = render({ disabled: true });
+
+		expect(button.disabled).toBe(true);
+		expect(button.getAttribute('data-disabled')).toBe('true');
+
+		button.click();
+		expect(host.clicks()).toBe(0);
+	});
+
+	it('does not mark an enabled button as disabled', () => {
+		const { button } = render();
+
+		expect(button.disabled).toBe(false);
+		expect(button.hasAttribute('data-disabled')).toBe(false);
 	});
 });

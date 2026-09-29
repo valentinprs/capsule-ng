@@ -1,4 +1,4 @@
-import { booleanAttribute, Component, effect, inject, Input, input, signal, ViewEncapsulation } from '@angular/core';
+import { booleanAttribute, Component, effect, inject, Input, input, ViewEncapsulation } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { marked } from 'marked';
 import { gfmHeadingId } from 'marked-gfm-heading-id';
@@ -14,8 +14,6 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
-import { OpenInStackBlitzButton } from '../stackblitz/open-in-stackblitz-button';
-import { isRunnableExample } from '../stackblitz/stackblitz-project-builder.service';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 declare const Prism: typeof import('prismjs');
@@ -60,7 +58,7 @@ marked.use(
 
 @Component({
 	selector: 'spartan-code',
-	imports: [HlmButton, NgIcon, OpenInStackBlitzButton],
+	imports: [HlmButton, NgIcon],
 	providers: [provideIcons({ lucideClipboard, lucideCheck })],
 	encapsulation: ViewEncapsulation.None,
 	host: {
@@ -132,9 +130,6 @@ marked.use(
 			</div>
 		}
 		<div class="absolute top-1.5 right-4 z-10 flex items-center gap-0.5">
-			@if (_runnable && !_suppressStackblitz()) {
-				<spartan-stackblitz-button [code]="_code" />
-			}
 			@if (!_disableCopy) {
 				<button (click)="copyToClipBoard()" hlmBtn variant="ghost" size="icon-xs">
 					<ng-icon [name]="_copied ? 'lucideCheck' : 'lucideClipboard'" />
@@ -153,18 +148,6 @@ export class Code {
 	protected _copied = false;
 
 	public readonly fileName = input('');
-
-	/** True when the current code is a runnable component example (shows the StackBlitz button). */
-	protected _runnable = false;
-
-	/** The current code, exposed so a wrapping `spartan-tabs` can offer its own StackBlitz button. */
-	public readonly codeValue = signal<string | null | undefined>(undefined);
-
-	/** Set by a wrapping `spartan-tabs` so the toolbar button is used instead of this in-code one. */
-	protected readonly _suppressStackblitz = signal(false);
-	public suppressStackblitzButton(): void {
-		this._suppressStackblitz.set(true);
-	}
 
 	protected _disableCopy = false;
 	@Input({ transform: booleanAttribute })
@@ -186,8 +169,6 @@ export class Code {
 	@Input()
 	public set code(value: string | null | undefined) {
 		this._code = value;
-		this._runnable = isRunnableExample(value);
-		this.codeValue.set(value);
 		const source = this._language === 'sh' ? (value?.trim() ?? '') : `\`\`\`typescript\n${value?.trim() ?? ''}\n\`\`\``;
 		this._content = this._marked.parse(source) as string;
 	}

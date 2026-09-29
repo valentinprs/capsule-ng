@@ -2,7 +2,6 @@ import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 
 import { InputGroupButtonGroupPreview } from '@spartan-ng/app/app/pages/(components)/components/(input-group)/input-group--button-group.preview';
 import { InputGroupCustomInputPreview } from '@spartan-ng/app/app/pages/(components)/components/(input-group)/input-group--custom-input.preview';
@@ -47,7 +46,6 @@ export const routeMeta: RouteMeta = {
 	selector: 'spartan-input-group',
 	imports: [
 		MainSection,
-		InstallTabs,
 		Code,
 		SectionIntro,
 		SectionSubHeading,
@@ -93,8 +91,6 @@ export const routeMeta: RouteMeta = {
 				</div>
 				<spartan-code secondTab [code]="_defaultCode()" />
 			</spartan-tabs>
-
-			<spartan-install-tabs primitive="input-group" />
 
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<div class="mt-6 space-y-4">

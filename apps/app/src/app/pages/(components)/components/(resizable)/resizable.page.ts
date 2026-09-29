@@ -2,7 +2,6 @@ import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
 import { MainSection } from '../../../../shared/layout/main-section';
@@ -35,7 +34,6 @@ export const routeMeta: RouteMeta = {
 	imports: [
 		UIApiDocs,
 		MainSection,
-		InstallTabs,
 		Code,
 		SectionIntro,
 		SectionSubHeading,
@@ -70,8 +68,6 @@ export const routeMeta: RouteMeta = {
 				</div>
 				<spartan-code secondTab [code]="_defaultCode()" />
 			</spartan-tabs>
-
-			<spartan-install-tabs primitive="resizable" />
 
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<div class="mt-6 space-y-4">

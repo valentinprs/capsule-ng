@@ -2,7 +2,6 @@ import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 import { link } from '@spartan-ng/app/app/shared/typography/link';
 import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP, hlmUl } from '@spartan-ng/helm/typography';
@@ -32,7 +31,6 @@ export const routeMeta: RouteMeta = {
 	selector: 'spartan-chart',
 	imports: [
 		MainSection,
-		InstallTabs,
 		Code,
 		SectionIntro,
 		SectionSubHeading,
@@ -82,12 +80,6 @@ export const routeMeta: RouteMeta = {
 					chart on matching versions.
 				</div>
 			</div>
-
-			<spartan-install-tabs primitive="chart">
-				<p class="${hlmP}">
-					The generator installs both TanStack packages and copies the Spartan chart integration into your project.
-				</p>
-			</spartan-install-tabs>
 
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<div class="mt-6 space-y-4">

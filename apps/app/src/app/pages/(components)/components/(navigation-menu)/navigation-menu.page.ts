@@ -5,7 +5,6 @@ import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/prim
 import { NavigationMenuRtl } from '@spartan-ng/app/app/pages/(components)/components/(navigation-menu)/navigation-menu--rtl.example';
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { UIApiDocs } from '@spartan-ng/app/app/shared/layout/ui-docs-section/ui-docs-section';
 import { hlmCode } from '@spartan-ng/helm/typography';
@@ -36,7 +35,6 @@ export const routeMeta: RouteMeta = {
 	selector: 'spartan-navigation-menu',
 	imports: [
 		MainSection,
-		InstallTabs,
 		Code,
 		SectionIntro,
 		SectionSubHeading,
@@ -73,7 +71,6 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_defaultCode()" />
 			</spartan-tabs>
 
-			<spartan-install-tabs primitive="navigation-menu" />
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<div class="mt-6 space-y-4">
 				<spartan-code [code]="_defaultImports" />

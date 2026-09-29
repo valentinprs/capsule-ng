@@ -9,7 +9,6 @@ import { DatePickerRangeExample } from '@spartan-ng/app/app/pages/(components)/c
 import { CodePreview } from '@spartan-ng/app/app/shared/code/code-preview';
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { InstallTabs } from '@spartan-ng/app/app/shared/layout/install-tabs';
 import { MainSection } from '@spartan-ng/app/app/shared/layout/main-section';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { HlmButton } from '@spartan-ng/helm/button';
@@ -55,7 +54,6 @@ export const routeMeta: RouteMeta = {
 		PageBottomNavLink,
 		CodePreview,
 		MainSection,
-		InstallTabs,
 		PageNav,
 		RouterLink,
 		HlmButton,
@@ -86,17 +84,14 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_defaultCode()" />
 			</spartan-tabs>
 
-			<spartan-install-tabs primitive="date-picker">
-				<p class="${hlmP} mb-6">
-					The Date Picker component is built with the
-					<a routerLink="/components/popover" hlmBtn variant="link" class="${link}">Popover</a>
-					and the
-					<a routerLink="/components/calendar" hlmBtn variant="link" class="${link}">Calendar</a>
-					components.
-				</p>
-			</spartan-install-tabs>
-
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
+			<p class="${hlmP}">
+				The Date Picker component is built with the
+				<a routerLink="/components/popover" hlmBtn variant="link" class="${link}">Popover</a>
+				and the
+				<a routerLink="/components/calendar" hlmBtn variant="link" class="${link}">Calendar</a>
+				components.
+			</p>
 			<div class="mt-6 space-y-4">
 				<spartan-code [code]="_defaultImports" />
 				<spartan-code [code]="_codeSkeleton" />

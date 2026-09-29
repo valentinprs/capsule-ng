@@ -1,12 +1,9 @@
 import { type RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronRight } from '@ng-icons/lucide';
 import { PackageInstallerTabs } from '@spartan-ng/app/app/shared/layout/package-installer-tabs';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { HlmAlert, HlmAlertDescription, HlmAlertTitle } from '@spartan-ng/helm/alert';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
@@ -16,7 +13,6 @@ import { PageBottomNavLink } from '../../../../shared/layout/page-bottom-nav/pag
 import { PageNav } from '../../../../shared/layout/page-nav/page-nav';
 import { SectionIntro } from '../../../../shared/layout/section-intro';
 import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
-import { TabsCli } from '../../../../shared/layout/tabs-cli';
 import { metaWith } from '../../../../shared/meta/meta.util';
 import {
 	cssVariables,
@@ -42,28 +38,24 @@ export const routeMeta: RouteMeta = {
 		PageNav,
 		SectionSubHeading,
 		Code,
-		HlmButtonImports,
-		NgIcon,
 
 		RouterLink,
-		TabsCli,
 		SectionSubSubHeading,
 		HlmAlert,
 		HlmAlertDescription,
 		HlmAlertTitle,
 		PackageInstallerTabs,
 	],
-	providers: [provideIcons({ lucideChevronRight })],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Installation" lead="Install behavior. Copy styles. Start building." />
+			<spartan-section-intro name="Installation" lead="Install behavior. Add styles. Start building." />
 
 			<p class="${hlmP}">
-				spartan/ui uses a two-layer architecture: you install
+				spartan/ui uses a two-layer architecture:
 				<code class="${hlmCode}">&#64;spartan-ng/brain</code>
-				from npm for accessible primitives, then copy
+				provides accessible primitives from npm, and
 				<code class="${hlmCode}">helm</code>
-				styles into your codebase for customization.
+				styles them with Tailwind CSS.
 			</p>
 
 			<spartan-section-sub-heading id="prerequisites">Prerequisites</spartan-section-sub-heading>
@@ -80,35 +72,7 @@ export const routeMeta: RouteMeta = {
 				before continuing.
 			</p>
 
-			<spartan-section-sub-heading id="quick-start">Quick Start</spartan-section-sub-heading>
-
-			<p class="${hlmP}">Install the CLI plugin:</p>
-			<spartan-package-installer-tab class="mt-4" />
-
-			<p class="${hlmP}">Run the spartan/cli init command:</p>
-			<spartan-cli-tabs nxCode="npx nx g @spartan-ng/cli:init" ngCode="ng g @spartan-ng/cli:init" />
-
-			<p class="${hlmP}">
-				Use the CLI to add components to your project. This installs the brain dependency (npm) and copies helm code
-				(styles) into your codebase:
-			</p>
-			<spartan-cli-tabs class="mt-4 mb-6" nxCode="npx nx g @spartan-ng/cli:ui" ngCode="ng g @spartan-ng/cli:ui" />
-
-			<p class="${hlmP}">The CLI will prompt you to select which components to add. Each component includes:</p>
-			<ul class="my-4 ml-6 list-disc [&>li]:mt-2">
-				<li>Brain primitive (installed to node_modules)</li>
-				<li>Helm styles (copied to your project)</li>
-				<li>All necessary dependencies</li>
-			</ul>
-
-			<div class="my-2 flex items-center justify-end">
-				<a routerLink="/components" variant="outline" size="sm" hlmBtn outline="">
-					Check out the Components
-					<ng-icon name="lucideChevronRight" class="ml-2" />
-				</a>
-			</div>
-
-			<spartan-section-sub-heading id="manual-setup">Manual Setup</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="setup">Setup</spartan-section-sub-heading>
 			<h3 spartanH4 id="install-dependencies">1. Install Dependencies</h3>
 
 			<p class="${hlmP}">Install the brain (accessible primitives):</p>
@@ -141,23 +105,6 @@ export const routeMeta: RouteMeta = {
 			</div>
 
 			<h4 spartanH4 id="add-theme-variables" class="mt-8">2.3 Add Theme Variables</h4>
-			<p class="${hlmP}">You have two options for adding spartan's CSS variables:</p>
-
-			<h4 class="mt-4 text-sm font-semibold">Option A: Use the Theme Generator (Recommended)</h4>
-			<p class="${hlmP}">Generate theme configuration automatically with our CLI:</p>
-			<spartan-cli-tabs
-				class="mt-4 mb-6"
-				nxCode="npx nx g @spartan-ng/cli:ui-theme"
-				ngCode="ng g @spartan-ng/cli:ui-theme"
-			/>
-			<div class="my-2 flex items-center justify-end">
-				<a routerLink="/documentation/cli" variant="outline" size="sm" hlmBtn outline="">
-					CLI documentation
-					<ng-icon name="lucideChevronRight" class="ml-2" />
-				</a>
-			</div>
-
-			<h4 class="mt-6 text-sm font-semibold">Option B: Manual Setup</h4>
 			<p class="${hlmP}">
 				Copy these CSS variables to your
 				<code class="${hlmCode}">styles.css</code>
@@ -171,28 +118,6 @@ export const routeMeta: RouteMeta = {
 				<a routerLink="/documentation/theming" class="${hlmCode} underline">theming documentation</a>
 				.
 			</p>
-
-			<h3 spartanH4 id="adding-components">3. Add Components</h3>
-
-			<p class="${hlmP}">
-				Use the CLI to add components to your project. This installs the brain dependency (npm) and copies helm code
-				(styles) into your codebase:
-			</p>
-			<spartan-cli-tabs class="mt-4 mb-6" nxCode="npx nx g @spartan-ng/cli:ui" ngCode="ng g @spartan-ng/cli:ui" />
-
-			<p class="${hlmP}">The CLI will prompt you to select which components to add. Each component includes:</p>
-			<ul class="my-4 ml-6 list-disc [&>li]:mt-2">
-				<li>Brain primitive (installed to node_modules)</li>
-				<li>Helm styles (copied to your project)</li>
-				<li>All necessary dependencies</li>
-			</ul>
-
-			<div class="my-2 flex items-center justify-end">
-				<a routerLink="/documentation/cli" variant="outline" size="sm" hlmBtn outline="">
-					CLI documentation
-					<ng-icon name="lucideChevronRight" class="ml-2" />
-				</a>
-			</div>
 
 			<spartan-section-sub-heading id="editor-setup">Editor Setup (Optional)</spartan-section-sub-heading>
 
@@ -276,7 +201,7 @@ export const routeMeta: RouteMeta = {
 			<spartan-code class="mt-4" [code]="_tailwindPrettierSorting" />
 
 			<spartan-page-bottom-nav>
-				<spartan-page-bottom-nav-link href="components-json" label="components.json" />
+				<spartan-page-bottom-nav-link href="theming" label="Theming" />
 				<spartan-page-bottom-nav-link direction="previous" href="about" label="About" />
 			</spartan-page-bottom-nav>
 		</section>

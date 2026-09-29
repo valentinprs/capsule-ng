@@ -53,6 +53,23 @@ We also have e2e tests set up with Cypress that run against our storybook. Run t
 pnpm run e2e
 ```
 
+#### Accessibility check of the docs site
+
+The `app-e2e` project runs an automated [axe](https://github.com/dequelabs/axe-core) audit
+(Cypress + `cypress-axe`) of the breadcrumb docs page: the preview, every example (including the RTL
+example and the opened dropdown menu). It starts the docs app Vite dev server on port 4300
+(`app:serve:e2e`) by itself, so it can run next to a `pnpm run dev` on port 4200:
+
+```shell
+pnpm nx e2e app-e2e
+```
+
+Add `--skip-nx-cache` to force a re-run, or `--watch` to debug in the Cypress UI. Violations are
+printed as a table in the terminal and fail the run; CI runs it in the `e2e` job whenever the docs
+app is affected. The audit is scoped to the breadcrumb examples (site chrome is out of scope), and
+the `landmark-unique` rule is disabled there because the page intentionally renders several
+breadcrumb landmarks with the same default name.
+
 ## Contributing to the docs and spartan website
 
 To serve the documentation and example application locally, run the following command from the root folder:

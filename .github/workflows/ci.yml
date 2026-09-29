@@ -107,9 +107,11 @@ jobs:
   e2e:
     if: ${{ github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'chore(release):') }}
     runs-on: ubuntu-latest
-    # Not gated on `build`: the e2e suite runs cypress against storybook (its cypress executor's
-    # devServerTarget is ui-storybook:static-storybook), so it builds/serves storybook itself and
-    # is independent of the docs-app build. It runs in parallel with the build job.
+    # Not gated on `build`: each e2e project serves what it tests itself, so the job is independent
+    # of the docs-app build and runs in parallel with it.
+    # - ui-storybook-e2e: cypress against storybook (devServerTarget ui-storybook:static-storybook).
+    # - app-e2e: cypress-axe accessibility audit of docs pages (breadcrumb) against the docs app
+    #   Vite dev server (devServerTarget app:serve:e2e, port 4300). Any axe violation fails the job.
     steps:
       - uses: actions/checkout@v6
         with:
@@ -127,5 +129,6 @@ jobs:
         run: npx cypress install
       - name: End-to-end test
         # Exclude trpc-app-e2e: it is not tagged scope:e2e and was never run in CI (it needs a
-        # database/health endpoint that is not provisioned here). Only the storybook e2e runs.
+        # database/health endpoint that is not provisioned here). The storybook and docs-app (axe)
+        # e2e projects run.
         run: pnpm nx affected -t e2e --exclude=trpc-app-e2e --parallel=1 --outputStyle=stream

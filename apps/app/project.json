@@ -47,6 +47,11 @@
 				},
 				"production": {
 					"buildTarget": "app:build:production"
+				},
+				"e2e": {
+					"buildTarget": "app:build:development",
+					"hmr": false,
+					"port": 4300
 				}
 			}
 		},

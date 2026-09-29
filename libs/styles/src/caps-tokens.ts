@@ -43,4 +43,3 @@ export const SHADCN_ALIASED_TOKENS = [
 
 /** Every `--caps-*` color token, defined for light (`:root`) and dark (`.dark`) in `caps-tokens.css`. */
 export const CAPS_COLOR_TOKENS = [...SHADCN_ALIASED_TOKENS, 'ring-error'] as const;
-export type CapsColorToken = (typeof CAPS_COLOR_TOKENS)[number];

@@ -14,6 +14,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
+import { PrimitiveSnippetsService } from '../../core/services/primitive-snippets.service';
 import { OpenInStackBlitzButton } from '../stackblitz/open-in-stackblitz-button';
 import { isRunnableExample } from '../stackblitz/stackblitz-project-builder.service';
 
@@ -133,7 +134,7 @@ marked.use(
 		}
 		<div class="absolute top-1.5 right-4 z-10 flex items-center gap-0.5">
 			@if (_runnable && !_suppressStackblitz()) {
-				<spartan-stackblitz-button [code]="_code" />
+				<spartan-stackblitz-button [code]="runnableSource()" />
 			}
 			@if (!_disableCopy) {
 				<button (click)="copyToClipBoard()" hlmBtn variant="ghost" size="icon-xs">
@@ -148,6 +149,7 @@ marked.use(
 })
 export class Code {
 	private readonly _clipboard = inject(Clipboard);
+	private readonly _snippets = inject(PrimitiveSnippetsService);
 	private readonly _marked: typeof marked;
 	protected _content = '';
 	protected _copied = false;
@@ -157,8 +159,11 @@ export class Code {
 	/** True when the current code is a runnable component example (shows the StackBlitz button). */
 	protected _runnable = false;
 
-	/** The current code, exposed so a wrapping `spartan-tabs` can offer its own StackBlitz button. */
-	public readonly codeValue = signal<string | null | undefined>(undefined);
+	/**
+	 * The source to run on StackBlitz, exposed so a wrapping `spartan-tabs` can offer its own button.
+	 * Usually the displayed code, but the full preview file when only its template is displayed.
+	 */
+	public readonly runnableSource = signal<string | null | undefined>(undefined);
 
 	/** Set by a wrapping `spartan-tabs` so the toolbar button is used instead of this in-code one. */
 	protected readonly _suppressStackblitz = signal(false);
@@ -172,9 +177,9 @@ export class Code {
 		this._disableCopy = value;
 	}
 
-	private _language: 'ts' | 'sh' | 'js' | 'css' = 'ts';
+	private _language: 'ts' | 'sh' | 'js' | 'css' | 'html' = 'ts';
 	@Input()
-	public set language(value: 'ts' | 'sh' | 'js' | 'css') {
+	public set language(value: 'ts' | 'sh' | 'js' | 'css' | 'html') {
 		this._language = value;
 	}
 
@@ -186,9 +191,13 @@ export class Code {
 	@Input()
 	public set code(value: string | null | undefined) {
 		this._code = value;
-		this._runnable = isRunnableExample(value);
-		this.codeValue.set(value);
-		const source = this._language === 'sh' ? (value?.trim() ?? '') : `\`\`\`typescript\n${value?.trim() ?? ''}\n\`\`\``;
+		// A template-only main preview snippet: highlight it as HTML, but run the full file.
+		const previewSource = this._snippets.getPreviewSource(value);
+		const runnableSource = previewSource ?? value;
+		this._runnable = isRunnableExample(runnableSource);
+		this.runnableSource.set(runnableSource);
+		const lang = previewSource || this._language === 'html' ? 'html' : 'typescript';
+		const source = this._language === 'sh' ? (value?.trim() ?? '') : `\`\`\`${lang}\n${value?.trim() ?? ''}\n\`\`\``;
 		this._content = this._marked.parse(source) as string;
 	}
 

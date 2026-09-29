@@ -173,7 +173,10 @@ export class Code {
 		this._code = value;
 		// A template-only main preview snippet is highlighted as HTML.
 		const lang = this._snippets.getPreviewSource(value) || this._language === 'html' ? 'html' : 'typescript';
-		const source = this._language === 'sh' ? (value?.trim() ?? '') : `\`\`\`${lang}
+		const source =
+			this._language === 'sh'
+				? (value?.trim() ?? '')
+				: `\`\`\`${lang}
 ${value?.trim() ?? ''}
 \`\`\``;
 		this._content = this._marked.parse(source) as string;

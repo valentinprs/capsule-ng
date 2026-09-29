@@ -6,10 +6,8 @@
 //   alpha -> alpha     -> alpha
 //
 // The actual build + npm publish is delegated to our nx executors via the exec plugin
-// (publishCmd -> `pnpm run release`), because we publish three packages (brain, cli, mcp)
-// in lockstep off a single computed version. The version is fanned out into every
-// package.json and the CLI's generated files by `pnpm run pre-manual-release`, which
-// reads the VERSION env var.
+// (publishCmd -> `pnpm run release`). The computed version is stamped into brain's
+// package.json by `pnpm run prepare-release`, which reads the VERSION env var.
 
 const conventionalConfig = {
 	preset: 'conventionalcommits',
@@ -42,9 +40,9 @@ export default {
 		[
 			'@semantic-release/exec',
 			{
-				// Fan the computed version out into every package.json + the CLI's generated files.
-				prepareCmd: 'VERSION=${nextRelease.version} pnpm run pre-manual-release',
-				// Build + publish brain/cli/mcp. TAG is the channel (empty on main -> defaults to "latest").
+				// Stamp the computed version into the publishable package.json.
+				prepareCmd: 'VERSION=${nextRelease.version} pnpm run prepare-release',
+				// Build + publish brain. TAG is the channel (empty on main -> defaults to "latest").
 				publishCmd: 'TAG=${nextRelease.channel} pnpm run release',
 			},
 		],
@@ -53,13 +51,10 @@ export default {
 			{
 				assets: [
 					'libs/brain/package.json',
-					'libs/cli/package.json',
-					'libs/mcp/package.json',
 					// helm is private (not version-stamped), but its `@spartan-ng/brain` peer is bumped in
-					// lockstep by the `lint --fix` in prepare-manual-release; commit it so that sync persists
+					// lockstep by the `lint --fix` in prepare-release; commit it so that sync persists
 					// (otherwise the corrected file is discarded each release and helm:lint goes stale).
 					'libs/helm/package.json',
-					'libs/cli/src/generators/ui/**',
 					'CHANGELOG.md',
 				],
 				// Keep the release notes OUT of the commit message: @semantic-release/git passes it as a
@@ -69,7 +64,7 @@ export default {
 				//
 				// No `[skip ci]`: that token skips ALL workflows for the commit, on push AND pull_request,
 				// so a promotion/sync PR whose tip is a release commit gets its required checks skipped and
-				// can never merge. Loop prevention lives in the workflows instead — ci/cli-smoke/release
+				// can never merge. Loop prevention lives in the workflows instead — ci/release
 				// skip release commits on push via a `chore(release):`-prefix guard, leaving PR checks intact.
 				message: 'chore(release): ${nextRelease.version}',
 			},

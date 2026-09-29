@@ -78,7 +78,6 @@
 			"@spartan-ng/brain/toggle": ["libs/brain/toggle/src/index.ts"],
 			"@spartan-ng/brain/toggle-group": ["libs/brain/toggle-group/src/index.ts"],
 			"@spartan-ng/brain/tooltip": ["libs/brain/tooltip/src/index.ts"],
-			"@spartan-ng/cli": ["libs/cli/src/index.ts"],
 			"@spartan-ng/helm": ["libs/helm/src/index.ts"],
 			"@spartan-ng/helm/accordion": ["libs/helm/accordion/src/index.ts"],
 			"@spartan-ng/helm/alert": ["libs/helm/alert/src/index.ts"],
@@ -144,8 +143,6 @@
 			"@spartan-ng/helm/tooltip": ["libs/helm/tooltip/src/index.ts"],
 			"@spartan-ng/helm/typography": ["libs/helm/typography/src/index.ts"],
 			"@spartan-ng/helm/utils": ["libs/helm/utils/src/index.ts"],
-			"@spartan-ng/mcp": ["libs/mcp/src/index.ts"],
-			"@spartan-ng/registry": ["libs/registry/src/index.ts"],
 			"@spartan-ng/styles": ["libs/styles/src/index.ts"],
 			"@spartan-ng/tools": ["libs/tools/src/index.ts"],
 			"@spartan-ng/trpc": ["libs/trpc/src/index.ts"]

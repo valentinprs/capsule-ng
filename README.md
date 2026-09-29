@@ -16,8 +16,7 @@ an opinionated full-stack setup built on AnalogJs.
 
 spartan/ui is **1.0** and stable: production-ready, [semantically versioned](https://semver.org), and
 shipping more than 55 components. Install it from npm with
-[`@spartan-ng/brain`](https://www.npmjs.com/package/@spartan-ng/brain) and the
-[`@spartan-ng/cli`](https://www.npmjs.com/package/@spartan-ng/cli), or explore everything at
+[`@spartan-ng/brain`](https://www.npmjs.com/package/@spartan-ng/brain), or explore everything at
 [spartan.ng](https://www.spartan.ng).
 
 ## Packages
@@ -25,10 +24,6 @@ shipping more than 55 components. Install it from npm with
 | Package                             | Description                                                                    |                                                        |
 | ----------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------ |
 | [`@spartan-ng/brain`](./libs/brain) | Headless, accessible UI primitives for Angular - the behavior half of spartan. | [npm](https://www.npmjs.com/package/@spartan-ng/brain) |
-| [`@spartan-ng/cli`](./libs/cli)     | Nx plugin & Angular schematics that add spartan/ui to any workspace in one go. | [npm](https://www.npmjs.com/package/@spartan-ng/cli)   |
-| [`@spartan-ng/mcp`](./libs/mcp)     | Model Context Protocol server giving AI assistants up-to-date spartan docs.    | [npm](https://www.npmjs.com/package/@spartan-ng/mcp)   |
-
-The styled **helm** components aren't published as a package on purpose - the [CLI](./libs/cli) copies them straight into your project so you own and customize every line.
 
 ## The 300 spartans
 
@@ -234,13 +229,9 @@ spartan/ui brings the [shadcn/ui](https://ui.shadcn.com) philosophy to Angular: 
 Each primitive is made up of two halves:
 
 - a headless **`brain`** library in [`libs/brain`](./libs/brain) that provides the behavior, accessibility, and state - published to npm as [`@spartan-ng/brain`](https://www.npmjs.com/package/@spartan-ng/brain).
-- a **`helm`** library in [`libs/helm`](./libs/helm) that adds the styles, copied straight into your project by the CLI so you can edit them freely.
+- a **`helm`** library in [`libs/helm`](./libs/helm) that adds the styles.
 
-[`libs/cli`](./libs/cli) holds the Nx plugin & Angular CLI code that adds spartan/ui to any Nx or Angular workspace in a single command - published as [`@spartan-ng/cli`](https://www.npmjs.com/package/@spartan-ng/cli).
-
-[`libs/mcp`](./libs/mcp) is a [Model Context Protocol](https://modelcontextprotocol.io) server - published as [`@spartan-ng/mcp`](https://www.npmjs.com/package/@spartan-ng/mcp) - that gives AI assistants up-to-date spartan docs, components, and blocks.
-
-The `skills/spartan` folder contains the spartan agent skill - procedural knowledge that teaches AI coding assistants how to build spartan/ui correctly. Users install it with `npx skills add spartan-ng/spartan`. See [the Skills docs](https://www.spartan.ng/documentation/skills).
+[`libs/styles`](./libs/styles) holds the style presets (nova, vega, lyra, maia, mira, luma), published as `@spartan-ng/styles`.
 
 ### Install Dependencies
 

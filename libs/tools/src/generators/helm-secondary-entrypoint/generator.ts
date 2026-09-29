@@ -21,32 +21,6 @@ export async function helmSecondaryEntrypointGenerator(tree: Tree, options: Helm
 	// empty the index.ts file
 	tree.write(joinPathFragments(sourceRoot, 'index.ts'), `export const Hlm${className}Imports = [] as const;`);
 
-	// create the generator files
-	const generatorPath = joinPathFragments(
-		'libs',
-		'cli',
-		'src',
-		'generators',
-		'ui',
-		'libs',
-		normalizedName,
-		'generator.ts',
-	);
-
-	tree.write(
-		generatorPath,
-		`import type { Tree } from '@nx/devkit';
-import hlmBaseGenerator from '../../../base/generator';
-import type { HlmBaseGeneratorSchema } from '../../../base/schema';
-
-export async function generator(tree: Tree, options: HlmBaseGeneratorSchema) {
-	return await hlmBaseGenerator(tree, {
-		...options,
-		name: '${normalizedName}',
-	});
-}`,
-	);
-
 	if (options.story) {
 		await helmStoryGenerator(tree, {
 			entrypoint: normalizedName,

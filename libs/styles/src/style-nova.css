@@ -15,12 +15,6 @@
  * Only nova carries this: nova is the ONLY style ever used as the page-wide baseline. The other five
  * are only ever islands, already contained by their own `.style-X` selector, so they stay plain.
  *
- * It does NOT reach consumer projects. The CLI does not copy this file; `createStyleMap`
- * (libs/cli/.../create-style-map.ts) harvests each `.spartan-* { @apply ... }` rule and inlines the
- * utilities directly into the generated components - it ignores the wrapper entirely, whether it is
- * `.style-nova {` or this `@scope`. So no `@scope`, and no extra browser-support requirement, ever
- * ships to a single-style consumer.
- *
  * Authored here (not in the docs app) ON PURPOSE: feeding nova into a `@scope` from the docs via
  * `@import` does not survive the dev build (the whole baseline silently drops and the docs render
  * unstyled). Wrapping nova's own rules directly avoids any `@import`, so it works in dev and prod.

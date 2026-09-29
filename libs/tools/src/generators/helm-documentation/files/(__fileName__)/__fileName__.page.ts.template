@@ -12,7 +12,6 @@ import { PageBottomNav } from '../../../../shared/layout/page-bottom-nav/page-bo
 import { PageNav } from '../../../../shared/layout/page-nav/page-nav';
 import { SectionIntro } from '../../../../shared/layout/section-intro';
 import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
-import { TabsCli } from '../../../../shared/layout/tabs-cli';
 import { Tabs } from '../../../../shared/layout/tabs';
 import { metaWith } from '../../../../shared/meta/meta.util';
 import { UIApiDocs } from '@spartan-ng/app/app/shared/layout/ui-docs-section/ui-docs-section';
@@ -35,7 +34,6 @@ imports: [
 		SectionIntro,
 		SectionSubHeading,
 		Tabs,
-		TabsCli,
 		<%= previewComponentName %>,
 		CodePreview,
 		PageNav,
@@ -58,13 +56,6 @@ imports: [
 				</div>
 				<spartan-code secondTab [code]="_defaultCode()" />
 			</spartan-tabs>
-
-			<spartan-section-sub-heading id="installation">Installation</spartan-section-sub-heading>
-			<spartan-cli-tabs
-				class="mt-4"
-				nxCode="npx nx g @spartan-ng/cli:ui <%= name %>"
-				ngCode="ng g @spartan-ng/cli:ui <%= name %>"
-			/>
 
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<div class="space-y-4">

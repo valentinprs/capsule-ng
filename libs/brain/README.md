@@ -23,14 +23,6 @@ pnpm add @spartan-ng/brain
 yarn add @spartan-ng/brain
 ```
 
-For the easiest setup, use the [spartan CLI](https://www.npmjs.com/package/@spartan-ng/cli) - it installs the right secondary entry points and copies matching helm styles in one command:
-
-```bash
-npm install -D @spartan-ng/cli
-ng g @spartan-ng/cli:init
-ng g @spartan-ng/cli:ui
-```
-
 ## Usage
 
 Every primitive lives behind a secondary entry point so you only ship what you import:
@@ -75,7 +67,7 @@ Browse the [components gallery](https://www.spartan.ng/components) for live demo
 
 ## Tailwind Preset
 
-`@spartan-ng/brain` ships with the shared Tailwind preset that powers the helm styles. Most users have the [CLI](https://www.npmjs.com/package/@spartan-ng/cli) wire this up for them, but you can also do it by hand by adding the preset to your CSS:
+`@spartan-ng/brain` ships with the shared Tailwind preset that powers the helm styles. Add the preset to your CSS:
 
 ```css
 @import '@spartan-ng/brain/hlm-tailwind-preset.css';
@@ -97,7 +89,6 @@ spartan/ui requires Tailwind CSS v4.
 ## Documentation
 
 - [Installation guide](https://www.spartan.ng/documentation/installation)
-- [CLI documentation](https://www.spartan.ng/documentation/cli)
 - [Theming](https://www.spartan.ng/documentation/theming)
 - [Components](https://www.spartan.ng/components)
 

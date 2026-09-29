@@ -42,7 +42,7 @@ function optionalBooleanAttribute(value: CurrentInput): boolean | undefined {
 				aria-hidden="true"
 				class="caps-breadcrumb-separator flex"
 			>
-				<ng-icon name="lucideChevronRight" />
+				<ng-icon name="lucideChevronRight" class="rtl:rotate-180" />
 			</span>
 		}
 		<ng-content />

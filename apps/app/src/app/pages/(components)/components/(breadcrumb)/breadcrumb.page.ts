@@ -19,7 +19,6 @@ import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
 import { BreadcrumbCollapsed } from './breadcrumb--collapsed.example';
-import { BreadcrumbCustomSeparator } from './breadcrumb--custom-separator.example';
 import { BreadcrumbDropdown } from './breadcrumb--dropdown.example';
 import { BreadcrumbRtl } from './breadcrumb--rtl.example';
 import { BreadcrumbPreview, defaultImports, defaultSkeleton } from './breadcrumb.preview';
@@ -49,7 +48,6 @@ export const routeMeta: RouteMeta = {
 		CodeRtlPreview,
 		SectionSubSubHeading,
 		BreadcrumbPreview,
-		BreadcrumbCustomSeparator,
 		BreadcrumbDropdown,
 		BreadcrumbCollapsed,
 		BreadcrumbRtl,
@@ -77,23 +75,6 @@ export const routeMeta: RouteMeta = {
 			</div>
 
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
-			<h3 id="examples__custom-separator" spartanH4>Custom separator</h3>
-			<p class="${hlmP} mb-2">
-				Use a custom component as
-				<code class="${hlmCode} mr-0.5">children</code>
-				for
-				<code class="${hlmCode} mr-0.5">HlmBreadcrumbSeparator</code>
-				to create a custom separator.
-			</p>
-			<spartan-tabs firstTab="Preview" secondTab="Code">
-				<div spartanCodePreview firstTab>
-					<spartan-breadcrumb-custom-separator />
-				</div>
-				<spartan-code secondTab [code]="_customSeparatorCode()" />
-			</spartan-tabs>
-
-			<hr class="my-4 md:my-8" />
-
 			<h3 id="examples__dropdown" spartanH4>Dropdown</h3>
 			<p class="${hlmP} mb-2">
 				You can compose
@@ -153,7 +134,6 @@ export default class BreadcrumbPage {
 	protected readonly _defaultImports = defaultImports;
 	protected readonly _defaultSkeleton = defaultSkeleton;
 
-	protected readonly _customSeparatorCode = computed(() => this._snippets()['customSeparator']);
 	protected readonly _dropdownCode = computed(() => this._snippets()['dropdown']);
 	protected readonly _collapsedCode = computed(() => this._snippets()['collapsed']);
 	protected readonly _rtlCode = computed(() => this._snippets()['rtl']);

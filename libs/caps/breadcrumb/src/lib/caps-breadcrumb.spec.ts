@@ -128,6 +128,12 @@ describe('caps-breadcrumb', () => {
 			expect(separator.getAttribute('aria-hidden')).toBe('true');
 			expect(separator.querySelector('ng-icon')?.getAttribute('name')).toBe('lucideChevronRight');
 		});
+
+		it('mirrors the default chevron in RTL contexts', () => {
+			const [separator] = Array.from(separatorsOf(render().breadcrumb));
+
+			expect(separator.querySelector('ng-icon')?.classList).toContain('rtl:rotate-180');
+		});
 	});
 
 	describe('current item', () => {

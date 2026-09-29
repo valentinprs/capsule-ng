@@ -14,6 +14,7 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
+import { PrimitiveSnippetsService } from '../../core/services/primitive-snippets.service';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 declare const Prism: typeof import('prismjs');
@@ -143,6 +144,7 @@ marked.use(
 })
 export class Code {
 	private readonly _clipboard = inject(Clipboard);
+	private readonly _snippets = inject(PrimitiveSnippetsService);
 	private readonly _marked: typeof marked;
 	protected _content = '';
 	protected _copied = false;
@@ -155,9 +157,9 @@ export class Code {
 		this._disableCopy = value;
 	}
 
-	private _language: 'ts' | 'sh' | 'js' | 'css' = 'ts';
+	private _language: 'ts' | 'sh' | 'js' | 'css' | 'html' = 'ts';
 	@Input()
-	public set language(value: 'ts' | 'sh' | 'js' | 'css') {
+	public set language(value: 'ts' | 'sh' | 'js' | 'css' | 'html') {
 		this._language = value;
 	}
 
@@ -169,7 +171,11 @@ export class Code {
 	@Input()
 	public set code(value: string | null | undefined) {
 		this._code = value;
-		const source = this._language === 'sh' ? (value?.trim() ?? '') : `\`\`\`typescript\n${value?.trim() ?? ''}\n\`\`\``;
+		// A template-only main preview snippet is highlighted as HTML.
+		const lang = this._snippets.getPreviewSource(value) || this._language === 'html' ? 'html' : 'typescript';
+		const source = this._language === 'sh' ? (value?.trim() ?? '') : `\`\`\`${lang}
+${value?.trim() ?? ''}
+\`\`\``;
 		this._content = this._marked.parse(source) as string;
 	}
 

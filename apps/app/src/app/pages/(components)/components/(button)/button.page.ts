@@ -133,7 +133,7 @@ export const routeMeta: RouteMeta = {
 				<div spartanCodePreview firstTab>
 					<spartan-button-default />
 				</div>
-				<spartan-code secondTab [code]="_defaultCode()" />
+				<spartan-code secondTab [code]="_defaultVariantCode()" />
 			</spartan-tabs>
 
 			<h3 id="examples__outline" spartanH4>Outline</h3>
@@ -264,6 +264,7 @@ export default class ButtonPage {
 
 	private readonly _snippets = inject(PrimitiveSnippetsService).getSnippets('button');
 	protected readonly _defaultCode = computed(() => this._snippets()['default']);
+	protected readonly _defaultVariantCode = computed(() => this._snippets()['defaultVariant']);
 	protected readonly _secondaryCode = computed(() => this._snippets()['secondary']);
 	protected readonly _outlineCode = computed(() => this._snippets()['outline']);
 	protected readonly _destructiveCode = computed(() => this._snippets()['destructive']);

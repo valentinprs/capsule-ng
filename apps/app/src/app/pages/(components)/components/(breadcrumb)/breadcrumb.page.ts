@@ -158,9 +158,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="caps-api">Caps API</spartan-section-sub-heading>
 			<spartan-ui-api-docs docType="caps" />
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
-
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="bubble" label="Bubble" />
 				<spartan-page-bottom-nav-link direction="previous" href="badge" label="Badge" />

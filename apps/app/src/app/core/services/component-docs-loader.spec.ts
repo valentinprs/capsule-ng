@@ -10,8 +10,6 @@ const files: Record<string, unknown> = {
 		},
 	},
 	'/data/ui-api/link.json': { link: { caps: { CapsLink: capsEntry('a[capsLink]') } } },
-	'/data/stackblitz-meta.json': {},
-	'/data/manual-install-snippets/utils.json': {},
 };
 
 describe('loadComponentDocs', () => {

@@ -53,7 +53,6 @@ export default defineConfig(({ command, mode }) => {
 				'prismjs/components/prism-json',
 				'prismjs/components/prism-markup',
 				'prismjs/components/prism-typescript',
-				'@stackblitz/sdk',
 				'@angular/forms/signals',
 				'@angular/cdk/stepper',
 				'@angular/cdk/text-field',

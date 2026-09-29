@@ -16,6 +16,31 @@
 	@apply text-muted-foreground [&>ng-icon]:text-[length:--spacing(3.5)];
 }
 
+.caps-breadcrumb-ellipsis {
+	@apply size-5 [&>ng-icon]:text-[length:--spacing(4)];
+}
+
+/* MARK: Button */
+.caps-button {
+	@apply focus-visible:border-ring focus-visible:ring-ring/50 rounded-lg border border-transparent bg-clip-padding text-sm font-medium focus-visible:ring-3 active:not-aria-[haspopup]:translate-y-px [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+}
+
+.caps-button-variant-default {
+	@apply bg-primary text-primary-foreground hover:bg-primary/80;
+}
+
+.caps-button-variant-ghost {
+	@apply hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground;
+}
+
+.caps-button-size-default {
+	@apply h-8 gap-1.5 px-2.5;
+}
+
+.caps-button-size-icon {
+	@apply size-8;
+}
+
 /* MARK: Link */
 .caps-link {
 	@apply focus-visible:ring-ring/50 rounded-sm outline-none focus-visible:ring-3;

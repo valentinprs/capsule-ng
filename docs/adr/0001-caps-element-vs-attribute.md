@@ -86,3 +86,31 @@ dependency, and we want the showcase site (`apps/app`) to demonstrate that API.
 - Every `caps-*` host must explicitly declare ARIA roles and be covered by tests asserting them.
 - Two styled layers (`helm`, `caps`) coexist in the repository until the migration completes.
 - Upstream helm changes no longer flow in automatically; only `brain` is synced.
+
+## Amendment 1: composite components may own their native link (2026-09-29)
+
+Consumers found `<caps-breadcrumb-item><a capsLink href="/">Home</a></caps-breadcrumb-item>` more
+verbose than needed for the common case. Following Carbon's breadcrumb (`cds-breadcrumb-item` /
+React `BreadcrumbItem`), `<caps-breadcrumb-item>` now takes an `href` and renders the link itself:
+
+```html
+<caps-breadcrumb>
+	<caps-breadcrumb-item href="/">Home</caps-breadcrumb-item>
+	<caps-breadcrumb-item>
+		<a capsLink routerLink="/components">Components</a>
+	</caps-breadcrumb-item>
+	<caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
+</caps-breadcrumb>
+```
+
+- **Composite components may take an `href` input** and render the native `<a href>` themselves,
+  wrapping the projected content. The interactive element is still a native `<a>` (focus, keyboard
+  activation, middle-click, open in new tab all keep working); it is simply owned by the
+  component's template instead of the consumer's. Without `href`, the content is rendered as is.
+- **caps stays router-free.** Components do not take `routerLink` inputs and caps does not depend
+  on `@angular/router`. For client-side routing, the consumer projects their own link element, as
+  in Carbon (React: `<BreadcrumbItem><Link to="/">…</Link></BreadcrumbItem>`). In caps that element
+  is `<a capsLink routerLink>`, which the composite component styles and marks through the
+  `CAPS_LINK_CONTEXT` DI context.
+- **`capsLink` stays** the styling-only directive for standalone links and for router links inside
+  composite components.

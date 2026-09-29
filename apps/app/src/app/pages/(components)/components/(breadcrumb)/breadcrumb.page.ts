@@ -23,6 +23,25 @@ import { BreadcrumbDropdown } from './breadcrumb--dropdown.example';
 import { BreadcrumbRtl } from './breadcrumb--rtl.example';
 import { BreadcrumbPreview, defaultImports, defaultSkeleton } from './breadcrumb.preview';
 
+// Kept out of breadcrumb.preview.ts so they do not leak into the preview's Code tab snippet.
+const routerImports = `
+import { RouterLink } from '@angular/router';
+import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
+`;
+
+const routerSkeleton = `
+<caps-breadcrumb>
+  <caps-breadcrumb-item>
+    <a capsLink routerLink="/">Home</a>
+  </caps-breadcrumb-item>
+  <caps-breadcrumb-item>
+    <a capsLink routerLink="/components">Components</a>
+  </caps-breadcrumb-item>
+  <caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
+</caps-breadcrumb>
+`;
+
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Breadcrumb', api: 'breadcrumb' },
 	meta: metaWith('spartan/ui - Breadcrumb', 'Displays the path to the current resource using a hierarchy of links.'),
@@ -72,6 +91,29 @@ export const routeMeta: RouteMeta = {
 			<div class="mt-6 space-y-4">
 				<spartan-code [code]="_defaultImports" />
 				<spartan-code [code]="_defaultSkeleton" />
+			</div>
+			<p class="${hlmP}">
+				Set
+				<code class="${hlmCode} mr-0.5">href</code>
+				on a
+				<code class="${hlmCode} mr-0.5">caps-breadcrumb-item</code>
+				to render its content as a native link. Without it, the item renders its content as is. The last item is the
+				current page unless another item sets the
+				<code class="${hlmCode} mr-0.5">current</code>
+				input; the current item gets
+				<code class="${hlmCode} mr-0.5">aria-current="page"</code>
+				on its link when it has one, otherwise on the item itself.
+			</p>
+			<p class="${hlmP}">
+				For navigation with the Angular router, leave
+				<code class="${hlmCode} mr-0.5">href</code>
+				unset and project an
+				<code class="${hlmCode} mr-0.5">a capsLink routerLink</code>
+				into the item: the item styles it as a breadcrumb link and marks it as the current page when needed.
+			</p>
+			<div class="mt-6 space-y-4">
+				<spartan-code [code]="_routerImports" />
+				<spartan-code [code]="_routerSkeleton" />
 			</div>
 
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
@@ -133,6 +175,8 @@ export default class BreadcrumbPage {
 	protected readonly _defaultCode = computed(() => this._snippets()['default']);
 	protected readonly _defaultImports = defaultImports;
 	protected readonly _defaultSkeleton = defaultSkeleton;
+	protected readonly _routerImports = routerImports;
+	protected readonly _routerSkeleton = routerSkeleton;
 
 	protected readonly _dropdownCode = computed(() => this._snippets()['dropdown']);
 	protected readonly _collapsedCode = computed(() => this._snippets()['collapsed']);

@@ -1,5 +1,5 @@
 import { computed, Injectable, signal } from '@angular/core';
-import { Style } from '@spartan-ng/registry';
+import { Style } from '@spartan-ng/styles';
 import type { PrimitiveSnippet } from '../models/primitives-snippets.model';
 
 export type ManualInstallPrimitives = PrimitiveSnippet | 'typography' | 'utils';

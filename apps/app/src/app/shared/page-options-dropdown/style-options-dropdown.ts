@@ -6,7 +6,7 @@ import { lucideCheck, lucideChevronDown } from '@ng-icons/lucide';
 import { StyleService } from '@spartan-ng/app/app/shared/style.service';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { STYLES } from '@spartan-ng/registry';
+import { STYLES } from '@spartan-ng/styles';
 
 @Component({
 	selector: 'spartan-style-options-dropdown',

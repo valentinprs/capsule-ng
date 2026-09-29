@@ -138,7 +138,7 @@ export async function generateHlmComponentManualInstallation(tree: Tree): Promis
 	const styleMaps: Record<Style, ReturnType<typeof createStyleMap>> = {} as never;
 
 	for (const theme of STYLES) {
-		const css = tree.read(`libs/registry/src/styles/style-${theme}.css`, 'utf-8');
+		const css = tree.read(`libs/styles/src/style-${theme}.css`, 'utf-8');
 		if (!css) {
 			logger.warn(`Missing style file for theme: ${theme}`);
 			continue;
@@ -349,11 +349,11 @@ async function writeStackblitzProject(tree: Tree): Promise<void> {
 	// The CLI base generator reads its style map from `libs/cli/src/generators/ui/style-nova.css`
 	// on the real filesystem (that file is normally produced by the cli build's asset copy). When
 	// running from source it is absent, which would silently strip the spartan-* variant classes.
-	// Stage it from the registry source for the duration of the run, then clean up.
+	// Stage it from the style preset source for the duration of the run, then clean up.
 	const cliNovaCss = join(__dirname, '../../../../cli/src/generators/ui/style-nova.css');
 	const stagedNovaCss = !existsSync(cliNovaCss);
 	if (stagedNovaCss) {
-		copyFileSync(join(__dirname, '../../../../registry/src/styles/style-nova.css'), cliNovaCss);
+		copyFileSync(join(__dirname, '../../../../styles/src/style-nova.css'), cliNovaCss);
 	}
 	try {
 		await createPrimitiveLibraries(

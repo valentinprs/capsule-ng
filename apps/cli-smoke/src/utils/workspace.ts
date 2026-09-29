@@ -305,10 +305,7 @@ export function assertHealthcheckClean(ws: CellWorkspace): void {
 /** Build a style's class map from the registry CSS exactly as the CLI does, so the expected classes are
  *  derived (never hardcoded) and stay correct as the registry styles change. */
 function registryStyleMap(style: string): Record<string, string> {
-	const css = readFileSync(
-		join(workspaceRootDir(), 'libs', 'registry', 'src', 'styles', `style-${style}.css`),
-		'utf-8',
-	);
+	const css = readFileSync(join(workspaceRootDir(), 'libs', 'styles', 'src', `style-${style}.css`), 'utf-8');
 	return createStyleMap(css);
 }
 

@@ -1,7 +1,7 @@
 import { injectLoad } from '@analogjs/router';
 import { inject, Injector, runInInjectionContext } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import type { Style } from '@spartan-ng/registry';
+import type { Style } from '@spartan-ng/styles';
 import type { PrimitiveSnippets } from '../models/primitives-snippets.model';
 import type { ComponentApiData } from '../models/ui-docs.model';
 import { ApiDocsService } from './api-docs.service';

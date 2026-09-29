@@ -83,7 +83,7 @@ const allComponentsCells: SetupCell[] = [
 // styles are split across the two workspace types so both the angular-cli and the nx generator path are
 // exercised while no style runs more than once: vega (the default) is covered by the cells above, and the
 // remaining five alternate between angular-cli and nx (entrypoint + buildable - the nx shape most sensitive
-// to the style transform). Keep in sync with libs/registry/src/styles/style.ts (STYLES) when a style is
+// to the style transform). Keep in sync with libs/styles/src/style.ts (STYLES) when a style is
 // added or removed.
 const styleCells: SetupCell[] = [
 	{ id: 'style-acli-nova', workspace: 'angular-cli', style: 'nova' },

@@ -49,8 +49,10 @@ function visitBreadcrumbPage(): void {
 	cy.configureAxe({ rules: [{ id: 'landmark-unique', enabled: false }] });
 }
 
-describe('breadcrumb docs page accessibility', () => {
-	beforeEach(() => visitBreadcrumbPage());
+// One page load for the whole suite: every cold dev-server load is slow on CI (and a load can stall),
+// and the tests only read the page - the one opening the dropdown menu runs last.
+describe('breadcrumb docs page accessibility', { testIsolation: false }, () => {
+	before(() => visitBreadcrumbPage());
 
 	it('renders every example with the breadcrumb roles and aria-current', () => {
 		for (const example of EXAMPLES) {

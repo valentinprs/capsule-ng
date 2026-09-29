@@ -12,7 +12,8 @@
 				"cypressConfig": "apps/app-e2e/cypress.config.cjs",
 				"devServerTarget": "app:serve:e2e",
 				"testingType": "e2e"
-			}
+			},
+			"dependsOn": ["app:generate-docs-and-snippets", "app:generate-hlm-component-preview"]
 		},
 		"lint": {
 			"executor": "@nx/eslint:lint",

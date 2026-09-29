@@ -46,7 +46,8 @@
 			"options": {
 				"outputDir": "dist/extracted-metadata",
 				"brainDir": "libs/brain",
-				"helmDir": "libs/helm"
+				"helmDir": "libs/helm",
+				"capsDir": "libs/caps"
 			}
 		},
 		"test": {

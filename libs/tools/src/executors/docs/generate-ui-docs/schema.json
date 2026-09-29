@@ -16,6 +16,10 @@
 		"helmDir": {
 			"type": "string",
 			"description": "Directory containing helm components, relative to workspace root"
+		},
+		"capsDir": {
+			"type": "string",
+			"description": "Directory containing caps components, relative to workspace root"
 		}
 	},
 	"required": ["outputDir", "brainDir", "helmDir"]

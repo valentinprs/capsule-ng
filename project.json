@@ -16,7 +16,8 @@
 				"outputDir": "apps/app/src/public/data",
 				"outputFile": "ui-api.json",
 				"brainDir": "libs/brain",
-				"helmDir": "libs/helm"
+				"helmDir": "libs/helm",
+				"capsDir": "libs/caps"
 			},
 			"outputs": ["{options.outputDir}/{options.outputFile}"]
 		}

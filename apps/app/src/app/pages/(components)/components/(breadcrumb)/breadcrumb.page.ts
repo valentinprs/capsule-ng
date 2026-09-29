@@ -99,11 +99,11 @@ export const routeMeta: RouteMeta = {
 
 			<h3 id="examples__dropdown" spartanH4>Dropdown</h3>
 			<p class="${hlmP} mb-2">
-				You can compose
-				<code class="${hlmCode} mr-0.5">HlmBreadcrumbItem</code>
-				for
-				<code class="${hlmCode} mr-0.5">HlmDropdownMenu</code>
-				to create a custom separator.
+				Place a
+				<code class="${hlmCode} mr-0.5">caps-breadcrumb-ellipsis</code>
+				inside a
+				<code class="${hlmCode} mr-0.5">capsButton</code>
+				that triggers a dropdown menu listing the collapsed items.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -117,7 +117,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__collapsed" spartanH4>Collapsed</h3>
 			<p class="${hlmP} mb-2">
 				We provide a
-				<code class="${hlmCode} mr-0.5">HlmBreadcrumbEllipsis</code>
+				<code class="${hlmCode} mr-0.5">caps-breadcrumb-ellipsis</code>
 				component to show a collapsed state when the breadcrumb is too long.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">

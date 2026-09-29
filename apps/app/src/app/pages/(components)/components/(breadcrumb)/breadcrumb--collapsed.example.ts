@@ -1,29 +1,24 @@
 import { Component } from '@angular/core';
-import { HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
+import { RouterLink } from '@angular/router';
+import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 
 @Component({
 	selector: 'spartan-breadcrumb-collapsed',
-	imports: [HlmBreadcrumbImports],
+	imports: [CapsBreadcrumbImports, CapsLinkImports, RouterLink],
 	template: `
-		<nav hlmBreadcrumb>
-			<ol hlmBreadcrumbList>
-				<li hlmBreadcrumbItem>
-					<a hlmBreadcrumbLink link="/">Home</a>
-				</li>
-				<li hlmBreadcrumbSeparator></li>
-				<li hlmBreadcrumbItem>
-					<hlm-breadcrumb-ellipsis />
-				</li>
-				<li hlmBreadcrumbSeparator></li>
-				<li hlmBreadcrumbItem>
-					<a hlmBreadcrumbLink link="/components">Components</a>
-				</li>
-				<li hlmBreadcrumbSeparator></li>
-				<li hlmBreadcrumbItem>
-					<span hlmBreadcrumbPage>Breadcrumb</span>
-				</li>
-			</ol>
-		</nav>
+		<caps-breadcrumb>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/">Home</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>
+				<caps-breadcrumb-ellipsis />
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>
+				<a capsLink routerLink="/components">Components</a>
+			</caps-breadcrumb-item>
+			<caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
+		</caps-breadcrumb>
 	`,
 })
 export class BreadcrumbCollapsed {}

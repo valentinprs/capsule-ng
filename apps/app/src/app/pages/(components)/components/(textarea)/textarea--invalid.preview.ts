@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'spartan-textarea-invalid',
-	imports: [CapsTextareaImports, HlmFieldImports],
+	imports: [CapsTextareaImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field forceInvalid>
-			<label hlmFieldLabel for="textarea-invalid">Message</label>
+		<caps-field forceInvalid>
+			<label capsLabel for="textarea-invalid">Message</label>
 			<textarea capsTextarea forceInvalid id="textarea-invalid" placeholder="Type your message here."></textarea>
-			<hlm-field-description>Please enter a valid message.</hlm-field-description>
-		</hlm-field>
+			<caps-field-description>Please enter a valid message.</caps-field-description>
+		</caps-field>
 	`,
 })
 export class TextareaInvalid {}

@@ -29,7 +29,7 @@ describe('Capsule Label docs accessibility and native activation', { testIsolati
 		for (const example of EXAMPLES) {
 			cy.get(`${example} label[capsLabel]`).each(($label) => {
 				expect($label).to.have.class('caps-label');
-				expect($label).to.have.attr('data-slot', 'label');
+				expect($label).to.have.attr('data-slot', $label.closest('[brnField]').length ? 'field-label' : 'label');
 			});
 		}
 		cy.get('spartan-label-rtl > div').should('have.attr', 'dir', 'rtl');

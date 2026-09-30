@@ -1,35 +1,35 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'spartan-input-form',
-	imports: [CapsInputImports, HlmButtonImports, HlmFieldImports, FormRoot, FormField],
+	imports: [CapsInputImports, HlmButtonImports, CapsFieldImports, FormRoot, FormField],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="form-name">Name</label>
+			<caps-field-group>
+				<caps-field>
+					<label capsLabel for="form-name">Name</label>
 					<input capsInput type="text" id="form-name" placeholder="Leonidas" [formField]="form.name" />
-				</hlm-field>
-				<hlm-field>
-					<label hlmFieldLabel for="form-email">Email</label>
+				</caps-field>
+				<caps-field>
+					<label capsLabel for="form-email">Email</label>
 					<input capsInput type="email" id="form-email" placeholder="leonidas@example.com" [formField]="form.email" />
-					<hlm-field-description>We'll never share your email with anyone.</hlm-field-description>
-				</hlm-field>
-				<hlm-field>
-					<label hlmFieldLabel for="form-address">Address</label>
+					<caps-field-description>We'll never share your email with anyone.</caps-field-description>
+				</caps-field>
+				<caps-field>
+					<label capsLabel for="form-address">Address</label>
 					<input capsInput type="text" id="form-address" placeholder="123 Main St" [formField]="form.address" />
-				</hlm-field>
-				<hlm-field orientation="horizontal">
+				</caps-field>
+				<caps-field orientation="horizontal">
 					<button hlmBtn variant="outline" type="button" (click)="reset()">Cancel</button>
 					<button hlmBtn type="submit">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })

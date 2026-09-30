@@ -1,48 +1,48 @@
 import { Component } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'spartan-field-checkbox-preview',
-	imports: [HlmFieldImports, HlmCheckboxImports],
+	imports: [CapsFieldImports, HlmCheckboxImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<div hlmFieldGroup>
-			<fieldset hlmFieldSet>
-				<legend hlmFieldLegend variant="label">Show these items on the desktop</legend>
-				<p hlmFieldDescription>Select the items you want to show on the desktop.</p>
-				<div hlmFieldGroup class="gap-3">
-					<div hlmField orientation="horizontal">
+		<caps-field-group>
+			<fieldset capsFieldSet>
+				<legend capsFieldLegend variant="label">Show these items on the desktop</legend>
+				<caps-field-description>Select the items you want to show on the desktop.</caps-field-description>
+				<caps-field-group class="gap-3">
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-hard-disks" />
-						<label hlmFieldLabel for="field-hard-disks" class="font-normal">Hard disks</label>
-					</div>
-					<div hlmField orientation="horizontal">
+						<label capsLabel for="field-hard-disks" class="font-normal">Hard disks</label>
+					</caps-field>
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-external-disks" />
-						<label hlmFieldLabel for="field-external-disks" class="font-normal">External disks</label>
-					</div>
-					<div hlmField orientation="horizontal">
+						<label capsLabel for="field-external-disks" class="font-normal">External disks</label>
+					</caps-field>
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-cds-dvds-ipods" />
-						<label hlmFieldLabel for="field-cds-dvds-ipods" class="font-normal">CDs, DVDs, and IPods</label>
-					</div>
-					<div hlmField orientation="horizontal">
+						<label capsLabel for="field-cds-dvds-ipods" class="font-normal">CDs, DVDs, and IPods</label>
+					</caps-field>
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-connected-servers" />
-						<label hlmFieldLabel for="field-connected-servers" class="font-normal">Connected servers</label>
-					</div>
-				</div>
+						<label capsLabel for="field-connected-servers" class="font-normal">Connected servers</label>
+					</caps-field>
+				</caps-field-group>
 			</fieldset>
-			<hlm-field-separator />
-			<div hlmField orientation="horizontal">
+			<caps-field-separator />
+			<caps-field orientation="horizontal">
 				<hlm-checkbox inputId="field-sync-desktop-documents" [checked]="true" />
-				<div hlmFieldContent>
-					<label hlmFieldLabel for="field-sync-desktop-documents">Sync Desktop & Documents folders</label>
-					<p hlmFieldDescription>
+				<caps-field-content>
+					<label capsLabel for="field-sync-desktop-documents">Sync Desktop & Documents folders</label>
+					<caps-field-description>
 						Your Desktop & Documents folders are being synced with iCloud Drive. You can access them from other devices.
-					</p>
-				</div>
-			</div>
-		</div>
+					</caps-field-description>
+				</caps-field-content>
+			</caps-field>
+		</caps-field-group>
 	`,
 })
 export class FieldCheckboxPreview {}

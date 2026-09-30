@@ -76,11 +76,11 @@ export const routeMeta: RouteMeta = {
 			<h3 id="field" spartanH4>Field</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlm-field</code>
+				<code class="${hlmCode}">caps-field</code>
 				,
-				<code class="${hlmCode}">hlmFieldLabel</code>
+				<code class="${hlmCode}">capsLabel</code>
 				, and
-				<code class="${hlmCode}">hlm-field-description</code>
+				<code class="${hlmCode}">caps-field-description</code>
 				to create a textarea with a label and description.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">

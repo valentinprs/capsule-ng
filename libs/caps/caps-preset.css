@@ -68,3 +68,57 @@
 .caps-label {
 	@apply gap-2 text-sm leading-none font-medium group-data-[disabled=true]:opacity-50 peer-disabled:opacity-50;
 }
+
+/* MARK: Field */
+.caps-field {
+	@apply data-[matches-spartan-invalid=true]:text-destructive gap-2;
+}
+.caps-field-group {
+	@apply gap-5;
+}
+.caps-field-content {
+	@apply gap-0.5;
+}
+.caps-field-set {
+	@apply gap-4;
+}
+.caps-field-legend {
+	@apply mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base;
+}
+.caps-field-label {
+	@apply gap-2 leading-snug group-data-[disabled=true]/field:opacity-50;
+}
+.caps-label:has(> [data-slot='field']) {
+	@apply has-data-checked:bg-primary/5 has-data-checked:border-primary/30 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 gap-2 rounded-lg border leading-snug;
+}
+.caps-label > [data-slot='field'] {
+	@apply p-2.5;
+}
+.caps-field-description {
+	@apply text-muted-foreground text-sm;
+}
+.caps-field-error {
+	@apply text-destructive block text-sm;
+}
+.caps-field-error[hidden] {
+	display: none;
+}
+.caps-field-separator {
+	@apply -my-2 h-5 text-sm;
+}
+.caps-field-separator-line {
+	@apply border-border;
+}
+.caps-field-separator-content {
+	@apply text-muted-foreground px-2 empty:hidden;
+}
+
+/* Forced Field appearance stays separate from the native control's validation ARIA. */
+.caps-field[data-matches-spartan-invalid='true'] .caps-input,
+.caps-field[data-matches-spartan-invalid='true'] .caps-textarea {
+	@apply border-destructive ring-destructive/20 dark:border-destructive/50 dark:ring-destructive/40 ring-3;
+}
+.caps-field:has(:disabled) > .caps-field-label,
+.caps-field:has(:disabled) > caps-field-content > .caps-field-label {
+	@apply opacity-50;
+}

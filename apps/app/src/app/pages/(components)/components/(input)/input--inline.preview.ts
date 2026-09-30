@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'spartan-input-inline',
-	imports: [CapsInputImports, HlmFieldImports, HlmButtonImports],
+	imports: [CapsInputImports, CapsFieldImports, HlmButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field orientation="horizontal">
+		<caps-field orientation="horizontal">
 			<input capsInput aria-label="Search" type="search" placeholder="Search..." />
 			<button hlmBtn>Search</button>
-		</hlm-field>
+		</caps-field>
 	`,
 })
 export class InputInline {}

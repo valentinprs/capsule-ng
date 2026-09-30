@@ -1,20 +1,19 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'spartan-textarea-form',
-	imports: [CapsTextareaImports, HlmLabelImports, HlmButtonImports, HlmFieldImports, FormRoot, FormField],
+	imports: [CapsTextareaImports, HlmButtonImports, CapsFieldImports, FormRoot, FormField],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="textarea-bio">Bio</label>
+			<caps-field-group>
+				<caps-field>
+					<label capsLabel for="textarea-bio">Bio</label>
 					<textarea
 						capsTextarea
 						class="w-80"
@@ -22,16 +21,16 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 						placeholder="Tell us a little bit about yourself"
 						[formField]="form.bio"
 					></textarea>
-					<p hlmFieldDescription>
+					<caps-field-description>
 						You can
 						<span>&#64;mention</span>
 						other users and organizations.
-					</p>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
+					</caps-field-description>
+				</caps-field>
+				<caps-field orientation="horizontal">
 					<button hlmBtn type="submit">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })

@@ -114,3 +114,22 @@ React `BreadcrumbItem`), `<caps-breadcrumb-item>` now takes an `href` and render
   `CAPS_LINK_CONTEXT` DI context.
 - **`capsLink` stays** the styling-only directive for standalone links and for router links inside
   composite components.
+
+## Amendment 2: native form semantics and Field composition (2026-09-30)
+
+Field uses `<caps-field>`, `<caps-field-group>`, `<caps-field-content>`,
+`<caps-field-description>`, `<caps-field-error>` and `<caps-field-separator>` for composition.
+Labels remain native `<label capsLabel>`; semantic groups remain
+`<fieldset capsFieldSet>` with a direct `<legend capsFieldLegend>`. These elements preserve native
+label activation, legend naming and fieldset disabled semantics that generic custom hosts cannot supply.
+
+`caps-field` composes Brain and declares `role="group"`, named by a projected native label.
+Layout and help-text hosts keep their generic text/container semantics: explicit ARIA roles are
+required when a host represents a semantic group, landmark, list item or alert, rather than on
+purely visual containers. Separator lines are decorative; projected separator text stays readable.
+
+Field and FieldContent forward the ancestor Angular ControlContainer so projected ngModel and
+FormControlName retain their parent form. Messages use the existing Brain error-state matcher and
+public Angular form events; Brain remains unchanged. Visible descriptions/errors register with the
+closest Brain accessibility context, including through component projection. FieldSet has its own
+accessibility context and nested Fields isolate their descriptions.

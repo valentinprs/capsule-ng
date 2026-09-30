@@ -78,4 +78,29 @@ describe('generate-ui-docs executor', () => {
 		expect(label.selector).toBe('label[capsLabel]');
 		expect(label.inputs.map((input: { name: string }) => input.name)).toEqual(['id', 'for']);
 	});
+	it('documents the Capsule Field composition and native semantic grouping', () => {
+		const field = (readGeneratedJson() as NestedStructure)['field']['caps'];
+		expect(Object.keys(field)).toEqual(
+			expect.arrayContaining([
+				'CapsField',
+				'CapsFieldGroup',
+				'CapsFieldContent',
+				'CapsFieldDescription',
+				'CapsFieldError',
+				'CapsFieldSet',
+				'CapsFieldLegend',
+				'CapsFieldSeparator',
+			]),
+		);
+		expect(field['CapsField'].selector).toBe('caps-field');
+		expect(field['CapsField'].inputs.map(({ name }) => name)).toEqual(
+			expect.arrayContaining(['orientation', 'forceInvalid']),
+		);
+		expect(field['CapsFieldError'].inputs.map(({ name }) => name)).toEqual(
+			expect.arrayContaining(['id', 'validator', 'forceShow']),
+		);
+		expect(field['CapsFieldSet'].selector).toBe('fieldset[capsFieldSet]');
+		expect(field['CapsFieldSet'].inputs.map(({ name }) => name)).toContain('aria-describedby');
+		expect(field['CapsFieldLegend'].selector).toBe('legend[capsFieldLegend]');
+	});
 });

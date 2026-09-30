@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 
 @Component({
 	selector: 'spartan-field-native-select-preview',
-	imports: [HlmFieldImports, HlmNativeSelectImports],
+	imports: [CapsFieldImports, HlmNativeSelectImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<fieldset hlmFieldSet>
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="field-native-select-department">Department</label>
+		<fieldset capsFieldSet>
+			<caps-field-group>
+				<caps-field>
+					<label capsLabel for="field-native-select-department">Department</label>
 					<hlm-native-select selectId="field-native-select-department">
 						<option hlmNativeSelectOption value="">Choose department</option>
 						<option hlmNativeSelectOption value="engineering">Engineering</option>
@@ -24,9 +24,9 @@ import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 						<option hlmNativeSelectOption value="finance">Finance</option>
 						<option hlmNativeSelectOption value="operations">Operations</option>
 					</hlm-native-select>
-					<hlm-field-description>Select your department or area of work.</hlm-field-description>
-				</hlm-field>
-			</hlm-field-group>
+					<caps-field-description>Select your department or area of work.</caps-field-description>
+				</caps-field>
+			</caps-field-group>
 		</fieldset>
 	`,
 })

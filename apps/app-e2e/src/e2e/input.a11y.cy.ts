@@ -91,7 +91,7 @@ describe('Capsule input docs accessibility and native behavior', { testIsolation
 	});
 
 	it('inherits RTL direction while retaining the native password control', () => {
-		cy.get('spartan-input-rtl hlm-field').invoke('attr', 'dir', 'rtl');
+		cy.get('spartan-input-rtl caps-field').invoke('attr', 'dir', 'rtl');
 		cy.get('spartan-input-rtl input[capsInput]')
 			.should('have.attr', 'type', 'password')
 			.and('have.css', 'direction', 'rtl')

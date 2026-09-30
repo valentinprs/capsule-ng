@@ -45,7 +45,7 @@ describe('Capsule textarea docs accessibility', { testIsolation: false }, () => 
 		cy.get('spartan-textarea-invalid textarea')
 			.should('have.attr', 'data-matches-spartan-invalid', 'true')
 			.and('not.have.attr', 'aria-invalid');
-		cy.get('spartan-textarea-rtl hlm-field').should('have.attr', 'dir', 'rtl');
+		cy.get('spartan-textarea-rtl caps-field').should('have.attr', 'dir', 'rtl');
 		cy.get('spartan-textarea-rtl textarea').should('have.css', 'direction', 'rtl');
 		cy.get('textarea[capsTextarea]').then(($textareas) => {
 			const ids = Array.from($textareas, (textarea) => textarea.id);

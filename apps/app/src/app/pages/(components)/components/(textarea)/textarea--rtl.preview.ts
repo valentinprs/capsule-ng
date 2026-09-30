@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'spartan-textarea-rtl',
-	imports: [CapsTextareaImports, HlmFieldImports],
+	imports: [CapsTextareaImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field [dir]="_dir()">
-			<label hlmFieldLabel for="textarea-message-rtl">{{ _t()['label'] }}</label>
+		<caps-field [dir]="_dir()">
+			<label capsLabel for="textarea-message-rtl">{{ _t()['label'] }}</label>
 			<textarea capsTextarea id="textarea-message-rtl" [placeholder]="_t()['placeholder']"></textarea>
-			<hlm-field-description>{{ _t()['description'] }}</hlm-field-description>
-		</hlm-field>
+			<caps-field-description>{{ _t()['description'] }}</caps-field-description>
+		</caps-field>
 	`,
 })
 export class TextareaRtl {

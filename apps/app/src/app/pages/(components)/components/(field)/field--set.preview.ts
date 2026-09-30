@@ -1,33 +1,33 @@
 import { Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-field-set-preview',
-	imports: [HlmFieldImports, HlmInputImports],
+	imports: [CapsFieldImports, CapsInputImports],
 	host: {
 		class: 'w-full max-w-md space-y-6',
 	},
 	template: `
-		<fieldset hlmFieldSet>
-			<legend hlmFieldLegend>Address Information</legend>
-			<p hlmFieldDescription>Choose a unique username for your account.</p>
-			<div hlmFieldGroup>
-				<div hlmField>
-					<label hlmFieldLabel for="field-set-street-address">Street Address</label>
-					<input hlmInput id="field-set-street-address" type="text" placeholder="123 Main St" />
-				</div>
+		<fieldset capsFieldSet>
+			<legend capsFieldLegend>Address Information</legend>
+			<caps-field-description>Choose a unique username for your account.</caps-field-description>
+			<caps-field-group>
+				<caps-field>
+					<label capsLabel for="field-set-street-address">Street Address</label>
+					<input capsInput id="field-set-street-address" type="text" placeholder="123 Main St" />
+				</caps-field>
 				<div class="grid grid-cols-2 gap-4">
-					<div hlmField>
-						<label hlmFieldLabel for="field-set-city">City</label>
-						<input hlmInput id="field-set-city" type="text" placeholder="Los Angeles" />
-					</div>
-					<div hlmField>
-						<label hlmFieldLabel for="field-set-postal-code">Postal Code</label>
-						<input hlmInput id="field-set-postal-code" type="text" placeholder="90502" />
-					</div>
+					<caps-field>
+						<label capsLabel for="field-set-city">City</label>
+						<input capsInput id="field-set-city" type="text" placeholder="Los Angeles" />
+					</caps-field>
+					<caps-field>
+						<label capsLabel for="field-set-postal-code">Postal Code</label>
+						<input capsInput id="field-set-postal-code" type="text" placeholder="90502" />
+					</caps-field>
 				</div>
-			</div>
+			</caps-field-group>
 		</fieldset>
 	`,
 })

@@ -1,46 +1,46 @@
 import { Component } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'spartan-field-group-preview',
-	imports: [HlmFieldImports, HlmCheckboxImports],
+	imports: [CapsFieldImports, HlmCheckboxImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<div hlmFieldGroup>
-			<fieldset hlmFieldSet>
-				<label hlmFieldLabel>Response</label>
-				<p hlmFieldDescription>
+		<caps-field-group>
+			<fieldset capsFieldSet>
+				<legend capsFieldLegend variant="label">Response</legend>
+				<caps-field-description>
 					Get notified when ChatGPT responds to requests that take time, like research or image generation.
-				</p>
-				<div hlmFieldGroup data-slot="checkbox-group">
-					<div hlmField orientation="horizontal">
+				</caps-field-description>
+				<caps-field-group data-slot="checkbox-group">
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-group-push-notifications" disabled [checked]="true" />
-						<label hlmFieldLabel for="field-group-push-notifications" class="font-normal">Push notifications</label>
-					</div>
-				</div>
+						<label capsLabel for="field-group-push-notifications" class="font-normal">Push notifications</label>
+					</caps-field>
+				</caps-field-group>
 			</fieldset>
-			<hlm-field-separator />
-			<fieldset hlmFieldSet>
-				<label hlmFieldLabel>Tasks</label>
-				<p hlmFieldDescription>
+			<caps-field-separator />
+			<fieldset capsFieldSet>
+				<legend capsFieldLegend variant="label">Tasks</legend>
+				<caps-field-description>
 					Get notified when tasks you've created have updates.
 					<a href="#">Manage tasks</a>
-				</p>
-				<div hlmFieldGroup data-slot="checkbox-group">
-					<div hlmField orientation="horizontal">
+				</caps-field-description>
+				<caps-field-group data-slot="checkbox-group">
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-group-push-task" />
-						<label hlmFieldLabel for="field-group-push-task" class="font-normal">Push notifications</label>
-					</div>
-					<div hlmField orientation="horizontal">
+						<label capsLabel for="field-group-push-task" class="font-normal">Push notifications</label>
+					</caps-field>
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-group-email-task" />
-						<label hlmFieldLabel for="field-group-email-task" class="font-normal">Email notifications</label>
-					</div>
-				</div>
+						<label capsLabel for="field-group-email-task" class="font-normal">Email notifications</label>
+					</caps-field>
+				</caps-field-group>
 			</fieldset>
-		</div>
+		</caps-field-group>
 	`,
 })
 export class FieldGroupPreview {}

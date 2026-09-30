@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 
 @Component({
 	selector: 'spartan-field-preview',
 	imports: [
 		HlmCheckboxImports,
-		HlmTextareaImports,
+		CapsTextareaImports,
 		HlmButtonImports,
-		HlmInputImports,
-		HlmFieldImports,
+		CapsInputImports,
+		CapsFieldImports,
 		HlmSelectImports,
 	],
 	host: {
@@ -21,26 +21,26 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 	},
 	template: `
 		<form>
-			<div hlmFieldGroup>
-				<fieldset hlmFieldSet>
-					<legend hlmFieldLegend>Payment Method</legend>
-					<p hlmFieldDescription>All transactions are secure and encrypted</p>
+			<caps-field-group>
+				<fieldset capsFieldSet>
+					<legend capsFieldLegend>Payment Method</legend>
+					<caps-field-description>All transactions are secure and encrypted</caps-field-description>
 
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-preview-name-on-card">Name on card</label>
-							<input hlmInput placeholder="John Doe" id="field-preview-name-on-card" />
-						</div>
-						<div hlmField class="col-span-2">
-							<label hlmFieldLabel for="field-preview-card-number">Card number</label>
-							<input hlmInput placeholder="1234 1234 1234 1234" id="field-preview-card-number" />
-							<p hlmFieldDescription>Enter your 16-digit card number</p>
-						</div>
+					<caps-field-group>
+						<caps-field>
+							<label capsLabel for="field-preview-name-on-card">Name on card</label>
+							<input capsInput placeholder="John Doe" id="field-preview-name-on-card" />
+						</caps-field>
+						<caps-field class="col-span-2">
+							<label capsLabel for="field-preview-card-number">Card number</label>
+							<input capsInput placeholder="1234 1234 1234 1234" id="field-preview-card-number" />
+							<caps-field-description>Enter your 16-digit card number</caps-field-description>
+						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
-							<div hlmField>
-								<label hlmFieldLabel for="field-exp-month--trigger">Month</label>
+							<caps-field>
+								<label capsLabel for="field-exp-month--trigger">Month</label>
 								<hlm-select id="field-exp-month" class="inline-block">
-									<hlm-select-trigger class="w-full">
+									<hlm-select-trigger buttonId="field-exp-month--trigger" class="w-full">
 										<hlm-select-value />
 									</hlm-select-trigger>
 									<hlm-select-content *hlmSelectPortal>
@@ -60,11 +60,11 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 										</hlm-select-group>
 									</hlm-select-content>
 								</hlm-select>
-							</div>
-							<div hlmField>
-								<label hlmFieldLabel for="field-exp-year--trigger">Year</label>
+							</caps-field>
+							<caps-field>
+								<label capsLabel for="field-exp-year--trigger">Year</label>
 								<hlm-select id="field-exp-year" class="inline-block">
-									<hlm-select-trigger class="w-full">
+									<hlm-select-trigger buttonId="field-exp-year--trigger" class="w-full">
 										<hlm-select-value placeholder="YYYY" />
 									</hlm-select-trigger>
 									<hlm-select-content *hlmSelectPortal>
@@ -78,80 +78,78 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 										</hlm-select-group>
 									</hlm-select-content>
 								</hlm-select>
-							</div>
-							<div hlmField>
-								<label hlmFieldLabel for="field-preview-cvv">CVV</label>
-								<input hlmInput placeholder="123" id="field-preview-cvv" />
-							</div>
+							</caps-field>
+							<caps-field>
+								<label capsLabel for="field-preview-cvv">CVV</label>
+								<input capsInput placeholder="123" id="field-preview-cvv" />
+							</caps-field>
 						</div>
-					</div>
+					</caps-field-group>
 				</fieldset>
-				<hlm-field-separator />
-				<fieldset hlmFieldSet>
-					<legend hlmFieldLegend>Billing Address</legend>
-					<p hlmFieldDescription>The billing address associated with your payment method</p>
-					<div hlmFieldGroup>
-						<div hlmField orientation="horizontal">
+				<caps-field-separator />
+				<fieldset capsFieldSet>
+					<legend capsFieldLegend>Billing Address</legend>
+					<caps-field-description>The billing address associated with your payment method</caps-field-description>
+					<caps-field-group>
+						<caps-field orientation="horizontal">
 							<hlm-checkbox inputId="field-preview-billing-address" [checked]="true" />
-							<label hlmFieldLabel for="field-preview-billing-address">Same as shipping address.</label>
-						</div>
-					</div>
+							<label capsLabel for="field-preview-billing-address">Same as shipping address.</label>
+						</caps-field>
+					</caps-field-group>
 				</fieldset>
-				<fieldset hlmFieldSet>
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-preview-comments">Comments</label>
-							<textarea hlmTextarea class="resize-none" id="field-preview-comments"></textarea>
-						</div>
-					</div>
+				<fieldset capsFieldSet>
+					<caps-field-group>
+						<caps-field>
+							<label capsLabel for="field-preview-comments">Comments</label>
+							<textarea capsTextarea class="resize-none" id="field-preview-comments"></textarea>
+						</caps-field>
+					</caps-field-group>
 				</fieldset>
-				<div hlmField orientation="horizontal">
+				<caps-field orientation="horizontal">
 					<button hlmBtn>Submit</button>
 					<button hlmBtn variant="outline">Cancel</button>
-				</div>
-			</div>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })
 export class FieldPreview {}
 
 export const defaultImports = `
-import { HlmFieldImports } from "@spartan-ng/helm/field";
+import { CapsFieldImports } from "@capsule-ng/caps/field";
+import { CapsInputImports } from "@capsule-ng/caps/input";
 `;
 export const defaultSkeleton = `
-<fieldset hlmFieldSet>
-    <legend hlmFieldLegend>Profile</legend>
-    <p hlmFieldDescription>This appears on invoices and emails.</p>
-    <div hlmFieldGroup>
-        <div hlmField>
-            <label hlmFieldLabel for="field-preview-fullname">Full name</label>
-            <input hlmInput id="field-preview-fullname" type="text" placeholder="John Doe" />
-            <p hlmFieldDescription>This appears on invoices and emails.</p>
-        </div>
-        <div hlmField>
-            <label hlmFieldLabel for="field-preview-username">Username</label>
-            <input hlmInput id="field-preview-username" type="text" placeholder="john_doe_99" />
-            <hlm-field-error>Choose another username.</hlm-field-error>
-        </div>
-        <div hlmField orientation="horizontal">
-            <hlm-switch inputId="field-preview-subscribe-newsletter" />
-            <label hlmFieldLabel for="field-preview-subscribe-newsletter">Subscribe to the newsletter</label>
-        </div>
-    </div>
+<fieldset capsFieldSet>
+    <legend capsFieldLegend>Profile</legend>
+    <caps-field-description>This appears on invoices and emails.</caps-field-description>
+    <caps-field-group>
+        <caps-field>
+            <label capsLabel for="field-preview-fullname">Full name</label>
+            <input capsInput id="field-preview-fullname" type="text" placeholder="John Doe" />
+            <caps-field-description>This appears on invoices and emails.</caps-field-description>
+        </caps-field>
+        <caps-field>
+            <label capsLabel for="field-preview-username">Username</label>
+            <input capsInput id="field-preview-username" type="text" placeholder="john_doe_99" />
+        </caps-field>
+    </caps-field-group>
 </fieldset>
 `;
 export const anatomyCode = `
-<div hlmField>
-    <label hlmFieldLabel for="field-preview-fullname">Label</label>
+<caps-field>
+    <label capsLabel for="field-preview-fullname">Label</label>
     <!-- Input, Select, Switch, etc. -->
-    <p hlmFieldDescription>Optional helper text.</p>
-    <hlm-field-error>Validation message.</hlm-field-error>
-</div>
+    <caps-field-description>Optional helper text.</caps-field-description>
+    <caps-field-error>Validation message.</caps-field-error>
+</caps-field>
 `;
 export const validationAndErrorCode = `
-<div hlmField data-invalid="true">
-	<label hlmFieldLabel for="validation-error-email">Email</label>
-	<input hlmInput id="validation-error-email" type="email" aria-invalid="true" />
-	<hlm-field-error>Enter a valid email address.</hlm-field-error>
-</div>
+<caps-field>
+  <label capsLabel>Email address</label>
+  <input capsInput type="email" [formControl]="emailControl" />
+  <caps-field-description>We will never share your email.</caps-field-description>
+  <caps-field-error validator="required">Email is required.</caps-field-error>
+  <caps-field-error validator="email">Enter a valid email address.</caps-field-error>
+</caps-field>
 `;

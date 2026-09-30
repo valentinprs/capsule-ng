@@ -17,3 +17,6 @@ The directive does not add a role or tabindex, handle clicks, or require Capsule
 Clicking the label keeps the browser's native focus or toggle behavior. Consumer classes merge with
 the `caps-label` hook and base layout. Disabled styling follows an ancestor `.group[data-disabled=true]`
 or a preceding native `.peer:disabled` control; the label itself does not disable a control.
+
+Inside a Field, the native label additionally gets `caps-field-label` styling and
+`data-slot="field-label"`; standalone labels keep `data-slot="label"`.

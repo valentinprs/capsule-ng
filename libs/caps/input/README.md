@@ -25,4 +25,4 @@ Field descriptions and errors, removing duplicates.
 `forceInvalid` forces the error **appearance**; `aria-invalid` and `data-invalid` still reflect the
 Angular control's validation state. Normal error styling follows Brain's error-state matcher
 (by default invalid after touch, or template-driven form submission; custom matchers may use dirty state). This keeps visual overrides separate from ARIA
-validation state. Surrounding Helm Field, Label and Input Group components can coexist during migration.
+validation state. Capsule Field composes the native label and descriptions. Surrounding Helm components can coexist during migration.

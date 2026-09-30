@@ -5487,6 +5487,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "[brnInput]",
       },
     },
+    "caps": {
+      "CapsInput": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsInput]",
+      },
+    },
     "helm": {
       "HlmInput": {
         "inputs": [
@@ -5830,6 +5854,25 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnLabel]",
+      },
+    },
+    "caps": {
+      "CapsLabel": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "for",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "label[capsLabel]",
       },
     },
     "helm": {
@@ -10332,6 +10375,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnTextarea]",
+      },
+    },
+    "caps": {
+      "CapsTextarea": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "textarea[capsTextarea]",
       },
     },
     "helm": {

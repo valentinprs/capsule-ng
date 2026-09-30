@@ -1,24 +1,24 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 
 @Component({
 	selector: 'spartan-textarea-form',
-	imports: [HlmTextareaImports, HlmLabelImports, HlmButtonImports, HlmFieldImports, FormRoot, FormField],
+	imports: [CapsTextareaImports, HlmLabelImports, HlmButtonImports, HlmFieldImports, FormRoot, FormField],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<form [formRoot]="form">
 			<hlm-field-group>
 				<hlm-field>
-					<label hlmFieldLabel for="username">Bio</label>
+					<label hlmFieldLabel for="textarea-bio">Bio</label>
 					<textarea
-						hlmTextarea
+						capsTextarea
 						class="w-80"
-						id="username"
+						id="textarea-bio"
 						placeholder="Tell us a little bit about yourself"
 						[formField]="form.bio"
 					></textarea>

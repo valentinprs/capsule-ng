@@ -1,6 +1,7 @@
 import { workspaceRoot } from '@nx/devkit';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import type { NestedStructure } from './executor';
 
 function readGeneratedJson() {
 	// Reassemble the per-component ui-api files into one object for the snapshot.
@@ -43,7 +44,7 @@ describe('generate-ui-docs executor', () => {
 	});
 
 	it('documents the caps components of each caps entry point under the caps library', () => {
-		const generated = readGeneratedJson() as Record<string, Record<string, Record<string, any>>>;
+		const generated = readGeneratedJson() as NestedStructure;
 
 		const breadcrumb = generated['breadcrumb']['caps'];
 		expect(Object.keys(breadcrumb)).toEqual(expect.arrayContaining(['CapsBreadcrumb', 'CapsBreadcrumbItem']));
@@ -55,5 +56,26 @@ describe('generate-ui-docs executor', () => {
 		expect(breadcrumb['CapsBreadcrumbItem'].inputs).toContainEqual(expect.objectContaining({ name: 'current' }));
 
 		expect(generated['link']['caps']['CapsLink'].selector).toBe('a[capsLink]');
+	});
+
+	it('documents the native caps form controls and their exposed Brain inputs', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+
+		for (const [slug, name, selector] of [
+			['input', 'CapsInput', 'input[capsInput]'],
+			['textarea', 'CapsTextarea', 'textarea[capsTextarea]'],
+		]) {
+			const control = generated[slug]['caps'][name];
+			expect(control.selector).toBe(selector);
+			expect(control.inputs.map((input: { name: string }) => input.name)).toEqual(
+				expect.arrayContaining(['id', 'forceInvalid', 'aria-describedby']),
+			);
+			expect(control.outputs).toEqual([]);
+			expect(control.models).toEqual([]);
+		}
+
+		const label = generated['label']['caps']['CapsLabel'];
+		expect(label.selector).toBe('label[capsLabel]');
+		expect(label.inputs.map((input: { name: string }) => input.name)).toEqual(['id', 'for']);
 	});
 });

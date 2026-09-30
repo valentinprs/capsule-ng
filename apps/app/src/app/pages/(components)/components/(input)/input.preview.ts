@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'spartan-input-preview',
-	imports: [HlmInputImports, HlmFieldImports],
+	imports: [CapsInputImports, HlmFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<hlm-field>
 			<label hlmFieldLabel for="input-demo-api-key">API Key</label>
-			<input hlmInput id="input-demo-api-key" type="password" placeholder="sk-..." />
+			<input capsInput id="input-demo-api-key" type="password" placeholder="sk-..." />
 			<hlm-field-description>Your API key is encrypted and stored securely.</hlm-field-description>
 		</hlm-field>
 	`,
@@ -18,6 +18,6 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 export class InputPreview {}
 
 export const defaultImports = `
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 `;
-export const defaultSkeleton = '<input hlmInput/>';
+export const defaultSkeleton = '<input capsInput/>';

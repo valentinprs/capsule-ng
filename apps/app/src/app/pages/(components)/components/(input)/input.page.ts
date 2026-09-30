@@ -36,10 +36,10 @@ import { defaultImports, defaultSkeleton, InputPreview } from './input.preview';
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Input', api: 'input' },
 	meta: metaWith(
-		'spartan/ui - Input',
-		'Gives an input field or a component a distinct look that indicates its input capabilities.',
+		'Capsule - Input',
+		'Styles native input elements while preserving browser behavior and Angular forms.',
 	),
-	title: 'spartan/ui - Input',
+	title: 'Capsule - Input',
 };
 @Component({
 	selector: 'spartan-input',
@@ -78,7 +78,7 @@ export const routeMeta: RouteMeta = {
 		<section spartanMainSection>
 			<spartan-section-intro
 				name="Input"
-				lead="Gives an input field or a component a distinct look that indicates its input capabilities"
+				lead="Styles native input elements while preserving browser behavior and Angular forms."
 				showThemeToggle
 			/>
 
@@ -220,8 +220,8 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
 			<spartan-ui-api-docs docType="brain" />
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="item" label="Item" />

@@ -40,8 +40,8 @@ import { comboboxDefaultConfig, ComboboxPreview, defaultImports, defaultSkeleton
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Combobox', api: 'combobox' },
-	meta: metaWith('spartan/ui - Combobox', 'An input combined with a list of predefined items to select.'),
-	title: 'spartan/ui - Combobox',
+	meta: metaWith('Capsule — Combobox', 'An input combined with a list of predefined items to select.'),
+	title: 'Capsule — Combobox',
 };
 
 @Component({

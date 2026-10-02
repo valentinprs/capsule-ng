@@ -27,8 +27,8 @@ import { defaultImports, defaultSkeleton, InputOtpPreview } from './input-otp.pr
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Input OTP', api: 'input-otp' },
-	meta: metaWith('spartan/ui - Input OTP', 'Accessible one-time password component.'),
-	title: 'spartan/ui - Input OTP',
+	meta: metaWith('Capsule — Input OTP', 'Accessible one-time password component.'),
+	title: 'Capsule — Input OTP',
 };
 @Component({
 	selector: 'spartan-input-otp',

@@ -27,8 +27,8 @@ import { defaultImports, defaultSkeleton, EmptyPreview } from './empty.preview';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Empty', api: 'empty' },
-	meta: metaWith('spartan/ui - Empty', 'Use the Empty component to display a empty state.'),
-	title: 'spartan/ui - Empty',
+	meta: metaWith('Capsule — Empty', 'Use the Empty component to display a empty state.'),
+	title: 'Capsule — Empty',
 };
 @Component({
 	selector: 'spartan-empty',

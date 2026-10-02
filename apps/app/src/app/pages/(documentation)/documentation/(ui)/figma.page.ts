@@ -12,8 +12,8 @@ import { hlmP } from '@spartan-ng/helm/typography';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Figma' },
-	meta: metaWith('spartan - Figma', 'Design with the same components you build. Figma UI kit for spartan components.'),
-	title: 'spartan - Figma',
+	meta: metaWith('Capsule — Figma', 'Design with the same components you build. Figma UI kit for spartan components.'),
+	title: 'Capsule — Figma',
 };
 
 @Component({
@@ -29,7 +29,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Figma" lead="Design with shadcn components. Build with spartan." />
+			<spartan-section-intro name="Figma" lead="Community design references." />
 
 			<p class="${hlmP}">
 				Because spartan adapts shadcn/ui patterns for Angular, you can use shadcn design resources for prototyping. This
@@ -38,15 +38,10 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP}">
 				<a class="font-medium hover:underline" href="https://twitter.com/skirano" target="_blank">Pietro Schirano</a>
-				created a Figma UI kit for shadcn components. Explore the kit below:
+				created a Figma UI kit for shadcn components. The original community resource is linked below:
 			</p>
 
-			<div class="mt-6" hlmAspectRatio="16/9">
-				<iframe
-					src="https://embed.figma.com/file/1203061493325953101/hf_embed?community_viewer=true&amp;embed_host=shadcn&amp;hub_file_id=1203061493325953101&amp;kind=&amp;viewer=1"
-					class="bg-muted h-full w-full overflow-hidden rounded-lg border"
-				></iframe>
-			</div>
+			<div class="mt-6" hlmAspectRatio="16/9"></div>
 
 			<spartan-section-sub-heading id="get-started">Get the Figma Kit</spartan-section-sub-heading>
 
@@ -61,8 +56,8 @@ export const routeMeta: RouteMeta = {
 			</a>
 
 			<p class="${hlmP} mt-6">
-				Since spartan components follow shadcn patterns, designs created with shadcn-based Figma kits can be implemented
-				with matching spartan components in your Angular app.
+				This third-party shadcn kit is a design reference, not a Capsule component library. Capsule does not currently
+				publish an equivalent Figma kit.
 			</p>
 
 			<spartan-page-bottom-nav>

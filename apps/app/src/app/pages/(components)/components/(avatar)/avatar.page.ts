@@ -30,8 +30,8 @@ import { AvatarPreview, defaultImports, defaultSkeleton } from './avatar.preview
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Avatar', api: 'avatar' },
-	meta: metaWith('spartan/ui - Avatar', 'An image element with a fallback for representing the user.'),
-	title: 'spartan/ui - Avatar',
+	meta: metaWith('Capsule — Avatar', 'An image element with a fallback for representing the user.'),
+	title: 'Capsule — Avatar',
 };
 
 @Component({

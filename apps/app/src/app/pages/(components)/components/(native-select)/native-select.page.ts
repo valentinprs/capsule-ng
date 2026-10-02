@@ -27,10 +27,10 @@ import { NativeSelectPreview, defaultImports, defaultSkeleton } from './native-s
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Native Select', api: 'native-select' },
 	meta: metaWith(
-		'spartan/ui - Native Select',
+		'Capsule — Native Select',
 		'A styled native HTML select element with consistent design system integration.',
 	),
-	title: 'spartan/ui - Native Select',
+	title: 'Capsule — Native Select',
 };
 
 @Component({

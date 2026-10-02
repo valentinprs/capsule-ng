@@ -35,10 +35,10 @@ import { DropdownPreview, defaultImports, defaultSkeleton } from './dropdown-men
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Dropdown', api: 'dropdown-menu' },
 	meta: metaWith(
-		'spartan/ui - Dropdown',
+		'Capsule — Dropdown',
 		'Displays a menu to the user — such as a set of actions or functions — triggered by a button.',
 	),
-	title: 'spartan/ui - Dropdown',
+	title: 'Capsule — Dropdown',
 };
 @Component({
 	selector: 'spartan-dropdown-menu',

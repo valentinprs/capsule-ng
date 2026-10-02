@@ -7,8 +7,8 @@ export const routeMeta: RouteMeta = {
 	data: {
 		breadcrumb: 'Docs',
 	},
-	meta: metaWith('spartan - Documentation', 'Learn how to install, configure, and customize spartan/ui.'),
-	title: 'spartan - Documentation',
+	meta: metaWith('Capsule — Documentation', 'Learn how to install, configure, and customize spartan/ui.'),
+	title: 'Capsule — Documentation',
 };
 @Component({
 	selector: 'spartan-documentation',

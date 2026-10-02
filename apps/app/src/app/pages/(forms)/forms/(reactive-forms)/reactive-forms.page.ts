@@ -31,8 +31,8 @@ import {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Reactive Forms' },
-	meta: metaWith('spartan/ui - Reactive Forms', 'Build forms in Angular using Reactive Forms.'),
-	title: 'spartan/ui - Reactive Forms',
+	meta: metaWith('Capsule — Reactive Forms', 'Build forms in Angular using Reactive Forms.'),
+	title: 'Capsule — Reactive Forms',
 };
 @Component({
 	selector: 'spartan-reactive-forms',

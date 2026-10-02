@@ -25,10 +25,10 @@ import { defaultImports, defaultSkeleton, MenubarPreview } from './menubar.previ
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Menubar', api: 'menubar' },
 	meta: metaWith(
-		'spartan/ui - Menubar',
+		'Capsule — Menubar',
 		'A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.',
 	),
-	title: 'spartan/ui - Menubar',
+	title: 'Capsule — Menubar',
 };
 @Component({
 	selector: 'spartan-menubar',

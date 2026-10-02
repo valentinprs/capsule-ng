@@ -26,8 +26,8 @@ import { TogglePreview, defaultImports, defaultSkeleton } from './toggle.preview
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Toggle', api: 'toggle' },
-	meta: metaWith('spartan/ui - Toggle', 'A two-state button that can be either on or off.'),
-	title: 'spartan/ui - Toggle',
+	meta: metaWith('Capsule — Toggle', 'A two-state button that can be either on or off.'),
+	title: 'Capsule — Toggle',
 };
 @Component({
 	selector: 'spartan-input',

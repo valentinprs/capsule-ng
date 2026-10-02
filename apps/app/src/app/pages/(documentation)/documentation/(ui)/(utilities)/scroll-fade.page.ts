@@ -30,8 +30,8 @@ import {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Scroll Fade' },
-	meta: metaWith('spartan - Scroll Fade', 'Utilities for adding a fade effect to the edges of a scroll container.'),
-	title: 'spartan - Scroll Fade',
+	meta: metaWith('Capsule — Scroll Fade', 'Utilities for adding a fade effect to the edges of a scroll container.'),
+	title: 'Capsule — Scroll Fade',
 };
 
 @Component({

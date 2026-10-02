@@ -32,10 +32,10 @@ import { defaultImports, defaultSkeleton, TooltipPreview } from './tooltip.previ
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Tooltip', api: 'tooltip' },
 	meta: metaWith(
-		'spartan/ui - Tooltip',
+		'Capsule — Tooltip',
 		'A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.',
 	),
-	title: 'spartan/ui - Tooltip',
+	title: 'Capsule — Tooltip',
 };
 @Component({
 	selector: 'spartan-tooltip',

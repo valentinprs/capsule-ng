@@ -30,10 +30,10 @@ import { defaultImports, defaultSkeleton, MarkerPreview } from './marker.preview
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Marker', api: 'marker' },
 	meta: metaWith(
-		'spartan/ui - Marker',
+		'Capsule — Marker',
 		'Displays status updates, system notes, and labeled separators in a conversation.',
 	),
-	title: 'spartan/ui - Marker',
+	title: 'Capsule — Marker',
 };
 
 @Component({

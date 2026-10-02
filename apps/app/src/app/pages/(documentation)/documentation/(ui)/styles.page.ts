@@ -18,8 +18,8 @@ import { StylesSelector } from './styles--selector.example';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Styles' },
-	meta: metaWith('spartan - Styles', 'Utility classes and styling conventions'),
-	title: 'spartan - Styles',
+	meta: metaWith('Capsule — Styles', 'Utility classes and styling conventions'),
+	title: 'Capsule — Styles',
 };
 
 @Component({

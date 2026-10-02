@@ -31,8 +31,8 @@ import { ContextMenuPreview, defaultImports, defaultSkeleton } from './context-m
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Context Menu', api: 'context-menu' },
-	meta: metaWith('spartan/ui - Context Menu', 'Displays a menu of actions triggered by a right click.'),
-	title: 'spartan/ui - Context Menu',
+	meta: metaWith('Capsule — Context Menu', 'Displays a menu of actions triggered by a right click.'),
+	title: 'Capsule — Context Menu',
 };
 
 @Component({

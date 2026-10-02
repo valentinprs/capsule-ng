@@ -30,10 +30,10 @@ import { ToggleGroupPreview, defaultImports, defaultSkeleton } from './toggle-gr
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Toggle Group', api: 'toggle-group' },
 	meta: metaWith(
-		'spartan/ui - Toggle Group',
+		'Capsule — Toggle Group',
 		'A group of two-state buttons that can be used to select one or more options.',
 	),
-	title: 'spartan/ui - Toggle Group',
+	title: 'Capsule — Toggle Group',
 };
 
 @Component({

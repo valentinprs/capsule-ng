@@ -15,8 +15,8 @@ import { CAPS_TOKENS_CSS } from '@spartan-ng/styles';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Theming' },
-	meta: metaWith('spartan - Theming', 'Customize colors with CSS variables'),
-	title: 'spartan - Theming',
+	meta: metaWith('Capsule — Theming', 'Customize colors with CSS variables'),
+	title: 'Capsule — Theming',
 };
 
 @Component({

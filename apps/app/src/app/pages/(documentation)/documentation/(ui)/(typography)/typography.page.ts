@@ -42,8 +42,8 @@ import TypographyPreview, {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Typography' },
-	meta: metaWith('spartan - Typography', 'Styles for headings, paragraphs, lists... etc.'),
-	title: 'spartan - Typography',
+	meta: metaWith('Capsule — Typography', 'Styles for headings, paragraphs, lists... etc.'),
+	title: 'Capsule — Typography',
 };
 
 @Component({

@@ -34,10 +34,10 @@ import { TabsPreview, defaultImports, defaultSkeleton } from './tabs.preview';
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Tabs', api: 'tabs' },
 	meta: metaWith(
-		'spartan/ui - Tabs',
+		'Capsule — Tabs',
 		'A set of layered sections of content—known as tab panels—that are displayed one at a time.',
 	),
-	title: 'spartan/ui - Tabs',
+	title: 'Capsule — Tabs',
 };
 @Component({
 	selector: 'spartan-tabs-page',

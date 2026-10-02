@@ -48,8 +48,8 @@ import {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'sidebar' },
-	meta: metaWith('spartan/ui - sidebar', 'A composable, themeable and customizable sidebar component.'),
-	title: 'spartan/ui - Sidebar',
+	meta: metaWith('Capsule — sidebar', 'A composable, themeable and customizable sidebar component.'),
+	title: 'Capsule — Sidebar',
 };
 
 @Component({

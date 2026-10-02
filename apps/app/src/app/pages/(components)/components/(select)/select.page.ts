@@ -30,8 +30,8 @@ import { defaultImports, defaultSkeleton, defaultStyles, SelectPreview } from '.
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Select', api: 'select' },
-	meta: metaWith('spartan/ui - Select', 'A control that allows the user to toggle between checked and not checked.'),
-	title: 'spartan/ui - Select',
+	meta: metaWith('Capsule — Select', 'A control that allows the user to toggle between checked and not checked.'),
+	title: 'Capsule — Select',
 };
 @Component({
 	selector: 'spartan-select',

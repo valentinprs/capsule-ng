@@ -13,8 +13,8 @@ import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Dark Mode' },
-	meta: metaWith('spartan - Dark Mode', 'Adding dark mode to your site.'),
-	title: 'spartan - Dark Mode',
+	meta: metaWith('Capsule — Dark Mode', 'Adding dark mode to your site.'),
+	title: 'Capsule — Dark Mode',
 };
 
 @Component({

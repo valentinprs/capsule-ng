@@ -15,8 +15,8 @@ import { metaWith } from '../../../shared/meta/meta.util';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Changelog' },
-	meta: metaWith('spartan - Changelog', 'Latest updates and announcements.'),
-	title: 'spartan - Changelog',
+	meta: metaWith('Capsule — Changelog', 'Latest updates and announcements.'),
+	title: 'Capsule — Changelog',
 };
 
 @Component({
@@ -119,17 +119,6 @@ export const routeMeta: RouteMeta = {
 			<p class="${hlmP}">New to spartan? There's never been a better time to start.</p>
 			<div class="m-10 flex items-center justify-center">
 				<a hlmBtn size="lg" routerLink="/documentation/installation">Get started with spartan/ui</a>
-			</div>
-
-			<h3 id="v1__support" spartanH4>Support spartan</h3>
-			<p class="${hlmP}">
-				spartan is MIT-licensed and built in the open. If it saves you time, consider sponsoring its development -
-				sponsorships fund ongoing maintenance, new components, and keeping spartan free for the whole Angular community.
-			</p>
-			<div class="m-10 flex items-center justify-center">
-				<a hlmBtn size="lg" target="_blank" rel="noreferrer" href="https://github.com/sponsors/goetzrobin">
-					Sponsor spartan
-				</a>
 			</div>
 
 			<spartan-section-sub-heading id="initial-alpha">August 2023 - Initial Alpha release</spartan-section-sub-heading>

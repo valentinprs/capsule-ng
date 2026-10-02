@@ -27,8 +27,8 @@ import { BadgePreview, defaultImports, defaultSkeleton } from './badge.preview';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Badge', api: 'badge' },
-	meta: metaWith('spartan/ui - Badge', 'Makes a component look like a badge.'),
-	title: 'spartan/ui - Badge',
+	meta: metaWith('Capsule — Badge', 'Makes a component look like a badge.'),
+	title: 'Capsule — Badge',
 };
 
 @Component({

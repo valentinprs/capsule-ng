@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { computed, Directive, inject, input, PLATFORM_ID } from '@angular/core';
+import { CATALOGUE_URL } from '../../../site.config';
 
 export type AiType = 'chatgpt' | 'claude';
 
@@ -17,8 +18,8 @@ export class AiChatLinkDirective {
 	/** The type of AI service to use */
 	public readonly aiType = input.required<AiType>();
 
-	/** Base query to start the conversation (defaults to spartan ui documentation) */
-	public readonly baseQuery = input<string>("I'm looking at this spartan ui documentation");
+	/** Base query to start the conversation (defaults to Capsule documentation) */
+	public readonly baseQuery = input<string>("I'm looking at this Capsule documentation");
 
 	/** Custom follow-up query to append to the base prompt */
 	public readonly customQuery = input<string>(
@@ -48,8 +49,6 @@ export class AiChatLinkDirective {
 
 	/** Get the current page URL */
 	private _getCurrentUrl(): string {
-		const pathname = (isPlatformBrowser(this._platformId) && window.location.pathname) ?? '';
-		const baseUrl = 'https://www.spartan.ng';
-		return `${baseUrl}${pathname}`;
+		return isPlatformBrowser(this._platformId) ? window.location.href : CATALOGUE_URL;
 	}
 }

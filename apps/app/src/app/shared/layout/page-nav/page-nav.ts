@@ -14,7 +14,6 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { ApiDocsService } from '@spartan-ng/app/app/core/services/api-docs.service';
-import { PageNavZeropsAd } from '@spartan-ng/app/app/shared/layout/page-nav/page-nav-zerops-ad';
 import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { PageNavLink } from './page-nav-link';
@@ -29,7 +28,7 @@ type SamePageAnchorLink = {
 @Component({
 	selector: 'spartan-page-nav',
 
-	imports: [HlmScrollArea, NgScrollbarModule, NgClass, PageNavLink, PageNavZeropsAd],
+	imports: [HlmScrollArea, NgScrollbarModule, NgClass, PageNavLink],
 	host: {
 		class: 'hidden max-w-sm xl:block text-sm',
 	},
@@ -50,17 +49,11 @@ type SamePageAnchorLink = {
 							}
 						</div>
 					</ng-scrollbar>
-					<div class="flex items-center justify-center px-4">
-						<spartan-page-nav-zerops-ad />
-					</div>
 				</div>
 			} @else {
 				@if (_isDevMode()) {
 					<div>[DEV] Nothing to see here!</div>
 				}
-				<div class="px-4">
-					<spartan-page-nav-zerops-ad />
-				</div>
 			}
 		</ng-template>
 	`,

@@ -20,8 +20,8 @@ import { CheckboxPreview, defaultImports, defaultSkeleton } from './checkbox.pre
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Checkbox', api: 'checkbox' },
-	meta: metaWith('spartan/ui - Checkbox', 'A control that allows the user to toggle between checked and not checked.'),
-	title: 'spartan/ui - Checkbox',
+	meta: metaWith('Capsule — Checkbox', 'A control that allows the user to toggle between checked and not checked.'),
+	title: 'Capsule — Checkbox',
 };
 @Component({
 	selector: 'spartan-checkbox',

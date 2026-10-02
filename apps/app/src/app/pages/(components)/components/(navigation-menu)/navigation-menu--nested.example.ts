@@ -26,7 +26,7 @@ import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
 													class="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-4 no-underline outline-hidden select-none focus:shadow-md md:p-6"
 													href="/"
 												>
-													<div class="mb-2 text-lg font-medium sm:mt-4">spartan.ng</div>
+													<div class="mb-2 text-lg font-medium sm:mt-4">Capsule</div>
 													<p class="text-muted-foreground text-sm leading-tight">
 														Beautifully designed components built with Tailwind CSS.
 													</p>

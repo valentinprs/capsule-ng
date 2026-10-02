@@ -26,8 +26,8 @@ import { SkeletonPreview, defaultImports, defaultSkeleton } from './skeleton.pre
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Skeleton', api: 'skeleton' },
-	meta: metaWith('spartan/ui - Skeleton', 'Use to show a placeholder while content is loading.'),
-	title: 'spartan/ui - Skeleton',
+	meta: metaWith('Capsule — Skeleton', 'Use to show a placeholder while content is loading.'),
+	title: 'Capsule — Skeleton',
 };
 @Component({
 	selector: 'spartan-skeleton',

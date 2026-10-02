@@ -110,7 +110,7 @@ export class ThemeService {
 			// Keep the browser-tab favicon in sync with the variant (mirrors the boot script in index.html).
 			const favicon = this._document.querySelector('link[rel="icon"]');
 			if (favicon) {
-				const href = newVariant === 'legacy' ? '/assets/spartan-legacy.svg' : '/assets/spartan.svg';
+				const href = newVariant === 'legacy' ? '/assets/capsule.svg' : '/assets/capsule.svg';
 				this._renderer.setAttribute(favicon, 'href', href);
 			}
 		});

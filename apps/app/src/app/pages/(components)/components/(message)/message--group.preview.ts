@@ -23,7 +23,7 @@ import { HlmMessageImports } from '@spartan-ng/helm/message';
 			<div hlmMessage>
 				<div hlmMessageAvatar>
 					<hlm-avatar>
-						<img hlmAvatarImage src="https://github.com/spartan-ng.png" alt="@spartan-ng" class="grayscale" />
+						<img hlmAvatarImage src="/assets/capsule.svg" alt="Capsule" class="grayscale" />
 						<span hlmAvatarFallback>CN</span>
 					</hlm-avatar>
 				</div>

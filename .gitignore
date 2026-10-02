@@ -67,3 +67,6 @@ apps/app/src/public/data/primitives-snippets/
 .nx/self-healing
 # Vitest browser-mode failure screenshots (debug artifacts, written on test failure)
 **/__screenshots__/
+
+# Ephemeral CI result
+/deployment-results.json

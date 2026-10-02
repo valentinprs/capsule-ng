@@ -34,10 +34,10 @@ import { defaultImports, defaultSkeleton, QuestionnairePreview } from './questio
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Questionnaire', api: 'questionnaire' },
 	meta: metaWith(
-		'spartan/ui - Questionnaire',
+		'Capsule — Questionnaire',
 		'A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions.',
 	),
-	title: 'spartan/ui - Questionnaire',
+	title: 'Capsule — Questionnaire',
 };
 
 @Component({

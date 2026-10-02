@@ -26,8 +26,8 @@ import { SwitchPreview, defaultImports, defaultSkeleton } from './switch.preview
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Switch', api: 'switch' },
-	meta: metaWith('spartan/ui - Switch', 'A control that allows the user to toggle between checked and not checked.'),
-	title: 'spartan/ui - Switch',
+	meta: metaWith('Capsule — Switch', 'A control that allows the user to toggle between checked and not checked.'),
+	title: 'Capsule — Switch',
 };
 @Component({
 	selector: 'spartan-switch',

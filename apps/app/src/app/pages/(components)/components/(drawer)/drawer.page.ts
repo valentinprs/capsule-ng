@@ -24,8 +24,8 @@ import { DrawerPreview, defaultImports, defaultSkeleton } from './drawer.preview
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Drawer', api: 'drawer' },
-	meta: metaWith('spartan/ui - Drawer', 'A dialog that slides in from the bottom of the screen.'),
-	title: 'spartan/ui - Drawer',
+	meta: metaWith('Capsule — Drawer', 'A dialog that slides in from the bottom of the screen.'),
+	title: 'Capsule — Drawer',
 };
 @Component({
 	selector: 'spartan-drawer',

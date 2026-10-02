@@ -34,8 +34,8 @@ import {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Shimmer' },
-	meta: metaWith('spartan - Shimmer', 'Utilities for adding a shimmer effect to text elements.'),
-	title: 'spartan - Shimmer',
+	meta: metaWith('Capsule — Shimmer', 'Utilities for adding a shimmer effect to text elements.'),
+	title: 'Capsule — Shimmer',
 };
 
 @Component({

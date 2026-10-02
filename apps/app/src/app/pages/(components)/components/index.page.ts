@@ -14,10 +14,10 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Components' },
 	meta: metaWith(
-		'spartan/ui - Components',
+		'Capsule — Components',
 		'Here you can find all the components available in the library. We are working on adding more components.',
 	),
-	title: 'spartan/ui - Components',
+	title: 'Capsule — Components',
 };
 @Component({
 	selector: 'spartan-components-page',

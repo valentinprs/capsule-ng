@@ -12,8 +12,8 @@ import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Forms' },
-	meta: metaWith('spartan/ui - Forms', 'Build forms with Angular and spartan/ui.'),
-	title: 'spartan/ui - Forms',
+	meta: metaWith('Capsule — Forms', 'Build forms with Angular and spartan/ui.'),
+	title: 'Capsule — Forms',
 };
 @Component({
 	selector: 'spartan-forms-page',

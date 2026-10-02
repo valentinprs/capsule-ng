@@ -262,7 +262,7 @@ export default class DashboardLayoutPage {
 	protected readonly _items = {
 		user: {
 			name: 'spartan',
-			email: 'me@spartan.ng',
+			email: 'demo@example.com',
 			avatar: '/assets/avatar.png',
 		},
 		navMain: [

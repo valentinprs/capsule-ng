@@ -6,6 +6,7 @@ import * as path from 'node:path';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { type Plugin, defineConfig, splitVendorChunkPlugin } from 'vite';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { CATALOGUE_URL } from './src/site.config';
 import { getPrerenderedRoutes } from './src/utils/prerender-routes';
 
 // https://vitejs.dev/config/
@@ -15,6 +16,8 @@ export default defineConfig(({ command, mode }) => {
 	// generated into src/public (Vite's publicDir) instead. Point Nitro at the same source dir so a
 	// server-side $fetch('/data/..') from our page loaders resolves without a prior production build.
 	const isServe = command === 'serve';
+	const siteUrl = process.env['VITE_SITE_URL'] || CATALOGUE_URL;
+	const preview = process.env['VERCEL_ENV'] === 'preview';
 
 	return {
 		root: __dirname,
@@ -74,6 +77,7 @@ export default defineConfig(({ command, mode }) => {
 				'ngx-scrollbar/**',
 				'@analogjs/trpc',
 				'@trpc/server',
+				'@tanstack/angular-charts',
 			],
 		},
 		build: {
@@ -96,7 +100,7 @@ export default defineConfig(({ command, mode }) => {
 					try {
 						if (id.endsWith('.js') || id.endsWith('.html')) {
 							const transformedCode = code
-								.replace(/http:\/\/127\.0\.0\.1:4200/g, 'https://www.spartan.ng')
+								.replace(/http:\/\/127\.0\.0\.1:4200/g, siteUrl)
 								.replace(/__LASTMOD__/g, JSON.stringify(new Date().toISOString()));
 							return {
 								code: transformedCode,
@@ -153,12 +157,11 @@ export default defineConfig(({ command, mode }) => {
 
 						return await getPrerenderedRoutes(staticRoutes);
 					},
-					sitemap: {
-						host: 'https://www.spartan.ng',
-					},
+					sitemap: preview ? undefined : { host: siteUrl },
 				},
 				nitro: {
 					logLevel: 4,
+					routeRules: preview ? { '/**': { headers: { 'X-Robots-Tag': 'noindex, nofollow' } } } : {},
 					...(isServe ? { output: { publicDir: path.resolve(__dirname, 'src/public') } } : {}),
 					prerender: {
 						concurrency: 1,
@@ -175,6 +178,18 @@ export default defineConfig(({ command, mode }) => {
 				},
 			}),
 			nxViteTsPaths(),
+			{
+				name: 'capsule-robots',
+				generateBundle() {
+					this.emitFile({
+						type: 'asset',
+						fileName: 'robots.txt',
+						source: preview
+							? 'User-agent: *\nDisallow: /\n'
+							: `User-agent: *\nAllow: /\nSitemap: ${siteUrl}/sitemap.xml\n`,
+					});
+				},
+			},
 			splitVendorChunkPlugin(),
 			// Bundle analysis is opt-in (ANALYZE=1) so it does not traverse the whole bundle on
 			// every production build.

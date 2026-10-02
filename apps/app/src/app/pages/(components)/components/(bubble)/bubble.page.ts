@@ -31,10 +31,10 @@ import { BubblePreview, defaultImports, defaultSkeleton } from './bubble.preview
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Bubble', api: 'bubble' },
 	meta: metaWith(
-		'spartan/ui - Bubble',
+		'Capsule — Bubble',
 		'Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and collapsible content.',
 	),
-	title: 'spartan/ui - Bubble',
+	title: 'Capsule — Bubble',
 };
 
 @Component({

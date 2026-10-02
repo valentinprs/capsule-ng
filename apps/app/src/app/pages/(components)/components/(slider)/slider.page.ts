@@ -33,8 +33,8 @@ import { SliderPreview, defaultImports, defaultSkeleton } from './slider.preview
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Slider', api: 'slider' },
-	meta: metaWith('spartan/ui - Slider', 'An input where the user selects a value from within a given range.'),
-	title: 'spartan/ui - Slider',
+	meta: metaWith('Capsule — Slider', 'An input where the user selects a value from within a given range.'),
+	title: 'Capsule — Slider',
 };
 @Component({
 	selector: 'spartan-slider',

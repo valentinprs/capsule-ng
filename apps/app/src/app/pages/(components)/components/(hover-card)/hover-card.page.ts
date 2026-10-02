@@ -21,8 +21,8 @@ import { HoverCardPreview, defaultImports, defaultSkeleton } from './hover-card.
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Hover Card', api: 'hover-card' },
-	meta: metaWith('spartan/ui - Hover Card', 'For sighted users to preview content available behind a link.'),
-	title: 'spartan/ui - Hover Card',
+	meta: metaWith('Capsule — Hover Card', 'For sighted users to preview content available behind a link.'),
+	title: 'Capsule — Hover Card',
 };
 
 @Component({

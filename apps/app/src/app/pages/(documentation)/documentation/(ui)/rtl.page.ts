@@ -12,8 +12,8 @@ import { metaWith } from '../../../../shared/meta/meta.util';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'RTL' },
-	meta: metaWith('spartan - RTL', 'Right-to-left support for spartan/ui components.'),
-	title: 'spartan - RTL',
+	meta: metaWith('Capsule — RTL', 'Right-to-left support for spartan/ui components.'),
+	title: 'Capsule — RTL',
 };
 
 @Component({

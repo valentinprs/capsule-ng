@@ -24,8 +24,8 @@ import {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Installation' },
-	meta: metaWith('spartan - Installation', 'Install spartan/ui in your Angular project'),
-	title: 'spartan - Installation',
+	meta: metaWith('Capsule — Installation', 'Install spartan/ui in your Angular project'),
+	title: 'Capsule — Installation',
 };
 
 @Component({

@@ -13,14 +13,14 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 	host: { class: 'grid w-full max-w-sm gap-6' },
 	template: `
 		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="https://github.com/spartan-ng/spartan" readOnly />
+			<input hlmInputGroupInput placeholder="https://github.com/valentinprs/capsule-ng" readOnly />
 			<hlm-input-group-addon align="inline-end">
 				<button
 					hlmInputGroupButton
 					aria-label="Copy"
 					title="Copy"
 					size="icon-xs"
-					(click)="_copy('https://github.com/spartan-ng/spartan')"
+					(click)="_copy('https://github.com/valentinprs/capsule-ng')"
 				>
 					<ng-icon [name]="_isCopied() ? 'tablerCheck' : 'tablerCopy'" />
 				</button>

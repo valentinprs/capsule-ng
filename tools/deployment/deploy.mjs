@@ -1,5 +1,6 @@
-import { spawn } from 'node:child_process';
+import { execFile, spawn } from 'node:child_process';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { promisify } from 'node:util';
 import {
 	commentMarker,
 	deploymentContext,
@@ -146,6 +147,12 @@ if (stage === 'publish' && context.cleanup) {
 				],
 				project,
 			);
+			if (project.name === 'capsule-ng') {
+				const check = await promisify(execFile)(process.execPath, ['tools/deployment/check-catalogue-data.mjs'], {
+					timeout: 60000,
+				});
+				console.log(check.stdout);
+			}
 			if (!(await current())) break;
 			const output = await cli(
 				[

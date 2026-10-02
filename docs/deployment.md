@@ -39,6 +39,8 @@ Use Node 22 and pnpm 10.30.3. The deployment script pins Vercel CLI 62.1.0. Buil
 
 Build output depends on `VITE_SITE_URL`, `VITE_SOURCE_REF`, `VERCEL_ENV` and `BUILD_PRESET`; they are included in the Nx build inputs. Source links point to the deployed SHA. Relative navigation and local search keep users on the preview origin. Preview responses carry `X-Robots-Tag: noindex, nofollow`; robots.txt disallows crawling.
 
+Component documentation loaders read JSON from Nitro's bundled `assets:data` storage. Relative server-side HTTP requests cannot read the public files served separately by Vercel, and can return the HTML fallback instead. After building the catalogue, deployment runs `node tools/deployment/check-catalogue-data.mjs` against the built function without a static file server. Missing snippets or API data prevent upload; checking only prerendered pages would miss this navigation regression.
+
 ## Access
 
 The new projects retain Vercel's default authentication protection (`all_except_custom_domains`). No bypass token is exposed or committed. Team members may need to sign in to view deployments; repository privacy alone does not protect a site. Review protection explicitly before attaching a public custom domain. Custom domains are not provisioned by this change.

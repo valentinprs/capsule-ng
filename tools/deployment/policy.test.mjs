@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { deploymentContext, deploymentUrl, isCurrent, ownsPreview, previewAlias, repository } from './policy.mjs';
+import {
+	deploymentContext,
+	deploymentMetadata,
+	deploymentUrl,
+	isCurrent,
+	ownsPreview,
+	previewAlias,
+	repository,
+} from './policy.mjs';
 const pr = {
 	number: 7,
 	head: { sha: 'new', repo: { full_name: repository } },
@@ -57,4 +65,16 @@ test('CLI URL parsing supports plain and structured output', () => {
 		'https://capsule-ng-build.vercel.app',
 	);
 	assert.throws(() => deploymentUrl('https://example.org'));
+});
+
+test('production metadata omits PR while previews retain cleanup ownership', () => {
+	assert.deepEqual(deploymentMetadata({ production: true, sha: 'main-sha' }), {
+		capsuleRepository: repository,
+		capsuleSha: 'main-sha',
+	});
+	assert.deepEqual(deploymentMetadata({ production: false, sha: 'pr-sha', pr: 26 }), {
+		capsuleRepository: repository,
+		capsuleSha: 'pr-sha',
+		capsulePr: '26',
+	});
 });

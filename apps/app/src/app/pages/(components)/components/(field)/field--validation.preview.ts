@@ -21,7 +21,7 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 			<caps-field [forceInvalid]="manualError()">
 				<caps-field-content>
 					<!-- Capsule Field supplies the native label/control association. -->
-					<label capsLabel>Email address</label>
+					<caps-field-label>Email address</caps-field-label>
 					<caps-field-description>Leave the field to see validation, then enter a valid email.</caps-field-description>
 					<caps-field-error validator="required">Email is required.</caps-field-error>
 					<caps-field-error validator="email">Enter a valid email address.</caps-field-error>

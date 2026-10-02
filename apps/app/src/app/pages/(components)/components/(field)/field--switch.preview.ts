@@ -11,7 +11,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 	template: `
 		<caps-field orientation="horizontal">
 			<caps-field-content>
-				<label capsLabel for="field-2fa">Multi-factor authentication</label>
+				<caps-field-label for="field-2fa">Multi-factor authentication</caps-field-label>
 				<caps-field-description>
 					Enable multi-factor authentication. If you do not have a two-factor device, you can use a one-time code sent
 					to your email.

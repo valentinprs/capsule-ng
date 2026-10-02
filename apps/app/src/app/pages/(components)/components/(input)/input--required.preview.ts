@@ -9,10 +9,10 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field>
-			<label capsLabel for="input-required">
+			<caps-field-label for="input-required">
 				Required Field
 				<span class="text-destructive">*</span>
-			</label>
+			</caps-field-label>
 			<input capsInput id="input-required" required placeholder="This field is required" />
 			<caps-field-description>This field must be filled out.</caps-field-description>
 		</caps-field>

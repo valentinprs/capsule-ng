@@ -11,7 +11,7 @@ import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field>
-			<label capsLabel for="input-button-group">Search</label>
+			<caps-field-label for="input-button-group">Search</caps-field-label>
 			<hlm-button-group>
 				<input capsInput id="input-button-group" placeholder="Type to search..." />
 				<button hlmBtn variant="outline">Search</button>

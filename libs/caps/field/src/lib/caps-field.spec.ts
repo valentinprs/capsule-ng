@@ -16,8 +16,7 @@ import { CapsFieldImports } from '../index';
 		<caps-field [orientation]="orientation()" [forceInvalid]="forceInvalid()" class="w-80">
 			<caps-field-content>
 				<!-- Field infers the association; the tests verify the resulting native for/id. -->
-				<!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
-				<label capsLabel>Email</label>
+				<caps-field-label [id]="labelId()" [for]="labelFor()" class="font-bold">Email</caps-field-label>
 				@if (showDescription()) {
 					<caps-field-description [id]="descriptionId()">Email instructions</caps-field-description>
 				}
@@ -39,6 +38,8 @@ class ValidationHost {
 	});
 	public readonly orientation = input<'vertical' | 'horizontal' | 'responsive'>('vertical');
 	public readonly forceInvalid = signal(false);
+	public readonly labelId = signal('email-label');
+	public readonly labelFor = signal<string | undefined>(undefined);
 	public readonly forceShow = signal(false);
 	public readonly showManualError = signal(false);
 	public readonly showDescription = signal(true);
@@ -51,29 +52,33 @@ class ValidationHost {
 	imports: [CapsFieldImports, CapsInputImports, CapsTextareaImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<fieldset capsFieldSet disabled aria-describedby="manual-set">
-			<legend capsFieldLegend [variant]="variant()">Profile</legend>
+		<caps-field-set [disabled]="disabled()" aria-describedby="manual-set" class="gap-8">
+			@if (showLegend()) {
+				<caps-field-legend id="profile-legend" [variant]="variant()" class="font-bold">{{ title() }}</caps-field-legend>
+			}
 			<caps-field-description id="set-help">Profile instructions</caps-field-description>
 			<caps-field-group>
 				<caps-field>
-					<label capsLabel for="name">Name</label>
+					<caps-field-label for="name">Name</caps-field-label>
 					<input capsInput id="name" />
 					<caps-field-description id="name-help">Name instructions</caps-field-description>
 				</caps-field>
 				<caps-field-separator>Or</caps-field-separator>
 				<caps-field>
 					<!-- The projected textarea label is associated by Field. -->
-					<!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
-					<label capsLabel>Message</label>
+					<caps-field-label>Message</caps-field-label>
 					<textarea capsTextarea></textarea>
 					<caps-field-description>Message instructions</caps-field-description>
 				</caps-field>
 			</caps-field-group>
-		</fieldset>
+		</caps-field-set>
 		<p id="manual-set">Manual profile instructions</p>
 	`,
 })
 class GroupHost {
+	public readonly disabled = signal(true);
+	public readonly showLegend = signal(true);
+	public readonly title = signal('Profile');
 	public readonly variant = input<'legend' | 'label'>('legend');
 }
 
@@ -84,7 +89,7 @@ class GroupHost {
 	template: `
 		<form #form="ngForm">
 			<caps-field>
-				<label capsLabel for="template-name">Name</label>
+				<caps-field-label for="template-name">Name</caps-field-label>
 				<caps-field-content>
 					<input capsInput id="template-name" name="name" required [(ngModel)]="name" />
 				</caps-field-content>
@@ -105,8 +110,7 @@ class TemplateHost {
 	template: `
 		<caps-field>
 			<!-- The native textarea association is inferred and asserted below. -->
-			<!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
-			<label capsLabel>Message</label>
+			<caps-field-label>Message</caps-field-label>
 			<textarea capsTextarea [formField]="fields.message"></textarea>
 			<caps-field-error validator="required">Message is required</caps-field-error>
 		</caps-field>
@@ -134,15 +138,18 @@ class StandaloneHost {}
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form">
-			<caps-field-group>
-				<caps-field>
-					<caps-field-content>
-						<label capsLabel for="group-email">Email</label>
-						<input capsInput id="group-email" formControlName="email" />
-						<caps-field-error validator="required">Email is required</caps-field-error>
-					</caps-field-content>
-				</caps-field>
-			</caps-field-group>
+			<caps-field-set>
+				<caps-field-legend>Email settings</caps-field-legend>
+				<caps-field-group>
+					<caps-field>
+						<caps-field-content>
+							<caps-field-label for="group-email">Email</caps-field-label>
+							<input capsInput id="group-email" formControlName="email" />
+							<caps-field-error validator="required">Email is required</caps-field-error>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-group>
+			</caps-field-set>
 		</form>
 	`,
 })
@@ -173,6 +180,24 @@ describe('Capsule Field composition', () => {
 		expect(input.getAttribute('aria-describedby')).toBe('manual email-description');
 		label.click();
 		expect(document.activeElement).toBe(input);
+	});
+
+	it('forwards label IDs and classes to the native element and updates the group name', () => {
+		const { fixture, input, field, host } = render();
+		const label: HTMLLabelElement = fixture.nativeElement.querySelector('label');
+		expect(label.id).toBe('email-label');
+		expect(fixture.nativeElement.querySelectorAll('#email-label')).toHaveLength(1);
+		expect(label.classList).toContain('font-bold');
+		host.labelId.set('updated-email-label');
+		host.labelFor.set('explicit-control');
+		fixture.detectChanges();
+		expect(label.id).toBe('updated-email-label');
+		expect(label.htmlFor).toBe('explicit-control');
+		expect(field.getAttribute('aria-labelledby')).toBe('updated-email-label');
+		expect(fixture.nativeElement.querySelectorAll('#updated-email-label')).toHaveLength(1);
+		host.labelFor.set(undefined);
+		fixture.detectChanges();
+		expect(label.htmlFor).toBe(input.id);
 	});
 
 	it.each(['vertical', 'horizontal', 'responsive'] as const)(
@@ -267,6 +292,11 @@ describe('Capsule Field composition', () => {
 		const textarea: HTMLTextAreaElement = fixture.nativeElement.querySelector('textarea');
 		const legend: HTMLLegendElement = fixture.nativeElement.querySelector('legend');
 		expect(legend.parentElement).toBe(fieldset);
+		expect(legend.textContent).toContain('Profile');
+		expect(legend.id).toBe('profile-legend');
+		expect(fixture.nativeElement.querySelectorAll('#profile-legend')).toHaveLength(1);
+		expect(legend.classList).toContain('font-bold');
+		expect(fieldset.classList).toContain('gap-8');
 		expect(fieldset.disabled).toBe(true);
 		expect(input.matches(':disabled')).toBe(true);
 		expect(textarea.matches(':disabled')).toBe(true);
@@ -279,6 +309,29 @@ describe('Capsule Field composition', () => {
 		fixture.detectChanges();
 		expect(legend.getAttribute('data-variant')).toBe('label');
 		expect(fixture.nativeElement.querySelector('caps-field-separator').textContent).toContain('Or');
+		fixture.componentInstance.disabled.set(false);
+		fixture.detectChanges();
+		expect(fieldset.disabled).toBe(false);
+		expect(input.matches(':disabled')).toBe(false);
+		expect(textarea.matches(':disabled')).toBe(false);
+	});
+
+	it('projects dynamic legend content as the first native fieldset child and removes it cleanly', () => {
+		const fixture = TestBed.createComponent(GroupHost);
+		fixture.detectChanges();
+		const fieldset: HTMLFieldSetElement = fixture.nativeElement.querySelector('fieldset');
+		expect(fieldset.firstElementChild?.tagName).toBe('LEGEND');
+		fixture.componentInstance.title.set('Updated profile');
+		fixture.detectChanges();
+		expect(fieldset.firstElementChild?.textContent).toContain('Updated profile');
+		fixture.componentInstance.showLegend.set(false);
+		fixture.detectChanges();
+		expect(fieldset.querySelector('legend')).toBeNull();
+		expect(fieldset.querySelector('input')).not.toBeNull();
+		fixture.componentInstance.showLegend.set(true);
+		fixture.detectChanges();
+		expect(fieldset.firstElementChild?.textContent).toContain('Updated profile');
+		expect(fieldset.querySelectorAll('legend')).toHaveLength(1);
 	});
 
 	it('supports template-driven validation after form submission', async () => {

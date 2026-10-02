@@ -10,11 +10,11 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 	template: `
 		<caps-field-group class="grid max-w-sm grid-cols-2">
 			<caps-field>
-				<label capsLabel for="first-name">First Name</label>
+				<caps-field-label for="first-name">First Name</caps-field-label>
 				<input capsInput id="first-name" placeholder="King" />
 			</caps-field>
 			<caps-field>
-				<label capsLabel for="last-name">Last Name</label>
+				<caps-field-label for="last-name">Last Name</caps-field-label>
 				<input capsInput id="last-name" placeholder="Leonidas" />
 			</caps-field>
 		</caps-field-group>

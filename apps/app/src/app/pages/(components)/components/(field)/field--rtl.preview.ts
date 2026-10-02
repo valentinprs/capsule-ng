@@ -24,23 +24,23 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	template: `
 		<form>
 			<caps-field-group>
-				<fieldset capsFieldSet>
-					<legend capsFieldLegend>{{ _t()['paymentMethod'] }}</legend>
+				<caps-field-set>
+					<caps-field-legend>{{ _t()['paymentMethod'] }}</caps-field-legend>
 					<caps-field-description>{{ _t()['secureTransactions'] }}</caps-field-description>
 
 					<caps-field-group>
 						<caps-field>
-							<label capsLabel for="field-rtl-name-on-card">{{ _t()['nameOnCard'] }}</label>
+							<caps-field-label for="field-rtl-name-on-card">{{ _t()['nameOnCard'] }}</caps-field-label>
 							<input capsInput placeholder="John Doe" id="field-rtl-name-on-card" />
 						</caps-field>
 						<caps-field class="col-span-2">
-							<label capsLabel for="field-rtl-card-number">{{ _t()['cardNumber'] }}</label>
+							<caps-field-label for="field-rtl-card-number">{{ _t()['cardNumber'] }}</caps-field-label>
 							<input capsInput placeholder="1234 1234 1234 1234" id="field-rtl-card-number" />
 							<caps-field-description>{{ _t()['cardNumberDescription'] }}</caps-field-description>
 						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
 							<caps-field>
-								<label capsLabel for="field-rtl-exp-month--trigger">{{ _t()['month'] }}</label>
+								<caps-field-label for="field-rtl-exp-month--trigger">{{ _t()['month'] }}</caps-field-label>
 								<hlm-select id="field-rtl-exp-month" class="inline-block" [itemToString]="_monthToString">
 									<hlm-select-trigger buttonId="field-rtl-exp-month--trigger" class="w-full">
 										<hlm-select-value />
@@ -55,7 +55,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</hlm-select>
 							</caps-field>
 							<caps-field>
-								<label capsLabel for="field-rtl-exp-year--trigger">{{ _t()['year'] }}</label>
+								<caps-field-label for="field-rtl-exp-year--trigger">{{ _t()['year'] }}</caps-field-label>
 								<hlm-select id="field-rtl-exp-year" class="inline-block">
 									<hlm-select-trigger buttonId="field-rtl-exp-year--trigger" class="w-full">
 										<hlm-select-value />
@@ -70,27 +70,27 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</hlm-select>
 							</caps-field>
 							<caps-field>
-								<label capsLabel for="field-rtl-cvv">{{ _t()['cvv'] }}</label>
+								<caps-field-label for="field-rtl-cvv">{{ _t()['cvv'] }}</caps-field-label>
 								<input capsInput placeholder="123" id="field-rtl-cvv" />
 							</caps-field>
 						</div>
 					</caps-field-group>
-				</fieldset>
+				</caps-field-set>
 				<caps-field-separator />
-				<fieldset capsFieldSet>
-					<legend capsFieldLegend>{{ _t()['billingAddress'] }}</legend>
+				<caps-field-set>
+					<caps-field-legend>{{ _t()['billingAddress'] }}</caps-field-legend>
 					<caps-field-description>{{ _t()['billingAddressDescription'] }}</caps-field-description>
 					<caps-field-group>
 						<caps-field orientation="horizontal">
 							<hlm-checkbox inputId="field-rtl-billing-address" [checked]="true" />
-							<label capsLabel for="field-rtl-billing-address">{{ _t()['sameAsShipping'] }}</label>
+							<caps-field-label for="field-rtl-billing-address">{{ _t()['sameAsShipping'] }}</caps-field-label>
 						</caps-field>
 					</caps-field-group>
-				</fieldset>
-				<fieldset capsFieldSet>
+				</caps-field-set>
+				<caps-field-set>
 					<caps-field-group>
 						<caps-field>
-							<label capsLabel for="field-rtl-comments">{{ _t()['comments'] }}</label>
+							<caps-field-label for="field-rtl-comments">{{ _t()['comments'] }}</caps-field-label>
 							<textarea
 								capsTextarea
 								class="resize-none"
@@ -99,7 +99,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 							></textarea>
 						</caps-field>
 					</caps-field-group>
-				</fieldset>
+				</caps-field-set>
 				<caps-field orientation="horizontal">
 					<button hlmBtn>{{ _t()['submit'] }}</button>
 					<button hlmBtn variant="outline">{{ _t()['cancel'] }}</button>

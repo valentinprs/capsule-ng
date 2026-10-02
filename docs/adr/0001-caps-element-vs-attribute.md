@@ -115,21 +115,24 @@ React `BreadcrumbItem`), `<caps-breadcrumb-item>` now takes an `href` and render
 - **`capsLink` stays** the styling-only directive for standalone links and for router links inside
   composite components.
 
-## Amendment 2: native form semantics and Field composition (2026-09-30)
+## Amendment 2: dedicated Field components and native internals (2026-10-02)
 
-Field uses `<caps-field>`, `<caps-field-group>`, `<caps-field-content>`,
-`<caps-field-description>`, `<caps-field-error>` and `<caps-field-separator>` for composition.
-Labels remain native `<label capsLabel>`; semantic groups remain
-`<fieldset capsFieldSet>` with a direct `<legend capsFieldLegend>`. These elements preserve native
-label activation, legend naming and fieldset disabled semantics that generic custom hosts cannot supply.
+Field uses dedicated `<caps-field>`, `<caps-field-group>`, `<caps-field-content>`,
+`<caps-field-description>`, `<caps-field-error>`, `<caps-field-separator>`,
+`<caps-field-label>`, `<caps-field-set>` and `<caps-field-legend>` components.
+This supersedes the initial FieldSet/Legend directive composition at the user's request.
+The standalone Input, Textarea and Label directives remain native-element APIs.
 
-`caps-field` composes Brain and declares `role="group"`, named by a projected native label.
-Layout and help-text hosts keep their generic text/container semantics: explicit ARIA roles are
-required when a host represents a semantic group, landmark, list item or alert, rather than on
-purely visual containers. Separator lines are decorative; projected separator text stays readable.
+FieldLabel renders a native label. FieldSet renders a native fieldset and renders its directly
+projected FieldLegend's content in the first native legend child. The hidden legend component host
+holds a template rather than wrapping the native legend; this preserves native naming and disabled
+semantics. IDs and class strings on Label/Set/Legend are forwarded to their native elements.
 
-Field and FieldContent forward the ancestor Angular ControlContainer so projected ngModel and
-FormControlName retain their parent form. Messages use the existing Brain error-state matcher and
-public Angular form events; Brain remains unchanged. Visible descriptions/errors register with the
-closest Brain accessibility context, including through component projection. FieldSet has its own
-accessibility context and nested Fields isolate their descriptions.
+`caps-field` composes Brain and declares `role="group"`, named by a projected FieldLabel.
+Layout and help-text hosts keep generic container semantics. Separator lines are decorative;
+projected text stays readable. FieldGroup can wrap sections or sit inside a FieldSet to space fields.
+
+Field, FieldContent, FieldLabel and FieldSet forward the ancestor Angular ControlContainer.
+Messages use the existing Brain matcher and public form events; Brain remains unchanged.
+Descriptions/errors register with the closest Brain accessibility context. FieldSet has its own
+context and nested Fields isolate their descriptions.

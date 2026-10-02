@@ -9,7 +9,7 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field>
-			<label capsLabel for="input-field-username">Username</label>
+			<caps-field-label for="input-field-username">Username</caps-field-label>
 			<input capsInput id="input-field-username" type="text" placeholder="Enter your username" />
 			<caps-field-description>Choose a unique username for your account.</caps-field-description>
 		</caps-field>

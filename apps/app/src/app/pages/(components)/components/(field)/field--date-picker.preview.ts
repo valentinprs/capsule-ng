@@ -11,16 +11,16 @@ import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
 		class: 'w-full max-w-xs',
 	},
 	template: `
-		<fieldset capsFieldSet>
+		<caps-field-set>
 			<caps-field-group>
 				<caps-field>
-					<label capsLabel for="date-range">Date of birth</label>
+					<caps-field-label for="date-range">Date of birth</caps-field-label>
 					<hlm-date-picker buttonId="date-range" captionLayout="dropdown">
 						<span>Enter your date of birth</span>
 					</hlm-date-picker>
 				</caps-field>
 			</caps-field-group>
-		</fieldset>
+		</caps-field-set>
 	`,
 })
 export class FieldDatePickerPreview {}

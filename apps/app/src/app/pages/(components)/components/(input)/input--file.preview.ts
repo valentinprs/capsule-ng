@@ -9,7 +9,7 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field>
-			<label capsLabel for="picture">Picture</label>
+			<caps-field-label for="picture">Picture</caps-field-label>
 			<input capsInput id="picture" type="file" />
 			<caps-field-description>Select a picture to upload.</caps-field-description>
 		</caps-field>

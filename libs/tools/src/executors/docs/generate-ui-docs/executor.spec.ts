@@ -89,6 +89,7 @@ describe('generate-ui-docs executor', () => {
 				'CapsFieldError',
 				'CapsFieldSet',
 				'CapsFieldLegend',
+				'CapsFieldLabel',
 				'CapsFieldSeparator',
 			]),
 		);
@@ -99,8 +100,10 @@ describe('generate-ui-docs executor', () => {
 		expect(field['CapsFieldError'].inputs.map(({ name }) => name)).toEqual(
 			expect.arrayContaining(['id', 'validator', 'forceShow']),
 		);
-		expect(field['CapsFieldSet'].selector).toBe('fieldset[capsFieldSet]');
+		expect(field['CapsFieldSet'].selector).toBe('caps-field-set');
 		expect(field['CapsFieldSet'].inputs.map(({ name }) => name)).toContain('aria-describedby');
-		expect(field['CapsFieldLegend'].selector).toBe('legend[capsFieldLegend]');
+		expect(field['CapsFieldLegend'].selector).toBe('caps-field-legend');
+		expect(field['CapsFieldLabel'].selector).toBe('caps-field-label');
+		expect(field['CapsFieldSet'].inputs.map(({ name }) => name)).toContain('disabled');
 	});
 });

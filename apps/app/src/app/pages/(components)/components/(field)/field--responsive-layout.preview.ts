@@ -12,14 +12,14 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	},
 	template: `
 		<form>
-			<fieldset capsFieldSet>
-				<legend capsFieldLegend>Profile</legend>
+			<caps-field-set>
+				<caps-field-legend>Profile</caps-field-legend>
 				<caps-field-description>Fill in your profile information.</caps-field-description>
 				<caps-field-separator />
 				<caps-field-group>
 					<caps-field orientation="responsive">
 						<caps-field-content>
-							<label capsLabel for="field-responsive-name">Name</label>
+							<caps-field-label for="field-responsive-name">Name</caps-field-label>
 							<caps-field-description>Provide your full name for identification</caps-field-description>
 						</caps-field-content>
 						<input capsInput id="field-responsive-name" type="text" placeholder="Alex Cooper" />
@@ -27,7 +27,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 					<caps-field-separator />
 					<caps-field orientation="responsive">
 						<caps-field-content>
-							<label capsLabel for="field-responsive-message">Message</label>
+							<caps-field-label for="field-responsive-message">Message</caps-field-label>
 							<caps-field-description>
 								You can write your message here. Keep it short, preferably under 100 characters.
 							</caps-field-description>
@@ -45,7 +45,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 						<button hlmBtn type="button" variant="outline">Cancel</button>
 					</caps-field>
 				</caps-field-group>
-			</fieldset>
+			</caps-field-set>
 		</form>
 	`,
 })

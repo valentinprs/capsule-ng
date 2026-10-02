@@ -9,7 +9,7 @@ import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field forceInvalid>
-			<label capsLabel for="textarea-invalid">Message</label>
+			<caps-field-label for="textarea-invalid">Message</caps-field-label>
 			<textarea capsTextarea forceInvalid id="textarea-invalid" placeholder="Type your message here."></textarea>
 			<caps-field-description>Please enter a valid message.</caps-field-description>
 		</caps-field>

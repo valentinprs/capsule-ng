@@ -9,30 +9,30 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<fieldset capsFieldSet>
-			<legend capsFieldLegend variant="label">Subscription Plan</legend>
+		<caps-field-set>
+			<caps-field-legend variant="label">Subscription Plan</caps-field-legend>
 			<caps-field-description>Yearly and lifetime plans offer significant savings.</caps-field-description>
 			<hlm-radio-group value="monthly">
 				<caps-field orientation="horizontal">
 					<hlm-radio value="monthly" inputId="plan-monthly">
 						<hlm-radio-indicator indicator />
 					</hlm-radio>
-					<label capsLabel for="plan-monthly" class="font-normal">Monthly ($9.99/month)</label>
+					<caps-field-label for="plan-monthly" class="font-normal">Monthly ($9.99/month)</caps-field-label>
 				</caps-field>
 				<caps-field orientation="horizontal">
 					<hlm-radio value="yearly" inputId="plan-yearly">
 						<hlm-radio-indicator indicator />
 					</hlm-radio>
-					<label capsLabel for="plan-yearly" class="font-normal">Yearly ($99.99/year)</label>
+					<caps-field-label for="plan-yearly" class="font-normal">Yearly ($99.99/year)</caps-field-label>
 				</caps-field>
 				<caps-field orientation="horizontal">
 					<hlm-radio value="lifetime" inputId="plan-lifetime">
 						<hlm-radio-indicator indicator />
 					</hlm-radio>
-					<label capsLabel for="plan-lifetime" class="font-normal">Lifetime ($299.99/lifetime)</label>
+					<caps-field-label for="plan-lifetime" class="font-normal">Lifetime ($299.99/lifetime)</caps-field-label>
 				</caps-field>
 			</hlm-radio-group>
-		</fieldset>
+		</caps-field-set>
 	`,
 })
 export class FieldRadioPreview {}

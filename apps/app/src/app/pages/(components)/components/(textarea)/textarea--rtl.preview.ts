@@ -10,7 +10,7 @@ import { TranslateService, Translations } from '@spartan-ng/app/app/shared/trans
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field [dir]="_dir()">
-			<label capsLabel for="textarea-message-rtl">{{ _t()['label'] }}</label>
+			<caps-field-label for="textarea-message-rtl">{{ _t()['label'] }}</caps-field-label>
 			<textarea capsTextarea id="textarea-message-rtl" [placeholder]="_t()['placeholder']"></textarea>
 			<caps-field-description>{{ _t()['description'] }}</caps-field-description>
 		</caps-field>

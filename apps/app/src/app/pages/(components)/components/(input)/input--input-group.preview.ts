@@ -12,7 +12,7 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field>
-			<label capsLabel for="input-group-url">Website URL</label>
+			<caps-field-label for="input-group-url">Website URL</caps-field-label>
 			<hlm-input-group>
 				<input hlmInputGroupInput id="input-group-url" placeholder="example.com" />
 				<hlm-input-group-addon>

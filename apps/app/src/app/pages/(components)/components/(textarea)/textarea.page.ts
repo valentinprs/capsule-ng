@@ -78,7 +78,7 @@ export const routeMeta: RouteMeta = {
 				Use
 				<code class="${hlmCode}">caps-field</code>
 				,
-				<code class="${hlmCode}">capsLabel</code>
+				<code class="${hlmCode}">caps-field-label</code>
 				, and
 				<code class="${hlmCode}">caps-field-description</code>
 				to create a textarea with a label and description.

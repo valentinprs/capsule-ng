@@ -9,7 +9,7 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field forceInvalid>
-			<label capsLabel for="input-invalid">Invalid Input</label>
+			<caps-field-label for="input-invalid">Invalid Input</caps-field-label>
 			<input capsInput forceInvalid id="input-invalid" placeholder="Error" />
 			<caps-field-description>This field contains validation errors.</caps-field-description>
 		</caps-field>

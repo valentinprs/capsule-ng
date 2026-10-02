@@ -9,7 +9,7 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field>
-			<label capsLabel for="input-demo-api-key">API Key</label>
+			<caps-field-label for="input-demo-api-key">API Key</caps-field-label>
 			<input capsInput id="input-demo-api-key" type="password" placeholder="sk-..." />
 			<caps-field-description>Your API key is encrypted and stored securely.</caps-field-description>
 		</caps-field>

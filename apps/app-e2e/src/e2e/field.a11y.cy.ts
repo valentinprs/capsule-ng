@@ -95,7 +95,7 @@ describe('Capsule Field composition, validation and accessibility', { testIsolat
 	});
 
 	it('preserves native legends and RTL layout, and documents the Capsule family', () => {
-		cy.get('spartan-field-set-preview fieldset > legend').should('have.attr', 'capsFieldLegend');
+		cy.get('spartan-field-set-preview fieldset > legend').should('have.attr', 'data-slot', 'field-legend');
 		cy.get('spartan-field-rtl').invoke('attr', 'dir', 'rtl');
 		cy.get('spartan-field-rtl caps-field').first().should('have.css', 'direction', 'rtl');
 		cy.get('spartan-ui-api-docs').should('contain.text', 'CapsField').and('contain.text', 'CapsFieldError');

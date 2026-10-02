@@ -9,10 +9,10 @@ import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<fieldset capsFieldSet>
+		<caps-field-set>
 			<caps-field-group>
 				<caps-field>
-					<label capsLabel for="field-textarea-preview-firstname">Feedback</label>
+					<caps-field-label for="field-textarea-preview-firstname">Feedback</caps-field-label>
 					<textarea
 						capsTextarea
 						id="field-textarea-preview-firstname"
@@ -21,7 +21,7 @@ import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 					<caps-field-description>Share your thoughts about our service.</caps-field-description>
 				</caps-field>
 			</caps-field-group>
-		</fieldset>
+		</caps-field-set>
 	`,
 })
 export class FieldTextareaPreview {}

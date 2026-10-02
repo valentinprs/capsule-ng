@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, contentChildren, inject, input } from '@angular/core';
 import { BrnField } from '@spartan-ng/brain/field';
 import { ErrorStateMatcher } from '@spartan-ng/brain/forms';
-import { BrnLabel } from '@spartan-ng/brain/label';
 import { classes } from '@spartan-ng/helm/utils';
 import { cva } from 'class-variance-authority';
 import { injectCapsFieldParentForm, provideCapsFieldFormContext } from './caps-field-form-context';
+import { CapsFieldLabel } from './caps-field-label';
 
 export type CapsFieldOrientation = 'vertical' | 'horizontal' | 'responsive';
 
@@ -52,7 +52,7 @@ export class CapsField {
 	});
 	/** Stacks the field vertically by default; responsive follows the enclosing FieldGroup width. */
 	public readonly orientation = input<CapsFieldOrientation>('vertical');
-	private readonly _labels = contentChildren(BrnLabel, { descendants: true });
+	private readonly _labels = contentChildren(CapsFieldLabel, { descendants: true });
 	protected readonly _labelledBy = computed(() => this._labels()[0]?.id() ?? null);
 
 	constructor() {

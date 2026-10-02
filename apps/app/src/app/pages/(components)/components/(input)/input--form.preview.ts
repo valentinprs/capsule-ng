@@ -13,16 +13,16 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 		<form [formRoot]="form">
 			<caps-field-group>
 				<caps-field>
-					<label capsLabel for="form-name">Name</label>
+					<caps-field-label for="form-name">Name</caps-field-label>
 					<input capsInput type="text" id="form-name" placeholder="Leonidas" [formField]="form.name" />
 				</caps-field>
 				<caps-field>
-					<label capsLabel for="form-email">Email</label>
+					<caps-field-label for="form-email">Email</caps-field-label>
 					<input capsInput type="email" id="form-email" placeholder="leonidas@example.com" [formField]="form.email" />
 					<caps-field-description>We'll never share your email with anyone.</caps-field-description>
 				</caps-field>
 				<caps-field>
-					<label capsLabel for="form-address">Address</label>
+					<caps-field-label for="form-address">Address</caps-field-label>
 					<input capsInput type="text" id="form-address" placeholder="123 Main St" [formField]="form.address" />
 				</caps-field>
 				<caps-field orientation="horizontal">

@@ -13,7 +13,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 		<form [formRoot]="form">
 			<caps-field-group>
 				<caps-field>
-					<label capsLabel for="textarea-bio">Bio</label>
+					<caps-field-label for="textarea-bio">Bio</caps-field-label>
 					<textarea
 						capsTextarea
 						class="w-80"

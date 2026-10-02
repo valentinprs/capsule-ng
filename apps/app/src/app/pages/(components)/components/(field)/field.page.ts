@@ -214,7 +214,7 @@ export const routeMeta: RouteMeta = {
 				Wrap
 				<code class="${hlmCode} mr-0.5">CapsField</code>
 				elements inside
-				<code class="${hlmCode} mr-0.5">CapsLabel</code>
+				<code class="${hlmCode} mr-0.5">CapsFieldLabel</code>
 				to create selectable field groups. This works with
 				<code class="${hlmCode} mr-0.5">RadioItem</code>
 				,
@@ -357,12 +357,12 @@ export const routeMeta: RouteMeta = {
 					outputs
 					<code class="${hlmCode} mr-0.5">role="group"</code>
 					and associates the group with its projected
-					<code class="${hlmCode} mr-0.5">CapsLabel</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldLabel</code>
 					. Native fieldsets use their legend for naming.
 				</li>
 				<li class="mt-2">
 					When a control and a
-					<code class="${hlmCode} mr-0.5">CapsLabel</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldLabel</code>
 					are placed inside the same
 					<code class="${hlmCode} mr-0.5">CapsField</code>
 					, the label's

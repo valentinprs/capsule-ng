@@ -9,10 +9,10 @@ import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<fieldset capsFieldSet>
+		<caps-field-set>
 			<caps-field-group>
 				<caps-field>
-					<label capsLabel for="field-native-select-department">Department</label>
+					<caps-field-label for="field-native-select-department">Department</caps-field-label>
 					<hlm-native-select selectId="field-native-select-department">
 						<option hlmNativeSelectOption value="">Choose department</option>
 						<option hlmNativeSelectOption value="engineering">Engineering</option>
@@ -27,7 +27,7 @@ import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 					<caps-field-description>Select your department or area of work.</caps-field-description>
 				</caps-field>
 			</caps-field-group>
-		</fieldset>
+		</caps-field-set>
 	`,
 })
 export class FieldNativeSelectPreview {}

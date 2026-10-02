@@ -9,7 +9,7 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field data-disabled="true">
-			<label capsLabel for="input-demo-disabled">Email</label>
+			<caps-field-label for="input-demo-disabled">Email</caps-field-label>
 			<input capsInput id="input-demo-disabled" type="email" placeholder="Email" disabled />
 			<caps-field-description>This field is currently disabled.</caps-field-description>
 		</caps-field>

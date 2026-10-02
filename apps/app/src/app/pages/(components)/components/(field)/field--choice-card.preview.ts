@@ -10,11 +10,11 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 	},
 	template: `
 		<caps-field-group>
-			<fieldset capsFieldSet>
-				<legend capsFieldLegend variant="label">Compute Environment</legend>
+			<caps-field-set>
+				<caps-field-legend variant="label">Compute Environment</caps-field-legend>
 				<caps-field-description>Select the compute environment for your cluster.</caps-field-description>
 				<hlm-radio-group value="kubernetes">
-					<label capsLabel for="kubernetes">
+					<caps-field-label for="kubernetes">
 						<caps-field orientation="horizontal">
 							<caps-field-content>
 								<span class="text-sm font-medium">Kubernetes</span>
@@ -24,8 +24,8 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
 						</caps-field>
-					</label>
-					<label capsLabel for="virtual-machine">
+					</caps-field-label>
+					<caps-field-label for="virtual-machine">
 						<caps-field orientation="horizontal">
 							<caps-field-content>
 								<span class="text-sm font-medium">Virtual Machine</span>
@@ -35,9 +35,9 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
 						</caps-field>
-					</label>
+					</caps-field-label>
 				</hlm-radio-group>
-			</fieldset>
+			</caps-field-set>
 		</caps-field-group>
 	`,
 })

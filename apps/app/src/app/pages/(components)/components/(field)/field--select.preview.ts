@@ -9,10 +9,10 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<fieldset capsFieldSet>
+		<caps-field-set>
 			<caps-field-group>
 				<caps-field>
-					<label capsLabel for="field-select-department">Department</label>
+					<caps-field-label for="field-select-department">Department</caps-field-label>
 					<hlm-select [itemToString]="itemToString">
 						<hlm-select-trigger class="w-full" buttonId="field-select-department">
 							<hlm-select-value placeholder="Choose a department" />
@@ -30,7 +30,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					<caps-field-description>Select your department or area of work.</caps-field-description>
 				</caps-field>
 			</caps-field-group>
-		</fieldset>
+		</caps-field-set>
 	`,
 })
 export class FieldSelectPreview {

@@ -11,11 +11,11 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	template: `
 		<caps-field-group>
 			<caps-field>
-				<label capsLabel for="fieldgroup-name">Name</label>
+				<caps-field-label for="fieldgroup-name">Name</caps-field-label>
 				<input capsInput id="fieldgroup-name" placeholder="Leonidas" />
 			</caps-field>
 			<caps-field>
-				<label capsLabel for="fieldgroup-email">Email</label>
+				<caps-field-label for="fieldgroup-email">Email</caps-field-label>
 				<input capsInput id="fieldgroup-email" type="email" placeholder="name@example.com" />
 				<caps-field-description>We'll send updates to this address.</caps-field-description>
 			</caps-field>

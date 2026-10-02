@@ -27,8 +27,8 @@ import { defaultImports, defaultSkeleton, NavigationMenuPreview } from './naviga
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Navigation Menu', api: 'navigation-menu' },
-	meta: metaWith('spartan/ui - Navigation Menu', 'A collection of links for navigating websites'),
-	title: 'spartan/ui - Navigation Menu',
+	meta: metaWith('Capsule — Navigation Menu', 'A collection of links for navigating websites'),
+	title: 'Capsule — Navigation Menu',
 };
 
 @Component({

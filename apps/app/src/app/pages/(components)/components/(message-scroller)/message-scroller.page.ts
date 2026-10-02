@@ -30,10 +30,10 @@ import { defaultImports, defaultSkeleton, MessageScrollerPreview } from './messa
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Message Scroller', api: 'message-scroller' },
 	meta: metaWith(
-		'spartan/ui - Message Scroller',
+		'Capsule — Message Scroller',
 		'A chat transcript scroller that anchors turns, follows streamed replies, and preserves position when history loads.',
 	),
-	title: 'spartan/ui - Message Scroller',
+	title: 'Capsule — Message Scroller',
 };
 
 @Component({

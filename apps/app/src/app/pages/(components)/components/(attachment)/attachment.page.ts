@@ -28,10 +28,10 @@ import { AttachmentPreview, defaultImports, defaultSkeleton } from './attachment
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Attachment', api: 'attachment' },
 	meta: metaWith(
-		'spartan/ui - Attachment',
+		'Capsule — Attachment',
 		'Displays file and image attachments with media, metadata, upload state, and actions.',
 	),
-	title: 'spartan/ui - Attachment',
+	title: 'Capsule — Attachment',
 };
 
 @Component({

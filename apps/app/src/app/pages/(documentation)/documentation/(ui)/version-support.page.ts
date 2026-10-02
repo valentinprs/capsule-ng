@@ -3,6 +3,7 @@ import { Component, VERSION } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideExternalLink } from '@ng-icons/lucide';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { REPOSITORY_URL } from '../../../../../site.config';
 
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { MainSection } from '../../../../shared/layout/main-section';
@@ -15,8 +16,8 @@ import { metaWith } from '../../../../shared/meta/meta.util';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Version Support' },
-	meta: metaWith('spartan - Version Support', 'Learn about Angular version support policy for spartan/ui components'),
-	title: 'spartan - Version Support',
+	meta: metaWith('Capsule — Version Support', 'Learn about Angular version support policy for spartan/ui components'),
+	title: 'Capsule — Version Support',
 };
 
 @Component({
@@ -127,24 +128,11 @@ export const routeMeta: RouteMeta = {
 			<p class="${hlmP}">
 				If you have questions about our version support policy or need guidance on upgrading your Angular project with
 				spartan/ui, feel free to start a
-				<a
-					href="https://github.com/spartan-ng/spartan/discussions"
-					target="_blank"
-					class="${hlmCode} inline-flex items-center gap-1 underline"
-				>
-					discussion on GitHub
+				<a href="${REPOSITORY_URL}/issues" target="_blank" class="${hlmCode} inline-flex items-center gap-1 underline">
+					issue on GitHub
 					<ng-icon name="lucideExternalLink" />
 				</a>
-				or join our
-				<a
-					href="https://discord.gg/EqHnxQ4uQr"
-					target="_blank"
-					class="${hlmCode} inline-flex items-center gap-1 underline"
-				>
-					Discord community
-					<ng-icon name="lucideExternalLink" />
-				</a>
-				to connect with the team and other users.
+				to contact the team.
 			</p>
 
 			<spartan-page-bottom-nav>

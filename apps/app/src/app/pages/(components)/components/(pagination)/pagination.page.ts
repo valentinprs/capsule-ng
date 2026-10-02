@@ -26,8 +26,8 @@ import { PaginationPreview, defaultImports, defaultSkeleton } from './pagination
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Pagination', api: 'pagination' },
-	meta: metaWith('spartan/ui - Pagination', 'Pagination with page navigation, next and previous links.'),
-	title: 'spartan/ui - Pagination',
+	meta: metaWith('Capsule — Pagination', 'Pagination with page navigation, next and previous links.'),
+	title: 'Capsule — Pagination',
 };
 
 @Component({

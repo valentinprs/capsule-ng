@@ -43,8 +43,8 @@ const routerSkeleton = `
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Breadcrumb', api: 'breadcrumb' },
-	meta: metaWith('spartan/ui - Breadcrumb', 'Displays the path to the current resource using a hierarchy of links.'),
-	title: 'spartan/ui - Breadcrumb',
+	meta: metaWith('Capsule — Breadcrumb', 'Displays the path to the current resource using a hierarchy of links.'),
+	title: 'Capsule — Breadcrumb',
 };
 @Component({
 	selector: 'spartan-breadcrumb',

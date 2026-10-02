@@ -25,8 +25,8 @@ import { defaultImports, defaultSkeleton, KbdPreview } from './kbd.preview';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'kbd', api: 'kbd' },
-	meta: metaWith('spartan/ui - kbd', 'Used to display textual user input from keyboard.'),
-	title: 'spartan/ui - Kbd',
+	meta: metaWith('Capsule — kbd', 'Used to display textual user input from keyboard.'),
+	title: 'Capsule — Kbd',
 };
 
 @Component({

@@ -25,8 +25,8 @@ import { CommandPreview, defaultImports, defaultSkeleton } from './command.previ
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Command', api: 'command' },
-	meta: metaWith('spartan/ui - Command', 'Fast, composable, command menu for Angular.'),
-	title: 'spartan/ui - Command',
+	meta: metaWith('Capsule — Command', 'Fast, composable, command menu for Angular.'),
+	title: 'Capsule — Command',
 };
 
 @Component({

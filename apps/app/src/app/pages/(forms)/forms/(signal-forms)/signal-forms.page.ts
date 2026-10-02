@@ -42,8 +42,8 @@ import {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Signal Forms' },
-	meta: metaWith('spartan/ui - Signal Forms', 'Build forms in Angular using Signal Forms.'),
-	title: 'spartan/ui - Signal Forms',
+	meta: metaWith('Capsule — Signal Forms', 'Build forms in Angular using Signal Forms.'),
+	title: 'Capsule — Signal Forms',
 };
 @Component({
 	selector: 'spartan-signal-forms',
@@ -534,11 +534,7 @@ export const routeMeta: RouteMeta = {
 					Call
 					<code class="${hlmCode}">touch()</code>
 					on your input's blur event (
-					<a
-						href="https://agoge.spartan.ng/forms/signal-forms#custom-control"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
+					<a href="https://angular.dev/guide/forms/signals/custom-controls" target="_blank" rel="noopener noreferrer">
 						Angular v22+
 					</a>
 					). In Angular v21, use
@@ -597,10 +593,6 @@ export const routeMeta: RouteMeta = {
 	`,
 })
 export default class SignalFormsPage {
-	public readonly spartanAgogeUrl = 'https://github.com/spartan-ng/spartan-agoge';
-	public readonly signalFormsDemoUrl =
-		'https://github.com/spartan-ng/spartan-agoge/blob/main/src/app/pages/forms/signal-forms.page.ts';
-
 	protected readonly _demoCode = demoCode;
 	protected readonly _demoAnatomyCode = demoAnatomyCode;
 	protected readonly _demoFormModelCode = demoFormModelCode;

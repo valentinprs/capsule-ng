@@ -1,3 +1,5 @@
+import { CATALOGUE_URL } from '../../../site.config';
+const siteUrl = import.meta.env['VITE_SITE_URL'] || CATALOGUE_URL;
 export const metaWith = (title: string, description: string) => [
 	{
 		name: 'description',
@@ -5,7 +7,7 @@ export const metaWith = (title: string, description: string) => [
 	},
 	{
 		name: 'author',
-		content: 'Robin Goetz',
+		content: 'Capsule',
 	},
 	{
 		property: 'og:title',
@@ -13,7 +15,7 @@ export const metaWith = (title: string, description: string) => [
 	},
 	{
 		property: 'og:site_name',
-		content: 'SPARTAN',
+		content: 'Capsule',
 	},
 	{
 		property: 'og:type',
@@ -21,7 +23,7 @@ export const metaWith = (title: string, description: string) => [
 	},
 	{
 		property: 'og:url',
-		content: 'https://www.spartan.ng/',
+		content: siteUrl,
 	},
 	{
 		property: 'og:description',
@@ -29,7 +31,7 @@ export const metaWith = (title: string, description: string) => [
 	},
 	{
 		property: 'og:image',
-		content: 'https://www.spartan.ng/assets/og-image.png',
+		content: `${siteUrl}/assets/capsule-social.png`,
 	},
 
 	{
@@ -46,6 +48,6 @@ export const metaWith = (title: string, description: string) => [
 	},
 	{
 		property: 'twitter:image',
-		content: 'https://www.spartan.ng/assets/og-image.png',
+		content: `${siteUrl}/assets/capsule-social.png`,
 	},
 ];

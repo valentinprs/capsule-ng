@@ -28,10 +28,10 @@ import { SheetPreview, defaultImports, defaultSkeleton } from './sheet.preview';
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Sheet', api: 'sheet' },
 	meta: metaWith(
-		'spartan/ui - Sheet',
+		'Capsule — Sheet',
 		'Extends the Dialog component to display content that complements the main content of the screen.',
 	),
-	title: 'spartan/ui - Sheet',
+	title: 'Capsule — Sheet',
 };
 @Component({
 	selector: 'spartan-sheet',

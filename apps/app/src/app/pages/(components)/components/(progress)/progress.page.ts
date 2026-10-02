@@ -24,10 +24,10 @@ import { ProgressPreview, defaultImports, defaultSkeleton } from './progress.pre
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Progress', api: 'progress' },
 	meta: metaWith(
-		'spartan/ui - Progress',
+		'Capsule — Progress',
 		'Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.',
 	),
-	title: 'spartan/ui - Progress',
+	title: 'Capsule — Progress',
 };
 @Component({
 	selector: 'spartan-progress',

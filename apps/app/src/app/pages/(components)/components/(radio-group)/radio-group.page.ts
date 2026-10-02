@@ -24,10 +24,10 @@ import { defaultImports, defaultSkeleton, RadioGroupPreview } from './radio-grou
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Radio Group', api: 'radio-group' },
 	meta: metaWith(
-		'spartan/ui - Radio Group',
+		'Capsule — Radio Group',
 		'A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.',
 	),
-	title: 'spartan/ui - Radio Group',
+	title: 'Capsule — Radio Group',
 };
 @Component({
 	selector: 'spartan-radio-group',

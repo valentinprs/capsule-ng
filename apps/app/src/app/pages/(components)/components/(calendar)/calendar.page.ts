@@ -27,8 +27,8 @@ import { CalendarPreview, defaultImports, defaultSkeleton, i18nProviders, i18nRu
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Calendar', api: 'calendar' },
-	meta: metaWith('spartan/ui - Calendar', 'A date field component that allows users to enter and edit date.'),
-	title: 'spartan/ui - Calendar',
+	meta: metaWith('Capsule — Calendar', 'A date field component that allows users to enter and edit date.'),
+	title: 'Capsule — Calendar',
 };
 
 @Component({

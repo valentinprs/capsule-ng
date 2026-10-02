@@ -13,7 +13,8 @@
 				"{options.outputPath}",
 				"{workspaceRoot}/dist/apps/app/.nitro",
 				"{workspaceRoot}/dist/apps/app/ssr",
-				"{workspaceRoot}/dist/apps/app/analog"
+				"{workspaceRoot}/dist/apps/app/analog",
+				"{workspaceRoot}/dist/apps/app/.vercel"
 			],
 			"options": {
 				"main": "apps/app/src/main.ts",
@@ -30,7 +31,23 @@
 					"sourcemap": false,
 					"mode": "production"
 				}
-			}
+			},
+			"inputs": [
+				"production",
+				"^production",
+				{
+					"env": "VITE_SITE_URL"
+				},
+				{
+					"env": "VITE_SOURCE_REF"
+				},
+				{
+					"env": "VERCEL_ENV"
+				},
+				{
+					"env": "BUILD_PRESET"
+				}
+			]
 		},
 		"serve": {
 			"dependsOn": ["generate-docs-and-snippets"],

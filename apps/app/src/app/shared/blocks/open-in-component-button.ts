@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGithub } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { REPOSITORY_URL } from '../../../site.config';
 
 @Component({
 	selector: 'spartan-open-in-component-button',
@@ -20,6 +21,6 @@ export class OpenInComponentButton {
 
 	protected readonly _url = computed(
 		() =>
-			`https://github.com/spartan-ng/spartan/blob/main/apps/app/src/app/pages/(blocks)/blocks/calendar/${this.block()}`,
+			`${REPOSITORY_URL}/blob/${import.meta.env['VITE_SOURCE_REF'] || 'main'}/apps/app/src/app/pages/(blocks)/blocks/calendar/${this.block()}`,
 	);
 }

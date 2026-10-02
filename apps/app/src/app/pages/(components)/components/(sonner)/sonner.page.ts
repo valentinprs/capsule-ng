@@ -23,8 +23,8 @@ import { SonnerPreview, defaultImports, defaultSkeleton } from './sonner.preview
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Sonner', api: 'sonner' },
-	meta: metaWith('spartan/ui - Sonner', 'An opinionated toast component for Angular.'),
-	title: 'spartan/ui - Sonner',
+	meta: metaWith('Capsule — Sonner', 'An opinionated toast component for Angular.'),
+	title: 'Capsule — Sonner',
 };
 @Component({
 	selector: 'spartan-sonner',

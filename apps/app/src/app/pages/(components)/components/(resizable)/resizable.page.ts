@@ -26,8 +26,8 @@ import { defaultImports, defaultSkeleton, ResizablePreviewComponent } from './re
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Resizable', api: 'resizable' },
-	meta: metaWith('spartan/ui - Resizable', 'A group of resizable horizontal and vertical panels.'),
-	title: 'spartan/ui - Resizable',
+	meta: metaWith('Capsule — Resizable', 'A group of resizable horizontal and vertical panels.'),
+	title: 'Capsule — Resizable',
 };
 @Component({
 	selector: 'spartan-resizable',

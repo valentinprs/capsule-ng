@@ -29,10 +29,10 @@ import { AccordionPreview, defaultImports, defaultSkeleton } from './accordion.p
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Accordion', api: 'accordion' },
 	meta: metaWith(
-		'spartan/ui - Accordion',
+		'Capsule — Accordion',
 		'A vertically stacked set of interactive headings that each reveal a section of content.',
 	),
-	title: 'spartan/ui - Accordion',
+	title: 'Capsule — Accordion',
 };
 
 @Component({

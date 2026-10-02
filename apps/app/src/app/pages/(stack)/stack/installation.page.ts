@@ -87,16 +87,7 @@ export const routeMeta: RouteMeta = {
 			<p class="${hlmP}">Watch the video below to become more familiar with the AnalogJs setup.</p>
 
 			<div class="mt-3 max-w-[95vw]">
-				<div style="position: relative; padding-bottom: 59.01639344262295%; height: 0;">
-					<iframe
-						src="https://www.loom.com/embed/1a0daf36c78f4ebcb0c8ba4694fdd0fa?sid=8634ad3b-287c-46be-8141-6eb8a52ebaf0"
-						frameborder="0"
-						webkitallowfullscreen
-						mozallowfullscreen
-						allowfullscreen
-						style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-					></iframe>
-				</div>
+				<div style="position: relative; padding-bottom: 59.01639344262295%; height: 0;"></div>
 			</div>
 
 			<spartan-section-sub-heading id="drizzle">Drizzle</spartan-section-sub-heading>

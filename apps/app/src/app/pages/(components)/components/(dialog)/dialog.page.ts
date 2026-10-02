@@ -34,10 +34,10 @@ import { DialogPreview, defaultImports, defaultSkeleton } from './dialog.preview
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Dialog', api: 'dialog' },
 	meta: metaWith(
-		'spartan/ui - Dialog',
+		'Capsule — Dialog',
 		'A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.',
 	),
-	title: 'spartan/ui - Dialog',
+	title: 'Capsule — Dialog',
 };
 @Component({
 	selector: 'spartan-dialog',

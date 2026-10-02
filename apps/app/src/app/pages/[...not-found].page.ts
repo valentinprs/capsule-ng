@@ -7,8 +7,8 @@ import { hlmH3, hlmMuted } from '@spartan-ng/helm/typography';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Not Found' },
-	meta: metaWith('spartan - Page not found', 'Seems like you got lost browsing spartan.'),
-	title: 'spartan - Page not found',
+	meta: metaWith('Capsule — Page not found', 'Seems like you got lost browsing spartan.'),
+	title: 'Capsule — Page not found',
 };
 
 @Component({

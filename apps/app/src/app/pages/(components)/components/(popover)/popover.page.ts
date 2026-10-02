@@ -23,8 +23,8 @@ import { PopoverPreview, defaultImports, defaultSkeleton } from './popover.previ
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Popover', api: 'popover' },
-	meta: metaWith('spartan/ui - Popover', 'Displays rich content in a portal, triggered by a button.'),
-	title: 'spartan/ui - Popover',
+	meta: metaWith('Capsule — Popover', 'Displays rich content in a portal, triggered by a button.'),
+	title: 'Capsule — Popover',
 };
 @Component({
 	selector: 'spartan-popover',

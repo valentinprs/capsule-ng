@@ -20,8 +20,8 @@ import { LabelPreview, defaultImports, defaultSkeleton } from './label.preview';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Label', api: 'label' },
-	meta: metaWith('spartan/ui - Label', 'Gives the label a distinct look.'),
-	title: 'spartan/ui - Label',
+	meta: metaWith('Capsule — Label', 'Gives the label a distinct look.'),
+	title: 'Capsule — Label',
 };
 @Component({
 	selector: 'spartan-label',

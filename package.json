@@ -178,7 +178,7 @@
 	},
 	"packageManager": "pnpm@10.30.3",
 	"engines": {
-		"node": ">=22.15",
+		"node": "22.x",
 		"npm": "please-use-pnpm",
 		"pnpm": ">=10",
 		"yarn": "please-use-pnpm"

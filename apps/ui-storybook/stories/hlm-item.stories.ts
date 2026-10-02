@@ -96,7 +96,7 @@ export const Avatar: Story = {
 						class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
 					>
 						<hlm-avatar class="hidden sm:flex">
-							<img hlmAvatarImage src="https://github.com/spartan-ng.png" alt="@spartan-ng" />
+							<img hlmAvatarImage src="/assets/capsule.svg" alt="Capsule" />
 							<span hlmAvatarFallback>CN</span>
 						</hlm-avatar>
 						<hlm-avatar class="hidden sm:flex">
@@ -128,7 +128,7 @@ export const Dropdown: Story = {
 			people: [
 				{
 					username: 'spartan-ng',
-					avatar: 'https://github.com/spartan-ng.png',
+					avatar: '/assets/capsule.svg',
 					email: 'spartan@ng.com',
 				},
 				{
@@ -183,7 +183,7 @@ export const Group: Story = {
 			people: [
 				{
 					username: 'spartan-ng',
-					avatar: 'https://github.com/spartan-ng.png',
+					avatar: '/assets/capsule.svg',
 					email: 'spartan@ng.com',
 				},
 				{

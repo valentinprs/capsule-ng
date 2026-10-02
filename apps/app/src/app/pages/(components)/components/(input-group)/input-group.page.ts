@@ -36,10 +36,10 @@ import { defaultImports, defaultSkeleton, InputGroupPreview } from './input-grou
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'input-group', api: 'input-group' },
 	meta: metaWith(
-		'spartan/ui - input-group',
+		'Capsule — input-group',
 		'A flexible input group that combines inputs with addons, prefixes, and suffixes to improve usability.',
 	),
-	title: 'spartan/ui - input-group',
+	title: 'Capsule — input-group',
 };
 
 @Component({

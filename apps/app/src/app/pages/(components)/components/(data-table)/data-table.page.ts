@@ -50,8 +50,8 @@ import {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Data Table' },
-	meta: metaWith('spartan/ui - Data Table', 'Powerful table and datagrids built using TanStack Table.'),
-	title: 'spartan/ui - Data Table',
+	meta: metaWith('Capsule — Data Table', 'Powerful table and datagrids built using TanStack Table.'),
+	title: 'Capsule — Data Table',
 };
 
 @Component({

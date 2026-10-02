@@ -33,8 +33,8 @@ import { accessibilityCode, ButtonGroupPreview, defaultImports, defaultSkeleton 
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Button Group', api: 'button-group' },
-	meta: metaWith('spartan/ui - Button Group', 'Displays a group of related buttons.'),
-	title: 'spartan/ui - Button Group',
+	meta: metaWith('Capsule — Button Group', 'Displays a group of related buttons.'),
+	title: 'Capsule — Button Group',
 };
 
 @Component({

@@ -9,13 +9,13 @@ const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 
 export const routeMeta: RouteMeta = {
 	meta: metaWith(
-		'spartan/ui - Colors',
+		'Capsule — Colors',
 		'The complete Tailwind color palette in HEX, RGB, HSL, CSS variables, and classes. Ready to copy and paste into your project.',
 	),
 	data: {
 		breadcrumb: 'Colors',
 	},
-	title: 'spartan/ui - Colors',
+	title: 'Capsule — Colors',
 };
 
 @Component({

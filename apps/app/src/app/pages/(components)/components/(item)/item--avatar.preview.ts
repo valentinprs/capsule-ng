@@ -38,7 +38,7 @@ import { HlmItemImports } from '@spartan-ng/helm/item';
 					class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
 				>
 					<hlm-avatar class="hidden sm:flex">
-						<img hlmAvatarImage src="https://github.com/spartan-ng.png" alt="@spartan-ng" />
+						<img hlmAvatarImage src="/assets/capsule.svg" alt="Capsule" />
 						<span hlmAvatarFallback>CN</span>
 					</hlm-avatar>
 					<hlm-avatar class="hidden sm:flex">

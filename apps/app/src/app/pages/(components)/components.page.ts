@@ -5,13 +5,13 @@ import { metaWith } from '../../shared/meta/meta.util';
 
 export const routeMeta: RouteMeta = {
 	meta: metaWith(
-		'spartan/ui - Components',
+		'Capsule — Components',
 		'spartan/ui provides unstyled components that are accessible by default. It also gives you beautiful shadcn-like styling options.',
 	),
 	data: {
 		breadcrumb: 'Components',
 	},
-	title: 'spartan/ui - Components',
+	title: 'Capsule — Components',
 };
 
 @Component({

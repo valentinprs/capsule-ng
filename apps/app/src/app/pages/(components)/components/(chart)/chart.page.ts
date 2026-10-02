@@ -23,8 +23,8 @@ import { ChartPreview, defaultImports, defaultSkeleton } from './chart.preview';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Chart', api: 'chart' },
-	meta: metaWith('spartan/ui - Chart', 'Accessible charts powered by TanStack Charts.'),
-	title: 'spartan/ui - Chart',
+	meta: metaWith('Capsule — Chart', 'Accessible charts powered by TanStack Charts.'),
+	title: 'Capsule — Chart',
 };
 
 @Component({

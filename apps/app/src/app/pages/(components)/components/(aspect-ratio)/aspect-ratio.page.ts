@@ -24,8 +24,8 @@ import { AspectRatioPreview, defaultImports, defaultSkeleton } from './aspect-ra
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Aspect Ratio', api: 'aspect-ratio' },
-	meta: metaWith('spartan/ui - Aspect Ratio', 'Displays content within a desired ratio.'),
-	title: 'spartan/ui - Aspect Ratio',
+	meta: metaWith('Capsule — Aspect Ratio', 'Displays content within a desired ratio.'),
+	title: 'Capsule — Aspect Ratio',
 };
 
 @Component({

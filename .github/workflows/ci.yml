@@ -6,6 +6,11 @@ on:
       - main
   pull_request: {}
 
+# nx-set-shas reads successful Actions runs to select the main-branch base.
+permissions:
+  contents: read
+  actions: read
+
 # Cancel superseded runs on the same ref (e.g. rapid pushes / force-pushes to a PR) so CI minutes
 # are not spent finishing builds that are already out of date.
 concurrency:
@@ -37,7 +42,7 @@ jobs:
         uses: wagoid/commitlint-github-action@v5
         with:
           failOnWarnings: true
-          helpURL: https://github.com/goetzrobin/spartan/blob/main/CONTRIBUTING.md#-commit-message-guidelines
+          helpURL: https://github.com/valentinprs/capsule-ng/blob/main/CONTRIBUTING.md#-commit-message-guidelines
 
   format-and-lint:
     runs-on: ubuntu-latest
@@ -51,6 +56,8 @@ jobs:
           filter: blob:none
       - uses: ./.github/actions/setup
       - uses: nrwl/nx-set-shas@v5
+      - name: Deployment policy and URL audit
+        run: node --test tools/deployment/*.test.mjs
       - name: format
         run: pnpm nx format:check --base=$NX_BASE --head=$NX_HEAD
       - name: lint

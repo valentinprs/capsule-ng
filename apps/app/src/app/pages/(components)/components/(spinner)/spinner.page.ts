@@ -32,10 +32,10 @@ import { SpinnerPreview, defaultImports, defaultSkeleton } from './spinner.previ
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Spinner', api: 'spinner' },
 	meta: metaWith(
-		'spartan/ui - Spinner',
+		'Capsule — Spinner',
 		'Shows a Loading spinner to indicate that the app is busy or the page is still loading.',
 	),
-	title: 'spartan/ui - Spinner',
+	title: 'Capsule — Spinner',
 };
 @Component({
 	selector: 'spartan-spinner',

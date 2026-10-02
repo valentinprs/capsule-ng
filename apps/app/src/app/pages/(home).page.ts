@@ -2,30 +2,26 @@ import type { RouteMeta } from '@analogjs/router';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideArrowRight, lucideStar } from '@ng-icons/lucide';
-import { ZeropsLogo } from '@spartan-ng/app/app/pages/(home)/components/zerops-logo';
-import { HlmBadge } from '@spartan-ng/helm/badge';
+import { lucideStar } from '@ng-icons/lucide';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { REPOSITORY_URL } from '../../site.config';
 import { metaWith } from '../shared/meta/meta.util';
 import { AuthenticationExample } from './(home)/components/authentication/authentication';
 import { DashboardExample } from './(home)/components/dashboard/dashboard';
 import { OverviewExample } from './(home)/components/overview/overview';
 import { PlaygroundExample } from './(home)/components/playground/playground';
 import { TasksExample } from './(home)/components/tasks/tasks';
-import { ThreeHundred } from './(home)/components/three-hundred';
 
 export const routeMeta: RouteMeta = {
 	meta: metaWith(
-		'spartan - Cutting-edge tools powering Angular full-stack development',
+		'Capsule — Cutting-edge tools powering Angular full-stack development',
 		'Build next-level, full-stack applications with AnalogJs and the spartan/stack. Make them accessible and look incredible with spartan/ui.',
 	),
-	title: 'spartan - Cutting-edge tools powering Angular full-stack development',
+	title: 'Capsule — Cutting-edge tools powering Angular full-stack development',
 };
 
 const container = 'mx-auto flex flex-col items-center gap-4 text-center';
-const subHeading =
-	'text-primary leading-tighter max-w-4xl text-2xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-3xl xl:tracking-tighter';
 const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 
 @Component({
@@ -33,10 +29,7 @@ const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 	imports: [
 		HlmButton,
 		RouterLink,
-		HlmBadge,
 		NgIcon,
-		ThreeHundred,
-		ZeropsLogo,
 		HlmTabsImports,
 		OverviewExample,
 		DashboardExample,
@@ -44,18 +37,13 @@ const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 		AuthenticationExample,
 		PlaygroundExample,
 	],
-	providers: [provideIcons({ lucideStar, lucideArrowRight })],
+	providers: [provideIcons({ lucideStar })],
 	host: {
 		class: 'block px-2',
 	},
 	template: `
 		<section class="flex flex-col items-center gap-2 py-8 text-center md:py-16 lg:py-20 xl:gap-4">
 			<div class="${container} max-w-[64rem]">
-				<a target="_blank" href="https://zerops.io" hlmBadge variant="outline" class="border-none outline-none">
-					<spartan-zerops-logo class="mr-0.5 h-3 w-3 fill-red-800 text-red-700" />
-					Powered by Zerops. The dev-first cloud platform.
-					<ng-icon name="lucideArrowRight" />
-				</a>
 				<h1
 					class="text-primary leading-tighter max-w-4xl text-4xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-5xl xl:tracking-tighter"
 				>
@@ -68,16 +56,9 @@ const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 				<div class="flex flex-wrap justify-center gap-4">
 					<a hlmBtn size="sm" routerLink="/documentation">Get Started</a>
 					<a hlmBtn size="sm" variant="ghost" routerLink="/components">View Components</a>
-					<a
-						hlmBtn
-						size="sm"
-						variant="ghost"
-						target="_blank"
-						rel="noreferrer"
-						href="https://github.com/spartan-ng/spartan"
-					>
+					<a hlmBtn size="sm" variant="ghost" target="_blank" rel="noreferrer" href="${REPOSITORY_URL}">
 						<ng-icon class="mr-0.5" name="lucideStar" />
-						Star on GitHub
+						View on GitHub
 					</a>
 				</div>
 			</div>
@@ -125,41 +106,6 @@ const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 					</ng-template>
 				</div>
 			</hlm-tabs>
-		</section>
-
-		<section
-			id="the-300"
-			class="scroll-mt-24 space-y-6 py-8 [contain-intrinsic-size:auto_900px] [content-visibility:auto] md:py-12"
-		>
-			<div class="${container} max-w-[58rem]">
-				<h2 class="${subHeading}">Built By The 300</h2>
-				<p class="${lead} max-w-[42rem]">
-					Ready to make a difference? Join the first 300 and help shape the future of UI development with Angular &
-					spartan.
-				</p>
-			</div>
-			<div class="mx-auto space-y-12 text-center md:max-w-[64rem]">
-				<spartan-three-hundred class="mt-12" />
-				<p class="${lead} mx-auto max-w-[42rem]">
-					This project is MIT-licensed and free forever. Sponsoring funds ongoing maintenance, new components, and the
-					people who keep it moving!
-				</p>
-				<div class="flex flex-col items-center justify-center gap-3 sm:flex-row">
-					<a hlmBtn size="lg" target="_blank" rel="noreferrer" href="https://github.com/sponsors/goetzrobin">
-						Sponsor spartan
-					</a>
-					<a
-						hlmBtn
-						size="lg"
-						variant="outline"
-						target="_blank"
-						rel="noreferrer"
-						href="https://github.com/spartan-ng/spartan"
-					>
-						Claim your spot in the 300 today!
-					</a>
-				</div>
-			</div>
 		</section>
 	`,
 })

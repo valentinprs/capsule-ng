@@ -28,10 +28,10 @@ import { AlertDialogPreview, defaultImports, defaultSkeleton } from './alert-dia
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Alert Dialog', api: 'alert-dialog' },
 	meta: metaWith(
-		'spartan/ui - Alert Dialog',
+		'Capsule — Alert Dialog',
 		'A modal dialog that interrupts the user with important content and expects a response.',
 	),
-	title: 'spartan/ui - Alert Dialog',
+	title: 'Capsule — Alert Dialog',
 };
 
 @Component({

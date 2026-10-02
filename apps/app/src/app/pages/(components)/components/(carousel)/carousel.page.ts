@@ -28,8 +28,8 @@ import { CarouselPreview, defaultImports, defaultSkeleton } from './carousel.pre
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Carousel', api: 'carousel' },
-	meta: metaWith('spartan/ui - Carousel', 'A carousel with motion and swipe built using Embla.'),
-	title: 'spartan/ui - Carousel',
+	meta: metaWith('Capsule — Carousel', 'A carousel with motion and swipe built using Embla.'),
+	title: 'Capsule — Carousel',
 };
 
 @Component({

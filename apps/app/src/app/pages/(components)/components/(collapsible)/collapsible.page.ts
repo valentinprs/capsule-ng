@@ -26,8 +26,8 @@ import { CollapsiblePreview, defaultImports, defaultSkeleton } from './collapsib
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Collapsible', api: 'collapsible' },
-	meta: metaWith('spartan/ui - Collapsible', 'An interactive component which expands/collapses a panel.'),
-	title: 'spartan/ui - Collapsible',
+	meta: metaWith('Capsule — Collapsible', 'An interactive component which expands/collapses a panel.'),
+	title: 'Capsule — Collapsible',
 };
 
 @Component({

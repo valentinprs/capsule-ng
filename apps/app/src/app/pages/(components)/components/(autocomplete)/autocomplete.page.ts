@@ -41,8 +41,8 @@ import {
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Autocomplete', api: 'autocomplete' },
-	meta: metaWith('spartan/ui - Autocomplete', 'Autocomplete input and dropdown selection with filtering options.'),
-	title: 'spartan/ui - Autocomplete',
+	meta: metaWith('Capsule — Autocomplete', 'Autocomplete input and dropdown selection with filtering options.'),
+	title: 'Capsule — Autocomplete',
 };
 
 @Component({

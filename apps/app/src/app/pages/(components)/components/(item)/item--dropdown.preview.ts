@@ -48,7 +48,7 @@ export class ItemDropdownPreview {
 	protected readonly _people = [
 		{
 			username: 'spartan-ng',
-			avatar: 'https://github.com/spartan-ng.png',
+			avatar: '/assets/capsule.svg',
 			email: 'spartan@ng.com',
 		},
 		{

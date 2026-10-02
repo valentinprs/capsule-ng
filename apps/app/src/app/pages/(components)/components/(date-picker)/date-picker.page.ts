@@ -36,8 +36,8 @@ import { DatePickerPreview, defaultImports, defaultSkeleton } from './date-picke
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Date Picker', api: 'date-picker' },
-	meta: metaWith('spartan/ui - Date Picker', 'A date picker component.'),
-	title: 'spartan/ui - Date Picker',
+	meta: metaWith('Capsule — Date Picker', 'A date picker component.'),
+	title: 'Capsule — Date Picker',
 };
 
 @Component({

@@ -26,8 +26,8 @@ import { AlertPreview, defaultImports, defaultSkeleton } from './alert.preview';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Alert', api: 'alert' },
-	meta: metaWith('spartan/ui - Alert', 'Displays a callout for user attention.'),
-	title: 'spartan/ui - Alert',
+	meta: metaWith('Capsule — Alert', 'Displays a callout for user attention.'),
+	title: 'Capsule — Alert',
 };
 
 @Component({

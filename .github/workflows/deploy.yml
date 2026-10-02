@@ -1,0 +1,80 @@
+name: deploy
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+  workflow_run:
+    workflows: [ci]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  build:
+    concurrency:
+      group: deploy-build-${{ github.event.pull_request.number || 'production' }}
+      cancel-in-progress: true
+    if: >-
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.event == 'push' && github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      NODE_OPTIONS: --max-old-space-size=6000
+      NX_DAEMON: 'false'
+      VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+      VERCEL_CATALOGUE_PROJECT_ID: ${{ vars.VERCEL_CATALOGUE_PROJECT_ID }}
+      VERCEL_STORYBOOK_PROJECT_ID: ${{ vars.VERCEL_STORYBOOK_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+      DEPLOY_SHA: ${{ github.event.pull_request.head.sha || github.event.workflow_run.head_sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.event.workflow_run.head_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+      - uses: pnpm/action-setup@v5
+        if: github.event.action != 'closed'
+      - name: Build and upload deployments
+        if: github.event.action != 'closed'
+        run: node tools/deployment/deploy.mjs build
+      - uses: actions/upload-artifact@v4
+        if: always() && github.event.action != 'closed'
+        with:
+          name: deployment-results
+          path: deployment-results.json
+          if-no-files-found: ignore
+          retention-days: 1
+  publish:
+    needs: build
+    if: always() && !cancelled() && needs.build.result != 'skipped'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-publish-${{ github.event.pull_request.number || 'production' }}
+      cancel-in-progress: false
+    env:
+      VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+      VERCEL_CATALOGUE_PROJECT_ID: ${{ vars.VERCEL_CATALOGUE_PROJECT_ID }}
+      VERCEL_STORYBOOK_PROJECT_ID: ${{ vars.VERCEL_STORYBOOK_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.event.workflow_run.head_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+      - uses: actions/download-artifact@v4
+        if: github.event.action != 'closed'
+        with:
+          name: deployment-results
+      - name: Promote current deployments or clean closed PR
+        run: node tools/deployment/deploy.mjs publish

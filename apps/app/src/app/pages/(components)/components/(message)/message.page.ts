@@ -28,10 +28,10 @@ import { defaultImports, defaultSkeleton, MessagePreview } from './message.previ
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Message', api: 'message' },
 	meta: metaWith(
-		'spartan/ui - Message',
+		'Capsule — Message',
 		'Displays a message in a conversation, with optional avatar, header, footer, and alignment.',
 	),
-	title: 'spartan/ui - Message',
+	title: 'Capsule — Message',
 };
 
 @Component({

@@ -162,3 +162,58 @@
 .caps-field:has(:disabled) > caps-field-content > .caps-field-label {
 	@apply opacity-(--caps-opacity-disabled);
 }
+
+/* MARK: Dialogs */
+
+.caps-alert-dialog-content {
+	@apply data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-popover text-popover-foreground ring-foreground/10 gap-4 rounded-xl p-4 ring-1 duration-(--caps-duration-100) data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm;
+}
+
+.caps-alert-dialog-header {
+	@apply grid grid-rows-[auto_1fr] place-items-center gap-1.5 text-center has-data-[slot=alert-dialog-media]:grid-rows-[auto_auto_1fr] has-data-[slot=alert-dialog-media]:gap-x-4 sm:group-data-[size=default]/alert-dialog-content:place-items-start sm:group-data-[size=default]/alert-dialog-content:text-start sm:group-data-[size=default]/alert-dialog-content:has-data-[slot=alert-dialog-media]:grid-rows-[auto_1fr];
+}
+
+.caps-alert-dialog-media {
+	@apply bg-muted mb-2 inline-flex size-10 items-center justify-center rounded-md sm:group-data-[size=default]/alert-dialog-content:row-span-2 *:[ng-icon:not([class*='text-'])]:text-[length:--spacing(6)];
+}
+
+.caps-alert-dialog-title {
+	@apply text-base font-medium sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2;
+}
+
+.caps-alert-dialog-description {
+	@apply text-muted-foreground *:[a]:hover:text-foreground text-sm text-balance md:text-pretty *:[a]:underline *:[a]:underline-offset-3;
+}
+
+.caps-alert-dialog-footer,
+.caps-dialog-footer {
+	@apply bg-muted/50 -mx-4 -mb-4 rounded-b-xl border-t p-4;
+}
+
+.caps-dialog-overlay {
+	@apply data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 isolate bg-black/10 duration-(--caps-duration-100) supports-backdrop-filter:backdrop-blur-xs;
+}
+
+.caps-dialog-content {
+	@apply bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 ring-foreground/10 grid max-w-[calc(100%-var(--spacing)*8)] gap-4 rounded-xl p-4 text-sm ring-1 duration-(--caps-duration-100) sm:max-w-sm;
+}
+
+.caps-dialog-close {
+	@apply absolute end-2 top-2;
+}
+
+.caps-dialog-header {
+	@apply gap-2;
+}
+
+.caps-dialog-title {
+	@apply text-base leading-none font-medium;
+}
+
+.caps-dialog-description {
+	@apply text-muted-foreground *:[a]:hover:text-foreground text-sm *:[a]:underline *:[a]:underline-offset-3;
+}
+
+.caps-alert-dialog-content {
+	width: min(100%, calc(100vw - var(--spacing) * 8));
+}

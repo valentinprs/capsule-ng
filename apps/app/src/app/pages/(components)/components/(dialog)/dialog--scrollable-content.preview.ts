@@ -1,22 +1,27 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDialogImports } from '@capsule-ng/caps/dialog';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-dialog-scrollable-content',
-	imports: [HlmDialogImports, HlmFieldImports, HlmInputImports, HlmButtonImports],
+	imports: [CapsDialogImports, CapsFieldImports, CapsInputImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-dialog>
-			<button hlmDialogTrigger hlmBtn variant="outline">Scrollable Content</button>
-			<hlm-dialog-content *hlmDialogPortal="let ctx" class="sm:max-w-sm">
-				<hlm-dialog-header>
-					<h3 hlmDialogTitle>Scrollable Content</h3>
-					<p hlmDialogDescription>This is a dialog with scrollable content.</p>
-				</hlm-dialog-header>
-				<div class="no-scrollbar -mx-4 max-h-[50vh] overflow-y-auto px-4">
+		<caps-dialog>
+			<button capsDialogTrigger capsButton variant="outline">Scrollable Content</button>
+			<ng-template capsDialogContent let-ctx class="sm:max-w-sm">
+				<caps-dialog-header>
+					<caps-dialog-title>Scrollable Content</caps-dialog-title>
+					<caps-dialog-description>This is a dialog with scrollable content.</caps-dialog-description>
+				</caps-dialog-header>
+				<div
+					role="region"
+					aria-label="Dialog content"
+					tabindex="0"
+					class="no-scrollbar -mx-4 max-h-[50vh] overflow-y-auto px-4"
+				>
 					@for (item of _items; track item) {
 						<p class="mb-4 leading-normal">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -27,8 +32,8 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 						</p>
 					}
 				</div>
-			</hlm-dialog-content>
-		</hlm-dialog>
+			</ng-template>
+		</caps-dialog>
 	`,
 })
 export class DialogScrollableContent {

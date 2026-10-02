@@ -1,50 +1,50 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsAlertDialogImports } from '@capsule-ng/caps/alert-dialog';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBluetooth } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmAlertDialogImports } from '@spartan-ng/helm/alert-dialog';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-alert-dialog-rtl',
-	imports: [HlmAlertDialogImports, HlmButtonImports, NgIcon],
+	imports: [CapsAlertDialogImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideBluetooth })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex gap-4" [dir]="_dir()">
-			<hlm-alert-dialog>
-				<button hlmAlertDialogTrigger hlmBtn variant="outline">{{ _t()['showDialog'] }}</button>
-				<hlm-alert-dialog-content *hlmAlertDialogPortal="let ctx" [dir]="_dir()">
-					<hlm-alert-dialog-header>
-						<h2 hlmAlertDialogTitle>{{ _t()['title'] }}</h2>
-						<p hlmAlertDialogDescription>
+			<caps-alert-dialog>
+				<button capsAlertDialogTrigger capsButton variant="outline">{{ _t()['showDialog'] }}</button>
+				<ng-template capsAlertDialogContent let-ctx>
+					<caps-alert-dialog-header>
+						<caps-alert-dialog-title>{{ _t()['title'] }}</caps-alert-dialog-title>
+						<caps-alert-dialog-description>
 							{{ _t()['description'] }}
-						</p>
-					</hlm-alert-dialog-header>
-					<hlm-alert-dialog-footer>
-						<button hlmAlertDialogCancel>{{ _t()['cancel'] }}</button>
-						<button hlmAlertDialogAction>{{ _t()['continue'] }}</button>
-					</hlm-alert-dialog-footer>
-				</hlm-alert-dialog-content>
-			</hlm-alert-dialog>
-			<hlm-alert-dialog>
-				<button hlmAlertDialogTrigger hlmBtn variant="outline">{{ _t()['showDialogSm'] }}</button>
-				<hlm-alert-dialog-content *hlmAlertDialogPortal="let ctx" size="sm" [dir]="_dir()">
-					<hlm-alert-dialog-header>
-						<hlm-alert-dialog-media>
+						</caps-alert-dialog-description>
+					</caps-alert-dialog-header>
+					<caps-alert-dialog-footer>
+						<button capsAlertDialogCancel capsButton variant="outline">{{ _t()['cancel'] }}</button>
+						<button capsButton (click)="ctx.close()">{{ _t()['continue'] }}</button>
+					</caps-alert-dialog-footer>
+				</ng-template>
+			</caps-alert-dialog>
+			<caps-alert-dialog>
+				<button capsAlertDialogTrigger capsButton variant="outline">{{ _t()['showDialogSm'] }}</button>
+				<ng-template capsAlertDialogContent let-ctx size="sm">
+					<caps-alert-dialog-header>
+						<caps-alert-dialog-media>
 							<ng-icon name="lucideBluetooth" />
-						</hlm-alert-dialog-media>
-						<h2 hlmAlertDialogTitle>{{ _t()['smallTitle'] }}</h2>
-						<p hlmAlertDialogDescription>
+						</caps-alert-dialog-media>
+						<caps-alert-dialog-title>{{ _t()['smallTitle'] }}</caps-alert-dialog-title>
+						<caps-alert-dialog-description>
 							{{ _t()['smallDescription'] }}
-						</p>
-					</hlm-alert-dialog-header>
-					<hlm-alert-dialog-footer>
-						<button hlmAlertDialogCancel>{{ _t()['dontAllow'] }}</button>
-						<button hlmAlertDialogAction>{{ _t()['allow'] }}</button>
-					</hlm-alert-dialog-footer>
-				</hlm-alert-dialog-content>
-			</hlm-alert-dialog>
+						</caps-alert-dialog-description>
+					</caps-alert-dialog-header>
+					<caps-alert-dialog-footer>
+						<button capsAlertDialogCancel capsButton variant="outline">{{ _t()['dontAllow'] }}</button>
+						<button capsButton (click)="ctx.close()">{{ _t()['allow'] }}</button>
+					</caps-alert-dialog-footer>
+				</ng-template>
+			</caps-alert-dialog>
 		</div>
 	`,
 })

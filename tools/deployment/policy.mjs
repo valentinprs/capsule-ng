@@ -47,3 +47,11 @@ export function deploymentUrl(output) {
 	if (!urls?.length) throw new Error('CLI did not return a deployment URL');
 	return urls.at(-1);
 }
+
+export function deploymentMetadata(context) {
+	return {
+		capsuleRepository: repository,
+		capsuleSha: context.sha,
+		...(context.production ? {} : { capsulePr: String(context.pr) }),
+	};
+}

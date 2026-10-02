@@ -40,3 +40,10 @@ export function previewAlias(project, pr) {
 export function isCurrent(context, remote) {
 	return context.production ? remote.sha === context.sha : remote.state === 'open' && remote.head.sha === context.sha;
 }
+
+export function deploymentUrl(output) {
+	// CLI versions support both plain URL output and structured non-interactive output.
+	const urls = output.match(/https:\/\/[a-zA-Z0-9.-]+\.vercel\.app(?=[\s"',}]|$)/g);
+	if (!urls?.length) throw new Error('CLI did not return a deployment URL');
+	return urls.at(-1);
+}

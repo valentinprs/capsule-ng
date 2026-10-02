@@ -1,6 +1,14 @@
 import { spawn } from 'node:child_process';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { commentMarker, deploymentContext, isCurrent, ownsPreview, previewAlias, repository } from './policy.mjs';
+import {
+	commentMarker,
+	deploymentContext,
+	deploymentUrl,
+	isCurrent,
+	ownsPreview,
+	previewAlias,
+	repository,
+} from './policy.mjs';
 
 const stage = process.argv[2];
 if (!['build', 'publish'].includes(stage)) throw new Error('Expected build or publish stage');
@@ -84,6 +92,7 @@ async function cleanup(project) {
 	// Fetch full details before deletion. Both project ownership and our PR metadata must match.
 	let until;
 	do {
+		if ((await github(`/pulls/${context.pr}`)).state !== 'closed') return;
 		const page = await api(`/v6/deployments?projectId=${project.id}&limit=100${until ? `&until=${until}` : ''}`);
 		for (const item of page.deployments) {
 			if (
@@ -94,6 +103,7 @@ async function cleanup(project) {
 				continue;
 			const deployment = await api(`/v13/deployments/${item.uid}`, { allow404: true });
 			if (!deployment || !ownsPreview(deployment, project.id, context.pr)) continue;
+			if ((await github(`/pulls/${context.pr}`)).state !== 'closed') return;
 			const aliases = await api(`/v2/deployments/${item.uid}/aliases`);
 			for (const alias of aliases.aliases) {
 				if (alias.alias === previewAlias(project.name, context.pr))
@@ -144,8 +154,7 @@ if (stage === 'publish' && context.cleanup) {
 				project,
 				true,
 			);
-			const url = output.split(/\s+/).findLast((value) => /^https:\/\/[^/]+\.vercel\.app$/.test(value));
-			if (!url) throw new Error('CLI did not return a deployment URL');
+			const url = deploymentUrl(output);
 			results.push({ name: project.name, url, sha: context.sha });
 		} catch (error) {
 			results.push({ name: project.name, error: error.message, sha: context.sha });

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { deploymentContext, isCurrent, ownsPreview, previewAlias, repository } from './policy.mjs';
+import { deploymentContext, deploymentUrl, isCurrent, ownsPreview, previewAlias, repository } from './policy.mjs';
 const pr = {
 	number: 7,
 	head: { sha: 'new', repo: { full_name: repository } },
@@ -48,4 +48,13 @@ test('old commits and closed PRs cannot replace the current deployment', () => {
 	assert.equal(isCurrent({ production: true, sha: 'old' }, { sha: 'new' }), false);
 	assert.equal(previewAlias('capsule-ng', 7), 'capsule-ng-pr-7.vercel.app');
 	assert.throws(() => previewAlias('other', 7));
+});
+
+test('CLI URL parsing supports plain and structured output', () => {
+	assert.equal(deploymentUrl('https://capsule-ng-build.vercel.app\n'), 'https://capsule-ng-build.vercel.app');
+	assert.equal(
+		deploymentUrl(JSON.stringify({ url: 'https://capsule-ng-build.vercel.app' })),
+		'https://capsule-ng-build.vercel.app',
+	);
+	assert.throws(() => deploymentUrl('https://example.org'));
 });

@@ -6,5 +6,16 @@
 	"framework": null,
 	"installCommand": "npx --yes pnpm@10.30.3 install --frozen-lockfile",
 	"buildCommand": "npx --yes pnpm@10.30.3 nx build-storybook ui-storybook",
-	"outputDirectory": "dist/storybook/ui-storybook"
+	"outputDirectory": "dist/storybook/ui-storybook",
+	"headers": [
+		{
+			"source": "/(.*)",
+			"headers": [
+				{
+					"key": "X-Robots-Tag",
+					"value": "noindex, nofollow"
+				}
+			]
+		}
+	]
 }

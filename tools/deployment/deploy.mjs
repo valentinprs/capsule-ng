@@ -131,7 +131,13 @@ if (stage === 'publish' && context.cleanup) {
 			);
 			await cli(['pull', '--yes', `--environment=${context.production ? 'production' : 'preview'}`], project);
 			await cli(
-				['build', '--yes', '--local-config', project.config, ...(context.production ? ['--prod'] : [])],
+				[
+					'build',
+					'--yes',
+					'--local-config',
+					project.config,
+					...(context.production ? ['--prod'] : ['--target=preview']),
+				],
 				project,
 			);
 			if (!(await current())) break;
@@ -148,7 +154,7 @@ if (stage === 'publish' && context.cleanup) {
 					`capsulePr=${context.pr || ''}`,
 					'--meta',
 					`capsuleSha=${context.sha}`,
-					...(context.production ? ['--prod', '--skip-domain'] : []),
+					...(context.production ? ['--prod', '--skip-domain'] : ['--target=preview']),
 				],
 				project,
 				true,

@@ -1,11 +1,11 @@
 import { CommonModule, JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit, ViewEncapsulation, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsLabel } from '@capsule-ng/caps/label';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCitrus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
@@ -29,9 +29,9 @@ const meta: Meta<BrnSelectStoryArgs> = {
 				FormsModule,
 				ReactiveFormsModule,
 				HlmSelectImports,
-				HlmFieldImports,
-				HlmButton,
-				HlmLabel,
+				CapsFieldImports,
+				CapsButton,
+				CapsLabel,
 				NgIcon,
 			],
 			providers: [provideIcons({ lucideCitrus })],
@@ -364,7 +364,7 @@ export const ReactiveFormControlWithValidationWithLabel: Story = {
 				<pre>Form Control Value: {{ fruitGroup.controls.fruit.valueChanges | async | json }}</pre>
 			</div>
 			<form [formGroup]="fruitGroup">
-				<label hlmLabel>Select a Fruit</label>
+				<label capsLabel>Select a Fruit</label>
 				<hlm-select class="w-56" formControlName="fruit" ${argsToTemplate(args, { exclude: ['value'] })}>
 					<hlm-select-trigger>
 						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
@@ -398,8 +398,8 @@ export const WithHintAndError: Story = {
 		},
 		template: /* HTML */ `
 			<form [formGroup]="form" class="w-full max-w-sm space-y-3">
-				<div hlmField>
-					<label hlmFieldLabel>Fruit *</label>
+				<caps-field>
+					<caps-field-label>Fruit *</caps-field-label>
 					<hlm-select
 						class="w-56"
 						formControlName="fruit"
@@ -420,14 +420,14 @@ export const WithHintAndError: Story = {
 						</hlm-select-content>
 					</hlm-select>
 
-					<p hlmFieldDescription>Pick a fruit so we can tailor the recommendations.</p>
+					<caps-field-description>Pick a fruit so we can tailor the recommendations.</caps-field-description>
 
-					<hlm-field-error>Select your favorite fruit to continue.</hlm-field-error>
-				</div>
+					<caps-field-error>Select your favorite fruit to continue.</caps-field-error>
+				</caps-field>
 
 				<div class="flex flex-wrap items-center gap-2">
-					<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+					<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 				</div>
 			</form>
 		`,
@@ -445,7 +445,7 @@ export const NgModelFormControl: Story = {
 				<div class="mb-3">
 					<pre>Form Control Value: {{fruit() | json }}</pre>
 				</div>
-				<label hlmLabel>Select a Fruit</label>
+				<label capsLabel>Select a Fruit</label>
 				<hlm-select class="w-56" ${argsToTemplate(args, { exclude: ['value'] })} [(ngModel)]="fruit" name="fruit">
 					<hlm-select-trigger>
 						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
@@ -483,7 +483,7 @@ export const NgModelFormControlInitialValue: Story = {
                 <div class="mb-3">
                     <pre>Form Control Value: {{fruit() | json }}</pre>
                 </div>
-                    <label hlmLabel>Select a Fruit</label>
+                    <label capsLabel>Select a Fruit</label>
                 <hlm-select
                     class="w-56"
                     ${argsToTemplate(args, {
@@ -516,7 +516,7 @@ export const SelectWithLabel: Story = {
 		props: { ...args, fruitGroup: new FormGroup({ fruit: new FormControl() }) },
 		template: /* HTML */ `
 			<form [formGroup]="fruitGroup">
-				<label hlmLabel for="select-trigger">Select a Fruit</label>
+				<label capsLabel for="select-trigger">Select a Fruit</label>
 				<hlm-select formControlName="fruit" ${argsToTemplate(args, { exclude: ['value'] })}>
 					<hlm-select-trigger class="w-56" buttonId="select-trigger">
 						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
@@ -639,14 +639,14 @@ export const WithLabelAndForm: Story = {
 	selector: 'label-and-form-component',
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [FormsModule, ReactiveFormsModule, HlmSelectImports, HlmLabel, HlmButton],
+	imports: [FormsModule, ReactiveFormsModule, HlmSelectImports, CapsLabel, CapsButton],
 	providers: [],
 	host: {
 		class: '',
 	},
 	template: `
 		<form class="space-y-5" (ngSubmit)="handleSubmit()">
-			<label hlmLabel>Select a Fruit*</label>
+			<label capsLabel>Select a Fruit*</label>
 			<hlm-select class="w-56" [(ngModel)]="fruit">
 				<hlm-select-trigger>
 					<hlm-select-value placeholder="Select a fruit" />
@@ -662,7 +662,7 @@ export const WithLabelAndForm: Story = {
 					</hlm-select-group>
 				</hlm-select-content>
 			</hlm-select>
-			<button hlmBtn>Submit</button>
+			<button capsButton>Submit</button>
 		</form>
 	`,
 })
@@ -686,7 +686,7 @@ export const DynamicOptionsMultiSelect: Story = {
 	selector: 'dynamic-options-multi-select-component',
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [FormsModule, ReactiveFormsModule, HlmSelectImports, HlmLabel, HlmButton, JsonPipe],
+	imports: [FormsModule, ReactiveFormsModule, HlmSelectImports, CapsLabel, CapsButton, JsonPipe],
 	providers: [],
 	host: {
 		class: '',
@@ -696,7 +696,7 @@ export const DynamicOptionsMultiSelect: Story = {
 			<div class="mb-3">
 				<pre>Form Control Value: {{ fruit.value | json }}</pre>
 			</div>
-			<label hlmLabel>Select a Fruit*</label>
+			<label capsLabel>Select a Fruit*</label>
 			<hlm-select-multiple class="w-56" [formControl]="fruit">
 				<hlm-select-trigger>
 					<hlm-select-placeholder>Select an option</hlm-select-placeholder>
@@ -718,11 +718,11 @@ export const DynamicOptionsMultiSelect: Story = {
 				</hlm-select-content>
 			</hlm-select-multiple>
 		</form>
-		<button hlmBtn class="mt-2" (click)="updateOptions()">Update Options</button>
+		<button capsButton class="mt-2" (click)="updateOptions()">Update Options</button>
 
-		<button hlmBtn class="mt-2" (click)="updateDiffOptions()">Update Diff Options</button>
+		<button capsButton class="mt-2" (click)="updateDiffOptions()">Update Diff Options</button>
 
-		<button hlmBtn class="mt-2" (click)="updatePartialOptions()">Update Partial Options</button>
+		<button capsButton class="mt-2" (click)="updatePartialOptions()">Update Partial Options</button>
 	`,
 })
 class DynamicOptionsMultiSelectComponent implements OnInit {

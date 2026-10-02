@@ -1,5 +1,5 @@
+import { CapsButton } from '@capsule-ng/caps/button';
 import { HlmAlertDialog, HlmAlertDialogImports } from '@spartan-ng/helm/alert-dialog';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
 const meta: Meta<HlmAlertDialog> = {
@@ -10,7 +10,7 @@ const meta: Meta<HlmAlertDialog> = {
 	argTypes: {},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmAlertDialogImports, HlmButton],
+			imports: [HlmAlertDialogImports, CapsButton],
 		}),
 	],
 };
@@ -22,7 +22,7 @@ export const Default: Story = {
 	render: () => ({
 		template: `
     <hlm-alert-dialog>
-      <button id="delete-account" variant="outline" hlmAlertDialogTrigger hlmBtn>Delete Account</button>
+      <button id="delete-account" variant="outline" hlmAlertDialogTrigger capsButton>Delete Account</button>
       <hlm-alert-dialog-content *hlmAlertDialogPortal="let ctx">
            <hlm-alert-dialog-header>
             <h2 hlmAlertDialogTitle>Are you absolutely sure?</h2>

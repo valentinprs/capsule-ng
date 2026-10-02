@@ -76,7 +76,7 @@ const formatDate = (value: string, formatter: Intl.DateTimeFormat) => formatter.
 					@for (chart of _chartKeys; track chart) {
 						<button
 							type="button"
-							class="data-[active=true]:bg-muted/50 relative z-30 flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-t-0 sm:border-l sm:px-8 sm:py-6"
+							class="data-[active=true]:bg-muted/50 relative z-(--caps-z-30) flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-t-0 sm:border-l sm:px-8 sm:py-6"
 							[attr.data-active]="_activeChart() === chart"
 							[attr.aria-pressed]="_activeChart() === chart"
 							(click)="_activeChart.set(chart)"

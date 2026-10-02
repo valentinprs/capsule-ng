@@ -70,14 +70,14 @@ export const shimmerColorCode = `<p class="shimmer shimmer-color-blue-500/60">Ge
 			<p class="font-mono text-xs">shimmer</p>
 		</div>
 		<div class="flex flex-col gap-3">
-			<p class="shimmer shimmer-duration-1000">Generating response…</p>
-			<p class="font-mono text-xs">shimmer-duration-1000</p>
+			<p class="shimmer shimmer-duration-(--caps-duration-1000)">Generating response…</p>
+			<p class="font-mono text-xs">shimmer-duration-(--caps-duration-1000)</p>
 		</div>
 	`,
 })
 export class ShimmerDurationPreview {}
 
-export const shimmerDurationCode = `<p class="shimmer shimmer-duration-1000">Generating response…</p>`;
+export const shimmerDurationCode = `<p class="shimmer shimmer-duration-(--caps-duration-1000)">Generating response…</p>`;
 
 @Component({
 	selector: 'spartan-shimmer-spread-preview',
@@ -129,7 +129,9 @@ export const shimmerAngleCode = `<p class="shimmer shimmer-angle-45">Generating 
 	template: `
 		<!-- Remount on _key change so shimmer-once can replay. -->
 		@for (_ of [_key()]; track _) {
-			<p class="text-muted-foreground shimmer shimmer-duration-1100 shimmer-once text-sm">Generating response…</p>
+			<p class="text-muted-foreground shimmer shimmer-duration-(--caps-duration-1100) shimmer-once text-sm">
+				Generating response…
+			</p>
 		}
 		<button hlmBtn variant="outline" size="sm" type="button" (click)="replay()">Replay</button>
 	`,
@@ -142,7 +144,7 @@ export class ShimmerOncePreview {
 	}
 }
 
-export const shimmerOnceCode = `<p class="shimmer shimmer-duration-1100 shimmer-once text-muted-foreground text-sm">
+export const shimmerOnceCode = `<p class="shimmer shimmer-duration-(--caps-duration-1100) shimmer-once text-muted-foreground text-sm">
   Generating response…
 </p>`;
 

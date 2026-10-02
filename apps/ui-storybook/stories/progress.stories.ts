@@ -1,5 +1,5 @@
+import { CapsLabel } from '@capsule-ng/caps/label';
 import { BrnProgress, BrnProgressImports } from '@spartan-ng/brain/progress';
-import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmProgressImports } from '@spartan-ng/helm/progress';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
@@ -17,7 +17,7 @@ const meta: Meta<BrnProgress> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [BrnProgressImports, HlmProgressImports, HlmLabel],
+			imports: [BrnProgressImports, HlmProgressImports, CapsLabel],
 		}),
 	],
 };
@@ -32,7 +32,7 @@ export const LoadingNotStarted: Story = {
 	render: ({ ...args }) => ({
 		props: { ...args },
 		template: `
-    <h2 hlmLabel id='loading'>Loading (not started)</h2>
+    <h2 capsLabel id='loading'>Loading (not started)</h2>
     <hlm-progress class='mt-2 mb-8' aria-labelledby='loading' ${argsToTemplate(args)}>
       <hlm-progress-indicator />
     </hlm-progress>
@@ -44,7 +44,7 @@ export const LoadingStarted: Story = {
 	render: ({ ...args }) => ({
 		props: { ...args },
 		template: `
-    <h2 hlmLabel id='loading'>Loading (started)</h2>
+    <h2 capsLabel id='loading'>Loading (started)</h2>
     <hlm-progress class='mt-2 mb-8' aria-labelledby='loading' ${argsToTemplate(args)}>
       <hlm-progress-indicator />
     </hlm-progress>
@@ -59,7 +59,7 @@ export const Indeterminate: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-    <h2 hlmLabel id='indeterminate'>Indeterminate</h2>
+    <h2 capsLabel id='indeterminate'>Indeterminate</h2>
     <hlm-progress class='mt-2 mb-8' aria-labelledby='indeterminate' ${argsToTemplate(args)}>
       <hlm-progress-indicator />
     </hlm-progress>
@@ -74,7 +74,7 @@ export const Complete: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-    <h2 hlmLabel id='complete'>Complete</h2>
+    <h2 capsLabel id='complete'>Complete</h2>
     <hlm-progress class='mt-2 mb-8' aria-labelledby='complete' ${argsToTemplate(args)}>
       <hlm-progress-indicator />
     </hlm-progress>

@@ -1,40 +1,35 @@
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmTextarea } from '@spartan-ng/helm/textarea';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsLabel } from '@capsule-ng/caps/label';
+import { CapsTextarea } from '@capsule-ng/caps/textarea';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { argsToTemplate, moduleMetadata } from '@storybook/angular';
 
 export default {
 	title: 'Textarea',
-	component: HlmTextarea,
+	component: CapsTextarea,
 	tags: ['autodocs'],
 	args: {
-		error: 'auto',
+		forceInvalid: false,
 	},
 	argTypes: {
-		error: {
-			options: ['auto', 'true'],
-			control: {
-				type: 'select',
-			},
-		},
+		forceInvalid: { control: 'boolean' },
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmTextarea, HlmLabel, HlmButton, FormsModule, ReactiveFormsModule, HlmFieldImports],
+			imports: [CapsTextarea, CapsLabel, CapsButton, FormsModule, ReactiveFormsModule, CapsFieldImports],
 		}),
 	],
-} as Meta<HlmTextarea>;
+} as Meta<{ forceInvalid: boolean }>;
 
-type Story = StoryObj<HlmTextarea>;
+type Story = StoryObj<{ forceInvalid: boolean }>;
 
 export const Default: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-			<textarea hlmTextarea class="w-80" placeholder="Type your message here." ${argsToTemplate(args)}></textarea>
+			<textarea capsTextarea class="w-80" placeholder="Type your message here." ${argsToTemplate(args)}></textarea>
 		`,
 	}),
 };
@@ -43,7 +38,7 @@ export const Disabled: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-			<textarea hlmTextarea disabled class="w-80" placeholder="Type your message here." ${argsToTemplate(args)}></textarea>
+			<textarea capsTextarea disabled class="w-80" placeholder="Type your message here." ${argsToTemplate(args)}></textarea>
 		`,
 	}),
 };
@@ -52,16 +47,16 @@ export const Required: Story = {
 	render: ({ ...args }) => ({
 		props: { value: '', ...args },
 		template: `
-			<textarea hlmTextarea required [(ngModel)]="value" class="w-80" placeholder="Type your message here.*" ${argsToTemplate(args)}></textarea>
+			<textarea capsTextarea required [(ngModel)]="value" class="w-80" placeholder="Type your message here.*" ${argsToTemplate(args)}></textarea>
 		`,
 	}),
 };
 
 export const Error: Story = {
 	render: ({ ...args }) => ({
-		props: { ...args, error: 'true' },
+		props: { ...args, forceInvalid: true },
 		template: `
-			<textarea hlmTextarea class="w-80" placeholder="Type your message here.*" ${argsToTemplate(args)}></textarea>
+			<textarea capsTextarea class="w-80" placeholder="Type your message here.*" ${argsToTemplate(args)}></textarea>
 		`,
 	}),
 };
@@ -72,8 +67,8 @@ export const WithButton: Story = {
 		props: args,
 		template: `
 			<div class="w-80 grid gap-2">
-				<textarea hlmTextarea placeholder="Type your message here." ${argsToTemplate(args)}></textarea>
-				<button hlmBtn>Subscribe</button>
+				<textarea capsTextarea placeholder="Type your message here." ${argsToTemplate(args)}></textarea>
+				<button capsButton>Subscribe</button>
 			</div>
 		`,
 	}),
@@ -88,10 +83,10 @@ export const WithHintAndError: Story = {
 		},
 		template: `
 		<form [formGroup]="form" class="space-y-3 w-full max-w-sm">
-			<div hlmField>
-				<label hlmFieldLabel>Message *</label>
+			<caps-field>
+				<caps-field-label>Message *</caps-field-label>
 				<textarea
-					hlmTextarea
+					capsTextarea
 					id="textarea-hint"
 					formControlName="message"
 					class="w-full"
@@ -99,14 +94,14 @@ export const WithHintAndError: Story = {
 					placeholder="Share your thoughts..."
 				></textarea>
 
-				<p hlmFieldDescription>Tell us what you’re working on so we can help.</p>
+				<caps-field-description>Tell us what you’re working on so we can help.</caps-field-description>
 
-				<hlm-field-error >Please enter a message before continuing.</hlm-field-error>
-			</div>
+				<caps-field-error >Please enter a message before continuing.</caps-field-error>
+			</caps-field>
 
 			<div class="flex flex-wrap items-center gap-2">
-				<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-				<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 			</div>
 		</form>
 		`,

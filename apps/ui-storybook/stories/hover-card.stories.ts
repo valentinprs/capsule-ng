@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarDays } from '@ng-icons/lucide';
 import { type BrnHoverCard } from '@spartan-ng/brain/hover-card';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCard } from '@spartan-ng/helm/card';
 import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 @Component({
 	selector: 'hover-card-example',
-	imports: [HlmHoverCardImports, HlmButton, NgIcon, HlmAvatarImports],
+	imports: [HlmHoverCardImports, CapsButton, NgIcon, HlmAvatarImports],
 	providers: [provideIcons({ lucideCalendarDays })],
 	host: {
 		class: 'flex w-full h-full justify-center py-80',
 	},
 	template: `
 		<hlm-hover-card>
-			<button hlmBtn variant="link" hlmHoverCardTrigger>&#64;analogjs</button>
+			<button capsButton variant="link" hlmHoverCardTrigger>&#64;analogjs</button>
 			<hlm-hover-card-content *hlmHoverCardPortal class="w-80">
 				<div class="flex justify-between space-x-4">
 					<hlm-avatar id="avatar-small">
@@ -28,7 +28,7 @@ import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 						<h4 class="text-sm font-semibold">&#64;analogjs</h4>
 						<p class="text-sm">The Angular meta-framework – build Angular applications faster.</p>
 						<div class="flex items-center pt-2">
-							<ng-icon name="lucideCalendarDays" class="mr-2 opacity-70" />
+							<ng-icon name="lucideCalendarDays" class="mr-2 opacity-(--caps-opacity-70)" />
 							<span class="text-muted-foreground text-xs">Joined December 2021</span>
 						</div>
 					</div>

@@ -4,21 +4,21 @@ describe('Breadcrumb Directive', () => {
 	});
 
 	it('should render the breadcrumb directive', () => {
-		cy.get('[hlmBreadcrumb]').should('exist');
+		cy.get('caps-breadcrumb').should('exist');
 	});
 
 	it('should contain the correct breadcrumb items', () => {
-		cy.get('[hlmBreadcrumb] ol li').should('have.length', 7);
-		cy.get('[hlmBreadcrumb] ol li').eq(0).contains('Home');
-		cy.get('[hlmBreadcrumb] ol li').eq(4).contains('Components');
-		cy.get('[hlmBreadcrumb] ol li').eq(6).contains('Breadcrumb');
+		cy.get('caps-breadcrumb [role="listitem"]').should('have.length', 4);
+		cy.get('caps-breadcrumb [role="listitem"]').eq(0).contains('Home');
+		cy.get('caps-breadcrumb [role="listitem"]').eq(2).contains('Components');
+		cy.get('caps-breadcrumb [role="listitem"]').eq(3).contains('Breadcrumb');
 	});
 
 	it('should contain breadcrumb separators', () => {
-		cy.get('[hlmBreadcrumbSeparator]').should('have.length', 3);
+		cy.get('[data-slot="breadcrumb-separator"]').should('have.length', 3);
 	});
 
 	it('should contain breadcrumb ellipsis', () => {
-		cy.get('hlm-breadcrumb-ellipsis').should('exist');
+		cy.get('caps-breadcrumb-ellipsis').should('exist');
 	});
 });

@@ -19,7 +19,7 @@ export class CapsInput {
 	constructor() {
 		classes(
 			() =>
-				'caps-input file:text-foreground placeholder:text-muted-foreground w-full min-w-0 outline-none file:inline-flex file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
+				'caps-input file:text-foreground placeholder:text-muted-foreground w-full min-w-0 outline-none file:inline-flex file:border-0 file:bg-transparent disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-(--caps-opacity-disabled)',
 		);
 	}
 }

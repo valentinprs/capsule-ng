@@ -21,7 +21,7 @@ const stepTransition = cva('', {
 			'leave-forward': 'animate-out fade-out slide-out-to-left-8 fill-mode-both absolute top-0 right-0 left-0',
 			'leave-backward': 'animate-out fade-out slide-out-to-right-8 fill-mode-both absolute top-0 right-0 left-0',
 			'enter-bottom':
-				'animate-in fade-in slide-in-from-bottom-2 fill-mode-both duration-400 [animation-timing-function:cubic-bezier(0.34,1.56,0.64,1)]',
+				'animate-in fade-in slide-in-from-bottom-2 fill-mode-both duration-(--caps-duration-400) [animation-timing-function:cubic-bezier(0.34,1.56,0.64,1)]',
 		},
 	},
 	defaultVariants: { motion: 'none' },
@@ -71,7 +71,7 @@ const stepTransition = cva('', {
 							@if (!$last) {
 								<div class="ms-4 h-6 w-px" aria-hidden="true">
 									<span
-										class="block h-full w-px transition-colors duration-200 motion-reduce:transition-none"
+										class="block h-full w-px transition-colors duration-(--caps-duration-200) motion-reduce:transition-none"
 										[class.bg-primary]="step.index() < selectedIndex"
 										[class.bg-border]="step.index() >= selectedIndex"
 									></span>
@@ -133,7 +133,7 @@ const stepTransition = cva('', {
 						<li class="mx-3 flex min-w-8 flex-1 items-center" aria-hidden="true">
 							<span class="bg-border relative h-px w-full overflow-hidden rounded">
 								<span
-									class="bg-primary absolute inset-y-0 inset-s-0 transition-[width] duration-200"
+									class="bg-primary absolute inset-y-0 inset-s-0 transition-[width] duration-(--caps-duration-200)"
 									[style.width.%]="step.index() < selectedIndex ? 100 : 0"
 								></span>
 							</span>

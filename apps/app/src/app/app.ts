@@ -7,10 +7,10 @@ import { Header } from './shared/header/header';
 	selector: 'spartan-root',
 	imports: [RouterOutlet, Header, Footer],
 	host: {
-		class: 'bg-background relative z-10 flex min-h-svh flex-col',
+		class: 'bg-background relative z-(--caps-z-10) flex min-h-svh flex-col',
 	},
 	template: `
-		<svg class="pointer-events-none fixed inset-0 z-40 h-full w-full" aria-hidden="true">
+		<svg class="pointer-events-none fixed inset-0 z-(--caps-z-40) h-full w-full" aria-hidden="true">
 			<defs>
 				<radialGradient id="spartan-spotlight" cx="0.5502" cy="0.3146" r="0.686">
 					<stop offset="0" stop-color="#d9d9d9" stop-opacity="0.078" />

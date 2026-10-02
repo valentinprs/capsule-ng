@@ -1,3 +1,4 @@
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideBadgeCheck,
@@ -8,7 +9,6 @@ import {
 	lucideShieldAlert,
 } from '@ng-icons/lucide';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmItem, HlmItemImports } from '@spartan-ng/helm/item';
 import type { Meta, StoryObj } from '@storybook/angular';
@@ -20,7 +20,7 @@ export default {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmItemImports, HlmButtonImports, NgIcon, HlmAvatarImports, HlmDropdownMenuImports],
+			imports: [HlmItemImports, CapsButtonImports, NgIcon, HlmAvatarImports, HlmDropdownMenuImports],
 			providers: [
 				provideIcons({
 					lucideBadgeCheck,
@@ -47,7 +47,7 @@ export const Default: Story = {
 					<p hlmItemDescription>A simple item with title and description.</p>
 				</hlm-item-content>
 				<hlm-item-actions>
-					<button hlmBtn variant="outline" size="sm">Action</button>
+					<button capsButton variant="outline" size="sm">Action</button>
 				</hlm-item-actions>
 			</hlm-item>
 			<a hlmItem variant="outline" size="sm">
@@ -83,7 +83,7 @@ export const Avatar: Story = {
 					<p hlmItemDescription>Last seen 5 months ago</p>
 				</hlm-item-content>
 				<hlm-item-actions>
-					<button hlmBtn size="icon-sm" variant="ghost" class="rounded-full" aria-label="Invite">
+					<button capsButton size="icon-sm" variant="ghost" class="rounded-full" aria-label="Invite">
 						<ng-icon name="lucidePlus" />
 					</button>
 				</hlm-item-actions>
@@ -114,7 +114,7 @@ export const Avatar: Story = {
 					<p hlmItemDescription>Invite your team to collaborate on this project.</p>
 				</hlm-item-content>
 				<hlm-item-actions>
-					<button hlmBtn size="sm" variant="outline">Invite</button>
+					<button capsButton size="sm" variant="outline">Invite</button>
 				</hlm-item-actions>
 			</hlm-item>
 		</div>
@@ -145,7 +145,7 @@ export const Dropdown: Story = {
 		},
 		template: `
 		<div class="flex min-h-64 w-full max-w-md flex-col items-center gap-6 p-4">
-			<button hlmBtn variant="outline" size="sm" [hlmDropdownMenuTrigger]="peopleTemplate" class="w-fit" align="end">
+			<button capsButton variant="outline" size="sm" [hlmDropdownMenuTrigger]="peopleTemplate" class="w-fit" align="end">
 				Select
 				<ng-icon name="lucideChevronDown" />
 			</button>
@@ -216,7 +216,7 @@ export const Group: Story = {
 						</hlm-item-content>
 
 						<hlm-item-actions>
-							<button hlmBtn variant="ghost" size="icon" class="rounded-full" aria-label="Add person">
+							<button capsButton variant="ghost" size="icon" class="rounded-full" aria-label="Add person">
 								<ng-icon name="lucidePlus" />
 							</button>
 						</hlm-item-actions>
@@ -288,7 +288,7 @@ export const Icon: Story = {
 					<p hlmItemDescription>New login detected from unknown device.</p>
 				</div>
 				<div hlmItemActions>
-					<button hlmBtn size="sm" variant="outline">Review</button>
+					<button capsButton size="sm" variant="outline">Review</button>
 				</div>
 			</div>
 		</div>
@@ -391,7 +391,7 @@ export const Size: Story = {
 					<p hlmItemDescription>A simple item with title and description.</p>
 				</div>
 				<div hlmItemActions>
-					<button hlmBtn variant="outline" size="sm">Action</button>
+					<button capsButton variant="outline" size="sm">Action</button>
 				</div>
 			</div>
 			<a hlmItem variant="outline" size="sm" href="#">
@@ -420,7 +420,7 @@ export const Variants: Story = {
 					<p hlmItemDescription>Standard styling with subtle background and borders.</p>
 				</div>
 				<div hlmItemActions>
-					<button hlmBtn variant="outline" size="sm">Open</button>
+					<button capsButton variant="outline" size="sm">Open</button>
 				</div>
 			</div>
 			<div hlmItem variant="outline">
@@ -429,7 +429,7 @@ export const Variants: Story = {
 					<p hlmItemDescription>Outlined style with clear borders and transparent background.</p>
 				</div>
 				<div hlmItemActions>
-					<button hlmBtn variant="outline" size="sm">Open</button>
+					<button capsButton variant="outline" size="sm">Open</button>
 				</div>
 			</div>
 			<div hlmItem variant="muted">
@@ -438,7 +438,7 @@ export const Variants: Story = {
 					<p hlmItemDescription>Subdued appearance with muted colors for secondary content.</p>
 				</div>
 				<div hlmItemActions>
-					<button hlmBtn variant="outline" size="sm">Open</button>
+					<button capsButton variant="outline" size="sm">Open</button>
 				</div>
 			</div>
 		</div>

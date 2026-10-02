@@ -1,74 +1,35 @@
 import { RouterTestingModule } from '@angular/router/testing';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideSlash } from '@ng-icons/lucide';
-import { HlmBreadcrumb, HlmBreadcrumbImports } from '@spartan-ng/helm/breadcrumb';
+import { CapsBreadcrumb, CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsLink } from '@capsule-ng/caps/link';
+import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
-import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
-
-const meta: Meta<HlmBreadcrumb> = {
+const meta: Meta<CapsBreadcrumb> = {
 	title: 'Breadcrumb',
-	component: HlmBreadcrumb,
+	component: CapsBreadcrumb,
 	tags: ['autodocs'],
-	decorators: [
-		moduleMetadata({
-			imports: [HlmBreadcrumbImports, NgIcon, RouterTestingModule],
-			providers: [provideIcons({ lucideSlash })],
-		}),
-	],
+	decorators: [moduleMetadata({ imports: [CapsBreadcrumbImports, CapsLink, RouterTestingModule] })],
 };
-
 export default meta;
-type Story = StoryObj<HlmBreadcrumb>;
-
+type Story = StoryObj<CapsBreadcrumb>;
 export const Default: Story = {
 	render: () => ({
-		template: /* HTML */ `
-			<nav hlmBreadcrumb>
-				<ol hlmBreadcrumbList>
-					<li hlmBreadcrumbItem>
-						<a hlmBreadcrumbLink link="/home">Home</a>
-					</li>
-					<li hlmBreadcrumbSeparator></li>
-					<li hlmBreadcrumbItem>
-						<hlm-breadcrumb-ellipsis />
-					</li>
-					<li hlmBreadcrumbSeparator></li>
-					<li hlmBreadcrumbItem>
-						<a hlmBreadcrumbLink link="/components">Components</a>
-					</li>
-					<li hlmBreadcrumbSeparator></li>
-					<li hlmBreadcrumbItem>
-						<span hlmBreadcrumbPage>Breadcrumb</span>
-					</li>
-				</ol>
-			</nav>
-		`,
+		template: `
+ <caps-breadcrumb>
+  <caps-breadcrumb-item href="/home">Home</caps-breadcrumb-item>
+  <caps-breadcrumb-item><caps-breadcrumb-ellipsis /></caps-breadcrumb-item>
+  <caps-breadcrumb-item href="/components">Components</caps-breadcrumb-item>
+  <caps-breadcrumb-item>Breadcrumb</caps-breadcrumb-item>
+ </caps-breadcrumb>`,
 	}),
 };
-
 export const Custom: Story = {
+	name: 'Router links',
 	render: () => ({
-		template: /* HTML */ `
-			<nav hlmBreadcrumb>
-				<ol hlmBreadcrumbList>
-					<li hlmBreadcrumbItem>
-						<a hlmBreadcrumbLink href="/home">Home</a>
-					</li>
-					<li hlmBreadcrumbSeparator>
-						<ng-icon name="lucideSlash" />
-					</li>
-					<li hlmBreadcrumbItem>
-						<a hlmBreadcrumbLink href="/components">Components</a>
-					</li>
-					<li hlmBreadcrumbSeparator>
-						<ng-icon name="lucideSlash" />
-					</li>
-					<li hlmBreadcrumbItem>
-						<span hlmBreadcrumbPage>Breadcrumb</span>
-					</li>
-				</ol>
-			</nav>
-		`,
+		template: `
+ <caps-breadcrumb aria-label="Page hierarchy">
+  <caps-breadcrumb-item><a capsLink routerLink="/home">Home</a></caps-breadcrumb-item>
+  <caps-breadcrumb-item><a capsLink routerLink="/components">Components</a></caps-breadcrumb-item>
+  <caps-breadcrumb-item current>Breadcrumb</caps-breadcrumb-item>
+ </caps-breadcrumb>`,
 	}),
 };

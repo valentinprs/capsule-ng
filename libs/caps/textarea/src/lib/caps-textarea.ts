@@ -19,7 +19,7 @@ export class CapsTextarea {
 	constructor() {
 		classes(
 			() =>
-				'caps-textarea placeholder:text-muted-foreground flex field-sizing-content min-h-16 w-full outline-none disabled:cursor-not-allowed disabled:opacity-50',
+				'caps-textarea placeholder:text-muted-foreground flex field-sizing-content min-h-(--caps-textarea-min-height) w-full outline-none disabled:cursor-not-allowed disabled:opacity-(--caps-opacity-disabled)',
 		);
 	}
 }

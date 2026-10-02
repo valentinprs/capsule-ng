@@ -20,7 +20,7 @@ import { AuthenticationForm } from './components/form';
 				<a hlmBtn variant="ghost" class="absolute top-4 right-4 md:top-8 md:right-8" href="/#authentication">Login</a>
 				<div class="bg-muted text-primary relative hidden h-full flex-col border-r p-10 lg:flex dark:border-r-zinc-800">
 					<div class="bg-primary/5 absolute inset-0"></div>
-					<div class="relative z-20 flex items-center text-lg font-medium">
+					<div class="relative z-(--caps-z-20) flex items-center text-lg font-medium">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
@@ -35,7 +35,7 @@ import { AuthenticationForm } from './components/form';
 						</svg>
 						Acme Inc
 					</div>
-					<div class="relative z-20 mt-auto">
+					<div class="relative z-(--caps-z-20) mt-auto">
 						<blockquote class="space-y-2">
 							<p class="text-lg">
 								“This library has saved me countless hours of work and helped me deliver stunning designs to my clients

@@ -1,0 +1,5 @@
+/* Shared, self-hosted font faces, including every weight used by the Tailwind scale. */
+@import '@fontsource/inter/latin.css';
+@import '@fontsource/geist-mono/latin.css';
+@import '@fontsource-variable/noto-sans-hebrew/index.css';
+@import '@fontsource-variable/noto-sans-arabic/index.css';

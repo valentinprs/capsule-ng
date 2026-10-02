@@ -13,7 +13,7 @@
 				"configDir": "apps/ui-storybook/.storybook",
 				"browserTarget": "ui-storybook:build-storybook",
 				"compodoc": false,
-				"styles": ["apps/ui-storybook/.storybook/tailwind.css"]
+				"styles": ["apps/ui-storybook/.storybook/tailwind.css", "libs/styles/src/caps-fonts.css"]
 			},
 			"configurations": {
 				"ci": {
@@ -29,7 +29,7 @@
 				"configDir": "apps/ui-storybook/.storybook",
 				"browserTarget": "ui-storybook:build-storybook",
 				"compodoc": false,
-				"styles": ["apps/ui-storybook/.storybook/tailwind.css"]
+				"styles": ["apps/ui-storybook/.storybook/tailwind.css", "libs/styles/src/caps-fonts.css"]
 			},
 			"configurations": {
 				"ci": {

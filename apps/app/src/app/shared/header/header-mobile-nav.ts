@@ -23,10 +23,16 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 				<div class="relative flex h-8 w-4 items-center justify-center">
 					<div class="relative size-4">
 						<span
-							[class]="'bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 ' + _burgerClass()"
+							[class]="
+								'bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-(--caps-duration-100) ' +
+								_burgerClass()
+							"
 						></span>
 						<span
-							[class]="'bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-100 ' + _closeClass()"
+							[class]="
+								'bg-foreground absolute left-0 block h-0.5 w-4 transition-all duration-(--caps-duration-100) ' +
+								_closeClass()
+							"
 						></span>
 					</div>
 					<span class="sr-only">Toggle Menu</span>
@@ -35,7 +41,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 			</button>
 
 			<hlm-popover-content
-				class="no-scrollbar bg-background/90 h-screen w-screen overflow-y-auto rounded-none border-none p-0 shadow-none backdrop-blur duration-100"
+				class="no-scrollbar bg-background/90 h-screen w-screen overflow-y-auto rounded-none border-none p-0 shadow-none backdrop-blur duration-(--caps-duration-100)"
 				*hlmPopoverPortal="let ctx"
 			>
 				<div class="flex flex-col gap-12 overflow-auto px-6 py-6 [&_a]:text-2xl [&_a]:font-medium">
@@ -59,7 +65,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 									[routerLink]="item.url + link.url"
 									class="inline-flex items-center gap-2"
 									(click)="_closePopover()"
-									[class.opacity-50]="link.wip"
+									[class.opacity-(--caps-opacity-50)]="link.wip"
 									[class.pointer-events-none]="link.wip"
 								>
 									{{ link.label }}

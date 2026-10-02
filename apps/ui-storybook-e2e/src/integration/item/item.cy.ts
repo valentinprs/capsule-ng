@@ -53,20 +53,20 @@ describe('item', () => {
 		});
 
 		it('should open dropdown and show items', () => {
-			cy.get('button[hlmBtn]').click();
+			cy.get('button[capsButton]').click();
 			cy.get('hlm-dropdown-menu').should('exist');
 			cy.get('[hlmDropdownMenuItem]').should('have.length', 3);
 			cy.get('[hlmDropdownMenuItem]').first().find('hlm-item').should('exist');
 		});
 
 		it('should pass accessibility checks', () => {
-			cy.get('button[hlmBtn]').should('exist');
-			cy.checkA11y('button[hlmBtn]', {
+			cy.get('button[capsButton]').should('exist');
+			cy.checkA11y('button[capsButton]', {
 				rules: {
 					'color-contrast': { enabled: false },
 				},
 			});
-			cy.get('button[hlmBtn]').click();
+			cy.get('button[capsButton]').click();
 			cy.get('hlm-dropdown-menu').should('exist');
 			cy.checkA11y('hlm-dropdown-menu', {
 				rules: {

@@ -71,7 +71,7 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 											assistantVariant="ghost"
 											[animationClass]="
 												message.role === 'user'
-													? 'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-300'
+													? 'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-(--caps-duration-300)'
 													: ''
 											"
 										/>

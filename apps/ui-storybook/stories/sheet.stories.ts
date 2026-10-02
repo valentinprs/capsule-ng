@@ -1,6 +1,6 @@
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { BrnSheet } from '@spartan-ng/brain/sheet';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
@@ -15,7 +15,7 @@ const meta: Meta<SheetProps> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmSheetImports, HlmButtonImports, HlmInputImports],
+			imports: [HlmSheetImports, CapsButtonImports, CapsInputImports],
 		}),
 	],
 };
@@ -28,7 +28,7 @@ export const Default: Story = {
 		props: args,
 		template: `
     <hlm-sheet ${argsToTemplate(args)}>
-    <button id='edit-profile' variant='outline' hlmSheetTrigger hlmBtn>Edit Profile</button>
+    <button id='edit-profile' variant='outline' hlmSheetTrigger capsButton>Edit Profile</button>
     <hlm-sheet-content *hlmSheetPortal='let ctx'>
          <hlm-sheet-header>
           <h3 hlmSheetTitle>Edit Profile</h3>
@@ -38,20 +38,20 @@ export const Default: Story = {
         </hlm-sheet-header>
                 <div class='py-4 grid gap-4'>
           <div class='items-center grid grid-cols-4 gap-4'>
-            <label hlmLabel for='name' class='text-right'>
+            <label capsLabel for='name' class='text-right'>
               Name
             </label>
-            <input hlmInput id='name' value='Pedro Duarte' class='col-span-3' />
+            <input capsInput id='name' value='Pedro Duarte' class='col-span-3' />
           </div>
           <div class='items-center grid grid-cols-4 gap-4'>
-            <label hlmLabel for='username' class='text-right'>
+            <label capsLabel for='username' class='text-right'>
               Username
             </label>
-            <input hlmInput id='username' value='@peduarte' class='col-span-3' />
+            <input capsInput id='username' value='@peduarte' class='col-span-3' />
           </div>
         </div>
         <hlm-sheet-footer>
-          <button hlmBtn type='submit'>Save Changes</button>
+          <button capsButton type='submit'>Save Changes</button>
         </hlm-sheet-footer>
     </hlm-sheet-content>
     </hlm-sheet>

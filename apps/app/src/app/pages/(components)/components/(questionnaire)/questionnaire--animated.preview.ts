@@ -6,7 +6,7 @@ import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel } from './questionnaire.shared';
 
 const itemClassName =
-	'data-active:animate-in data-active:fade-in-0 data-active:slide-in-from-bottom-2 data-active:duration-300 motion-reduce:animate-none';
+	'data-active:animate-in data-active:fade-in-0 data-active:slide-in-from-bottom-2 data-active:duration-(--caps-duration-300) motion-reduce:animate-none';
 
 @Component({
 	selector: 'spartan-questionnaire-animated-preview',

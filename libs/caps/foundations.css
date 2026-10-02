@@ -1,0 +1,6 @@
+/* Public entry point for an installed @capsule-ng/caps package. */
+@layer theme, base, spartan-nova-baseline, spartan-themes, caps, components, utilities;
+@import '@spartan-ng/brain/hlm-tailwind-preset.css';
+@import './styles/caps-fonts.css';
+@import './styles/caps-foundations.css';
+@import './caps-preset.css' layer(caps);

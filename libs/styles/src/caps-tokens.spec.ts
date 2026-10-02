@@ -1,15 +1,34 @@
 import { readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { describe, expect, it } from 'vitest';
 import { CAPS_COLOR_TOKENS, CAPS_TOKENS_CSS, SHADCN_ALIASED_TOKENS } from './caps-tokens';
 
 const stylesheet = readFileSync(new URL('./caps-tokens.css', import.meta.url), 'utf8');
+
+const palette = Object.fromEntries(
+	[
+		...readFileSync(createRequire(import.meta.url).resolve('tailwindcss/theme.css'), 'utf8').matchAll(
+			/(--color-[\w-]+):\s*([^;]+);/g,
+		),
+	].map(([, name, value]) => [
+		name,
+		value.replace(/oklch\(([\d.]+)%/, (_, lightness: string) => `oklch(${Number(lightness) / 100}`),
+	]),
+);
+const resolvePalette = (value: string) =>
+	value.replace(/^var\((--color-[\w-]+)\)$/, (_, name: string) =>
+		name === '--color-white' ? 'oklch(1 0 0)' : name === '--color-black' ? 'oklch(0 0 0)' : palette[name],
+	);
 
 const declarations = (selector: string) => {
 	const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 	const block = stylesheet.match(new RegExp(`(?:^|\\n)${escaped}\\s*\\{([^}]*)\\}`))?.[1];
 	expect(block, `${selector} block is missing`).toBeDefined();
 	return Object.fromEntries(
-		[...(block ?? '').matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)].map(([, name, value]) => [name, value.trim()]),
+		[...(block ?? '').matchAll(/(--[\w-]+)\s*:\s*([^;]+);/g)].map(([, name, value]) => [
+			name,
+			resolvePalette(value.trim()),
+		]),
 	);
 };
 

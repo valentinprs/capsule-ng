@@ -1,8 +1,8 @@
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsInput } from '@capsule-ng/caps/input';
+import { CapsLabel } from '@capsule-ng/caps/label';
 import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
@@ -13,7 +13,7 @@ const meta: Meta<HlmCard> = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmCardImports, HlmLabel, HlmInput, HlmButton, HlmBadge, HlmSelectImports],
+			imports: [HlmCardImports, CapsLabel, CapsInput, CapsButton, HlmBadge, HlmSelectImports],
 		}),
 	],
 };
@@ -32,10 +32,10 @@ export const Default: Story = {
         </p>
       </div>
       <p hlmCardContent>
-       <label class='block' hlmLabel>Name
-       <input class='w-full mt-1.5' placeholder='Name of your project' hlmInput>
+       <label class='block' capsLabel>Name
+       <input class='w-full mt-1.5' placeholder='Name of your project' capsInput>
        </label>
-       <label class='block my-4' hlmLabel>Framework
+       <label class='block my-4' capsLabel>Framework
        <hlm-select class="inline-block w-full mt-1.5">
             <hlm-select-trigger class="w-full">
                 <hlm-select-value placeholder="Select an option" />
@@ -51,8 +51,8 @@ export const Default: Story = {
        </label>
       </p>
       <div hlmCardFooter class='justify-between'>
-        <button hlmBtn variant='ghost'>Cancel</button>
-        <button hlmBtn>Create</button>
+        <button capsButton variant='ghost'>Cancel</button>
+        <button capsButton>Create</button>
       </div>
     </section>
     `,
@@ -70,16 +70,16 @@ export const Transposed: Story = {
         </p>
       </div>
       <p hlmCardContent>
-       <label class='block' hlmLabel>E-mail
-       <input class='w-full mt-1.5' placeholder='you@spartan-ng' hlmInput>
+       <label class='block' capsLabel>E-mail
+       <input class='w-full mt-1.5' placeholder='you@spartan-ng' capsInput>
        </label>
-         <label class='block my-4' hlmLabel>Password
-       <input class='w-full mt-1.5' type='password' hlmInput>
+         <label class='block my-4' capsLabel>Password
+       <input class='w-full mt-1.5' type='password' capsInput>
        </label>
       </p>
       <div hlmCardFooter direction='column'>
-        <button hlmBtn>Sign In</button>
-        <button hlmBtn variant='ghost'>Create Account</button>
+        <button capsButton>Sign In</button>
+        <button capsButton variant='ghost'>Create Account</button>
       </div>
     </section>
     `,

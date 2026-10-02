@@ -1,9 +1,9 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -49,11 +49,11 @@ class ComboboxDefaultStory {
 
 @Component({
 	selector: 'combobox-popup-story',
-	imports: [HlmComboboxImports, HlmFieldImports],
+	imports: [HlmComboboxImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel for="countries">Countries</label>
+		<caps-field>
+			<caps-field-label for="countries">Countries</caps-field-label>
 			<hlm-combobox>
 				<hlm-combobox-trigger buttonId="countries" class="w-64 justify-between font-normal">
 					<hlm-combobox-value placeholder="Select a country" />
@@ -68,7 +68,7 @@ class ComboboxDefaultStory {
 					</div>
 				</hlm-combobox-content>
 			</hlm-combobox>
-		</hlm-field>
+		</caps-field>
 	`,
 })
 class ComboboxPopupStory {
@@ -80,12 +80,12 @@ class ComboboxPopupStory {
 @Component({
 	selector: 'combobox-reactive-form-story',
 	standalone: true,
-	imports: [JsonPipe, HlmComboboxImports, HlmFieldImports, HlmButton, ReactiveFormsModule],
+	imports: [JsonPipe, HlmComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm space-y-3">
-			<div hlmField>
-				<label hlmFieldLabel>Framework *</label>
+			<caps-field>
+				<caps-field-label>Framework *</caps-field-label>
 				<hlm-combobox formControlName="framework">
 					<hlm-combobox-input placeholder="Select framework..." />
 					<hlm-combobox-content *hlmComboboxPortal>
@@ -97,12 +97,12 @@ class ComboboxPopupStory {
 						</div>
 					</hlm-combobox-content>
 				</hlm-combobox>
-				<p hlmFieldDescription>Choose a framework from the list.</p>
-			</div>
+				<caps-field-description>Choose a framework from the list.</caps-field-description>
+			</caps-field>
 
 			<div class="flex flex-wrap items-center gap-2">
-				<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-				<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 			</div>
 		</form>
 
@@ -124,12 +124,12 @@ class ComboboxReactiveFormStory {
 @Component({
 	selector: 'combobox-hint-error-story',
 	standalone: true,
-	imports: [HlmComboboxImports, HlmFieldImports, HlmButton, ReactiveFormsModule],
+	imports: [HlmComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm space-y-3">
-			<div hlmField>
-				<label hlmFieldLabel>Framework *</label>
+			<caps-field>
+				<caps-field-label>Framework *</caps-field-label>
 				<hlm-combobox formControlName="framework">
 					<hlm-combobox-input placeholder="Select framework..." />
 					<hlm-combobox-content *hlmComboboxPortal>
@@ -142,14 +142,14 @@ class ComboboxReactiveFormStory {
 					</hlm-combobox-content>
 				</hlm-combobox>
 
-				<p hlmFieldDescription>Pick a framework to get started.</p>
+				<caps-field-description>Pick a framework to get started.</caps-field-description>
 
-				<hlm-field-error>Select a framework to continue.</hlm-field-error>
-			</div>
+				<caps-field-error>Select a framework to continue.</caps-field-error>
+			</caps-field>
 
 			<div class="flex flex-wrap items-center gap-2">
-				<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-				<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 			</div>
 		</form>
 	`,
@@ -165,12 +165,12 @@ class ComboboxHintErrorStory {
 @Component({
 	selector: 'combobox-multiple-hint-error-story',
 	standalone: true,
-	imports: [HlmComboboxImports, HlmFieldImports, HlmButton, ReactiveFormsModule],
+	imports: [HlmComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm space-y-3">
-			<div hlmField>
-				<label hlmFieldLabel>Framework *</label>
+			<caps-field>
+				<caps-field-label>Framework *</caps-field-label>
 				<hlm-combobox-multiple formControlName="framework">
 					<hlm-combobox-chips class="max-w-xs">
 						<ng-template hlmComboboxValues let-values>
@@ -191,14 +191,14 @@ class ComboboxHintErrorStory {
 					</hlm-combobox-content>
 				</hlm-combobox-multiple>
 
-				<p hlmFieldDescription>Pick a framework to get started.</p>
+				<caps-field-description>Pick a framework to get started.</caps-field-description>
 
-				<hlm-field-error>Select a framework to continue.</hlm-field-error>
-			</div>
+				<caps-field-error>Select a framework to continue.</caps-field-error>
+			</caps-field>
 
 			<div class="flex flex-wrap items-center gap-2">
-				<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-				<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 			</div>
 		</form>
 	`,
@@ -221,12 +221,12 @@ class ComboboxMultipleHintErrorStory {
 
 @Component({
 	selector: 'combobox-popup-hint-error-story',
-	imports: [HlmComboboxImports, HlmFieldImports, HlmButton, ReactiveFormsModule],
+	imports: [HlmComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm space-y-3">
-			<div hlmField>
-				<label hlmFieldLabel for="countries">Countries</label>
+			<caps-field>
+				<caps-field-label for="countries">Countries</caps-field-label>
 				<hlm-combobox formControlName="framework">
 					<hlm-combobox-trigger buttonId="countries" class="w-64 justify-between font-normal">
 						<hlm-combobox-value placeholder="Select a country" />
@@ -242,14 +242,14 @@ class ComboboxMultipleHintErrorStory {
 					</hlm-combobox-content>
 				</hlm-combobox>
 
-				<p hlmFieldDescription>Pick a framework to get started.</p>
+				<caps-field-description>Pick a framework to get started.</caps-field-description>
 
-				<hlm-field-error>Select a framework to continue.</hlm-field-error>
-			</div>
+				<caps-field-error>Select a framework to continue.</caps-field-error>
+			</caps-field>
 
 			<div class="flex flex-wrap items-center gap-2">
-				<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-				<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 			</div>
 		</form>
 	`,

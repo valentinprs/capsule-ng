@@ -56,7 +56,7 @@ type ItemName = 'permission' | 'verification';
 				<button
 					hlmQuestionnaireNext
 					variant="secondary"
-					class="data-[status=unanswered]:opacity-50"
+					class="data-[status=unanswered]:opacity-(--caps-opacity-50)"
 					[attr.data-status]="activeStatus()"
 					[disabled]="unanswered()"
 				>

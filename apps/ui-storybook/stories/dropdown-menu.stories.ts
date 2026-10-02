@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import * as lucide from '@ng-icons/lucide';
 
-import { HlmButton, HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmDropdownMenu, HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
@@ -25,7 +25,7 @@ const meta: Meta<HlmDropdownMenu> = {
 	decorators: [
 		moduleMetadata({
 			providers: [provideIcons(lucide)],
-			imports: [HlmDropdownMenuImports, HlmButton, NgIcon],
+			imports: [HlmDropdownMenuImports, CapsButton, NgIcon],
 		}),
 	],
 };
@@ -38,7 +38,7 @@ export const Default: Story = {
 		props: args,
 		template: `
     <div class='w-full flex justify-center items-center'>
-      <button hlmBtn variant='outline' align='end' [hlmDropdownMenuTrigger]='menu'>Open</button>
+      <button capsButton variant='outline' align='end' [hlmDropdownMenuTrigger]='menu'>Open</button>
     </div>
     <ng-template #menu>
       <hlm-dropdown-menu ${argsToTemplate(args)} class='w-56'>
@@ -146,10 +146,10 @@ export const Default: Story = {
 
 @Component({
 	selector: 'stateful-dropdown-story',
-	imports: [HlmDropdownMenuImports, HlmButtonImports],
+	imports: [HlmDropdownMenuImports, CapsButtonImports],
 	template: `
 		<div class="flex w-full items-center justify-center pt-[20%]">
-			<button hlmBtn variant="outline" align="center" [hlmDropdownMenuTrigger]="menu">Open</button>
+			<button capsButton variant="outline" align="center" [hlmDropdownMenuTrigger]="menu">Open</button>
 		</div>
 		<ng-template #menu>
 			<hlm-dropdown-menu class="w-56">
@@ -231,12 +231,12 @@ export const Stateful: Story = {
 export const Submenu: Story = {
 	render: () => ({
 		moduleMetadata: {
-			imports: [HlmDropdownMenuImports, HlmButton, NgIcon],
+			imports: [HlmDropdownMenuImports, CapsButton, NgIcon],
 			providers: [provideIcons(lucide)],
 		},
 		template: `
     <div class='flex w-full justify-center pt-[20%]'>
-      <button hlmBtn variant='outline' [hlmDropdownMenuTrigger]='menu'>Open</button>
+      <button capsButton variant='outline' [hlmDropdownMenuTrigger]='menu'>Open</button>
     </div>
     <ng-template #menu>
       <hlm-dropdown-menu class='w-56'>

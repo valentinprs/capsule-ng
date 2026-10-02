@@ -1,6 +1,6 @@
 import { NgIcon } from '@ng-icons/core';
 
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 import { HlmMenubar, HlmMenubarImports } from '@spartan-ng/helm/menubar';
@@ -12,7 +12,7 @@ const meta: Meta<HlmMenubar> = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmMenubarImports, HlmDropdownMenuImports, HlmButton, NgIcon],
+			imports: [HlmMenubarImports, HlmDropdownMenuImports, CapsButton, NgIcon],
 		}),
 	],
 };

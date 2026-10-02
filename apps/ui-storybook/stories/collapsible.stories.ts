@@ -1,4 +1,4 @@
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { HlmCollapsible, HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { argsToTemplate, moduleMetadata } from '@storybook/angular';
@@ -19,7 +19,7 @@ const meta: Meta<HlmCollapsible> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmButton, HlmCollapsibleImports],
+			imports: [CapsButton, HlmCollapsibleImports],
 		}),
 	],
 };
@@ -35,7 +35,7 @@ export const Default: Story = {
         <h4 class="text-sm font-semibold">
           &#64;peduarte starred 3 repositories
         </h4>
-        <button hlmCollapsibleTrigger hlmBtn variant="ghost" size="sm" class="p-0 w-9">
+        <button hlmCollapsibleTrigger capsButton variant="ghost" size="sm" class="p-0 w-9">
            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
              </svg>

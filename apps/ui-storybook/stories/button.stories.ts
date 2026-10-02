@@ -1,9 +1,9 @@
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<HlmButton> = {
+const meta: Meta<CapsButton> = {
 	title: 'Button',
-	component: HlmButton,
+	component: CapsButton,
 	tags: ['autodocs'],
 	args: {
 		variant: 'default',
@@ -17,7 +17,7 @@ const meta: Meta<HlmButton> = {
 			},
 		},
 		size: {
-			options: ['default', 'sm', 'lg', 'icon'],
+			options: ['default', 'xs', 'sm', 'lg', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'],
 			control: {
 				type: 'select',
 			},
@@ -25,17 +25,17 @@ const meta: Meta<HlmButton> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmButton],
+			imports: [CapsButton],
 		}),
 	],
 	render: ({ ...args }) => ({
 		props: args,
-		template: `<button hlmBtn ${argsToTemplate(args)}>Click me</button>`,
+		template: `<button capsButton ${argsToTemplate(args)}>Click me</button>`,
 	}),
 };
 
 export default meta;
-type Story = StoryObj<HlmButton>;
+type Story = StoryObj<CapsButton>;
 
 export const Default: Story = {
 	args: {

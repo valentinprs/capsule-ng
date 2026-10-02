@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmToaster } from '@spartan-ng/helm/sonner';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
@@ -11,7 +11,7 @@ const meta: Meta<HlmToaster> = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToaster, HlmButton],
+			imports: [HlmToaster, CapsButton],
 		}),
 	],
 };
@@ -21,10 +21,10 @@ type Story = StoryObj<HlmToaster>;
 
 @Component({
 	selector: 'sonner-story',
-	imports: [HlmToaster, HlmButton],
+	imports: [HlmToaster, CapsButton],
 	template: `
 		<hlm-toaster />
-		<button hlmBtn (click)="showToast()">Show Toast</button>
+		<button capsButton (click)="showToast()">Show Toast</button>
 	`,
 })
 export class SonnerStory {

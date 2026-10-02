@@ -22,7 +22,7 @@ import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 						<h4 class="text-sm font-semibold">&#64;analogjs</h4>
 						<p class="text-sm">The Angular meta-framework – build Angular applications faster.</p>
 						<div class="flex items-center pt-2">
-							<ng-icon name="lucideCalendar" class="mr-2 opacity-70" />
+							<ng-icon name="lucideCalendar" class="mr-2 opacity-(--caps-opacity-70)" />
 							<span class="text-muted-foreground text-xs">Joined December 2021</span>
 						</div>
 					</div>

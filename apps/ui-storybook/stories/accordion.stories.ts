@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { BrnAccordion, BrnAccordionImports } from '@spartan-ng/brain/accordion';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
-import { HlmInput } from '@spartan-ng/helm/input';
+import { CapsInput } from '@capsule-ng/caps/input';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -15,7 +15,7 @@ const meta: Meta<BrnAccordion> = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [BrnAccordionImports, HlmAccordionImports, NgIcon, HlmInput],
+			imports: [BrnAccordionImports, HlmAccordionImports, NgIcon, CapsInput],
 			providers: [provideIcons({ lucideChevronDown })],
 		}),
 	],
@@ -87,17 +87,17 @@ export const WithFormInputs: Story = {
 						<div class="space-y-4 p-4">
 							<div>
 								<label for="name-input" class="mb-1 block text-sm font-medium">Name Input</label>
-								<input id="name-input" type="text" placeholder="Type your name" hlmInput />
+								<input id="name-input" type="text" placeholder="Type your name" capsInput />
 							</div>
 
 							<div>
 								<label for="description-textarea" class="mb-1 block text-sm font-medium">Description</label>
-								<textarea id="description-textarea" placeholder="Enter description" hlmInput rows="3"></textarea>
+								<textarea id="description-textarea" placeholder="Enter description" capsInput rows="3"></textarea>
 							</div>
 
 							<div>
 								<label for="option-select" class="mb-1 block text-sm font-medium">Select Option</label>
-								<select id="option-select" hlmInput>
+								<select id="option-select" capsInput>
 									<option>Option One</option>
 									<option>Option Two</option>
 									<option>Option Three</option>
@@ -267,7 +267,7 @@ export const AccordionWithInput: Story = {
 					<hlm-accordion-trigger>Enter your name</hlm-accordion-trigger>
 					<hlm-accordion-content>
 						<div class="px-1">
-							<input type="text" placeholder="Type your name here" hlmInput />
+							<input type="text" placeholder="Type your name here" capsInput />
 						</div>
 					</hlm-accordion-content>
 				</hlm-accordion-item>
@@ -309,7 +309,7 @@ export const ButtonStateSync: Story = {
 };
 @Component({
 	selector: 'accordion-button-state-sync',
-	imports: [HlmButtonImports, HlmAccordionImports],
+	imports: [CapsButtonImports, HlmAccordionImports],
 	host: {
 		class: 'max-w-lg h-[320px] flex flex-col justify-between',
 	},
@@ -334,7 +334,7 @@ export const ButtonStateSync: Story = {
 				</hlm-accordion-content>
 			</hlm-accordion-item>
 		</hlm-accordion>
-		<button hlmBtn class="w-fit" (click)="toggleThird()">Toggle Third Item</button>
+		<button capsButton class="w-fit" (click)="toggleThird()">Toggle Third Item</button>
 	`,
 })
 export class ButtonStateSyncStory {

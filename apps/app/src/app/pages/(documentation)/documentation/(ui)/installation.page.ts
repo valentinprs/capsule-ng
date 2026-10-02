@@ -75,6 +75,23 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="setup">Setup</spartan-section-sub-heading>
 			<h3 spartanH4 id="install-dependencies">1. Install Dependencies</h3>
 
+			<p class="${hlmP}">
+				Capsule is currently distributed as a private local package. Before importing its stylesheet, install the built
+				Capsule archive and its peer dependencies, including the matching local Helm package. Follow the
+				<a class="underline" href="https://github.com/valentinprs/capsule-ng/blob/main/libs/caps/README.md">
+					Capsule package setup
+				</a>
+				. The shared font stylesheet requires
+				<code class="${hlmCode}">&#64;fontsource/inter</code>
+				,
+				<code class="${hlmCode}">&#64;fontsource/geist-mono</code>
+				,
+				<code class="${hlmCode}">&#64;fontsource-variable/noto-sans-arabic</code>
+				and
+				<code class="${hlmCode}">&#64;fontsource-variable/noto-sans-hebrew</code>
+				.
+			</p>
+
 			<p class="${hlmP}">Install the brain (accessible primitives):</p>
 			<spartan-package-installer-tab class="mt-4" package="brn" />
 
@@ -85,16 +102,18 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP}">spartan/ui requires Tailwind CSS v4.</p>
 
-			<h4 spartanH4 id="configure-layers">2.1 Configure CSS Layers</h4>
+			<h4 spartanH4 id="configure-layers">2.1 Import Capsule foundations</h4>
 			<p class="${hlmP}">
-				Add these layers to your
+				Add this shared entry point to your
 				<code class="${hlmCode}">styles.css</code>
 				to ensure ng-icons styles load correctly:
 			</p>
 			<spartan-code class="mt-4" [code]="_tailwindImports" fileName="src/styles.css" />
 
-			<h4 spartanH4 id="import-preset" class="mt-8">2.2 Import spartan/ui preset</h4>
-			<p class="${hlmP}">Add the spartan preset to your CSS file:</p>
+			<h4 spartanH4 id="import-preset" class="mt-8">2.2 Included presets</h4>
+			<p class="${hlmP}">
+				The entry point already includes Brain, the compatibility skins, Capsule and the Inter / Geist Mono font faces.
+			</p>
 			<spartan-code class="mt-4" [code]="_spartanPresetImport" fileName="src/styles.css" />
 
 			<div hlmAlert class="mt-6">
@@ -104,9 +123,9 @@ export const routeMeta: RouteMeta = {
 				</div>
 			</div>
 
-			<h4 spartanH4 id="add-theme-variables" class="mt-8">2.3 Add Theme Variables</h4>
+			<h4 spartanH4 id="add-theme-variables" class="mt-8">2.3 Optional theme overrides</h4>
 			<p class="${hlmP}">
-				Copy these CSS variables to your
+				Override only the Capsule tokens you want to customize in your
 				<code class="${hlmCode}">styles.css</code>
 				:
 			</p>

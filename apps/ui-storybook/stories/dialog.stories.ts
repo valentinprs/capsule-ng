@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
+import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInput } from '@capsule-ng/caps/input';
+import { CapsLabel } from '@capsule-ng/caps/label';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { BrnDialogRef, injectBrnDialogContext, provideBrnDialogDefaultOptions } from '@spartan-ng/brain/dialog';
-import { HlmButton, HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
 import { HlmDialog, HlmDialogImports, HlmDialogService } from '@spartan-ng/helm/dialog';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -17,7 +17,7 @@ const meta: Meta<HlmDialog> = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDialogImports, HlmLabel, HlmButton, HlmInput, NgIcon],
+			imports: [HlmDialogImports, CapsLabel, CapsButton, CapsInput, NgIcon],
 		}),
 	],
 };
@@ -29,7 +29,7 @@ export const Default: Story = {
 	render: () => ({
 		template: `
     <hlm-dialog>
-    <button id='edit-profile' hlmDialogTrigger hlmBtn>Edit Profile</button>
+    <button id='edit-profile' hlmDialogTrigger capsButton>Edit Profile</button>
     <hlm-dialog-content class='sm:max-w-[425px]' *hlmDialogPortal='let ctx'>
          <hlm-dialog-header>
           <h3 hlmDialogTitle>Edit profile</h3>
@@ -39,20 +39,20 @@ export const Default: Story = {
         </hlm-dialog-header>
         <div class='py-4 grid gap-4'>
           <div class='items-center grid grid-cols-4 gap-4'>
-            <label hlmLabel for='name' class='text-right'>
+            <label capsLabel for='name' class='text-right'>
               Name
             </label>
-            <input hlmInput id='name' value='Pedro Duarte' class='col-span-3' />
+            <input capsInput id='name' value='Pedro Duarte' class='col-span-3' />
           </div>
           <div class='items-center grid grid-cols-4 gap-4'>
-            <label hlmLabel for='username' class='text-right'>
+            <label capsLabel for='username' class='text-right'>
               Username
             </label>
-            <input hlmInput id='username' value='@peduarte' class='col-span-3' />
+            <input capsInput id='username' value='@peduarte' class='col-span-3' />
           </div>
         </div>
         <hlm-dialog-footer>
-          <button hlmBtn type='submit'>Save changes</button>
+          <button capsButton type='submit'>Save changes</button>
         </hlm-dialog-footer>
     </hlm-dialog-content>
     </hlm-dialog>
@@ -62,10 +62,10 @@ export const Default: Story = {
 
 @Component({
 	selector: 'nested-dialog-story',
-	imports: [HlmDialogImports, HlmButtonImports],
+	imports: [HlmDialogImports, CapsButtonImports],
 	template: `
 		<hlm-dialog>
-			<button hlmDialogTrigger hlmBtn>Open Dialog</button>
+			<button hlmDialogTrigger capsButton>Open Dialog</button>
 			<hlm-dialog-content *hlmDialogPortal>
 				<hlm-dialog-header>
 					<h3 hlmDialogTitle>First dialog</h3>
@@ -73,14 +73,14 @@ export const Default: Story = {
 				</hlm-dialog-header>
 
 				<hlm-dialog>
-					<button hlmDialogTrigger hlmBtn class="w-full">Open Nested Dialog</button>
+					<button hlmDialogTrigger capsButton class="w-full">Open Nested Dialog</button>
 					<hlm-dialog-content *hlmDialogPortal="let ctx">
 						<hlm-dialog-header>
 							<h3 hlmDialogTitle>Nested dialog</h3>
 							<p hlmDialogDescription>I am a nested dialog!</p>
 						</hlm-dialog-header>
 
-						<button hlmBtn (click)="ctx.close()">Close Nested Dialog</button>
+						<button capsButton (click)="ctx.close()">Close Nested Dialog</button>
 					</hlm-dialog-content>
 				</hlm-dialog>
 			</hlm-dialog-content>
@@ -103,7 +103,7 @@ export const NestedDialog: Story = {
 
 @Component({
 	selector: 'dialog-context-menu-story',
-	imports: [HlmButtonImports, HlmContextMenuImports, HlmDialogImports, HlmDropdownMenuImports],
+	imports: [CapsButtonImports, HlmContextMenuImports, HlmDialogImports, HlmDropdownMenuImports],
 	template: `
 		<div
 			[hlmContextMenuTrigger]="menu"
@@ -140,8 +140,8 @@ export const NestedDialog: Story = {
 					<p hlmDialogDescription>Are you sure you want to print this page? Only print if absolutely necessary.</p>
 				</hlm-dialog-header>
 				<hlm-dialog-footer>
-					<button hlmBtn variant="ghost" (click)="ctx.close()">Cancel</button>
-					<button hlmBtn>Print</button>
+					<button capsButton variant="ghost" (click)="ctx.close()">Cancel</button>
+					<button capsButton>Print</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>
@@ -169,10 +169,10 @@ type ExampleUser = {
 
 @Component({
 	selector: 'dialog-dynamic-component-story',
-	imports: [HlmButton],
+	imports: [CapsButton],
 	template: `
-		<button hlmBtn (click)="openDynamicComponent()">Select User</button>
-		<button hlmBtn (click)="openDynamicComponent(false)">Select Team (Dialog without close btn)</button>
+		<button capsButton (click)="openDynamicComponent()">Select User</button>
+		<button capsButton (click)="openDynamicComponent(false)">Select Team (Dialog without close btn)</button>
 	`,
 })
 class DialogDynamicStory {
@@ -287,14 +287,14 @@ export const DynamicComponentWithDefaultOptions: Story = {
 
 @Component({
 	selector: 'nested-dialog-dynamic-first',
-	imports: [HlmButtonImports, HlmDialogImports],
+	imports: [CapsButtonImports, HlmDialogImports],
 	template: `
 		<hlm-dialog-header>
 			<h3 hlmDialogTitle>First dialog</h3>
 			<p hlmDialogDescription>Click the button below to open a nested dialog.</p>
 		</hlm-dialog-header>
 
-		<button hlmBtn (click)="openNestedDialog()">Open Nested Dialog</button>
+		<button capsButton (click)="openNestedDialog()">Open Nested Dialog</button>
 	`,
 	host: {
 		class: 'flex flex-col gap-4',
@@ -310,14 +310,14 @@ class NestedDialogDynamicFirst {
 
 @Component({
 	selector: 'nested-dialog-dynamic-nested',
-	imports: [HlmButtonImports, HlmDialogImports],
+	imports: [CapsButtonImports, HlmDialogImports],
 	template: `
 		<hlm-dialog-header>
 			<h3 hlmDialogTitle>Nested dialog</h3>
 			<p hlmDialogDescription>I am a nested dialog!</p>
 		</hlm-dialog-header>
 
-		<button hlmBtn (click)="close()">Close Nested Dialog</button>
+		<button capsButton (click)="close()">Close Nested Dialog</button>
 	`,
 	host: {
 		class: 'flex flex-col gap-4',
@@ -333,9 +333,9 @@ class NestedDialogDynamicNested {
 
 @Component({
 	selector: 'nested-dialog-dynamic-content-story',
-	imports: [HlmButton],
+	imports: [CapsButton],
 	template: `
-		<button hlmBtn (click)="openDialog()">Open Dialog</button>
+		<button capsButton (click)="openDialog()">Open Dialog</button>
 	`,
 })
 class NestedDialogDynamicStory {

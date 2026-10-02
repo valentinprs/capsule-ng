@@ -7,11 +7,11 @@
 
 :root {
 	color-scheme: light;
-	--caps-background: oklch(1 0 0);
+	--caps-background: var(--color-white);
 	--caps-foreground: oklch(0.145 0 0);
-	--caps-card: oklch(1 0 0);
+	--caps-card: var(--color-white);
 	--caps-card-foreground: oklch(0.145 0 0);
-	--caps-popover: oklch(1 0 0);
+	--caps-popover: var(--color-white);
 	--caps-popover-foreground: oklch(0.145 0 0);
 	--caps-primary: oklch(0.205 0 0);
 	--caps-primary-foreground: oklch(0.985 0 0);
@@ -25,7 +25,7 @@
 	--caps-border: oklch(0.922 0 0);
 	--caps-input: oklch(0.922 0 0);
 	--caps-ring: oklch(0.708 0 0);
-	--caps-ring-error: oklch(0.885 0.062 18.334);
+	--caps-ring-error: var(--color-red-200);
 	--caps-sidebar: oklch(0.985 0 0);
 	--caps-sidebar-foreground: oklch(0.145 0 0);
 	--caps-sidebar-primary: oklch(0.205 0 0);
@@ -34,11 +34,11 @@
 	--caps-sidebar-accent-foreground: oklch(0.205 0 0);
 	--caps-sidebar-border: oklch(0.922 0 0);
 	--caps-sidebar-ring: oklch(0.708 0 0);
-	--caps-chart-1: oklch(0.809 0.105 251.813);
-	--caps-chart-2: oklch(0.623 0.214 259.815);
-	--caps-chart-3: oklch(0.546 0.245 262.881);
-	--caps-chart-4: oklch(0.488 0.243 264.376);
-	--caps-chart-5: oklch(0.424 0.199 265.638);
+	--caps-chart-1: var(--color-blue-300);
+	--caps-chart-2: var(--color-blue-500);
+	--caps-chart-3: var(--color-blue-600);
+	--caps-chart-4: var(--color-blue-700);
+	--caps-chart-5: var(--color-blue-800);
 	--caps-surface: oklch(0.98 0 0);
 	--caps-surface-foreground: var(--caps-foreground);
 }
@@ -63,7 +63,7 @@
 	--caps-border: oklch(1 0 0 / 10%);
 	--caps-input: oklch(1 0 0 / 15%);
 	--caps-ring: oklch(0.556 0 0);
-	--caps-ring-error: oklch(0.396 0.141 25.723);
+	--caps-ring-error: var(--color-red-900);
 	--caps-sidebar: oklch(0.205 0 0);
 	--caps-sidebar-foreground: oklch(0.985 0 0);
 	--caps-sidebar-primary: oklch(0.985 0 0);
@@ -72,11 +72,11 @@
 	--caps-sidebar-accent-foreground: oklch(0.985 0 0);
 	--caps-sidebar-border: oklch(1 0 0 / 10%);
 	--caps-sidebar-ring: oklch(0.556 0 0);
-	--caps-chart-1: oklch(0.809 0.105 251.813);
-	--caps-chart-2: oklch(0.623 0.214 259.815);
-	--caps-chart-3: oklch(0.546 0.245 262.881);
-	--caps-chart-4: oklch(0.488 0.243 264.376);
-	--caps-chart-5: oklch(0.424 0.199 265.638);
+	--caps-chart-1: var(--color-blue-300);
+	--caps-chart-2: var(--color-blue-500);
+	--caps-chart-3: var(--color-blue-600);
+	--caps-chart-4: var(--color-blue-700);
+	--caps-chart-5: var(--color-blue-800);
 	--caps-surface: oklch(0.2 0 0);
 	--caps-surface-foreground: oklch(0.708 0 0);
 }
@@ -126,4 +126,22 @@
 	--color-ring-error: var(--caps-ring-error);
 	--color-surface: var(--surface);
 	--color-surface-foreground: var(--surface-foreground);
+}
+
+/*
+ * Blue primary used on chat docs previews so sent bubbles read more like iMessage
+ * than the page theme. Docs-only — not part of the shipped styles.
+ */
+.theme-blue {
+	--primary: var(--color-blue-700);
+	--primary-foreground: var(--color-blue-50);
+	--sidebar-primary: var(--color-blue-600);
+	--sidebar-primary-foreground: var(--color-blue-50);
+}
+
+.dark .theme-blue {
+	--primary: var(--color-blue-800);
+	--primary-foreground: var(--color-blue-50);
+	--sidebar-primary: var(--color-blue-500);
+	--sidebar-primary-foreground: var(--color-blue-50);
 }

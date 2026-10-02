@@ -21,7 +21,7 @@ type ShortcutSelectValue = 'none' | 'letters' | 'numbers';
 		<div class="relative mx-auto flex h-full min-h-[300px] w-full max-w-md flex-col">
 			<label class="sr-only" for="questionnaire-shortcut-style">Shortcut style</label>
 			<hlm-select
-				class="absolute end-0 top-0 z-10"
+				class="absolute end-0 top-0 z-(--caps-z-10)"
 				[value]="shortcutsSelectValue()"
 				[itemToString]="shortcutLabel"
 				(valueChange)="onShortcutsChange($event)"

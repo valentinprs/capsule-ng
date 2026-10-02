@@ -17,7 +17,7 @@ import { ColorFormat } from './format-color';
 	],
 	host: {
 		class:
-			'group relative flex aspect-[3/1] w-full flex-1 cursor-pointer flex-col gap-2 text-(--text) sm:aspect-[2/3] sm:h-auto sm:w-auto [&>ng-icon]:absolute [&>ng-icon]:top-4 [&>ng-icon]:right-4 [&>ng-icon]:z-10 [&>ng-icon]:opacity-0 [&>ng-icon]:transition-opacity',
+			'group relative flex aspect-[3/1] w-full flex-1 cursor-pointer flex-col gap-2 text-(--text) sm:aspect-[2/3] sm:h-auto sm:w-auto [&>ng-icon]:absolute [&>ng-icon]:top-4 [&>ng-icon]:right-4 [&>ng-icon]:z-(--caps-z-10) [&>ng-icon]:opacity-0 [&>ng-icon]:transition-opacity',
 		'[style.--bg]': 'color().oklch',
 		'[style.--text]': 'color().foreground',
 		'(click)': 'onClick()',

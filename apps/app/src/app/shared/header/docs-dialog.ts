@@ -28,7 +28,7 @@ import { searchPages } from './search-pages';
 			class="bg-input/30 border-input/30 text-muted-foreground hover:bg-input/50 hover:text-muted-foreground relative h-8 w-full justify-start gap-2 pl-2.5 font-normal shadow-none active:translate-y-px sm:pr-12 md:w-48 lg:w-60 xl:w-64"
 			(click)="_state.set('open')"
 		>
-			<ng-icon name="lucideSearch" class="shrink-0 opacity-50" />
+			<ng-icon name="lucideSearch" class="shrink-0 opacity-(--caps-opacity-50)" />
 			<span class="hidden lg:inline-flex">Search documentation...</span>
 			<span class="inline-flex lg:hidden">Search...</span>
 			<div class="absolute top-1.5 right-1.5 hidden gap-1 sm:flex">
@@ -63,7 +63,7 @@ import { searchPages } from './search-pages';
 			</hlm-command>
 
 			<div
-				class="text-muted-foreground absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 rounded-b-lg border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium dark:border-t-neutral-700 dark:bg-neutral-800"
+				class="text-muted-foreground absolute inset-x-0 bottom-0 z-(--caps-z-20) flex h-10 items-center gap-2 rounded-b-lg border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium dark:border-t-neutral-700 dark:bg-neutral-800"
 			>
 				<div class="flex items-center gap-2">
 					<kbd hlmKbd>

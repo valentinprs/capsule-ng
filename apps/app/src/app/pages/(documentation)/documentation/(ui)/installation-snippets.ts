@@ -1,21 +1,10 @@
-import { CAPS_TOKENS_CSS } from '@spartan-ng/styles';
-
-export const tailwindImports = `
-@layer theme, base, components, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
-@import "tailwindcss/utilities.css";
-`;
-
-export const spartanPresetImport = `@import "@spartan-ng/brain/hlm-tailwind-preset.css";`;
-
-export const cssVariables = `
+export const tailwindImports = `@import "@capsule-ng/caps/foundations.css";`;
+export const spartanPresetImport = `/* Brain, Nova, Capsule and font faces are included by foundations.css. */`;
+export const cssVariables = `/* Optional application overrides, after the shared foundations import. */
 :root {
-  --font-sans: 'Geist Sans', sans-serif;
-  --radius: 0.625rem;
+  --caps-font-sans: 'Inter', sans-serif;
 }
-
-${CAPS_TOKENS_CSS}`;
+/* Set class="dark" for the dark theme; class="style-nova" enables retained Helm components. */`;
 
 export const tailwindAutocompletion = `
 {

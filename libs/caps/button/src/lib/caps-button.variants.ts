@@ -7,6 +7,7 @@ export const buttonVariants = cva(
 			variant: {
 				default: 'caps-button-variant-default',
 				ghost: 'caps-button-variant-ghost',
+				outline: 'caps-button-variant-outline',
 			},
 			size: {
 				default: 'caps-button-size-default',

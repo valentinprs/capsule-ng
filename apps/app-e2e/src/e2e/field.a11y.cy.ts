@@ -49,6 +49,15 @@ describe('Capsule Field composition, validation and accessibility', { testIsolat
 		});
 	}
 
+	it('uses Capsule buttons and links in the examples', () => {
+		cy.get('spartan-field-separator-preview button[capsButton][variant="outline"]')
+			.should('contain.text', 'Login with GitHub')
+			.and('have.class', 'caps-button-variant-outline')
+			.and('have.css', 'border-top-width', '1px');
+		cy.get('spartan-field-separator-preview a[capsLink]').should('have.class', 'caps-link');
+		for (const example of EXAMPLES) cy.get(example).find('[hlmBtn]').should('not.exist');
+	});
+
 	it('infers native label activation and descriptions through FieldContent', () => {
 		cy.get(`${VALIDATION} label`).click();
 		cy.get(`${VALIDATION} input`).should('be.focused').and('have.attr', 'aria-describedby');

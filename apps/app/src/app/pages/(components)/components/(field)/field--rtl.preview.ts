@@ -1,9 +1,9 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
@@ -12,7 +12,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	imports: [
 		HlmCheckboxImports,
 		CapsTextareaImports,
-		HlmButtonImports,
+		CapsButtonImports,
 		CapsInputImports,
 		CapsFieldImports,
 		HlmSelectImports,
@@ -101,8 +101,8 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					</caps-field-group>
 				</caps-field-set>
 				<caps-field orientation="horizontal">
-					<button hlmBtn>{{ _t()['submit'] }}</button>
-					<button hlmBtn variant="outline">{{ _t()['cancel'] }}</button>
+					<button capsButton>{{ _t()['submit'] }}</button>
+					<button capsButton variant="outline">{{ _t()['cancel'] }}</button>
 				</caps-field>
 			</caps-field-group>
 		</form>

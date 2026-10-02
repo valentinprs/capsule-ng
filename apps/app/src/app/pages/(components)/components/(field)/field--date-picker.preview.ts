@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
 
 @Component({
 	selector: 'spartan-field-date-picker-preview',
-	imports: [HlmButtonImports, HlmDatePickerImports, CapsFieldImports],
+	imports: [HlmDatePickerImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-xs',

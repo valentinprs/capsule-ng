@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
@@ -11,7 +11,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	imports: [
 		HlmCheckboxImports,
 		CapsTextareaImports,
-		HlmButtonImports,
+		CapsButtonImports,
 		CapsInputImports,
 		CapsFieldImports,
 		HlmSelectImports,
@@ -106,8 +106,8 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					</caps-field-group>
 				</caps-field-set>
 				<caps-field orientation="horizontal">
-					<button hlmBtn>Submit</button>
-					<button hlmBtn variant="outline">Cancel</button>
+					<button capsButton>Submit</button>
+					<button capsButton variant="outline">Cancel</button>
 				</caps-field>
 			</caps-field-group>
 		</form>

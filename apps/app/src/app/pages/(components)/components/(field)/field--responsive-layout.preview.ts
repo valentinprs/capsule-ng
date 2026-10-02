@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-field-responsive-layout-preview',
-	imports: [CapsFieldImports, CapsInputImports, CapsTextareaImports, HlmButtonImports],
+	imports: [CapsFieldImports, CapsInputImports, CapsTextareaImports, CapsButtonImports],
 	host: {
 		class: 'w-full max-w-4xl',
 	},
@@ -41,8 +41,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 					</caps-field>
 					<caps-field-separator />
 					<caps-field orientation="responsive">
-						<button hlmBtn type="submit">Submit</button>
-						<button hlmBtn type="button" variant="outline">Cancel</button>
+						<button capsButton type="submit">Submit</button>
+						<button capsButton type="button" variant="outline">Cancel</button>
 					</caps-field>
 				</caps-field-group>
 			</caps-field-set>

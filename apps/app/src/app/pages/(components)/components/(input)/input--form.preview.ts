@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-input-form',
-	imports: [CapsInputImports, HlmButtonImports, CapsFieldImports, FormRoot, FormField],
+	imports: [CapsInputImports, CapsButtonImports, CapsFieldImports, FormRoot, FormField],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
@@ -26,8 +26,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 					<input capsInput type="text" id="form-address" placeholder="123 Main St" [formField]="form.address" />
 				</caps-field>
 				<caps-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Cancel</button>
-					<button hlmBtn type="submit">Submit</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Cancel</button>
+					<button capsButton type="submit">Submit</button>
 				</caps-field>
 			</caps-field-group>
 		</form>

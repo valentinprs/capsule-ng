@@ -6,7 +6,7 @@ import { buttonVariants, type CapsButtonSize, type CapsButtonVariant } from './c
 /**
  * Button directive for a native `<button>`, built on brain's `BrnButton` (`disabled` input,
  * `data-disabled`). Focus, keyboard activation and `type` stay native. Minimal for now (pilot):
- * `default`/`ghost` variants, `default`/`icon` sizes.
+ * `default`/`ghost`/`outline` variants, `default`/`icon` sizes.
  */
 @Directive({
 	selector: 'button[capsButton]',

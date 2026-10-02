@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 
 @Component({
 	selector: 'spartan-field-group-preview',
-	imports: [CapsFieldImports, HlmCheckboxImports],
+	imports: [CapsLinkImports, CapsFieldImports, HlmCheckboxImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
@@ -29,7 +30,7 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 				<caps-field-legend variant="label">Tasks</caps-field-legend>
 				<caps-field-description>
 					Get notified when tasks you've created have updates.
-					<a href="#">Manage tasks</a>
+					<a capsLink href="#">Manage tasks</a>
 				</caps-field-description>
 				<caps-field-group data-slot="checkbox-group">
 					<caps-field orientation="horizontal">

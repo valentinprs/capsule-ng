@@ -33,6 +33,10 @@
 	@apply hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground;
 }
 
+.caps-button-variant-outline {
+	@apply border-input bg-background text-foreground hover:bg-muted hover:text-foreground dark:bg-input/30 dark:hover:bg-input/50;
+}
+
 .caps-button-size-default {
 	@apply h-8 gap-1.5 px-2.5;
 }

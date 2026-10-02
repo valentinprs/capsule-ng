@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-textarea-form',
-	imports: [CapsTextareaImports, HlmButtonImports, CapsFieldImports, FormRoot, FormField],
+	imports: [CapsTextareaImports, CapsButtonImports, CapsFieldImports, FormRoot, FormField],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
@@ -28,7 +28,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 					</caps-field-description>
 				</caps-field>
 				<caps-field orientation="horizontal">
-					<button hlmBtn type="submit">Submit</button>
+					<button capsButton type="submit">Submit</button>
 				</caps-field>
 			</caps-field-group>
 		</form>

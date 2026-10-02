@@ -136,3 +136,10 @@ Field, FieldContent, FieldLabel and FieldSet forward the ancestor Angular Contro
 Messages use the existing Brain matcher and public form events; Brain remains unchanged.
 Descriptions/errors register with the closest Brain accessibility context. FieldSet has its own
 context and nested Fields isolate their descriptions.
+
+## Catalogue migration preference (2026-10-02)
+
+Component examples should use the Capsule API whenever that component already offers one.
+This includes supporting buttons and links inside another component's examples, not only the
+component being documented. Preserve the intended behavior and visual variants during migration;
+Helm remains for primitives without a corresponding Capsule API.

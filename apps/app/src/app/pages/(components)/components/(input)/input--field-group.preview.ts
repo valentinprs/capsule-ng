@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-input-field-group',
-	imports: [CapsInputImports, CapsFieldImports, HlmButtonImports],
+	imports: [CapsInputImports, CapsFieldImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
@@ -20,8 +20,8 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 				<caps-field-description>We'll send updates to this address.</caps-field-description>
 			</caps-field>
 			<caps-field orientation="horizontal">
-				<button hlmBtn variant="outline" type="reset">Reset</button>
-				<button hlmBtn type="submit">Submit</button>
+				<button capsButton variant="outline" type="reset">Reset</button>
+				<button capsButton type="submit">Submit</button>
 			</caps-field>
 		</caps-field-group>
 	`,

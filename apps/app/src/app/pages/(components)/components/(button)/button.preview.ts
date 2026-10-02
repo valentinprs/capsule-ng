@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-button-preview',
-	imports: [HlmButtonImports, NgIcon],
+	imports: [CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideArrowUp })],
 	host: { class: 'flex flex-wrap items-center gap-2 md:flex-row' },
 	template: `
-		<button hlmBtn variant="outline">Button</button>
-		<button hlmBtn size="icon" variant="outline">
+		<button capsButton variant="outline">Button</button>
+		<button capsButton size="icon" variant="outline" aria-label="Upload">
 			<ng-icon name="lucideArrowUp" />
 		</button>
 	`,
@@ -18,9 +18,9 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 export class ButtonPreview {}
 
 export const defaultImports = `
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 `;
 
 export const defaultSkeleton = `
-<button hlmBtn>Button</button>
+<button capsButton>Button</button>
 `;

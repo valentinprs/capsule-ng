@@ -29,7 +29,7 @@ describe('Capsule Label docs accessibility and native activation', { testIsolati
 		for (const example of EXAMPLES) {
 			cy.get(`${example} label[capsLabel]`).each(($label) => {
 				expect($label).to.have.class('caps-label');
-				expect($label).to.have.attr('data-slot', $label.closest('[brnField]').length ? 'field-label' : 'label');
+				expect($label).to.have.attr('data-slot', $label.closest('caps-field').length ? 'field-label' : 'label');
 			});
 		}
 		cy.get('spartan-label-rtl > div').should('have.attr', 'dir', 'rtl');
@@ -60,11 +60,11 @@ describe('Capsule Label docs accessibility and native activation', { testIsolati
 		cy.get('spartan-label-preview hlm-checkbox [role="checkbox"]').should('have.attr', 'aria-checked', 'false');
 	});
 
-	it('infers the associated input from Brain Field', () => {
-		cy.get('spartan-label-preview [brnField] input').then(($input) => {
-			cy.get('spartan-label-preview [brnField] label').should('have.attr', 'for', $input.attr('id')).click();
+	it('infers the associated Capsule input from Capsule Field', () => {
+		cy.get('spartan-label-preview caps-field input[capsInput]').then(($input) => {
+			cy.get('spartan-label-preview caps-field label[capsLabel]').should('have.attr', 'for', $input.attr('id')).click();
 		});
-		cy.get('spartan-label-preview [brnField] input').should('be.focused');
+		cy.get('spartan-label-preview caps-field input[capsInput]').should('be.focused');
 	});
 
 	it('has no axe violations in the normal and RTL examples', () => {

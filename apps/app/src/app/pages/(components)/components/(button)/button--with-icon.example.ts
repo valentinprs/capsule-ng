@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGitBranch } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-button-with-icon',
-	imports: [HlmButtonImports, NgIcon],
+	imports: [CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideGitBranch })],
 
 	template: `
 		<div class="flex flex-wrap items-center gap-2 md:flex-row">
-			<button hlmBtn variant="outline" size="sm">
-				<ng-icon name="lucideGitBranch" />
+			<button capsButton variant="outline" size="sm">
+				<ng-icon name="lucideGitBranch" data-icon="inline-start" />
 				New Branch
 			</button>
 		</div>

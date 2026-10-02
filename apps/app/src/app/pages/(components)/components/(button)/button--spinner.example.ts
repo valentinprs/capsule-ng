@@ -1,21 +1,28 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 
 @Component({
 	selector: 'spartan-button-spinner',
-	imports: [HlmButtonImports, HlmSpinnerImports],
+	imports: [CapsButtonImports],
 	host: {
 		class: 'flex gap-2',
 	},
 	template: `
-		<button hlmBtn variant="outline" disabled>
-			<hlm-spinner data-icon="inline-start" />
+		<button capsButton variant="outline" disabled>
+			<span
+				aria-hidden="true"
+				data-icon="inline-start"
+				class="size-4 animate-spin rounded-full border-2 border-current border-t-transparent motion-reduce:animate-none"
+			></span>
 			Generating
 		</button>
-		<button hlmBtn variant="secondary" disabled>
+		<button capsButton variant="secondary" disabled>
 			Downloading
-			<hlm-spinner data-icon="inline-start" />
+			<span
+				aria-hidden="true"
+				data-icon="inline-end"
+				class="size-4 animate-spin rounded-full border-2 border-current border-t-transparent motion-reduce:animate-none"
+			></span>
 		</button>
 	`,
 })

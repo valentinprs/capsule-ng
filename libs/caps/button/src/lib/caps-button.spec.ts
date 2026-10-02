@@ -26,6 +26,27 @@ class ButtonHost {
 	public readonly clicks = signal(0);
 }
 
+@Component({
+	selector: 'caps-button-anchor-host',
+	imports: [CapsButtonImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	template: `
+		<a
+			capsButton
+			href="#caps-button-navigation"
+			target="_self"
+			[disabled]="disabled()"
+			(click)="clicks.set(clicks() + 1)"
+		>
+			Settings
+		</a>
+	`,
+})
+class AnchorHost {
+	public readonly disabled = signal(false);
+	public readonly clicks = signal(0);
+}
+
 function render(inputs: { variant?: CapsButtonVariant; size?: CapsButtonSize; disabled?: boolean } = {}) {
 	const fixture = TestBed.createComponent(ButtonHost);
 	for (const [name, value] of Object.entries(inputs)) fixture.componentRef.setInput(name, value);
@@ -51,6 +72,20 @@ describe('capsButton', () => {
 		expect(button.classList).not.toContain('caps-button-variant-default');
 		expect(button.classList).not.toContain('caps-button-size-default');
 	});
+
+	it.each(['default', 'outline', 'secondary', 'ghost', 'destructive', 'link'] as const)(
+		'supports the %s variant',
+		(variant) => {
+			expect(render({ variant }).button.classList).toContain(`caps-button-variant-${variant}`);
+		},
+	);
+
+	it.each(['default', 'xs', 'sm', 'lg', 'icon', 'icon-xs', 'icon-sm', 'icon-lg'] as const)(
+		'supports the %s size',
+		(size) => {
+			expect(render({ size }).button.classList).toContain(`caps-button-size-${size}`);
+		},
+	);
 
 	it('merges the consumer class', () => {
 		expect(render().button.classList).toContain('font-bold');
@@ -89,5 +124,50 @@ describe('capsButton', () => {
 
 		expect(button.disabled).toBe(false);
 		expect(button.hasAttribute('data-disabled')).toBe(false);
+	});
+
+	it('preserves native anchor semantics and forwards link attributes', () => {
+		const fixture = TestBed.createComponent(AnchorHost);
+		fixture.detectChanges();
+		const anchor: HTMLAnchorElement = fixture.nativeElement.querySelector('a');
+
+		expect(anchor.classList).toContain('caps-button');
+		expect(anchor.getAttribute('href')).toBe('#caps-button-navigation');
+		expect(anchor.getAttribute('target')).toBe('_self');
+		expect(anchor.hasAttribute('role')).toBe(false);
+		expect(anchor.hasAttribute('tabindex')).toBe(false);
+		expect(anchor.hasAttribute('disabled')).toBe(false);
+		expect(anchor.hasAttribute('aria-disabled')).toBe(false);
+
+		anchor.focus();
+		expect(document.activeElement).toBe(anchor);
+		const click = new MouseEvent('click', { bubbles: true, cancelable: true });
+		anchor.addEventListener('click', (event) => event.preventDefault(), { once: true });
+		anchor.dispatchEvent(click);
+		expect(fixture.componentInstance.clicks()).toBe(1);
+	});
+
+	it('prevents navigation and activation on a disabled anchor, then restores activation', () => {
+		const fixture = TestBed.createComponent(AnchorHost);
+		fixture.componentInstance.disabled.set(true);
+		fixture.detectChanges();
+		const anchor: HTMLAnchorElement = fixture.nativeElement.querySelector('a');
+
+		expect(anchor.getAttribute('aria-disabled')).toBe('true');
+		expect(anchor.getAttribute('data-disabled')).toBe('true');
+		expect(anchor.getAttribute('tabindex')).toBe('-1');
+		expect(anchor.hasAttribute('disabled')).toBe(false);
+		const disabledClick = new MouseEvent('click', { bubbles: true, cancelable: true });
+		expect(anchor.dispatchEvent(disabledClick)).toBe(false);
+		expect(disabledClick.defaultPrevented).toBe(true);
+		expect(fixture.componentInstance.clicks()).toBe(0);
+
+		fixture.componentInstance.disabled.set(false);
+		fixture.detectChanges();
+		expect(anchor.hasAttribute('aria-disabled')).toBe(false);
+		expect(anchor.hasAttribute('tabindex')).toBe(false);
+		anchor.addEventListener('click', (event) => event.preventDefault(), { once: true });
+		anchor.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+		expect(fixture.componentInstance.clicks()).toBe(1);
 	});
 });

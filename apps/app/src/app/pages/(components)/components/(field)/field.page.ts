@@ -318,25 +318,25 @@ export const routeMeta: RouteMeta = {
 				<li class="mt-2">
 					Angular validation supplies
 					<code class="${hlmCode} mr-0.5">aria-invalid</code>
-					on Capsule controls automatically. Messages follow the configured Brain error-state matcher; use validator to
-					select a message or forceShow for a manual message.
+					on Capsule controls automatically. Messages follow the configured error-state matcher; use validator to select
+					a message or forceShow for a manual message.
 				</li>
 				<li class="mt-2">
 					Render
-					<code class="${hlmCode} mr-0.5">FieldError</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldError</code>
 					immediately after the control or inside
-					<code class="${hlmCode} mr-0.5">FieldContent</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldContent</code>
 					to keep error messages aligned with the field.
 				</li>
 				<li class="mt-2">
 					For checkbox or radio groups wrapped in a
 					<code class="${hlmCode} mr-0.5">fieldset</code>
 					, render
-					<code class="${hlmCode} mr-0.5">FieldError</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldError</code>
 					as a sibling of the
 					<code class="${hlmCode} mr-0.5">fieldset</code>
 					, not inside it. Because
-					<code class="${hlmCode} mr-0.5">FieldGroup</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldGroup</code>
 					is a container-query context, an error nested in the
 					<code class="${hlmCode} mr-0.5">fieldset</code>
 					triggers a Chrome layout bug that collapses the controls on toggle.
@@ -379,9 +379,6 @@ export const routeMeta: RouteMeta = {
 					sparingly to ensure screen readers encounter clear section boundaries.
 				</li>
 			</ul>
-
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
 
 			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
 			<spartan-ui-api-docs docType="caps" />

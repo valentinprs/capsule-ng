@@ -60,10 +60,10 @@ export const routeMeta: RouteMeta = {
 			</div>
 			<p class="mt-4 text-sm leading-relaxed">
 				Apply capsLabel to a native label and set for to the associated control's id. Clicking the label keeps native
-				focus and checkbox activation. Inside an existing Brain Field, the associated control is inferred when for is
-				omitted; an explicit, non-empty for value takes precedence. The id input defaults to a generated label id.
-				Disabled appearance follows an ancestor group with data-disabled="true" or a preceding disabled peer control;
-				the control's native disabled state determines activation.
+				focus and checkbox activation. Inside caps-field, the associated control is inferred when for is omitted; an
+				explicit, non-empty for value takes precedence. The id input defaults to a generated label id. Disabled
+				appearance follows an ancestor group with data-disabled="true" or a preceding disabled peer control; the
+				control's native disabled state determines activation.
 			</p>
 
 			<spartan-header-rtl />

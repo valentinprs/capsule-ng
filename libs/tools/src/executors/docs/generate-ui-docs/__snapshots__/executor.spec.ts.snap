@@ -1499,7 +1499,7 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         ],
         "models": [],
         "outputs": [],
-        "selector": "button[capsButton]",
+        "selector": "button[capsButton], a[capsButton]",
       },
     },
     "helm": {

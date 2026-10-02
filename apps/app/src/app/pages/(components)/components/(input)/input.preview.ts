@@ -20,4 +20,4 @@ export class InputPreview {}
 export const defaultImports = `
 import { CapsInputImports } from '@capsule-ng/caps/input';
 `;
-export const defaultSkeleton = '<input capsInput/>';
+export const defaultSkeleton = '<input capsInput type="text" aria-label="Text" />';

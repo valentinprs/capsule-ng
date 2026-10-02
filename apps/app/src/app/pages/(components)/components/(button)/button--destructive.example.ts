@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 
 @Component({
 	selector: 'spartan-button-destructive',
-	imports: [HlmButtonImports],
+	imports: [CapsButtonImports],
 	template: `
-		<button hlmBtn variant="destructive">Destructive</button>
+		<button capsButton variant="destructive">Destructive</button>
 	`,
 })
 export class ButtonDestructive {}

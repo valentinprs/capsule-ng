@@ -9,6 +9,12 @@ Projects in the Vercel team `valentins-projects-85afeca5`:
 
 GitHub Actions is the only deployment trigger. Projects are not connected to Vercel Git integration, and both configurations additionally set `git.deploymentEnabled: false`. Pushing a branch without a PR does not deploy. Draft PRs are included.
 
+## First deployment of a new project
+
+Vercel always classifies the first deployment as production, even with `--target=preview`. Before enabling PR previews, initialize each new project with an explicitly approved minimal holding page (no application code), or wait for the first successful main CI production deployment. Do not delete that initial production until it has been replaced by the first main deployment. The preview script checks `targets.production` and refuses to upload to an uninitialized project.
+
+The production application still deploys only after successful main CI. The initial holding page is a one-time provisioning step, not a PR deployment.
+
 ## GitHub configuration
 
 Repository secret: `VERCEL_TOKEN`, a Vercel token scoped to the team. Renew it before its configured expiration. Do not use a short-lived CLI login token in Actions.

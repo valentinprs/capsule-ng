@@ -123,6 +123,11 @@ if (stage === 'publish' && context.cleanup) {
 	for (const project of projects) {
 		try {
 			if (!(await current())) break;
+			if (!context.production) {
+				const settings = await api(`/v9/projects/${project.id}`);
+				if (!settings.targets?.production)
+					throw new Error('Project requires initial production setup; see docs/deployment.md');
+			}
 			await rm('.vercel', { recursive: true, force: true });
 			await mkdir('.vercel', { recursive: true });
 			await writeFile(

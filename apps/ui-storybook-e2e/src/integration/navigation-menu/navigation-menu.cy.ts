@@ -51,7 +51,7 @@ describe('navigation-menu', () => {
 
 			cy.findByRole('button', { name: /home/i }).focus();
 			pressKey({ key: 'ArrowDown' });
-			cy.findByRole('link', { name: /spartan\.ng/i }).should('be.focused');
+			cy.findByRole('link', { name: /Capsule/i }).should('be.focused');
 		});
 
 		it('enters the panel when tabbing from the trigger', () => {
@@ -59,18 +59,18 @@ describe('navigation-menu', () => {
 
 			cy.findByRole('button', { name: /home/i }).focus();
 			pressKey(TAB);
-			cy.findByRole('link', { name: /spartan\.ng/i }).should('be.focused');
+			cy.findByRole('link', { name: /Capsule/i }).should('be.focused');
 		});
 
 		it('walks through the panel items with Tab / Shift+Tab', () => {
 			openHome();
 
-			cy.findByRole('link', { name: /spartan\.ng/i }).focus();
+			cy.findByRole('link', { name: /Capsule/i }).focus();
 			pressKey(TAB);
 			cy.findByRole('link', { name: /introduction/i }).should('be.focused');
 
 			pressKey({ ...TAB, shiftKey: true });
-			cy.findByRole('link', { name: /spartan\.ng/i }).should('be.focused');
+			cy.findByRole('link', { name: /Capsule/i }).should('be.focused');
 		});
 
 		it('keeps focus in the menu when tabbing past the last item (issue #1484)', () => {
@@ -87,7 +87,7 @@ describe('navigation-menu', () => {
 		it('returns focus to the trigger on Shift+Tab from the first item', () => {
 			openHome();
 
-			cy.findByRole('link', { name: /spartan\.ng/i }).focus();
+			cy.findByRole('link', { name: /Capsule/i }).focus();
 			pressKey({ ...TAB, shiftKey: true });
 			cy.findByRole('button', { name: /home/i }).should('be.focused');
 		});

@@ -6,6 +6,11 @@ on:
       - main
   pull_request: {}
 
+# nx-set-shas reads successful Actions runs to select the main-branch base.
+permissions:
+  contents: read
+  actions: read
+
 # Cancel superseded runs on the same ref (e.g. rapid pushes / force-pushes to a PR) so CI minutes
 # are not spent finishing builds that are already out of date.
 concurrency:

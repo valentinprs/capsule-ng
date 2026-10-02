@@ -37,6 +37,8 @@ export default defineConfig(({ command, mode }) => {
 				'marked-highlight',
 				'prismjs/**/*',
 				'@ng-icons/remixicon',
+				'@ng-icons/tabler-icons',
+				'@angular/cdk/menu',
 				'luxon',
 				'@angular/cdk/portal',
 				'@angular/cdk/observers',

@@ -76,7 +76,7 @@ describe('menubar', () => {
 			cy.findByText('View').should('have.attr', 'aria-expanded', 'false');
 			cy.findByText('Profiles').should('have.attr', 'aria-expanded', 'false');
 
-			cy.realPress('Tab');
+			cy.findByText('File').focus();
 			pressArrow('ArrowDown');
 			cy.findByText('File').should('have.attr', 'aria-expanded', 'true');
 			cy.findByText('Edit').should('have.attr', 'aria-expanded', 'false');
@@ -89,9 +89,13 @@ describe('menubar', () => {
 			cy.findByText('View').should('have.attr', 'aria-expanded', 'false');
 			cy.findByText('Profiles').should('have.attr', 'aria-expanded', 'false');
 			//
+			cy.findByText('Edit').should('be.focused');
 			pressArrow('ArrowDown');
+			cy.findByText('Undo', { exact: false }).should('be.focused');
 			pressArrow('ArrowDown');
+			cy.findByText('Redo', { exact: false }).should('be.focused');
 			pressArrow('ArrowDown');
+			cy.findByText('Share').should('be.focused');
 			pressArrow('ArrowRight');
 			cy.findByText('File').should('have.attr', 'aria-expanded', 'false');
 			cy.findByText('Edit').should('have.attr', 'aria-expanded', 'true');
@@ -100,10 +104,9 @@ describe('menubar', () => {
 			cy.findByText('Share').should('have.attr', 'aria-expanded', 'true');
 
 			pressArrow('ArrowLeft');
+			cy.findByText('Share').should('be.focused').and('have.attr', 'aria-expanded', 'false');
 			pressArrow('ArrowUp');
-			pressArrow('ArrowUp');
-			pressArrow('ArrowUp');
-			pressArrow('ArrowUp');
+			cy.findByText('Redo', { exact: false }).should('be.focused');
 			pressArrow('ArrowRight');
 			cy.findByText('File').should('have.attr', 'aria-expanded', 'false');
 			cy.findByText('Edit').should('have.attr', 'aria-expanded', 'false');

@@ -1,9 +1,9 @@
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon } from '@ng-icons/core';
 import { BrnPopover } from '@spartan-ng/brain/popover';
-import { HlmButton } from '@spartan-ng/helm/button';
 
-import { HlmInput } from '@spartan-ng/helm/input';
-import { HlmLabel } from '@spartan-ng/helm/label';
+import { CapsInput } from '@capsule-ng/caps/input';
+import { CapsLabel } from '@capsule-ng/caps/label';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -21,7 +21,7 @@ const meta: Meta<BrnPopover> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmPopoverImports, HlmButton, HlmLabel, HlmInput, NgIcon],
+			imports: [HlmPopoverImports, CapsButton, CapsLabel, CapsInput, NgIcon],
 		}),
 	],
 };
@@ -36,8 +36,8 @@ export const Default: Story = {
 	    <hlm-popover ${argsToTemplate(args)}>
 	    <div class='flex flex-col items-center justify-center gap-4 py-80'>
 	        <div class='flex items-center gap-4'>
-	            <button id='edit-profile' variant='outline' hlmPopoverTrigger hlmBtn>Open Popover</button>
-	            <button id='outside-action' variant='outline' hlmBtn (click)='outsideClicks = outsideClicks + 1'>Outside Action</button>
+	            <button id='edit-profile' variant='outline' hlmPopoverTrigger capsButton>Open Popover</button>
+	            <button id='outside-action' variant='outline' capsButton (click)='outsideClicks = outsideClicks + 1'>Outside Action</button>
 	        </div>
 	        <p id='outside-click-count'>Outside clicks: {{ outsideClicks }}</p>
 	    </div>
@@ -50,32 +50,32 @@ export const Default: Story = {
           </div>
           <div class='grid gap-2'>
             <div class='items-center grid grid-cols-3 gap-4'>
-              <label hlmLabel for='width'>Width</label>
-              <input hlmInput
+              <label capsLabel for='width'>Width</label>
+              <input capsInput
                 id='width'
                 [defaultValue]="'100%'"
                 class='h-8 col-span-2'
               />
             </div>
             <div class='items-center grid grid-cols-3 gap-4'>
-              <label hlmLabel for='maxWidth'>Max. width</label>
-              <input hlmInput
+              <label capsLabel for='maxWidth'>Max. width</label>
+              <input capsInput
                 id='maxWidth'
                 [defaultValue]="'300px'"
                 class='h-8 col-span-2'
               />
             </div>
             <div class='items-center grid grid-cols-3 gap-4'>
-              <label hlmLabel for='height'>Height</label>
-              <input hlmInput
+              <label capsLabel for='height'>Height</label>
+              <input capsInput
                 id='height'
                 [defaultValue]="'25px'"
                 class='h-8 col-span-2'
               />
             </div>
             <div class='items-center grid grid-cols-3 gap-4'>
-              <label hlmLabel for='maxHeight'>Max. height</label>
-              <input hlmInput
+              <label capsLabel for='maxHeight'>Max. height</label>
+              <input capsInput
                 id='maxHeight'
                 [defaultValue]="'none'"
                 class='h-8 col-span-2'
@@ -103,7 +103,7 @@ export const NearViewportEdge: Story = {
 		template: `
     <hlm-popover ${argsToTemplate(args)}>
       <div class='flex justify-end py-[900px]'>
-        <button id='edge-trigger' variant='outline' hlmPopoverTrigger hlmBtn>Edge</button>
+        <button id='edge-trigger' variant='outline' hlmPopoverTrigger capsButton>Edge</button>
       </div>
       <hlm-popover-content class='w-80' *hlmPopoverPortal='let ctx'>
         <p id='edge-content' class='text-sm'>Content wider than its trigger.</p>
@@ -125,7 +125,7 @@ export const CloseOnScroll: Story = {
 		template: `
     <hlm-popover ${argsToTemplate(args)} scrollStrategy='close'>
       <div class='flex justify-center py-[900px]'>
-        <button id='closing-trigger' variant='outline' hlmPopoverTrigger hlmBtn>Closes on scroll</button>
+        <button id='closing-trigger' variant='outline' hlmPopoverTrigger capsButton>Closes on scroll</button>
       </div>
       <hlm-popover-content class='w-80' *hlmPopoverPortal='let ctx'>
         <p id='closing-content' class='text-sm'>Dismissed as soon as the page scrolls.</p>

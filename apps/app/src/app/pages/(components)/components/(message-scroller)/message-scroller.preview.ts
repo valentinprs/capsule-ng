@@ -99,7 +99,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 												[scrollAnchor]="message.role === 'user'"
 												[animationClass]="
 													message.role === 'user'
-														? 'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-300'
+														? 'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-(--caps-duration-300)'
 														: ''
 												"
 											/>
@@ -116,7 +116,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 							<hlm-input-group>
 								<div class="h-14 w-full px-3 py-2.5">
 									<span
-										class="line-clamp-2 opacity-60 data-[status=ready]:opacity-100"
+										class="line-clamp-2 opacity-(--caps-opacity-60) data-[status=ready]:opacity-100"
 										[attr.data-status]="_chat.status()"
 									>
 										@if (_nextPreview(); as preview) {

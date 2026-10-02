@@ -1,7 +1,7 @@
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { type BrnCalendarI18n, type MonthLabels, provideBrnCalendarI18n } from '@spartan-ng/brain/calendar';
 import { BrnJalaliDateAdapter, JalaliDate, provideDateAdapter } from '@spartan-ng/brain/date-time';
 import { HlmDatePicker, HlmDatePickerImports, provideHlmDatePickerConfig } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
 const JALALI_MONTHS = [
@@ -49,7 +49,7 @@ const meta: Meta<HlmDatePicker<JalaliDate>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, HlmFieldImports],
+			imports: [HlmDatePickerImports, CapsFieldImports],
 			providers: [
 				provideDateAdapter(BrnJalaliDateAdapter),
 				provideBrnCalendarI18n(jalaliCalendarI18n),

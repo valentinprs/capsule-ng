@@ -1,7 +1,7 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmDatePicker, HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
 const meta: Meta<HlmDatePicker<Date>> = {
@@ -23,7 +23,7 @@ const meta: Meta<HlmDatePicker<Date>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, ReactiveFormsModule, HlmFieldImports, HlmButton],
+			imports: [HlmDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 		}),
 	],
 	render: ({ ...args }) => ({
@@ -113,8 +113,8 @@ export const WithHintAndError: Story = {
 		template: `
 		<form [formGroup]="form" class="space-y-3 w-full max-w-sm">
 
-			<div hlmField>
-				<label hlmFieldLabel>Date *</label>
+			<caps-field>
+				<caps-field-label>Date *</caps-field-label>
 				<hlm-date-picker
 					formControlName="date"
 					[captionLayout]="captionLayout"
@@ -123,14 +123,14 @@ export const WithHintAndError: Story = {
 					<hlm-date-picker-trigger buttonId="date">Select a date</hlm-date-picker-trigger>
 				</hlm-date-picker>
 
-				<p hlmFieldDescription>Pick a date for the event so we can reserve the room.</p>
+				<caps-field-description>Pick a date for the event so we can reserve the room.</caps-field-description>
 
-				<hlm-field-error>Select a date to continue.</hlm-field-error>
-			</div>
+				<caps-field-error>Select a date to continue.</caps-field-error>
+			</caps-field>
 
 			<div class="flex flex-wrap items-center gap-2">
-				<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-				<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 			</div>
 		</form>
 		`,

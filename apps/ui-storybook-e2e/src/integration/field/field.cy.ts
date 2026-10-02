@@ -7,37 +7,37 @@ describe('field', () => {
 
 		it('should render field with label, input, and description', () => {
 			// Verify field structure
-			cy.get('[hlmfield]').should('exist');
-			cy.get('[hlmfieldlabel]').should('exist');
-			cy.get('[hlminput]').should('exist');
-			cy.get('[hlmfielddescription]').should('exist');
+			cy.get('caps-field').should('exist');
+			cy.get('caps-field-label').should('exist');
+			cy.get('[capsinput]').should('exist');
+			cy.get('caps-field-description').should('exist');
 
 			// Verify label text
-			cy.findByLabelText('Full name').should('exist');
-			cy.findByLabelText('Username').should('exist');
+			cy.findByLabelText('Full name', { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).should('exist');
 
 			// Verify inputs are accessible
-			cy.findByLabelText('Full name').should('have.attr', 'id', 'field-fullname');
-			cy.findByLabelText('Username').should('have.attr', 'id', 'field-username');
+			cy.findByLabelText('Full name', { selector: ':not([role=group])' }).should('have.attr', 'id', 'field-fullname');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).should('have.attr', 'id', 'field-username');
 
 			// Verify description is visible
 			cy.contains('This appears on invoices and emails.').should('be.visible');
 		});
 
 		it('should allow typing in inputs', () => {
-			cy.findByLabelText('Full name').type('John Doe');
-			cy.findByLabelText('Full name').should('have.value', 'John Doe');
+			cy.findByLabelText('Full name', { selector: ':not([role=group])' }).type('John Doe');
+			cy.findByLabelText('Full name', { selector: ':not([role=group])' }).should('have.value', 'John Doe');
 
-			cy.findByLabelText('Username').type('john_doe_99');
-			cy.findByLabelText('Username').should('have.value', 'john_doe_99');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).type('john_doe_99');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).should('have.value', 'john_doe_99');
 		});
 
 		it('should support keyboard navigation', () => {
-			cy.findByLabelText('Full name').focus();
-			cy.findByLabelText('Full name').should('have.focus');
+			cy.findByLabelText('Full name', { selector: ':not([role=group])' }).focus();
+			cy.findByLabelText('Full name', { selector: ':not([role=group])' }).should('have.focus');
 
 			cy.realPress('Tab');
-			cy.findByLabelText('Username').should('have.focus');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).should('have.focus');
 		});
 	});
 
@@ -48,17 +48,17 @@ describe('field', () => {
 		});
 
 		it('should render multiple fields with descriptions', () => {
-			cy.findByLabelText('Username').should('exist');
-			cy.findByLabelText('Password').should('exist');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText('Password', { selector: ':not([role=group])' }).should('exist');
 
 			cy.contains('Choose a unique username for your account.').should('be.visible');
 			cy.contains('Must be at least 8 characters long.').should('be.visible');
 		});
 
 		it('should allow input in password field', () => {
-			cy.findByLabelText('Password').type('secretpassword123');
-			cy.findByLabelText('Password').should('have.value', 'secretpassword123');
-			cy.findByLabelText('Password').should('have.attr', 'type', 'password');
+			cy.findByLabelText('Password', { selector: ':not([role=group])' }).type('secretpassword123');
+			cy.findByLabelText('Password', { selector: ':not([role=group])' }).should('have.value', 'secretpassword123');
+			cy.findByLabelText('Password', { selector: ':not([role=group])' }).should('have.attr', 'type', 'password');
 		});
 	});
 
@@ -70,33 +70,33 @@ describe('field', () => {
 
 		it('should render fieldset with legend and checkboxes', () => {
 			// Verify fieldset structure
-			cy.get('[hlmfieldset]').should('exist');
-			cy.get('[hlmfieldlegend]').should('contain.text', 'Show these items on the desktop');
-			cy.get('[hlmfielddescription]').should('contain.text', 'Select the items you want to show on the desktop.');
+			cy.get('caps-field-set').should('exist');
+			cy.get('caps-field-set legend').should('contain.text', 'Show these items on the desktop');
+			cy.get('caps-field-description').should('contain.text', 'Select the items you want to show on the desktop.');
 
 			// Verify all checkboxes are rendered with horizontal orientation
-			cy.findByLabelText('Hard disks').should('exist');
-			cy.findByLabelText('External disks').should('exist');
-			cy.findByLabelText('CDs, DVDs, and IPods').should('exist');
-			cy.findByLabelText('Connected servers').should('exist');
+			cy.findByLabelText('Hard disks', { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText('External disks', { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText('CDs, DVDs, and IPods', { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText('Connected servers', { selector: ':not([role=group])' }).should('exist');
 		});
 
 		it('should allow checking and unchecking checkboxes', () => {
-			cy.findByLabelText('Hard disks').click();
-			cy.findByLabelText('Hard disks').should('have.attr', 'aria-checked', 'true');
+			cy.findByLabelText('Hard disks', { selector: ':not([role=group])' }).click();
+			cy.findByLabelText('Hard disks', { selector: ':not([role=group])' }).should('have.attr', 'aria-checked', 'true');
 
-			cy.findByLabelText('Hard disks').click();
-			cy.findByLabelText('Hard disks').should('have.attr', 'aria-checked', 'false');
+			cy.findByLabelText('Hard disks', { selector: ':not([role=group])' }).click();
+			cy.findByLabelText('Hard disks', { selector: ':not([role=group])' }).should('have.attr', 'aria-checked', 'false');
 		});
 
 		it('should render checkbox with field content', () => {
-			cy.get('[hlmfieldcontent]').should('exist');
+			cy.get('caps-field-content').should('exist');
 			cy.contains('Sync Desktop & Documents folders').should('be.visible');
 			cy.contains('Your Desktop & Documents folders are being synced with iCloud Drive').should('be.visible');
 		});
 
 		it('should have separator between field groups', () => {
-			cy.get('hlm-field-separator').should('exist');
+			cy.get('caps-field-separator').should('exist');
 		});
 	});
 
@@ -107,7 +107,7 @@ describe('field', () => {
 		});
 
 		it('should render field with switch in horizontal orientation', () => {
-			cy.findByLabelText('Multi-factor authentication').should('exist');
+			cy.findByLabelText('Multi-factor authentication', { selector: ':not([role=group])' }).should('exist');
 			cy.findByRole('switch', { name: /multi-factor authentication/i }).should('exist');
 
 			// Verify description is visible
@@ -129,14 +129,14 @@ describe('field', () => {
 		});
 
 		it('should render fieldset with radio group', () => {
-			cy.get('[hlmfieldset]').should('exist');
-			cy.get('[hlmfieldlabel]').should('contain.text', 'Subscription Plan');
+			cy.get('caps-field-set').should('exist');
+			cy.get('caps-field-label').should('contain.text', 'Subscription Plan');
 			cy.contains('Yearly and lifetime plans offer significant savings').should('be.visible');
 
 			// Verify all radio options
-			cy.findByLabelText(/Monthly/i).should('exist');
-			cy.findByLabelText(/Yearly/i).should('exist');
-			cy.findByLabelText(/Lifetime/i).should('exist');
+			cy.findByLabelText(/Monthly/i, { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText(/Yearly/i, { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText(/Lifetime/i, { selector: ':not([role=group])' }).should('exist');
 		});
 	});
 
@@ -160,15 +160,18 @@ describe('field', () => {
 		});
 
 		it('should render field with textarea', () => {
-			cy.findByLabelText('Comments').should('exist');
-			cy.findByLabelText('Comments').should('have.attr', 'id', 'field-comments');
+			cy.findByLabelText('Comments', { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText('Comments', { selector: ':not([role=group])' }).should('have.attr', 'id', 'field-comments');
 			cy.contains('Please provide any additional information.').should('be.visible');
 		});
 
 		it('should allow typing in textarea', () => {
 			const testText = 'This is a test comment with multiple lines.\nSecond line here.';
-			cy.findByLabelText('Comments').type(testText);
-			cy.findByLabelText('Comments').should('contain.value', 'This is a test comment');
+			cy.findByLabelText('Comments', { selector: ':not([role=group])' }).type(testText);
+			cy.findByLabelText('Comments', { selector: ':not([role=group])' }).should(
+				'contain.value',
+				'This is a test comment',
+			);
 		});
 	});
 
@@ -195,15 +198,16 @@ describe('field', () => {
 			cy.contains('Username must be entered.').should('be.visible');
 
 			// Verify fields have error attributes
-			cy.findByLabelText('Email').should('have.attr', 'aria-invalid', 'true');
-			cy.findByLabelText('Username').should('have.attr', 'aria-invalid', 'true');
+			cy.findByLabelText('Email', { selector: ':not([role=group])' }).should('have.attr', 'aria-invalid', 'true');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).should('have.attr', 'aria-invalid', 'true');
 
 			// Verify error component exists
-			cy.get('hlm-field-error').filter(':not(:empty)').should('have.length', 2);
+			cy.get('caps-field-error').filter(':not(:empty)').should('have.length', 2);
 		});
 
-		it('should have data-invalid attribute on field wrapper', () => {
-			cy.get('[hlmfield][data-invalid="true"]').should('have.length', 2);
+		it('should mark the field wrapper invalid after validation', () => {
+			cy.get('button#validate').click();
+			cy.get('caps-field[data-matches-spartan-invalid="true"]').should('have.length', 2);
 		});
 	});
 
@@ -214,7 +218,7 @@ describe('field', () => {
 		});
 
 		it('should handle disabled checkbox in first group', () => {
-			cy.get('[hlmfield]').first().find('hlm-checkbox').should('have.attr', 'disabled');
+			cy.get('caps-field').first().find('hlm-checkbox').should('have.attr', 'disabled');
 		});
 	});
 
@@ -233,22 +237,26 @@ describe('field', () => {
 
 		it('should render fields with horizontal layout', () => {
 			// All fields should have horizontal orientation
-			cy.get('[hlmfield][orientation="horizontal"]').should('have.length', 3);
+			cy.get('caps-field[data-orientation="horizontal"]').should('have.length', 3);
 
 			// Verify switch
 			cy.findByRole('switch', { name: /Enable notifications/i }).should('exist');
 
 			// Verify checkboxes
-			cy.findByLabelText(/Receive marketing emails/i).should('exist');
-			cy.findByLabelText(/Product updates/i).should('exist');
+			cy.findByLabelText(/Receive marketing emails/i, { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText(/Product updates/i, { selector: ':not([role=group])' }).should('exist');
 		});
 
 		it('should allow interaction with horizontal fields', () => {
 			cy.findByRole('switch', { name: /Enable notifications/i }).click();
 			cy.findByRole('switch', { name: /Enable notifications/i }).should('have.attr', 'aria-checked', 'true');
 
-			cy.findByLabelText(/Receive marketing emails/i).click();
-			cy.findByLabelText(/Receive marketing emails/i).should('have.attr', 'aria-checked', 'true');
+			cy.findByLabelText(/Receive marketing emails/i, { selector: ':not([role=group])' }).click();
+			cy.findByLabelText(/Receive marketing emails/i, { selector: ':not([role=group])' }).should(
+				'have.attr',
+				'aria-checked',
+				'true',
+			);
 		});
 	});
 
@@ -260,7 +268,7 @@ describe('field', () => {
 
 		it('should render field content with label and description', () => {
 			// Verify field content elements exist
-			cy.get('[hlmfieldcontent]').should('have.length', 2);
+			cy.get('caps-field-content').should('have.length', 2);
 
 			// Verify first field content
 			cy.contains('Security Updates').should('be.visible');
@@ -272,7 +280,11 @@ describe('field', () => {
 		});
 
 		it('should have checkbox checked by default', () => {
-			cy.findByLabelText('Security Updates').should('have.attr', 'aria-checked', 'true');
+			cy.findByLabelText('Security Updates', { selector: ':not([role=group])' }).should(
+				'have.attr',
+				'aria-checked',
+				'true',
+			);
 		});
 	});
 
@@ -284,23 +296,23 @@ describe('field', () => {
 
 		it('should render field title above fieldset', () => {
 			// Verify field title exists
-			cy.get('[hlmfieldtitle]').should('exist');
-			cy.get('[hlmfieldtitle]').should('contain.text', 'Account Settings');
+			cy.get('caps-field-set legend').should('exist');
+			cy.get('caps-field-set legend').should('contain.text', 'Account Settings');
 
 			// Verify description
 			cy.contains('Manage your account preferences and security settings').should('be.visible');
 
 			// Verify fields
-			cy.findByLabelText('Username').should('exist');
-			cy.findByLabelText('Email').should('exist');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).should('exist');
+			cy.findByLabelText('Email', { selector: ':not([role=group])' }).should('exist');
 		});
 
 		it('should allow input in fields under title', () => {
-			cy.findByLabelText('Username').type('johndoe');
-			cy.findByLabelText('Email').type('john@example.com');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).type('johndoe');
+			cy.findByLabelText('Email', { selector: ':not([role=group])' }).type('john@example.com');
 
-			cy.findByLabelText('Username').should('have.value', 'johndoe');
-			cy.findByLabelText('Email').should('have.value', 'john@example.com');
+			cy.findByLabelText('Username', { selector: ':not([role=group])' }).should('have.value', 'johndoe');
+			cy.findByLabelText('Email', { selector: ':not([role=group])' }).should('have.value', 'john@example.com');
 		});
 	});
 });

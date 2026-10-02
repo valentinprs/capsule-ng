@@ -33,11 +33,11 @@ describe('Empty', () => {
 		it('should display empty state with action button', () => {
 			cy.get('[hlmEmpty]').should('be.visible');
 			cy.get('[hlmEmptyTitle]').should('contain.text', 'No items found');
-			cy.get('button[hlmBtn]').should('be.visible').and('contain.text', 'Add Item');
+			cy.get('button[capsButton]').should('be.visible').and('contain.text', 'Add Item');
 		});
 
 		it('should have clickable action button', () => {
-			cy.get('button[hlmBtn]').should('not.be.disabled').click();
+			cy.get('button[capsButton]').should('not.be.disabled').click();
 		});
 	});
 
@@ -54,14 +54,14 @@ describe('Empty', () => {
 		});
 
 		it('should display multiple action buttons', () => {
-			cy.get('button[hlmBtn]').should('have.length', 2);
-			cy.get('button[hlmBtn][variant="outline"]').should('contain.text', 'Clear Search');
-			cy.get('button[hlmBtn]:not([variant="outline"])').should('contain.text', 'Browse All');
+			cy.get('button[capsButton]').should('have.length', 2);
+			cy.get('button[capsButton][variant="outline"]').should('contain.text', 'Clear Search');
+			cy.get('button[capsButton]:not([variant="outline"])').should('contain.text', 'Browse All');
 		});
 
 		it('should have clickable action buttons', () => {
-			cy.get('button[hlmBtn][variant="outline"]').should('not.be.disabled').click();
-			cy.get('button[hlmBtn]:not([variant="outline"])').should('not.be.disabled').click();
+			cy.get('button[capsButton][variant="outline"]').should('not.be.disabled').click();
+			cy.get('button[capsButton]:not([variant="outline"])').should('not.be.disabled').click();
 		});
 	});
 
@@ -78,7 +78,7 @@ describe('Empty', () => {
 		});
 
 		it('should display retry button', () => {
-			cy.get('button[hlmBtn]').should('be.visible').and('contain.text', 'Retry');
+			cy.get('button[capsButton]').should('be.visible').and('contain.text', 'Retry');
 		});
 	});
 
@@ -95,9 +95,9 @@ describe('Empty', () => {
 		});
 
 		it('should display navigation buttons', () => {
-			cy.get('button[hlmBtn]').should('have.length', 2);
-			cy.get('button[hlmBtn][variant="outline"]').should('contain.text', 'Go Back');
-			cy.get('button[hlmBtn]:not([variant="outline"])').should('contain.text', 'Go Home');
+			cy.get('button[capsButton]').should('have.length', 2);
+			cy.get('button[capsButton][variant="outline"]').should('contain.text', 'Go Back');
+			cy.get('button[capsButton]:not([variant="outline"])').should('contain.text', 'Go Home');
 		});
 	});
 
@@ -127,10 +127,10 @@ describe('Empty', () => {
 		});
 
 		it('should display grid layout buttons', () => {
-			cy.get('button[hlmBtn]').should('have.length', 2);
+			cy.get('button[capsButton]').should('have.length', 2);
 			cy.get('.grid.grid-cols-2').should('exist');
-			cy.get('button[hlmBtn][variant="outline"]').should('contain.text', 'Import Data');
-			cy.get('button[hlmBtn]:not([variant="outline"])').should('contain.text', 'Create New');
+			cy.get('button[capsButton][variant="outline"]').should('contain.text', 'Import Data');
+			cy.get('button[capsButton]:not([variant="outline"])').should('contain.text', 'Create New');
 		});
 
 		it('should have proper responsive layout', () => {
@@ -151,8 +151,8 @@ describe('Empty', () => {
 
 		it('should support keyboard navigation for interactive elements', () => {
 			cy.visit('/iframe.html?id=empty--with-action');
-			cy.get('button[hlmBtn]').should('be.visible').focus();
-			cy.focused().should('have.attr', 'hlmBtn');
+			cy.get('button[capsButton]').should('be.visible').focus();
+			cy.focused().should('have.attr', 'capsButton');
 		});
 	});
 

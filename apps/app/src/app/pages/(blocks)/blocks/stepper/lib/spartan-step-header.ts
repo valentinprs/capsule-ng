@@ -17,7 +17,7 @@ export type SpartanStepperIndicatorMode = 'number' | 'state' | 'icon';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class:
-			'group inline-flex shrink-0 outline-none items-center gap-2 touch-manipulation transition-opacity data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
+			'group inline-flex shrink-0 outline-none items-center gap-2 touch-manipulation transition-opacity data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-(--caps-opacity-50)',
 		'[class.flex-col]': 'labelPosition() === "bottom"',
 		'[class.text-center]': 'labelPosition() === "bottom"',
 		'[attr.data-disabled]': 'disabled() ? "true" : null',

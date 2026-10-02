@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { BrnSliderImports } from '@spartan-ng/brain/slider';
-import { HlmButton, HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmSliderImports } from '@spartan-ng/helm/slider';
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -24,19 +24,19 @@ interface BrnSliderStoryArgs {
 
 @Component({
 	selector: 'slider-validation-tester',
-	imports: [HlmSliderImports, HlmFieldImports, ReactiveFormsModule, HlmButtonImports],
+	imports: [HlmSliderImports, CapsFieldImports, ReactiveFormsModule, CapsButtonImports],
 
 	template: `
 		<form [formGroup]="form" class="max-w-lg space-y-3">
-			<div hlmField>
-				<label hlmFieldLabel>Temperature</label>
+			<caps-field>
+				<caps-field-label>Temperature</caps-field-label>
 				<hlm-slider formControlName="temperature" [min]="0" [max]="100"></hlm-slider>
-				<hlm-field-error>Set the temperature before continuing.</hlm-field-error>
-			</div>
+				<caps-field-error>Set the temperature before continuing.</caps-field-error>
+			</caps-field>
 
 			<div class="flex gap-2">
-				<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-				<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 			</div>
 		</form>
 	`,
@@ -72,7 +72,7 @@ const meta: Meta<BrnSliderStoryArgs> = {
 				ReactiveFormsModule,
 				HlmSliderImports,
 				BrnSliderImports,
-				HlmButton,
+				CapsButton,
 				SliderValidationTester,
 			],
 		}),
@@ -304,7 +304,7 @@ export const TemplateDrivenForm: Story = {
 				</div>
 				<hlm-slider ${argsToTemplate(args)} [(ngModel)]="temperature" name="temperature" />
 
-				<button hlmBtn class="mt-3" (click)="temperature.set([25])">Change temperature value</button>
+				<button capsButton class="mt-3" (click)="temperature.set([25])">Change temperature value</button>
 			</form>
 		`,
 	}),

@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import * as lucide from '@ng-icons/lucide';
 import { BrnCommand, BrnCommandImports } from '@spartan-ng/brain/command';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 
 import { HlmCode } from '@spartan-ng/helm/typography';
@@ -17,7 +17,7 @@ const meta: Meta<BrnCommand> = {
 	decorators: [
 		moduleMetadata({
 			providers: [provideIcons(lucide)],
-			imports: [BrnCommandImports, HlmCommandImports, NgIcon, HlmButton],
+			imports: [BrnCommandImports, HlmCommandImports, NgIcon, CapsButton],
 		}),
 	],
 };

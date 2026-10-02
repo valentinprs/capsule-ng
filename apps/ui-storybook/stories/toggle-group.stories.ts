@@ -1,10 +1,10 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
 import { Component, input, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBold, lucideItalic, lucideUnderline } from '@ng-icons/lucide';
 import { ToggleType } from '@spartan-ng/brain/toggle-group';
-import { HlmButton } from '@spartan-ng/helm/button';
 
 import { HlmToggleGroup, HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 import { hlmP } from '@spartan-ng/helm/typography';
@@ -163,7 +163,7 @@ const CITIES = [
 
 @Component({
 	selector: 'hlm-toggle-group-story',
-	imports: [HlmToggleGroupImports, HlmButton, FormsModule],
+	imports: [HlmToggleGroupImports, CapsButton, FormsModule],
 	template: `
 		<div class="flex space-x-4 p-4">
 			<hlm-toggle-group
@@ -180,8 +180,8 @@ const CITIES = [
 				}
 			</hlm-toggle-group>
 
-			<button hlmBtn size="sm" (click)="setToSyracuse()">Set to Syracuse</button>
-			<button hlmBtn size="sm" (click)="addCity()">Add Piraeus</button>
+			<button capsButton size="sm" (click)="setToSyracuse()">Set to Syracuse</button>
+			<button capsButton size="sm" (click)="addCity()">Add Piraeus</button>
 		</div>
 
 		<p class="${hlmP}">{{ type() === 'multiple' ? 'Cities selected' : 'City selected' }}: {{ selectedCities }}</p>

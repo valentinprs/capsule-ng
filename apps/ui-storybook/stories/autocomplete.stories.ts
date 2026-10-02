@@ -1,23 +1,23 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, resource, signal } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { provideBrnAutocompleteConfig } from '@spartan-ng/brain/autocomplete';
 import { HlmAutocomplete, HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
-import { HlmButton, HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 @Component({
 	selector: 'autocomplete-reactive-form-story',
 
-	imports: [JsonPipe, HlmAutocompleteImports, HlmFieldImports, HlmButton, ReactiveFormsModule],
+	imports: [JsonPipe, HlmAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="framework">Framework *</label>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label for="framework">Framework *</caps-field-label>
 					<hlm-autocomplete formControlName="framework" [(search)]="search">
 						<hlm-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
 						<hlm-autocomplete-content *hlmAutocompletePortal>
@@ -29,14 +29,14 @@ import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 							</div>
 						</hlm-autocomplete-content>
 					</hlm-autocomplete>
-					<p hlmFieldDescription>Start typing to find a framework.</p>
-				</hlm-field>
+					<caps-field-description>Start typing to find a framework.</caps-field-description>
+				</caps-field>
 
-				<hlm-field orientation="horizontal">
-					<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-				</hlm-field>
-			</hlm-field-group>
+				<caps-field orientation="horizontal">
+					<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				</caps-field>
+			</caps-field-group>
 		</form>
 
 		<pre class="mt-4 text-xs">
@@ -60,13 +60,13 @@ class AutocompleteReactiveFormStory {
 @Component({
 	selector: 'autocomplete-hint-error-story',
 
-	imports: [HlmAutocompleteImports, HlmFieldImports, HlmButton, ReactiveFormsModule],
+	imports: [HlmAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel>Framework *</label>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Framework *</caps-field-label>
 					<hlm-autocomplete formControlName="framework" [(search)]="search">
 						<hlm-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
 						<hlm-autocomplete-content *hlmAutocompletePortal>
@@ -79,16 +79,16 @@ class AutocompleteReactiveFormStory {
 						</hlm-autocomplete-content>
 					</hlm-autocomplete>
 
-					<p hlmFieldDescription>Pick your primary framework so we can tailor docs.</p>
+					<caps-field-description>Pick your primary framework so we can tailor docs.</caps-field-description>
 
-					<hlm-field-error>Select a framework to continue.</hlm-field-error>
-				</hlm-field>
+					<caps-field-error>Select a framework to continue.</caps-field-error>
+				</caps-field>
 
-				<hlm-field orientation="horizontal">
-					<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-				</hlm-field>
-			</hlm-field-group>
+				<caps-field orientation="horizontal">
+					<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })
@@ -104,13 +104,13 @@ class AutocompleteHintErrorStory {
 @Component({
 	selector: 'autocomplete-search-hint-error-story',
 
-	imports: [HlmAutocompleteImports, HlmFieldImports, HlmButton, ReactiveFormsModule],
+	imports: [HlmAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel>Framework *</label>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Framework *</caps-field-label>
 					<hlm-autocomplete-search formControlName="framework" [(search)]="search">
 						<hlm-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
 						<hlm-autocomplete-content *hlmAutocompletePortal>
@@ -123,16 +123,16 @@ class AutocompleteHintErrorStory {
 						</hlm-autocomplete-content>
 					</hlm-autocomplete-search>
 
-					<p hlmFieldDescription>Pick your primary framework so we can tailor docs.</p>
+					<caps-field-description>Pick your primary framework so we can tailor docs.</caps-field-description>
 
-					<hlm-field-error>Select a framework to continue.</hlm-field-error>
-				</hlm-field>
+					<caps-field-error>Select a framework to continue.</caps-field-error>
+				</caps-field>
 
-				<hlm-field orientation="horizontal">
-					<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-				</hlm-field>
-			</hlm-field-group>
+				<caps-field orientation="horizontal">
+					<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })
@@ -206,12 +206,12 @@ type Country = {
 
 @Component({
 	selector: 'spartan-autocomplete-form',
-	imports: [ReactiveFormsModule, HlmAutocompleteImports, HlmButtonImports, HlmFieldImports],
+	imports: [ReactiveFormsModule, HlmAutocompleteImports, CapsButtonImports, CapsFieldImports],
 	template: `
 		<form [formGroup]="form" (ngSubmit)="submit()">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="character">Choose your favorite character</label>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label for="character">Choose your favorite character</caps-field-label>
 					<hlm-autocomplete formControlName="option" [(search)]="search">
 						<hlm-autocomplete-input inputId="character" placeholder="Search characters" />
 						<hlm-autocomplete-content *hlmAutocompletePortal>
@@ -223,11 +223,11 @@ type Country = {
 							</div>
 						</hlm-autocomplete-content>
 					</hlm-autocomplete>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn>Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+				</caps-field>
+				<caps-field orientation="horizontal">
+					<button type="submit" capsButton>Submit</button>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })
@@ -271,12 +271,12 @@ type Item = {
 
 @Component({
 	selector: 'spartan-autocomplete-transform-option-value',
-	imports: [ReactiveFormsModule, HlmAutocompleteImports, HlmButtonImports, HlmFieldImports],
+	imports: [ReactiveFormsModule, HlmAutocompleteImports, CapsButtonImports, CapsFieldImports],
 	template: `
 		<form [formGroup]="form" (ngSubmit)="submit()">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="character">Choose your favorite character</label>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label for="character">Choose your favorite character</caps-field-label>
 					<hlm-autocomplete formControlName="option" [(search)]="search" [itemToString]="itemToString">
 						<hlm-autocomplete-input inputId="character" placeholder="Search characters" showClear />
 						<hlm-autocomplete-content *hlmAutocompletePortal>
@@ -288,12 +288,12 @@ type Item = {
 							</div>
 						</hlm-autocomplete-content>
 					</hlm-autocomplete>
-				</hlm-field>
+				</caps-field>
 
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn>Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+				<caps-field orientation="horizontal">
+					<button type="submit" capsButton>Submit</button>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })

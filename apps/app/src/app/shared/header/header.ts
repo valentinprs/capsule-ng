@@ -29,7 +29,7 @@ import { HeaderMobileNav } from './header-mobile-nav';
 	],
 	providers: [provideIcons({ lucideGithub })],
 	host: {
-		class: 'backdrop-blur-sm sticky top-0 z-50 w-full',
+		class: 'backdrop-blur-sm sticky top-0 z-(--caps-z-50) w-full',
 	},
 	template: `
 		<div class="container-wrapper 3xl:fixed:px-0 px-6">

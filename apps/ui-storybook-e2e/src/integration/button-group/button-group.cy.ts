@@ -46,7 +46,7 @@ describe('button-group', () => {
 
 		it('should have outline variant buttons', () => {
 			cy.get('[hlmButtonGroup] button').each(($btn) => {
-				cy.wrap($btn).should('have.attr', 'hlmbtn');
+				cy.wrap($btn).should('have.attr', 'capsbutton');
 			});
 		});
 
@@ -86,7 +86,7 @@ describe('button-group', () => {
 
 		it('should have secondary variant buttons', () => {
 			cy.get('[hlmButtonGroup] button').each(($btn) => {
-				cy.wrap($btn).should('have.attr', 'hlmbtn');
+				cy.wrap($btn).should('have.attr', 'capsbutton');
 				// Note: The actual variant attribute might not be directly visible in DOM,
 				// but we can verify the buttons have the expected styling
 			});

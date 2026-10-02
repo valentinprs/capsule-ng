@@ -1,6 +1,6 @@
 import { NgIcon } from '@ng-icons/core';
 
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
 import { HlmDropdownMenu, HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
@@ -23,7 +23,7 @@ const meta: Meta<HlmDropdownMenu> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDropdownMenuImports, HlmContextMenuImports, HlmButton, NgIcon],
+			imports: [HlmDropdownMenuImports, HlmContextMenuImports, CapsButton, NgIcon],
 		}),
 	],
 };

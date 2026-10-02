@@ -19,39 +19,41 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 	{
 		id: 'fade',
 		name: 'Fade',
-		className: 'motion-safe:animate-in motion-safe:fade-in duration-200',
+		className: 'motion-safe:animate-in motion-safe:fade-in duration-(--caps-duration-200)',
 	},
 	{
 		id: 'slide-up',
 		name: 'Slide Up',
-		className: 'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-300',
+		className:
+			'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-(--caps-duration-300)',
 	},
 	{
 		id: 'slide-side',
 		name: 'Slide Side',
-		className: 'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-right-4 duration-300',
+		className:
+			'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-right-4 duration-(--caps-duration-300)',
 	},
 	{
 		id: 'pop',
 		name: 'Pop',
 		className:
-			'motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:slide-in-from-bottom-2 origin-bottom-right duration-300',
+			'motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:slide-in-from-bottom-2 origin-bottom-right duration-(--caps-duration-300)',
 	},
 	{
 		id: 'spring-bounce',
 		name: 'Spring Bounce',
 		className:
-			'motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:slide-in-from-bottom-3 duration-500',
+			'motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 motion-safe:slide-in-from-bottom-3 duration-(--caps-duration-500)',
 	},
 	{
 		id: 'blur-fade',
 		name: 'Blur Fade',
-		className: 'motion-safe:animate-in motion-safe:fade-in motion-safe:blur-in duration-300',
+		className: 'motion-safe:animate-in motion-safe:fade-in motion-safe:blur-in duration-(--caps-duration-300)',
 	},
 	{
 		id: 'scale-fade',
 		name: 'Scale Fade',
-		className: 'motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 duration-300',
+		className: 'motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 duration-(--caps-duration-300)',
 	},
 ];
 

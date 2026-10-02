@@ -9,12 +9,12 @@ import { Component, computed, input, signal } from '@angular/core';
 	},
 	template: `
 		<a
-			[class.opacity-40]="!_imageLoaded()"
+			[class.opacity-(--caps-opacity-40)]="!_imageLoaded()"
 			[class.opacity-100]="_imageLoaded()"
 			[class.scale-95]="!_imageLoaded()"
 			[class.scale-100]="_imageLoaded()"
 			[class.backdrop-blur-sm]="!_imageLoaded()"
-			class="flex flex-col items-center transition-all duration-400"
+			class="flex flex-col items-center transition-all duration-(--caps-duration-400)"
 			[href]="_href()"
 			target="_blank"
 		>

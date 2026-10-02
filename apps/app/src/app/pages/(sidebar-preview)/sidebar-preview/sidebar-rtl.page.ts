@@ -101,7 +101,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 											{{ _t()[item.titleKey] }}
 											<ng-icon
 												name="lucideChevronRight"
-												class="ms-auto transition-transform duration-200 group-data-open/collapsible:rotate-90 rtl:rotate-180 rtl:group-data-open/collapsible:rotate-90"
+												class="ms-auto transition-transform duration-(--caps-duration-200) group-data-open/collapsible:rotate-90 rtl:rotate-180 rtl:group-data-open/collapsible:rotate-90"
 											/>
 										</button>
 										<hlm-collapsible-content>

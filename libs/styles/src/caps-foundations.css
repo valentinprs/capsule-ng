@@ -1,0 +1,32 @@
+/* One cascade for consumers, catalogue and Storybook. Utilities remain unlayered to override
+   Angular's unlayered host styles (e.g. ng-icon display). See docs/design-tokens.md. */
+@layer theme, base, spartan-nova-baseline, spartan-themes, caps, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
+@import './caps-tokens.css';
+@import './caps-foundation-tokens.css';
+@import './style-nova.css' layer(spartan-nova-baseline);
+@import './style-vega.css' layer(spartan-themes);
+@import './style-lyra.css' layer(spartan-themes);
+@import './style-maia.css' layer(spartan-themes);
+@import './style-mira.css' layer(spartan-themes);
+@import './style-luma.css' layer(spartan-themes);
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	body {
+		@apply bg-background text-foreground font-sans;
+	}
+}
+[hidden]:where(:not([hidden='until-found'])) {
+	display: none !important;
+}
+[data-lang='ar'] {
+	font-family: var(--font-ar);
+}
+[data-lang='he'] {
+	font-family: var(--font-he);
+}

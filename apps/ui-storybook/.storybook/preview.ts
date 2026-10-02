@@ -1,3 +1,5 @@
+document.body.classList.add('style-nova');
+
 import { withThemeByClassName } from '@storybook/addon-themes';
 
 export const decorators = [

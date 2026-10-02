@@ -4,5 +4,13 @@
 	"lib": {
 		"entryFile": "src/index.ts"
 	},
-	"assets": ["caps-preset.css"]
+	"assets": [
+		"caps-preset.css",
+		"foundations.css",
+		{
+			"input": ".generated/styles",
+			"glob": "*.css",
+			"output": "styles"
+		}
+	]
 }

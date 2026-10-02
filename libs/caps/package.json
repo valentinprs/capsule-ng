@@ -2,15 +2,36 @@
 	"name": "@capsule-ng/caps",
 	"version": "0.0.0",
 	"private": true,
-	"sideEffects": false,
+	"sideEffects": [
+		"**/*.css"
+	],
+	"exports": {
+		"./foundations.css": {
+			"style": "./foundations.css",
+			"default": "./foundations.css"
+		},
+		"./caps-preset.css": {
+			"style": "./caps-preset.css",
+			"default": "./caps-preset.css"
+		},
+		"./styles/*": {
+			"style": "./styles/*",
+			"default": "./styles/*"
+		}
+	},
 	"peerDependencies": {
 		"@angular/common": ">=21.0.0 <23.0.0",
 		"@angular/core": ">=21.0.0 <23.0.0",
 		"@angular/forms": ">=21.0.0 <23.0.0",
+		"@fontsource-variable/noto-sans-arabic": "^5.2.10",
+		"@fontsource-variable/noto-sans-hebrew": "^5.2.8",
+		"@fontsource/geist-mono": "^5.2.7",
+		"@fontsource/inter": "^5.2.8",
 		"@ng-icons/core": ">=32.0.0 <34.0.0",
 		"@ng-icons/lucide": ">=32.0.0 <34.0.0",
 		"@spartan-ng/brain": "1.5.0",
 		"@spartan-ng/helm": "0.0.0",
-		"class-variance-authority": "^0.7.0"
+		"class-variance-authority": "^0.7.0",
+		"tailwindcss": "^4.3.3"
 	}
 }

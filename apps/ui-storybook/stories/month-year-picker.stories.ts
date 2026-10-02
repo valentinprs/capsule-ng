@@ -1,7 +1,7 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmDatePickerImports, HlmMonthYearPicker } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 const meta: Meta<HlmMonthYearPicker<Date>> = {
@@ -14,7 +14,7 @@ const meta: Meta<HlmMonthYearPicker<Date>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, ReactiveFormsModule, HlmFieldImports, HlmButton],
+			imports: [HlmDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 		}),
 	],
 	render: ({ ...args }) => ({

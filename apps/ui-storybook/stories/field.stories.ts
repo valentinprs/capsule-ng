@@ -1,13 +1,13 @@
 import { JsonPipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsTextarea } from '@capsule-ng/caps/textarea';
 import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmSwitch } from '@spartan-ng/helm/switch';
-import { HlmTextarea } from '@spartan-ng/helm/textarea';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 const meta: Meta = {
@@ -16,12 +16,12 @@ const meta: Meta = {
 	decorators: [
 		moduleMetadata({
 			imports: [
-				HlmFieldImports,
-				HlmInputImports,
+				CapsFieldImports,
+				CapsInputImports,
 				HlmCheckbox,
 				HlmSwitch,
-				HlmTextarea,
-				HlmButton,
+				CapsTextarea,
+				CapsButton,
 				HlmSelectImports,
 				HlmRadioGroupImports,
 				ReactiveFormsModule,
@@ -38,19 +38,19 @@ export const Default: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<fieldset hlmFieldSet>
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-fullname">Full name</label>
-							<input hlmInput id="field-fullname" type="text" placeholder="John Doe" />
-							<p hlmFieldDescription>This appears on invoices and emails.</p>
-						</div>
-						<div hlmField>
-							<label hlmFieldLabel for="field-username">Username</label>
-							<input hlmInput id="field-username" type="text" placeholder="john_doe_99" />
-						</div>
-					</div>
-				</fieldset>
+				<caps-field-set>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="field-fullname">Full name</caps-field-label>
+							<input capsInput id="field-fullname" type="text" placeholder="John Doe" />
+							<caps-field-description>This appears on invoices and emails.</caps-field-description>
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="field-username">Username</caps-field-label>
+							<input capsInput id="field-username" type="text" placeholder="john_doe_99" />
+						</caps-field>
+					</caps-field-group>
+				</caps-field-set>
 			</div>
 		`,
 	}),
@@ -61,20 +61,20 @@ export const WithInput: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<fieldset hlmFieldSet>
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-input-username">Username</label>
-							<input hlmInput id="field-input-username" type="text" placeholder="Alex Cooper" />
-							<p hlmFieldDescription>Choose a unique username for your account.</p>
-						</div>
-						<div hlmField>
-							<label hlmFieldLabel for="field-input-password">Password</label>
-							<p hlmFieldDescription>Must be at least 8 characters long.</p>
-							<input hlmInput id="field-input-password" type="password" placeholder="••••••••" />
-						</div>
-					</div>
-				</fieldset>
+				<caps-field-set>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="field-input-username">Username</caps-field-label>
+							<input capsInput id="field-input-username" type="text" placeholder="Alex Cooper" />
+							<caps-field-description>Choose a unique username for your account.</caps-field-description>
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="field-input-password">Password</caps-field-label>
+							<caps-field-description>Must be at least 8 characters long.</caps-field-description>
+							<input capsInput id="field-input-password" type="password" placeholder="••••••••" />
+						</caps-field>
+					</caps-field-group>
+				</caps-field-set>
 			</div>
 		`,
 	}),
@@ -85,41 +85,41 @@ export const WithCheckbox: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<div hlmFieldGroup>
-					<fieldset hlmFieldSet>
-						<legend hlmFieldLegend variant="label">Show these items on the desktop</legend>
-						<p hlmFieldDescription>Select the items you want to show on the desktop.</p>
-						<div hlmFieldGroup class="gap-3">
-							<div hlmField orientation="horizontal">
+				<caps-field-group>
+					<caps-field-set>
+						<caps-field-legend variant="label">Show these items on the desktop</caps-field-legend>
+						<caps-field-description>Select the items you want to show on the desktop.</caps-field-description>
+						<caps-field-group class="gap-3">
+							<caps-field orientation="horizontal">
 								<hlm-checkbox inputId="field-hard-disks" />
-								<label hlmFieldLabel for="field-hard-disks" class="font-normal">Hard disks</label>
-							</div>
-							<div hlmField orientation="horizontal">
+								<caps-field-label for="field-hard-disks" class="font-normal">Hard disks</caps-field-label>
+							</caps-field>
+							<caps-field orientation="horizontal">
 								<hlm-checkbox inputId="field-external-disks" />
-								<label hlmFieldLabel for="field-external-disks" class="font-normal">External disks</label>
-							</div>
-							<div hlmField orientation="horizontal">
+								<caps-field-label for="field-external-disks" class="font-normal">External disks</caps-field-label>
+							</caps-field>
+							<caps-field orientation="horizontal">
 								<hlm-checkbox inputId="field-cds-dvds-ipods" />
-								<label hlmFieldLabel for="field-cds-dvds-ipods" class="font-normal">CDs, DVDs, and IPods</label>
-							</div>
-							<div hlmField orientation="horizontal">
+								<caps-field-label for="field-cds-dvds-ipods" class="font-normal">CDs, DVDs, and IPods</caps-field-label>
+							</caps-field>
+							<caps-field orientation="horizontal">
 								<hlm-checkbox inputId="field-connected-servers" />
-								<label hlmFieldLabel for="field-connected-servers" class="font-normal">Connected servers</label>
-							</div>
-						</div>
-					</fieldset>
-					<hlm-field-separator />
-					<div hlmField orientation="horizontal">
+								<caps-field-label for="field-connected-servers" class="font-normal">Connected servers</caps-field-label>
+							</caps-field>
+						</caps-field-group>
+					</caps-field-set>
+					<caps-field-separator />
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-sync-desktop-documents" [checked]="true" />
-						<div hlmFieldContent>
-							<label hlmFieldLabel for="field-sync-desktop-documents">Sync Desktop & Documents folders</label>
-							<p hlmFieldDescription>
+						<caps-field-content>
+							<caps-field-label for="field-sync-desktop-documents">Sync Desktop & Documents folders</caps-field-label>
+							<caps-field-description>
 								Your Desktop & Documents folders are being synced with iCloud Drive. You can access them from other
 								devices.
-							</p>
-						</div>
-					</div>
-				</div>
+							</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-group>
 			</div>
 		`,
 	}),
@@ -130,16 +130,16 @@ export const WithSwitch: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<div hlmField orientation="horizontal">
-					<div hlmFieldContent>
-						<label hlmFieldLabel for="field-2fa">Multi-factor authentication</label>
-						<p hlmFieldDescription>
+				<caps-field orientation="horizontal">
+					<caps-field-content>
+						<caps-field-label for="field-2fa">Multi-factor authentication</caps-field-label>
+						<caps-field-description>
 							Enable multi-factor authentication. If you do not have a two-factor device, you can use a one-time code
 							sent to your email.
-						</p>
-					</div>
+						</caps-field-description>
+					</caps-field-content>
 					<hlm-switch inputId="field-2fa" />
-				</div>
+				</caps-field>
 			</div>
 		`,
 	}),
@@ -150,30 +150,30 @@ export const WithRadio: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<fieldset hlmFieldSet>
-					<label hlmFieldLabel>Subscription Plan</label>
-					<p hlmFieldDescription>Yearly and lifetime plans offer significant savings.</p>
+				<caps-field-set>
+					<caps-field-label>Subscription Plan</caps-field-label>
+					<caps-field-description>Yearly and lifetime plans offer significant savings.</caps-field-description>
 					<hlm-radio-group data-slot="radio-group" value="monthly">
-						<div hlmField orientation="horizontal">
+						<caps-field orientation="horizontal">
 							<hlm-radio value="monthly" inputId="plan-monthly">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
-							<label hlmFieldLabel for="plan-monthly" class="font-normal">Monthly ($9.99/month)</label>
-						</div>
-						<div hlmField orientation="horizontal">
+							<caps-field-label for="plan-monthly" class="font-normal">Monthly ($9.99/month)</caps-field-label>
+						</caps-field>
+						<caps-field orientation="horizontal">
 							<hlm-radio value="yearly" inputId="plan-yearly">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
-							<label hlmFieldLabel for="plan-yearly" class="font-normal">Yearly ($99.99/year)</label>
-						</div>
-						<div hlmField orientation="horizontal">
+							<caps-field-label for="plan-yearly" class="font-normal">Yearly ($99.99/year)</caps-field-label>
+						</caps-field>
+						<caps-field orientation="horizontal">
 							<hlm-radio value="lifetime" inputId="plan-lifetime">
 								<hlm-radio-indicator indicator />
 							</hlm-radio>
-							<label hlmFieldLabel for="plan-lifetime" class="font-normal">Lifetime ($299.99/lifetime)</label>
-						</div>
+							<caps-field-label for="plan-lifetime" class="font-normal">Lifetime ($299.99/lifetime)</caps-field-label>
+						</caps-field>
 					</hlm-radio-group>
-				</fieldset>
+				</caps-field-set>
 			</div>
 		`,
 	}),
@@ -184,10 +184,10 @@ export const WithSelect: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<fieldset hlmFieldSet>
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-select-country">Country</label>
+				<caps-field-set>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="field-select-country">Country</caps-field-label>
 							<hlm-select class="inline-block">
 								<hlm-select-trigger class="w-full" buttonId="field-select-country">
 									<hlm-select-value placeholder="Select a country" />
@@ -202,10 +202,10 @@ export const WithSelect: Story = {
 									</hlm-select-group>
 								</hlm-select-content>
 							</hlm-select>
-							<p hlmFieldDescription>Select your country of residence.</p>
-						</div>
-					</div>
-				</fieldset>
+							<caps-field-description>Select your country of residence.</caps-field-description>
+						</caps-field>
+					</caps-field-group>
+				</caps-field-set>
 			</div>
 		`,
 	}),
@@ -216,15 +216,15 @@ export const WithTextarea: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<fieldset hlmFieldSet>
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-comments">Comments</label>
-							<p hlmFieldDescription>Please provide any additional information.</p>
-							<textarea hlmTextarea class="resize-none" id="field-comments" rows="4"></textarea>
-						</div>
-					</div>
-				</fieldset>
+				<caps-field-set>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="field-comments">Comments</caps-field-label>
+							<caps-field-description>Please provide any additional information.</caps-field-description>
+							<textarea capsTextarea class="resize-none" id="field-comments" rows="4"></textarea>
+						</caps-field>
+					</caps-field-group>
+				</caps-field-set>
 			</div>
 		`,
 	}),
@@ -244,26 +244,26 @@ export const WithError: Story = {
 			template: `
 			<div class="w-full max-w-md">
 			<form [formGroup]="form">
-				<fieldset hlmFieldSet>
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel>Email</label>
-							<input hlmInput id="field-email-error" type="email" formControlName="email" />
-							<hlm-field-error validator="required">Email must be entered.</hlm-field-error>
-							<hlm-field-error validator="email">Enter a valid email address.</hlm-field-error>
-						</div>
-						<div hlmField>
-							<label hlmFieldLabel>Username</label>
-							<input hlmInput id="field-username-error" type="text" formControlName="username" />
-							<hlm-field-error validator="required">Username must be entered.</hlm-field-error>
-							<hlm-field-error validator="minlength">Username must be at least 3 characters.</hlm-field-error>
-						</div>
-					</div>
-				</fieldset>
-				<hlm-field orientation="horizontal" class="mt-3">
-					<button id="validate" hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-				</hlm-field>
+				<caps-field-set>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label>Email</caps-field-label>
+							<input capsInput id="field-email-error" type="email" formControlName="email" />
+							<caps-field-error validator="required">Email must be entered.</caps-field-error>
+							<caps-field-error validator="email">Enter a valid email address.</caps-field-error>
+						</caps-field>
+						<caps-field>
+							<caps-field-label>Username</caps-field-label>
+							<input capsInput id="field-username-error" type="text" formControlName="username" />
+							<caps-field-error validator="required">Username must be entered.</caps-field-error>
+							<caps-field-error validator="minlength">Username must be at least 3 characters.</caps-field-error>
+						</caps-field>
+					</caps-field-group>
+				</caps-field-set>
+				<caps-field orientation="horizontal" class="mt-3">
+					<button id="validate" capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				</caps-field>
 			</form>
 			</div>
 		`,
@@ -276,38 +276,38 @@ export const FieldGroup: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<div hlmFieldGroup>
-					<fieldset hlmFieldSet>
-						<label hlmFieldLabel>Response</label>
-						<p hlmFieldDescription>
+				<caps-field-group>
+					<caps-field-set>
+						<caps-field-label>Response</caps-field-label>
+						<caps-field-description>
 							Get notified when ChatGPT responds to requests that take time, like research or image generation.
-						</p>
-						<div hlmFieldGroup data-slot="checkbox-group">
-							<div hlmField orientation="horizontal">
+						</caps-field-description>
+						<caps-field-group data-slot="checkbox-group">
+							<caps-field orientation="horizontal">
 								<hlm-checkbox inputId="field-group-push-notifications" disabled [checked]="true" />
-								<label hlmFieldLabel for="field-group-push-notifications" class="font-normal">Push notifications</label>
-							</div>
-						</div>
-					</fieldset>
-					<hlm-field-separator />
-					<fieldset hlmFieldSet>
-						<label hlmFieldLabel>Tasks</label>
-						<p hlmFieldDescription>
+								<caps-field-label for="field-group-push-notifications" class="font-normal">Push notifications</caps-field-label>
+							</caps-field>
+						</caps-field-group>
+					</caps-field-set>
+					<caps-field-separator />
+					<caps-field-set>
+						<caps-field-label>Tasks</caps-field-label>
+						<caps-field-description>
 							Get notified when tasks you've created have updates.
 							<a href="#">Manage tasks</a>
-						</p>
-						<div hlmFieldGroup class="gap-3" data-slot="checkbox-group">
-							<div hlmField orientation="horizontal">
+						</caps-field-description>
+						<caps-field-group class="gap-3" data-slot="checkbox-group">
+							<caps-field orientation="horizontal">
 								<hlm-checkbox inputId="field-group-push-task" />
-								<label hlmFieldLabel for="field-group-push-task" class="font-normal">Push notifications</label>
-							</div>
-							<div hlmField orientation="horizontal">
+								<caps-field-label for="field-group-push-task" class="font-normal">Push notifications</caps-field-label>
+							</caps-field>
+							<caps-field orientation="horizontal">
 								<hlm-checkbox inputId="field-group-email-task" />
-								<label hlmFieldLabel for="field-group-email-task" class="font-normal">Email notifications</label>
-							</div>
-						</div>
-					</fieldset>
-				</div>
+								<caps-field-label for="field-group-email-task" class="font-normal">Email notifications</caps-field-label>
+							</caps-field>
+						</caps-field-group>
+					</caps-field-set>
+				</caps-field-group>
 			</div>
 		`,
 	}),
@@ -319,24 +319,24 @@ export const ComplexForm: Story = {
 		template: `
 			<div class="w-full max-w-md">
 				<form>
-					<div hlmFieldGroup>
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend>Payment Method</legend>
-							<p hlmFieldDescription>All transactions are secure and encrypted</p>
+					<caps-field-group>
+						<caps-field-set>
+							<caps-field-legend>Payment Method</caps-field-legend>
+							<caps-field-description>All transactions are secure and encrypted</caps-field-description>
 
-							<div hlmFieldGroup>
-								<div hlmField>
-									<label hlmFieldLabel for="field-complex-name-on-card">Name on card</label>
-									<input hlmInput placeholder="John Doe" id="field-complex-name-on-card" />
-								</div>
-								<div hlmField class="col-span-2">
-									<label hlmFieldLabel for="field-complex-card-number">Card number</label>
-									<input hlmInput placeholder="1234 1234 1234 1234" id="field-complex-card-number" />
-									<p hlmFieldDescription>Enter your 16-digit card number without spaces or dashes.</p>
-								</div>
+							<caps-field-group>
+								<caps-field>
+									<caps-field-label for="field-complex-name-on-card">Name on card</caps-field-label>
+									<input capsInput placeholder="John Doe" id="field-complex-name-on-card" />
+								</caps-field>
+								<caps-field class="col-span-2">
+									<caps-field-label for="field-complex-card-number">Card number</caps-field-label>
+									<input capsInput placeholder="1234 1234 1234 1234" id="field-complex-card-number" />
+									<caps-field-description>Enter your 16-digit card number without spaces or dashes.</caps-field-description>
+								</caps-field>
 								<div class="grid grid-cols-3 gap-4">
-									<div hlmField>
-										<label hlmFieldLabel for="field-complex-expiration-month">Month</label>
+									<caps-field>
+										<caps-field-label for="field-complex-expiration-month">Month</caps-field-label>
 										<hlm-select class="inline-block">
 											<hlm-select-trigger class="w-full" id="field-complex-expiration-month">
 												<hlm-select-value placeholder="MM" />
@@ -358,9 +358,9 @@ export const ComplexForm: Story = {
 											</hlm-select-group>
 </hlm-select-content>
 										</hlm-select>
-									</div>
-									<div hlmField>
-										<label hlmFieldLabel for="field-complex-expiration-year">Year</label>
+									</caps-field>
+									<caps-field>
+										<caps-field-label for="field-complex-expiration-year">Year</caps-field-label>
 										<hlm-select class="inline-block">
 											<hlm-select-trigger class="w-full" id="field-complex-expiration-year">
 												<hlm-select-value placeholder="YYYY" />
@@ -376,38 +376,38 @@ export const ComplexForm: Story = {
 											</hlm-select-group>
 </hlm-select-content>
 										</hlm-select>
-									</div>
-									<div hlmField>
-										<label hlmFieldLabel for="field-complex-cvv">CVV</label>
-										<input hlmInput placeholder="123" id="field-complex-cvv" />
-									</div>
+									</caps-field>
+									<caps-field>
+										<caps-field-label for="field-complex-cvv">CVV</caps-field-label>
+										<input capsInput placeholder="123" id="field-complex-cvv" />
+									</caps-field>
 								</div>
-							</div>
-						</fieldset>
-						<hlm-field-separator />
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend>Billing Address</legend>
-							<p hlmFieldDescription>The billing address associated with your payment method</p>
-							<div hlmFieldGroup>
-								<div hlmField orientation="horizontal">
+							</caps-field-group>
+						</caps-field-set>
+						<caps-field-separator />
+						<caps-field-set>
+							<caps-field-legend>Billing Address</caps-field-legend>
+							<caps-field-description>The billing address associated with your payment method</caps-field-description>
+							<caps-field-group>
+								<caps-field orientation="horizontal">
 									<hlm-checkbox inputId="field-complex-billing-address" [checked]="true" />
-									<label hlmFieldLabel for="field-complex-billing-address">Same as shipping address.</label>
-								</div>
-							</div>
-						</fieldset>
-						<fieldset hlmFieldSet>
-							<div hlmFieldGroup>
-								<div hlmField>
-									<label hlmFieldLabel for="field-complex-comments">Comments</label>
-									<textarea hlmTextarea class="resize-none" id="field-complex-comments" rows="4"></textarea>
-								</div>
-							</div>
-						</fieldset>
-						<div hlmField orientation="horizontal">
-							<button hlmBtn type="button">Submit</button>
-							<button hlmBtn variant="outline" type="button">Cancel</button>
-						</div>
-					</div>
+									<caps-field-label for="field-complex-billing-address">Same as shipping address.</caps-field-label>
+								</caps-field>
+							</caps-field-group>
+						</caps-field-set>
+						<caps-field-set>
+							<caps-field-group>
+								<caps-field>
+									<caps-field-label for="field-complex-comments">Comments</caps-field-label>
+									<textarea capsTextarea class="resize-none" id="field-complex-comments" rows="4"></textarea>
+								</caps-field>
+							</caps-field-group>
+						</caps-field-set>
+						<caps-field orientation="horizontal">
+							<button capsButton type="button">Submit</button>
+							<button capsButton variant="outline" type="button">Cancel</button>
+						</caps-field>
+					</caps-field-group>
 				</form>
 			</div>
 		`,
@@ -419,20 +419,20 @@ export const HorizontalOrientation: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<div hlmFieldGroup>
-					<div hlmField orientation="horizontal">
+				<caps-field-group>
+					<caps-field orientation="horizontal">
 						<hlm-switch inputId="field-horizontal-notifications" />
-						<label hlmFieldLabel for="field-horizontal-notifications">Enable notifications</label>
-					</div>
-					<div hlmField orientation="horizontal">
+						<caps-field-label for="field-horizontal-notifications">Enable notifications</caps-field-label>
+					</caps-field>
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-horizontal-marketing" />
-						<label hlmFieldLabel for="field-horizontal-marketing" class="font-normal">Receive marketing emails</label>
-					</div>
-					<div hlmField orientation="horizontal">
+						<caps-field-label for="field-horizontal-marketing" class="font-normal">Receive marketing emails</caps-field-label>
+					</caps-field>
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-horizontal-updates" />
-						<label hlmFieldLabel for="field-horizontal-updates" class="font-normal">Product updates</label>
-					</div>
-				</div>
+						<caps-field-label for="field-horizontal-updates" class="font-normal">Product updates</caps-field-label>
+					</caps-field>
+				</caps-field-group>
 			</div>
 		`,
 	}),
@@ -443,25 +443,25 @@ export const WithFieldContent: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<div hlmFieldGroup class="gap-4">
-					<div hlmField orientation="horizontal">
+				<caps-field-group class="gap-4">
+					<caps-field orientation="horizontal">
 						<hlm-checkbox inputId="field-content-security-updates" [checked]="true" />
-						<div hlmFieldContent>
-							<label hlmFieldLabel for="field-content-security-updates">Security Updates</label>
-							<p hlmFieldDescription>Receive emails about your account security and important updates.</p>
-						</div>
-					</div>
-					<div hlmField orientation="horizontal">
+						<caps-field-content>
+							<caps-field-label for="field-content-security-updates">Security Updates</caps-field-label>
+							<caps-field-description>Receive emails about your account security and important updates.</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+					<caps-field orientation="horizontal">
 						<hlm-switch inputId="field-content-two-factor" />
-						<div hlmFieldContent>
-							<label hlmFieldLabel for="field-content-two-factor">Two-Factor Authentication</label>
-							<p hlmFieldDescription>
+						<caps-field-content>
+							<caps-field-label for="field-content-two-factor">Two-Factor Authentication</caps-field-label>
+							<caps-field-description>
 								Add an extra layer of security to your account. You'll need to enter a code from your phone in addition
 								to your password.
-							</p>
-						</div>
-					</div>
-				</div>
+							</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-group>
 			</div>
 		`,
 	}),
@@ -472,20 +472,20 @@ export const WithFieldTitle: Story = {
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
-				<fieldset hlmFieldSet>
-					<div hlmFieldTitle>Account Settings</div>
-					<p hlmFieldDescription>Manage your account preferences and security settings.</p>
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-title-username">Username</label>
-							<input hlmInput id="field-title-username" type="text" placeholder="johndoe" />
-						</div>
-						<div hlmField>
-							<label hlmFieldLabel for="field-title-email">Email</label>
-							<input hlmInput id="field-title-email" type="email" placeholder="john@example.com" />
-						</div>
-					</div>
-				</fieldset>
+				<caps-field-set>
+					<caps-field-legend>Account Settings</caps-field-legend>
+					<caps-field-description>Manage your account preferences and security settings.</caps-field-description>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="field-title-username">Username</caps-field-label>
+							<input capsInput id="field-title-username" type="text" placeholder="johndoe" />
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="field-title-email">Email</caps-field-label>
+							<input capsInput id="field-title-email" type="email" placeholder="john@example.com" />
+						</caps-field>
+					</caps-field-group>
+				</caps-field-set>
 			</div>
 		`,
 	}),

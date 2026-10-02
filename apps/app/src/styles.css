@@ -1,113 +1,17 @@
-/* Layer order, lowest priority (left) -> highest (right). Layers are resolved BEFORE specificity and
-   source order, so THIS line - not selector weight, not import order - is what decides which style wins.
-   - spartan-nova-baseline : nova only. Nova is the global baseline (it is the default style and matches
-       shadcn's default look), so it sits below the other styles and they override it cleanly. Must stay
-       ABOVE `base`: Tailwind's preflight reset lives in `base`, and because layers beat specificity, a
-       baseline rule below `base` would be clobbered by preflight's `*` reset.
-   - spartan-themes : the other five skins (vega, lyra, maia, mira, luma). They beat nova at the layer
-       rung, so a `.style-lyra` island overrides the nova baseline regardless of specificity ties or
-       import order.
-   - caps : the caps preset (`caps-*` classes of the caps components). Not a style: it applies globally.
-   `theme` is Tailwind's own layer (do not rename - Tailwind emits into it). */
 @layer theme, base, spartan-nova-baseline, spartan-themes, caps, components, utilities;
-
-/* nova = global baseline (the default style) -> its own low-priority layer (see above). The body carries
-   `.style-nova` permanently so the baseline actually matches; islands set their own `.style-THEME`. */
-@import '../../../libs/styles/src/style-nova.css' layer(spartan-nova-baseline);
-
-/* every other style -> one layer above nova; they override the baseline when applied as an island */
-@import '../../../libs/styles/src/style-vega.css' layer(spartan-themes);
-@import '../../../libs/styles/src/style-lyra.css' layer(spartan-themes);
-@import '../../../libs/styles/src/style-maia.css' layer(spartan-themes);
-@import '../../../libs/styles/src/style-mira.css' layer(spartan-themes);
-@import '../../../libs/styles/src/style-luma.css' layer(spartan-themes);
-
+@import '../../../libs/brain/hlm-tailwind-preset.css';
+@import '../../../libs/styles/src/caps-foundations.css';
 @import '../../../libs/caps/caps-preset.css' layer(caps);
 
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/preflight.css' layer(base);
-/* Utilities stay UNLAYERED on purpose - do NOT wrap this in layer(utilities). Angular component styles
-   such as ng-icon's `:host { display: inline-block }` are unlayered, and unlayered rules beat every named
-   layer at the cascade's layer rung (before specificity is even considered). The accordion shows a single
-   chevron by putting the `hidden` utility on the inactive <ng-icon>; layered utilities would lose to
-   ng-icon's unlayered host display and BOTH chevrons would render. Unlayered, `hidden` wins on specificity
-   instead - which is what we want. */
-@import 'tailwindcss/utilities.css';
-
-@import '@fontsource/geist-mono/latin';
-@import '@fontsource/geist/latin';
-@import '@fontsource-variable/noto-sans-hebrew';
-@import '@fontsource-variable/noto-sans-arabic';
-
-@import '../../../libs/brain/hlm-tailwind-preset.css';
-/* caps color tokens (`--caps-*`) and the shadcn aliases (`--primary: var(--caps-primary)`) */
-@import '../../../libs/styles/src/caps-tokens.css';
-
 @custom-variant fixed (&:is(.layout-fixed *));
-
 @custom-variant logo-legacy (&:is(.logo-legacy *));
-
-@theme inline {
-	--font-ar: var(--font-ar);
-	--font-he: var(--font-he);
-	--breakpoint-3xl: 1600px;
-	--breakpoint-4xl: 2000px;
-}
-
-:root {
-	--font-sans: 'Geist', sans-serif;
-	--font-mono: 'Geist Mono', monospace;
-	--font-ar: 'Noto Sans Arabic Variable', 'Noto Sans Arabic', sans-serif;
-	--font-he: 'Noto Sans Hebrew Variable', 'Noto Sans Hebrew', sans-serif;
-	--radius: 0.625rem;
-}
-
-@layer base {
-	* {
-		@apply border-border outline-ring/50;
-	}
-
-	body {
-		@apply bg-background text-foreground;
-	}
-}
-
-[hidden]:where(:not([hidden='until-found'])) {
-	display: none !important;
-}
 
 @utility container-wrapper {
 	@apply 3xl:fixed:max-w-[calc(var(--breakpoint-2xl)+2rem)] mx-auto w-full px-2;
 }
 
 @utility container {
-	@apply 3xl:max-w-screen-2xl mx-auto max-w-[1400px] px-4 lg:px-8;
-}
-
-[data-lang='ar'] {
-	font-family: var(--font-ar);
-}
-
-[data-lang='he'] {
-	font-family: var(--font-he);
-}
-
-/*
- * Blue primary used on chat docs previews so sent bubbles read more like iMessage
- * than the page theme. Docs-only — not part of the shipped styles.
- */
-.theme-blue {
-	--primary: oklch(0.488 0.243 264.376);
-	--primary-foreground: oklch(0.97 0.014 254.604);
-	--sidebar-primary: oklch(0.546 0.245 262.881);
-	--sidebar-primary-foreground: oklch(0.97 0.014 254.604);
-}
-
-.dark .theme-blue {
-	--primary: oklch(0.424 0.199 265.638);
-	--primary-foreground: oklch(0.97 0.014 254.604);
-	--sidebar-primary: oklch(0.623 0.214 259.815);
-	--sidebar-primary-foreground: oklch(0.97 0.014 254.604);
+	@apply 3xl:max-w-screen-2xl mx-auto max-w-(--caps-layout-max-width) px-4 lg:px-8;
 }
 
 /*

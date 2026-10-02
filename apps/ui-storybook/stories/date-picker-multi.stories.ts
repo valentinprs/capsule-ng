@@ -1,7 +1,7 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmDatePickerImports, HlmDatePickerMulti } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
 const meta: Meta<HlmDatePickerMulti<Date>> = {
@@ -23,7 +23,7 @@ const meta: Meta<HlmDatePickerMulti<Date>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, ReactiveFormsModule, HlmFieldImports, HlmButton],
+			imports: [HlmDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 		}),
 	],
 	render: ({ ...args }) => ({
@@ -70,8 +70,8 @@ export const WithHintAndError: Story = {
 		},
 		template: `
 		<form [formGroup]="form" class="space-y-3 w-full max-w-sm">
-			<div hlmField>
-				<label hlmFieldLabel>Dates *</label>
+			<caps-field>
+				<caps-field-label>Dates *</caps-field-label>
 				<hlm-date-picker-multi
 					formControlName="dates"
 					[captionLayout]="captionLayout"
@@ -80,14 +80,14 @@ export const WithHintAndError: Story = {
 					<hlm-date-picker-trigger buttonId="date">Select dates</hlm-date-picker-trigger>
 				</hlm-date-picker-multi>
 
-				<p hlmFieldDescription>Select multiple dates for your availability.</p>
+				<caps-field-description>Select multiple dates for your availability.</caps-field-description>
 
-				<hlm-field-error>Select at least one date to continue.</hlm-field-error>
-			</div>
+				<caps-field-error>Select at least one date to continue.</caps-field-error>
+			</caps-field>
 
 			<div class="flex flex-wrap items-center gap-2">
-				<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-				<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 			</div>
 		</form>
 		`,

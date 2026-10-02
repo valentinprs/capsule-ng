@@ -219,7 +219,7 @@ const columns = columnHelper.columns([
 			<div class="max-h-[700px] w-full overflow-auto rounded-md border">
 				<div hlmTableContainer>
 					<table hlmTable>
-						<thead hlmTHead class="bg-background sticky top-0 z-10">
+						<thead hlmTHead class="bg-background sticky top-0 z-(--caps-z-10)">
 							@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
 								<tr hlmTr>
 									@for (header of headerGroup.headers; track header.id) {

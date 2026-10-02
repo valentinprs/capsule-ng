@@ -1,0 +1,104 @@
+/* Capsule foundations. Primitive scales not overridden here come from the pinned Tailwind theme.
+   Semantic aliases are redeclared at theme boundaries so nested dark previews resolve locally. */
+:root {
+	--caps-font-sans: 'Inter', sans-serif;
+	--caps-font-mono: 'Geist Mono', monospace;
+	--caps-font-ar: 'Noto Sans Arabic Variable', 'Noto Sans Arabic', sans-serif;
+	--caps-font-he: 'Noto Sans Hebrew Variable', 'Noto Sans Hebrew', sans-serif;
+	--caps-spacing: 0.25rem;
+	--caps-radius: var(--caps-size-0-625rem);
+	--caps-border-width: 1px;
+	--caps-focus-ring-width: var(--caps-size-3px);
+	--caps-opacity-disabled: var(--caps-opacity-50);
+	--caps-control-height-xs: calc(var(--caps-spacing) * 6);
+	--caps-control-height-sm: calc(var(--caps-spacing) * 7);
+	--caps-control-height: calc(var(--caps-spacing) * 8);
+	--caps-control-height-lg: calc(var(--caps-spacing) * 9);
+	--caps-control-radius-xs: min(var(--radius-md), var(--caps-size-10px));
+	--caps-control-radius-sm: min(var(--radius-md), var(--caps-size-12px));
+	--caps-control-text-sm: var(--caps-size-0-8rem);
+	--caps-textarea-min-height: calc(var(--caps-spacing) * 16);
+	--caps-button-active-offset: var(--caps-border-width);
+	--caps-duration-fast: var(--caps-duration-100);
+	--caps-duration-normal: var(--caps-duration-150);
+	--caps-duration-slow: var(--caps-duration-200);
+	--caps-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+	--caps-chip-offset: -0.15rem;
+	--caps-chip-offset-wide: -0.3rem;
+	--caps-chip-offset-compact: -0.275rem;
+	--caps-layout-max-width: 1400px;
+}
+:root,
+.dark {
+	--font-sans: var(--caps-font-sans);
+	--font-mono: var(--caps-font-mono);
+	--font-ar: var(--caps-font-ar);
+	--font-he: var(--caps-font-he);
+	--radius: var(--caps-radius);
+	--default-transition-duration: var(--caps-duration-normal);
+	--default-transition-timing-function: var(--caps-ease-standard);
+}
+@theme inline {
+	--font-sans: var(--caps-font-sans);
+	--font-mono: var(--caps-font-mono);
+	--font-ar: var(--caps-font-ar);
+	--font-he: var(--caps-font-he);
+	--spacing: var(--caps-spacing);
+	--default-font-family: var(--caps-font-sans);
+	--default-mono-font-family: var(--caps-font-mono);
+	--default-transition-duration: var(--caps-duration-normal);
+	--default-transition-timing-function: var(--caps-ease-standard);
+}
+/* Breakpoints must be static: CSS custom properties cannot be resolved in media queries. */
+@theme {
+	--breakpoint-3xl: 1600px;
+	--breakpoint-4xl: 2000px;
+}
+
+/* Off-scale primitive dimensions retained by the six compatibility skins. */
+:root {
+	--caps-size-0-5625rem: 0.5625rem;
+	--caps-size-0-625rem: 0.625rem;
+	--caps-size-0-8rem: 0.8rem;
+	--caps-size-100px: 100px;
+	--caps-size-10px: 10px;
+	--caps-size-12px: 12px;
+	--caps-size-14px: 14px;
+	--caps-size-16-6px: 16.6px;
+	--caps-size-18-4px: 18.4px;
+	--caps-size-24px: 24px;
+	--caps-size-28px: 28px;
+	--caps-size-2px: 2px;
+	--caps-size-32px: 32px;
+	--caps-size-3px: 3px;
+	--caps-size-4px: 4px;
+	--caps-size-5px: 5px;
+	--caps-size-6px: 6px;
+	--caps-size-8px: 8px;
+	--caps-size-96px: 96px;
+	--caps-size-9999px: 9999px;
+}
+
+/* Shared effect scales. Opacity endpoints (hidden/visible) remain structural. */
+:root {
+	--caps-duration-100: 100ms;
+	--caps-duration-1000: 1000ms;
+	--caps-duration-1100: 1100ms;
+	--caps-duration-150: 150ms;
+	--caps-duration-200: 200ms;
+	--caps-duration-300: 300ms;
+	--caps-duration-400: 400ms;
+	--caps-duration-500: 500ms;
+	--caps-opacity-10: 10%;
+	--caps-opacity-40: 40%;
+	--caps-opacity-50: 50%;
+	--caps-opacity-60: 60%;
+	--caps-opacity-70: 70%;
+	--caps-opacity-80: 80%;
+	--caps-z-1: 1;
+	--caps-z-10: 10;
+	--caps-z-20: 20;
+	--caps-z-30: 30;
+	--caps-z-40: 40;
+	--caps-z-50: 50;
+}

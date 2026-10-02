@@ -130,7 +130,7 @@ marked.use(
 				<span>{{ fileName() }}</span>
 			</div>
 		}
-		<div class="absolute top-1.5 right-4 z-10 flex items-center gap-0.5">
+		<div class="absolute top-1.5 right-4 z-(--caps-z-10) flex items-center gap-0.5">
 			@if (!_disableCopy) {
 				<button (click)="copyToClipBoard()" hlmBtn variant="ghost" size="icon-xs">
 					<ng-icon [name]="_copied ? 'lucideCheck' : 'lucideClipboard'" />

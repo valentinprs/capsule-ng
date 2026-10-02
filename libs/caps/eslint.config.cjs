@@ -9,7 +9,17 @@ module.exports = [
 			'@nx/dependency-checks': [
 				'error',
 				{
-					ignoredDependencies: ['@analogjs/vite-plugin-angular', '@nx/vite', 'vite'],
+					// Nx's TS graph cannot see the runtime CSS imports staged for ng-packagr.
+					ignoredDependencies: [
+						'@analogjs/vite-plugin-angular',
+						'@nx/vite',
+						'vite',
+						'tailwindcss',
+						'@fontsource/inter',
+						'@fontsource/geist-mono',
+						'@fontsource-variable/noto-sans-arabic',
+						'@fontsource-variable/noto-sans-hebrew',
+					],
 					ignoredFiles: [
 						'{projectRoot}/eslint.config.{js,cjs,mjs}',
 						'{projectRoot}/vite.config.{ts,mts}',

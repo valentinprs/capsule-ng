@@ -1,6 +1,6 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmNativeSelect, HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
@@ -11,7 +11,7 @@ export default {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmNativeSelectImports, HlmFieldImports, ReactiveFormsModule, HlmButton],
+			imports: [HlmNativeSelectImports, CapsFieldImports, ReactiveFormsModule, CapsButton],
 		}),
 	],
 } as Meta<HlmNativeSelect>;
@@ -42,8 +42,8 @@ export const WithHintAndError: Story = {
 		},
 		template: /* HTML */ `
 			<form [formGroup]="form" class="w-full max-w-sm space-y-3">
-				<div hlmField>
-					<label hlmFieldLabel>Fruit *</label>
+				<caps-field>
+					<caps-field-label>Fruit *</caps-field-label>
 					<hlm-native-select id="select-fruit" formControlName="fruit">
 						<option hlmNativeSelectOption value="">Select a fruit</option>
 						<option hlmNativeSelectOption value="apple">Apple</option>
@@ -52,14 +52,14 @@ export const WithHintAndError: Story = {
 						<option hlmNativeSelectOption value="pineapple">Pineapple</option>
 					</hlm-native-select>
 
-					<p hlmFieldDescription>Pick a fruit so we can tailor the recommendations.</p>
+					<caps-field-description>Pick a fruit so we can tailor the recommendations.</caps-field-description>
 
-					<hlm-field-error>Select your favorite fruit to continue.</hlm-field-error>
-				</div>
+					<caps-field-error>Select your favorite fruit to continue.</caps-field-error>
+				</caps-field>
 
 				<div class="flex flex-wrap items-center gap-2">
-					<button hlmBtn type="button" (click)="form.markAllAsTouched()">Validate</button>
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
+					<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
+					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 				</div>
 			</form>
 		`,

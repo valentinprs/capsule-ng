@@ -14,7 +14,7 @@ import { HlmCalendar } from '@spartan-ng/helm/calendar';
 			[min]="minDate"
 			[max]="maxDate"
 			[dateDisabled]="_dateDisabled"
-			class="bg-background [&_[data-disabled][data-outside]]:opacity-50 [&_[data-outside]]:opacity-80 [&_[data-outside]:hover]:text-neutral-900 [&_[data-outside]:hover]:opacity-100"
+			class="bg-background [&_[data-disabled][data-outside]]:opacity-(--caps-opacity-50) [&_[data-outside]]:opacity-(--caps-opacity-80) [&_[data-outside]:hover]:text-neutral-900 [&_[data-outside]:hover]:opacity-100"
 		/>
 	`,
 })

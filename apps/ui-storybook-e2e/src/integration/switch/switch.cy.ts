@@ -15,7 +15,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 		cy.findByRole('switch', { name: labelText }).should('exist');
 
 		// Verify that button exists and is properly associated
-		cy.findByLabelText(labelText).should('exist').and('have.attr', 'type', 'button');
+		cy.findByLabelText(labelText, { selector: 'button' }).should('exist').and('have.attr', 'type', 'button');
 	};
 
 	/**
@@ -27,7 +27,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 		cy.findByRole('switch', { name: labelText }).should('exist').should('have.attr', 'aria-checked', 'false');
 
 		// The hidden input should have value 'off' and not be checked
-		cy.findByLabelText(labelText).should('exist').should('have.attr', 'value', 'off');
+		cy.findByLabelText(labelText, { selector: 'button' }).should('exist').should('have.attr', 'value', 'off');
 
 		// The component should have data-state attribute set to 'unchecked'
 		cy.get('brn-switch').should('have.attr', 'data-state', 'unchecked');
@@ -42,7 +42,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 		cy.findByRole('switch', { name: labelText }).should('have.attr', 'aria-checked', 'true');
 
 		// The hidden input should have value 'on' and be checked
-		cy.findByLabelText(labelText).should('exist').should('have.attr', 'value', 'on');
+		cy.findByLabelText(labelText, { selector: 'button' }).should('exist').should('have.attr', 'value', 'on');
 
 		// The component should have data-state attribute set to 'checked'
 		cy.get('brn-switch').should('have.attr', 'data-state', 'checked');
@@ -290,7 +290,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 			cy.findByRole('switch', { name: labelText }).should('be.disabled');
 
 			// The hidden input should also have the disabled attribute
-			cy.findByLabelText(labelText).should('be.disabled');
+			cy.findByLabelText(labelText, { selector: 'button' }).should('be.disabled');
 
 			// Clicking should not toggle the switch when disabled (force: true bypasses Cypress's built-in disabled element detection)
 			cy.get('brn-switch').find('button').click({ force: true });

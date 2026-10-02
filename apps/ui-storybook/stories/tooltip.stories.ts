@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmTooltip } from '@spartan-ng/helm/tooltip';
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -12,7 +12,7 @@ const meta: Meta<HlmTooltip> = {
 	argTypes: {},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmButton, HlmTooltip, NgIcon],
+			imports: [CapsButton, HlmTooltip, NgIcon],
 			providers: [provideIcons({ lucidePlus })],
 		}),
 	],
@@ -33,7 +33,7 @@ export const Default: Story = {
 		template: `
 <div class='p-40'>
   <hlm-tooltip>
-    <button [hlmTooltip]="tooltip" ${argsToTemplate(args)}  hlmBtn variant='outline'>Test</button>
+    <button [hlmTooltip]="tooltip" ${argsToTemplate(args)}  capsButton variant='outline'>Test</button>
     <ng-template #tooltip>
 
     <span class='flex items-center'>
@@ -48,7 +48,7 @@ export const Default: Story = {
 
 @Component({
 	selector: 'simple-tooltip-story',
-	imports: [HlmButton, HlmTooltip, NgIcon],
+	imports: [CapsButton, HlmTooltip, NgIcon],
 	providers: [provideIcons({ lucidePlus })],
 	template: `
 		<div class="p-40">
@@ -56,7 +56,7 @@ export const Default: Story = {
 				(click)="_disabled.set(!_disabled())"
 				[hlmTooltip]="'Add to library'"
 				[tooltipDisabled]="_disabled()"
-				hlmBtn
+				capsButton
 				size="icon"
 			>
 				<ng-icon name="lucidePlus" />
@@ -79,7 +79,7 @@ export const Simple: Story = {
 
 @Component({
 	selector: 'disabled-tooltip-story',
-	imports: [HlmButton, HlmTooltip, NgIcon],
+	imports: [CapsButton, HlmTooltip, NgIcon],
 	providers: [provideIcons({ lucidePlus })],
 	template: `
 		<div class="p-40">
@@ -87,7 +87,7 @@ export const Simple: Story = {
 				(click)="_disabled.set(!_disabled())"
 				[hlmTooltip]="tooltip"
 				[tooltipDisabled]="_disabled()"
-				hlmBtn
+				capsButton
 				variant="outline"
 			>
 				Test

@@ -1,6 +1,6 @@
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFileX, lucideInbox, lucideSearch, lucideWifi } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
 import {
 	HlmEmpty,
 	HlmEmptyContent,
@@ -27,7 +27,7 @@ const meta: Meta<HlmEmpty> = {
 				HlmEmptyContent,
 				HlmEmptyMedia,
 
-				HlmButton,
+				CapsButton,
 			],
 			providers: [provideIcons({ lucideInbox, lucideSearch, lucideWifi, lucideFileX })],
 		}),
@@ -75,7 +75,7 @@ export const WithAction: Story = {
               You don't have any items yet. Create your first item to get started.
             </div>
           </div>
-          <button hlmBtn>Add Item</button>
+          <button capsButton>Add Item</button>
         </div>
       </div>
     `,
@@ -97,8 +97,8 @@ export const SearchResults: Story = {
             </div>
           </div>
           <div class="flex gap-2">
-            <button hlmBtn variant="outline">Clear Search</button>
-            <button hlmBtn>Browse All</button>
+            <button capsButton variant="outline">Clear Search</button>
+            <button capsButton>Browse All</button>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@ export const NoConnection: Story = {
               Please check your internet connection and try again.
             </div>
           </div>
-          <button hlmBtn>Retry</button>
+          <button capsButton>Retry</button>
         </div>
       </div>
     `,
@@ -142,8 +142,8 @@ export const FileNotFound: Story = {
             </div>
           </div>
           <div class="flex gap-2">
-            <button hlmBtn variant="outline">Go Back</button>
-            <button hlmBtn>Go Home</button>
+            <button capsButton variant="outline">Go Back</button>
+            <button capsButton>Go Home</button>
           </div>
         </div>
       </div>
@@ -178,8 +178,8 @@ export const CustomLayout: Story = {
               </div>
             </div>
             <div class="grid grid-cols-2 gap-2 mt-4">
-              <button hlmBtn variant="outline">Import Data</button>
-              <button hlmBtn>Create New</button>
+              <button capsButton variant="outline">Import Data</button>
+              <button capsButton>Create New</button>
             </div>
           </div>
         </div>

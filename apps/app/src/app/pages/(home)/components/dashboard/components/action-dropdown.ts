@@ -27,7 +27,7 @@ import { type DashboardFeatures } from './table-section';
 				<hlm-dropdown-menu-group>
 					<button hlmDropdownMenuItem>
 						Delete
-						<span class="ml-auto text-xs tracking-widest opacity-60">⌘⌫</span>
+						<span class="ml-auto text-xs tracking-widest opacity-(--caps-opacity-60)">⌘⌫</span>
 					</button>
 				</hlm-dropdown-menu-group>
 			</hlm-dropdown-menu>

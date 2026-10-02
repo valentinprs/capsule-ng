@@ -19,7 +19,14 @@
 				},
 				"development": {}
 			},
-			"defaultConfiguration": "production"
+			"defaultConfiguration": "production",
+			"dependsOn": ["^build", "prepare-styles"],
+			"inputs": [
+				"production",
+				"^production",
+				"{workspaceRoot}/libs/styles/src/*.css",
+				"{workspaceRoot}/tools/caps/prepare-styles.mjs"
+			]
 		},
 		"test": {
 			"executor": "@nx/vitest:test",
@@ -30,6 +37,15 @@
 		},
 		"lint": {
 			"executor": "@nx/eslint:lint"
+		},
+		"prepare-styles": {
+			"executor": "nx:run-commands",
+			"inputs": ["{workspaceRoot}/libs/styles/src/*.css", "{workspaceRoot}/tools/caps/prepare-styles.mjs"],
+			"outputs": ["{projectRoot}/.generated/styles"],
+			"options": {
+				"command": "node tools/caps/prepare-styles.mjs"
+			}
 		}
-	}
+	},
+	"implicitDependencies": ["styles"]
 }

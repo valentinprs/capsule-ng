@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-field-select-preview',
-	imports: [HlmFieldImports, HlmSelectImports],
+	imports: [CapsFieldImports, HlmSelectImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<fieldset hlmFieldSet>
-			<div hlmFieldGroup>
-				<div hlmField>
-					<label hlmFieldLabel for="field-select-department">Department</label>
+		<caps-field-set>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label for="field-select-department">Department</caps-field-label>
 					<hlm-select [itemToString]="itemToString">
 						<hlm-select-trigger class="w-full" buttonId="field-select-department">
 							<hlm-select-value placeholder="Choose a department" />
@@ -27,10 +27,10 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 							</hlm-select-group>
 						</hlm-select-content>
 					</hlm-select>
-					<p hlmFieldDescription>Select your department or area of work.</p>
-				</div>
-			</div>
-		</fieldset>
+					<caps-field-description>Select your department or area of work.</caps-field-description>
+				</caps-field>
+			</caps-field-group>
+		</caps-field-set>
 	`,
 })
 export class FieldSelectPreview {

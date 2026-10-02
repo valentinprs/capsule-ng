@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-input-required',
-	imports: [HlmInputImports, HlmFieldImports],
+	imports: [CapsInputImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel for="input-required">
+		<caps-field>
+			<caps-field-label for="input-required">
 				Required Field
 				<span class="text-destructive">*</span>
-			</label>
-			<input hlmInput id="input-required" required placeholder="This field is required" />
-			<hlm-field-description>This field must be filled out.</hlm-field-description>
-		</hlm-field>
+			</caps-field-label>
+			<input capsInput id="input-required" required placeholder="This field is required" />
+			<caps-field-description>This field must be filled out.</caps-field-description>
+		</caps-field>
 	`,
 })
 export class InputRequired {}

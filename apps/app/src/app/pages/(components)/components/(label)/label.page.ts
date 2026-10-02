@@ -58,6 +58,13 @@ export const routeMeta: RouteMeta = {
 				<spartan-code [code]="_defaultImports" />
 				<spartan-code [code]="_defaultSkeleton" />
 			</div>
+			<p class="mt-4 text-sm leading-relaxed">
+				Apply capsLabel to a native label and set for to the associated control's id. Clicking the label keeps native
+				focus and checkbox activation. Inside caps-field, the associated control is inferred when for is omitted; an
+				explicit, non-empty for value takes precedence. The id input defaults to a generated label id. Disabled
+				appearance follows an ancestor group with data-disabled="true" or a preceding disabled peer control; the
+				control's native disabled state determines activation.
+			</p>
 
 			<spartan-header-rtl />
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -67,11 +74,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Caps API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="marker" label="Marker" />

@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-textarea-disabled',
-	imports: [HlmTextareaImports, HlmFieldImports],
+	imports: [CapsTextareaImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field data-disabled="true">
-			<label hlmFieldLabel for="textarea-disabled">Message</label>
-			<textarea hlmTextarea id="textarea-disabled" placeholder="Type your message here." disabled></textarea>
-		</hlm-field>
+		<caps-field data-disabled="true">
+			<caps-field-label for="textarea-disabled">Message</caps-field-label>
+			<textarea capsTextarea id="textarea-disabled" placeholder="Type your message here." disabled></textarea>
+		</caps-field>
 	`,
 })
 export class TextareaDisabledPreview {}

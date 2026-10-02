@@ -1,13 +1,12 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight, lucidePlus } from '@ng-icons/lucide';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-button-rtl-preview',
-	imports: [HlmButtonImports, NgIcon, HlmSpinnerImports],
+	imports: [CapsButtonImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideArrowRight,
@@ -19,17 +18,21 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 		'[dir]': '_dir()',
 	},
 	template: `
-		<button hlmBtn variant="outline">{{ _t()['button'] }}</button>
-		<button hlmBtn variant="destructive">{{ _t()['delete'] }}</button>
-		<button hlmBtn variant="outline">
+		<button capsButton variant="outline">{{ _t()['button'] }}</button>
+		<button capsButton variant="destructive">{{ _t()['delete'] }}</button>
+		<button capsButton variant="outline">
 			{{ _t()['submit'] }}
 			<ng-icon class="rtl:rotate-180" data-icon="inline-end" name="lucideArrowRight" />
 		</button>
-		<button hlmBtn variant="outline" size="icon" aria-label="Add">
+		<button capsButton variant="outline" size="icon" aria-label="Add">
 			<ng-icon name="lucidePlus" />
 		</button>
-		<button hlmBtn variant="secondary" disabled>
-			<hlm-spinner data-icon="inline-start" />
+		<button capsButton variant="secondary" disabled>
+			<span
+				aria-hidden="true"
+				data-icon="inline-start"
+				class="size-4 animate-spin rounded-full border-2 border-current border-t-transparent motion-reduce:animate-none"
+			></span>
 			{{ _t()['loading'] }}
 		</button>
 	`,

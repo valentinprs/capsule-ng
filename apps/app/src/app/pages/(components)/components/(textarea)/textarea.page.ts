@@ -27,8 +27,8 @@ import { TextareaPreview, defaultImports, defaultSkeleton } from './textarea.pre
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Textarea', api: 'textarea' },
-	meta: metaWith('spartan/ui - Textarea', 'Displays a form textarea or a component that looks like a textarea.'),
-	title: 'spartan/ui - Textarea',
+	meta: metaWith('Capsule - Textarea', 'Styles a native multiline textarea with Capsule.'),
+	title: 'Capsule - Textarea',
 };
 @Component({
 	selector: 'spartan-textarea',
@@ -57,11 +57,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Textarea"
-				lead="Displays a form textarea or a component that looks like a textarea."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Textarea" lead="Styles a native multiline textarea with Capsule." showThemeToggle />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -80,11 +76,11 @@ export const routeMeta: RouteMeta = {
 			<h3 id="field" spartanH4>Field</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlm-field</code>
+				<code class="${hlmCode}">caps-field</code>
 				,
-				<code class="${hlmCode}">hlmFieldLabel</code>
+				<code class="${hlmCode}">caps-field-label</code>
 				, and
-				<code class="${hlmCode}">hlm-field-description</code>
+				<code class="${hlmCode}">caps-field-description</code>
 				to create a textarea with a label and description.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -134,11 +130,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Caps API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="toggle" label="Toggle" />

@@ -1,20 +1,20 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 
 @Component({
 	selector: 'spartan-field-rtl',
 	imports: [
 		HlmCheckboxImports,
-		HlmTextareaImports,
-		HlmButtonImports,
-		HlmInputImports,
-		HlmFieldImports,
+		CapsTextareaImports,
+		CapsButtonImports,
+		CapsInputImports,
+		CapsFieldImports,
 		HlmSelectImports,
 	],
 	host: {
@@ -23,26 +23,26 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 	},
 	template: `
 		<form>
-			<div hlmFieldGroup>
-				<fieldset hlmFieldSet>
-					<legend hlmFieldLegend>{{ _t()['paymentMethod'] }}</legend>
-					<p hlmFieldDescription>{{ _t()['secureTransactions'] }}</p>
+			<caps-field-group>
+				<caps-field-set>
+					<caps-field-legend>{{ _t()['paymentMethod'] }}</caps-field-legend>
+					<caps-field-description>{{ _t()['secureTransactions'] }}</caps-field-description>
 
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-preview-name-on-card">{{ _t()['nameOnCard'] }}</label>
-							<input hlmInput placeholder="John Doe" id="field-preview-name-on-card" />
-						</div>
-						<div hlmField class="col-span-2">
-							<label hlmFieldLabel for="field-preview-card-number">{{ _t()['cardNumber'] }}</label>
-							<input hlmInput placeholder="1234 1234 1234 1234" id="field-preview-card-number" />
-							<p hlmFieldDescription>{{ _t()['cardNumberDescription'] }}</p>
-						</div>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="field-rtl-name-on-card">{{ _t()['nameOnCard'] }}</caps-field-label>
+							<input capsInput placeholder="John Doe" id="field-rtl-name-on-card" />
+						</caps-field>
+						<caps-field class="col-span-2">
+							<caps-field-label for="field-rtl-card-number">{{ _t()['cardNumber'] }}</caps-field-label>
+							<input capsInput placeholder="1234 1234 1234 1234" id="field-rtl-card-number" />
+							<caps-field-description>{{ _t()['cardNumberDescription'] }}</caps-field-description>
+						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
-							<div hlmField>
-								<label hlmFieldLabel for="field-exp-month--trigger">{{ _t()['month'] }}</label>
-								<hlm-select id="field-exp-month" class="inline-block" [itemToString]="_monthToString">
-									<hlm-select-trigger class="w-full">
+							<caps-field>
+								<caps-field-label for="field-rtl-exp-month--trigger">{{ _t()['month'] }}</caps-field-label>
+								<hlm-select id="field-rtl-exp-month" class="inline-block" [itemToString]="_monthToString">
+									<hlm-select-trigger buttonId="field-rtl-exp-month--trigger" class="w-full">
 										<hlm-select-value />
 									</hlm-select-trigger>
 									<hlm-select-content *hlmSelectPortal>
@@ -53,11 +53,11 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 										</hlm-select-group>
 									</hlm-select-content>
 								</hlm-select>
-							</div>
-							<div hlmField>
-								<label hlmFieldLabel for="field-exp-year--trigger">{{ _t()['year'] }}</label>
-								<hlm-select id="field-exp-year" class="inline-block">
-									<hlm-select-trigger class="w-full">
+							</caps-field>
+							<caps-field>
+								<caps-field-label for="field-rtl-exp-year--trigger">{{ _t()['year'] }}</caps-field-label>
+								<hlm-select id="field-rtl-exp-year" class="inline-block">
+									<hlm-select-trigger buttonId="field-rtl-exp-year--trigger" class="w-full">
 										<hlm-select-value />
 									</hlm-select-trigger>
 									<hlm-select-content *hlmSelectPortal>
@@ -68,43 +68,43 @@ import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
 										</hlm-select-group>
 									</hlm-select-content>
 								</hlm-select>
-							</div>
-							<div hlmField>
-								<label hlmFieldLabel for="field-preview-cvv">{{ _t()['cvv'] }}</label>
-								<input hlmInput placeholder="123" id="field-preview-cvv" />
-							</div>
+							</caps-field>
+							<caps-field>
+								<caps-field-label for="field-rtl-cvv">{{ _t()['cvv'] }}</caps-field-label>
+								<input capsInput placeholder="123" id="field-rtl-cvv" />
+							</caps-field>
 						</div>
-					</div>
-				</fieldset>
-				<hlm-field-separator />
-				<fieldset hlmFieldSet>
-					<legend hlmFieldLegend>{{ _t()['billingAddress'] }}</legend>
-					<p hlmFieldDescription>{{ _t()['billingAddressDescription'] }}</p>
-					<div hlmFieldGroup>
-						<div hlmField orientation="horizontal">
-							<hlm-checkbox inputId="field-preview-billing-address" [checked]="true" />
-							<label hlmFieldLabel for="field-preview-billing-address">{{ _t()['sameAsShipping'] }}</label>
-						</div>
-					</div>
-				</fieldset>
-				<fieldset hlmFieldSet>
-					<div hlmFieldGroup>
-						<div hlmField>
-							<label hlmFieldLabel for="field-preview-comments">{{ _t()['comments'] }}</label>
+					</caps-field-group>
+				</caps-field-set>
+				<caps-field-separator />
+				<caps-field-set>
+					<caps-field-legend>{{ _t()['billingAddress'] }}</caps-field-legend>
+					<caps-field-description>{{ _t()['billingAddressDescription'] }}</caps-field-description>
+					<caps-field-group>
+						<caps-field orientation="horizontal">
+							<hlm-checkbox inputId="field-rtl-billing-address" [checked]="true" />
+							<caps-field-label for="field-rtl-billing-address">{{ _t()['sameAsShipping'] }}</caps-field-label>
+						</caps-field>
+					</caps-field-group>
+				</caps-field-set>
+				<caps-field-set>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="field-rtl-comments">{{ _t()['comments'] }}</caps-field-label>
 							<textarea
-								hlmTextarea
+								capsTextarea
 								class="resize-none"
-								id="field-preview-comments"
+								id="field-rtl-comments"
 								[placeholder]="_t()['commentsPlaceholder']"
 							></textarea>
-						</div>
-					</div>
-				</fieldset>
-				<div hlmField orientation="horizontal">
-					<button hlmBtn>{{ _t()['submit'] }}</button>
-					<button hlmBtn variant="outline">{{ _t()['cancel'] }}</button>
-				</div>
-			</div>
+						</caps-field>
+					</caps-field-group>
+				</caps-field-set>
+				<caps-field orientation="horizontal">
+					<button capsButton>{{ _t()['submit'] }}</button>
+					<button capsButton variant="outline">{{ _t()['cancel'] }}</button>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })

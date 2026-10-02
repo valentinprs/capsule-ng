@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'spartan-input-rtl',
-	imports: [HlmInputImports, HlmFieldImports],
+	imports: [CapsInputImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field [dir]="_dir()">
-			<label hlmFieldLabel for="input-rtl-api-key">{{ _t()['apiKey'] }}</label>
-			<input hlmInput id="input-rtl-api-key" type="password" [placeholder]="_t()['placeholder']" />
-			<hlm-field-description>{{ _t()['description'] }}</hlm-field-description>
-		</hlm-field>
+		<caps-field [dir]="_dir()">
+			<caps-field-label for="input-rtl-api-key">{{ _t()['apiKey'] }}</caps-field-label>
+			<input capsInput id="input-rtl-api-key" type="password" [placeholder]="_t()['placeholder']" />
+			<caps-field-description>{{ _t()['description'] }}</caps-field-description>
+		</caps-field>
 	`,
 })
 export class InputRtl {

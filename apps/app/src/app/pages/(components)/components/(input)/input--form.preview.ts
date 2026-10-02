@@ -1,35 +1,35 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-input-form',
-	imports: [HlmInputImports, HlmButtonImports, HlmFieldImports, FormRoot, FormField],
+	imports: [CapsInputImports, CapsButtonImports, CapsFieldImports, FormRoot, FormField],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="form-name">Name</label>
-					<input hlmInput type="text" id="form-name" placeholder="Leonidas" [formField]="form.name" />
-				</hlm-field>
-				<hlm-field>
-					<label hlmFieldLabel for="form-email">Email</label>
-					<input hlmInput type="email" id="form-email" placeholder="leonidas@example.com" [formField]="form.email" />
-					<hlm-field-description>We'll never share your email with anyone.</hlm-field-description>
-				</hlm-field>
-				<hlm-field>
-					<label hlmFieldLabel for="form-address">Address</label>
-					<input hlmInput type="text" id="form-address" placeholder="123 Main St" [formField]="form.address" />
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Cancel</button>
-					<button hlmBtn type="submit">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label for="form-name">Name</caps-field-label>
+					<input capsInput type="text" id="form-name" placeholder="Leonidas" [formField]="form.name" />
+				</caps-field>
+				<caps-field>
+					<caps-field-label for="form-email">Email</caps-field-label>
+					<input capsInput type="email" id="form-email" placeholder="leonidas@example.com" [formField]="form.email" />
+					<caps-field-description>We'll never share your email with anyone.</caps-field-description>
+				</caps-field>
+				<caps-field>
+					<caps-field-label for="form-address">Address</caps-field-label>
+					<input capsInput type="text" id="form-address" placeholder="123 Main St" [formField]="form.address" />
+				</caps-field>
+				<caps-field orientation="horizontal">
+					<button capsButton variant="outline" type="button" (click)="reset()">Cancel</button>
+					<button capsButton type="submit">Submit</button>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })

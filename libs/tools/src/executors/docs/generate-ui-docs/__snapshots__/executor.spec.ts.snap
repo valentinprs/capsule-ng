@@ -1499,7 +1499,7 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         ],
         "models": [],
         "outputs": [],
-        "selector": "button[capsButton]",
+        "selector": "button[capsButton], a[capsButton]",
       },
     },
     "helm": {
@@ -5248,6 +5248,143 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "[brnFieldControlDescribedBy]",
       },
     },
+    "caps": {
+      "CapsField": {
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "CapsFieldOrientation",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field",
+      },
+      "CapsFieldContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field-content",
+      },
+      "CapsFieldDescription": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field-description",
+      },
+      "CapsFieldError": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "validator",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "forceShow",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field-error",
+      },
+      "CapsFieldGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field-group",
+      },
+      "CapsFieldLabel": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "for",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field-label",
+      },
+      "CapsFieldLegend": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "'legend' | 'label'",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field-legend",
+      },
+      "CapsFieldSeparator": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field-separator",
+      },
+      "CapsFieldSet": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-field-set",
+      },
+    },
     "helm": {
       "HlmField": {
         "inputs": [
@@ -5485,6 +5622,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnInput]",
+      },
+    },
+    "caps": {
+      "CapsInput": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsInput]",
       },
     },
     "helm": {
@@ -5830,6 +5991,25 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnLabel]",
+      },
+    },
+    "caps": {
+      "CapsLabel": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "for",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "label[capsLabel]",
       },
     },
     "helm": {
@@ -10332,6 +10512,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnTextarea]",
+      },
+    },
+    "caps": {
+      "CapsTextarea": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "textarea[capsTextarea]",
       },
     },
     "helm": {

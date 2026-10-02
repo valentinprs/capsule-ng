@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 
 @Component({
 	selector: 'spartan-button-anchor',
-	imports: [HlmButtonImports],
+	imports: [CapsButtonImports],
 	template: `
-		<a hlmBtn target="_blank" variant="link" href="https://github.com/spartan-ng/spartan">Star on GitHub</a>
+		<a capsButton target="_blank" rel="noreferrer" variant="link" href="https://github.com/valentinprs/capsule-ng">
+			View on GitHub
+		</a>
 	`,
 })
 export class ButtonAnchor {}

@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'spartan-input-button-group',
-	imports: [HlmInputImports, HlmFieldImports, HlmButtonGroupImports, HlmButtonImports],
+	imports: [CapsInputImports, CapsFieldImports, HlmButtonGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel for="input-button-group">Search</label>
+		<caps-field>
+			<caps-field-label for="input-button-group">Search</caps-field-label>
 			<hlm-button-group>
-				<input hlmInput id="input-button-group" placeholder="Type to search..." />
-				<button hlmBtn variant="outline">Search</button>
+				<input capsInput id="input-button-group" placeholder="Type to search..." />
+				<button capsButton variant="outline">Search</button>
 			</hlm-button-group>
-		</hlm-field>
+		</caps-field>
 	`,
 })
 export class InputButtonGroup {}

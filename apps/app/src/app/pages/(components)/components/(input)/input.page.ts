@@ -36,10 +36,10 @@ import { defaultImports, defaultSkeleton, InputPreview } from './input.preview';
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Input', api: 'input' },
 	meta: metaWith(
-		'spartan/ui - Input',
-		'Gives an input field or a component a distinct look that indicates its input capabilities.',
+		'Capsule - Input',
+		'Styles native input elements while preserving browser behavior and Angular forms.',
 	),
-	title: 'spartan/ui - Input',
+	title: 'Capsule - Input',
 };
 @Component({
 	selector: 'spartan-input',
@@ -78,7 +78,7 @@ export const routeMeta: RouteMeta = {
 		<section spartanMainSection>
 			<spartan-section-intro
 				name="Input"
-				lead="Gives an input field or a component a distinct look that indicates its input capabilities"
+				lead="Styles native input elements while preserving browser behavior and Angular forms."
 				showThemeToggle
 			/>
 
@@ -107,11 +107,11 @@ export const routeMeta: RouteMeta = {
 			<h3 id="field" spartanH4>Field</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlm-field</code>
+				<code class="${hlmCode}">caps-field</code>
 				,
-				<code class="${hlmCode}">hlmFieldLabel</code>
+				<code class="${hlmCode}">caps-field-label</code>
 				, and
-				<code class="${hlmCode}">hlm-field-description</code>
+				<code class="${hlmCode}">caps-field-description</code>
 				to create an input with a label and description.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -217,11 +217,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="item" label="Item" />

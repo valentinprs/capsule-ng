@@ -32,15 +32,16 @@ import { FieldSetPreview } from './field--set.preview';
 import { FieldSliderPreview } from './field--slider.preview';
 import { FieldSwitchPreview } from './field--switch.preview';
 import { FieldTextareaPreview } from './field--textarea.preview';
+import { FieldValidationPreview } from './field--validation.preview';
 import { anatomyCode, defaultImports, defaultSkeleton, FieldPreview, validationAndErrorCode } from './field.preview';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Field', api: 'field' },
 	meta: metaWith(
-		'spartan/ui - Field',
+		'Capsule - Field',
 		'Combine labels, controls, and help text to compose accessible form fields and grouped inputs.',
 	),
-	title: 'spartan/ui - Field',
+	title: 'Capsule - Field',
 };
 @Component({
 	selector: 'spartan-field',
@@ -62,6 +63,7 @@ export const routeMeta: RouteMeta = {
 		FieldPreview,
 		FieldInputPreview,
 		FieldTextareaPreview,
+		FieldValidationPreview,
 		FieldSelectPreview,
 		FieldNativeSelectPreview,
 		FieldDatePickerPreview,
@@ -108,20 +110,20 @@ export const routeMeta: RouteMeta = {
 			</div>
 			<ul class="my-6 ml-6 list-disc">
 				<li class="mt-2">
-					<code class="${hlmCode} mr-0.5">HlmField</code>
+					<code class="${hlmCode} mr-0.5">CapsField</code>
 					is the core wrapper for a single field.
 				</li>
 				<li class="mt-2">
-					<code class="${hlmCode} mr-0.5">HlmFieldContent</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldContent</code>
 					is a flex column that groups label and description. Not required if you have no description.
 				</li>
 				<li class="mt-2">
 					Wrap related fields with
-					<code class="${hlmCode} mr-0.5">HlmFieldGroup</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldGroup</code>
 					, and use
-					<code class="${hlmCode} mr-0.5">HlmFieldSet</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldSet</code>
 					with
-					<code class="${hlmCode} mr-0.5">HlmFieldLegend</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldLegend</code>
 					for semantic grouping.
 				</li>
 			</ul>
@@ -210,9 +212,9 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__choice-card" spartanH4>Choice Card</h3>
 			<p class="${hlmP} mb-2">
 				Wrap
-				<code class="${hlmCode} mr-0.5">HlmField</code>
-				directives inside
-				<code class="${hlmCode} mr-0.5">HlmFieldLabel</code>
+				<code class="${hlmCode} mr-0.5">CapsField</code>
+				elements inside
+				<code class="${hlmCode} mr-0.5">CapsFieldLabel</code>
 				to create selectable field groups. This works with
 				<code class="${hlmCode} mr-0.5">RadioItem</code>
 				,
@@ -231,11 +233,11 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__field-group" spartanH4>Field Group</h3>
 			<p class="${hlmP} mb-2">
 				Stack
-				<code class="${hlmCode} mr-0.5">HlmField</code>
-				directives with
-				<code class="${hlmCode} mr-0.5">HlmFieldGroup</code>
+				<code class="${hlmCode} mr-0.5">CapsField</code>
+				elements with
+				<code class="${hlmCode} mr-0.5">CapsFieldGroup</code>
 				. Add
-				<code class="${hlmCode} mr-0.5">HlmFieldSeparator</code>
+				<code class="${hlmCode} mr-0.5">CapsFieldSeparator</code>
 				to divide them.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -248,7 +250,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__field-separator" spartanH4>Field Separator</h3>
 			<p class="${hlmP} mb-2">
 				Visual divider to separate sections inside a
-				<code class="${hlmCode}">HlmFieldGroup</code>
+				<code class="${hlmCode}">CapsFieldGroup</code>
 				. Accepts optional inline content.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -277,19 +279,19 @@ export const routeMeta: RouteMeta = {
 					Set
 					<code class="${hlmCode} mr-0.5">orientation="horizontal"</code>
 					on
-					<code class="${hlmCode} mr-0.5">HlmField</code>
+					<code class="${hlmCode} mr-0.5">CapsField</code>
 					to align the label and control side-by-side. Pair with
-					<code class="${hlmCode} mr-0.5">HlmFieldContent</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldContent</code>
 					to keep descriptions aligned.
 				</li>
 				<li class="mt-2">
 					<strong class="font-medium">Responsive fields:</strong>
 					Set
 					<code class="${hlmCode} mr-0.5">orientation="responsive"</code>
-					for automatic column layouts inside container-aware parents. Apply
+					for automatic column layouts inside container-aware parents. The
 					<code class="${hlmCode} mr-0.5">&#64;container/field-group</code>
-					classes on
-					<code class="${hlmCode} mr-0.5">HlmFieldGroup</code>
+					class is included by default on
+					<code class="${hlmCode} mr-0.5">CapsFieldGroup</code>
 					to switch orientations at specific breakpoints.
 				</li>
 			</ul>
@@ -301,35 +303,40 @@ export const routeMeta: RouteMeta = {
 			</spartan-tabs>
 
 			<spartan-section-sub-heading id="validation-and-errors">Validation and Errors</spartan-section-sub-heading>
+			<spartan-tabs firstTab="Preview" secondTab="Code">
+				<div spartanCodePreview firstTab><spartan-field-validation-preview /></div>
+				<spartan-code secondTab [code]="_validationCode()" />
+			</spartan-tabs>
 			<ul class="my-6 ml-6 list-disc">
 				<li class="mt-2">
 					Add
-					<code class="${hlmCode} mr-0.5">data-invalid</code>
+					<code class="${hlmCode} mr-0.5">forceInvalid</code>
 					to
-					<code class="${hlmCode} mr-0.5">HlmField</code>
-					to switch the entire block into an error state.
+					<code class="${hlmCode} mr-0.5">CapsField</code>
+					to preview invalid styling without changing control validation or error visibility.
 				</li>
 				<li class="mt-2">
-					Add
+					Angular validation supplies
 					<code class="${hlmCode} mr-0.5">aria-invalid</code>
-					on the input itself for assistive technologies.
+					on Capsule controls automatically. Messages follow the configured error-state matcher; use validator to select
+					a message or forceShow for a manual message.
 				</li>
 				<li class="mt-2">
 					Render
-					<code class="${hlmCode} mr-0.5">FieldError</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldError</code>
 					immediately after the control or inside
-					<code class="${hlmCode} mr-0.5">FieldContent</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldContent</code>
 					to keep error messages aligned with the field.
 				</li>
 				<li class="mt-2">
 					For checkbox or radio groups wrapped in a
 					<code class="${hlmCode} mr-0.5">fieldset</code>
 					, render
-					<code class="${hlmCode} mr-0.5">FieldError</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldError</code>
 					as a sibling of the
 					<code class="${hlmCode} mr-0.5">fieldset</code>
 					, not inside it. Because
-					<code class="${hlmCode} mr-0.5">FieldGroup</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldGroup</code>
 					is a container-query context, an error nested in the
 					<code class="${hlmCode} mr-0.5">fieldset</code>
 					triggers a Chrome layout bug that collapses the controls on toggle.
@@ -340,26 +347,24 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="accessibility">Accessibility</spartan-section-sub-heading>
 			<ul class="my-6 ml-6 list-disc">
 				<li class="mt-2">
-					<code class="${hlmCode} mr-0.5">HlmFieldSet</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldSet</code>
 					and
-					<code class="${hlmCode} mr-0.5">HlmFieldLegend</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldLegend</code>
 					keep related controls grouped for keyboard and assistive tech users.
 				</li>
 				<li class="mt-2">
-					<code class="${hlmCode} mr-0.5">HlmField</code>
+					<code class="${hlmCode} mr-0.5">CapsField</code>
 					outputs
 					<code class="${hlmCode} mr-0.5">role="group"</code>
-					so nested controls inherit labeling from
-					<code class="${hlmCode} mr-0.5">HlmFieldLabel</code>
-					and
-					<code class="${hlmCode} mr-0.5">HlmFieldLegend</code>
-					when combined.
+					and associates the group with its projected
+					<code class="${hlmCode} mr-0.5">CapsFieldLabel</code>
+					. Native fieldsets use their legend for naming.
 				</li>
 				<li class="mt-2">
 					When a control and a
-					<code class="${hlmCode} mr-0.5">HlmFieldLabel</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldLabel</code>
 					are placed inside the same
-					<code class="${hlmCode} mr-0.5">HlmField</code>
+					<code class="${hlmCode} mr-0.5">CapsField</code>
 					, the label's
 					<code class="${hlmCode} mr-0.5">for</code>
 					attribute is automatically set to the control's
@@ -370,16 +375,13 @@ export const routeMeta: RouteMeta = {
 				</li>
 				<li class="mt-2">
 					Apply
-					<code class="${hlmCode} mr-0.5">HlmFieldSeparator</code>
+					<code class="${hlmCode} mr-0.5">CapsFieldSeparator</code>
 					sparingly to ensure screen readers encounter clear section boundaries.
 				</li>
 			</ul>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="hover-card" label="Hover Card" />
@@ -396,6 +398,7 @@ export default class FieldPage {
 
 	private readonly _snippets = inject(PrimitiveSnippetsService).getSnippets('field');
 	protected readonly _defaultCode = computed(() => this._snippets()['default']);
+	protected readonly _validationCode = computed(() => this._snippets()['validation']);
 	protected readonly _inputCode = computed(() => this._snippets()['input']);
 	protected readonly _textareaCode = computed(() => this._snippets()['textarea']);
 	protected readonly _selectCode = computed(() => this._snippets()['select']);

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 
 @Component({
 	selector: 'spartan-button-default',
-	imports: [HlmButtonImports],
+	imports: [CapsButtonImports],
 	template: `
-		<button hlmBtn>Button</button>
+		<button capsButton>Button</button>
 	`,
 })
 export class ButtonDefault {}

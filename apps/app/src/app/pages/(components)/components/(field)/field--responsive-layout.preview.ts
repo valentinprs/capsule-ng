@@ -1,51 +1,51 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-field-responsive-layout-preview',
-	imports: [HlmFieldImports, HlmInputImports, HlmTextareaImports, HlmButtonImports],
+	imports: [CapsFieldImports, CapsInputImports, CapsTextareaImports, CapsButtonImports],
 	host: {
 		class: 'w-full max-w-4xl',
 	},
 	template: `
 		<form>
-			<fieldset hlmFieldSet>
-				<legend hlmFieldLegend>Profile</legend>
-				<p hlmFieldDescription>Fill in your profile information.</p>
-				<hlm-field-separator />
-				<div hlmFieldGroup>
-					<div hlmField orientation="responsive">
-						<div hlmFieldContent>
-							<label hlmFieldLabel for="field-responsive-name">Name</label>
-							<p hlmFieldDescription>Provide your full name for identification</p>
-						</div>
-						<input hlmInput id="field-responsive-name" type="text" placeholder="Alex Cooper" />
-					</div>
-					<hlm-field-separator />
-					<div hlmField orientation="responsive">
-						<div hlmFieldContent>
-							<label hlmFieldLabel for="field-responsive-message">Message</label>
-							<p hlmFieldDescription>
+			<caps-field-set>
+				<caps-field-legend>Profile</caps-field-legend>
+				<caps-field-description>Fill in your profile information.</caps-field-description>
+				<caps-field-separator />
+				<caps-field-group>
+					<caps-field orientation="responsive">
+						<caps-field-content>
+							<caps-field-label for="field-responsive-name">Name</caps-field-label>
+							<caps-field-description>Provide your full name for identification</caps-field-description>
+						</caps-field-content>
+						<input capsInput id="field-responsive-name" type="text" placeholder="Alex Cooper" />
+					</caps-field>
+					<caps-field-separator />
+					<caps-field orientation="responsive">
+						<caps-field-content>
+							<caps-field-label for="field-responsive-message">Message</caps-field-label>
+							<caps-field-description>
 								You can write your message here. Keep it short, preferably under 100 characters.
-							</p>
-						</div>
+							</caps-field-description>
+						</caps-field-content>
 						<textarea
-							hlmTextarea
+							capsTextarea
 							id="field-responsive-message"
 							placeholder="Hello, World!"
 							class="min-h-[100px] resize-none sm:min-w-[300px]"
 						></textarea>
-					</div>
-					<hlm-field-separator />
-					<div hlmField orientation="responsive">
-						<button hlmBtn type="submit">Submit</button>
-						<button hlmBtn type="button" variant="outline">Cancel</button>
-					</div>
-				</div>
-			</fieldset>
+					</caps-field>
+					<caps-field-separator />
+					<caps-field orientation="responsive">
+						<button capsButton type="submit">Submit</button>
+						<button capsButton type="button" variant="outline">Cancel</button>
+					</caps-field>
+				</caps-field-group>
+			</caps-field-set>
 		</form>
 	`,
 })

@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-input-invalid',
-	imports: [HlmInputImports, HlmFieldImports],
+	imports: [CapsInputImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field forceInvalid>
-			<label hlmFieldLabel for="input-invalid">Invalid Input</label>
-			<input hlmInput forceInvalid id="input-invalid" placeholder="Error" />
-			<hlm-field-description>This field contains validation errors.</hlm-field-description>
-		</hlm-field>
+		<caps-field forceInvalid>
+			<caps-field-label for="input-invalid">Invalid Input</caps-field-label>
+			<input capsInput forceInvalid id="input-invalid" placeholder="Error" />
+			<caps-field-description>This field contains validation errors.</caps-field-description>
+		</caps-field>
 	`,
 })
 export class InputInvalid {}

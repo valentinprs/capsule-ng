@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUpRight } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-button-size-preview',
-	imports: [HlmButtonImports, NgIcon],
+	imports: [CapsButtonImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideArrowUpRight,
@@ -17,26 +17,26 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 	},
 	template: `
 		<div class="flex items-start gap-2">
-			<button hlmBtn size="xs" variant="outline">Extra Small</button>
-			<button hlmBtn size="icon-xs" aria-label="Submit" variant="outline">
+			<button capsButton size="xs" variant="outline">Extra Small</button>
+			<button capsButton size="icon-xs" aria-label="Submit" variant="outline">
 				<ng-icon name="lucideArrowUpRight" />
 			</button>
 		</div>
 		<div class="flex items-start gap-2">
-			<button hlmBtn size="sm" variant="outline">Small</button>
-			<button hlmBtn size="icon-sm" aria-label="Submit" variant="outline">
+			<button capsButton size="sm" variant="outline">Small</button>
+			<button capsButton size="icon-sm" aria-label="Submit" variant="outline">
 				<ng-icon name="lucideArrowUpRight" />
 			</button>
 		</div>
 		<div class="flex items-start gap-2">
-			<button hlmBtn variant="outline">Default</button>
-			<button hlmBtn size="icon" aria-label="Submit" variant="outline">
+			<button capsButton variant="outline">Default</button>
+			<button capsButton size="icon" aria-label="Submit" variant="outline">
 				<ng-icon name="lucideArrowUpRight" />
 			</button>
 		</div>
 		<div class="flex items-start gap-2">
-			<button hlmBtn variant="outline" size="lg">Large</button>
-			<button hlmBtn size="icon-lg" aria-label="Submit" variant="outline">
+			<button capsButton variant="outline" size="lg">Large</button>
+			<button capsButton size="icon-lg" aria-label="Submit" variant="outline">
 				<ng-icon name="lucideArrowUpRight" />
 			</button>
 		</div>

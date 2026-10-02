@@ -1,15 +1,15 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'spartan-label-rtl',
-	imports: [HlmLabelImports, HlmCheckboxImports],
+	imports: [CapsLabelImports, HlmCheckboxImports],
 	template: `
 		<div class="flex gap-2" [dir]="_dir()">
 			<hlm-checkbox inputId="terms-rtl" />
-			<label hlmLabel for="terms-rtl">{{ _t()['label'] }}</label>
+			<label capsLabel for="terms-rtl">{{ _t()['label'] }}</label>
 		</div>
 	`,
 })

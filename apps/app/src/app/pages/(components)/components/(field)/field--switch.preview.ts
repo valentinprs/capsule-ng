@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'spartan-field-switch-preview',
-	imports: [HlmFieldImports, HlmSwitchImports],
+	imports: [CapsFieldImports, HlmSwitchImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
 	template: `
-		<div hlmField orientation="horizontal">
-			<div hlmFieldContent>
-				<label hlmFieldLabel for="field-2fa">Multi-factor authentication</label>
-				<p hlmFieldDescription>
+		<caps-field orientation="horizontal">
+			<caps-field-content>
+				<caps-field-label for="field-2fa">Multi-factor authentication</caps-field-label>
+				<caps-field-description>
 					Enable multi-factor authentication. If you do not have a two-factor device, you can use a one-time code sent
 					to your email.
-				</p>
-			</div>
+				</caps-field-description>
+			</caps-field-content>
 			<hlm-switch inputId="field-2fa" />
-		</div>
+		</caps-field>
 	`,
 })
 export class FieldSwitchPreview {}

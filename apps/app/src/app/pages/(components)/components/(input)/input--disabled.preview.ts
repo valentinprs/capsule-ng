@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-input-disabled',
-	imports: [HlmInputImports, HlmFieldImports],
+	imports: [CapsInputImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
-		<hlm-field data-disabled="true">
-			<label hlmFieldLabel for="input-disabled">Email</label>
-			<input hlmInput id="input-demo-disabled" type="email" placeholder="Email" disabled />
-			<hlm-field-description>This field is currently disabled.</hlm-field-description>
-		</hlm-field>
+		<caps-field data-disabled="true">
+			<caps-field-label for="input-demo-disabled">Email</caps-field-label>
+			<input capsInput id="input-demo-disabled" type="email" placeholder="Email" disabled />
+			<caps-field-description>This field is currently disabled.</caps-field-description>
+		</caps-field>
 	`,
 })
 export class InputDisabledPreview {}

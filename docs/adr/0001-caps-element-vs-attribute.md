@@ -114,3 +114,32 @@ React `BreadcrumbItem`), `<caps-breadcrumb-item>` now takes an `href` and render
   `CAPS_LINK_CONTEXT` DI context.
 - **`capsLink` stays** the styling-only directive for standalone links and for router links inside
   composite components.
+
+## Amendment 2: dedicated Field components and native internals (2026-10-02)
+
+Field uses dedicated `<caps-field>`, `<caps-field-group>`, `<caps-field-content>`,
+`<caps-field-description>`, `<caps-field-error>`, `<caps-field-separator>`,
+`<caps-field-label>`, `<caps-field-set>` and `<caps-field-legend>` components.
+This supersedes the initial FieldSet/Legend directive composition at the user's request.
+The standalone Input, Textarea and Label directives remain native-element APIs.
+
+FieldLabel renders a native label. FieldSet renders a native fieldset and renders its directly
+projected FieldLegend's content in the first native legend child. The hidden legend component host
+holds a template rather than wrapping the native legend; this preserves native naming and disabled
+semantics. IDs and class strings on Label/Set/Legend are forwarded to their native elements.
+
+`caps-field` composes Brain and declares `role="group"`, named by a projected FieldLabel.
+Layout and help-text hosts keep generic container semantics. Separator lines are decorative;
+projected text stays readable. FieldGroup can wrap sections or sit inside a FieldSet to space fields.
+
+Field, FieldContent, FieldLabel and FieldSet forward the ancestor Angular ControlContainer.
+Messages use the existing Brain matcher and public form events; Brain remains unchanged.
+Descriptions/errors register with the closest Brain accessibility context. FieldSet has its own
+context and nested Fields isolate their descriptions.
+
+## Catalogue migration preference (2026-10-02)
+
+Component examples should use the Capsule API whenever that component already offers one.
+This includes supporting buttons and links inside another component's examples, not only the
+component being documented. Preserve the intended behavior and visual variants during migration;
+Helm remains for primitives without a corresponding Capsule API.

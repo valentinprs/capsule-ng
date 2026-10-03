@@ -153,7 +153,9 @@
 			"@spartan-ng/helm/utils": ["libs/helm/utils/src/index.ts"],
 			"@spartan-ng/styles": ["libs/styles/src/index.ts"],
 			"@spartan-ng/tools": ["libs/tools/src/index.ts"],
-			"@spartan-ng/trpc": ["libs/trpc/src/index.ts"]
+			"@spartan-ng/trpc": ["libs/trpc/src/index.ts"],
+			"@capsule-ng/caps/dialog": ["libs/caps/dialog/src/index.ts"],
+			"@capsule-ng/caps/alert-dialog": ["libs/caps/alert-dialog/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

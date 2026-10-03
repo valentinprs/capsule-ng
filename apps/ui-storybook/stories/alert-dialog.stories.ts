@@ -1,42 +1,42 @@
+import { CapsAlertDialog, CapsAlertDialogImports } from '@capsule-ng/caps/alert-dialog';
 import { CapsButton } from '@capsule-ng/caps/button';
-import { HlmAlertDialog, HlmAlertDialogImports } from '@spartan-ng/helm/alert-dialog';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<HlmAlertDialog> = {
+const meta: Meta<CapsAlertDialog> = {
 	title: 'Alert Dialog',
-	component: HlmAlertDialog,
+	component: CapsAlertDialog,
 	tags: ['autodocs'],
 	args: {},
 	argTypes: {},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmAlertDialogImports, CapsButton],
+			imports: [CapsAlertDialogImports, CapsButton],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<HlmAlertDialog>;
+type Story = StoryObj<CapsAlertDialog>;
 
 export const Default: Story = {
 	render: () => ({
 		template: `
-    <hlm-alert-dialog>
-      <button id="delete-account" variant="outline" hlmAlertDialogTrigger capsButton>Delete Account</button>
-      <hlm-alert-dialog-content *hlmAlertDialogPortal="let ctx">
-           <hlm-alert-dialog-header>
-            <h2 hlmAlertDialogTitle>Are you absolutely sure?</h2>
-            <p hlmAlertDialogDescription>
+    <caps-alert-dialog>
+      <button id="delete-account" variant="outline" capsAlertDialogTrigger capsButton>Delete Account</button>
+      <ng-template capsAlertDialogContent let-ctx >
+           <caps-alert-dialog-header>
+            <caps-alert-dialog-title >Are you absolutely sure?</caps-alert-dialog-title>
+            <caps-alert-dialog-description >
             This action cannot be undone. This will permanently delete your
             account and remove your data from our servers.
-            </p>
-          </hlm-alert-dialog-header>
-          <hlm-alert-dialog-footer>
-            <button hlmAlertDialogCancel (click)="ctx.close()">Cancel</button>
-            <button hlmAlertDialogAction type="submit">Delete account</button>
-          </hlm-alert-dialog-footer>
-      </hlm-alert-dialog-content>
-    </hlm-alert-dialog>
+            </caps-alert-dialog-description>
+          </caps-alert-dialog-header>
+          <caps-alert-dialog-footer>
+            <button capsAlertDialogCancel capsButton variant="outline" (click)="ctx.close()">Cancel</button>
+            <button capsButton (click)="ctx.close()" type="submit">Delete account</button>
+          </caps-alert-dialog-footer>
+      </ng-template>
+    </caps-alert-dialog>
     `,
 	}),
 };

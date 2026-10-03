@@ -1,39 +1,38 @@
 import { Component, viewChild } from '@angular/core';
-import { BrnDialog } from '@spartan-ng/brain/dialog';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDialog, CapsDialogImports } from '@capsule-ng/caps/dialog';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
 
 @Component({
 	selector: 'spartan-dialog-close-preview',
-	imports: [HlmDialogImports, HlmLabelImports, HlmButtonImports],
+	imports: [CapsDialogImports, CapsLabelImports, CapsButtonImports],
 	template: `
-		<hlm-dialog #dialogRef>
-			<button id="edit-profile" hlmDialogTrigger hlmBtn>Open</button>
-			<hlm-dialog-content class="sm:max-w-[425px]" *hlmDialogPortal="let ctx">
-				<hlm-dialog-header>
-					<h3 hlmDialogTitle>Dialog</h3>
-				</hlm-dialog-header>
+		<caps-dialog #dialogRef>
+			<button id="edit-profile" capsDialogTrigger capsButton>Open</button>
+			<ng-template capsDialogContent let-ctx class="sm:max-w-[425px]">
+				<caps-dialog-header>
+					<caps-dialog-title>Dialog</caps-dialog-title>
+				</caps-dialog-header>
 				<div class="grid gap-4 py-4">
 					<div class="flex items-center justify-between gap-4">
-						<label hlmLabel>Close dialog by directive</label>
-						<button hlmBtn hlmDialogClose>Close</button>
+						<label capsLabel>Close dialog by directive</label>
+						<button capsButton capsDialogClose>Close</button>
 					</div>
 					<div class="flex items-center justify-between gap-4">
-						<label hlmLabel>Close dialog by reference</label>
-						<button hlmBtn (click)="dialogRef.close({})">Close</button>
+						<label capsLabel>Close dialog by reference</label>
+						<button capsButton (click)="dialogRef.close({})">Close</button>
 					</div>
 					<div class="flex items-center justify-between gap-4">
-						<label hlmLabel>Close dialog by viewchild reference</label>
-						<button hlmBtn (click)="closeDialog()">Close</button>
+						<label capsLabel>Close dialog by viewchild reference</label>
+						<button capsButton (click)="closeDialog()">Close</button>
 					</div>
 				</div>
-			</hlm-dialog-content>
-		</hlm-dialog>
+			</ng-template>
+		</caps-dialog>
 	`,
 })
 export class DialogClosePreview {
-	public readonly viewchildDialogRef = viewChild(BrnDialog);
+	public readonly viewchildDialogRef = viewChild(CapsDialog);
 
 	closeDialog() {
 		this.viewchildDialogRef()?.close({});

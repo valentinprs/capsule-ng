@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDialogImports } from '@capsule-ng/caps/dialog';
 import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-dialog-context-menu',
-	imports: [HlmDialogImports, HlmButtonImports, HlmDropdownMenuImports, HlmContextMenuImports],
+	imports: [CapsDialogImports, CapsButtonImports, HlmDropdownMenuImports, HlmContextMenuImports],
 	template: `
 		<div
 			[hlmContextMenuTrigger]="menu"
@@ -28,7 +28,7 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 						<hlm-dropdown-menu-shortcut>⌘A</hlm-dropdown-menu-shortcut>
 					</button>
 
-					<button hlmDropdownMenuItem inset="true" [hlmDialogTriggerFor]="dialog">
+					<button hlmDropdownMenuItem inset="true" [capsDialogTriggerFor]="dialog">
 						Print
 						<hlm-dropdown-menu-shortcut>⌘P</hlm-dropdown-menu-shortcut>
 					</button>
@@ -36,21 +36,21 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 			</hlm-dropdown-menu>
 		</ng-template>
 
-		<hlm-dialog #dialog>
-			<hlm-dialog-content class="sm:max-w-[425px]" *hlmDialogPortal="let ctx">
-				<hlm-dialog-header>
-					<h3 hlmDialogTitle>Print this page</h3>
-					<p hlmDialogDescription>
+		<caps-dialog #dialog>
+			<ng-template capsDialogContent let-ctx class="sm:max-w-[425px]">
+				<caps-dialog-header>
+					<caps-dialog-title>Print this page</caps-dialog-title>
+					<caps-dialog-description>
 						Are you sure you want to print this page? Only print if absolutely necessary! The less we print, the less
 						paper we need, the better it is for our environment!
-					</p>
-				</hlm-dialog-header>
-				<hlm-dialog-footer>
-					<button hlmBtn variant="ghost" (click)="ctx.close()">Cancel</button>
-					<button hlmBtn>Print</button>
-				</hlm-dialog-footer>
-			</hlm-dialog-content>
-		</hlm-dialog>
+					</caps-dialog-description>
+				</caps-dialog-header>
+				<caps-dialog-footer>
+					<button capsButton variant="ghost" (click)="ctx.close()">Cancel</button>
+					<button capsButton>Print</button>
+				</caps-dialog-footer>
+			</ng-template>
+		</caps-dialog>
 	`,
 })
 export class DialogContextMenuPreview {}

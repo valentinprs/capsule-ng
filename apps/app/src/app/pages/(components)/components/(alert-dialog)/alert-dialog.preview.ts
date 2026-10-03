@@ -1,47 +1,47 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmAlertDialogImports } from '@spartan-ng/helm/alert-dialog';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsAlertDialogImports } from '@capsule-ng/caps/alert-dialog';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 
 @Component({
 	selector: 'spartan-alert-dialog-preview',
-	imports: [HlmAlertDialogImports, HlmButtonImports],
+	imports: [CapsAlertDialogImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-alert-dialog>
-			<button hlmAlertDialogTrigger hlmBtn variant="outline">Show Dialog</button>
-			<hlm-alert-dialog-content *hlmAlertDialogPortal="let ctx">
-				<hlm-alert-dialog-header>
-					<h2 hlmAlertDialogTitle>Are you absolutely sure?</h2>
-					<p hlmAlertDialogDescription>
+		<caps-alert-dialog>
+			<button capsAlertDialogTrigger capsButton variant="outline">Show Dialog</button>
+			<ng-template capsAlertDialogContent let-ctx>
+				<caps-alert-dialog-header>
+					<caps-alert-dialog-title>Are you absolutely sure?</caps-alert-dialog-title>
+					<caps-alert-dialog-description>
 						This action cannot be undone. This will permanently delete your account from our servers.
-					</p>
-				</hlm-alert-dialog-header>
-				<hlm-alert-dialog-footer>
-					<button hlmAlertDialogCancel>Cancel</button>
-					<button hlmAlertDialogAction>Continue</button>
-				</hlm-alert-dialog-footer>
-			</hlm-alert-dialog-content>
-		</hlm-alert-dialog>
+					</caps-alert-dialog-description>
+				</caps-alert-dialog-header>
+				<caps-alert-dialog-footer>
+					<button capsAlertDialogCancel capsButton variant="outline">Cancel</button>
+					<button capsButton (click)="ctx.close()">Continue</button>
+				</caps-alert-dialog-footer>
+			</ng-template>
+		</caps-alert-dialog>
 	`,
 })
 export class AlertDialogPreview {}
 
 export const defaultImports = `
-import { HlmAlertDialogImports } from '@spartan-ng/helm/alert-dialog';
+import { CapsAlertDialogImports } from '@capsule-ng/caps/alert-dialog';
 `;
 
 export const defaultSkeleton = `
-<hlm-alert-dialog>
-  <button hlmAlertDialogTrigger hlmBtn variant="outline">Show Dialog</button>
-  <hlm-alert-dialog-content *hlmAlertDialogPortal="let ctx">
-    <hlm-alert-dialog-header>
-      <h2 hlmAlertDialogTitle>Are you absolutely sure?</h2>
-      <p hlmAlertDialogDescription>This action cannot be undone. This will permanently delete your account from our servers.</p>
-    </hlm-alert-dialog-header>
-    <hlm-alert-dialog-footer>
-      <button hlmAlertDialogCancel>Cancel</button>
-      <button hlmAlertDialogAction>Continue</button>
-    </hlm-alert-dialog-footer>
-  </hlm-alert-dialog-content>
-</hlm-alert-dialog>
+<caps-alert-dialog>
+  <button capsAlertDialogTrigger capsButton variant="outline">Show Dialog</button>
+  <ng-template capsAlertDialogContent let-ctx >
+    <caps-alert-dialog-header>
+      <caps-alert-dialog-title >Are you absolutely sure?</caps-alert-dialog-title>
+      <caps-alert-dialog-description >This action cannot be undone. This will permanently delete your account from our servers.</caps-alert-dialog-description>
+    </caps-alert-dialog-header>
+    <caps-alert-dialog-footer>
+      <button capsAlertDialogCancel capsButton variant="outline">Cancel</button>
+      <button capsButton (click)="ctx.close()">Continue</button>
+    </caps-alert-dialog-footer>
+  </ng-template>
+</caps-alert-dialog>
 `;

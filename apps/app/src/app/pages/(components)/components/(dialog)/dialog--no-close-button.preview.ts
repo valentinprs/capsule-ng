@@ -1,23 +1,23 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDialogImports } from '@capsule-ng/caps/dialog';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-dialog-no-close-button',
-	imports: [HlmDialogImports, HlmFieldImports, HlmInputImports, HlmButtonImports],
+	imports: [CapsDialogImports, CapsFieldImports, CapsInputImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-dialog>
-			<button hlmDialogTrigger hlmBtn variant="outline">No Close Button</button>
-			<hlm-dialog-content [showCloseButton]="false" *hlmDialogPortal="let ctx" class="sm:max-w-sm">
-				<hlm-dialog-header>
-					<h3 hlmDialogTitle>No Close Button</h3>
-					<p hlmDialogDescription>This dialog does not have a close button in the header.</p>
-				</hlm-dialog-header>
-			</hlm-dialog-content>
-		</hlm-dialog>
+		<caps-dialog>
+			<button capsDialogTrigger capsButton variant="outline">No Close Button</button>
+			<ng-template capsDialogContent let-ctx [showCloseButton]="false" class="sm:max-w-sm">
+				<caps-dialog-header>
+					<caps-dialog-title>No Close Button</caps-dialog-title>
+					<caps-dialog-description>This dialog does not have a close button in the header.</caps-dialog-description>
+				</caps-dialog-header>
+			</ng-template>
+		</caps-dialog>
 	`,
 })
 export class DialogNoCloseButton {}

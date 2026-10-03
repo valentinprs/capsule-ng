@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsSwitch } from '@capsule-ng/caps/switch';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUp,
@@ -18,7 +19,6 @@ import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
 import { MentionableItem } from './mentionable-item';
 
 export type MentionItem = {
@@ -47,7 +47,7 @@ type GroupedItems = {
 		NgIcon,
 		MentionableItem,
 		HlmBadge,
-		HlmSwitch,
+		CapsSwitch,
 	],
 	providers: [
 		provideIcons({
@@ -165,12 +165,7 @@ type GroupedItems = {
 								<label for="web-search" (click)="$event.stopPropagation()" class="flex flex-1 items-center">
 									<ng-icon name="lucideGlobe" class="mr-2" />
 									Web Search
-									<hlm-switch
-										inputId="web-search"
-										class="ml-auto"
-										[checked]="true"
-										(click)="$event.stopPropagation()"
-									/>
+									<caps-switch id="web-search" class="ml-auto" [checked]="true" (click)="$event.stopPropagation()" />
 								</label>
 							</button>
 						</hlm-dropdown-menu-group>
@@ -180,8 +175,8 @@ type GroupedItems = {
 								<label for="app-integrations" class="flex flex-1" (click)="$event.stopPropagation()">
 									<ng-icon name="lucideBlocks" class="mr-2" />
 									Apps and Integrations
-									<hlm-switch
-										inputId="app-integrations"
+									<caps-switch
+										id="app-integrations"
 										class="ml-auto"
 										[checked]="true"
 										(click)="$event.stopPropagation()"

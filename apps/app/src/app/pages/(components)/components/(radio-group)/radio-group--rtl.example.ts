@@ -1,40 +1,34 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, untracked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'spartan-radio-group-rtl-preview',
-	imports: [FormsModule, HlmRadioGroupImports, HlmLabelImports],
+	imports: [FormsModule, CapsRadioGroupImports, CapsLabelImports],
 	providers: [Directionality],
 	host: {
 		class: 'grid w-full max-w-sm gap-3',
 		'[dir]': '_dir()',
 	},
 	template: `
-		<label hlmLabel>{{ _t()['label'] }}</label>
-		<hlm-radio-group [(ngModel)]="_value">
+		<label capsLabel id="rtl-radio-label">{{ _t()['label'] }}</label>
+		<caps-radio-group aria-labelledby="rtl-radio-label" [(ngModel)]="_value">
 			<div class="flex items-center gap-3">
-				<hlm-radio value="default" inputId="rtl-r1">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				<label hlmLabel for="rtl-r1">{{ _t()['default'] }}</label>
+				<caps-radio value="default" id="rtl-r1"></caps-radio>
+				<label capsLabel for="rtl-r1">{{ _t()['default'] }}</label>
 			</div>
 			<div class="flex items-center gap-3">
-				<hlm-radio value="comfortable" inputId="rtl-r2">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				<label hlmLabel for="rtl-r2">{{ _t()['comfortable'] }}</label>
+				<caps-radio value="comfortable" id="rtl-r2"></caps-radio>
+				<label capsLabel for="rtl-r2">{{ _t()['comfortable'] }}</label>
 			</div>
 			<div class="flex items-center gap-3">
-				<hlm-radio value="compact" inputId="rtl-r3">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				<label hlmLabel for="rtl-r3">{{ _t()['compact'] }}</label>
+				<caps-radio value="compact" id="rtl-r3"></caps-radio>
+				<label capsLabel for="rtl-r3">{{ _t()['compact'] }}</label>
 			</div>
-		</hlm-radio-group>
+		</caps-radio-group>
 	`,
 })
 export class RadioGroupRtlPreview {

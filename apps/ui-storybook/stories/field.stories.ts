@@ -1,13 +1,13 @@
 import { JsonPipe } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsCheckbox } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
+import { CapsSwitch } from '@capsule-ng/caps/switch';
 import { CapsTextarea } from '@capsule-ng/caps/textarea';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 const meta: Meta = {
@@ -18,12 +18,12 @@ const meta: Meta = {
 			imports: [
 				CapsFieldImports,
 				CapsInputImports,
-				HlmCheckbox,
-				HlmSwitch,
+				CapsCheckbox,
+				CapsSwitch,
 				CapsTextarea,
 				CapsButton,
 				HlmSelectImports,
-				HlmRadioGroupImports,
+				CapsRadioGroupImports,
 				ReactiveFormsModule,
 				JsonPipe,
 			],
@@ -91,26 +91,26 @@ export const WithCheckbox: Story = {
 						<caps-field-description>Select the items you want to show on the desktop.</caps-field-description>
 						<caps-field-group class="gap-3">
 							<caps-field orientation="horizontal">
-								<hlm-checkbox inputId="field-hard-disks" />
+								<caps-checkbox id="field-hard-disks" />
 								<caps-field-label for="field-hard-disks" class="font-normal">Hard disks</caps-field-label>
 							</caps-field>
 							<caps-field orientation="horizontal">
-								<hlm-checkbox inputId="field-external-disks" />
+								<caps-checkbox id="field-external-disks" />
 								<caps-field-label for="field-external-disks" class="font-normal">External disks</caps-field-label>
 							</caps-field>
 							<caps-field orientation="horizontal">
-								<hlm-checkbox inputId="field-cds-dvds-ipods" />
+								<caps-checkbox id="field-cds-dvds-ipods" />
 								<caps-field-label for="field-cds-dvds-ipods" class="font-normal">CDs, DVDs, and IPods</caps-field-label>
 							</caps-field>
 							<caps-field orientation="horizontal">
-								<hlm-checkbox inputId="field-connected-servers" />
+								<caps-checkbox id="field-connected-servers" />
 								<caps-field-label for="field-connected-servers" class="font-normal">Connected servers</caps-field-label>
 							</caps-field>
 						</caps-field-group>
 					</caps-field-set>
 					<caps-field-separator />
 					<caps-field orientation="horizontal">
-						<hlm-checkbox inputId="field-sync-desktop-documents" [checked]="true" />
+						<caps-checkbox id="field-sync-desktop-documents" [checked]="true" />
 						<caps-field-content>
 							<caps-field-label for="field-sync-desktop-documents">Sync Desktop & Documents folders</caps-field-label>
 							<caps-field-description>
@@ -138,7 +138,7 @@ export const WithSwitch: Story = {
 							sent to your email.
 						</caps-field-description>
 					</caps-field-content>
-					<hlm-switch inputId="field-2fa" />
+					<caps-switch id="field-2fa" />
 				</caps-field>
 			</div>
 		`,
@@ -153,26 +153,23 @@ export const WithRadio: Story = {
 				<caps-field-set>
 					<caps-field-label>Subscription Plan</caps-field-label>
 					<caps-field-description>Yearly and lifetime plans offer significant savings.</caps-field-description>
-					<hlm-radio-group data-slot="radio-group" value="monthly">
+					<caps-radio-group data-slot="radio-group" value="monthly">
 						<caps-field orientation="horizontal">
-							<hlm-radio value="monthly" inputId="plan-monthly">
-								<hlm-radio-indicator indicator />
-							</hlm-radio>
+							<caps-radio value="monthly" id="plan-monthly">
+							</caps-radio>
 							<caps-field-label for="plan-monthly" class="font-normal">Monthly ($9.99/month)</caps-field-label>
 						</caps-field>
 						<caps-field orientation="horizontal">
-							<hlm-radio value="yearly" inputId="plan-yearly">
-								<hlm-radio-indicator indicator />
-							</hlm-radio>
+							<caps-radio value="yearly" id="plan-yearly">
+							</caps-radio>
 							<caps-field-label for="plan-yearly" class="font-normal">Yearly ($99.99/year)</caps-field-label>
 						</caps-field>
 						<caps-field orientation="horizontal">
-							<hlm-radio value="lifetime" inputId="plan-lifetime">
-								<hlm-radio-indicator indicator />
-							</hlm-radio>
+							<caps-radio value="lifetime" id="plan-lifetime">
+							</caps-radio>
 							<caps-field-label for="plan-lifetime" class="font-normal">Lifetime ($299.99/lifetime)</caps-field-label>
 						</caps-field>
-					</hlm-radio-group>
+					</caps-radio-group>
 				</caps-field-set>
 			</div>
 		`,
@@ -284,7 +281,7 @@ export const FieldGroup: Story = {
 						</caps-field-description>
 						<caps-field-group data-slot="checkbox-group">
 							<caps-field orientation="horizontal">
-								<hlm-checkbox inputId="field-group-push-notifications" disabled [checked]="true" />
+								<caps-checkbox id="field-group-push-notifications" disabled [checked]="true" />
 								<caps-field-label for="field-group-push-notifications" class="font-normal">Push notifications</caps-field-label>
 							</caps-field>
 						</caps-field-group>
@@ -298,11 +295,11 @@ export const FieldGroup: Story = {
 						</caps-field-description>
 						<caps-field-group class="gap-3" data-slot="checkbox-group">
 							<caps-field orientation="horizontal">
-								<hlm-checkbox inputId="field-group-push-task" />
+								<caps-checkbox id="field-group-push-task" />
 								<caps-field-label for="field-group-push-task" class="font-normal">Push notifications</caps-field-label>
 							</caps-field>
 							<caps-field orientation="horizontal">
-								<hlm-checkbox inputId="field-group-email-task" />
+								<caps-checkbox id="field-group-email-task" />
 								<caps-field-label for="field-group-email-task" class="font-normal">Email notifications</caps-field-label>
 							</caps-field>
 						</caps-field-group>
@@ -390,7 +387,7 @@ export const ComplexForm: Story = {
 							<caps-field-description>The billing address associated with your payment method</caps-field-description>
 							<caps-field-group>
 								<caps-field orientation="horizontal">
-									<hlm-checkbox inputId="field-complex-billing-address" [checked]="true" />
+									<caps-checkbox id="field-complex-billing-address" [checked]="true" />
 									<caps-field-label for="field-complex-billing-address">Same as shipping address.</caps-field-label>
 								</caps-field>
 							</caps-field-group>
@@ -421,15 +418,15 @@ export const HorizontalOrientation: Story = {
 			<div class="w-full max-w-md">
 				<caps-field-group>
 					<caps-field orientation="horizontal">
-						<hlm-switch inputId="field-horizontal-notifications" />
+						<caps-switch id="field-horizontal-notifications" />
 						<caps-field-label for="field-horizontal-notifications">Enable notifications</caps-field-label>
 					</caps-field>
 					<caps-field orientation="horizontal">
-						<hlm-checkbox inputId="field-horizontal-marketing" />
+						<caps-checkbox id="field-horizontal-marketing" />
 						<caps-field-label for="field-horizontal-marketing" class="font-normal">Receive marketing emails</caps-field-label>
 					</caps-field>
 					<caps-field orientation="horizontal">
-						<hlm-checkbox inputId="field-horizontal-updates" />
+						<caps-checkbox id="field-horizontal-updates" />
 						<caps-field-label for="field-horizontal-updates" class="font-normal">Product updates</caps-field-label>
 					</caps-field>
 				</caps-field-group>
@@ -445,14 +442,14 @@ export const WithFieldContent: Story = {
 			<div class="w-full max-w-md">
 				<caps-field-group class="gap-4">
 					<caps-field orientation="horizontal">
-						<hlm-checkbox inputId="field-content-security-updates" [checked]="true" />
+						<caps-checkbox id="field-content-security-updates" [checked]="true" />
 						<caps-field-content>
 							<caps-field-label for="field-content-security-updates">Security Updates</caps-field-label>
 							<caps-field-description>Receive emails about your account security and important updates.</caps-field-description>
 						</caps-field-content>
 					</caps-field>
 					<caps-field orientation="horizontal">
-						<hlm-switch inputId="field-content-two-factor" />
+						<caps-switch id="field-content-two-factor" />
 						<caps-field-content>
 							<caps-field-label for="field-content-two-factor">Two-Factor Authentication</caps-field-label>
 							<caps-field-description>

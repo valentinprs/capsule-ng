@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsLabel } from '@capsule-ng/caps/label';
+import { CapsSwitch } from '@capsule-ng/caps/switch';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'spartan-preset-actions',
-	imports: [HlmDropdownMenuImports, HlmDialogImports, HlmButton, NgIcon, HlmSwitch, HlmLabel],
+	imports: [HlmDropdownMenuImports, HlmDialogImports, CapsButton, NgIcon, CapsSwitch, CapsLabel],
 	providers: [provideIcons({ lucideEllipsis })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="secondary" align="end" [hlmDropdownMenuTrigger]="menu" size="icon">
+		<button capsButton variant="secondary" align="end" [hlmDropdownMenuTrigger]="menu" size="icon">
 			<ng-icon name="lucideEllipsis" />
 		</button>
 		<ng-template #menu>
@@ -42,8 +42,8 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 				<div class="py-6">
 					<h4 class="text-muted-foreground text-sm">Playground Warnings</h4>
 					<div class="flex items-start justify-between gap-4 pt-3">
-						<hlm-switch name="show" inputId="show" [checked]="true" />
-						<label hlmLabel class="grid gap-1 font-normal" for="show">
+						<caps-switch name="show" id="show" [checked]="true" />
+						<label capsLabel class="grid gap-1 font-normal" for="show">
 							<span class="font-semibold">Show a warning when content is flagged</span>
 							<span class="text-muted-foreground text-sm">
 								A warning will be shown when sexual, hateful, violent or self-harm content is detected.
@@ -52,7 +52,7 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 					</div>
 				</div>
 				<hlm-dialog-footer>
-					<button hlmBtn type="submit" variant="secondary" (click)="ctx.close()">Close</button>
+					<button capsButton type="submit" variant="secondary" (click)="ctx.close()">Close</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>
@@ -68,8 +68,8 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 				</hlm-dialog-header>
 
 				<hlm-dialog-footer>
-					<button hlmBtn variant="outline" (click)="ctx.close()">Cancel</button>
-					<button hlmBtn type="submit" variant="destructive" (click)="ctx.close()">Delete</button>
+					<button capsButton variant="outline" (click)="ctx.close()">Cancel</button>
+					<button capsButton type="submit" variant="destructive" (click)="ctx.close()">Delete</button>
 				</hlm-dialog-footer>
 			</hlm-dialog-content>
 		</hlm-dialog>

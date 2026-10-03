@@ -218,7 +218,7 @@ describe('field', () => {
 		});
 
 		it('should handle disabled checkbox in first group', () => {
-			cy.get('caps-field').first().find('hlm-checkbox').should('have.attr', 'disabled');
+			cy.get('caps-field').first().find('caps-checkbox button').should('be.disabled');
 		});
 	});
 

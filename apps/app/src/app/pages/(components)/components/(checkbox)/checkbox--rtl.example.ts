@@ -1,11 +1,11 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
 
 @Component({
 	selector: 'spartan-checkbox-rtl-preview',
-	imports: [HlmLabelImports, HlmCheckboxImports],
+	imports: [CapsLabelImports, CapsCheckboxImports],
 	host: {
 		class: 'flex flex-col gap-4',
 		'[dir]': '_dir()',
@@ -13,8 +13,8 @@ import { HlmLabelImports } from '@spartan-ng/helm/label';
 	template: `
 		@for (item of _items; track item.id) {
 			<div class="flex items-center gap-3">
-				<hlm-checkbox [inputId]="item.id" [checked]="item.checked" />
-				<label hlmLabel [for]="item.id">{{ _t()[item.labelKey] }}</label>
+				<caps-checkbox [id]="item.id" [checked]="item.checked" />
+				<label capsLabel [for]="item.id">{{ _t()[item.labelKey] }}</label>
 			</div>
 		}
 	`,

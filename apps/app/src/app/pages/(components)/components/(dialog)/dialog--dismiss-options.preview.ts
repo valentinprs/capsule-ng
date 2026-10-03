@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-dialog-dismiss-options',
-	imports: [HlmDialogImports, HlmButtonImports, HlmLabelImports, HlmSwitchImports, HlmTooltipImports],
+	imports: [HlmDialogImports, CapsButtonImports, CapsLabelImports, CapsSwitchImports, HlmTooltipImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-col gap-4">
-			<label hlmLabel class="flex w-fit items-center" [hlmTooltip]="disableCloseTip">
-				<hlm-switch class="mr-2" [checked]="_disableClose()" (checkedChange)="_disableClose.set($event)" />
+			<label capsLabel class="flex w-fit items-center" [hlmTooltip]="disableCloseTip">
+				<caps-switch class="mr-2" [checked]="_disableClose()" (checkedChange)="_disableClose.set($event)" />
 				disableClose
 			</label>
 			<ng-template #disableCloseTip>
@@ -22,8 +22,8 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 				</div>
 			</ng-template>
 
-			<label hlmLabel class="flex w-fit items-center" [hlmTooltip]="outsideClickTip">
-				<hlm-switch
+			<label capsLabel class="flex w-fit items-center" [hlmTooltip]="outsideClickTip">
+				<caps-switch
 					class="mr-2"
 					[checked]="_closeOnOutsidePointerEvents()"
 					(checkedChange)="_closeOnOutsidePointerEvents.set($event)"
@@ -38,7 +38,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 			</ng-template>
 
 			<hlm-dialog [disableClose]="_disableClose()" [closeOnOutsidePointerEvents]="_closeOnOutsidePointerEvents()">
-				<button hlmDialogTrigger hlmBtn variant="outline" class="w-fit">Open Dialog</button>
+				<button hlmDialogTrigger capsButton variant="outline" class="w-fit">Open Dialog</button>
 				<hlm-dialog-content *hlmDialogPortal="let ctx" class="sm:max-w-md">
 					<hlm-dialog-header>
 						<h3 hlmDialogTitle>Dismiss options</h3>
@@ -47,7 +47,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 						</p>
 					</hlm-dialog-header>
 					<hlm-dialog-footer>
-						<button hlmBtn hlmDialogClose>Close</button>
+						<button capsButton hlmDialogClose>Close</button>
 					</hlm-dialog-footer>
 				</hlm-dialog-content>
 			</hlm-dialog>

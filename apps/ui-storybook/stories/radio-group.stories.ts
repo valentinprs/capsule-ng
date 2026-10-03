@@ -3,42 +3,21 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsLabel } from '@capsule-ng/caps/label';
-import { BrnRadioGroup } from '@spartan-ng/brain/radio-group';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroup, CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { HlmCode, HlmSmall } from '@spartan-ng/helm/typography';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 @Component({
 	selector: 'radio-group-example',
-	imports: [HlmRadioGroupImports, FormsModule, CapsButton, HlmCode, HlmSmall, CapsLabel],
+	imports: [CapsRadioGroupImports, FormsModule, CapsButton, HlmCode, HlmSmall],
 	template: `
 		<small hlmSmall class="font-semibold">Choose a version</small>
-		<hlm-radio-group class="font-mono text-sm font-medium" [(ngModel)]="version">
-			<label class="flex items-center" capsLabel>
-				<hlm-radio value="16.1.4">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				v16.1.4
-			</label>
-			<label class="flex items-center" capsLabel>
-				<hlm-radio value="16.0.0">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				v16.0.0
-			</label>
-			<label class="flex items-center" capsLabel>
-				<hlm-radio value="15.8.0">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				v15.8.0
-			</label>
-			<label class="flex items-center" capsLabel data-testid="disabledLabel">
-				<hlm-radio disabled value="15.2.0">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				v15.2.0
-			</label>
-		</hlm-radio-group>
+		<caps-radio-group aria-label="Version" class="font-mono text-sm font-medium" [(ngModel)]="version">
+			<caps-radio value="16.1.4">v16.1.4</caps-radio>
+			<caps-radio value="16.0.0">v16.0.0</caps-radio>
+			<caps-radio value="15.8.0">v15.8.0</caps-radio>
+			<caps-radio disabled value="15.2.0" data-testid="disabledLabel">v15.2.0</caps-radio>
+		</caps-radio-group>
 		<div class="my-2 flex space-x-2">
 			<button size="sm" capsButton variant="outline" (click)="version = '16.0.0'">Set to v16.0.0</button>
 			<button size="sm" capsButton variant="outline" (click)="version = null">Reset</button>
@@ -50,37 +29,30 @@ import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 	`,
 })
 class RadioGroupExample {
-	version: string | null = '16.1.4';
+	public version: string | null = '16.1.4';
 }
 
 @Component({
 	selector: 'radio-group-reactive-form-tester',
-	standalone: true,
-	imports: [HlmRadioGroupImports, ReactiveFormsModule, CapsFieldImports, CapsButton, CapsLabel],
+	imports: [CapsRadioGroupImports, ReactiveFormsModule, CapsFieldImports, CapsButton, CapsLabel],
 	template: `
 		<form [formGroup]="form" class="max-w-lg space-y-3">
 			<caps-field [forceInvalid]="isInvalid()">
 				<caps-field-label>Billing Frequency *</caps-field-label>
-				<hlm-radio-group formControlName="plan" class="text-sm font-medium">
+				<caps-radio-group formControlName="plan" class="text-sm font-medium">
 					<caps-field orientation="horizontal" class="items-center gap-3">
-						<hlm-radio value="monthly">
-							<hlm-radio-indicator indicator />
-						</hlm-radio>
+						<caps-radio value="monthly"></caps-radio>
 						<label capsLabel class="font-normal">Monthly - $9.99</label>
 					</caps-field>
 					<caps-field orientation="horizontal" class="items-center gap-3">
-						<hlm-radio value="annual">
-							<hlm-radio-indicator indicator />
-						</hlm-radio>
+						<caps-radio value="annual"></caps-radio>
 						<label capsLabel class="font-normal">Annual - $99.99</label>
 					</caps-field>
 					<caps-field orientation="horizontal" class="items-center gap-3">
-						<hlm-radio value="lifetime">
-							<hlm-radio-indicator indicator />
-						</hlm-radio>
+						<caps-radio value="lifetime"></caps-radio>
 						<label capsLabel class="font-normal">Lifetime - $299.99</label>
 					</caps-field>
-				</hlm-radio-group>
+				</caps-radio-group>
 				@if (isInvalid()) {
 					<caps-field-error>Choose a plan to continue.</caps-field-error>
 				}
@@ -106,32 +78,25 @@ class RadioGroupReactiveFormTester {
 
 @Component({
 	selector: 'radio-group-hint-error-story',
-	standalone: true,
-	imports: [HlmRadioGroupImports, ReactiveFormsModule, CapsFieldImports, CapsButton, CapsLabel],
+	imports: [CapsRadioGroupImports, ReactiveFormsModule, CapsFieldImports, CapsButton, CapsLabel],
 	template: `
 		<form [formGroup]="form" class="max-w-lg space-y-3">
 			<caps-field>
 				<caps-field-label>Billing Frequency *</caps-field-label>
-				<hlm-radio-group formControlName="plan" class="text-sm font-medium">
+				<caps-radio-group formControlName="plan" class="text-sm font-medium">
 					<caps-field orientation="horizontal" class="items-center gap-3">
-						<hlm-radio value="monthly">
-							<hlm-radio-indicator indicator />
-						</hlm-radio>
+						<caps-radio value="monthly"></caps-radio>
 						<label capsLabel class="font-normal">Monthly - $9.99</label>
 					</caps-field>
 					<caps-field orientation="horizontal" class="items-center gap-3">
-						<hlm-radio value="annual">
-							<hlm-radio-indicator indicator />
-						</hlm-radio>
+						<caps-radio value="annual"></caps-radio>
 						<label capsLabel class="font-normal">Annual - $99.99</label>
 					</caps-field>
 					<caps-field orientation="horizontal" class="items-center gap-3">
-						<hlm-radio value="lifetime">
-							<hlm-radio-indicator indicator />
-						</hlm-radio>
+						<caps-radio value="lifetime"></caps-radio>
 						<label capsLabel class="font-normal">Lifetime - $299.99</label>
 					</caps-field>
-				</hlm-radio-group>
+				</caps-radio-group>
 				<caps-field-description>Pick a plan to see the billing schedule.</caps-field-description>
 				<caps-field-error>Choose a plan to continue.</caps-field-error>
 			</caps-field>
@@ -151,9 +116,9 @@ class RadioGroupHintErrorStory {
 	});
 }
 
-const meta: Meta<BrnRadioGroup> = {
+const meta: Meta<CapsRadioGroup> = {
 	title: 'Radio Group',
-	component: BrnRadioGroup,
+	component: CapsRadioGroup,
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
@@ -161,7 +126,7 @@ const meta: Meta<BrnRadioGroup> = {
 				RadioGroupExample,
 				RadioGroupReactiveFormTester,
 				RadioGroupHintErrorStory,
-				HlmRadioGroupImports,
+				CapsRadioGroupImports,
 				CapsFieldImports,
 				FormsModule,
 				ReactiveFormsModule,
@@ -176,7 +141,7 @@ const meta: Meta<BrnRadioGroup> = {
 };
 
 export default meta;
-type Story = StoryObj<BrnRadioGroup>;
+type Story = StoryObj<CapsRadioGroup>;
 
 export const Default: Story = {
 	render: () => ({
@@ -187,40 +152,36 @@ export const Default: Story = {
 export const LabelFor: Story = {
 	render: () => ({
 		template: `
-		<hlm-radio-group class="text-sm font-medium" >
+		<caps-radio-group class="text-sm font-medium" >
 			<div class="flex items-center gap-3">
-				<hlm-radio value="default" inputId="default">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
+				<caps-radio value="default" id="default">
+				</caps-radio>
 				<label capsLabel for="default" >
 					Default
 				</label>
 			</div>
 			<div class="flex items-center gap-3">
-				<hlm-radio value="comfortable" inputId="comfortable">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
+				<caps-radio value="comfortable" id="comfortable">
+				</caps-radio>
 				<label capsLabel for="comfortable" >
 					Comfortable
 				</label>
 			</div>
 			<div class="flex items-center gap-3">
-				<hlm-radio value="compact" inputId="compact">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
+				<caps-radio value="compact" id="compact">
+				</caps-radio>
 				<label capsLabel for="compact" >
 					Compact
 				</label>
 			</div>
 			<div class="flex items-center gap-3">
-				<hlm-radio class="peer group" disabled=true value="disabled" inputId="disabled">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
+				<caps-radio class="peer group" disabled=true value="disabled" id="disabled">
+				</caps-radio>
 				<label capsLabel for="disabled" >
 					Disabled
 				</label>
 			</div>
-		</hlm-radio-group>
+		</caps-radio-group>
 `,
 	}),
 };

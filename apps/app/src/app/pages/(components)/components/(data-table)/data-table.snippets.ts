@@ -433,19 +433,19 @@ export class DataTable<TData extends RowData> {
 
 export const selectionColumnCode = `
 import { Component, input } from '@angular/core';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { type Row, type Table } from '@tanstack/angular-table';
 import { type DataTableFeatures } from './data-table-features';
 import { type Payment } from './payments';
 
 @Component({
-	imports: [HlmCheckboxImports],
+	imports: [CapsCheckboxImports],
 	host: {
 		class: 'flex',
-		'aria-label': 'Select all',
 	},
 	template: \`
-		<hlm-checkbox
+		<caps-checkbox
+			aria-label="Select all"
 			[checked]="table().getIsAllRowsSelected()"
 			[indeterminate]="table().getIsSomeRowsSelected() && !table().getIsAllPageRowsSelected()"
 			(checkedChange)="table().toggleAllPageRowsSelected($event)"
@@ -457,13 +457,12 @@ export class TableHeadSelection {
 }
 
 @Component({
-	imports: [HlmCheckboxImports],
+	imports: [CapsCheckboxImports],
 	host: {
 		class: 'flex',
-		'aria-label': 'Select Row',
 	},
 	template: \`
-		<hlm-checkbox [checked]="row().getIsSelected()" (checkedChange)="row().toggleSelected($event)" />
+		<caps-checkbox aria-label="Select row" [checked]="row().getIsSelected()" (checkedChange)="row().toggleSelected($event)" />
 	\`,
 })
 export class TableRowSelection {

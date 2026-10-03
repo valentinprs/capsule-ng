@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-field-switch-preview',
-	imports: [CapsFieldImports, HlmSwitchImports],
+	imports: [CapsFieldImports, CapsSwitchImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
@@ -17,7 +17,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 					to your email.
 				</caps-field-description>
 			</caps-field-content>
-			<hlm-switch inputId="field-2fa" />
+			<caps-switch id="field-2fa" />
 		</caps-field>
 	`,
 })

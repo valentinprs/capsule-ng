@@ -4,41 +4,35 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard } from '@ng-icons/lucide';
 import { remixAppleFill, remixPaypalFill } from '@ng-icons/remixicon';
 
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { hlm } from '@spartan-ng/helm/utils';
 
 @Component({
 	selector: 'spartan-radio-card-preview',
-	imports: [FormsModule, HlmRadioGroupImports, NgIcon],
+	imports: [FormsModule, CapsRadioGroupImports, NgIcon],
 	providers: [provideIcons({ lucideCreditCard, remixPaypalFill, remixAppleFill })],
 	template: `
-		<hlm-radio-group class="grid grid-cols-3 gap-4" [(ngModel)]="payment">
-			<label class="flex items-center" hlmLabel [class]="cardClass">
-				<hlm-radio value="card">
-					<ng-icon name="lucideCreditCard" class="mb-3" />
-				</hlm-radio>
+		<caps-radio-group aria-label="Payment method" class="grid grid-cols-3 gap-4" [(ngModel)]="payment">
+			<caps-radio value="card" [class]="cardClass">
+				<ng-icon name="lucideCreditCard" class="mb-3" />
 				Card
-			</label>
-			<label class="flex items-center" hlmLabel [class]="cardClass">
-				<hlm-radio value="paypal">
-					<ng-icon name="remixPaypalFill" class="mb-3" />
-				</hlm-radio>
+			</caps-radio>
+			<caps-radio value="paypal" [class]="cardClass">
+				<ng-icon name="remixPaypalFill" class="mb-3" />
 				PayPal
-			</label>
-			<label class="flex items-center" hlmLabel [class]="cardClass">
-				<hlm-radio value="apple">
-					<ng-icon name="remixAppleFill" class="mb-3" />
-				</hlm-radio>
+			</caps-radio>
+			<caps-radio value="apple" [class]="cardClass">
+				<ng-icon name="remixAppleFill" class="mb-3" />
 				Apple
-			</label>
-		</hlm-radio-group>
+			</caps-radio>
+		</caps-radio-group>
 	`,
 })
 export class RadioGroupCard {
 	public payment = 'card';
 
 	public readonly cardClass = hlm(
-		'relative block space-x-0',
+		'relative block space-x-0 [&_.caps-radio-control]:flex-col [&_.caps-radio-label]:flex [&_.caps-radio-label]:flex-col [&_.caps-radio-label]:items-center',
 		// base card styles
 		'border-border flex flex-col items-center justify-center rounded-lg border-2 px-4 py-8',
 		// hover and background styles

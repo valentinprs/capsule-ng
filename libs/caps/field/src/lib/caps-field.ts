@@ -53,7 +53,14 @@ export class CapsField {
 	/** Stacks the field vertically by default; responsive follows the enclosing FieldGroup width. */
 	public readonly orientation = input<CapsFieldOrientation>('vertical');
 	private readonly _labels = contentChildren(CapsFieldLabel, { descendants: true });
-	protected readonly _labelledBy = computed(() => this._labels()[0]?.id() ?? null);
+	/** Accessible name for composite controls whose host is not natively labelable. */
+	public readonly labelId = computed(
+		() =>
+			this._labels()
+				.find((label) => label.field === this._field)
+				?.id() ?? null,
+	);
+	protected readonly _labelledBy = this.labelId;
 
 	constructor() {
 		classes(() => fieldVariants({ orientation: this.orientation() }));

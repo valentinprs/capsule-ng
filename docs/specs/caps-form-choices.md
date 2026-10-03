@@ -1,0 +1,52 @@
+# Capsule form choices — issue #31
+
+## Inventory and design
+
+Checkbox previously used `HlmCheckbox`: checked, unchecked, disabled, indeterminate, Angular
+forms and label/description compositions. Switch adds default/small sizes, disabled/invalid
+examples, descriptive and selectable-card Fields. RadioGroup has a default selection, per-option
+and group disabled state, forms, cards and RTL examples. Existing demonstrations and stories are
+migrated; unrelated Helm controls remain until their own migration.
+
+The public anatomy is deliberately smaller than Helm's indicator composition:
+
+```html
+<caps-field orientation="horizontal">
+	<caps-checkbox [formControl]="accepted" />
+	<caps-field-content>
+		<caps-field-label>Accept the terms</caps-field-label>
+		<caps-field-description>Required to continue.</caps-field-description>
+		<caps-field-error validator="required">Accept the terms to continue.</caps-field-error>
+	</caps-field-content>
+</caps-field>
+<caps-field>
+	<caps-field-label>Plan</caps-field-label>
+	<caps-radio-group [formControl]="plan">
+		<caps-radio value="personal">Personal</caps-radio>
+		<caps-radio value="team">Team</caps-radio>
+	</caps-radio-group>
+</caps-field>
+<caps-field orientation="horizontal">
+	<caps-field-label>Receive updates</caps-field-label>
+	<caps-switch [formControl]="updates" />
+</caps-field>
+```
+
+Imports are `CapsCheckboxImports`, `CapsRadioGroupImports`, `CapsSwitchImports`, and
+`CapsFieldImports` from their corresponding `@capsule-ng/caps/*` secondary entry points.
+Component README files document the public bindings. There is no public indicator/thumb API;
+`id` replaces Helm's `inputId`. The native radio input retains browser keyboard navigation and
+group exclusion. Checkbox's mixed state is exposed as `aria-checked="mixed"` with a dash indicator.
+
+Amendment 3 of ADR 0001 records the choice to own the interactive element. The alternative native
+attribute API would require duplicating Brain behavior or exposing its composite anatomy.
+
+## Validation boundaries
+
+Confirmed with Valentin: Angular consumer components using public Capsule imports, including
+reactive/template forms, value and disabled state, mixed Checkbox state, Field labels,
+descriptions/errors, focus and keyboard. Review baseline: `02bb420e8`.
+
+Browser catalogue/Storybook checks exercise the same API with shared foundations in light/dark
+modes and narrow/wide viewports. Compilation and generated API/snippet checks complement the
+behavior tests; the whole repository test suite, lint, format and builds run before the PR.

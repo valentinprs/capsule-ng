@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-field-preview',
 	imports: [
-		HlmCheckboxImports,
+		CapsCheckboxImports,
 		CapsTextareaImports,
 		CapsButtonImports,
 		CapsInputImports,
@@ -92,7 +92,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					<caps-field-description>The billing address associated with your payment method</caps-field-description>
 					<caps-field-group>
 						<caps-field orientation="horizontal">
-							<hlm-checkbox inputId="field-preview-billing-address" [checked]="true" />
+							<caps-checkbox id="field-preview-billing-address" [checked]="true" />
 							<caps-field-label for="field-preview-billing-address">Same as shipping address.</caps-field-label>
 						</caps-field>
 					</caps-field-group>

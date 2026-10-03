@@ -28,7 +28,7 @@ import type { ClassValue } from 'clsx';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	hostDirectives: [BrnFieldControl],
 	host: {
-		class: 'inline-flex shrink-0 peer',
+		'[attr.class]': '"inline-flex shrink-0 peer"',
 		'data-slot': 'switch',
 		'[attr.id]': 'null',
 		'[attr.aria-label]': 'null',

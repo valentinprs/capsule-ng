@@ -10,7 +10,7 @@ import { provideCapsFieldFormContext } from './caps-field-form-context';
 	imports: [BrnLabel],
 	providers: [provideCapsFieldFormContext()],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	host: { 'data-slot': 'field-label', class: 'caps-field-label block min-w-0', '[attr.id]': 'null' },
+	host: { 'data-slot': 'field-label', '[attr.class]': '"caps-field-label block min-w-0"', '[attr.id]': 'null' },
 	template: `
 		<label brnLabel data-slot="field-label" [id]="id()" [for]="for()" [class]="_labelClass()"><ng-content /></label>
 	`,

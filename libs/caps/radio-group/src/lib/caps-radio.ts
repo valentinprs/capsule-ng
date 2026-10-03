@@ -47,15 +47,17 @@ import { CapsRadioGroup } from './caps-radio-group';
 			<span indicator class="caps-radio-indicator" aria-hidden="true" (click)="_activateIndicator($event)">
 				<span class="size-2 rounded-full" [class.bg-primary]="_checked()"></span>
 			</span>
-			@if (_enclosingLabel) {
-				<ng-container [ngTemplateOutlet]="labelContent" />
-			} @else {
-				<label class="caps-radio-label cursor-pointer empty:hidden" [for]="id()">
+			<span class="caps-radio-content empty:hidden has-[>label:empty]:hidden">
+				@if (_enclosingLabel) {
 					<ng-container [ngTemplateOutlet]="labelContent" />
-				</label>
-			}
-			<ng-template #labelContent><ng-content /></ng-template>
+				} @else {
+					<label class="caps-radio-label cursor-pointer empty:hidden" [for]="id()">
+						<ng-container [ngTemplateOutlet]="labelContent" />
+					</label>
+				}
+			</span>
 		</brn-radio>
+		<ng-template #labelContent><ng-content /></ng-template>
 	`,
 })
 export class CapsRadio<T = unknown> {
@@ -101,6 +103,9 @@ export class CapsRadio<T = unknown> {
 			this._field.registerLabelable(this);
 			this._destroyRef.onDestroy(() => this._field?.unregisterLabelable(this));
 		}
-		classes(() => 'caps-radio block data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-50');
+		classes(
+			() =>
+				'caps-radio block data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-(--caps-opacity-disabled)',
+		);
 	}
 }

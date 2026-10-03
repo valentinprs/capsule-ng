@@ -50,3 +50,23 @@ descriptions/errors, focus and keyboard. Review baseline: `02bb420e8`.
 Browser catalogue/Storybook checks exercise the same API with shared foundations in light/dark
 modes and narrow/wide viewports. Compilation and generated API/snippet checks complement the
 behavior tests; the whole repository test suite, lint, format and builds run before the PR.
+
+## Review and regression findings
+
+The Standards and Spec reviews ran independently against `02bb420e8`.
+
+- Standards: Radio now uses the semantic disabled-opacity token. No documented-standard
+  violation remains. The small Checkbox/Switch native-state adapters intentionally remain
+  independent to avoid adding a public shared-support entry point; this is an accepted
+  duplication tradeoff, not a behavior defect.
+- Spec: selectable radio cards retain their full native label surface, and explicit accessible
+  names override the inferred Field label. Both findings are covered by regressions.
+- Integration: native fieldset disabling must also prevent clicks on the radio indicator;
+  activation delegates to the native input after checking `:disabled`. FieldLabel cards must
+  not create nested native labels. Consumer class inputs belong only to the documented owned
+  button/label, preserving structural host classes without doubled borders or padding.
+
+The catalogue's SSR hydration check is essential alongside component tests: template anchors
+projected directly through Brain's radio content can render on the server but fail to hydrate.
+The radio label projection uses a stable element boundary and keeps its template declaration
+outside the Brain projection. Brain itself remains unchanged.

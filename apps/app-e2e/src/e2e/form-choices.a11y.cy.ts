@@ -30,6 +30,7 @@ for (const [component, preview] of Object.entries(examples)) {
 					cy.checkA11y(preview, undefined, logViolations);
 					cy.get(preview).should(($preview) => {
 						const rect = $preview[0].getBoundingClientRect();
+						expect(rect.width).to.be.greaterThan(100);
 						expect(rect.left).to.be.at.least(0);
 						expect(rect.right).to.be.at.most(width);
 					});
@@ -55,3 +56,14 @@ for (const [component, preview] of Object.entries(examples)) {
 		});
 	});
 }
+
+describe('Capsule radio cards', () => {
+	it('selects through the card padding', () => {
+		cy.visit('/components/radio-group');
+		cy.get('spartan-radio-card-preview', { timeout: 120000 }).should('not.have.attr', 'ngh');
+		cy.get('spartan-radio-card-preview caps-field-label[for="payment-paypal"] label').click(8, 8, {
+			scrollBehavior: 'center',
+		});
+		cy.get('spartan-radio-card-preview input#payment-paypal').should('be.checked');
+	});
+});

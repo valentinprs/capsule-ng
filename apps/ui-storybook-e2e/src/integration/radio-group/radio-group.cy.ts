@@ -100,11 +100,11 @@ describe('radio-group', () => {
 			});
 
 			it('should check the option when clicking the label', () => {
-				cy.get('label[for="default"]').realClick();
+				cy.get('label[capsLabel][for="default"]').realClick();
 				cy.findByLabelText('Default').should('be.checked');
-				cy.get('label[for="comfortable"]').realClick();
+				cy.get('label[capsLabel][for="comfortable"]').realClick();
 				cy.findByLabelText('Comfortable').should('be.checked');
-				cy.get('label[for="compact"]').realClick();
+				cy.get('label[capsLabel][for="compact"]').realClick();
 				cy.findByLabelText('Compact').should('be.checked');
 				cy.findByLabelText('Comfortable').should('not.be.checked');
 				cy.findByLabelText('Default').should('not.be.checked');

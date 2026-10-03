@@ -187,3 +187,38 @@ it('keeps FieldLabel cards valid and native fieldset disabling applies to the in
 	fixture.detectChanges();
 	expect(fixture.componentInstance.selected()).toBe('b');
 });
+
+@Component({
+	selector: 'caps-radio-explicit-label-test',
+	imports: [CapsRadioGroupImports, CapsFieldImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	template: `
+		<caps-field>
+			<caps-field-label>Delivery</caps-field-label>
+			<caps-radio-group [aria-label]="label()" [aria-labelledby]="labelledBy()">
+				<caps-radio value="standard">Standard</caps-radio>
+			</caps-radio-group>
+		</caps-field>
+		<span id="custom-name">Shipping speed</span>
+	`,
+})
+class ExplicitLabelHost {
+	public readonly label = signal<string | undefined>('Choose shipping');
+	public readonly labelledBy = signal<string | undefined>(undefined);
+}
+
+it('lets explicit accessible names override the inferred Field name', () => {
+	const fixture = TestBed.createComponent(ExplicitLabelHost);
+	fixture.detectChanges();
+	const group: HTMLElement = fixture.nativeElement.querySelector('caps-radio-group');
+	const label: HTMLLabelElement = fixture.nativeElement.querySelector('caps-field-label label');
+	expect(group.getAttribute('aria-label')).toBe('Choose shipping');
+	expect(group.hasAttribute('aria-labelledby')).toBe(false);
+	fixture.componentInstance.labelledBy.set('custom-name');
+	fixture.detectChanges();
+	expect(group.getAttribute('aria-labelledby')).toBe('custom-name');
+	fixture.componentInstance.labelledBy.set(undefined);
+	fixture.componentInstance.label.set(undefined);
+	fixture.detectChanges();
+	expect(group.getAttribute('aria-labelledby')).toBe(label.id);
+});

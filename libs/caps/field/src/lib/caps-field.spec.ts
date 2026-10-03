@@ -411,3 +411,33 @@ describe('Capsule Field composition', () => {
 		expect(field.getAttribute('data-matches-spartan-invalid')).toBe('true');
 	});
 });
+
+@Component({
+	imports: [CapsFieldImports],
+	template: `
+		<caps-field-label class="border p-4">Static</caps-field-label>
+		<caps-field-label [class]="styles()">Dynamic</caps-field-label>
+	`,
+})
+class ForwardedClassHost {
+	public readonly styles = signal('p-2 border-2');
+}
+
+describe('caps-field-label class forwarding', () => {
+	it('applies static and changing consumer classes only to the native element', () => {
+		const fixture = TestBed.createComponent(ForwardedClassHost);
+		fixture.detectChanges();
+		const hosts = Array.from(fixture.nativeElement.querySelectorAll('caps-field-label')) as HTMLElement[];
+		expect(hosts[0].classList).not.toContain('p-4');
+		expect(hosts[0].classList).not.toContain('border');
+		expect(hosts[0].querySelector('label')?.classList).toContain('p-4');
+		expect(hosts[1].classList).not.toContain('p-2');
+		expect(hosts[1].querySelector('label')?.classList).toContain('p-2');
+		fixture.componentInstance.styles.set('p-6');
+		fixture.detectChanges();
+		expect(hosts[1].classList).not.toContain('p-6');
+		expect(hosts[1].querySelector('label')?.classList).toContain('p-6');
+		expect(hosts[1].querySelector('label')?.classList).not.toContain('p-2');
+		expect(hosts[0].classList).toContain('block');
+	});
+});

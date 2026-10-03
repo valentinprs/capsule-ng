@@ -14,7 +14,7 @@ import { classes } from '@spartan-ng/helm/utils';
 	],
 	host: {
 		'data-slot': 'radio-group',
-		'[attr.aria-labelledby]': 'ariaLabelledby() ?? _capsField?.labelId()',
+		'[attr.aria-labelledby]': 'ariaLabelledby() ?? (ariaLabel() ? null : _capsField?.labelId())',
 		'[attr.aria-label]': 'ariaLabel()',
 		'[attr.aria-required]': '_group.required()',
 		'[attr.aria-disabled]': '_group.disabledState()',

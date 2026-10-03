@@ -97,3 +97,33 @@ describe('CapsCheckbox native keyboard and binding behavior', () => {
 		expect(template.getAttribute('aria-checked')).toBe('false');
 	});
 });
+
+@Component({
+	imports: [CapsCheckbox],
+	template: `
+		<caps-checkbox class="border p-4">Static</caps-checkbox>
+		<caps-checkbox [class]="styles()">Dynamic</caps-checkbox>
+	`,
+})
+class ForwardedClassHost {
+	public readonly styles = signal('p-2 border-2');
+}
+
+describe('caps-checkbox class forwarding', () => {
+	it('applies static and changing consumer classes only to the native element', () => {
+		const fixture = TestBed.createComponent(ForwardedClassHost);
+		fixture.detectChanges();
+		const hosts = Array.from(fixture.nativeElement.querySelectorAll('caps-checkbox')) as HTMLElement[];
+		expect(hosts[0].classList).not.toContain('p-4');
+		expect(hosts[0].classList).not.toContain('border');
+		expect(hosts[0].querySelector('button')?.classList).toContain('p-4');
+		expect(hosts[1].classList).not.toContain('p-2');
+		expect(hosts[1].querySelector('button')?.classList).toContain('p-2');
+		fixture.componentInstance.styles.set('p-6');
+		fixture.detectChanges();
+		expect(hosts[1].classList).not.toContain('p-6');
+		expect(hosts[1].querySelector('button')?.classList).toContain('p-6');
+		expect(hosts[1].querySelector('button')?.classList).not.toContain('p-2');
+		expect(hosts[0].classList).toContain('inline-flex');
+	});
+});

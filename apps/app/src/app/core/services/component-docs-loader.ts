@@ -1,14 +1,13 @@
+import { useStorage } from 'nitropack/runtime';
 import type { PrimitiveSnippets } from '../models/primitives-snippets.model';
 import type { ComponentApiData, Primitives } from '../models/ui-docs.model';
 import type { ComponentDocsData } from './component-docs';
 
-// A per-slug file only exists for components that have that kind of data (e.g. data-table has no
-// ui-api), so a 404 is treated as empty; any other error is a real failure and propagates.
-const sliceOrEmpty = <T extends object>(url: string): Promise<T> =>
-	$fetch<T>(url).catch((error) => {
-		if (error?.statusCode === 404) return {} as T;
-		throw error;
-	});
+// Read the data bundled by Nitro's `serverAssets` configuration. Relative $fetch calls stay
+// inside the server function on Vercel, where public files are served separately by the CDN.
+// Components without a particular data slice legitimately have no corresponding asset.
+const sliceOrEmpty = async <T extends object>(key: string): Promise<T> =>
+	(await useStorage('assets:data').getItem<T>(key)) ?? ({} as T);
 
 export type LoadComponentDocsOptions = {
 	// Slugs of other `caps` entry points whose API is documented on this component's page, e.g. the
@@ -22,9 +21,9 @@ export const loadComponentDocs = async (
 	{ capsApiFrom = [] }: LoadComponentDocsOptions = {},
 ): Promise<ComponentDocsData> => {
 	const [docsData, primitivesData, relatedDocs] = await Promise.all([
-		sliceOrEmpty<ComponentApiData>(`/data/ui-api/${slug}.json`),
-		sliceOrEmpty<PrimitiveSnippets>(`/data/primitives-snippets/${slug}.json`),
-		Promise.all(capsApiFrom.map((related) => sliceOrEmpty<ComponentApiData>(`/data/ui-api/${related}.json`))),
+		sliceOrEmpty<ComponentApiData>(`ui-api/${slug}.json`),
+		sliceOrEmpty<PrimitiveSnippets>(`primitives-snippets/${slug}.json`),
+		Promise.all(capsApiFrom.map((related) => sliceOrEmpty<ComponentApiData>(`ui-api/${related}.json`))),
 	]);
 	return { docsData: withCapsApiFrom(docsData, slug, capsApiFrom, relatedDocs), primitivesData };
 };

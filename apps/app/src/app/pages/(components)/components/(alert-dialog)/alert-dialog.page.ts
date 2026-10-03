@@ -98,7 +98,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="media" spartanH4>Media</h3>
 			<p class="${hlmP}">
 				Use the
-				<code class="${hlmCode}">hlm-alert-dialog-media</code>
+				<code class="${hlmCode}">caps-alert-dialog-media</code>
 				component to add a media element such as an icon or image to the alert dialog.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -113,7 +113,7 @@ export const routeMeta: RouteMeta = {
 				Use the
 				<code class="${hlmCode}">size="sm"</code>
 				prop to make the alert dialog smaller and the
-				<code class="${hlmCode}">hlm-alert-dialog-media</code>
+				<code class="${hlmCode}">caps-alert-dialog-media</code>
 				component to add a media element such as an icon or image to the alert dialog.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -126,7 +126,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="destructive" spartanH4>Destructive</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlmAlertDialogAction</code>
+				<code class="${hlmCode}">capsButton</code>
 				with the
 				<code class="${hlmCode}">variant="destructive"</code>
 				prop to indicate a destructive action.
@@ -141,7 +141,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="dropdown-menu" spartanH4>Dropdown Menu</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlmAlertDialogTriggerFor</code>
+				<code class="${hlmCode}">capsAlertDialogTriggerFor</code>
 				on a menu item to open an alert dialog from a dropdown menu.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -159,11 +159,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="aspect-ratio" label="Aspect Ratio" />

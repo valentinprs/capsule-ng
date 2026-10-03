@@ -1,31 +1,33 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAlertDialogImports } from '@capsule-ng/caps/alert-dialog';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBluetooth } from '@ng-icons/lucide';
-import { HlmAlertDialogImports } from '@spartan-ng/helm/alert-dialog';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 @Component({
 	selector: 'spartan-alert-dialog-small-media',
-	imports: [HlmAlertDialogImports, HlmButtonImports, NgIcon],
+	imports: [CapsAlertDialogImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideBluetooth })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-alert-dialog>
-			<button hlmAlertDialogTrigger hlmBtn variant="outline">Show Dialog</button>
-			<hlm-alert-dialog-content *hlmAlertDialogPortal="let ctx" size="sm">
-				<hlm-alert-dialog-header>
-					<hlm-alert-dialog-media>
+		<caps-alert-dialog>
+			<button capsAlertDialogTrigger capsButton variant="outline">Show Dialog</button>
+			<ng-template capsAlertDialogContent let-ctx size="sm">
+				<caps-alert-dialog-header>
+					<caps-alert-dialog-media>
 						<ng-icon name="lucideBluetooth" />
-					</hlm-alert-dialog-media>
-					<h2 hlmAlertDialogTitle>Allow accessory to connect?</h2>
-					<p hlmAlertDialogDescription>Do you want to allow the USB accessory to connect to this device?</p>
-				</hlm-alert-dialog-header>
-				<hlm-alert-dialog-footer>
-					<button hlmAlertDialogCancel>Don't allow</button>
-					<button hlmAlertDialogAction>Allow</button>
-				</hlm-alert-dialog-footer>
-			</hlm-alert-dialog-content>
-		</hlm-alert-dialog>
+					</caps-alert-dialog-media>
+					<caps-alert-dialog-title>Allow accessory to connect?</caps-alert-dialog-title>
+					<caps-alert-dialog-description>
+						Do you want to allow the USB accessory to connect to this device?
+					</caps-alert-dialog-description>
+				</caps-alert-dialog-header>
+				<caps-alert-dialog-footer>
+					<button capsAlertDialogCancel capsButton variant="outline">Don't allow</button>
+					<button capsButton (click)="ctx.close()">Allow</button>
+				</caps-alert-dialog-footer>
+			</ng-template>
+		</caps-alert-dialog>
 	`,
 })
 export class AlertDialogSmallMedia {}

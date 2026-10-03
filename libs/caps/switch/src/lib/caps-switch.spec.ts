@@ -100,6 +100,7 @@ describe('CapsSwitch native keyboard and binding behavior', () => {
 
 @Component({
 	imports: [CapsSwitch],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<caps-switch class="border p-4">Static</caps-switch>
 		<caps-switch [class]="styles()">Dynamic</caps-switch>

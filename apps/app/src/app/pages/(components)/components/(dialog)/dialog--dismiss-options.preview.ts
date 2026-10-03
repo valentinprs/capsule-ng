@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDialogImports } from '@capsule-ng/caps/dialog';
 import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { CapsSwitchImports } from '@capsule-ng/caps/switch';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-dialog-dismiss-options',
-	imports: [HlmDialogImports, CapsButtonImports, CapsLabelImports, CapsSwitchImports, HlmTooltipImports],
+	imports: [CapsDialogImports, CapsButtonImports, CapsLabelImports, CapsSwitchImports, HlmTooltipImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-col gap-4">
@@ -37,20 +37,20 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 				</div>
 			</ng-template>
 
-			<hlm-dialog [disableClose]="_disableClose()" [closeOnOutsidePointerEvents]="_closeOnOutsidePointerEvents()">
-				<button hlmDialogTrigger capsButton variant="outline" class="w-fit">Open Dialog</button>
-				<hlm-dialog-content *hlmDialogPortal="let ctx" class="sm:max-w-md">
-					<hlm-dialog-header>
-						<h3 hlmDialogTitle>Dismiss options</h3>
-						<p hlmDialogDescription>
+			<caps-dialog [disableClose]="_disableClose()" [closeOnOutsidePointerEvents]="_closeOnOutsidePointerEvents()">
+				<button capsDialogTrigger capsButton variant="outline" class="w-fit">Open Dialog</button>
+				<ng-template capsDialogContent let-ctx class="sm:max-w-md">
+					<caps-dialog-header>
+						<caps-dialog-title>Dismiss options</caps-dialog-title>
+						<caps-dialog-description>
 							Press Escape or click the backdrop to see how the dialog reacts to the selected options.
-						</p>
-					</hlm-dialog-header>
-					<hlm-dialog-footer>
-						<button capsButton hlmDialogClose>Close</button>
-					</hlm-dialog-footer>
-				</hlm-dialog-content>
-			</hlm-dialog>
+						</caps-dialog-description>
+					</caps-dialog-header>
+					<caps-dialog-footer>
+						<button capsButton capsDialogClose>Close</button>
+					</caps-dialog-footer>
+				</ng-template>
+			</caps-dialog>
 		</div>
 	`,
 })

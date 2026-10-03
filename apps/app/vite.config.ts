@@ -171,7 +171,7 @@ export default defineConfig(({ command, mode }) => {
 					serverAssets: [
 						{
 							baseName: 'data',
-							dir: './src/public/data',
+							dir: path.resolve(__dirname, 'src/public/data'),
 						},
 					],
 					rollupConfig: {

@@ -1,13 +1,10 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideTriangleAlert } from '@ng-icons/lucide';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
@@ -53,8 +50,6 @@ export const routeMeta: RouteMeta = {
 		PageNav,
 		PageBottomNav,
 		PageBottomNavLink,
-		NgIcon,
-		HlmAlertImports,
 		SectionSubSubHeading,
 		RtlHeader,
 		CodeRtlPreview,
@@ -69,7 +64,6 @@ export const routeMeta: RouteMeta = {
 		DialogScrollableContent,
 		DialogRtl,
 	],
-	providers: [provideIcons({ lucideTriangleAlert })],
 	template: `
 		<section spartanMainSection>
 			<spartan-section-intro
@@ -134,15 +128,12 @@ export const routeMeta: RouteMeta = {
 
 			<h3 id="declarative-usage" spartanH4>Declarative Usage</h3>
 			<p class="${hlmP} mb-6">
-				Spartan's dialog supports declarative usage. Simply set it's state
-				<code class="${hlmCode}">input</code>
-				to
+				Bind the boolean
 				<code class="${hlmCode}">open</code>
-				or
-				<code class="${hlmCode}">closed</code>
-				and let spartan handle the rest. This allows you to leverage the power of declarative code, like listening to
-				changes in an input field, debouncing the value, and opening the dialog only if the user's enters the correct
-				passphrase.
+				input to control visibility, or use
+				<code class="${hlmCode}">[(open)]</code>
+				to synchronize user dismissals. This example opens when the debounced passphrase matches and resets it after
+				closing.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -154,8 +145,8 @@ export const routeMeta: RouteMeta = {
 			<h3 id="inside-menu" spartanH4>Inside Menu</h3>
 			<p class="${hlmP} mb-6">
 				Use the
-				<code class="${hlmCode}">hlmDialogTriggerFor</code>
-				on the menu button, which takes in a reference to the hlm-dialog, to open the dialog from within a menu.
+				<code class="${hlmCode}">capsDialogTriggerFor</code>
+				on the menu button, which takes in a reference to the caps-dialog, to open the dialog from within a menu.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -168,22 +159,9 @@ export const routeMeta: RouteMeta = {
 			<p class="${hlmP} mb-6">
 				You can dynamically open a dialog with a component rendered as the content. The dialog context can be injected
 				into the dynamic component using the provided
-				<code class="${hlmCode}">injectBrnDialogContext</code>
+				<code class="${hlmCode}">injectCapsDialogContext</code>
 				function.
 			</p>
-			<div hlmAlert class="mb-6" variant="destructive">
-				<ng-icon name="lucideTriangleAlert" />
-				<p hlmAlertTitle>Note</p>
-				<div hlmAlertDescription class="leading-loose">
-					<p>
-						Avoid using the
-						<code class="${hlmCode}">&lt;hlm-dialog-content&gt;</code>
-						tag when your dialog relies on dynamic content. Using it in this case can cause the dialog to repeatedly
-						render itself in a loop. The tag is meant to wrap static content for the dialog, but with a dynamic
-						component, the component automatically acts as the wrapper.
-					</p>
-				</div>
-			</div>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
 					<spartan-dialog-dynamic-component-preview />
@@ -211,11 +189,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="dropdown-menu" label="Dropdown Menu" />

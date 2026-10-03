@@ -100,6 +100,7 @@ describe('CapsCheckbox native keyboard and binding behavior', () => {
 
 @Component({
 	imports: [CapsCheckbox],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<caps-checkbox class="border p-4">Static</caps-checkbox>
 		<caps-checkbox [class]="styles()">Dynamic</caps-checkbox>

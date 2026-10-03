@@ -5,6 +5,19 @@ describe('dialog--default', () => {
 			cy.injectAxe();
 		});
 
+		it('centers the panel with mobile gutters', () => {
+			cy.viewport(390, 844);
+			cy.findByRole('button', { name: 'Edit Profile' }).click();
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations().map((animation) => animation.finished))),
+			);
+			cy.get('caps-dialog-panel').then(($panel) => {
+				const rect = $panel[0].getBoundingClientRect();
+				expect(rect.left).to.be.at.least(15);
+				expect((rect.left + rect.right) / 2).to.be.closeTo(195, 1);
+			});
+		});
+
 		it('click on trigger should open, click on close should close, click outside should close', () => {
 			cy.checkA11y('#storybook-root', {
 				rules: {
@@ -22,6 +35,10 @@ describe('dialog--default', () => {
 				.first()
 				.should('have.attr', 'aria-expanded', 'true');
 			cy.findByRole('dialog');
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations({ subtree: true }).map((animation) => animation.finished))),
+			);
+			cy.checkA11y('.cdk-overlay-container', { rules: { region: { enabled: false } } });
 			cy.findByRole('dialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('dialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('dialog').should('have.attr', 'aria-modal', 'true');
@@ -52,6 +69,10 @@ describe('dialog--default', () => {
 
 			cy.findAllByText(/edit profile/i).should('have.length', 2);
 			cy.findByRole('dialog');
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations({ subtree: true }).map((animation) => animation.finished))),
+			);
+			cy.checkA11y('.cdk-overlay-container', { rules: { region: { enabled: false } } });
 			cy.findByRole('dialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('dialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('dialog').should('have.attr', 'aria-modal', 'true');
@@ -83,6 +104,10 @@ describe('dialog--default', () => {
 
 			cy.findAllByText(/edit profile/i).should('have.length', 2);
 			cy.findByRole('dialog');
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations({ subtree: true }).map((animation) => animation.finished))),
+			);
+			cy.checkA11y('.cdk-overlay-container', { rules: { region: { enabled: false } } });
 			cy.findByRole('dialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('dialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('dialog').should('have.attr', 'aria-modal', 'true');
@@ -177,6 +202,10 @@ describe('dialog--dynamic-component', () => {
 		it('click on button should open dynamic component, click on close should close, click outside should close', () => {
 			cy.findAllByText(/select user/i).click();
 			cy.findByRole('dialog');
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations({ subtree: true }).map((animation) => animation.finished))),
+			);
+			cy.checkA11y('.cdk-overlay-container', { rules: { region: { enabled: false } } });
 			cy.findByRole('dialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('dialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('dialog').should('have.attr', 'aria-modal', 'true');
@@ -202,6 +231,10 @@ describe('dialog--dynamic-component', () => {
 		it('click on teams button should open dynamic component without close button', () => {
 			cy.findAllByText(/select team/i).click();
 			cy.findByRole('dialog');
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations({ subtree: true }).map((animation) => animation.finished))),
+			);
+			cy.checkA11y('.cdk-overlay-container', { rules: { region: { enabled: false } } });
 			cy.findByRole('dialog')
 				.findByRole('button', { name: /^close$/i })
 				.should('not.exist');

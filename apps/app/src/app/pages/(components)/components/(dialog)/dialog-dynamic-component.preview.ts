@@ -1,7 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { BrnDialogRef, injectBrnDialogContext } from '@spartan-ng/brain/dialog';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialogDescription, HlmDialogHeader, HlmDialogService, HlmDialogTitle } from '@spartan-ng/helm/dialog';
+import { CapsButton } from '@capsule-ng/caps/button';
+import {
+	CapsDialogDescription,
+	CapsDialogHeader,
+	CapsDialogRef,
+	CapsDialogService,
+	CapsDialogTitle,
+	injectCapsDialogContext,
+} from '@capsule-ng/caps/dialog';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 
 type ExampleUser = {
@@ -12,13 +18,13 @@ type ExampleUser = {
 
 @Component({
 	selector: 'spartan-dialog-dynamic-component-preview',
-	imports: [HlmButton],
+	imports: [CapsButton],
 	template: `
-		<button hlmBtn (click)="openDynamicComponent()">Select User</button>
+		<button capsButton (click)="openDynamicComponent()">Select User</button>
 	`,
 })
 export class DialogDynamicPreview {
-	private readonly _hlmDialogService = inject(HlmDialogService);
+	private readonly _capsDialogService = inject(CapsDialogService);
 
 	private readonly _users: ExampleUser[] = [
 		{
@@ -44,7 +50,7 @@ export class DialogDynamicPreview {
 	];
 
 	public openDynamicComponent() {
-		const dialogRef = this._hlmDialogService.open(SelectUser, {
+		const dialogRef = this._capsDialogService.open(SelectUser, {
 			context: {
 				users: this._users,
 			},
@@ -61,15 +67,15 @@ export class DialogDynamicPreview {
 
 @Component({
 	selector: 'spartan-dynamic-content',
-	imports: [HlmDialogHeader, HlmDialogTitle, HlmDialogDescription, ...HlmTableImports],
+	imports: [CapsDialogHeader, CapsDialogTitle, CapsDialogDescription, ...HlmTableImports],
 	host: {
 		class: 'flex flex-col gap-4',
 	},
 	template: `
-		<hlm-dialog-header>
-			<h3 hlmDialogTitle>Select user</h3>
-			<p hlmDialogDescription>Click a row to select a user.</p>
-		</hlm-dialog-header>
+		<caps-dialog-header>
+			<caps-dialog-title>Select user</caps-dialog-title>
+			<caps-dialog-description>Click a row to select a user.</caps-dialog-description>
+		</caps-dialog-header>
 
 		<table hlmTable class="w-full">
 			<tr hlmTr>
@@ -88,8 +94,8 @@ export class DialogDynamicPreview {
 	`,
 })
 class SelectUser {
-	private readonly _dialogRef = inject<BrnDialogRef<ExampleUser>>(BrnDialogRef);
-	private readonly _dialogContext = injectBrnDialogContext<{ users: ExampleUser[] }>();
+	private readonly _dialogRef = inject<CapsDialogRef<ExampleUser>>(CapsDialogRef);
+	private readonly _dialogContext = injectCapsDialogContext<{ users: ExampleUser[] }>();
 
 	protected readonly _users = this._dialogContext.users;
 

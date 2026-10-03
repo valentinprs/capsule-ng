@@ -2,24 +2,24 @@ import { Component, signal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { HlmTypographyImports } from '@spartan-ng/helm/typography';
+import { CapsDialogImports } from '@capsule-ng/caps/dialog';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
+import { HlmH4, HlmMuted } from '@spartan-ng/helm/typography';
 import { debounceTime, map } from 'rxjs/operators';
 
 @Component({
 	selector: 'spartan-dialog-declarative-preview',
-	imports: [FormsModule, HlmDialogImports, HlmLabelImports, HlmInputImports, HlmTypographyImports],
+	imports: [FormsModule, CapsDialogImports, CapsLabelImports, CapsInputImports, HlmH4, HlmMuted],
 	template: `
 		<div class="mt-6 space-y-4">
 			<p hlmH4>Enter passphrase to open dialog</p>
 			<div class="flex flex-col gap-2">
-				<label hlmLabel for="passphrase" class="px-1">Passphrase</label>
+				<label capsLabel for="passphrase" class="px-1">Passphrase</label>
 				<input
 					id="passphrase"
 					name="passphrase"
-					hlmInput
+					capsInput
 					[ngModelOptions]="{ standalone: true }"
 					[ngModel]="_passphrase()"
 					(ngModelChange)="_passphrase.set($event)"
@@ -27,21 +27,21 @@ import { debounceTime, map } from 'rxjs/operators';
 				<p hlmMuted class="px-1">Hint: It's sparta</p>
 			</div>
 		</div>
-		<hlm-dialog [state]="_state()" (closed)="_passphrase.set('')">
-			<hlm-dialog-content *hlmDialogPortal="let ctx">
-				<hlm-dialog-header class="w-[250px]">
-					<h3 hlmDialogTitle>Welcome to Sparta</h3>
-					<p hlmDialogDescription>Enjoy declarative dialogs.</p>
-				</hlm-dialog-header>
-			</hlm-dialog-content>
-		</hlm-dialog>
+		<caps-dialog [open]="_state()" (closed)="_passphrase.set('')">
+			<ng-template capsDialogContent let-ctx>
+				<caps-dialog-header class="w-[250px]">
+					<caps-dialog-title>Welcome to Sparta</caps-dialog-title>
+					<caps-dialog-description>Enjoy declarative dialogs.</caps-dialog-description>
+				</caps-dialog-header>
+			</ng-template>
+		</caps-dialog>
 	`,
 })
 export class DialogDeclarativePreview {
 	protected readonly _passphrase = signal<string>('');
 	private readonly _debouncedState$ = toObservable(this._passphrase).pipe(
 		debounceTime(500),
-		map((passphrase) => (passphrase === 'sparta' ? 'open' : 'closed')),
+		map((passphrase) => passphrase === 'sparta'),
 	);
-	protected readonly _state = toSignal(this._debouncedState$, { initialValue: 'closed' as 'open' | 'closed' });
+	protected readonly _state = toSignal(this._debouncedState$, { initialValue: false });
 }

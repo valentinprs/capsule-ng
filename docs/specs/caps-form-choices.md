@@ -70,3 +70,24 @@ The catalogue's SSR hydration check is essential alongside component tests: temp
 projected directly through Brain's radio content can render on the server but fail to hydrate.
 The radio label projection uses a stable element boundary and keeps its template declaration
 outside the Brain projection. Brain itself remains unchanged.
+
+## Verification (2026-10-03)
+
+- Repository unit suite after integrating current main: 852 tests across six projects. Targeted
+  Capsule tests also cover the final class-forwarding and hydration-related changes.
+- Angular typechecks for Capsule, catalogue and the four changed stories; 18 choice examples
+  compile against built Capsule declaration entrypoints in a separate consumer configuration.
+- All repository build targets, Storybook production build, repository lint, formatting and
+  commit-message validation.
+- Catalogue Cypress: 24 passing tests across form choices and Field, including axe in both
+  themes, narrow/wide viewport bounds, native labels, card padding and hydrated Field examples.
+- Storybook Cypress: 32 passing tests across Checkbox, RadioGroup and Switch (keyboard,
+  forms, labels, disabled state and accessibility).
+- Visual inspection in Chromium: 12 catalogue and 12 Storybook contexts covering light/dark
+  themes at 390 and 1280 px. The final catalogue captures show full-width Checkbox descriptions,
+  a single selectable-card border, distinct radio states and correctly aligned Switch thumbs.
+- Brain is unchanged. Node used locally: 24.18.0 with pinned pnpm 10.30.3; CI uses Node 22.
+
+Main advanced during implementation to include Dialog/AlertDialog (#60). Integration preserves
+both Dialog and form-choice styles and uses Capsule Dialog with Capsule Switch in the shared
+example; the PR does not introduce those Dialog components itself.

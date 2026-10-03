@@ -414,6 +414,7 @@ describe('Capsule Field composition', () => {
 
 @Component({
 	imports: [CapsFieldImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<caps-field-label class="border p-4">Static</caps-field-label>
 		<caps-field-label [class]="styles()">Dynamic</caps-field-label>

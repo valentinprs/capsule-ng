@@ -1,38 +1,38 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDialogImports } from '@capsule-ng/caps/dialog';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 
 @Component({
 	selector: 'spartan-dialog-rtl',
-	imports: [HlmDialogImports, HlmFieldImports, HlmInputImports, HlmButtonImports],
+	imports: [CapsDialogImports, CapsFieldImports, CapsInputImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-dialog [dir]="_dir()">
-			<button hlmDialogTrigger hlmBtn variant="outline">{{ _t()['openDialog'] }}</button>
-			<hlm-dialog-content *hlmDialogPortal="let ctx" class="sm:max-w-sm" [dir]="_dir()">
-				<hlm-dialog-header>
-					<h3 hlmDialogTitle>{{ _t()['editProfile'] }}</h3>
-					<p hlmDialogDescription>{{ _t()['description'] }}</p>
-				</hlm-dialog-header>
-				<hlm-field-group>
-					<hlm-field>
-						<label hlmFieldLabel for="name">{{ _t()['name'] }}</label>
-						<input hlmInput id="name" value="Pedro Duarte" />
-					</hlm-field>
-					<hlm-field>
-						<label hlmFieldLabel for="username">{{ _t()['username'] }}</label>
-						<input hlmInput id="username" value="@peduarte" />
-					</hlm-field>
-				</hlm-field-group>
-				<hlm-dialog-footer>
-					<button hlmBtn variant="outline" hlmDialogClose>{{ _t()['cancel'] }}</button>
-					<button hlmBtn type="submit">{{ _t()['saveChanges'] }}</button>
-				</hlm-dialog-footer>
-			</hlm-dialog-content>
-		</hlm-dialog>
+		<caps-dialog [dir]="_dir()">
+			<button capsDialogTrigger capsButton variant="outline">{{ _t()['openDialog'] }}</button>
+			<ng-template capsDialogContent let-ctx class="sm:max-w-sm">
+				<caps-dialog-header>
+					<caps-dialog-title>{{ _t()['editProfile'] }}</caps-dialog-title>
+					<caps-dialog-description>{{ _t()['description'] }}</caps-dialog-description>
+				</caps-dialog-header>
+				<caps-field-group>
+					<caps-field>
+						<caps-field-label for="name">{{ _t()['name'] }}</caps-field-label>
+						<input capsInput id="name" value="Pedro Duarte" />
+					</caps-field>
+					<caps-field>
+						<caps-field-label for="username">{{ _t()['username'] }}</caps-field-label>
+						<input capsInput id="username" value="@peduarte" />
+					</caps-field>
+				</caps-field-group>
+				<caps-dialog-footer>
+					<button capsButton variant="outline" capsDialogClose>{{ _t()['cancel'] }}</button>
+					<button capsButton type="submit">{{ _t()['saveChanges'] }}</button>
+				</caps-dialog-footer>
+			</ng-template>
+		</caps-dialog>
 	`,
 })
 export class DialogRtl {

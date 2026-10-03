@@ -5,7 +5,20 @@ describe('alert-dialog', () => {
 			cy.injectAxe();
 		});
 
-		it('click on trigger should open, click on close should close, click outside should close', () => {
+		it('keeps mobile gutters at 320px', () => {
+			cy.viewport(320, 844);
+			cy.findByRole('button', { name: 'Delete Account' }).click();
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations().map((animation) => animation.finished))),
+			);
+			cy.get('caps-dialog-panel').then(($panel) => {
+				const rect = $panel[0].getBoundingClientRect();
+				expect(rect.left).to.be.at.least(15);
+				expect(rect.right).to.be.at.most(305);
+			});
+		});
+
+		it('click on trigger should open, click on close should close, click outside should keep it open', () => {
 			cy.checkA11y('#storybook-root', {
 				rules: {
 					'page-has-heading-one': { enabled: false },
@@ -18,6 +31,10 @@ describe('alert-dialog', () => {
 
 			cy.findAllByText(/are you absolutely sure/i).should('have.length', 1);
 			cy.findByRole('alertdialog');
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations({ subtree: true }).map((animation) => animation.finished))),
+			);
+			cy.checkA11y('.cdk-overlay-container', { rules: { region: { enabled: false } } });
 			cy.findByRole('alertdialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('alertdialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('alertdialog').should('have.attr', 'aria-modal', 'true');
@@ -41,7 +58,7 @@ describe('alert-dialog', () => {
 			cy.findAllByText(/delete account/i).should('have.focus');
 		});
 
-		it('tab and enter on trigger should open, enter on cancel should close, escape should not close', () => {
+		it('tab and enter on trigger should open, enter on cancel should close, escape should close', () => {
 			cy.checkA11y('#storybook-root', {
 				rules: {
 					'page-has-heading-one': { enabled: false },
@@ -55,6 +72,10 @@ describe('alert-dialog', () => {
 
 			cy.findAllByText(/are you absolutely sure/i).should('have.length', 1);
 			cy.findByRole('alertdialog');
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations({ subtree: true }).map((animation) => animation.finished))),
+			);
+			cy.checkA11y('.cdk-overlay-container', { rules: { region: { enabled: false } } });
 			cy.findByRole('alertdialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('alertdialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('alertdialog').should('have.attr', 'aria-modal', 'true');
@@ -65,10 +86,10 @@ describe('alert-dialog', () => {
 			cy.findAllByText(/delete account/i).should('have.focus');
 			cy.realPress('Enter');
 
-			// escape is disabled for alert dialogs, so it should stay open
+			// Escape dismisses the alert and restores the trigger; outside clicks remain blocked.
 			cy.realPress('Escape');
-			cy.findAllByText(/delete account/i).should('have.length', 2);
-			cy.findAllByText(/delete account/i).should('not.have.focus');
+			cy.findAllByText(/delete account/i).should('have.length', 1);
+			cy.findAllByText(/delete account/i).should('have.focus');
 		});
 
 		it('tab and space on trigger should open, tabs should wrap, space on cancel should close', () => {
@@ -85,6 +106,10 @@ describe('alert-dialog', () => {
 
 			cy.findAllByText(/are you absolutely sure/i).should('have.length', 1);
 			cy.findByRole('alertdialog');
+			cy.get('caps-dialog-panel').then(($panel) =>
+				cy.wrap(Promise.all($panel[0].getAnimations({ subtree: true }).map((animation) => animation.finished))),
+			);
+			cy.checkA11y('.cdk-overlay-container', { rules: { region: { enabled: false } } });
 			cy.findByRole('alertdialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('alertdialog').should('have.attr', 'aria-labelledby', 'brn-dialog-title-1');
 			cy.findByRole('alertdialog').should('have.attr', 'aria-modal', 'true');
@@ -95,10 +120,10 @@ describe('alert-dialog', () => {
 			cy.findAllByText(/delete account/i).should('have.focus');
 			cy.realPress('Space');
 
-			// escape is disabled for alert dialogs, so it should stay open
+			// Escape dismisses the alert and restores the trigger; outside clicks remain blocked.
 			cy.realPress('Escape');
-			cy.findAllByText(/delete account/i).should('have.length', 2);
-			cy.findAllByText(/delete account/i).should('not.have.focus');
+			cy.findAllByText(/delete account/i).should('have.length', 1);
+			cy.findAllByText(/delete account/i).should('have.focus');
 		});
 	});
 });

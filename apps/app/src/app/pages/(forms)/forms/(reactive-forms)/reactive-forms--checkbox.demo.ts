@@ -24,12 +24,10 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 							<caps-field-description>
 								Get notified for requests that take time, like research or image generation.
 							</caps-field-description>
-							<caps-field-group>
-								<caps-field orientation="horizontal">
-									<caps-checkbox id="responses" formControlName="responses" />
-									<caps-field-label class="font-normal" for="responses">Push notifications</caps-field-label>
-								</caps-field>
-							</caps-field-group>
+							<caps-field orientation="horizontal">
+								<caps-checkbox formControlName="responses" />
+								<caps-field-label class="font-normal">Push notifications</caps-field-label>
+							</caps-field>
 						</caps-field-set>
 						<caps-field-separator />
 						<caps-field-group>
@@ -43,12 +41,11 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 											[forceInvalid]="form.controls.tasks.invalid && form.controls.tasks.touched"
 										>
 											<caps-checkbox
-												[id]="'task-' + task.id"
 												[forceInvalid]="form.controls.tasks.invalid && form.controls.tasks.touched"
 												[checked]="form.controls.tasks.value.includes(task.id)"
 												(checkedChange)="handleChange($event, task.id)"
 											/>
-											<caps-field-label class="font-normal" [for]="'task-' + task.id">
+											<caps-field-label class="font-normal">
 												{{ task.label }}
 											</caps-field-label>
 										</caps-field>
@@ -63,12 +60,12 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 				</form>
 			</div>
 			<hlm-card-footer>
-				<caps-field orientation="horizontal">
+				<div class="flex gap-2">
 					<button capsButton variant="outline" type="button" (click)="form.reset({ responses: true, tasks: [] })">
 						Reset
 					</button>
 					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	`,
@@ -142,12 +139,10 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 							<caps-field-description>
 								Get notified for requests that take time, like research or image generation.
 							</caps-field-description>
-							<caps-field-group>
-								<caps-field orientation="horizontal">
-									<caps-checkbox id="responses" formControlName="responses" />
-									<caps-field-label class="font-normal" for="responses">Push notifications</caps-field-label>
+							<caps-field orientation="horizontal">
+									<caps-checkbox formControlName="responses" />
+									<caps-field-label class="font-normal">Push notifications</caps-field-label>
 								</caps-field>
-							</caps-field-group>
 						</caps-field-set>
 						<caps-field-separator />
 						<caps-field-group>
@@ -158,11 +153,11 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 									@for (task of tasks; track task.id) {
 										<caps-field orientation="horizontal">
 											<caps-checkbox
-												[id]="'task-' + task.id"
+
 												[checked]="form.controls.tasks.value.includes(task.id)"
 												(checkedChange)="handleChange($event, task.id)"
 											/>
-											<caps-field-label class="font-normal" [for]="'task-' + task.id">{{ task.label }}</caps-field-label>
+											<caps-field-label class="font-normal">{{ task.label }}</caps-field-label>
 										</caps-field>
 									}
 								</caps-field-group>
@@ -175,12 +170,12 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 				</form>
 			</div>
 			<hlm-card-footer>
-				<caps-field orientation="horizontal">
+				<div class="flex gap-2">
 					<button capsButton variant="outline" type="button" (click)="form.reset({ responses: true, tasks: [] })">
 						Reset
 					</button>
 					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	\`,

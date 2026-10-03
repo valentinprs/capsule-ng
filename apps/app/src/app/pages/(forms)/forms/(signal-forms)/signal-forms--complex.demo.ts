@@ -42,7 +42,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 												<span class="font-medium">{{ plan.title }}</span>
 												<caps-field-description>{{ plan.description }}</caps-field-description>
 											</caps-field-content>
-											<caps-radio [value]="plan.id" [id]="'complex-plan-' + plan.id"></caps-radio>
+											<caps-radio [value]="plan.id" [id]="'complex-plan-' + plan.id" />
 										</caps-field>
 									</caps-field-label>
 								}
@@ -83,13 +83,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
 										<caps-checkbox
-											[id]="'addon-' + addon.id"
 											[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
 										/>
 										<caps-field-content>
-											<caps-field-label class="font-normal" [for]="'addon-' + addon.id">
+											<caps-field-label class="font-normal">
 												{{ addon.title }}
 											</caps-field-label>
 											<caps-field-description>{{ addon.description }}</caps-field-description>
@@ -106,7 +105,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						<caps-field-separator />
 						<caps-field orientation="horizontal">
 							<caps-field-content>
-								<caps-field-label for="email-notifications">Email Notifications</caps-field-label>
+								<caps-field-label>Email Notifications</caps-field-label>
 								<caps-field-description>Receive email updates about your subscription</caps-field-description>
 								@for (error of form.emailNotifications().errors(); track error) {
 									<caps-field-error [validator]="error.kind">
@@ -114,7 +113,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 									</caps-field-error>
 								}
 							</caps-field-content>
-							<caps-switch id="email-notifications" [formField]="form.emailNotifications" />
+							<caps-switch [formField]="form.emailNotifications" />
 						</caps-field>
 					</caps-field-group>
 				</form>
@@ -261,8 +260,7 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 												<span class="font-medium">{{ plan.title }}</span>
 												<caps-field-description>{{ plan.description }}</caps-field-description>
 											</caps-field-content>
-											<caps-radio [value]="plan.id" [id]="'complex-plan-' + plan.id">
-											</caps-radio>
+											<caps-radio [value]="plan.id" [id]="'complex-plan-' + plan.id" />
 										</caps-field>
 									</caps-field-label>
 								}
@@ -303,13 +301,13 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
 										<caps-checkbox
-											[id]="'addon-' + addon.id"
+
 											[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
 										/>
 										<caps-field-content>
-											<caps-field-label class="font-normal" [for]="'addon-' + addon.id">
+											<caps-field-label class="font-normal">
 												{{ addon.title }}
 											</caps-field-label>
 											<caps-field-description>{{ addon.description }}</caps-field-description>
@@ -326,7 +324,7 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 						<caps-field-separator />
 						<caps-field orientation="horizontal">
 							<caps-field-content>
-								<caps-field-label for="email-notifications">Email Notifications</caps-field-label>
+								<caps-field-label>Email Notifications</caps-field-label>
 								<caps-field-description>Receive email updates about your subscription</caps-field-description>
 								@for (error of form.emailNotifications().errors(); track error) {
 									<caps-field-error [validator]="error.kind">
@@ -334,7 +332,7 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 									</caps-field-error>
 								}
 							</caps-field-content>
-							<caps-switch id="email-notifications" [formField]="form.emailNotifications" />
+							<caps-switch [formField]="form.emailNotifications" />
 						</caps-field>
 					</caps-field-group>
 				</form>

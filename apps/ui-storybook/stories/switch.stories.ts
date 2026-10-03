@@ -11,14 +11,13 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'caps-switch-ng-model',
-	imports: [CapsSwitch, FormsModule, CapsLabel],
+	imports: [CapsSwitch, FormsModule, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
-		<label class="flex items-center" capsLabel>
-			test switch
-			<caps-switch [(ngModel)]="switchValue" id="testSwitchForm" (checkedChange)="handleChange($event)" />
-		</label>
+		<caps-field orientation="horizontal">
+			<caps-field-label>test switch</caps-field-label>
+			<caps-switch [(ngModel)]="switchValue" (checkedChange)="handleChange($event)" />
+		</caps-field>
 
 		<p data-testid="switchValue">{{ switchValue }}</p>
 		<p data-testid="changedValue">{{ _changedValueTo }}</p>
@@ -43,17 +42,17 @@ export class SwitchForm {
 		<form [formGroup]="form" class="w-full max-w-sm">
 			<caps-field-group>
 				<caps-field>
-					<caps-field-label id="test-switch-label">Test Switch</caps-field-label>
-					<caps-switch formControlName="test" class="ml-2" id="test-switch-label-with-aria" />
+					<caps-field-label>Test Switch</caps-field-label>
+					<caps-switch formControlName="test" />
 					<caps-field-description>This is a test switch.</caps-field-description>
 
 					<caps-field-error>Test switch must be enabled.</caps-field-error>
 				</caps-field>
 
-				<caps-field orientation="horizontal">
+				<div class="flex gap-3">
 					<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
 					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
-				</caps-field>
+				</div>
 			</caps-field-group>
 		</form>
 	`,
@@ -69,7 +68,7 @@ const meta: Meta<CapsSwitch> = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [CapsSwitchImports, CapsLabel, SwitchForm, SwitchHintErrorStory, FormsModule],
+			imports: [CapsSwitchImports, CapsFieldImports, CapsLabel, SwitchForm, SwitchHintErrorStory, FormsModule],
 		}),
 	],
 };
@@ -88,8 +87,8 @@ export const Default: Story = {
 export const InsideLabel: Story = {
 	render: () => ({
 		template: `
-      <label class='flex items-center' capsLabel> Test Switch
-        <caps-switch class='ml-2' id='testSwitchInsideLabel' />
+      <label class='gap-2' capsLabel> Test Switch
+        <caps-switch id='testSwitchInsideLabel' />
       </label>
     `,
 	}),
@@ -98,9 +97,9 @@ export const InsideLabel: Story = {
 export const LabeledWithAriaLabeledBy: Story = {
 	render: () => ({
 		template: `
-      <div class='flex items-center'>
+      <div class='flex items-center gap-2'>
         <label id='testSwitchLabel' for='testSwitchLabeledWithAria' capsLabel> Test Switch </label>
-        <caps-switch class='ml-2' id='testSwitchLabeledWithAria' aria-labelledby='testSwitchLabel' />
+        <caps-switch id='testSwitchLabeledWithAria' aria-labelledby='testSwitchLabel' />
       </div>
     `,
 	}),
@@ -109,11 +108,11 @@ export const LabeledWithAriaLabeledBy: Story = {
 export const Disabled: Story = {
 	render: () => ({
 		template: `
-      <div class='flex items-center'>
-         <label id='testSwitchLabel' for='testSwitchDisabled' capsLabel> Disabled Switch </label>
-       <caps-switch  disabled="true" class='ml-2' id='testSwitchDisabled' aria-labelledby='testSwitchLabel' />
-      </div>
-    `,
+  <caps-field orientation="horizontal">
+   <caps-field-label>Disabled Switch</caps-field-label>
+   <caps-switch disabled />
+  </caps-field>
+ `,
 	}),
 };
 

@@ -1,21 +1,21 @@
 import { Component, computed, inject } from '@angular/core';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
-import { CapsLabelImports } from '@capsule-ng/caps/label';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 
 @Component({
 	selector: 'spartan-checkbox-rtl-preview',
-	imports: [CapsLabelImports, CapsCheckboxImports],
+	imports: [CapsFieldImports, CapsCheckboxImports],
 	host: {
 		class: 'flex flex-col gap-4',
 		'[dir]': '_dir()',
 	},
 	template: `
-		@for (item of _items; track item.id) {
-			<div class="flex items-center gap-3">
-				<caps-checkbox [id]="item.id" [checked]="item.checked" />
-				<label capsLabel [for]="item.id">{{ _t()[item.labelKey] }}</label>
-			</div>
+		@for (item of _items; track item.labelKey) {
+			<caps-field orientation="horizontal">
+				<caps-checkbox [checked]="item.checked" />
+				<caps-field-label>{{ _t()[item.labelKey] }}</caps-field-label>
+			</caps-field>
 		}
 	`,
 })
@@ -49,9 +49,9 @@ export class CheckboxRtlPreview {
 	};
 
 	protected readonly _items = [
-		{ id: 'rtl-terms', labelKey: 'terms' as const, checked: true },
-		{ id: 'rtl-newsletter', labelKey: 'newsletter' as const, checked: false },
-		{ id: 'rtl-notifications', labelKey: 'notifications' as const, checked: false },
+		{ labelKey: 'terms' as const, checked: true },
+		{ labelKey: 'newsletter' as const, checked: false },
+		{ labelKey: 'notifications' as const, checked: false },
 	];
 
 	private readonly _translation = computed(() => this._translations[this._language()]);

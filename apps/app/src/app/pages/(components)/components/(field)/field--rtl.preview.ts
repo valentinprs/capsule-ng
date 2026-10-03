@@ -30,12 +30,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 					<caps-field-group>
 						<caps-field>
-							<caps-field-label for="field-rtl-name-on-card">{{ _t()['nameOnCard'] }}</caps-field-label>
-							<input capsInput placeholder="John Doe" id="field-rtl-name-on-card" />
+							<caps-field-label>{{ _t()['nameOnCard'] }}</caps-field-label>
+							<input capsInput placeholder="John Doe" />
 						</caps-field>
 						<caps-field class="col-span-2">
-							<caps-field-label for="field-rtl-card-number">{{ _t()['cardNumber'] }}</caps-field-label>
-							<input capsInput placeholder="1234 1234 1234 1234" id="field-rtl-card-number" />
+							<caps-field-label>{{ _t()['cardNumber'] }}</caps-field-label>
+							<input capsInput placeholder="1234 1234 1234 1234" />
 							<caps-field-description>{{ _t()['cardNumberDescription'] }}</caps-field-description>
 						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
@@ -70,8 +70,8 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</hlm-select>
 							</caps-field>
 							<caps-field>
-								<caps-field-label for="field-rtl-cvv">{{ _t()['cvv'] }}</caps-field-label>
-								<input capsInput placeholder="123" id="field-rtl-cvv" />
+								<caps-field-label>{{ _t()['cvv'] }}</caps-field-label>
+								<input capsInput placeholder="123" />
 							</caps-field>
 						</div>
 					</caps-field-group>
@@ -80,30 +80,22 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<caps-field-set>
 					<caps-field-legend>{{ _t()['billingAddress'] }}</caps-field-legend>
 					<caps-field-description>{{ _t()['billingAddressDescription'] }}</caps-field-description>
-					<caps-field-group>
-						<caps-field orientation="horizontal">
-							<caps-checkbox id="field-rtl-billing-address" [checked]="true" />
-							<caps-field-label for="field-rtl-billing-address">{{ _t()['sameAsShipping'] }}</caps-field-label>
-						</caps-field>
-					</caps-field-group>
+
+					<caps-field orientation="horizontal">
+						<caps-checkbox [checked]="true" />
+						<caps-field-label>{{ _t()['sameAsShipping'] }}</caps-field-label>
+					</caps-field>
 				</caps-field-set>
-				<caps-field-set>
-					<caps-field-group>
-						<caps-field>
-							<caps-field-label for="field-rtl-comments">{{ _t()['comments'] }}</caps-field-label>
-							<textarea
-								capsTextarea
-								class="resize-none"
-								id="field-rtl-comments"
-								[placeholder]="_t()['commentsPlaceholder']"
-							></textarea>
-						</caps-field>
-					</caps-field-group>
-				</caps-field-set>
-				<caps-field orientation="horizontal">
+
+				<caps-field>
+					<caps-field-label>{{ _t()['comments'] }}</caps-field-label>
+					<textarea capsTextarea class="resize-none" [placeholder]="_t()['commentsPlaceholder']"></textarea>
+				</caps-field>
+
+				<div class="flex gap-2">
 					<button capsButton>{{ _t()['submit'] }}</button>
 					<button capsButton variant="outline">{{ _t()['cancel'] }}</button>
-				</caps-field>
+				</div>
 			</caps-field-group>
 		</form>
 	`,

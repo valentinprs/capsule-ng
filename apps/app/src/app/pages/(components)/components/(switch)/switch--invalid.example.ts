@@ -8,10 +8,10 @@ import { CapsSwitch } from '@capsule-ng/caps/switch';
 	template: `
 		<caps-field orientation="horizontal" class="max-w-sm" forceInvalid>
 			<caps-field-content>
-				<caps-field-label for="switch-invalid">Accept terms and conditions</caps-field-label>
+				<caps-field-label>Accept terms and conditions</caps-field-label>
 				<caps-field-description>You must accept the terms and conditions to continue.</caps-field-description>
 			</caps-field-content>
-			<caps-switch id="switch-invalid" forceInvalid />
+			<caps-switch forceInvalid />
 		</caps-field>
 	`,
 })

@@ -9,12 +9,12 @@ describe('checkbox', () => {
 		cy.findByRole('checkbox').should('exist').should('have.attr', 'type', 'button').should('have.id', id);
 	};
 	const verifyCheckboxOff = () => {
-		cy.findByLabelText(/test checkbox/i).should('have.attr', 'aria-checked', 'false');
+		cy.findByLabelText(/test checkbox/i, { selector: 'button' }).should('have.attr', 'aria-checked', 'false');
 		cy.get('caps-checkbox').should('have.attr', 'data-state', 'unchecked');
 		cy.findByRole('checkbox').should('have.attr', 'aria-checked', 'false');
 	};
 	const verifyCheckboxOn = () => {
-		cy.findByLabelText(/test checkbox/i).should('have.attr', 'aria-checked', 'true');
+		cy.findByLabelText(/test checkbox/i, { selector: 'button' }).should('have.attr', 'aria-checked', 'true');
 		cy.get('caps-checkbox').should('have.attr', 'data-state', 'checked');
 		cy.findByRole('checkbox').should('have.attr', 'aria-checked', 'true');
 	};
@@ -67,7 +67,7 @@ describe('checkbox', () => {
 			verifyCheckboxSetup('testCheckbox');
 			verifyCheckboxOff();
 
-			cy.findByLabelText(/test checkbox/i).click();
+			cy.findByLabelText(/test checkbox/i, { selector: 'button' }).click();
 			verifyCheckboxOn();
 
 			cy.get('caps-checkbox').find('button').click();

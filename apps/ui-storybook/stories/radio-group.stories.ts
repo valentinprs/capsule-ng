@@ -34,28 +34,17 @@ class RadioGroupExample {
 
 @Component({
 	selector: 'radio-group-reactive-form-tester',
-	imports: [CapsRadioGroupImports, ReactiveFormsModule, CapsFieldImports, CapsButton, CapsLabel],
+	imports: [CapsRadioGroupImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 	template: `
 		<form [formGroup]="form" class="max-w-lg space-y-3">
-			<caps-field [forceInvalid]="isInvalid()">
+			<caps-field>
 				<caps-field-label>Billing Frequency *</caps-field-label>
 				<caps-radio-group formControlName="plan" class="text-sm font-medium">
-					<caps-field orientation="horizontal" class="items-center gap-3">
-						<caps-radio value="monthly"></caps-radio>
-						<label capsLabel class="font-normal">Monthly - $9.99</label>
-					</caps-field>
-					<caps-field orientation="horizontal" class="items-center gap-3">
-						<caps-radio value="annual"></caps-radio>
-						<label capsLabel class="font-normal">Annual - $99.99</label>
-					</caps-field>
-					<caps-field orientation="horizontal" class="items-center gap-3">
-						<caps-radio value="lifetime"></caps-radio>
-						<label capsLabel class="font-normal">Lifetime - $299.99</label>
-					</caps-field>
+					<caps-radio value="monthly">Monthly - $9.99</caps-radio>
+					<caps-radio value="annual">Annual - $99.99</caps-radio>
+					<caps-radio value="lifetime">Lifetime - $299.99</caps-radio>
 				</caps-radio-group>
-				@if (isInvalid()) {
-					<caps-field-error>Choose a plan to continue.</caps-field-error>
-				}
+				<caps-field-error>Choose a plan to continue.</caps-field-error>
 			</caps-field>
 
 			<div class="flex flex-wrap gap-2">
@@ -69,33 +58,19 @@ class RadioGroupReactiveFormTester {
 	public readonly form = inject(FormBuilder).group({
 		plan: ['', Validators.required],
 	});
-
-	isInvalid() {
-		const control = this.form.get('plan');
-		return !!control && control.invalid && control.touched;
-	}
 }
 
 @Component({
 	selector: 'radio-group-hint-error-story',
-	imports: [CapsRadioGroupImports, ReactiveFormsModule, CapsFieldImports, CapsButton, CapsLabel],
+	imports: [CapsRadioGroupImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 	template: `
 		<form [formGroup]="form" class="max-w-lg space-y-3">
 			<caps-field>
 				<caps-field-label>Billing Frequency *</caps-field-label>
 				<caps-radio-group formControlName="plan" class="text-sm font-medium">
-					<caps-field orientation="horizontal" class="items-center gap-3">
-						<caps-radio value="monthly"></caps-radio>
-						<label capsLabel class="font-normal">Monthly - $9.99</label>
-					</caps-field>
-					<caps-field orientation="horizontal" class="items-center gap-3">
-						<caps-radio value="annual"></caps-radio>
-						<label capsLabel class="font-normal">Annual - $99.99</label>
-					</caps-field>
-					<caps-field orientation="horizontal" class="items-center gap-3">
-						<caps-radio value="lifetime"></caps-radio>
-						<label capsLabel class="font-normal">Lifetime - $299.99</label>
-					</caps-field>
+					<caps-radio value="monthly">Monthly - $9.99</caps-radio>
+					<caps-radio value="annual">Annual - $99.99</caps-radio>
+					<caps-radio value="lifetime">Lifetime - $299.99</caps-radio>
 				</caps-radio-group>
 				<caps-field-description>Pick a plan to see the billing schedule.</caps-field-description>
 				<caps-field-error>Choose a plan to continue.</caps-field-error>
@@ -135,7 +110,6 @@ const meta: Meta<CapsRadioGroup> = {
 				HlmSmall,
 				CapsLabel,
 			],
-			providers: [],
 		}),
 	],
 };
@@ -152,31 +126,27 @@ export const Default: Story = {
 export const LabelFor: Story = {
 	render: () => ({
 		template: `
-		<caps-radio-group class="text-sm font-medium" >
+		<caps-radio-group aria-label="Density" class="text-sm font-medium">
 			<div class="flex items-center gap-3">
-				<caps-radio value="default" id="default">
-				</caps-radio>
+				<caps-radio value="default" id="default" />
 				<label capsLabel for="default" >
 					Default
 				</label>
 			</div>
 			<div class="flex items-center gap-3">
-				<caps-radio value="comfortable" id="comfortable">
-				</caps-radio>
+				<caps-radio value="comfortable" id="comfortable" />
 				<label capsLabel for="comfortable" >
 					Comfortable
 				</label>
 			</div>
 			<div class="flex items-center gap-3">
-				<caps-radio value="compact" id="compact">
-				</caps-radio>
+				<caps-radio value="compact" id="compact" />
 				<label capsLabel for="compact" >
 					Compact
 				</label>
 			</div>
 			<div class="flex items-center gap-3">
-				<caps-radio class="peer group" disabled=true value="disabled" id="disabled">
-				</caps-radio>
+				<caps-radio disabled value="disabled" id="disabled" />
 				<label capsLabel for="disabled" >
 					Disabled
 				</label>

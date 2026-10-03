@@ -11,13 +11,13 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 	template: `
 		<caps-field orientation="horizontal">
 			<caps-field-content>
-				<caps-field-label for="field-2fa">Multi-factor authentication</caps-field-label>
+				<caps-field-label>Multi-factor authentication</caps-field-label>
 				<caps-field-description>
 					Enable multi-factor authentication. If you do not have a two-factor device, you can use a one-time code sent
 					to your email.
 				</caps-field-description>
 			</caps-field-content>
-			<caps-switch id="field-2fa" />
+			<caps-switch />
 		</caps-field>
 	`,
 })

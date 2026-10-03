@@ -12,10 +12,10 @@ import { TranslateService, Translations } from '@spartan-ng/app/app/shared/trans
 	template: `
 		<caps-field orientation="horizontal" class="max-w-sm">
 			<caps-field-content>
-				<caps-field-label for="switch-focus-mode-rtl">{{ _t()['label'] }}</caps-field-label>
+				<caps-field-label>{{ _t()['label'] }}</caps-field-label>
 				<caps-field-description>{{ _t()['description'] }}</caps-field-description>
 			</caps-field-content>
-			<caps-switch id="switch-focus-mode-rtl" />
+			<caps-switch />
 		</caps-field>
 	`,
 })

@@ -16,14 +16,11 @@ import { CapsLinkImports } from '@capsule-ng/caps/link';
 				<caps-field-description>
 					Get notified when ChatGPT responds to requests that take time, like research or image generation.
 				</caps-field-description>
-				<caps-field-group data-slot="checkbox-group">
-					<caps-field orientation="horizontal">
-						<caps-checkbox id="field-group-push-notifications" disabled [checked]="true" />
-						<caps-field-label for="field-group-push-notifications" class="font-normal">
-							Push notifications
-						</caps-field-label>
-					</caps-field>
-				</caps-field-group>
+
+				<caps-field orientation="horizontal">
+					<caps-checkbox disabled [checked]="true" />
+					<caps-field-label class="font-normal">Push notifications</caps-field-label>
+				</caps-field>
 			</caps-field-set>
 			<caps-field-separator />
 			<caps-field-set>
@@ -34,12 +31,12 @@ import { CapsLinkImports } from '@capsule-ng/caps/link';
 				</caps-field-description>
 				<caps-field-group data-slot="checkbox-group">
 					<caps-field orientation="horizontal">
-						<caps-checkbox id="field-group-push-task" />
-						<caps-field-label for="field-group-push-task" class="font-normal">Push notifications</caps-field-label>
+						<caps-checkbox />
+						<caps-field-label class="font-normal">Push notifications</caps-field-label>
 					</caps-field>
 					<caps-field orientation="horizontal">
-						<caps-checkbox id="field-group-email-task" />
-						<caps-field-label for="field-group-email-task" class="font-normal">Email notifications</caps-field-label>
+						<caps-checkbox />
+						<caps-field-label class="font-normal">Email notifications</caps-field-label>
 					</caps-field>
 				</caps-field-group>
 			</caps-field-set>

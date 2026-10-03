@@ -4,12 +4,12 @@ import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsCheckbox } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInput } from '@capsule-ng/caps/input';
+import { CapsTextarea } from '@capsule-ng/caps/textarea';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmTextarea } from '@spartan-ng/helm/textarea';
 
 @Component({
 	selector: 'spartan-field-demo',
-	imports: [CapsFieldImports, HlmSelectImports, CapsInput, HlmTextarea, CapsButton, CapsCheckbox],
+	imports: [CapsFieldImports, HlmSelectImports, CapsInput, CapsTextarea, CapsButton, CapsCheckbox],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-md rounded-lg border p-6 h-full',
@@ -23,18 +23,18 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 
 					<caps-field-group>
 						<caps-field>
-							<caps-field-label for="field-preview-name-on-card">Name on card</caps-field-label>
-							<input capsInput placeholder="John Doe" id="field-preview-name-on-card" />
+							<caps-field-label>Name on card</caps-field-label>
+							<input capsInput placeholder="John Doe" />
 						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
 							<caps-field class="col-span-2">
-								<caps-field-label for="field-preview-card-number">Card number</caps-field-label>
-								<input capsInput placeholder="1234 1234 1234 1234" id="field-preview-card-number" />
+								<caps-field-label>Card number</caps-field-label>
+								<input capsInput placeholder="1234 1234 1234 1234" />
 								<caps-field-description>Enter your 16-digit card number.</caps-field-description>
 							</caps-field>
 							<caps-field>
-								<caps-field-label for="field-preview-cvv">CVV</caps-field-label>
-								<input capsInput placeholder="123" id="field-preview-cvv" />
+								<caps-field-label>CVV</caps-field-label>
+								<input capsInput placeholder="123" />
 							</caps-field>
 						</div>
 						<div class="grid grid-cols-2 gap-4">
@@ -87,25 +87,19 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 				<caps-field-set>
 					<caps-field-legend>Billing Address</caps-field-legend>
 					<caps-field-description>The billing address associated with your payment method</caps-field-description>
-					<caps-field-group>
-						<caps-field orientation="horizontal">
-							<caps-checkbox id="field-preview-billing-address" [checked]="true" />
-							<caps-field-label for="field-preview-billing-address">Same as shipping address.</caps-field-label>
-						</caps-field>
-					</caps-field-group>
+					<caps-field orientation="horizontal">
+						<caps-checkbox [checked]="true" />
+						<caps-field-label>Same as shipping address.</caps-field-label>
+					</caps-field>
 				</caps-field-set>
-				<caps-field-set>
-					<caps-field-group>
-						<caps-field>
-							<caps-field-label for="field-preview-comments">Comments</caps-field-label>
-							<textarea hlmTextarea id="field-preview-comments"></textarea>
-						</caps-field>
-					</caps-field-group>
-				</caps-field-set>
-				<caps-field orientation="horizontal">
-					<button capsButton>Submit</button>
-					<button capsButton variant="outline">Cancel</button>
+				<caps-field>
+					<caps-field-label>Comments</caps-field-label>
+					<textarea capsTextarea></textarea>
 				</caps-field>
+				<div class="flex gap-3">
+					<button capsButton type="submit">Submit</button>
+					<button capsButton type="button" variant="outline">Cancel</button>
+				</div>
 			</caps-field-group>
 		</form>
 	`,

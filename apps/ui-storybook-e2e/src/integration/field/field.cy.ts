@@ -128,8 +128,8 @@ describe('field', () => {
 			cy.injectAxe();
 		});
 
-		it('should render fieldset with radio group', () => {
-			cy.get('caps-field-set').should('exist');
+		it('should render a named field with radio group', () => {
+			cy.findByRole('radiogroup', { name: 'Subscription Plan' }).should('exist');
 			cy.get('caps-field-label').should('contain.text', 'Subscription Plan');
 			cy.contains('Yearly and lifetime plans offer significant savings').should('be.visible');
 

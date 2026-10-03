@@ -1,7 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
-import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -41,7 +40,6 @@ import { TasksExample } from '../tasks';
 		HlmDropdownMenuImports,
 		HlmCommandImports,
 		HlmPopoverImports,
-		CapsCheckboxImports,
 		PriorityIconPipe,
 		StatusIconPipe,
 	],
@@ -99,7 +97,13 @@ import { TasksExample } from '../tasks';
 							<hlm-command-group>
 								@for (status of _statuses(); track status) {
 									<button hlm-command-item [value]="status" (selected)="statusSelected(status)">
-										<caps-checkbox class="mr-2" [checked]="isStatusSelected(status)" />
+										<ng-icon
+											name="lucideCheck"
+											aria-hidden="true"
+											class="mr-2 size-4 shrink-0"
+											[class.opacity-0]="!isStatusSelected(status)"
+										/>
+										<span class="sr-only">{{ isStatusSelected(status) ? 'Filter active:' : 'Filter inactive:' }}</span>
 
 										<ng-icon [name]="status | statusIcon" class="text-muted-foreground mx-2" />
 										{{ status }}
@@ -139,7 +143,15 @@ import { TasksExample } from '../tasks';
 							<hlm-command-group>
 								@for (priority of _priorities(); track priority) {
 									<button hlm-command-item [value]="priority" (selected)="prioritySelected(priority)">
-										<caps-checkbox class="mr-2" [checked]="isPrioritySelected(priority)" />
+										<ng-icon
+											name="lucideCheck"
+											aria-hidden="true"
+											class="mr-2 size-4 shrink-0"
+											[class.opacity-0]="!isPrioritySelected(priority)"
+										/>
+										<span class="sr-only">
+											{{ isPrioritySelected(priority) ? 'Filter active:' : 'Filter inactive:' }}
+										</span>
 
 										<ng-icon [name]="priority | priorityIcon" class="text-muted-foreground mx-2" />
 										{{ priority }}

@@ -7,14 +7,10 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 	imports: [CapsFieldImports, CapsCheckbox],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<caps-field-set>
-			<caps-field-label for="exp-checkbox">
-				<caps-field orientation="horizontal">
-					<caps-checkbox id="exp-checkbox" [checked]="true" />
-					<caps-field-label for="exp-checkbox">I agree to the terms and conditions</caps-field-label>
-				</caps-field>
-			</caps-field-label>
-		</caps-field-set>
+		<caps-field orientation="horizontal">
+			<caps-checkbox [checked]="true" />
+			<caps-field-label>I agree to the terms and conditions</caps-field-label>
+		</caps-field>
 	`,
 })
 export class FieldCheckbox {}

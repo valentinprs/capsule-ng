@@ -9,12 +9,12 @@ import { CapsSwitch } from '@capsule-ng/caps/switch';
 	template: `
 		<caps-field-group>
 			<caps-field orientation="horizontal">
-				<caps-switch id="switch-size-sm" size="sm" />
-				<caps-field-label for="switch-size-sm">Small</caps-field-label>
+				<caps-switch size="sm" />
+				<caps-field-label>Small</caps-field-label>
 			</caps-field>
 			<caps-field orientation="horizontal">
-				<caps-switch id="switch-size-default" />
-				<caps-field-label for="switch-size-default">Default</caps-field-label>
+				<caps-switch />
+				<caps-field-label>Default</caps-field-label>
 			</caps-field>
 		</caps-field-group>
 	`,

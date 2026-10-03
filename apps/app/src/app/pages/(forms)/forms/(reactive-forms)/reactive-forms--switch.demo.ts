@@ -18,25 +18,23 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form id="form-switch-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<caps-field-group>
-						<caps-field orientation="horizontal">
-							<caps-field-content>
-								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
-								<caps-field-description>
-									Enable multi-factor authentication to secure your account.
-								</caps-field-description>
-								<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
-							</caps-field-content>
-							<caps-switch id="two-factor" formControlName="twoFactor" />
-						</caps-field>
-					</caps-field-group>
+					<caps-field orientation="horizontal">
+						<caps-field-content>
+							<caps-field-label>Multi-factor authentication</caps-field-label>
+							<caps-field-description>
+								Enable multi-factor authentication to secure your account.
+							</caps-field-description>
+							<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
+						</caps-field-content>
+						<caps-switch formControlName="twoFactor" />
+					</caps-field>
 				</form>
 			</div>
 			<hlm-card-footer>
-				<caps-field orientation="horizontal">
+				<div class="flex gap-2">
 					<button capsButton variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
 					<button capsButton type="submit" form="form-switch-demo">Submit</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	`,
@@ -79,25 +77,23 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form id="form-switch-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<caps-field-group>
-						<caps-field orientation="horizontal">
+					<caps-field orientation="horizontal">
 							<caps-field-content>
-								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
+								<caps-field-label>Multi-factor authentication</caps-field-label>
 								<caps-field-description>
 									Enable multi-factor authentication to secure your account.
 								</caps-field-description>
 								<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
 							</caps-field-content>
-							<caps-switch id="two-factor" formControlName="twoFactor" />
+							<caps-switch formControlName="twoFactor" />
 						</caps-field>
-					</caps-field-group>
 				</form>
 			</div>
 			<hlm-card-footer>
-				<caps-field orientation="horizontal">
+				<div class="flex gap-2">
 					<button capsButton variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
 					<button capsButton type="submit" form="form-switch-demo">Submit</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	\`,

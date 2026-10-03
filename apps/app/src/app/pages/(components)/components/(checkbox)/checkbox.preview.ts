@@ -10,25 +10,25 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 	template: `
 		<caps-field-group class="gap-6">
 			<caps-field orientation="horizontal">
-				<caps-checkbox id="terms" [(ngModel)]="accepted" />
-				<caps-field-label for="terms">Accept terms and conditions</caps-field-label>
+				<caps-checkbox [(ngModel)]="accepted" />
+				<caps-field-label>Accept terms and conditions</caps-field-label>
 			</caps-field>
 			<caps-field orientation="horizontal">
-				<caps-checkbox id="terms-2" [checked]="true" />
+				<caps-checkbox [checked]="true" />
 				<caps-field-content>
-					<caps-field-label for="terms-2">Accept terms and conditions</caps-field-label>
+					<caps-field-label>Accept terms and conditions</caps-field-label>
 					<caps-field-description>
 						By clicking this checkbox, you agree to the terms and conditions.
 					</caps-field-description>
 				</caps-field-content>
 			</caps-field>
 			<caps-field orientation="horizontal">
-				<caps-checkbox id="toggle" disabled />
-				<caps-field-label for="toggle">Enable notifications</caps-field-label>
+				<caps-checkbox disabled />
+				<caps-field-label>Enable notifications</caps-field-label>
 			</caps-field>
 			<caps-field orientation="horizontal">
-				<caps-checkbox id="mixed" [indeterminate]="true" />
-				<caps-field-label for="mixed">Select all notifications</caps-field-label>
+				<caps-checkbox [indeterminate]="true" />
+				<caps-field-label>Select all notifications</caps-field-label>
 			</caps-field>
 			<caps-field-label
 				for="toggle-2"
@@ -55,7 +55,7 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 `;
 export const defaultSkeleton = `
 <caps-field orientation="horizontal">
-  <caps-checkbox id="terms" />
-  <caps-field-label for="terms">Accept terms and conditions</caps-field-label>
+  <caps-checkbox />
+  <caps-field-label>Accept terms and conditions</caps-field-label>
 </caps-field>
 `;

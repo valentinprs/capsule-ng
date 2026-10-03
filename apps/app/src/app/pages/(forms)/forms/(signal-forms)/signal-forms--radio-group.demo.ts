@@ -29,7 +29,7 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 											<span class="font-medium">{{ plan.title }}</span>
 											<caps-field-description>{{ plan.description }}</caps-field-description>
 										</caps-field-content>
-										<caps-radio [value]="plan.id" [id]="'plan-' + plan.id"></caps-radio>
+										<caps-radio [value]="plan.id" [id]="'plan-' + plan.id" />
 									</caps-field>
 								</caps-field-label>
 							}
@@ -46,10 +46,10 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 				</form>
 			</div>
 			<hlm-card-footer>
-				<caps-field orientation="horizontal">
+				<div class="flex gap-2">
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-radio-demo">Submit</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	`,
@@ -131,8 +131,7 @@ import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 											<span class="font-medium">{{ plan.title }}</span>
 											<caps-field-description>{{ plan.description }}</caps-field-description>
 										</caps-field-content>
-										<caps-radio [value]="plan.id" [id]="'plan-' + plan.id">
-										</caps-radio>
+										<caps-radio [value]="plan.id" [id]="'plan-' + plan.id" />
 									</caps-field>
 								</caps-field-label>
 							}
@@ -149,10 +148,10 @@ import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 				</form>
 			</div>
 			<hlm-card-footer>
-				<caps-field orientation="horizontal">
+				<div class="flex gap-2">
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-radio-demo">Submit</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	\`,

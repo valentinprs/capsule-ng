@@ -11,9 +11,9 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 	template: `
 		<form class="space-y-4" [formGroup]="form" (ngSubmit)="form.markAllAsTouched()">
 			<caps-field orientation="horizontal">
-				<caps-switch id="switch-agreement" formControlName="agreement" required />
+				<caps-switch formControlName="agreement" required />
 				<caps-field-content>
-					<caps-field-label for="switch-agreement">Accept terms and conditions</caps-field-label>
+					<caps-field-label>Accept terms and conditions</caps-field-label>
 					<caps-field-description>You must accept the terms before continuing.</caps-field-description>
 					<caps-field-error validator="required">Please accept the terms.</caps-field-error>
 				</caps-field-content>

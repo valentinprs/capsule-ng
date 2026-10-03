@@ -18,29 +18,27 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form novalidate id="form-switch-demo" (submit)="submit($event)">
-					<caps-field-group>
-						<caps-field orientation="horizontal">
-							<caps-field-content>
-								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
-								<caps-field-description>
-									Enable multi-factor authentication to secure your account.
-								</caps-field-description>
-								@for (error of form.twoFactor().errors(); track error) {
-									<caps-field-error [validator]="error.kind">
-										{{ error.message }}
-									</caps-field-error>
-								}
-							</caps-field-content>
-							<caps-switch id="two-factor" [formField]="form.twoFactor" />
-						</caps-field>
-					</caps-field-group>
+					<caps-field orientation="horizontal">
+						<caps-field-content>
+							<caps-field-label>Multi-factor authentication</caps-field-label>
+							<caps-field-description>
+								Enable multi-factor authentication to secure your account.
+							</caps-field-description>
+							@for (error of form.twoFactor().errors(); track error) {
+								<caps-field-error [validator]="error.kind">
+									{{ error.message }}
+								</caps-field-error>
+							}
+						</caps-field-content>
+						<caps-switch [formField]="form.twoFactor" />
+					</caps-field>
 				</form>
 			</div>
 			<hlm-card-footer>
-				<caps-field orientation="horizontal">
+				<div class="flex gap-2">
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-switch-demo">Submit</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	`,
@@ -95,10 +93,9 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form novalidate id="form-switch-demo" (submit)="submit($event)">
-					<caps-field-group>
-						<caps-field orientation="horizontal">
+					<caps-field orientation="horizontal">
 							<caps-field-content>
-								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
+								<caps-field-label>Multi-factor authentication</caps-field-label>
 								<caps-field-description>
 									Enable multi-factor authentication to secure your account.
 								</caps-field-description>
@@ -108,16 +105,15 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 									</caps-field-error>
 								}
 							</caps-field-content>
-							<caps-switch id="two-factor" [formField]="form.twoFactor" />
+							<caps-switch [formField]="form.twoFactor" />
 						</caps-field>
-					</caps-field-group>
 				</form>
 			</div>
 			<hlm-card-footer>
-				<caps-field orientation="horizontal">
+				<div class="flex gap-2">
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-switch-demo">Submit</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	\`,

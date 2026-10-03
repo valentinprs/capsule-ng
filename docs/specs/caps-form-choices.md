@@ -91,3 +91,26 @@ outside the Brain projection. Brain itself remains unchanged.
 Main advanced during implementation to include Dialog/AlertDialog (#60). Integration preserves
 both Dialog and form-choice styles and uses Capsule Dialog with Capsule Switch in the shared
 example; the PR does not introduce those Dialog components itself.
+
+## Example composition audit (2026-10-03)
+
+A follow-up review covered every consumer migrated by #31: catalogue previews and variants,
+reactive/signal form demos and their displayed source, the four stories, and homepage consumers.
+Simple radio options project their label directly into `CapsRadio`; they do not reconstruct its
+layout with an empty control, a separate label and a flex wrapper. Checkbox and Switch use
+`CapsField`/`CapsFieldLabel` when field composition is needed, letting Capsule associate labels,
+descriptions and errors automatically. Unnecessary single-child groups, unlabelled fieldsets and
+Fields used only for button layout are removed.
+
+Selectable cards keep their outer labels and explicit targets because these enable full-card
+activation with richer content. Label API demonstrations retain explicit `for`/`aria-labelledby`
+wiring intentionally. Native menu checkbox items and decorative Command selection indicators
+replace form controls nested inside other interactive buttons in homepage examples.
+
+Follow-up verification: 852 unit tests, 56 Storybook tests for Checkbox/RadioGroup/Switch/Field,
+18 built-package example consumer typechecks, six homepage keyboard/label/dialog checks, and
+eight Radio Form/Field Radio captures in both themes at 390/1280 px. Repository builds, Storybook
+build, lint and formatting pass. The full catalogue run passed 56/57 tests; the untouched
+Breadcrumb dropdown contrast check then passed on rerun (3/3 Breadcrumb tests). The earlier CI
+Label failure was an obsolete Helm selector, now corrected. The earlier CI Menubar failure did
+not reproduce locally (2/2 tests). Both review axes have no remaining actionable findings.

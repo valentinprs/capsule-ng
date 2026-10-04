@@ -1,77 +1,77 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, minLength, required, validate } from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-simple-signup-form',
-	imports: [FormRoot, FormField, RouterLink, HlmCardImports, HlmFieldImports, HlmInputImports, HlmButtonImports],
+	imports: [FormRoot, FormField, RouterLink, CapsCardImports, CapsFieldImports, CapsInputImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Create an account</h3>
-				<p hlmCardDescription>Enter your information below to create your account</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Create an account</caps-card-title>
+				<caps-card-description>Enter your information below to create your account</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form [formRoot]="form">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="name">Full Name</label>
-							<input hlmInput type="text" id="name" placeholder="John Doe" [formField]="form.name" />
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="name">Full Name</caps-field-label>
+							<input capsInput type="text" id="name" placeholder="John Doe" [formField]="form.name" />
 							@for (error of form.name().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">{{ error.message }}</hlm-field-error>
+								<caps-field-error [validator]="error.kind">{{ error.message }}</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="email">Email</label>
-							<input hlmInput type="email" id="email" placeholder="you@example.com" [formField]="form.email" />
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="email">Email</caps-field-label>
+							<input capsInput type="email" id="email" placeholder="you@example.com" [formField]="form.email" />
 							@if (!(form.email().touched() && form.email().invalid())) {
-								<hlm-field-description>
+								<caps-field-description>
 									We'll use this to contact you. We will not share your email with anyone else.
-								</hlm-field-description>
+								</caps-field-description>
 							}
 							@for (error of form.email().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">{{ error.message }}</hlm-field-error>
+								<caps-field-error [validator]="error.kind">{{ error.message }}</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="password">Password</label>
-							<input hlmInput type="password" id="password" [formField]="form.password" />
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="password">Password</caps-field-label>
+							<input capsInput type="password" id="password" [formField]="form.password" />
 							@if (!(form.password().touched() && form.password().invalid())) {
-								<hlm-field-description>Must be at least 8 characters long.</hlm-field-description>
+								<caps-field-description>Must be at least 8 characters long.</caps-field-description>
 							}
 							@for (error of form.password().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">{{ error.message }}</hlm-field-error>
+								<caps-field-error [validator]="error.kind">{{ error.message }}</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="confirmPassword">Confirm Password</label>
-							<input hlmInput type="password" id="confirmPassword" [formField]="form.confirmPassword" />
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="confirmPassword">Confirm Password</caps-field-label>
+							<input capsInput type="password" id="confirmPassword" [formField]="form.confirmPassword" />
 							@if (!(form.confirmPassword().touched() && form.confirmPassword().invalid())) {
-								<hlm-field-description>Please confirm your password.</hlm-field-description>
+								<caps-field-description>Please confirm your password.</caps-field-description>
 							}
 							@if (form.confirmPassword().touched() && form.confirmPassword().invalid()) {
 								@for (error of form.confirmPassword().errors(); track error) {
-									<hlm-field-error [validator]="error.kind">{{ error.message }}</hlm-field-error>
+									<caps-field-error [validator]="error.kind">{{ error.message }}</caps-field-error>
 								}
 							}
-						</hlm-field>
-						<hlm-field>
-							<button hlmBtn type="submit" [disabled]="form().submitting()">Create Account</button>
-							<button hlmBtn variant="outline" type="button">Sign up with Google</button>
-							<p hlmFieldDescription class="text-center">
+						</caps-field>
+						<div class="flex flex-col gap-3">
+							<button capsButton type="submit" [disabled]="form().submitting()">Create Account</button>
+							<button capsButton variant="outline" type="button">Sign up with Google</button>
+							<p class="text-muted-foreground text-center text-sm">
 								Already have an account?
 								<a routerLink=".">Sign in</a>
 							</p>
-						</hlm-field>
-					</hlm-field-group>
+						</div>
+					</caps-field-group>
 				</form>
-			</div>
-		</hlm-card>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class SignupForm {

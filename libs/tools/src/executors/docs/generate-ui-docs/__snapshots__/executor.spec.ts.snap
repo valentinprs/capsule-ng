@@ -667,6 +667,20 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "aspect-ratio": {
+    "caps": {
+      "CapsAspectRatio": {
+        "inputs": [
+          {
+            "name": "ratio",
+            "required": false,
+            "type": "number",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-aspect-ratio",
+      },
+    },
     "helm": {
       "HlmAspectRatio": {
         "inputs": [
@@ -2236,6 +2250,72 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "card": {
+    "caps": {
+      "CapsCard": {
+        "inputs": [
+          {
+            "name": "width",
+            "required": false,
+            "type": "CapsCardWidth",
+          },
+          {
+            "name": "maxWidth",
+            "required": false,
+            "type": "CapsCardMaxWidth",
+          },
+          {
+            "name": "density",
+            "required": false,
+            "type": "CapsCardDensity",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-card",
+      },
+      "CapsCardAction": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-card-action",
+      },
+      "CapsCardContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-card-content",
+      },
+      "CapsCardDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-card-description",
+      },
+      "CapsCardFooter": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-card-footer",
+      },
+      "CapsCardHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-card-header",
+      },
+      "CapsCardTitle": {
+        "inputs": [
+          {
+            "name": "level",
+            "required": false,
+            "type": "1 | 2 | 3 | 4 | 5 | 6",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-card-title",
+      },
+    },
     "helm": {
       "HlmCard": {
         "inputs": [
@@ -9276,6 +9356,25 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnSeparator],brn-separator",
+      },
+    },
+    "caps": {
+      "CapsSeparator": {
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "SeparatorOrientation",
+          },
+          {
+            "name": "decorative",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-separator",
       },
     },
     "helm": {

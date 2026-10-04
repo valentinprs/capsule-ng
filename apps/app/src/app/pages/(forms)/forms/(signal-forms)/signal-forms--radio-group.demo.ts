@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-signal-form-radio-group-demo',
-	imports: [FormField, HlmCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Subscription Plan</h3>
-				<p hlmCardDescription>See pricing and features for each plan.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Subscription Plan</caps-card-title>
+				<caps-card-description>See pricing and features for each plan.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-radio-demo" (submit)="submit($event)">
 					<caps-field-set>
 						<caps-field-legend>Plan</caps-field-legend>
@@ -44,14 +44,12 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						}
 					</caps-field-set>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
-					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-					<button capsButton type="submit" form="form-radio-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				<button capsButton type="submit" form="form-radio-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormRadioGroupDemo {
@@ -103,22 +101,22 @@ export const signalFormsRadioGroupDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 
 @Component({
 	selector: 'spartan-signal-form-radio-group-demo',
-	imports: [FormField, HlmCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Subscription Plan</h3>
-				<p hlmCardDescription>See pricing and features for each plan.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Subscription Plan</caps-card-title>
+				<caps-card-description>See pricing and features for each plan.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-radio-demo" (submit)="submit($event)">
 					<caps-field-set>
 						<caps-field-legend>Plan</caps-field-legend>
@@ -146,14 +144,12 @@ import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 						}
 					</caps-field-set>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-radio-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormRadioGroupDemo {

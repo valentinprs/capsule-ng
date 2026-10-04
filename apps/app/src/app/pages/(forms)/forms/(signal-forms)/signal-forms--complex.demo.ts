@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { CapsSwitchImports } from '@capsule-ng/caps/switch';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-signal-form-complex-demo',
 	imports: [
 		FormField,
-		HlmCardImports,
+		CapsCardImports,
 		CapsFieldImports,
 		CapsRadioGroupImports,
 		CapsCheckboxImports,
@@ -23,12 +23,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header class="border-b">
-				<h3 hlmCardTitle>You're almost there!</h3>
-				<p hlmCardDescription>Choose your subscription plan and billing period.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header class="border-b">
+				<caps-card-title [level]="3">You're almost there!</caps-card-title>
+				<caps-card-description>Choose your subscription plan and billing period.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-complex-demo" (submit)="submit($event)">
 					<caps-field-group>
 						<caps-field-set>
@@ -117,14 +117,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						</caps-field>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<caps-field>
-					<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
-					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-				</caps-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="flex-col items-stretch gap-2">
+				<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormComplexDemo {
@@ -219,7 +217,7 @@ export const signalFormsComplexDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
@@ -230,7 +228,7 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 	selector: 'spartan-signal-form-complex-demo',
 	imports: [
 		FormField,
-		HlmCardImports,
+		CapsCardImports,
 		CapsFieldImports,
 		CapsRadioGroupImports,
 		CapsCheckboxImports,
@@ -241,12 +239,12 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header class="border-b">
-				<h3 hlmCardTitle>You're almost there!</h3>
-				<p hlmCardDescription>Choose your subscription plan and billing period.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header class="border-b">
+				<caps-card-title [level]="3">You're almost there!</caps-card-title>
+				<caps-card-description>Choose your subscription plan and billing period.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-complex-demo" (submit)="submit($event)">
 					<caps-field-group>
 						<caps-field-set>
@@ -336,14 +334,12 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 						</caps-field>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<caps-field>
+			</caps-card-content>
+			<caps-card-footer class="flex-col items-stretch gap-2">
 					<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-				</caps-field>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormComplexDemo {

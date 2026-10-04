@@ -1,11 +1,11 @@
-import { HlmAspectRatio } from '@spartan-ng/helm/aspect-ratio';
+import { CapsAspectRatio } from '@capsule-ng/caps/aspect-ratio';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
 export type AspectRatio = { ratio: string | number };
 const meta: Meta<AspectRatio> = {
 	title: 'Aspect Ratio',
-	component: HlmAspectRatio,
+	component: CapsAspectRatio,
 	tags: ['autodocs'],
 	args: { ratio: '16/9' },
 	argTypes: {
@@ -18,7 +18,7 @@ const meta: Meta<AspectRatio> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmAspectRatio],
+			imports: [CapsAspectRatio],
 		}),
 	],
 };
@@ -36,12 +36,13 @@ export const Default: Story = {
 		},
 		template: `
       <div class='max-w-xl overflow-hidden rounded-xl drop-shadow'>
-        <div [hlmAspectRatio]='ratio'>
+        <caps-aspect-ratio [ratio]='ratio'>
           <img
+            class='size-full object-cover'
             alt='Mountain views'
             src='/mountains.jpg'
           />
-        </div>
+        </caps-aspect-ratio>
       </div>
     `,
 	}),

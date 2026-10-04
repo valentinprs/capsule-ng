@@ -17,11 +17,13 @@ import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
+import { CardDensityPreview } from './card--density.preview';
 import { CardEdgeToEdge } from './card--edge-to-edge.preview';
 import { CardImagePreview } from './card--image.preview';
+import { CardMaxWidthPreview } from './card--max-width.preview';
 import { CardRtl } from './card--rtl.preview';
-import { CardSizePreview } from './card--size.preview';
 import { CardSpacing } from './card--spacing.preview';
+import { CardWidthPreview } from './card--width.preview';
 import { CardPreview, defaultImports, defaultSkeleton } from './card.preview';
 
 export const routeMeta: RouteMeta = {
@@ -48,7 +50,9 @@ export const routeMeta: RouteMeta = {
 		RtlHeader,
 		CodeRtlPreview,
 		CardPreview,
-		CardSizePreview,
+		CardDensityPreview,
+		CardWidthPreview,
+		CardMaxWidthPreview,
 		CardSpacing,
 		CardEdgeToEdge,
 		CardImagePreview,
@@ -72,28 +76,48 @@ export const routeMeta: RouteMeta = {
 			</div>
 
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
-			<h3 id="size" spartanH4>Size</h3>
+			<h3 id="width" spartanH4>Width</h3>
+			<p class="${hlmP}">
+				Cards fill the available width by default. Use width="auto" to fit the content, including inside flex and grid
+				containers.
+			</p>
+			<spartan-tabs firstTab="Preview" secondTab="Code">
+				<div spartanCodePreview firstTab><spartan-card-width-preview /></div>
+				<spartan-code secondTab [code]="_widthCode()" />
+			</spartan-tabs>
+			<h3 id="max-width" spartanH4>Maximum width</h3>
+			<p class="${hlmP}">
+				Use maxWidth="sm", "md", or "lg" to cap the width at the shared 24rem, 28rem, or 32rem container tokens. The
+				default "none" has no nominal cap; every card still fits its parent.
+			</p>
+			<spartan-tabs firstTab="Preview" secondTab="Code">
+				<div spartanCodePreview firstTab><spartan-card-max-width-preview /></div>
+				<spartan-code secondTab [code]="_maxWidthCode()" />
+			</spartan-tabs>
+			<h3 id="density" spartanH4>Density</h3>
 
 			<p class="${hlmP}">
 				Use the
-				<code class="${hlmCode}">size="sm"</code>
-				prop to set the size of the card to small. The small size variant uses smaller spacing.
+				<code class="${hlmCode}">density="compact"</code>
+				prop for smaller spacing and title typography.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
-					<spartan-card-size-preview />
+					<spartan-card-density-preview />
 				</div>
-				<spartan-code secondTab [code]="_sizeCode()" />
+				<spartan-code secondTab [code]="_densityCode()" />
 			</spartan-tabs>
 
 			<h3 id="spacing" spartanH4>Spacing</h3>
 
 			<p class="${hlmP}">
 				In addition to the
-				<code class="${hlmCode}">size</code>
+				<code class="${hlmCode}">density</code>
 				prop, you can use the
 				<code class="${hlmCode}">--card-spacing</code>
-				CSS variable to control the spacing between sections and the inset of card parts.
+				CSS variable to control the spacing between sections and the inset of card parts. Classes and inline styles
+				remain available for specific dimensions, margins, and layout overrides. Width does not center the card; use a
+				parent layout or mx-auto when needed.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -109,7 +133,7 @@ export const routeMeta: RouteMeta = {
 				above a footer, use
 				<code class="${hlmCode}">-mb-(--card-spacing)</code>
 				on
-				<code class="${hlmCode}">hlmCardContent</code>
+				<code class="${hlmCode}">caps-card-content</code>
 				to remove the section gap.
 			</p>
 
@@ -136,8 +160,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="carousel" label="Carousel" />
@@ -154,7 +178,9 @@ export default class CardPage {
 
 	private readonly _snippets = inject(PrimitiveSnippetsService).getSnippets('card');
 	protected readonly _defaultCode = computed(() => this._snippets()['default']);
-	protected readonly _sizeCode = computed(() => this._snippets()['size']);
+	protected readonly _widthCode = computed(() => this._snippets()['width']);
+	protected readonly _maxWidthCode = computed(() => this._snippets()['maxWidth']);
+	protected readonly _densityCode = computed(() => this._snippets()['density']);
 	protected readonly _spacingCode = computed(() => this._snippets()['spacing']);
 	protected readonly _edgeToEdgeCode = computed(() => this._snippets()['edgeToEdge']);
 	protected readonly _imageCode = computed(() => this._snippets()['image']);

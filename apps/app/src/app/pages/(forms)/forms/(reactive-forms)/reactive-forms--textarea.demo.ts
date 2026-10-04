@@ -1,50 +1,48 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-reactive-form-textarea-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmTextareaImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsTextareaImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Personalization</h3>
-				<p hlmCardDescription>Customize your experience by telling us more about yourself.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Personalization</caps-card-title>
+				<caps-card-description>Customize your experience by telling us more about yourself.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-textarea-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="about">More about you</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="about">More about you</caps-field-label>
 							<textarea
-								hlmTextarea
+								capsTextarea
 								id="about"
 								class="min-h-32"
 								placeholder="I'm a software engineer..."
 								formControlName="about"
 							></textarea>
-							<hlm-field-description>
+							<caps-field-description>
 								Tell us more about yourself. This will be used to help us personalize your experience.
-							</hlm-field-description>
-							<hlm-field-error validator="required">This is a required field.</hlm-field-error>
-							<hlm-field-error validator="minlength">Please provide at least 10 characters.</hlm-field-error>
-							<hlm-field-error validator="maxlength">Please keep it under 200 characters.</hlm-field-error>
-						</hlm-field>
-					</hlm-field-group>
+							</caps-field-description>
+							<caps-field-error validator="required">This is a required field.</caps-field-error>
+							<caps-field-error validator="minlength">Please provide at least 10 characters.</caps-field-error>
+							<caps-field-error validator="maxlength">Please keep it under 200 characters.</caps-field-error>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-textarea-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="submit" form="form-textarea-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class ReactiveFormTextareaDemo {
@@ -67,51 +65,49 @@ export class ReactiveFormTextareaDemo {
 export const reactiveFormsTextareaDemoCode = `
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-reactive-form-textarea-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmTextareaImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsTextareaImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Personalization</h3>
-				<p hlmCardDescription>Customize your experience by telling us more about yourself.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Personalization</caps-card-title>
+				<caps-card-description>Customize your experience by telling us more about yourself.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-textarea-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="about">More about you</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="about">More about you</caps-field-label>
 							<textarea
-								hlmTextarea
+								capsTextarea
 								id="about"
 								class="min-h-32"
 								placeholder="I'm a software engineer..."
 								formControlName="about"
 							></textarea>
-							<hlm-field-description>
+							<caps-field-description>
 								Tell us more about yourself. This will be used to help us personalize your experience.
-							</hlm-field-description>
-							<hlm-field-error validator="required">This is a required field.</hlm-field-error>
-							<hlm-field-error validator="minlength">Please provide at least 10 characters.</hlm-field-error>
-							<hlm-field-error validator="maxlength">Please keep it under 200 characters.</hlm-field-error>
-						</hlm-field>
-					</hlm-field-group>
+							</caps-field-description>
+							<caps-field-error validator="required">This is a required field.</caps-field-error>
+							<caps-field-error validator="minlength">Please provide at least 10 characters.</caps-field-error>
+							<caps-field-error validator="maxlength">Please keep it under 200 characters.</caps-field-error>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-textarea-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+					<button capsButton type="submit" form="form-textarea-demo">Submit</button>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ReactiveFormTextareaDemo {

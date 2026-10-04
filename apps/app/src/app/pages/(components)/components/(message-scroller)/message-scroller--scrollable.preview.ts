@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { createScrollableScript } from './message-scroller.shared';
@@ -36,20 +36,22 @@ export class MessageScrollerScrollableFooter {
 
 @Component({
 	selector: 'spartan-message-scroller-scrollable-preview',
-	imports: [HlmMessageScrollerImports, HlmCardImports, MessageScrollerTranscriptRow, MessageScrollerScrollableFooter],
+	imports: [HlmMessageScrollerImports, CapsCardImports, MessageScrollerTranscriptRow, MessageScrollerScrollableFooter],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'mx-auto flex w-full max-w-sm flex-col gap-4',
 	},
 	template: `
-		<hlm-card class="h-[35rem] w-full gap-0 overflow-hidden">
-			<hlm-card-header class="gap-1 border-b">
-				<h3 hlmCardTitle>Scroll Status</h3>
-				<p hlmCardDescription>Where the reader can go scroll to based on current scroll position.</p>
-			</hlm-card-header>
+		<caps-card class="h-[35rem] gap-0 overflow-hidden">
+			<caps-card-header class="gap-1 border-b">
+				<caps-card-title [level]="3">Scroll Status</caps-card-title>
+				<caps-card-description>
+					Where the reader can go scroll to based on current scroll position.
+				</caps-card-description>
+			</caps-card-header>
 
 			<div hlmMessageScrollerProvider defaultScrollPosition="start">
-				<div hlmCardContent class="flex-1 overflow-hidden p-0">
+				<caps-card-content class="flex-1 overflow-hidden p-0">
 					<div hlmMessageScroller>
 						<div hlmMessageScrollerViewport>
 							<div hlmMessageScrollerContent class="gap-4 p-(--card-spacing)">
@@ -67,13 +69,13 @@ export class MessageScrollerScrollableFooter {
 						</div>
 						<button hlmMessageScrollerButton></button>
 					</div>
-				</div>
+				</caps-card-content>
 
-				<hlm-card-footer class="text-muted-foreground justify-center border-t text-center text-sm">
+				<caps-card-footer class="text-muted-foreground justify-center border-t text-center text-sm">
 					<spartan-message-scroller-scrollable-footer />
-				</hlm-card-footer>
+				</caps-card-footer>
 			</div>
-		</hlm-card>
+		</caps-card>
 
 		<div class="text-muted-foreground px-0.5 text-center text-xs">Scroll the transcript to see the footer update.</div>
 	`,

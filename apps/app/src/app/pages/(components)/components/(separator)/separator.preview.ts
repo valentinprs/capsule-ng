@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
+import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
 
 @Component({
 	selector: 'spartan-separator-preview',
-	imports: [HlmSeparatorImports],
+	imports: [CapsSeparatorImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex max-w-sm flex-col gap-4 text-sm">
@@ -11,7 +11,7 @@ import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 				<div class="leading-none font-medium">spartan/ui</div>
 				<div class="text-muted-foreground">An open-source UI component library.</div>
 			</div>
-			<hlm-separator />
+			<caps-separator />
 			<div>A set of beautifully designed components that you can customize, extend, and build on.</div>
 		</div>
 	`,
@@ -19,8 +19,8 @@ import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 export class SeparatorPreview {}
 
 export const defaultImports = `
-import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
+import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
 `;
 export const defaultSkeleton = `
-<hlm-separator />
+<caps-separator />
 `;

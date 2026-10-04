@@ -1,19 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
-import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-calendar-preview',
-	imports: [HlmCalendar, HlmCardImports],
+	imports: [HlmCalendar, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	hostDirectives: [HlmCard],
 	host: {
 		class: 'p-0 w-fit mx-auto',
 	},
 	template: `
-		<div hlmCardContent class="p-0">
-			<hlm-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" />
-		</div>
+		<caps-card class="p-0">
+			<caps-card-content class="p-0">
+				<hlm-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" />
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CalendarPreview {

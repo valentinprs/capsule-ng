@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsSwitchImports } from '@capsule-ng/caps/switch';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-signal-form-switch-demo',
-	imports: [FormField, HlmCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Security Settings</h3>
-				<p hlmCardDescription>Manage your account security preferences.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Security Settings</caps-card-title>
+				<caps-card-description>Manage your account security preferences.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-switch-demo" (submit)="submit($event)">
 					<caps-field orientation="horizontal">
 						<caps-field-content>
@@ -33,14 +33,12 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						<caps-switch [formField]="form.twoFactor" />
 					</caps-field>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
-					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-					<button capsButton type="submit" form="form-switch-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				<button capsButton type="submit" form="form-switch-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormSwitchDemo {
@@ -76,22 +74,22 @@ export const signalFormsSwitchDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-signal-form-switch-demo',
-	imports: [FormField, HlmCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Security Settings</h3>
-				<p hlmCardDescription>Manage your account security preferences.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Security Settings</caps-card-title>
+				<caps-card-description>Manage your account security preferences.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-switch-demo" (submit)="submit($event)">
 					<caps-field orientation="horizontal">
 							<caps-field-content>
@@ -108,14 +106,12 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 							<caps-switch [formField]="form.twoFactor" />
 						</caps-field>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-switch-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormSwitchDemo {

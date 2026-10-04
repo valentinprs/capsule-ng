@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
@@ -9,10 +9,10 @@ import { COMMANDS_SCRIPT, trimMessageText } from './message-scroller.shared';
 
 @Component({
 	selector: 'spartan-message-scroller-commands-menu',
-	imports: [HlmButtonImports, HlmDropdownMenuImports],
+	imports: [CapsButtonImports, HlmDropdownMenuImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn type="button" variant="secondary" [hlmDropdownMenuTrigger]="menu" align="end" side="bottom">
+		<button capsButton type="button" variant="secondary" [hlmDropdownMenuTrigger]="menu" align="end" side="bottom">
 			Jump to...
 		</button>
 
@@ -47,7 +47,7 @@ export class MessageScrollerCommandsMenu {
 
 @Component({
 	selector: 'spartan-message-scroller-commands-preview',
-	imports: [HlmMessageScrollerImports, HlmCardImports, MessageScrollerTranscriptRow, MessageScrollerCommandsMenu],
+	imports: [HlmMessageScrollerImports, CapsCardImports, MessageScrollerTranscriptRow, MessageScrollerCommandsMenu],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex w-full max-w-sm flex-col gap-4',
@@ -55,16 +55,16 @@ export class MessageScrollerCommandsMenu {
 	template: `
 		<div hlmMessageScrollerProvider defaultScrollPosition="end">
 			<div class="relative flex flex-col gap-4">
-				<hlm-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
-					<hlm-card-header class="gap-1 border-b">
-						<h3 hlmCardTitle>Commands</h3>
-						<p hlmCardDescription>Drive the transcript from outside.</p>
-						<div hlmCardAction>
+				<caps-card maxWidth="sm" class="mx-auto h-[35rem] gap-0">
+					<caps-card-header class="gap-1 border-b">
+						<caps-card-title [level]="3">Commands</caps-card-title>
+						<caps-card-description>Drive the transcript from outside.</caps-card-description>
+						<caps-card-action>
 							<spartan-message-scroller-commands-menu />
-						</div>
-					</hlm-card-header>
+						</caps-card-action>
+					</caps-card-header>
 
-					<div hlmCardContent class="flex-1 overflow-hidden p-0">
+					<caps-card-content class="flex-1 overflow-hidden p-0">
 						<div hlmMessageScroller>
 							<div hlmMessageScrollerViewport>
 								<div hlmMessageScrollerContent class="p-(--card-spacing)">
@@ -82,8 +82,8 @@ export class MessageScrollerCommandsMenu {
 							</div>
 							<button hlmMessageScrollerButton></button>
 						</div>
-					</div>
-				</hlm-card>
+					</caps-card-content>
+				</caps-card>
 			</div>
 		</div>
 

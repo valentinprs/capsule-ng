@@ -1,25 +1,26 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 import { injectBrnCalendarI18n, provideBrnCalendarI18n } from '@spartan-ng/brain/calendar';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
-import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
 import { DateTime } from 'luxon';
 import { CALENDAR_I18N } from '../(date-picker)/date-picker--rtl.preview';
 
 @Component({
 	selector: 'spartan-calendar-rtl',
-	imports: [HlmCalendar, HlmCardImports],
+	imports: [HlmCalendar, CapsCardImports],
 	providers: [provideBrnCalendarI18n()],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	hostDirectives: [HlmCard],
 	host: {
 		'[dir]': '_dir()',
 		class: 'p-0 w-fit mx-auto',
 	},
 	template: `
-		<div hlmCardContent class="p-0">
-			<hlm-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" captionLayout="dropdown" />
-		</div>
+		<caps-card class="p-0">
+			<caps-card-content class="p-0">
+				<hlm-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" captionLayout="dropdown" />
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CalendarRtl {

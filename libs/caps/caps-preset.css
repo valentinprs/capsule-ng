@@ -281,3 +281,40 @@
 .caps-alert-dialog-content {
 	width: min(100%, calc(100vw - var(--spacing) * 8));
 }
+
+/* MARK: Card */
+.caps-card {
+	box-sizing: border-box;
+	min-width: 0;
+	width: 100%;
+	max-width: 100%;
+	@apply ring-foreground/10 bg-card text-card-foreground gap-(--card-spacing) overflow-hidden rounded-xl py-(--card-spacing) text-sm ring-1 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[density=compact]:[--card-spacing:--spacing(3)] data-[density=compact]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl;
+}
+.caps-card-header {
+	@apply gap-1 rounded-t-xl px-(--card-spacing) [.border-b]:pb-(--card-spacing);
+}
+.caps-card-title {
+	@apply text-base leading-snug font-medium group-data-[density=compact]/card:text-sm;
+}
+.caps-card-description {
+	@apply text-muted-foreground text-sm;
+}
+.caps-card-content {
+	@apply px-(--card-spacing);
+}
+.caps-card-footer {
+	@apply bg-muted/50 rounded-b-xl border-t p-(--card-spacing);
+}
+
+.caps-card[data-width='auto'] {
+	width: fit-content;
+}
+.caps-card[data-max-width='sm'] {
+	max-width: min(100%, var(--caps-card-max-width-sm));
+}
+.caps-card[data-max-width='md'] {
+	max-width: min(100%, var(--caps-card-max-width-md));
+}
+.caps-card[data-max-width='lg'] {
+	max-width: min(100%, var(--caps-card-max-width-lg));
+}

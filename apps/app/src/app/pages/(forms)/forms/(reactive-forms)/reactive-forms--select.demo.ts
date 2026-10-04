@@ -7,34 +7,34 @@ import {
 	ValidatorFn,
 	Validators,
 } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-reactive-form-select-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmSelectImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-lg' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Language Preferences</h3>
-				<p hlmCardDescription>Select your preferred spoken language.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Language Preferences</caps-card-title>
+				<caps-card-description>Select your preferred spoken language.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-select-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field orientation="responsive">
-							<hlm-field-content>
-								<label hlmFieldLabel for="language">Spoken Language</label>
-								<hlm-field-description>For best results, select the language you speak.</hlm-field-description>
-								<hlm-field-error validator="required">Please select your spoken language.</hlm-field-error>
-								<hlm-field-error validator="autoDetect">
+					<caps-field-group>
+						<caps-field orientation="responsive">
+							<caps-field-content>
+								<caps-field-label for="language">Spoken Language</caps-field-label>
+								<caps-field-description>For best results, select the language you speak.</caps-field-description>
+								<caps-field-error validator="required">Please select your spoken language.</caps-field-error>
+								<caps-field-error validator="autoDetect">
 									Auto-detection is not allowed. Please select a specific language.
-								</hlm-field-error>
-							</hlm-field-content>
+								</caps-field-error>
+							</caps-field-content>
 							<hlm-select formControlName="language" [itemToString]="itemToString">
 								<hlm-select-trigger buttonId="language">
 									<hlm-select-value placeholder="Select" />
@@ -49,17 +49,15 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 									</hlm-select-group>
 								</hlm-select-content>
 							</hlm-select>
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-select-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="submit" form="form-select-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class ReactiveFormSelectDemo {
@@ -113,34 +111,34 @@ import {
 	ValidatorFn,
 	Validators,
 } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-reactive-form-select-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmSelectImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Language Preferences</h3>
-				<p hlmCardDescription>Select your preferred spoken language.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Language Preferences</caps-card-title>
+				<caps-card-description>Select your preferred spoken language.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-select-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field orientation="responsive">
-							<hlm-field-content>
-								<label hlmFieldLabel for="language">Spoken Language</label>
-								<hlm-field-description>For best results, select the language you speak.</hlm-field-description>
-								<hlm-field-error validator="required">Please select your spoken language.</hlm-field-error>
-								<hlm-field-error validator="autoDetect">
+					<caps-field-group>
+						<caps-field orientation="responsive">
+							<caps-field-content>
+								<caps-field-label for="language">Spoken Language</caps-field-label>
+								<caps-field-description>For best results, select the language you speak.</caps-field-description>
+								<caps-field-error validator="required">Please select your spoken language.</caps-field-error>
+								<caps-field-error validator="autoDetect">
 									Auto-detection is not allowed. Please select a specific language.
-								</hlm-field-error>
-							</hlm-field-content>
+								</caps-field-error>
+							</caps-field-content>
 							<hlm-select formControlName="language" [itemToString]="itemToString">
 								<hlm-select-trigger buttonId="language">
 									<hlm-select-value placeholder="Select" />
@@ -155,17 +153,15 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 									</hlm-select-group>
 								</hlm-select-content>
 							</hlm-select>
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-select-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+					<button capsButton type="submit" form="form-select-demo">Submit</button>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ReactiveFormSelectDemo {

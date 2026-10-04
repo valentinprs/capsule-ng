@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'spartan-tabs-preview',
-	imports: [HlmTabsImports, HlmCardImports, HlmLabelImports, HlmInputImports, HlmButtonImports],
+	imports: [HlmTabsImports, CapsCardImports, CapsLabelImports, CapsInputImports, CapsButtonImports],
 	host: {
 		class: 'block w-full max-w-lg',
 	},
@@ -18,46 +18,50 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 				<button hlmTabsTrigger="password">Password</button>
 			</hlm-tabs-list>
 			<div hlmTabsContent="account">
-				<section hlmCard>
-					<div hlmCardHeader>
-						<h3 hlmCardTitle>Account</h3>
-						<p hlmCardDescription>Make changes to your account here. Click save when you're done.</p>
-					</div>
-					<p hlmCardContent>
-						<label class="my-4 block" hlmLabel>
+				<caps-card>
+					<caps-card-header>
+						<caps-card-title [level]="3">Account</caps-card-title>
+						<caps-card-description>
+							Make changes to your account here. Click save when you're done.
+						</caps-card-description>
+					</caps-card-header>
+					<caps-card-content>
+						<label class="my-4 block" capsLabel>
 							Name
-							<input class="mt-1.5 w-full" value="Pedro Duarte" hlmInput />
+							<input class="mt-1.5 w-full" value="Pedro Duarte" capsInput />
 						</label>
-						<label class="my-4 block" hlmLabel>
+						<label class="my-4 block" capsLabel>
 							Username
-							<input class="mt-1.5 w-full" placeholder="@peduarte" hlmInput />
+							<input class="mt-1.5 w-full" placeholder="@peduarte" capsInput />
 						</label>
-					</p>
-					<div hlmCardFooter>
-						<button hlmBtn>Save Changes</button>
-					</div>
-				</section>
+					</caps-card-content>
+					<caps-card-footer class="gap-2">
+						<button capsButton>Save Changes</button>
+					</caps-card-footer>
+				</caps-card>
 			</div>
 			<div hlmTabsContent="password">
-				<section hlmCard>
-					<div hlmCardHeader>
-						<h3 hlmCardTitle>Password</h3>
-						<p hlmCardDescription>Change your password here. After saving, you'll be logged out.</p>
-					</div>
-					<p hlmCardContent>
-						<label class="my-4 block" hlmLabel>
+				<caps-card>
+					<caps-card-header>
+						<caps-card-title [level]="3">Password</caps-card-title>
+						<caps-card-description>
+							Change your password here. After saving, you'll be logged out.
+						</caps-card-description>
+					</caps-card-header>
+					<caps-card-content>
+						<label class="my-4 block" capsLabel>
 							Old Password
-							<input class="mt-1.5 w-full" type="password" hlmInput />
+							<input class="mt-1.5 w-full" type="password" capsInput />
 						</label>
-						<label class="my-4 block" hlmLabel>
+						<label class="my-4 block" capsLabel>
 							New Password
-							<input class="mt-1.5 w-full" type="password" hlmInput />
+							<input class="mt-1.5 w-full" type="password" capsInput />
 						</label>
-					</p>
-					<div hlmCardFooter>
-						<button hlmBtn>Save Password</button>
-					</div>
-				</section>
+					</caps-card-content>
+					<caps-card-footer class="gap-2">
+						<button capsButton>Save Password</button>
+					</caps-card-footer>
+				</caps-card>
 			</div>
 		</hlm-tabs>
 	`,

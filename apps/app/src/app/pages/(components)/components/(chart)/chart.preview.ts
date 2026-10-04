@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HLM_CHART_THEME, HlmChartImports, hlmChartTooltip } from '@spartan-ng/helm/chart';
 import { barY, ChartPoint, ChartTooltipContent, defineChart } from '@tanstack/charts';
 import { scaleBand } from '@tanstack/charts/scales/band';
@@ -61,15 +61,15 @@ const formatDate = (value: string, formatter: Intl.DateTimeFormat) => formatter.
 
 @Component({
 	selector: 'spartan-chart-preview',
-	imports: [HlmCardImports, HlmChartImports],
+	imports: [CapsCardImports, HlmChartImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full max-w-3xl' },
 	template: `
-		<hlm-card class="py-0 pb-4">
-			<hlm-card-header class="flex flex-col items-stretch gap-0 border-b p-0! sm:flex-row">
+		<caps-card class="py-0 pb-4">
+			<caps-card-header class="flex flex-col items-stretch gap-0 border-b p-0! sm:flex-row">
 				<div class="flex flex-1 flex-col justify-center gap-1 px-6 pt-4 pb-3 sm:py-0!">
-					<h3 hlmCardTitle>Bar Chart - Interactive</h3>
-					<p hlmCardDescription>Showing total visitors for the last 30 days</p>
+					<caps-card-title [level]="3">Bar Chart - Interactive</caps-card-title>
+					<caps-card-description>Showing total visitors for the last 30 days</caps-card-description>
 				</div>
 
 				<div class="flex">
@@ -86,12 +86,12 @@ const formatDate = (value: string, formatter: Intl.DateTimeFormat) => formatter.
 						</button>
 					}
 				</div>
-			</hlm-card-header>
+			</caps-card-header>
 
-			<div hlmCardContent class="px-2 sm:p-6">
+			<caps-card-content class="px-2 sm:p-6">
 				<tanstack-chart hlmChart [options]="_chartOptions()" />
-			</div>
-		</hlm-card>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class ChartPreview {

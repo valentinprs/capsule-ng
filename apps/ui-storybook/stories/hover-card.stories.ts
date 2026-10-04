@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsCard } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarDays } from '@ng-icons/lucide';
 import { type BrnHoverCard } from '@spartan-ng/brain/hover-card';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmCard } from '@spartan-ng/helm/card';
 import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -41,7 +41,7 @@ class HoverCardExample {}
 
 const meta: Meta<BrnHoverCard> = {
 	title: 'Hover Card',
-	component: HlmCard,
+	component: CapsCard,
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({

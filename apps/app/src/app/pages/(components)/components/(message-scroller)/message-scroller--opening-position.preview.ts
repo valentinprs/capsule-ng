@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
@@ -75,25 +75,25 @@ export class MessageScrollerOpeningPositionScroller {
 
 @Component({
 	selector: 'spartan-message-scroller-opening-position-preview',
-	imports: [HlmCardImports, HlmTabsImports, HlmMessageScrollerImports, MessageScrollerOpeningPositionScroller],
+	imports: [CapsCardImports, HlmTabsImports, HlmMessageScrollerImports, MessageScrollerOpeningPositionScroller],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex w-full max-w-sm flex-col gap-4',
 	},
 	template: `
-		<hlm-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
-			<hlm-card-header class="gap-1 border-b">
-				<h3 hlmCardTitle>Opening Position</h3>
-				<p hlmCardDescription>Choose where a saved transcript opens.</p>
-			</hlm-card-header>
+		<caps-card maxWidth="sm" class="mx-auto h-[35rem] gap-0">
+			<caps-card-header class="gap-1 border-b">
+				<caps-card-title [level]="3">Opening Position</caps-card-title>
+				<caps-card-description>Choose where a saved transcript opens.</caps-card-description>
+			</caps-card-header>
 
-			<div hlmCardContent class="min-h-0 flex-1 overflow-hidden p-0">
+			<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
 				<div hlmMessageScrollerProvider>
 					<spartan-message-scroller-opening-position-scroller [position]="_position()" [positionKey]="_positionKey()" />
 				</div>
-			</div>
+			</caps-card-content>
 
-			<hlm-card-footer class="flex items-center justify-center border-t">
+			<caps-card-footer class="flex items-center justify-center border-t">
 				<hlm-tabs [tab]="_position()" class="w-full" (tabActivated)="onPositionChange($event)">
 					<hlm-tabs-list class="w-full">
 						<button hlmTabsTrigger="start">start</button>
@@ -101,8 +101,8 @@ export class MessageScrollerOpeningPositionScroller {
 						<button hlmTabsTrigger="last-anchor">last-anchor</button>
 					</hlm-tabs-list>
 				</hlm-tabs>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-footer>
+		</caps-card>
 
 		<div class="text-muted-foreground mx-auto max-w-sm px-0.5 text-center text-xs">
 			Toggle the defaultScrollPosition to see where the transcript starts when you open the thread

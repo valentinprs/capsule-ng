@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-card-image-preview',
-	imports: [HlmCardImports, HlmButtonImports, HlmBadgeImports],
+	imports: [CapsCardImports, CapsButtonImports, HlmBadgeImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-card class="relative mx-auto w-full max-w-sm pt-0">
+		<caps-card maxWidth="sm" class="relative mx-auto pt-0">
 			<div
 				class="bg-primary absolute inset-0 z-(--caps-z-30) aspect-video opacity-(--caps-opacity-50) mix-blend-color"
 			></div>
@@ -17,17 +17,19 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 				alt="Event cover"
 				class="relative z-(--caps-z-20) aspect-video w-full object-cover brightness-60 grayscale dark:brightness-40"
 			/>
-			<hlm-card-header>
-				<div hlmCardAction>
+			<caps-card-header>
+				<caps-card-action>
 					<span hlmBadge variant="secondary">Featured</span>
-				</div>
-				<h3 hlmCardTitle>Design systems meetup</h3>
-				<p hlmCardDescription>A practical talk on component APIs, accessibility, and shipping faster.</p>
-			</hlm-card-header>
-			<hlm-card-footer>
-				<button hlmBtn class="w-full">View Event</button>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-action>
+				<caps-card-title [level]="3">Design systems meetup</caps-card-title>
+				<caps-card-description>
+					A practical talk on component APIs, accessibility, and shipping faster.
+				</caps-card-description>
+			</caps-card-header>
+			<caps-card-footer class="gap-2">
+				<button capsButton class="w-full">View Event</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class CardImagePreview {}

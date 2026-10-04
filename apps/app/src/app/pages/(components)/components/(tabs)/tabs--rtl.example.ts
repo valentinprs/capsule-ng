@@ -1,15 +1,15 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'spartan-tabs-rtl-preview',
-	imports: [HlmTabsImports, HlmCardImports, HlmLabelImports, HlmInputImports, HlmButtonImports],
+	imports: [HlmTabsImports, CapsCardImports, CapsLabelImports, CapsInputImports, CapsButtonImports],
 	providers: [Directionality],
 	host: {
 		class: 'block w-full max-w-lg',
@@ -22,46 +22,46 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 				<button hlmTabsTrigger="password">{{ _t()['passwordTab'] }}</button>
 			</hlm-tabs-list>
 			<div hlmTabsContent="account">
-				<section hlmCard>
-					<div hlmCardHeader>
-						<h3 hlmCardTitle>{{ _t()['accountTab'] }}</h3>
-						<p hlmCardDescription>{{ _t()['accountDescription'] }}</p>
-					</div>
-					<p hlmCardContent>
-						<label class="my-4 block" hlmLabel>
+				<caps-card>
+					<caps-card-header>
+						<caps-card-title [level]="3">{{ _t()['accountTab'] }}</caps-card-title>
+						<caps-card-description>{{ _t()['accountDescription'] }}</caps-card-description>
+					</caps-card-header>
+					<caps-card-content>
+						<label class="my-4 block" capsLabel>
 							{{ _t()['nameLabel'] }}
-							<input class="mt-1.5 w-full" value="Pedro Duarte" hlmInput />
+							<input class="mt-1.5 w-full" value="Pedro Duarte" capsInput />
 						</label>
-						<label class="my-4 block" hlmLabel>
+						<label class="my-4 block" capsLabel>
 							{{ _t()['usernameLabel'] }}
-							<input class="mt-1.5 w-full" placeholder="@peduarte" hlmInput />
+							<input class="mt-1.5 w-full" placeholder="@peduarte" capsInput />
 						</label>
-					</p>
-					<div hlmCardFooter>
-						<button hlmBtn>{{ _t()['saveChanges'] }}</button>
-					</div>
-				</section>
+					</caps-card-content>
+					<caps-card-footer class="gap-2">
+						<button capsButton>{{ _t()['saveChanges'] }}</button>
+					</caps-card-footer>
+				</caps-card>
 			</div>
 			<div hlmTabsContent="password">
-				<section hlmCard>
-					<div hlmCardHeader>
-						<h3 hlmCardTitle>{{ _t()['passwordTab'] }}</h3>
-						<p hlmCardDescription>{{ _t()['passwordDescription'] }}</p>
-					</div>
-					<p hlmCardContent>
-						<label class="my-4 block" hlmLabel>
+				<caps-card>
+					<caps-card-header>
+						<caps-card-title [level]="3">{{ _t()['passwordTab'] }}</caps-card-title>
+						<caps-card-description>{{ _t()['passwordDescription'] }}</caps-card-description>
+					</caps-card-header>
+					<caps-card-content>
+						<label class="my-4 block" capsLabel>
 							{{ _t()['oldPasswordLabel'] }}
-							<input class="mt-1.5 w-full" type="password" hlmInput />
+							<input class="mt-1.5 w-full" type="password" capsInput />
 						</label>
-						<label class="my-4 block" hlmLabel>
+						<label class="my-4 block" capsLabel>
 							{{ _t()['newPasswordLabel'] }}
-							<input class="mt-1.5 w-full" type="password" hlmInput />
+							<input class="mt-1.5 w-full" type="password" capsInput />
 						</label>
-					</p>
-					<div hlmCardFooter>
-						<button hlmBtn>{{ _t()['savePassword'] }}</button>
-					</div>
-				</section>
+					</caps-card-content>
+					<caps-card-footer class="gap-2">
+						<button capsButton>{{ _t()['savePassword'] }}</button>
+					</caps-card-footer>
+				</caps-card>
 			</div>
 		</hlm-tabs>
 	`,

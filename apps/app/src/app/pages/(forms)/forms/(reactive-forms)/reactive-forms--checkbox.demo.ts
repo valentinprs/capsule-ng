@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-reactive-form-checkbox-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Notifications</h3>
-				<p hlmCardDescription>Manage your notification preferences.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Notifications</caps-card-title>
+				<caps-card-description>Manage your notification preferences.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-checkbox-demo" [formGroup]="form" (ngSubmit)="submit()">
 					<caps-field-group>
 						<caps-field-set>
@@ -58,16 +58,14 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						</caps-field-group>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
-					<button capsButton variant="outline" type="button" (click)="form.reset({ responses: true, tasks: [] })">
-						Reset
-					</button>
-					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="form.reset({ responses: true, tasks: [] })">
+					Reset
+				</button>
+				<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class ReactiveFormCheckboxDemo {
@@ -116,22 +114,22 @@ export const reactiveFormsCheckboxDemoCode = `
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-reactive-form-checkbox-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Notifications</h3>
-				<p hlmCardDescription>Manage your notification preferences.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Notifications</caps-card-title>
+				<caps-card-description>Manage your notification preferences.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-checkbox-demo" [formGroup]="form" (ngSubmit)="submit()">
 					<caps-field-group>
 						<caps-field-set>
@@ -168,16 +166,14 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 						</caps-field-group>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
 					<button capsButton variant="outline" type="button" (click)="form.reset({ responses: true, tasks: [] })">
 						Reset
 					</button>
 					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ReactiveFormCheckboxDemo {

@@ -1,6 +1,6 @@
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-import { HlmCard, HlmCardContent } from '@spartan-ng/helm/card';
+import { CapsCard, CapsCardContent } from '@capsule-ng/caps/card';
 import { HlmCarousel, HlmCarouselImports } from '@spartan-ng/helm/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -10,7 +10,7 @@ const meta: Meta<HlmCarousel> = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmCarouselImports, HlmCard, HlmCardContent],
+			imports: [HlmCarouselImports, CapsCard, CapsCardContent],
 		}),
 	],
 };
@@ -29,11 +29,11 @@ export const Default: Story = {
 					(_, i) => `
         <hlm-carousel-item>
           <div class="p-1">
-            <section hlmCard>
-              <p hlmCardContent class="flex items-center justify-center p-6 aspect-square">
+            <caps-card>
+              <caps-card-content class="flex items-center justify-center p-6 aspect-square">
                 <span class="text-4xl font-semibold">${i + 1}</span>
-              </p>
-            </section>
+              </caps-card-content>
+            </caps-card>
           </div>
         </hlm-carousel-item>
         `,
@@ -58,11 +58,11 @@ export const Sizes: Story = {
 						(_, i) => `
 					<hlm-carousel-item class="md:basis-1/2 lg:basis-1/3">
 						<div class="p-1">
-							<section hlmCard>
-								<p hlmCardContent class="flex items-center justify-center p-6 aspect-square">
+							<caps-card>
+								<caps-card-content class="flex items-center justify-center p-6 aspect-square">
 									<span class="text-4xl font-semibold">${i + 1}</span>
-								</p>
-							</section>
+								</caps-card-content>
+							</caps-card>
 						</div>
 					</hlm-carousel-item>
 					`,
@@ -87,11 +87,11 @@ export const Spacing: Story = {
 						(_, i) => `
 					<hlm-carousel-item class="pl-1 md:basis-1/2 lg:basis-1/3">
 						<div class="p-1">
-							<section hlmCard>
-								<p hlmCardContent class="flex items-center justify-center p-6 aspect-square">
+							<caps-card>
+								<caps-card-content class="flex items-center justify-center p-6 aspect-square">
 									<span class="text-4xl font-semibold">${i + 1}</span>
-								</p>
-							</section>
+								</caps-card-content>
+							</caps-card>
 						</div>
 					</hlm-carousel-item>
 					`,
@@ -116,11 +116,11 @@ export const Orientation: Story = {
 						(_, i) => `
 					<hlm-carousel-item class="pt-1 md:basis-1/2">
 						<div class="p-1">
-							<section hlmCard>
-								<p hlmCardContent class="flex items-center justify-center p-6">
+							<caps-card>
+								<caps-card-content class="flex items-center justify-center p-6">
 									<span class="text-4xl font-semibold">${i + 1}</span>
-								</p>
-							</section>
+								</caps-card-content>
+							</caps-card>
 						</div>
 					</hlm-carousel-item>
 					`,
@@ -149,11 +149,11 @@ export const Plugins: Story = {
 					(_, i) => `
         <hlm-carousel-item>
           <div class="p-1">
-            <section hlmCard>
-              <p hlmCardContent class="flex items-center justify-center p-6 aspect-square">
+            <caps-card>
+              <caps-card-content class="flex items-center justify-center p-6 aspect-square">
                 <span class="text-4xl font-semibold">${i + 1}</span>
-              </p>
-            </section>
+              </caps-card-content>
+            </caps-card>
           </div>
         </hlm-carousel-item>
         `,

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsSeparator } from '@capsule-ng/caps/separator';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideCheck, lucideInfo, lucidePlus, lucideSearch } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
 import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-input-group',
-	imports: [HlmInputGroupImports, NgIcon, HlmTooltipImports, HlmSeparator],
+	imports: [HlmInputGroupImports, NgIcon, HlmTooltipImports, CapsSeparator],
 	providers: [
 		provideIcons({
 			lucideSearch,
@@ -53,7 +53,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 						<ng-icon name="lucidePlus" />
 					</button>
 					<span hlmInputGroupText class="ml-auto">52% used</span>
-					<hlm-separator orientation="vertical" class="!h-4" />
+					<caps-separator orientation="vertical" class="!h-4" />
 					<button hlmInputGroupButton variant="default" class="rounded-full" size="icon-xs">
 						<ng-icon name="lucideArrowUp" />
 						<span class="sr-only">Send</span>

@@ -1,32 +1,25 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputOtpImports } from '@capsule-ng/caps/input-otp';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 
 @Component({
 	selector: 'spartan-input-otp-rtl',
-	imports: [HlmFieldImports, HlmInputOtpImports, BrnInputOtpImports],
+	imports: [CapsFieldImports, CapsInputOtpImports],
 	template: `
-		<hlm-field class="mx-auto max-w-xs" [dir]="_dir()">
-			<label hlmFieldLabel for="input-otp-rtl">{{ _t()['verificationCode'] }}</label>
-			<brn-input-otp
-				inputId="input-otp-rtl"
-				hlmInputOtp
-				value="123456"
-				length="6"
-				inputClass="disabled:cursor-not-allowed"
-			>
-				<hlm-input-otp-group>
-					<hlm-input-otp-slot index="0" />
-					<hlm-input-otp-slot index="1" />
-					<hlm-input-otp-slot index="2" />
-					<hlm-input-otp-slot index="3" />
-					<hlm-input-otp-slot index="4" />
-					<hlm-input-otp-slot index="5" />
-				</hlm-input-otp-group>
-			</brn-input-otp>
-		</hlm-field>
+		<caps-field class="mx-auto max-w-xs" [dir]="_dir()">
+			<caps-field-label for="input-otp-rtl">{{ _t()['verificationCode'] }}</caps-field-label>
+			<caps-input-otp id="input-otp-rtl" value="123456" length="6">
+				<caps-input-otp-group>
+					<caps-input-otp-slot index="0" />
+					<caps-input-otp-slot index="1" />
+					<caps-input-otp-slot index="2" />
+					<caps-input-otp-slot index="3" />
+					<caps-input-otp-slot index="4" />
+					<caps-input-otp-slot index="5" />
+				</caps-input-otp-group>
+			</caps-input-otp>
+		</caps-field>
 	`,
 })
 export class InputOtpRtl {

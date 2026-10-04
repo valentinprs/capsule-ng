@@ -1,48 +1,49 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLoader } from '@ng-icons/lucide';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-input-group-spinner-preview',
-	imports: [HlmInputGroupImports, NgIcon, HlmSpinnerImports],
+	imports: [CapsInputImports, CapsInputGroupImports, NgIcon, HlmSpinnerImports],
 	providers: [provideIcons({ lucideLoader })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'grid w-full max-w-sm gap-6' },
 	template: `
-		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="Searching..." />
-			<hlm-input-group-addon align="inline-end">
+		<caps-input-group>
+			<input capsInput placeholder="Searching..." aria-label="Searching" />
+			<caps-input-group-addon align="inline-end">
 				<hlm-spinner />
-			</hlm-input-group-addon>
-		</hlm-input-group>
+			</caps-input-group-addon>
+		</caps-input-group>
 
-		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="Processing..." />
-			<hlm-input-group-addon>
+		<caps-input-group>
+			<input capsInput placeholder="Processing..." aria-label="Processing" />
+			<caps-input-group-addon>
 				<hlm-spinner />
-			</hlm-input-group-addon>
-		</hlm-input-group>
+			</caps-input-group-addon>
+		</caps-input-group>
 
-		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="Saving changes..." />
-			<hlm-input-group-addon align="inline-end">
-				<hlm-input-group-text>Saving...</hlm-input-group-text>
+		<caps-input-group>
+			<input capsInput placeholder="Saving changes..." aria-label="Saving changes" />
+			<caps-input-group-addon align="inline-end">
+				<caps-input-group-text>Saving...</caps-input-group-text>
 				<hlm-spinner />
-			</hlm-input-group-addon>
-		</hlm-input-group>
+			</caps-input-group-addon>
+		</caps-input-group>
 
-		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="Refreshing data..." />
-			<hlm-input-group-addon>
+		<caps-input-group>
+			<input capsInput placeholder="Refreshing data..." aria-label="Refreshing data" />
+			<caps-input-group-addon>
 				<ng-icon name="lucideLoader" class="motion-safe:animate-spin" />
-			</hlm-input-group-addon>
+			</caps-input-group-addon>
 
-			<hlm-input-group-addon align="inline-end">
-				<hlm-input-group-text>Please wait...</hlm-input-group-text>
-			</hlm-input-group-addon>
-		</hlm-input-group>
+			<caps-input-group-addon align="inline-end">
+				<caps-input-group-text>Please wait...</caps-input-group-text>
+			</caps-input-group-addon>
+		</caps-input-group>
 	`,
 })
 export class InputGroupSpinnerPreview {}

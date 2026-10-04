@@ -1,41 +1,60 @@
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSeparator, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
+import { CapsInputOtp, CapsInputOtpGroup, CapsInputOtpSeparator, CapsInputOtpSlot } from '@capsule-ng/caps/input-otp';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<BrnInputOtp> = {
+type OtpArgs = {
+	length: number;
+	inputMode: ReturnType<CapsInputOtp['inputMode']>;
+	autocomplete: ReturnType<CapsInputOtp['autocomplete']>;
+	autofocus: boolean;
+	disabled: boolean;
+	value: string | null;
+};
+
+const meta: Meta<OtpArgs> = {
 	title: 'Input OTP',
-	component: BrnInputOtp,
+	component: CapsInputOtp,
 	tags: ['autodocs'],
-	args: {},
-	argTypes: {},
+	args: {
+		length: 6,
+		inputMode: 'numeric',
+		autocomplete: 'one-time-code',
+		autofocus: false,
+		disabled: false,
+		value: '',
+	},
+	argTypes: {
+		length: { control: 'number' },
+		inputMode: { control: 'select', options: ['text', 'tel', 'url', 'email', 'numeric', 'decimal', 'search'] },
+		autocomplete: { control: 'select', options: ['one-time-code', 'off'] },
+	},
 	decorators: [
 		moduleMetadata({
-			imports: [BrnInputOtp, HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSeparator, HlmInputOtpSlot],
+			imports: [CapsInputOtp, CapsInputOtpGroup, CapsInputOtpSeparator, CapsInputOtpSlot],
 		}),
 	],
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-		<brn-input-otp hlmInputOtp maxLength="6" inputClass="disabled:cursor-not-allowed" [autofocus]="true">
-			<div hlmInputOtpGroup>
-				<hlm-input-otp-slot index="0" />
-				<hlm-input-otp-slot index="1" />
-				<hlm-input-otp-slot index="2" />
-			</div>
-			<hlm-input-otp-separator />
-			<div hlmInputOtpGroup>
-				<hlm-input-otp-slot index="3" />
-				<hlm-input-otp-slot index="4" />
-				<hlm-input-otp-slot index="5" />
-			</div>
-		</brn-input-otp>
+		<caps-input-otp aria-label="Verification code" [length]="length" [inputMode]="inputMode" [autocomplete]="autocomplete" [autofocus]="autofocus" [disabled]="disabled" [value]="value">
+			<caps-input-otp-group>
+				<caps-input-otp-slot index="0" />
+				<caps-input-otp-slot index="1" />
+				<caps-input-otp-slot index="2" />
+			</caps-input-otp-group>
+			<caps-input-otp-separator />
+			<caps-input-otp-group>
+				<caps-input-otp-slot index="3" />
+				<caps-input-otp-slot index="4" />
+				<caps-input-otp-slot index="5" />
+			</caps-input-otp-group>
+		</caps-input-otp>
 		`,
 	}),
 };
 
 export default meta;
 
-type Story = StoryObj<BrnInputOtp>;
+type Story = StoryObj<OtpArgs>;
 
 export const Default: Story = {
 	args: {},

@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerInfoCircle, tablerStar } from '@ng-icons/tabler-icons';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'spartan-input-group-button-example',
-	imports: [HlmInputGroupImports, NgIcon],
+	imports: [CapsButtonImports, CapsInputImports, CapsInputGroupImports, NgIcon],
 	providers: [
 		provideIcons({
 			tablerInfoCircle,
@@ -14,21 +16,29 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div hlmInputGroup class="[--radius:9999px]">
-			<div hlmInputGroupAddon>
-				<button hlmInputGroupButton variant="secondary" size="icon-xs">
+		<caps-input-group class="[--radius:9999px]">
+			<caps-input-group-addon>
+				<button capsButton variant="secondary" size="icon-xs" type="button" aria-label="Website information">
 					<ng-icon name="tablerInfoCircle" />
 				</button>
-			</div>
+			</caps-input-group-addon>
 
-			<div hlmInputGroupAddon class="text-muted-foreground pl-1.5">https://</div>
-			<input hlmInputGroupInput id="input-secure-19" />
-			<div hlmInputGroupAddon align="inline-end">
-				<button hlmInputGroupButton size="icon-xs" (click)="_toggleFavorite()">
+			<caps-input-group-addon class="text-muted-foreground pl-1.5">https://</caps-input-group-addon>
+			<input capsInput id="input-secure-19" aria-label="Website address" />
+			<caps-input-group-addon align="inline-end">
+				<button
+					capsButton
+					size="icon-xs"
+					(click)="_toggleFavorite()"
+					variant="ghost"
+					type="button"
+					aria-label="Favorite website"
+					[attr.aria-pressed]="_isFavorite()"
+				>
 					<ng-icon name="tablerStar" [class]="_favoriteClass()" />
 				</button>
-			</div>
-		</div>
+			</caps-input-group-addon>
+		</caps-input-group>
 	`,
 })
 export class InputGroupButtonExample {

@@ -3,47 +3,52 @@ import { email, form, FormField, FormRoot, required } from '@angular/forms/signa
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
 
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'spartan-input-group-form-preview',
-	imports: [FormRoot, FormField, HlmInputGroupImports, CapsLabelImports, CapsTooltipImports, NgIcon],
+	imports: [
+		CapsButtonImports,
+		CapsInputImports,
+		FormRoot,
+		FormField,
+		CapsInputGroupImports,
+		CapsLabelImports,
+		CapsTooltipImports,
+		NgIcon,
+	],
 	providers: [provideIcons({ lucideInfo })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'grid w-full max-w-sm gap-6' },
 	template: `
 		<form [formRoot]="form">
-			<hlm-input-group>
-				<input hlmInputGroupInput id="email-form" placeholder="spartan-ng@github.com" [formField]="form.email" />
-				<hlm-input-group-addon align="block-start">
+			<caps-input-group>
+				<input capsInput id="email-form" placeholder="spartan-ng@github.com" [formField]="form.email" />
+				<caps-input-group-addon align="block-start">
 					<label for="email-form" class="text-foreground" capsLabel>Email</label>
 					<button
-						hlmInputGroupButton
+						capsButton
 						[capsTooltip]="tooltip"
 						variant="ghost"
 						aria-label="Help"
 						class="ml-auto rounded-full"
 						size="icon-xs"
+						type="button"
 					>
 						<ng-icon name="lucideInfo" />
 					</button>
 					<ng-template #tooltip>We'll use this to send you notifications</ng-template>
-				</hlm-input-group-addon>
-				<hlm-input-group-addon align="block-end">
-					<button
-						hlmInputGroupButton
-						class="ml-auto"
-						size="sm"
-						variant="default"
-						type="submit"
-						[disabled]="form().submitting()"
-					>
+				</caps-input-group-addon>
+				<caps-input-group-addon align="block-end">
+					<button capsButton class="ml-auto" size="sm" variant="default" type="submit" [disabled]="form().submitting()">
 						Submit
 					</button>
-				</hlm-input-group-addon>
-			</hlm-input-group>
+				</caps-input-group-addon>
+			</caps-input-group>
 		</form>
 	`,
 })

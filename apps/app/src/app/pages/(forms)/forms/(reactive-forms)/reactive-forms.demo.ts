@@ -4,16 +4,18 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-bug-report-form',
 	imports: [
+		CapsTextareaImports,
 		ReactiveFormsModule,
 		CapsCardImports,
 		CapsFieldImports,
 		CapsInputImports,
-		HlmInputGroupImports,
+		CapsInputGroupImports,
 		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -42,19 +44,21 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 						</caps-field>
 						<caps-field>
 							<caps-field-label for="description">Description</caps-field-label>
-							<hlm-input-group>
+							<caps-input-group>
 								<textarea
-									hlmInputGroupTextarea
+									capsTextarea
 									id="description"
 									class="min-h-24"
 									placeholder="I'm having an issue with the login button on mobile."
 									rows="6"
 									formControlName="description"
 								></textarea>
-								<hlm-input-group-addon align="block-end">
-									<span hlmInputGroupText>{{ form.controls.description.value?.length || 0 }}/100 characters</span>
-								</hlm-input-group-addon>
-							</hlm-input-group>
+								<caps-input-group-addon align="block-end">
+									<caps-input-group-text>
+										{{ form.controls.description.value?.length || 0 }}/100 characters
+									</caps-input-group-text>
+								</caps-input-group-addon>
+							</caps-input-group>
 							<caps-field-description>
 								Include steps to reproduce, expected behavior, and what actually happened.
 							</caps-field-description>
@@ -97,16 +101,17 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-reactive-forms-demo',
-	imports: [
+	imports: [CapsTextareaImports,
 		ReactiveFormsModule,
 		CapsCardImports,
 		CapsFieldImports,
 		CapsInputImports,
-		HlmInputGroupImports,
+		CapsInputGroupImports,
 		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -135,19 +140,19 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 						</caps-field>
 						<caps-field>
 							<caps-field-label for="description">Description</caps-field-label>
-							<hlm-input-group>
+							<caps-input-group>
 								<textarea
-									hlmInputGroupTextarea
+									capsTextarea
 									id="description"
 									class="min-h-24"
 									placeholder="I'm having an issue with the login button on mobile."
 									rows="6"
 									formControlName="description"
 								></textarea>
-								<hlm-input-group-addon align="block-end">
-									<span hlmInputGroupText>{{ form.controls.description.value?.length || 0 }}/100 characters</span>
-								</hlm-input-group-addon>
-							</hlm-input-group>
+								<caps-input-group-addon align="block-end">
+									<caps-input-group-text>{{ form.controls.description.value?.length || 0 }}/100 characters</caps-input-group-text>
+								</caps-input-group-addon>
+							</caps-input-group>
 							<caps-field-description>
 								Include steps to reproduce, expected behavior, and what actually happened.
 							</caps-field-description>
@@ -212,7 +217,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'bug-report-form',
-	imports: [],
+	imports: [CapsTextareaImports, ],
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`...\`,
 })
@@ -232,7 +237,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
 	selector: 'bug-report-form',
-	imports: [ReactiveFormsModule],
+	imports: [CapsTextareaImports, ReactiveFormsModule],
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
 		<form [formGroup]="form" (ngSubmit)="submit()">

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -15,7 +16,6 @@ import {
 } from '@ng-icons/lucide';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared';
@@ -27,7 +27,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 		CapsCardImports,
 		CapsButtonImports,
 		HlmEmptyImports,
-		HlmInputGroupImports,
+		CapsInputGroupImports,
 		HlmDropdownMenuImports,
 		CapsTooltipImports,
 		MessageScrollerTranscriptRow,
@@ -111,7 +111,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 
 				<caps-card-footer class="flex-col gap-2">
 					<form class="w-full" (submit)="send($event)">
-						<hlm-input-group>
+						<caps-input-group>
 							<div class="h-14 w-full px-3 py-2.5">
 								<span
 									class="line-clamp-2 opacity-(--caps-opacity-60) data-[status=ready]:opacity-100"
@@ -124,9 +124,9 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 									}
 								</span>
 							</div>
-							<hlm-input-group-addon align="block-end" class="pt-1">
+							<caps-input-group-addon align="block-end" class="pt-1">
 								<button
-									hlmInputGroupButton
+									capsButton
 									type="button"
 									size="icon-sm"
 									variant="outline"
@@ -137,7 +137,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 									<ng-icon name="lucidePlus" />
 								</button>
 								<button
-									hlmInputGroupButton
+									capsButton
 									type="submit"
 									variant="default"
 									size="icon-sm"
@@ -147,8 +147,8 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 									<ng-icon name="lucideArrowUp" />
 									<span class="sr-only">Send</span>
 								</button>
-							</hlm-input-group-addon>
-						</hlm-input-group>
+							</caps-input-group-addon>
+						</caps-input-group>
 					</form>
 				</caps-card-footer>
 			</caps-card>

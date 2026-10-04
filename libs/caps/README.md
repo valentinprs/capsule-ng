@@ -5,6 +5,8 @@ Non-interactive structure is exposed as `<caps-*>` elements that carry their own
 native interactive elements keep their native element and receive `caps*` attribute directives.
 Composite Checkbox, Switch and Radio own their native Brain control and visual indicator; see
 ADR amendment 3 and the READMEs in `checkbox`, `switch` and `radio-group`.
+Input OTP similarly owns one native input behind projected decorative slots (amendment 4);
+Input Group projects consumer-owned native controls.
 
 Each component is a secondary entry point, e.g. `@capsule-ng/caps/breadcrumb` or
 `@capsule-ng/caps/link`.

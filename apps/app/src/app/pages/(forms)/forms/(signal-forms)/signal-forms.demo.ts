@@ -4,18 +4,20 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-bug-report-form',
 	imports: [
+		CapsTextareaImports,
 		FormRoot,
 		FormField,
 		CapsCardImports,
 		CapsFieldImports,
 		CapsButtonImports,
 		CapsInputImports,
-		HlmInputGroupImports,
+		CapsInputGroupImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
@@ -47,19 +49,19 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 						</caps-field>
 						<caps-field>
 							<caps-field-label for="description">Description</caps-field-label>
-							<hlm-input-group>
+							<caps-input-group>
 								<textarea
-									hlmInputGroupTextarea
+									capsTextarea
 									id="description"
 									class="min-h-24"
 									placeholder="I'm having an issue with the login button on mobile."
 									rows="6"
 									[formField]="form.description"
 								></textarea>
-								<hlm-input-group-addon align="block-end">
-									<span hlmInputGroupText>{{ descriptionLength() }}/100 characters</span>
-								</hlm-input-group-addon>
-							</hlm-input-group>
+								<caps-input-group-addon align="block-end">
+									<caps-input-group-text>{{ descriptionLength() }}/100 characters</caps-input-group-text>
+								</caps-input-group-addon>
+							</caps-input-group>
 							<caps-field-description>
 								Include steps to reproduce, expected behavior, and what actually happened.
 							</caps-field-description>
@@ -132,18 +134,19 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-bug-report-form',
-	imports: [
+	imports: [CapsTextareaImports,
 		FormRoot,
 		FormField,
 		CapsCardImports,
 		CapsFieldImports,
 		CapsButtonImports,
 		CapsInputImports,
-		HlmInputGroupImports,
+		CapsInputGroupImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
@@ -175,19 +178,19 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 						</caps-field>
 						<caps-field>
 							<caps-field-label for="description">Description</caps-field-label>
-							<hlm-input-group>
+							<caps-input-group>
 								<textarea
-									hlmInputGroupTextarea
+									capsTextarea
 									id="description"
 									class="min-h-24"
 									placeholder="I'm having an issue with the login button on mobile."
 									rows="6"
 									[formField]="form.description"
 								></textarea>
-								<hlm-input-group-addon align="block-end">
-									<span hlmInputGroupText>{{ descriptionLength() }}/100 characters</span>
-								</hlm-input-group-addon>
-							</hlm-input-group>
+								<caps-input-group-addon align="block-end">
+									<caps-input-group-text>{{ descriptionLength() }}/100 characters</caps-input-group-text>
+								</caps-input-group-addon>
+							</caps-input-group>
 							<caps-field-description>
 								Include steps to reproduce, expected behavior, and what actually happened.
 							</caps-field-description>
@@ -276,7 +279,7 @@ import { form, maxLength, minLength, required } from '@angular/forms/signals';
 
 @Component({
   selector: 'spartan-bug-report-form',
-  imports: [],
+  imports: [CapsTextareaImports, ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: \`...\`,
 })
@@ -308,7 +311,7 @@ import { form, FormRoot, maxLength, minLength, required } from '@angular/forms/s
 
 @Component({
   selector: 'spartan-bug-report-form',
-  imports: [FormRoot],
+  imports: [CapsTextareaImports, FormRoot],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: \`
     <!-- formRoot sets novalidate and handles form submission -->
@@ -357,7 +360,7 @@ import { form, maxLength, minLength, required, submit } from '@angular/forms/sig
 
 @Component({
   selector: 'spartan-bug-report-form',
-  imports: [],
+  imports: [CapsTextareaImports, ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: \`
     <!-- novalidate - disables browser built-in validation -->

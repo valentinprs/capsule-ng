@@ -156,7 +156,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP}">
 				Input Group can have spinners inside
-				<code class="${hlmCode}">HlmInputGroupAddon</code>
+				<code class="${hlmCode}">CapsInputGroupAddon</code>
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

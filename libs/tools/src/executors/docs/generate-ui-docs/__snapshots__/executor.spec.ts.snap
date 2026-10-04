@@ -6241,6 +6241,32 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "input-group": {
+    "caps": {
+      "CapsInputGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-input-group",
+      },
+      "CapsInputGroupAddon": {
+        "inputs": [
+          {
+            "name": "align",
+            "required": false,
+            "type": "CapsInputGroupAlignment",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-input-group-addon",
+      },
+      "CapsInputGroupText": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-input-group-text",
+      },
+    },
     "helm": {
       "HlmInputGroup": {
         "inputs": [],
@@ -6396,6 +6422,108 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "brn-input-otp-slot",
+      },
+    },
+    "caps": {
+      "CapsInputOtp": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "length",
+            "required": true,
+            "type": "number",
+          },
+          {
+            "name": "inputMode",
+            "required": false,
+            "type": "InputMode",
+          },
+          {
+            "name": "autocomplete",
+            "required": false,
+            "type": "'one-time-code' | 'off'",
+          },
+          {
+            "name": "autofocus",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "transformPaste",
+            "required": false,
+            "type": "(text: string, length: number) => string",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "string",
+          },
+          {
+            "name": "completed",
+            "type": "string",
+          },
+        ],
+        "selector": "caps-input-otp",
+      },
+      "CapsInputOtpGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-input-otp-group",
+      },
+      "CapsInputOtpSeparator": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-input-otp-separator",
+      },
+      "CapsInputOtpSlot": {
+        "inputs": [
+          {
+            "name": "index",
+            "required": true,
+            "type": "number",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-input-otp-slot",
       },
     },
     "helm": {

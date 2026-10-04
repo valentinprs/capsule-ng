@@ -1,27 +1,28 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'spartan-input-input-group',
-	imports: [CapsFieldImports, HlmInputGroupImports, NgIcon],
+	imports: [CapsInputImports, CapsFieldImports, CapsInputGroupImports, NgIcon],
 	providers: [provideIcons({ lucideInfo })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'min-w-xs sm:min-w-sm' },
 	template: `
 		<caps-field>
 			<caps-field-label for="input-group-url">Website URL</caps-field-label>
-			<hlm-input-group>
-				<input hlmInputGroupInput id="input-group-url" placeholder="example.com" />
-				<hlm-input-group-addon>
-					<hlm-input-group-text>https://</hlm-input-group-text>
-				</hlm-input-group-addon>
-				<hlm-input-group-addon align="inline-end">
+			<caps-input-group>
+				<input capsInput id="input-group-url" placeholder="example.com" />
+				<caps-input-group-addon>
+					<caps-input-group-text>https://</caps-input-group-text>
+				</caps-input-group-addon>
+				<caps-input-group-addon align="inline-end">
 					<ng-icon name="lucideInfo" />
-				</hlm-input-group-addon>
-			</hlm-input-group>
+				</caps-input-group-addon>
+			</caps-input-group>
 		</caps-field>
 	`,
 })

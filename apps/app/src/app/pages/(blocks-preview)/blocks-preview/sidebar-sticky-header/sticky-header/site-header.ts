@@ -1,14 +1,22 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsBreadcrumbImports } from '@capsule-ng/caps/breadcrumb';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-site-header-sticky',
-	imports: [HlmSidebarImports, CapsSeparatorImports, CapsBreadcrumbImports, HlmInputGroupImports, NgIcon],
+	imports: [
+		CapsInputImports,
+		HlmSidebarImports,
+		CapsSeparatorImports,
+		CapsBreadcrumbImports,
+		CapsInputGroupImports,
+		NgIcon,
+	],
 	providers: [provideIcons({ lucideSearch })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
@@ -21,12 +29,12 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 					<caps-breadcrumb-item>Data Fetching</caps-breadcrumb-item>
 				</caps-breadcrumb>
 
-				<div hlmInputGroup class="w-full sm:ml-auto sm:w-auto">
-					<input hlmInputGroupInput placeholder="Type to search..." />
-					<div hlmInputGroupAddon>
+				<caps-input-group class="w-full sm:ml-auto sm:w-auto">
+					<input capsInput placeholder="Type to search..." aria-label="Type to search" />
+					<caps-input-group-addon>
 						<ng-icon name="lucideSearch" />
-					</div>
-				</div>
+					</caps-input-group-addon>
+				</caps-input-group>
 			</div>
 		</header>
 	`,

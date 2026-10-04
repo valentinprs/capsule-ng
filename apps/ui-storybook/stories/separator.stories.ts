@@ -1,14 +1,15 @@
-import { BrnSeparator } from '@spartan-ng/brain/separator';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
+import { CapsSeparator } from '@capsule-ng/caps/separator';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<BrnSeparator> = {
+type SeparatorArgs = { orientation: 'horizontal' | 'vertical'; decorative: boolean };
+
+const meta: Meta<SeparatorArgs> = {
 	title: 'Separator',
-	component: BrnSeparator,
+	component: CapsSeparator,
 	tags: ['autodocs'],
 	args: {
 		orientation: 'horizontal',
-		decorative: false,
+		decorative: true,
 	},
 	argTypes: {
 		orientation: {
@@ -25,21 +26,22 @@ const meta: Meta<BrnSeparator> = {
 				type: 'boolean',
 			},
 			table: {
-				defaultValue: { summary: 'false' },
+				defaultValue: { summary: 'true' },
 			},
 		},
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [BrnSeparator, HlmSeparator],
+			imports: [CapsSeparator],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<BrnSeparator>;
+type Story = StoryObj<SeparatorArgs>;
 
 export const Default: Story = {
+	args: { decorative: false },
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
@@ -50,12 +52,12 @@ export const Default: Story = {
           An open-source UI component library.
         </p>
       </div>
-      <hlm-separator ${argsToTemplate(args)} class='my-4' /> 
+      <caps-separator ${argsToTemplate(args)} class='my-4' />
 	  <div class='flex items-center h-5 text-sm space-x-4'>
         <div>Blog</div>
-        <hlm-separator decorative orientation='vertical' /> 
+        <caps-separator decorative orientation='vertical' />
 		<div>Docs</div>
-        <hlm-separator decorative orientation='vertical' /> 
+        <caps-separator decorative orientation='vertical' />
 		<div>Source</div>
       </div>
     </div>

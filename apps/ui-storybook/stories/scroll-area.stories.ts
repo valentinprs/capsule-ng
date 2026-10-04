@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
+import { CapsSeparator } from '@capsule-ng/caps/separator';
 import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { argsToTemplate, moduleMetadata } from '@storybook/angular';
 import { NgScrollbar, NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'scroll-area-stories',
-	imports: [HlmSeparator, HlmScrollArea, NgScrollbarModule],
+	imports: [CapsSeparator, HlmScrollArea, NgScrollbarModule],
 	template: `
 		<ng-scrollbar hlm class="border-border h-72 w-48 rounded-md border">
 			<div class="p-4">
@@ -15,7 +15,7 @@ import { NgScrollbar, NgScrollbarModule } from 'ngx-scrollbar';
 				@for (tag of tags; track tag) {
 					<div class="text-sm">
 						{{ tag }}
-						<div hlmSeparator class="my-2"></div>
+						<caps-separator class="my-2"></caps-separator>
 					</div>
 				}
 			</div>

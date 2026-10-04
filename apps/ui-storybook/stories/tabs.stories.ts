@@ -1,8 +1,8 @@
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { BrnTabs, BrnTabsImports } from '@spartan-ng/brain/tabs';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
@@ -20,7 +20,7 @@ const meta: Meta<BrnTabs & { disabled: boolean }> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [BrnTabsImports, HlmTabsImports, HlmCardImports, CapsLabel, CapsInput, CapsButton],
+			imports: [BrnTabsImports, HlmTabsImports, CapsCardImports, CapsLabel, CapsInput, CapsButton],
 		}),
 	],
 };
@@ -37,12 +37,14 @@ export const Default: Story = {
 					<button hlmTabsTrigger="password">Password</button>
 				</hlm-tabs-list>
 				<div hlmTabsContent="account">
-					<section hlmCard>
-						<div hlmCardHeader>
-							<h3 hlmCardTitle>Account</h3>
-							<p hlmCardDescription>Make changes to your account here. Click save when you're done.</p>
-						</div>
-						<p hlmCardContent>
+					<caps-card>
+						<caps-card-header>
+							<caps-card-title [level]="3">Account</caps-card-title>
+							<caps-card-description>
+								Make changes to your account here. Click save when you're done.
+							</caps-card-description>
+						</caps-card-header>
+						<caps-card-content>
 							<label class="my-4 block" capsLabel>
 								Name
 								<input class="mt-1.5 w-full" value="Pedro Duarte" capsInput />
@@ -51,17 +53,21 @@ export const Default: Story = {
 								Username
 								<input class="mt-1.5 w-full" placeholder="@peduarte" capsInput />
 							</label>
-						</p>
-						<div hlmCardFooter><button capsButton>Save Changes</button></div>
-					</section>
+						</caps-card-content>
+						<caps-card-footer class="gap-2">
+							<button capsButton>Save Changes</button>
+						</caps-card-footer>
+					</caps-card>
 				</div>
 				<div hlmTabsContent="password">
-					<section hlmCard>
-						<div hlmCardHeader>
-							<h3 hlmCardTitle>Password</h3>
-							<p hlmCardDescription>Change your password here. After saving, you'll be logged out.</p>
-						</div>
-						<p hlmCardContent>
+					<caps-card>
+						<caps-card-header>
+							<caps-card-title [level]="3">Password</caps-card-title>
+							<caps-card-description>
+								Change your password here. After saving, you'll be logged out.
+							</caps-card-description>
+						</caps-card-header>
+						<caps-card-content>
 							<label class="my-4 block" capsLabel>
 								Old Password
 								<input class="mt-1.5 w-full" type="password" capsInput />
@@ -70,9 +76,11 @@ export const Default: Story = {
 								New Password
 								<input class="mt-1.5 w-full" type="password" capsInput />
 							</label>
-						</p>
-						<div hlmCardFooter><button capsButton>Save Password</button></div>
-					</section>
+						</caps-card-content>
+						<caps-card-footer class="gap-2">
+							<button capsButton>Save Password</button>
+						</caps-card-footer>
+					</caps-card>
 				</div>
 			</hlm-tabs>
 		`,
@@ -90,12 +98,14 @@ export const Vertical: Story = {
 					<button class="w-full" hlmTabsTrigger="danger">Danger Zone</button>
 				</hlm-tabs-list>
 				<div hlmTabsContent="account">
-					<section hlmCard>
-						<div hlmCardHeader>
-							<h3 hlmCardTitle>Account</h3>
-							<p hlmCardDescription>Make changes to your account here. Click save when you're done.</p>
-						</div>
-						<p hlmCardContent>
+					<caps-card>
+						<caps-card-header>
+							<caps-card-title [level]="3">Account</caps-card-title>
+							<caps-card-description>
+								Make changes to your account here. Click save when you're done.
+							</caps-card-description>
+						</caps-card-header>
+						<caps-card-content>
 							<label class="my-4 block" capsLabel>
 								Name
 								<input class="mt-1.5 w-full" value="Pedro Duarte" capsInput />
@@ -104,17 +114,21 @@ export const Vertical: Story = {
 								Username
 								<input class="mt-1.5 w-full" placeholder="@peduarte" capsInput />
 							</label>
-						</p>
-						<div hlmCardFooter><button capsButton>Save Changes</button></div>
-					</section>
+						</caps-card-content>
+						<caps-card-footer class="gap-2">
+							<button capsButton>Save Changes</button>
+						</caps-card-footer>
+					</caps-card>
 				</div>
 				<div hlmTabsContent="password">
-					<section hlmCard>
-						<div hlmCardHeader>
-							<h3 hlmCardTitle>Password</h3>
-							<p hlmCardDescription>Change your password here. After saving, you'll be logged out.</p>
-						</div>
-						<p hlmCardContent>
+					<caps-card>
+						<caps-card-header>
+							<caps-card-title [level]="3">Password</caps-card-title>
+							<caps-card-description>
+								Change your password here. After saving, you'll be logged out.
+							</caps-card-description>
+						</caps-card-header>
+						<caps-card-content>
 							<label class="my-4 block" capsLabel>
 								Old Password
 								<input class="mt-1.5 w-full" type="password" capsInput />
@@ -123,18 +137,24 @@ export const Vertical: Story = {
 								New Password
 								<input class="mt-1.5 w-full" type="password" capsInput />
 							</label>
-						</p>
-						<div hlmCardFooter><button capsButton>Save Password</button></div>
-					</section>
+						</caps-card-content>
+						<caps-card-footer class="gap-2">
+							<button capsButton>Save Password</button>
+						</caps-card-footer>
+					</caps-card>
 				</div>
 				<div hlmTabsContent="danger">
-					<section hlmCard>
-						<div hlmCardHeader>
-							<h3 hlmCardTitle>Delete Account</h3>
-							<p hlmCardDescription>Are you sure you want to delete your account? You cannot undo this action.</p>
-						</div>
-						<div hlmCardFooter><button variant="destructive" capsButton>Delete Account</button></div>
-					</section>
+					<caps-card>
+						<caps-card-header>
+							<caps-card-title [level]="3">Delete Account</caps-card-title>
+							<caps-card-description>
+								Are you sure you want to delete your account? You cannot undo this action.
+							</caps-card-description>
+						</caps-card-header>
+						<caps-card-footer class="gap-2">
+							<button variant="destructive" capsButton>Delete Account</button>
+						</caps-card-footer>
+					</caps-card>
 				</div>
 			</hlm-tabs>
 		`,
@@ -206,12 +226,14 @@ export const LazyLoading: Story = {
 				</hlm-tabs-list>
 				<div hlmTabsContent="account">
 					<ng-template hlmTabsContentLazy>
-						<section hlmCard>
-							<div hlmCardHeader>
-								<h3 hlmCardTitle>Account (Lazy)</h3>
-								<p hlmCardDescription>This content was lazily loaded when the tab was first activated.</p>
-							</div>
-							<p hlmCardContent>
+						<caps-card>
+							<caps-card-header>
+								<caps-card-title [level]="3">Account (Lazy)</caps-card-title>
+								<caps-card-description>
+									This content was lazily loaded when the tab was first activated.
+								</caps-card-description>
+							</caps-card-header>
+							<caps-card-content>
 								<label class="my-4 block" capsLabel>
 									Name
 									<input class="mt-1.5 w-full" value="Pedro Duarte" capsInput />
@@ -220,22 +242,24 @@ export const LazyLoading: Story = {
 									Username
 									<input class="mt-1.5 w-full" placeholder="@peduarte" capsInput />
 								</label>
-							</p>
-							<div hlmCardFooter><button capsButton>Save Changes</button></div>
-						</section>
+							</caps-card-content>
+							<caps-card-footer class="gap-2">
+								<button capsButton>Save Changes</button>
+							</caps-card-footer>
+						</caps-card>
 					</ng-template>
 				</div>
 				<div hlmTabsContent="password">
 					<ng-template hlmTabsContentLazy>
-						<section hlmCard>
-							<div hlmCardHeader>
-								<h3 hlmCardTitle>Password (Lazy)</h3>
-								<p hlmCardDescription>
+						<caps-card>
+							<caps-card-header>
+								<caps-card-title [level]="3">Password (Lazy)</caps-card-title>
+								<caps-card-description>
 									This content was lazily loaded when the tab was first activated. Switch tabs and inspect the DOM to
 									verify.
-								</p>
-							</div>
-							<p hlmCardContent>
+								</caps-card-description>
+							</caps-card-header>
+							<caps-card-content>
 								<label class="my-4 block" capsLabel>
 									Old Password
 									<input class="mt-1.5 w-full" type="password" capsInput />
@@ -244,9 +268,11 @@ export const LazyLoading: Story = {
 									New Password
 									<input class="mt-1.5 w-full" type="password" capsInput />
 								</label>
-							</p>
-							<div hlmCardFooter><button capsButton>Save Password</button></div>
-						</section>
+							</caps-card-content>
+							<caps-card-footer class="gap-2">
+								<button capsButton>Save Password</button>
+							</caps-card-footer>
+						</caps-card>
 					</ng-template>
 				</div>
 			</hlm-tabs>

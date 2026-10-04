@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { form, FormField, FormRoot, maxLength, minLength, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
@@ -11,42 +11,42 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 	imports: [
 		FormRoot,
 		FormField,
-		HlmCardImports,
-		HlmFieldImports,
-		HlmButtonImports,
-		HlmInputImports,
+		CapsCardImports,
+		CapsFieldImports,
+		CapsButtonImports,
+		CapsInputImports,
 		HlmInputGroupImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Bug Report</h3>
-				<p hlmCardDescription>Help us improve by reporting bugs you encounter.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Bug Report</caps-card-title>
+				<caps-card-description>Help us improve by reporting bugs you encounter.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<!-- formRoot sets novalidate and handles form submission -->
 				<form [formRoot]="form" id="form-bug-report">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="title">Bug Title</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="title">Bug Title</caps-field-label>
 							<input
 								id="title"
-								hlmInput
+								capsInput
 								placeholder="Login button not working on mobile"
 								autoComplete="off"
 								[formField]="form.title"
 							/>
 
 							@for (error of form.title().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="description">Description</label>
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="description">Description</caps-field-label>
 							<hlm-input-group>
 								<textarea
 									hlmInputGroupTextarea
@@ -60,26 +60,24 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 									<span hlmInputGroupText>{{ descriptionLength() }}/100 characters</span>
 								</hlm-input-group-addon>
 							</hlm-input-group>
-							<hlm-field-description>
+							<caps-field-description>
 								Include steps to reproduce, expected behavior, and what actually happened.
-							</hlm-field-description>
+							</caps-field-description>
 
 							@for (error of form.description().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-bug-report">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				<button capsButton type="submit" form="form-bug-report">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class BugFormsDemo {
@@ -130,10 +128,10 @@ export class BugFormsDemo {
 export const demoCode = `
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { form, FormField, FormRoot, maxLength, minLength, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
@@ -141,42 +139,42 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 	imports: [
 		FormRoot,
 		FormField,
-		HlmCardImports,
-		HlmFieldImports,
-		HlmButtonImports,
-		HlmInputImports,
+		CapsCardImports,
+		CapsFieldImports,
+		CapsButtonImports,
+		CapsInputImports,
 		HlmInputGroupImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Bug Report</h3>
-				<p hlmCardDescription>Help us improve by reporting bugs you encounter.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Bug Report</caps-card-title>
+				<caps-card-description>Help us improve by reporting bugs you encounter.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<!-- formRoot sets novalidate and handles form submission -->
 				<form [formRoot]="form" id="form-bug-report">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="title">Bug Title</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="title">Bug Title</caps-field-label>
 							<input
 								id="title"
-								hlmInput
+								capsInput
 								placeholder="Login button not working on mobile"
 								autoComplete="off"
 								[formField]="form.title"
 							/>
 
 							@for (error of form.title().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="description">Description</label>
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="description">Description</caps-field-label>
 							<hlm-input-group>
 								<textarea
 									hlmInputGroupTextarea
@@ -190,26 +188,24 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 									<span hlmInputGroupText>{{ descriptionLength() }}/100 characters</span>
 								</hlm-input-group-addon>
 							</hlm-input-group>
-							<hlm-field-description>
+							<caps-field-description>
 								Include steps to reproduce, expected behavior, and what actually happened.
-							</hlm-field-description>
+							</caps-field-description>
 
 							@for (error of form.description().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-bug-report">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton type="submit" form="form-bug-report">Submit</button>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class BugFormsDemo {
@@ -259,19 +255,19 @@ export class BugFormsDemo {
 `;
 
 export const demoAnatomyCode = `
-<hlm-field>
-	<label hlmFieldLabel>Bug Title</label>
+<caps-field>
+	<caps-field-label>Bug Title</caps-field-label>
 	<input
-		hlmInput
+		capsInput
 		id="title"
 		placeholder="Login button not working on mobile"
 		autocomplete="off"
 		[formField]="form.title"
 	/>
 	@for (error of form.title().errors(); track error) {
-		<hlm-field-error [validator]="error.kind">{{ error.message }}</hlm-field-error>
+		<caps-field-error [validator]="error.kind">{{ error.message }}</caps-field-error>
 	}
-</hlm-field>
+</caps-field>
 `;
 
 export const demoFormModelCode = `
@@ -404,14 +400,14 @@ export class BugFormsDemo {
 `;
 
 export const demoForceShowCode = `
-<hlm-field>
-	<label hlmFieldLabel for="title">Bug Title</label>
-	<input hlmInput id="title" [formField]="form.title" />
-	<hlm-field-error forceShow>This error is always visible.</hlm-field-error>
-</hlm-field>`;
+<caps-field>
+	<caps-field-label for="title">Bug Title</caps-field-label>
+	<input capsInput id="title" [formField]="form.title" />
+	<caps-field-error forceShow>This error is always visible.</caps-field-error>
+</caps-field>`;
 
 export const demoSubmittingState = `
-<button hlmBtn type="submit" [disabled]="form().submitting()">
+<button capsButton type="submit" [disabled]="form().submitting()">
   @if (form().submitting()) {
     <hlm-spinner />
   }
@@ -420,7 +416,7 @@ export const demoSubmittingState = `
 `;
 
 export const demoResetForm = `
-<button hlmBtn variant="outline" type="button" (click)="reset()">
+<button capsButton variant="outline" type="button" (click)="reset()">
 	Reset
 </button>
 

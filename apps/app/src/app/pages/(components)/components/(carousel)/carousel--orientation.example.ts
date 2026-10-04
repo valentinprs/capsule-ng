@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
 
 @Component({
 	selector: 'spartan-carousel-orientation',
-	imports: [HlmCarouselImports, HlmCardImports],
+	imports: [HlmCarouselImports, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'flex w-full items-center justify-center p-4' },
 	template: `
@@ -13,11 +13,11 @@ import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
 				@for (item of items; track item) {
 					<hlm-carousel-item class="basis-1/2 pt-1">
 						<div class="p-1">
-							<section hlmCard>
-								<p hlmCardContent class="flex items-center justify-center p-6">
+							<caps-card>
+								<caps-card-content class="flex items-center justify-center p-6">
 									<span class="text-3xl font-semibold">{{ item }}</span>
-								</p>
-							</section>
+								</caps-card-content>
+							</caps-card>
 						</div>
 					</hlm-carousel-item>
 				}

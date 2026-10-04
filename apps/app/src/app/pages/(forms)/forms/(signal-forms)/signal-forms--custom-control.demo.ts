@@ -1,29 +1,29 @@
 import { Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, minLength, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CountryPicker, countryPickerCode } from './custom-control/country-picker';
 import { PasswordInput, passwordInputCode } from './custom-control/password-input';
 
 @Component({
 	selector: 'spartan-signal-form-custom-control-demo',
-	imports: [FormRoot, FormField, HlmCardImports, HlmFieldImports, HlmInputImports, HlmButtonImports, PasswordInput],
+	imports: [FormRoot, FormField, CapsCardImports, CapsFieldImports, CapsInputImports, CapsButtonImports, PasswordInput],
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Login to your account</h3>
-				<p hlmCardDescription>Enter your email below to login to your account</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Login to your account</caps-card-title>
+				<caps-card-description>Enter your email below to login to your account</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form [formRoot]="form" id="form-custom-control-demo">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="email">Email</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="email">Email</caps-field-label>
 							<input
-								hlmInput
+								capsInput
 								id="email"
 								placeholder="spartan@example.com"
 								autoComplete="email"
@@ -31,34 +31,34 @@ import { PasswordInput, passwordInputCode } from './custom-control/password-inpu
 							/>
 
 							@for (error of form.email().errors(); track error.kind) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="password">Password</label>
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="password">Password</caps-field-label>
 							<spartan-password-input inputId="password" [formField]="form.password" />
 							@for (error of form.password().errors(); track error.kind) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field>
-					<button hlmBtn type="submit" form="form-custom-control-demo">Login</button>
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<hlm-field-description class="text-center">
+			</caps-card-content>
+			<caps-card-footer>
+				<caps-field>
+					<button capsButton type="submit" form="form-custom-control-demo">Login</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<caps-field-description class="text-center">
 						Don't have an account?
 						<a href="#">Sign up</a>
-					</hlm-field-description>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+					</caps-field-description>
+				</caps-field>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormCustomControlDemo {
@@ -103,29 +103,29 @@ ${passwordInputCode}
 // login-form.ts
 import { Component, signal } from '@angular/core';
 import { email, form, FormField, FormRoot, minLength, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { PasswordInput } from './custom-control/password-input';
 
 @Component({
 	selector: 'spartan-signal-form-custom-control-demo',
-	imports: [FormRoot, FormField, HlmCardImports, HlmFieldImports, HlmInputImports, HlmButtonImports, PasswordInput],
+	imports: [FormRoot, FormField, CapsCardImports, CapsFieldImports, CapsInputImports, CapsButtonImports, PasswordInput],
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Login to your account</h3>
-				<p hlmCardDescription>Enter your email below to login to your account</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Login to your account</caps-card-title>
+				<caps-card-description>Enter your email below to login to your account</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form [formRoot]="form" id="form-custom-control-demo">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="email">Email</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="email">Email</caps-field-label>
 							<input
-								hlmInput
+								capsInput
 								id="email"
 								placeholder="spartan@example.com"
 								autoComplete="email"
@@ -133,34 +133,34 @@ import { PasswordInput } from './custom-control/password-input';
 							/>
 
 							@for (error of form.email().errors(); track error.kind) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="password">Password</label>
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="password">Password</caps-field-label>
 							<spartan-password-input inputId="password" [formField]="form.password" />
 							@for (error of form.password().errors(); track error.kind) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field>
-					<button hlmBtn type="submit" form="form-custom-control-demo">Login</button>
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<hlm-field-description class="text-center">
+			</caps-card-content>
+			<caps-card-footer>
+				<caps-field>
+					<button capsButton type="submit" form="form-custom-control-demo">Login</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<caps-field-description class="text-center">
 						Don't have an account?
 						<a href="#">Sign up</a>
-					</hlm-field-description>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+					</caps-field-description>
+				</caps-field>
+			</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormCustomControlDemo {
@@ -202,36 +202,36 @@ export class SignalFormCustomControlDemo {
 
 @Component({
 	selector: 'spartan-signal-form-country-picker-demo',
-	imports: [FormRoot, FormField, HlmCardImports, HlmFieldImports, HlmInputImports, HlmButtonImports, CountryPicker],
+	imports: [FormRoot, FormField, CapsCardImports, CapsFieldImports, CapsInputImports, CapsButtonImports, CountryPicker],
 	host: { class: 'w-full sm:max-w-sm' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Shipping information</h3>
-				<p hlmCardDescription>Where should we ship your order?</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Shipping information</caps-card-title>
+				<caps-card-description>Where should we ship your order?</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form [formRoot]="form" id="form-country-picker-demo">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="country">Country</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="country">Country</caps-field-label>
 							<spartan-country-picker inputId="country" [formField]="form.country" />
 							@for (error of form.country().errors(); track error.kind) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field>
-					<button hlmBtn type="submit" form="form-country-picker-demo">Submit</button>
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer>
+				<caps-field>
+					<button capsButton type="submit" form="form-country-picker-demo">Submit</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				</caps-field>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormCountryPickerDemo {
@@ -265,44 +265,44 @@ ${countryPickerCode}
 // shipping-form.ts
 import { Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CountryPicker } from './custom-control/country-picker';
 
 @Component({
 	selector: 'app-shipping-form',
-	imports: [FormRoot, FormField, HlmCardImports, HlmFieldImports, HlmInputImports, HlmButtonImports, CountryPicker],
+	imports: [FormRoot, FormField, CapsCardImports, CapsFieldImports, CapsInputImports, CapsButtonImports, CountryPicker],
 	host: { class: 'w-full sm:max-w-sm' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Shipping information</h3>
-				<p hlmCardDescription>Where should we ship your order?</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Shipping information</caps-card-title>
+				<caps-card-description>Where should we ship your order?</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form [formRoot]="form" id="form-country-picker-demo">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="country">Country</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="country">Country</caps-field-label>
 							<spartan-country-picker inputId="country" [formField]="form.country" />
 							@for (error of form.country().errors(); track error.kind) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field>
-					<button hlmBtn type="submit" form="form-country-picker-demo">Submit</button>
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer>
+				<caps-field>
+					<button capsButton type="submit" form="form-country-picker-demo">Submit</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				</caps-field>
+			</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ShippingForm {
@@ -333,8 +333,8 @@ export class ShippingForm {
 
 export const demoPasswordInputGroupCode = `
 <!-- Password field with input group -->
-<hlm-field>
-	<label hlmFieldLabel for="password">Password</label>
+<caps-field>
+	<caps-field-label for="password">Password</caps-field-label>
 	<hlm-input-group>
 		<input 
 			hlmInputGroupInput 
@@ -350,11 +350,11 @@ export const demoPasswordInputGroupCode = `
 		</hlm-input-group-addon>
 	</hlm-input-group>
 	@for (error of form.password().errors(); track error.kind) {
-		<hlm-field-error [validator]="error.kind">
+		<caps-field-error [validator]="error.kind">
 			{{ error.message }}
-		</hlm-field-error>
+		</caps-field-error>
 	}
-</hlm-field>
+</caps-field>
 
 // Component logic
 protected readonly _inputType = signal<'text' | 'password'>('password');

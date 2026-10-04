@@ -1,13 +1,13 @@
 import { Component, computed, signal } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'spartan-card-spacing',
-	imports: [HlmCardImports, HlmLabelImports, HlmInputImports, HlmButtonImports, HlmToggleGroupImports],
+	imports: [CapsCardImports, CapsLabelImports, CapsInputImports, CapsButtonImports, HlmToggleGroupImports],
 	host: { class: 'w-full max-w-md grid gap-4' },
 	template: `
 		<hlm-toggle-group type="single" size="sm" variant="outline" spacing="2" [(value)]="spacing">
@@ -18,42 +18,42 @@ import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 			}
 		</hlm-toggle-group>
 
-		<hlm-card class="w-full max-w-sm" [class]="spacingClass()">
-			<hlm-card-header>
-				<h3 hlmCardTitle>Login to your account</h3>
-				<p hlmCardDescription>Enter your email below to login to your account</p>
+		<caps-card maxWidth="sm" [class]="spacingClass()">
+			<caps-card-header>
+				<caps-card-title [level]="3">Login to your account</caps-card-title>
+				<caps-card-description>Enter your email below to login to your account</caps-card-description>
 
-				<div hlmCardAction>
-					<button hlmBtn variant="link">Sign Up</button>
-				</div>
-			</hlm-card-header>
+				<caps-card-action>
+					<button capsButton variant="link">Sign Up</button>
+				</caps-card-action>
+			</caps-card-header>
 
-			<div hlmCardContent>
+			<caps-card-content>
 				<form id="login-form">
 					<div class="flex flex-col gap-6">
 						<div class="grid gap-2">
-							<label hlmLabel for="email">Email</label>
-							<input type="email" id="email" placeholder="m@example.com" required hlmInput />
+							<label capsLabel for="email">Email</label>
+							<input type="email" id="email" placeholder="m@example.com" required capsInput />
 						</div>
 
 						<div class="grid gap-2">
 							<div class="flex items-center">
-								<label hlmLabel for="password">Password</label>
+								<label capsLabel for="password">Password</label>
 								<a href="#" class="ml-auto inline-block text-sm underline-offset-4 hover:underline">
 									Forgot your password?
 								</a>
 							</div>
-							<input type="password" id="password" hlmInput />
+							<input type="password" id="password" capsInput />
 						</div>
 					</div>
 				</form>
-			</div>
+			</caps-card-content>
 
-			<hlm-card-footer class="flex-col gap-2">
-				<button hlmBtn type="submit" class="w-full" form="login-form">Login</button>
-				<button hlmBtn variant="outline" class="w-full">Login with Google</button>
-			</hlm-card-footer>
-		</hlm-card>
+			<caps-card-footer class="flex-col gap-2">
+				<button capsButton type="submit" class="w-full" form="login-form">Login</button>
+				<button capsButton variant="outline" class="w-full">Login with Google</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class CardSpacing {

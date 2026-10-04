@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 @Component({
 	selector: 'spartan-tabs-lazy',
-	imports: [HlmTabsImports, HlmCardImports],
+	imports: [HlmTabsImports, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'block w-full max-w-lg',
@@ -17,24 +17,28 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 			</hlm-tabs-list>
 			<div hlmTabsContent="account">
 				<ng-template hlmTabsContentLazy>
-					<section hlmCard>
-						<div hlmCardHeader>
-							<h3 hlmCardTitle>Account</h3>
-							<p hlmCardDescription>This content was lazily loaded when the tab was first activated.</p>
-						</div>
-						<p hlmCardContent>Account content loaded lazily.</p>
-					</section>
+					<caps-card>
+						<caps-card-header>
+							<caps-card-title [level]="3">Account</caps-card-title>
+							<caps-card-description>
+								This content was lazily loaded when the tab was first activated.
+							</caps-card-description>
+						</caps-card-header>
+						<caps-card-content>Account content loaded lazily.</caps-card-content>
+					</caps-card>
 				</ng-template>
 			</div>
 			<div hlmTabsContent="password">
 				<ng-template hlmTabsContentLazy>
-					<section hlmCard>
-						<div hlmCardHeader>
-							<h3 hlmCardTitle>Password</h3>
-							<p hlmCardDescription>This content was lazily loaded when the tab was first activated.</p>
-						</div>
-						<p hlmCardContent>Password content loaded lazily.</p>
-					</section>
+					<caps-card>
+						<caps-card-header>
+							<caps-card-title [level]="3">Password</caps-card-title>
+							<caps-card-description>
+								This content was lazily loaded when the tab was first activated.
+							</caps-card-description>
+						</caps-card-header>
+						<caps-card-content>Password content loaded lazily.</caps-card-content>
+					</caps-card>
 				</ng-template>
 			</div>
 		</hlm-tabs>

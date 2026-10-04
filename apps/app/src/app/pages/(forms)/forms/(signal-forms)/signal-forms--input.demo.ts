@@ -1,47 +1,51 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, maxLength, minLength, pattern, required, submit } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-signal-form-input-demo',
-	imports: [FormField, HlmCardImports, HlmFieldImports, HlmInputImports, HlmButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsInputImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Profile Settings</h3>
-				<p hlmCardDescription>Update your profile information below.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Profile Settings</caps-card-title>
+				<caps-card-description>Update your profile information below.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-input-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="username">Username</label>
-							<input hlmInput id="username" placeholder="spartan" autoComplete="username" [formField]="form.username" />
-							<hlm-field-description>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="username">Username</caps-field-label>
+							<input
+								capsInput
+								id="username"
+								placeholder="spartan"
+								autoComplete="username"
+								[formField]="form.username"
+							/>
+							<caps-field-description>
 								This is your public display name. Must be between 3 and 10 characters. Must only contain letters,
 								numbers, and underscores.
-							</hlm-field-description>
+							</caps-field-description>
 							@for (error of form.username().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-input-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				<button capsButton type="submit" form="form-input-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormInputDemo {
@@ -79,48 +83,46 @@ export class SignalFormInputDemo {
 export const signalFormsInputDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, maxLength, minLength, pattern, required, submit } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-signal-form-input-demo',
-	imports: [FormField, HlmCardImports, HlmFieldImports, HlmInputImports, HlmButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsInputImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Profile Settings</h3>
-				<p hlmCardDescription>Update your profile information below.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Profile Settings</caps-card-title>
+				<caps-card-description>Update your profile information below.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-input-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="username">Username</label>
-							<input hlmInput id="username" placeholder="spartan" autoComplete="username" [formField]="form.username" />
-							<hlm-field-description>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="username">Username</caps-field-label>
+							<input capsInput id="username" placeholder="spartan" autoComplete="username" [formField]="form.username" />
+							<caps-field-description>
 								This is your public display name. Must be between 3 and 10 characters. Must only contain letters,
 								numbers, and underscores.
-							</hlm-field-description>
+							</caps-field-description>
 							@for (error of form.username().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-input-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton type="submit" form="form-input-demo">Submit</button>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormInputDemo {

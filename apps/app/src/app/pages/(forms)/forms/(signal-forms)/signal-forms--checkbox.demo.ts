@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { disabled, form, FormField, minLength, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-signal-form-checkbox-demo',
-	imports: [FormField, HlmCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Notifications</h3>
-				<p hlmCardDescription>Manage your notification preferences.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Notifications</caps-card-title>
+				<caps-card-description>Manage your notification preferences.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-checkbox-demo" (submit)="submit($event)">
 					<caps-field-group>
 						<caps-field-set>
@@ -60,14 +60,12 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						</caps-field-group>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
-					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormCheckboxDemo {
@@ -129,22 +127,22 @@ export const signalFormsCheckboxDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { disabled, form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-signal-form-checkbox-demo',
-	imports: [FormField, HlmCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Notifications</h3>
-				<p hlmCardDescription>Manage your notification preferences.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Notifications</caps-card-title>
+				<caps-card-description>Manage your notification preferences.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-checkbox-demo" (submit)="submit($event)">
 					<caps-field-group>
 						<caps-field-set>
@@ -189,14 +187,12 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 						</caps-field-group>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormCheckboxDemo {

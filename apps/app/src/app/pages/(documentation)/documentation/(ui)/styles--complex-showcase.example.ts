@@ -1,28 +1,29 @@
 import { Component } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+
 @Component({
 	selector: 'spartan-styles-complex-showcase',
-	imports: [HlmCardImports, HlmBadgeImports, CapsInputImports, CapsSelectImports, CapsButtonImports, NgIcon],
+	imports: [CapsCardImports, HlmBadgeImports, CapsInputImports, CapsSelectImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideCheck })],
 	host: {
 		class: 'flex w-80',
 	},
 	template: `
-		<hlm-card class="w-full">
-			<hlm-card-header>
-				<h3 hlmCardTitle>Card Title</h3>
-				<p hlmCardDescription>Card description here</p>
-				<div hlmCardAction>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Card Title</caps-card-title>
+				<caps-card-description>Card description here</caps-card-description>
+				<caps-card-action>
 					<span hlmBadge>Badge</span>
-				</div>
-			</hlm-card-header>
-			<div hlmCardContent>
+				</caps-card-action>
+			</caps-card-header>
+			<caps-card-content>
 				<div class="flex flex-col gap-4">
 					<input capsInput placeholder="Enter text..." />
 					<caps-select [itemToString]="itemToString" placeholder="Select option" class="w-full">
@@ -38,8 +39,8 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						</button>
 					</div>
 				</div>
-			</div>
-		</hlm-card>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class StylesComplexShowcase {

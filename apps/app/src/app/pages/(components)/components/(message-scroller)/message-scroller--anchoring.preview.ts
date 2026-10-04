@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideMessageCircleDashed, lucideRotateCw } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
@@ -13,8 +13,8 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 	selector: 'spartan-message-scroller-anchoring-preview',
 	imports: [
 		HlmMessageScrollerImports,
-		HlmCardImports,
-		HlmButtonImports,
+		CapsCardImports,
+		CapsButtonImports,
 		HlmEmptyImports,
 		HlmToggleGroupImports,
 		MessageScrollerTranscriptRow,
@@ -26,13 +26,13 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 		class: 'relative flex w-full max-w-sm flex-col gap-4',
 	},
 	template: `
-		<hlm-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
-			<hlm-card-header class="border-b">
-				<h3 hlmCardTitle>Anchoring Turns</h3>
-				<p hlmCardDescription>Choose which role settles near the top edge.</p>
-				<div hlmCardAction>
+		<caps-card maxWidth="sm" class="mx-auto h-[35rem] gap-0">
+			<caps-card-header class="border-b">
+				<caps-card-title [level]="3">Anchoring Turns</caps-card-title>
+				<caps-card-description>Choose which role settles near the top edge.</caps-card-description>
+				<caps-card-action>
 					<button
-						hlmBtn
+						capsButton
 						type="button"
 						variant="outline"
 						size="icon"
@@ -42,10 +42,10 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 					>
 						<ng-icon name="lucideRotateCw" />
 					</button>
-				</div>
-			</hlm-card-header>
+				</caps-card-action>
+			</caps-card-header>
 
-			<div hlmCardContent class="min-h-0 flex-1 overflow-hidden p-0">
+			<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
 				@if (_messages().length === 0) {
 					<hlm-empty class="h-full">
 						<hlm-empty-header>
@@ -82,9 +82,9 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 						</div>
 					</div>
 				}
-			</div>
+			</caps-card-content>
 
-			<hlm-card-footer>
+			<caps-card-footer>
 				<hlm-toggle-group
 					type="single"
 					[spacing]="2"
@@ -95,12 +95,12 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 					<button hlmToggleGroupItem value="user" aria-label="Anchor user messages">User</button>
 					<button hlmToggleGroupItem value="assistant" aria-label="Anchor assistant messages">Assistant</button>
 				</hlm-toggle-group>
-				<button hlmBtn type="button" size="icon" class="ms-auto" [disabled]="!_nextMessage()" (click)="sendNext()">
+				<button capsButton type="button" size="icon" class="ms-auto" [disabled]="!_nextMessage()" (click)="sendNext()">
 					<ng-icon name="lucideArrowUp" />
 					<span class="sr-only">Send Message</span>
 				</button>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-footer>
+		</caps-card>
 
 		<div class="text-muted-foreground mx-auto max-w-xs px-0.5 text-center text-xs">
 			Toggle the anchor role, then send messages to compare where turns settle.

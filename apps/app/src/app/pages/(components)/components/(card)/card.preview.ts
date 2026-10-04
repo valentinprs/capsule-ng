@@ -1,66 +1,65 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 
 @Component({
 	selector: 'spartan-card-preview',
-	imports: [HlmCardImports, HlmLabelImports, HlmInputImports, HlmButtonImports],
+	imports: [CapsCardImports, CapsFieldImports, CapsLinkImports, CapsInputImports, CapsButtonImports],
 	host: { class: 'w-full max-w-md' },
 	template: `
-		<hlm-card class="w-full max-w-sm">
-			<hlm-card-header>
-				<h3 hlmCardTitle>Login to your account</h3>
-				<p hlmCardDescription>Enter your email below to login to your account</p>
+		<caps-card maxWidth="sm">
+			<caps-card-header>
+				<caps-card-title [level]="2">Login to your account</caps-card-title>
+				<caps-card-description>Enter your email below to login to your account</caps-card-description>
 
-				<div hlmCardAction>
-					<button hlmBtn variant="link">Sign Up</button>
-				</div>
-			</hlm-card-header>
+				<caps-card-action>
+					<button capsButton variant="link">Sign Up</button>
+				</caps-card-action>
+			</caps-card-header>
 
-			<div hlmCardContent>
+			<caps-card-content>
 				<form id="login-form">
-					<div class="flex flex-col gap-6">
-						<div class="grid gap-2">
-							<label hlmLabel for="email">Email</label>
-							<input type="email" id="email" placeholder="m@example.com" required hlmInput />
-						</div>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label>Email</caps-field-label>
+							<input type="email" placeholder="m@example.com" required capsInput />
+						</caps-field>
 
-						<div class="grid gap-2">
+						<caps-field>
 							<div class="flex items-center">
-								<label hlmLabel for="password">Password</label>
-								<a href="#" class="ml-auto inline-block text-sm underline-offset-4 hover:underline">
-									Forgot your password?
-								</a>
+								<caps-field-label>Password</caps-field-label>
+								<a capsLink href="#" class="ms-auto text-sm">Forgot your password?</a>
 							</div>
-							<input type="password" id="password" hlmInput />
-						</div>
-					</div>
+							<input type="password" capsInput />
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
+			</caps-card-content>
 
-			<hlm-card-footer class="flex-col gap-2">
-				<button hlmBtn type="submit" class="w-full" form="login-form">Login</button>
-				<button hlmBtn variant="outline" class="w-full">Login with Google</button>
-			</hlm-card-footer>
-		</hlm-card>
+			<caps-card-footer class="flex-col gap-2">
+				<button capsButton type="submit" class="w-full" form="login-form">Login</button>
+				<button capsButton variant="outline" class="w-full">Login with Google</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class CardPreview {}
 
 export const defaultImports = `
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 `;
 
 export const defaultSkeleton = `
-<hlm-card>
-  <hlm-card-header>
-    <h3 hlmCardTitle>Card Title</h3>
-    <p hlmCardDescription>Card Description</p>
-    <div hlmCardAction>Card Action</div>
-  </hlm-card-header>
-  <div hlmCardContent>Card Content</div>
-  <hlm-card-footer>Card Footer</hlm-card-footer>
-</hlm-card>
+<caps-card>
+  <caps-card-header>
+    <caps-card-title [level]="3">Card Title</caps-card-title>
+    <caps-card-description>Card Description</caps-card-description>
+    <caps-card-action>Card Action</caps-card-action>
+  </caps-card-header>
+  <caps-card-content>Card Content</caps-card-content>
+  <caps-card-footer>Card Footer</caps-card-footer>
+</caps-card>
 `;

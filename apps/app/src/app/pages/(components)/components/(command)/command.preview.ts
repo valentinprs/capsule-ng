@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCalculator,
@@ -10,12 +11,11 @@ import {
 	lucideUser,
 	lucideWallet,
 } from '@ng-icons/lucide';
-import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 
 @Component({
 	selector: 'spartan-command-preview',
-	imports: [HlmCommandImports, HlmCardImports, NgIcon],
+	imports: [HlmCommandImports, CapsCardImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideSearch,
@@ -28,56 +28,57 @@ import { HlmCommandImports } from '@spartan-ng/helm/command';
 			lucideCalculator,
 		}),
 	],
-	hostDirectives: [HlmCard],
 	host: {
 		class: 'w-full py-0',
 	},
 	template: `
-		<div hlmCardContent class="p-0">
-			<hlm-command>
-				<hlm-command-input placeholder="Type a command or search..." />
-				<hlm-command-list>
-					<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-					<hlm-command-group>
-						<hlm-command-group-label>Suggestions</hlm-command-group-label>
-						<button hlm-command-item value="Calendar">
-							<ng-icon name="lucideCalendar" />
-							Calendar
-						</button>
-						<button hlm-command-item value="Search Emoji">
-							<ng-icon name="lucideSmile" />
-							Search Emoji
-						</button>
-						<button hlm-command-item value="Calculator" disabled>
-							<ng-icon name="lucideCalculator" />
-							Calculator
-						</button>
-					</hlm-command-group>
+		<caps-card class="py-0">
+			<caps-card-content class="p-0">
+				<hlm-command>
+					<hlm-command-input placeholder="Type a command or search..." />
+					<hlm-command-list>
+						<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
+						<hlm-command-group>
+							<hlm-command-group-label>Suggestions</hlm-command-group-label>
+							<button hlm-command-item value="Calendar">
+								<ng-icon name="lucideCalendar" />
+								Calendar
+							</button>
+							<button hlm-command-item value="Search Emoji">
+								<ng-icon name="lucideSmile" />
+								Search Emoji
+							</button>
+							<button hlm-command-item value="Calculator" disabled>
+								<ng-icon name="lucideCalculator" />
+								Calculator
+							</button>
+						</hlm-command-group>
 
-					<hlm-command-separator />
+						<hlm-command-separator />
 
-					<hlm-command-group>
-						<hlm-command-group-label>Settings</hlm-command-group-label>
+						<hlm-command-group>
+							<hlm-command-group-label>Settings</hlm-command-group-label>
 
-						<button hlm-command-item value="Profile">
-							<ng-icon name="lucideUser" />
-							Profile
-							<hlm-command-shortcut>⌘P</hlm-command-shortcut>
-						</button>
-						<button hlm-command-item value="Billing">
-							<ng-icon name="lucideWallet" />
-							Billing
-							<hlm-command-shortcut>⌘B</hlm-command-shortcut>
-						</button>
-						<button hlm-command-item value="Settings">
-							<ng-icon name="lucideCog" />
-							Settings
-							<hlm-command-shortcut>⌘S</hlm-command-shortcut>
-						</button>
-					</hlm-command-group>
-				</hlm-command-list>
-			</hlm-command>
-		</div>
+							<button hlm-command-item value="Profile">
+								<ng-icon name="lucideUser" />
+								Profile
+								<hlm-command-shortcut>⌘P</hlm-command-shortcut>
+							</button>
+							<button hlm-command-item value="Billing">
+								<ng-icon name="lucideWallet" />
+								Billing
+								<hlm-command-shortcut>⌘B</hlm-command-shortcut>
+							</button>
+							<button hlm-command-item value="Settings">
+								<ng-icon name="lucideCog" />
+								Settings
+								<hlm-command-shortcut>⌘S</hlm-command-shortcut>
+							</button>
+						</hlm-command-group>
+					</hlm-command-list>
+				</hlm-command>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CommandPreview {}

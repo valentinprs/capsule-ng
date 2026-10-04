@@ -1,16 +1,17 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { CapsSeparator } from '@capsule-ng/caps/separator';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
 import { StyleService } from '@spartan-ng/app/app/shared/style.service';
 import { TranslateService } from '@spartan-ng/app/app/shared/translate.service';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
-import { HlmSeparator } from '@spartan-ng/helm/separator';
+
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: 'div[spartanRtlCodePreview]',
-	imports: [CapsSelectImports, NgIcon, HlmPopoverImports, HlmSeparator, CapsButtonImports],
+	imports: [CapsSelectImports, NgIcon, HlmPopoverImports, CapsSeparator, CapsButtonImports],
 	providers: [
 		provideIcons({
 			lucideInfo,
@@ -43,12 +44,12 @@ import { HlmSeparator } from '@spartan-ng/helm/separator';
 					<div>
 						I used AI to translate the text for demonstration purposes. It&apos;s not perfect and may contain errors.
 					</div>
-					<hlm-separator class="-mx-2.5 w-auto!" />
+					<caps-separator class="-mx-2.5 w-auto!" />
 					<div data-lang="ar">
 						لقد استخدمت الذكاء الاصطناعي لترجمة النص للأغراض التجريبية فقط. قد لا تكون الترجمة دقيقة وقد تحتوي على
 						أخطاء.
 					</div>
-					<hlm-separator class="-mx-2.5 w-auto!" />
+					<caps-separator class="-mx-2.5 w-auto!" />
 					<div data-lang="he">
 						השתמשתי בבינה מלאכותית כדי לתרגם את הטקסט למטרות הדגמה. זה לא מושלם ויכול להכיל שגיאות.
 					</div>

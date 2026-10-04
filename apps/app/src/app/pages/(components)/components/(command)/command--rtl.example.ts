@@ -1,4 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCalculator,
@@ -11,12 +12,11 @@ import {
 	lucideWallet,
 } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 
 @Component({
 	selector: 'spartan-command-rtl',
-	imports: [HlmCommandImports, HlmCardImports, NgIcon],
+	imports: [HlmCommandImports, CapsCardImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideSearch,
@@ -29,57 +29,58 @@ import { HlmCommandImports } from '@spartan-ng/helm/command';
 			lucideCalculator,
 		}),
 	],
-	hostDirectives: [HlmCard],
 	host: {
 		class: 'w-full py-0',
 		'[attr.dir]': '_dir()',
 	},
 	template: `
-		<div hlmCardContent class="p-0">
-			<hlm-command>
-				<hlm-command-input [placeholder]="_t()['placeholder']" />
-				<hlm-command-list>
-					<div *hlmCommandEmptyState hlmCommandEmpty>{{ _t()['empty'] }}</div>
-					<hlm-command-group>
-						<hlm-command-group-label>{{ _t()['suggestions'] }}</hlm-command-group-label>
-						<button hlm-command-item value="Calendar">
-							<ng-icon name="lucideCalendar" />
-							{{ _t()['calendar'] }}
-						</button>
-						<button hlm-command-item value="Search Emoji">
-							<ng-icon name="lucideSmile" />
-							{{ _t()['searchEmoji'] }}
-						</button>
-						<button hlm-command-item value="Calculator" disabled>
-							<ng-icon name="lucideCalculator" />
-							{{ _t()['calculator'] }}
-						</button>
-					</hlm-command-group>
+		<caps-card class="py-0">
+			<caps-card-content class="p-0">
+				<hlm-command>
+					<hlm-command-input [placeholder]="_t()['placeholder']" />
+					<hlm-command-list>
+						<div *hlmCommandEmptyState hlmCommandEmpty>{{ _t()['empty'] }}</div>
+						<hlm-command-group>
+							<hlm-command-group-label>{{ _t()['suggestions'] }}</hlm-command-group-label>
+							<button hlm-command-item value="Calendar">
+								<ng-icon name="lucideCalendar" />
+								{{ _t()['calendar'] }}
+							</button>
+							<button hlm-command-item value="Search Emoji">
+								<ng-icon name="lucideSmile" />
+								{{ _t()['searchEmoji'] }}
+							</button>
+							<button hlm-command-item value="Calculator" disabled>
+								<ng-icon name="lucideCalculator" />
+								{{ _t()['calculator'] }}
+							</button>
+						</hlm-command-group>
 
-					<hlm-command-separator />
+						<hlm-command-separator />
 
-					<hlm-command-group>
-						<hlm-command-group-label>{{ _t()['settings'] }}</hlm-command-group-label>
+						<hlm-command-group>
+							<hlm-command-group-label>{{ _t()['settings'] }}</hlm-command-group-label>
 
-						<button hlm-command-item value="Profile">
-							<ng-icon name="lucideUser" />
-							{{ _t()['profile'] }}
-							<hlm-command-shortcut>⌘P</hlm-command-shortcut>
-						</button>
-						<button hlm-command-item value="Billing">
-							<ng-icon name="lucideWallet" />
-							{{ _t()['billing'] }}
-							<hlm-command-shortcut>⌘B</hlm-command-shortcut>
-						</button>
-						<button hlm-command-item value="Settings">
-							<ng-icon name="lucideCog" />
-							{{ _t()['settings'] }}
-							<hlm-command-shortcut>⌘S</hlm-command-shortcut>
-						</button>
-					</hlm-command-group>
-				</hlm-command-list>
-			</hlm-command>
-		</div>
+							<button hlm-command-item value="Profile">
+								<ng-icon name="lucideUser" />
+								{{ _t()['profile'] }}
+								<hlm-command-shortcut>⌘P</hlm-command-shortcut>
+							</button>
+							<button hlm-command-item value="Billing">
+								<ng-icon name="lucideWallet" />
+								{{ _t()['billing'] }}
+								<hlm-command-shortcut>⌘B</hlm-command-shortcut>
+							</button>
+							<button hlm-command-item value="Settings">
+								<ng-icon name="lucideCog" />
+								{{ _t()['settings'] }}
+								<hlm-command-shortcut>⌘S</hlm-command-shortcut>
+							</button>
+						</hlm-command-group>
+					</hlm-command-list>
+				</hlm-command>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CommandRtl {

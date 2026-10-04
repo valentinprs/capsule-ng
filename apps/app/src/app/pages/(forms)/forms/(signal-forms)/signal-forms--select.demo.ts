@@ -1,27 +1,29 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, required, submit, validate } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+
 @Component({
 	selector: 'spartan-signal-form-select-demo',
-	imports: [FormField, HlmCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Language Preferences</h3>
-				<p hlmCardDescription>Select your preferred spoken language.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Language Preferences</caps-card-title>
+				<caps-card-description>Select your preferred spoken language.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-select-demo" (submit)="submit($event)">
 					<caps-field-group>
 						<caps-field orientation="responsive">
 							<caps-field-content>
 								<caps-field-label>Spoken Language</caps-field-label>
 								<caps-field-description>For best results, select the language you speak.</caps-field-description>
+
 								@for (error of form.language().errors(); track error) {
 									<caps-field-error [validator]="error.kind">
 										{{ error.message }}
@@ -40,12 +42,12 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						</caps-field>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer class="gap-2">
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
 				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 				<button capsButton type="submit" form="form-select-demo">Submit</button>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormSelectDemo {
@@ -108,27 +110,29 @@ export const signalFormsSelectDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, required, submit, validate } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+
 @Component({
 	selector: 'spartan-signal-form-select-demo',
-	imports: [FormField, HlmCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Language Preferences</h3>
-				<p hlmCardDescription>Select your preferred spoken language.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Language Preferences</caps-card-title>
+				<caps-card-description>Select your preferred spoken language.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-select-demo" (submit)="submit($event)">
 					<caps-field-group>
 						<caps-field orientation="responsive">
 							<caps-field-content>
 								<caps-field-label>Spoken Language</caps-field-label>
 								<caps-field-description>For best results, select the language you speak.</caps-field-description>
+
 								@for (error of form.language().errors(); track error) {
 									<caps-field-error [validator]="error.kind">
 										{{ error.message }}
@@ -148,12 +152,12 @@ import { CapsSelectImports } from '@capsule-ng/caps/select';
 						</caps-field>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer class="gap-2">
-				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-select-demo">Submit</button>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormSelectDemo {

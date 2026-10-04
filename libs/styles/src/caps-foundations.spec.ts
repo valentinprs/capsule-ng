@@ -20,6 +20,14 @@ describe('Capsule public CSS foundations', () => {
 		expect(result.css).toContain('--radius: var(--caps-radius)');
 		expect(result.css).toContain('--caps-font-sans:');
 		expect(result.css).toContain('--caps-spacing:');
+		for (const [size, value] of [
+			['sm', '24rem'],
+			['md', '28rem'],
+			['lg', '32rem'],
+		]) {
+			expect(result.css).toContain(`--caps-card-max-width-${size}: var(--container-${size})`);
+			expect(result.css).toContain(`--container-${size}: ${value}`);
+		}
 	});
 	it('keeps app styles free of competing global tokens and Capsule metrics in the preset', () => {
 		for (const path of ['apps/app/src/styles.css', 'apps/ui-storybook/.storybook/tailwind.css']) {

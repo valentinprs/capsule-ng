@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckbox } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-field-hear',
-	imports: [HlmCardImports, CapsFieldImports, CapsCheckbox],
+	imports: [CapsCardImports, CapsFieldImports, CapsCheckbox],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div hlmCard class="py-4 shadow-none">
-			<div hlmCardContent>
+		<caps-card class="py-4 shadow-none">
+			<caps-card-content>
 				<form>
 					<caps-field-set class="gap-4">
 						<caps-field-legend>How did you hear about us?</caps-field-legend>
@@ -34,8 +34,8 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						</caps-field-group>
 					</caps-field-set>
 				</form>
-			</div>
-		</div>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class FieldHear {

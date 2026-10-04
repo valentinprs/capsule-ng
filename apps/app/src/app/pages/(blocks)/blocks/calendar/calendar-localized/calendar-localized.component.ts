@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, Injectable, OnInit, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 import {
 	BrnCalendarI18nService,
@@ -8,7 +9,6 @@ import {
 	provideBrnCalendarI18n,
 } from '@spartan-ng/brain/calendar';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 const localizedStrings = {
 	vi: {
@@ -93,26 +93,28 @@ export class LanguageService {
 }
 @Component({
 	selector: 'spartan-calendar-localized',
-	imports: [HlmCalendar, CapsSelectImports, HlmCardImports, CapsButtonImports],
+	imports: [HlmCalendar, CapsSelectImports, CapsCardImports, CapsButtonImports],
 	providers: [provideBrnCalendarI18n(CALENDAR_I18N.vi)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex justify-center items-start p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg',
 	},
 	template: `
-		<section class="w-full max-w-sm overflow-auto" hlmCard>
-			<div hlmCardHeader>
-				<h3 hlmCardTitle>{{ _strings[lang].title }}</h3>
-				<p hlmCardDescription>{{ _strings[lang].description }}</p>
-				<div hlmCardAction>
+		<caps-card maxWidth="sm" class="overflow-auto">
+			<caps-card-header>
+				<caps-card-title [level]="3">{{ _strings[lang].title }}</caps-card-title>
+				<caps-card-description>{{ _strings[lang].description }}</caps-card-description>
+
+				<caps-card-action>
 					<caps-select aria-label="Calendar language" [value]="lang" (valueChange)="setLang($event)">
 						@for (l of _supportedLanguages; track l) {
 							<caps-select-option [value]="l">{{ l }}</caps-select-option>
 						}
 					</caps-select>
-				</div>
-			</div>
-			<div hlmCardContent class="flex flex-row gap-3 px-6">
+				</caps-card-action>
+			</caps-card-header>
+
+			<caps-card-content class="flex flex-row gap-3 px-6">
 				<hlm-calendar class="h-80" />
 				<div class="no-scrollbar flex h-80 scroll-pb-6 flex-col gap-2 overflow-y-auto">
 					@for (time of _timeSlots; track time) {
@@ -121,8 +123,8 @@ export class LanguageService {
 						</button>
 					}
 				</div>
-			</div>
-		</section>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CalendarLocalizedComponent implements OnInit {

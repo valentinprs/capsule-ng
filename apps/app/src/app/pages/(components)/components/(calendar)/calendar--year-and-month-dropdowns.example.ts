@@ -1,21 +1,23 @@
 import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+
 @Component({
 	selector: 'spartan-calendar-year-and-month-dropdown',
-	imports: [HlmCalendar, CapsSelectImports, FormsModule, HlmCardImports],
+	imports: [HlmCalendar, CapsSelectImports, FormsModule, CapsCardImports],
 	host: {
 		class: 'flex flex-col gap-4',
 	},
 	template: `
-		<div hlmCard class="mx-auto w-fit p-0">
-			<div hlmCardContent class="p-0">
+		<caps-card width="auto" class="mx-auto p-0">
+			<caps-card-content class="p-0">
 				<hlm-calendar [captionLayout]="_captionLayout()" />
-			</div>
-		</div>
+			</caps-card-content>
+		</caps-card>
+
 		<caps-select
 			aria-label="Calendar caption layout"
 			[(ngModel)]="_captionLayout"

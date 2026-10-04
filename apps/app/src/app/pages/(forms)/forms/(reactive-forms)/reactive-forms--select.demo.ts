@@ -8,21 +8,22 @@ import {
 	Validators,
 } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+
 @Component({
 	selector: 'spartan-reactive-form-select-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-lg' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Language Preferences</h3>
-				<p hlmCardDescription>Select your preferred spoken language.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Language Preferences</caps-card-title>
+				<caps-card-description>Select your preferred spoken language.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-select-demo" [formGroup]="form" (ngSubmit)="submit()">
 					<caps-field-group>
 						<caps-field orientation="responsive">
@@ -44,12 +45,12 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						</caps-field>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer class="gap-2">
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
 				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 				<button capsButton type="submit" form="form-select-demo">Submit</button>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class ReactiveFormSelectDemo {
@@ -104,21 +105,22 @@ import {
 	Validators,
 } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+
 @Component({
 	selector: 'spartan-reactive-form-select-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Language Preferences</h3>
-				<p hlmCardDescription>Select your preferred spoken language.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Language Preferences</caps-card-title>
+				<caps-card-description>Select your preferred spoken language.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-select-demo" [formGroup]="form" (ngSubmit)="submit()">
 					<caps-field-group>
 						<caps-field orientation="responsive">
@@ -141,12 +143,12 @@ import { CapsSelectImports } from '@capsule-ng/caps/select';
 						</caps-field>
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer class="gap-2">
-				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 					<button capsButton type="submit" form="form-select-demo">Submit</button>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ReactiveFormSelectDemo {

@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-reactive-form-radio-group-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Subscription Plan</h3>
-				<p hlmCardDescription>See pricing and features for each plan.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Subscription Plan</caps-card-title>
+				<caps-card-description>See pricing and features for each plan.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-radio-group-demo" [formGroup]="form" (ngSubmit)="submit()">
 					<caps-field-group>
 						<caps-field-set>
@@ -41,14 +41,12 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						}
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
-					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button capsButton type="submit" form="form-radio-group-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="submit" form="form-radio-group-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class ReactiveFormRadioGroupDemo {
@@ -90,22 +88,22 @@ export const reactiveFormsRadioGroupDemoCode = `
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 
 @Component({
 	selector: 'spartan-reactive-form-radio-group-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Subscription Plan</h3>
-				<p hlmCardDescription>See pricing and features for each plan.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Subscription Plan</caps-card-title>
+				<caps-card-description>See pricing and features for each plan.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-radio-group-demo" [formGroup]="form" (ngSubmit)="submit()">
 					<caps-field-group>
 						<caps-field-set>
@@ -130,14 +128,12 @@ import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 						}
 					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<div class="flex gap-2">
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
 					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 					<button capsButton type="submit" form="form-radio-group-demo">Submit</button>
-				</div>
-			</hlm-card-footer>
-		</hlm-card>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ReactiveFormRadioGroupDemo {

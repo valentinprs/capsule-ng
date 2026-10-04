@@ -116,13 +116,7 @@ export const routeMeta: RouteMeta = {
 
 			<h3 id="examples__colors" spartanH4>Custom Colors</h3>
 			<p class="${hlmP}">
-				You can customize the colors of a badge by adding custom classes such as
-				<code class="${hlmCode}">bg-blue-50</code>
-				and
-				<code class="${hlmCode}">text-blue-700</code>
-				to the
-				<code class="${hlmCode}">hlmBadge</code>
-				component.
+				Choose a Carbon color with variant. Use size sm, md (default) or lg. Set skeleton while content is loading.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -139,8 +133,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="breadcrumb" label="Breadcrumb" />

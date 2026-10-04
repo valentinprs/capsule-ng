@@ -1,5 +1,6 @@
 import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideBadgeCheck,
@@ -24,7 +25,6 @@ import {
 	lucideSquareTerminal,
 	lucideTrash2,
 } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
@@ -32,7 +32,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-collapsable-icons',
-	imports: [HlmSidebarImports, HlmCollapsibleImports, RouterLink, HlmAvatarImports, HlmDropdownMenuImports, NgIcon],
+	imports: [HlmSidebarImports, HlmCollapsibleImports, RouterLink, CapsAvatarImports, HlmDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideFrame,
@@ -174,10 +174,10 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 								[side]="_menuSide()"
 								align="end"
 							>
-								<hlm-avatar class="rounded-lg">
-									<img src="/assets/avatar.png" alt="spartan" hlmAvatarImage />
-									<span class="rounded-lg bg-[#FD005B] text-white" hlmAvatarFallback>RG</span>
-								</hlm-avatar>
+								<caps-avatar class="rounded-lg">
+									<img src="/assets/avatar.png" alt="spartan" capsAvatarImage />
+									<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">RG</caps-avatar-fallback>
+								</caps-avatar>
 								<div class="grid flex-1 text-left text-sm leading-tight">
 									<span class="truncate font-medium">spartan</span>
 									<span class="truncate text-xs">hello@spartan.com</span>
@@ -191,10 +191,10 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 						<hlm-dropdown-menu class="min-w-56 rounded-lg">
 							<hlm-dropdown-menu-label>
 								<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-									<hlm-avatar class="rounded-lg">
-										<img src="/assets/avatar.png" alt="spartan" hlmAvatarImage />
-										<span class="rounded-lg bg-[#FD005B] text-white" hlmAvatarFallback>RG</span>
-									</hlm-avatar>
+									<caps-avatar class="rounded-lg">
+										<img src="/assets/avatar.png" alt="spartan" capsAvatarImage />
+										<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">RG</caps-avatar-fallback>
+									</caps-avatar>
 									<div class="grid flex-1 text-left text-sm leading-tight">
 										<span class="truncate font-medium">spartan</span>
 										<span class="truncate text-xs">hello@spartan.com</span>

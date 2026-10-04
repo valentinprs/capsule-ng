@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-avatar-dropdown-preview',
-	imports: [HlmAvatarImports, HlmDropdownMenuImports, HlmButtonImports],
+	imports: [CapsAvatarImports, HlmDropdownMenuImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="ghost" size="icon" class="rounded-full" [hlmDropdownMenuTrigger]="menu">
-			<hlm-avatar>
-				<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" />
-				<span hlmAvatarFallback>RG</span>
-			</hlm-avatar>
+		<button capsButton variant="ghost" size="icon" class="rounded-full" [hlmDropdownMenuTrigger]="menu">
+			<caps-avatar>
+				<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" />
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+			</caps-avatar>
 		</button>
 
 		<ng-template #menu>

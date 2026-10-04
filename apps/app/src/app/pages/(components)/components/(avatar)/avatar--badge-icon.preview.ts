@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'spartan-avatar-badge-icon-preview',
-	imports: [HlmAvatarImports, NgIcon],
+	imports: [CapsAvatarImports, NgIcon],
 	providers: [provideIcons({ lucidePlus })],
 
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-avatar class="grayscale">
-			<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" />
-			<span hlmAvatarFallback>RG</span>
-			<hlm-avatar-badge>
+		<caps-avatar class="grayscale">
+			<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" />
+			<caps-avatar-fallback>RG</caps-avatar-fallback>
+			<caps-avatar-badge>
 				<ng-icon name="lucidePlus" />
-			</hlm-avatar-badge>
-		</hlm-avatar>
+			</caps-avatar-badge>
+		</caps-avatar>
 	`,
 })
 export class AvatarBadgeIconPreview {}

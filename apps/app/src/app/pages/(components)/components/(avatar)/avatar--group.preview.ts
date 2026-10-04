@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 
 @Component({
 	selector: 'spartan-avatar-group-preview',
-	imports: [HlmAvatarImports],
+	imports: [CapsAvatarImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-avatar-group class="grayscale">
-			<hlm-avatar>
-				<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
-				<span hlmAvatarFallback>RG</span>
-			</hlm-avatar>
-			<hlm-avatar>
-				<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
-				<span hlmAvatarFallback>RG</span>
-			</hlm-avatar>
-			<hlm-avatar>
-				<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
-				<span hlmAvatarFallback>RG</span>
-			</hlm-avatar>
-		</hlm-avatar-group>
+		<caps-avatar-group class="grayscale">
+			<caps-avatar>
+				<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+			</caps-avatar>
+			<caps-avatar>
+				<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+			</caps-avatar>
+			<caps-avatar>
+				<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+			</caps-avatar>
+		</caps-avatar-group>
 	`,
 })
 export class AvatarGroupPreview {}

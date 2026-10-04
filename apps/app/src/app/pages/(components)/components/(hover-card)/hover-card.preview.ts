@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsHoverCardImports } from '@capsule-ng/caps/hover-card';
 import { CapsLinkImports } from '@capsule-ng/caps/link';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'spartan-hover-card-preview',
-	imports: [CapsHoverCardImports, CapsLinkImports, HlmAvatarImports, NgIcon],
+	imports: [CapsHoverCardImports, CapsLinkImports, CapsAvatarImports, NgIcon],
 	providers: [provideIcons({ lucideCalendar })],
 	template: `
 		<caps-hover-card>
 			<a capsLink capsHoverCardTrigger href="https://analogjs.org">&#64;analogjs</a>
 			<ng-template capsHoverCardContent [class]="'w-80'">
 				<div class="flex justify-between space-x-4">
-					<hlm-avatar size="sm" id="avatar-small">
-						<img src="https://analogjs.org/img/logos/analog-logo.svg" alt="AnalogLogo" hlmAvatarImage />
-						<span class="bg-muted text-foreground" hlmAvatarFallback>AN</span>
-					</hlm-avatar>
+					<caps-avatar size="sm" id="avatar-small">
+						<img src="https://analogjs.org/img/logos/analog-logo.svg" alt="AnalogLogo" capsAvatarImage />
+						<caps-avatar-fallback class="bg-muted text-foreground">AN</caps-avatar-fallback>
+					</caps-avatar>
 					<div class="space-y-1">
 						<h4 class="text-sm font-semibold">&#64;analogjs</h4>
 						<p class="text-sm">The Angular meta-framework – build Angular applications faster.</p>

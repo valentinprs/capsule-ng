@@ -1,50 +1,50 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 
 @Component({
 	selector: 'spartan-avatar-rtl-preview',
-	imports: [HlmAvatarImports],
+	imports: [CapsAvatarImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		'[dir]': '_dir()',
 	},
 	template: `
 		<div class="flex flex-row flex-wrap items-center gap-6 md:gap-12">
-			<hlm-avatar>
+			<caps-avatar>
 				<img
-					hlmAvatarImage
+					capsAvatarImage
 					src="/assets/avatar.png"
 					alt="spartan logo. Resembling a spartanic shield"
 					class="grayscale"
 				/>
-				<span hlmAvatarFallback>RG</span>
-			</hlm-avatar>
-			<hlm-avatar>
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+			</caps-avatar>
+			<caps-avatar>
 				<img
-					hlmAvatarImage
+					capsAvatarImage
 					src="/assets/avatar.png"
 					alt="spartan logo. Resembling a spartanic shield"
 					class="grayscale"
 				/>
-				<span hlmAvatarFallback>RG</span>
-				<hlm-avatar-badge class="bg-red-600 dark:bg-red-800" />
-			</hlm-avatar>
-			<hlm-avatar-group class="grayscale">
-				<hlm-avatar>
-					<img hlmAvatarImage src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" />
-					<span hlmAvatarFallback>RG</span>
-				</hlm-avatar>
-				<hlm-avatar>
-					<img hlmAvatarImage src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" />
-					<span hlmAvatarFallback>RG</span>
-				</hlm-avatar>
-				<hlm-avatar>
-					<img hlmAvatarImage src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" />
-					<span hlmAvatarFallback>RG</span>
-				</hlm-avatar>
-				<hlm-avatar-group-count>{{ _t()['moreUsers'] }}</hlm-avatar-group-count>
-			</hlm-avatar-group>
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+				<caps-avatar-badge class="bg-red-600 dark:bg-red-800" />
+			</caps-avatar>
+			<caps-avatar-group class="grayscale">
+				<caps-avatar>
+					<img capsAvatarImage src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" />
+					<caps-avatar-fallback>RG</caps-avatar-fallback>
+				</caps-avatar>
+				<caps-avatar>
+					<img capsAvatarImage src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" />
+					<caps-avatar-fallback>RG</caps-avatar-fallback>
+				</caps-avatar>
+				<caps-avatar>
+					<img capsAvatarImage src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" />
+					<caps-avatar-fallback>RG</caps-avatar-fallback>
+				</caps-avatar>
+				<caps-avatar-group-count>{{ _t()['moreUsers'] }}</caps-avatar-group-count>
+			</caps-avatar-group>
 		</div>
 	`,
 })

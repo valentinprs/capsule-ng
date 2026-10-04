@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'spartan-card-image-preview',
-	imports: [CapsCardImports, CapsButtonImports, HlmBadgeImports],
+	imports: [CapsCardImports, CapsButtonImports, CapsBadgeImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<caps-card maxWidth="sm" class="relative mx-auto pt-0">
@@ -19,7 +19,7 @@ import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 			/>
 			<caps-card-header>
 				<caps-card-action>
-					<span hlmBadge variant="secondary">Featured</span>
+					<caps-badge variant="gray">Featured</caps-badge>
 				</caps-card-action>
 				<caps-card-title [level]="3">Design systems meetup</caps-card-title>
 				<caps-card-description>

@@ -3,14 +3,14 @@ import { RouterLink } from '@angular/router';
 import { pageNavs, sidenavItems } from '@spartan-ng/app/app/shared/components/navigation-items';
 import { SpartanNewMarker } from '@spartan-ng/app/app/shared/spartan-new-marker';
 
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsPopover, CapsPopoverImports } from '@capsule-ng/caps/popover';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'spartan-mobile-nav',
-	imports: [CapsButton, NgScrollbarModule, RouterLink, CapsPopoverImports, HlmBadgeImports, SpartanNewMarker],
+	imports: [CapsButton, NgScrollbarModule, RouterLink, CapsPopoverImports, CapsBadgeImports, SpartanNewMarker],
 	template: `
 		<caps-popover
 			placement="bottom-start"
@@ -80,7 +80,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 										<span spartanNewMarker></span>
 									}
 									@if (link.wip) {
-										<span hlmBadge>soon</span>
+										<caps-badge>soon</caps-badge>
 									}
 								</a>
 							}

@@ -1,24 +1,24 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 
 @Component({
 	selector: 'spartan-avatar-sizes-preview',
-	imports: [HlmAvatarImports],
+	imports: [CapsAvatarImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-wrap items-center gap-2 grayscale">
-			<hlm-avatar size="sm">
-				<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
-				<span hlmAvatarFallback>RG</span>
-			</hlm-avatar>
-			<hlm-avatar>
-				<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
-				<span hlmAvatarFallback>RG</span>
-			</hlm-avatar>
-			<hlm-avatar size="lg">
-				<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
-				<span hlmAvatarFallback>RG</span>
-			</hlm-avatar>
+			<caps-avatar size="sm">
+				<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+			</caps-avatar>
+			<caps-avatar>
+				<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+			</caps-avatar>
+			<caps-avatar size="lg">
+				<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" class="grayscale" />
+				<caps-avatar-fallback>RG</caps-avatar-fallback>
+			</caps-avatar>
 		</div>
 	`,
 })

@@ -96,7 +96,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__badge" spartanH4>Badge</h3>
 			<p class="${hlmP}">
 				Use the
-				<code class="${hlmCode}">hlm-avatar-badge</code>
+				<code class="${hlmCode}">caps-avatar-badge</code>
 				component to add a badge to the avatar. The badge is positioned at the bottom right of the avatar.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -109,7 +109,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__badge-icon" spartanH4>Badge Icon</h3>
 			<p class="${hlmP}">
 				You can also use an icon inside
-				<code class="${hlmCode}">hlm-avatar-badge</code>
+				<code class="${hlmCode}">caps-avatar-badge</code>
 				.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -122,7 +122,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples___avatar-group" spartanH4>Avatar Group</h3>
 			<p class="${hlmP}">
 				Use the
-				<code class="${hlmCode}">hlm-avatar-group</code>
+				<code class="${hlmCode}">caps-avatar-group</code>
 				component to add a group of avatars.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -135,7 +135,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples___avatar-group-count" spartanH4>Avatar Group Count</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlm-avatar-group-count</code>
+				<code class="${hlmCode}">caps-avatar-group-count</code>
 				to add a count to the group.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -148,7 +148,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples___avatar-group-icon" spartanH4>Avatar Group Icon</h3>
 			<p class="${hlmP}">
 				You can also use an icon inside
-				<code class="${hlmCode}">hlm-avatar-group-count</code>
+				<code class="${hlmCode}">caps-avatar-group-count</code>
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -173,7 +173,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__dropdown" spartanH4>Dropdown</h3>
 			<p class="${hlmP}">
 				You can use the
-				<code class="${hlmCode}">hlm-avatar</code>
+				<code class="${hlmCode}">caps-avatar</code>
 				component as trigger for a dropdown menu.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -191,11 +191,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="badge" label="Badge" />

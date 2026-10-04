@@ -1,18 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmItemImports } from '@spartan-ng/helm/item';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 
 @Component({
 	selector: 'spartan-item-header-preview',
-	imports: [HlmItemImports],
+	imports: [CapsItemImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-xl flex-col gap-6',
 	},
 	template: `
-		<hlm-item-group class="grid grid-cols-3 gap-4">
+		<caps-item-group
+			class="[&>.caps-item-list]:grid [&>.caps-item-list]:grid-cols-1 [&>.caps-item-list]:gap-4 sm:[&>.caps-item-list]:grid-cols-3"
+		>
 			@for (model of _models; track model.name) {
-				<hlm-item variant="outline">
-					<hlm-item-header>
+				<caps-item>
+					<caps-item-header>
 						<img
 							[src]="model.image"
 							[alt]="model.name"
@@ -20,14 +22,14 @@ import { HlmItemImports } from '@spartan-ng/helm/item';
 							height="128"
 							class="aspect-square w-full rounded-sm object-cover"
 						/>
-					</hlm-item-header>
-					<hlm-item-content>
-						<hlm-item-title>{{ model.name }}</hlm-item-title>
-						<p hlmItemDescription>{{ model.description }}</p>
-					</hlm-item-content>
-				</hlm-item>
+					</caps-item-header>
+					<caps-item-content>
+						<caps-item-title>{{ model.name }}</caps-item-title>
+						<caps-item-description>{{ model.description }}</caps-item-description>
+					</caps-item-content>
+				</caps-item>
 			}
-		</hlm-item-group>
+		</caps-item-group>
 	`,
 })
 export class ItemHeaderPreview {

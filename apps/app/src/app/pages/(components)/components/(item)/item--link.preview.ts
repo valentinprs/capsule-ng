@@ -1,35 +1,35 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideExternalLink } from '@ng-icons/lucide';
-import { HlmItemImports } from '@spartan-ng/helm/item';
 
 @Component({
 	selector: 'spartan-item-link-preview',
-	imports: [HlmItemImports, NgIcon, RouterLink],
+	imports: [CapsItemImports, NgIcon, RouterLink],
 	providers: [provideIcons({ lucideChevronRight, lucideExternalLink })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-md flex-col gap-6',
 	},
 	template: `
-		<a hlmItem routerLink=".">
-			<hlm-item-content>
-				<hlm-item-title>Visit our documentation</hlm-item-title>
-				<p hlmItemDescription>Learn how to get started with our components.</p>
-			</hlm-item-content>
-			<hlm-item-actions>
+		<a capsItem routerLink=".">
+			<caps-item-content>
+				<caps-item-title>Visit our documentation</caps-item-title>
+				<caps-item-description>Learn how to get started with our components.</caps-item-description>
+			</caps-item-content>
+			<caps-item-actions>
 				<ng-icon name="lucideChevronRight" class="text-[length:--spacing(4)]" />
-			</hlm-item-actions>
+			</caps-item-actions>
 		</a>
-		<a hlmItem variant="outline" href="#" target="_blank" rel="noopener noreferrer">
-			<hlm-item-content>
-				<hlm-item-title>External resource</hlm-item-title>
-				<p hlmItemDescription>Opens in a new tab with security attributes.</p>
-			</hlm-item-content>
-			<hlm-item-actions>
+		<a capsItem href="#" target="_blank" rel="noopener noreferrer">
+			<caps-item-content>
+				<caps-item-title>External resource</caps-item-title>
+				<caps-item-description>Opens in a new tab with security attributes.</caps-item-description>
+			</caps-item-content>
+			<caps-item-actions>
 				<ng-icon name="lucideExternalLink" class="text-[length:--spacing(4)]" />
-			</hlm-item-actions>
+			</caps-item-actions>
 		</a>
 	`,
 })

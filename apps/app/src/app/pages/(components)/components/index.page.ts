@@ -1,6 +1,7 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { components } from '@spartan-ng/app/app/shared/components/navigation-items';
 import { MainSection } from '@spartan-ng/app/app/shared/layout/main-section';
 import { PageBottomNav } from '@spartan-ng/app/app/shared/layout/page-bottom-nav/page-bottom-nav';
@@ -9,7 +10,6 @@ import { PageNav } from '@spartan-ng/app/app/shared/layout/page-nav/page-nav';
 import { SectionIntro } from '@spartan-ng/app/app/shared/layout/section-intro';
 import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
 import { SpartanNewMarker } from '@spartan-ng/app/app/shared/spartan-new-marker';
-import { HlmBadge } from '@spartan-ng/helm/badge';
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Components' },
@@ -28,7 +28,7 @@ export const routeMeta: RouteMeta = {
 		PageBottomNavLink,
 		PageNav,
 		RouterLink,
-		HlmBadge,
+		CapsBadgeImports,
 		SpartanNewMarker,
 	],
 	template: `
@@ -51,7 +51,7 @@ export const routeMeta: RouteMeta = {
 							<span spartanNewMarker></span>
 						}
 						@if (component.wip) {
-							<span hlmBadge>soon</span>
+							<caps-badge>soon</caps-badge>
 						}
 					</a>
 				}

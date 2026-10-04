@@ -50,7 +50,14 @@ test('cleanup cannot delete production, another project or another PR', () => {
 });
 test('old commits and closed PRs cannot replace the current deployment', () => {
 	const context = { production: false, sha: 'new' };
-	assert.equal(isCurrent(context, { state: 'open', head: { sha: 'new' } }), true);
+	assert.equal(
+		isCurrent(context, {
+			state: 'open',
+			head: { sha: 'new', repo: { full_name: repository } },
+			base: { repo: { full_name: repository } },
+		}),
+		true,
+	);
 	assert.equal(isCurrent(context, { state: 'closed', head: { sha: 'new' } }), false);
 	assert.equal(isCurrent(context, { state: 'open', head: { sha: 'old' } }), false);
 	assert.equal(isCurrent({ production: true, sha: 'old' }, { sha: 'new' }), false);

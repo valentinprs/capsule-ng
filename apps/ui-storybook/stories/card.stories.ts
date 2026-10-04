@@ -1,9 +1,9 @@
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsCard, CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
-import { HlmBadge } from '@spartan-ng/helm/badge';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -19,7 +19,7 @@ const meta: Meta<CapsCard> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [CapsCardImports, CapsFieldImports, CapsInput, CapsButton, HlmBadge, CapsSelectImports],
+			imports: [CapsCardImports, CapsFieldImports, CapsInput, CapsButton, CapsBadgeImports, CapsSelectImports],
 		}),
 	],
 };
@@ -67,7 +67,7 @@ export const Transposed: Story = {
   <caps-card [width]="width" [maxWidth]="maxWidth" [density]="density" class="mx-auto">
    <caps-card-header>
     <caps-card-title [level]="2">AngularGPT</caps-card-title>
-    <caps-card-action><span hlmBadge variant="secondary">beta</span></caps-card-action>
+    <caps-card-action><caps-badge variant="gray">beta</caps-badge></caps-card-action>
    </caps-card-header>
    <caps-card-content>
     <caps-field-group>

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'spartan-styles-complex-showcase',
-	imports: [CapsCardImports, HlmBadgeImports, CapsInputImports, CapsSelectImports, CapsButtonImports, NgIcon],
+	imports: [CapsCardImports, CapsBadgeImports, CapsInputImports, CapsSelectImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideCheck })],
 	host: {
 		class: 'flex w-80',
@@ -20,7 +20,7 @@ import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 				<caps-card-title [level]="3">Card Title</caps-card-title>
 				<caps-card-description>Card description here</caps-card-description>
 				<caps-card-action>
-					<span hlmBadge>Badge</span>
+					<caps-badge>Badge</caps-badge>
 				</caps-card-action>
 			</caps-card-header>
 			<caps-card-content>

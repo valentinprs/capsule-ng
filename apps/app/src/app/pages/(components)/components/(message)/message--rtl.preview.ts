@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 import { HlmMessageImports } from '@spartan-ng/helm/message';
 
 @Component({
 	selector: 'spartan-message-rtl-preview',
-	imports: [HlmMessageImports, HlmBubbleImports, HlmAvatarImports, HlmMarkerImports],
+	imports: [HlmMessageImports, HlmBubbleImports, CapsAvatarImports, HlmMarkerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'theme-blue flex w-full max-w-sm flex-col gap-6',
@@ -16,10 +16,10 @@ import { HlmMessageImports } from '@spartan-ng/helm/message';
 		<div class="flex w-full flex-col gap-6" [dir]="_dir()">
 			<div hlmMessage align="end">
 				<div hlmMessageAvatar>
-					<hlm-avatar>
-						<img hlmAvatarImage src="/assets/avatar.png" alt="@me" class="grayscale" />
-						<span hlmAvatarFallback>ME</span>
-					</hlm-avatar>
+					<caps-avatar>
+						<img capsAvatarImage src="/assets/avatar.png" alt="@me" class="grayscale" />
+						<caps-avatar-fallback>ME</caps-avatar-fallback>
+					</caps-avatar>
 				</div>
 				<div hlmMessageContent>
 					<div hlmBubble>
@@ -31,10 +31,10 @@ import { HlmMessageImports } from '@spartan-ng/helm/message';
 
 			<div hlmMessage>
 				<div hlmMessageAvatar>
-					<hlm-avatar>
-						<img hlmAvatarImage src="/assets/capsule.svg" alt="Capsule" class="grayscale" />
-						<span hlmAvatarFallback>SP</span>
-					</hlm-avatar>
+					<caps-avatar>
+						<img capsAvatarImage src="/assets/capsule.svg" alt="Capsule" class="grayscale" />
+						<caps-avatar-fallback>SP</caps-avatar-fallback>
+					</caps-avatar>
 				</div>
 				<div hlmMessageContent>
 					<div hlmBubble variant="muted">

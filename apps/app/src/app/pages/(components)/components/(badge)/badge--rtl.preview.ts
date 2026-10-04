@@ -1,28 +1,28 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBadgeCheck, lucideBookmark } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'spartan-badge-rtl',
-	imports: [HlmBadgeImports, NgIcon],
+	imports: [CapsBadgeImports, NgIcon],
 	providers: [provideIcons({ lucideBadgeCheck, lucideBookmark })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex w-full flex-wrap justify-center gap-2" [dir]="_dir()">
-			<span hlmBadge>{{ _t()['badge'] }}</span>
-			<span hlmBadge variant="secondary">{{ _t()['secondary'] }}</span>
-			<span hlmBadge variant="destructive">{{ _t()['destructive'] }}</span>
-			<span hlmBadge variant="outline">{{ _t()['outline'] }}</span>
-			<span hlmBadge variant="secondary">
+			<caps-badge>{{ _t()['badge'] }}</caps-badge>
+			<caps-badge variant="gray">{{ _t()['secondary'] }}</caps-badge>
+			<caps-badge variant="red">{{ _t()['destructive'] }}</caps-badge>
+			<caps-badge variant="outline">{{ _t()['outline'] }}</caps-badge>
+			<caps-badge variant="gray">
 				<ng-icon name="lucideBadgeCheck" />
 				{{ _t()['verified'] }}
-			</span>
-			<span hlmBadge variant="outline">
+			</caps-badge>
+			<caps-badge variant="outline">
 				{{ _t()['bookmark'] }}
 				<ng-icon name="lucideBookmark" />
-			</span>
+			</caps-badge>
 		</div>
 	`,
 })

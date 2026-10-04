@@ -1,64 +1,64 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmItemImports } from '@spartan-ng/helm/item';
 
 @Component({
 	selector: 'spartan-item-avatar-preview',
-	imports: [HlmItemImports, HlmButtonImports, HlmAvatarImports, NgIcon],
+	imports: [CapsItemImports, CapsButtonImports, CapsAvatarImports, NgIcon],
 	providers: [provideIcons({ lucidePlus })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-lg flex-col gap-6',
 	},
 	template: `
-		<hlm-item variant="outline">
-			<hlm-item-media>
-				<hlm-avatar class="size-10">
-					<img hlmAvatarImage src="https://github.com/evilrabbit.png" alt="Evil Rabbit" />
-					<span hlmAvatarFallback>ER</span>
-				</hlm-avatar>
-			</hlm-item-media>
-			<hlm-item-content>
-				<hlm-item-title>Evil Rabbit</hlm-item-title>
-				<p hlmItemDescription>Last seen 5 months ago</p>
-			</hlm-item-content>
-			<hlm-item-actions>
-				<button hlmBtn size="icon-sm" variant="outline" class="rounded-full" aria-label="Invite">
+		<caps-item>
+			<caps-item-media>
+				<caps-avatar class="size-10">
+					<img capsAvatarImage src="https://github.com/evilrabbit.png" alt="Evil Rabbit" />
+					<caps-avatar-fallback>ER</caps-avatar-fallback>
+				</caps-avatar>
+			</caps-item-media>
+			<caps-item-content>
+				<caps-item-title>Evil Rabbit</caps-item-title>
+				<caps-item-description>Last seen 5 months ago</caps-item-description>
+			</caps-item-content>
+			<caps-item-actions>
+				<button capsButton size="icon-sm" variant="outline" class="rounded-full" aria-label="Invite">
 					<ng-icon name="lucidePlus" />
 				</button>
-			</hlm-item-actions>
-		</hlm-item>
+			</caps-item-actions>
+		</caps-item>
 
-		<hlm-item variant="outline">
-			<hlm-item-media>
+		<caps-item>
+			<caps-item-media>
 				<div
 					class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
 				>
-					<hlm-avatar class="hidden sm:flex">
-						<img hlmAvatarImage src="/assets/capsule.svg" alt="Capsule" />
-						<span hlmAvatarFallback>CN</span>
-					</hlm-avatar>
-					<hlm-avatar class="hidden sm:flex">
-						<img hlmAvatarImage src="https://github.com/maxleiter.png" alt="@maxleiter" />
-						<span hlmAvatarFallback>LR</span>
-					</hlm-avatar>
-					<hlm-avatar>
-						<img hlmAvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
-						<span hlmAvatarFallback>ER</span>
-					</hlm-avatar>
+					<caps-avatar class="hidden sm:flex">
+						<img capsAvatarImage src="/assets/capsule.svg" alt="Capsule" />
+						<caps-avatar-fallback>CN</caps-avatar-fallback>
+					</caps-avatar>
+					<caps-avatar class="hidden sm:flex">
+						<img capsAvatarImage src="https://github.com/maxleiter.png" alt="@maxleiter" />
+						<caps-avatar-fallback>LR</caps-avatar-fallback>
+					</caps-avatar>
+					<caps-avatar>
+						<img capsAvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
+						<caps-avatar-fallback>ER</caps-avatar-fallback>
+					</caps-avatar>
 				</div>
-			</hlm-item-media>
-			<hlm-item-content>
-				<hlm-item-title>No Team Members</hlm-item-title>
-				<p hlmItemDescription>Invite your team to collaborate on this project.</p>
-			</hlm-item-content>
-			<hlm-item-actions>
-				<button hlmBtn size="sm" variant="outline">Invite</button>
-			</hlm-item-actions>
-		</hlm-item>
+			</caps-item-media>
+			<caps-item-content>
+				<caps-item-title>No Team Members</caps-item-title>
+				<caps-item-description>Invite your team to collaborate on this project.</caps-item-description>
+			</caps-item-content>
+			<caps-item-actions>
+				<button capsButton size="sm" variant="outline">Invite</button>
+			</caps-item-actions>
+		</caps-item>
 	`,
 })
 export class ItemAvatarPreview {}

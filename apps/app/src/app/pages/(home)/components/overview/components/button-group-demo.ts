@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArchive,
@@ -12,13 +14,11 @@ import {
 	lucideTag,
 	lucideTrash,
 } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-button-group-demo',
-	imports: [HlmButtonGroupImports, HlmDropdownMenuImports, HlmButton, NgIcon],
+	imports: [CapsButtonGroupImports, HlmDropdownMenuImports, CapsButton, NgIcon],
 	providers: [
 		provideIcons({
 			lucideArrowLeft,
@@ -35,23 +35,22 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div hlmButtonGroup>
-			<div hlmButtonGroup>
-				<button hlmBtn variant="outline" size="icon-sm" aria-label="Go Back">
-					<ng-icon name="lucideArrowLeft" />
-				</button>
-			</div>
-			<div hlmButtonGroup>
-				<button hlmBtn variant="outline" size="sm">Archive</button>
-				<button hlmBtn variant="outline" size="sm">Report</button>
-			</div>
-			<div hlmButtonGroup>
-				<button hlmBtn variant="outline" size="sm">Snooze</button>
-				<button hlmBtn variant="outline" size="sm" align="end" [hlmDropdownMenuTrigger]="menu">
+		<caps-button-group aria-label="Actions">
+			<button capsButton variant="outline" size="icon-sm" aria-label="Go Back">
+				<ng-icon name="lucideArrowLeft" />
+			</button>
+
+			<caps-button-group aria-label="Actions">
+				<button capsButton variant="outline" size="sm">Archive</button>
+				<button capsButton variant="outline" size="sm">Report</button>
+			</caps-button-group>
+			<caps-button-group aria-label="Actions">
+				<button capsButton variant="outline" size="sm">Snooze</button>
+				<button capsButton variant="outline" size="sm" align="end" [hlmDropdownMenuTrigger]="menu">
 					<ng-icon name="lucideEllipsis" />
 				</button>
-			</div>
-		</div>
+			</caps-button-group>
+		</caps-button-group>
 		<ng-template #menu>
 			<hlm-dropdown-menu class="w-56">
 				<hlm-dropdown-menu-group>

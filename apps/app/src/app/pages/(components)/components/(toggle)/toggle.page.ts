@@ -70,6 +70,10 @@ export const routeMeta: RouteMeta = {
 				<spartan-code [code]="_defaultSkeleton" />
 			</div>
 
+			<p>
+				Toggle is a native button with pressed state, distinct from a switch. It uses state/stateChange; use ToggleGroup
+				for form-backed selection.
+			</p>
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
 			<h3 id="examples__outline" spartanH4>Outline</h3>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -112,8 +116,8 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
 			<spartan-ui-api-docs docType="brain" />
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="toggle-group" label="Toggle Group" />

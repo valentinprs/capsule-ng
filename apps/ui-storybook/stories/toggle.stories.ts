@@ -2,32 +2,32 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideItalic } from '@ng-icons/lucide';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-import { HlmToggle } from '@spartan-ng/helm/toggle';
+import { CapsToggle } from '@capsule-ng/caps/toggle';
 
-const meta: Meta<HlmToggle> = {
+const meta: Meta<CapsToggle> = {
 	title: 'Toggle',
-	component: HlmToggle,
+	component: CapsToggle,
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToggle, NgIcon],
+			imports: [CapsToggle, NgIcon],
 			providers: [provideIcons({ lucideItalic })],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<HlmToggle>;
+type Story = StoryObj<CapsToggle>;
 
 export const Default: Story = {
 	render: () => ({
 		template: `
     <div class='space-x-3'>
-    <button aria-label='Italic Toggle' size='sm' hlmToggle><ng-icon name='lucideItalic'/></button>
-    <button aria-label='Italic Toggle' hlmToggle><ng-icon name='lucideItalic'/></button>
-    <button aria-label='Italic Toggle' size='lg' hlmToggle><ng-icon name='lucideItalic'/></button>
-    <button aria-label='Italic Toggle' variant='outline' hlmToggle><ng-icon name='lucideItalic'/></button>
-    <button aria-label='Italic Toggle' disabled hlmToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' size='sm' capsToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' capsToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' size='lg' capsToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' variant='outline' capsToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' disabled capsToggle><ng-icon name='lucideItalic'/></button>
     </div>
     `,
 	}),
@@ -38,11 +38,11 @@ export const WithText: Story = {
 	render: () => ({
 		template: `
     <div class='space-x-3'>
-    <button size='sm' hlmToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
-    <button hlmToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
-    <button size='lg' hlmToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
-    <button variant='outline' hlmToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
-    <button disabled hlmToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
+    <button size='sm' capsToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
+    <button capsToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
+    <button size='lg' capsToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
+    <button variant='outline' capsToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
+    <button disabled capsToggle><ng-icon name='lucideItalic'/> <span class='ml-2'>Italic</span></button>
     </div>
 `,
 	}),

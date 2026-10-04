@@ -3,20 +3,27 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsLabelImports } from '@capsule-ng/caps/label';
-import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
+import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 
 @Component({
 	selector: 'spartan-card-spacing',
-	imports: [CapsCardImports, CapsLabelImports, CapsInputImports, CapsButtonImports, HlmToggleGroupImports],
+	imports: [CapsCardImports, CapsLabelImports, CapsInputImports, CapsButtonImports, CapsToggleGroupImports],
 	host: { class: 'w-full max-w-md grid gap-4' },
 	template: `
-		<hlm-toggle-group type="single" size="sm" variant="outline" spacing="2" [(value)]="spacing">
+		<caps-toggle-group
+			aria-label="Card spacing"
+			type="single"
+			size="sm"
+			variant="outline"
+			spacing="2"
+			[(value)]="spacing"
+		>
 			@for (space of spacingOptions; track $index) {
-				<button hlmToggleGroupItem [value]="space.value" [aria-label]="'Toggle ' + space.label">
+				<button capsToggleItem [value]="space.value" [aria-label]="'Toggle ' + space.label">
 					{{ space.label }}
 				</button>
 			}
-		</hlm-toggle-group>
+		</caps-toggle-group>
 
 		<caps-card maxWidth="sm" [class]="spacingClass()">
 			<caps-card-header>

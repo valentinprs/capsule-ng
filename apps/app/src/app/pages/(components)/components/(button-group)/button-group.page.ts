@@ -18,6 +18,7 @@ import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { ButtonGroupDropdownMenu } from './button-group--dropdown-menu.example';
+import { ButtonGroupFluid } from './button-group--fluid.example';
 import { ButtonGroupInputGroup } from './button-group--input-group.example';
 import { ButtonGroupInput } from './button-group--input.example';
 import { ButtonGroupNested } from './button-group--nested.example';
@@ -54,6 +55,7 @@ export const routeMeta: RouteMeta = {
 		ButtonGroupPreview,
 		ButtonGroupOrientation,
 		ButtonGroupSize,
+		ButtonGroupFluid,
 		ButtonGroupNested,
 		ButtonGroupSeparator,
 		ButtonGroupSplit,
@@ -92,8 +94,8 @@ export const routeMeta: RouteMeta = {
 			<ul class="my-6 ml-6 list-disc">
 				<li class="mt-2">
 					The
-					<code class="${hlmCode} mr-0.5">HlmButtonGroup</code>
-					directive has the
+					<code class="${hlmCode} mr-0.5">CapsButtonGroup</code>
+					component has the
 					<code class="${hlmCode} mr-0.5">role</code>
 					attribute set to
 					<code class="${hlmCode} mr-0.5">group</code>
@@ -134,17 +136,30 @@ export const routeMeta: RouteMeta = {
 
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
 
-			<h3 id="examples__orientation" spartanH4>Orientation</h3>
+			<h3 id="examples__orientation" spartanH4>Stacked</h3>
 			<p class="${hlmP} mb-2">
 				Set the
-				<code class="${hlmCode} mr-0.5">orientation</code>
-				prop to change the button group layout.
+				<code class="${hlmCode} mr-0.5">stacked</code>
+				prop to arrange controls vertically. Carbon ButtonSet also supplies
+				<code class="${hlmCode}">fluid</code>
+				to fill the available width; fluid takes precedence over stacked.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
 					<spartan-button-group-orientation />
 				</div>
 				<spartan-code secondTab [code]="_orientationCode()" />
+			</spartan-tabs>
+
+			<h3 id="examples__fluid" spartanH4>Fluid</h3>
+			<p class="${hlmP}">
+				Set
+				<code class="${hlmCode}">fluid</code>
+				to fill the available width, as in Carbon ButtonSet.
+			</p>
+			<spartan-tabs firstTab="Preview" secondTab="Code">
+				<div spartanCodePreview firstTab><spartan-button-group-fluid /></div>
+				<spartan-code secondTab [code]="_fluidCode()" />
 			</spartan-tabs>
 
 			<h3 id="examples__size" spartanH4>Size</h3>
@@ -163,7 +178,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__nested" spartanH4>Nested</h3>
 			<p class="${hlmP} mb-2">
 				Nest
-				<code class="${hlmCode} mr-0.5">HlmButtonGroup</code>
+				<code class="${hlmCode} mr-0.5">CapsButtonGroup</code>
 				to create button groups with spacing.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -176,7 +191,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__separator" spartanH4>Separator</h3>
 			<p class="${hlmP} mb-2">
 				The
-				<code class="${hlmCode} mr-0.5">HlmButtonGroupSeparator</code>
+				<code class="${hlmCode} mr-0.5">CapsSeparator</code>
 				component visually divides buttons within a group.
 			</p>
 			<p class="${hlmP} mb-2">
@@ -195,7 +210,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__split" spartanH4>Split</h3>
 			<p class="${hlmP} mb-2">
 				Create a split button group by adding two buttons separated by a
-				<code class="${hlmCode} mr-0.5">HlmButtonGroupSeparator</code>
+				<code class="${hlmCode} mr-0.5">CapsSeparator</code>
 				.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -208,7 +223,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__with-text" spartanH4>With text</h3>
 			<p class="${hlmP} mb-2">
 				Add text to the button group using the
-				<code class="${hlmCode} mr-0.5">HlmButtonGroupText</code>
+				<code class="${hlmCode} mr-0.5">CapsButtonGroupText</code>
 				component.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -221,7 +236,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__input" spartanH4>Input</h3>
 			<p class="${hlmP} mb-2">
 				Wrap an
-				<code class="${hlmCode} mr-0.5">HlmInput</code>
+				<code class="${hlmCode} mr-0.5">CapsInput</code>
 				component with buttons.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -291,8 +306,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="calendar" label="Calendar" />
@@ -312,6 +327,7 @@ export default class ButtonGroupPage {
 	protected readonly _defaultImports = defaultImports;
 	protected readonly _defaultSkeleton = defaultSkeleton;
 	protected readonly _accessibilityCode = accessibilityCode;
+	protected readonly _fluidCode = computed(() => this._snippets()['fluid']);
 	protected readonly _orientationCode = computed(() => this._snippets()['orientation']);
 	protected readonly _sizeCode = computed(() => this._snippets()['size']);
 	protected readonly _nestedCode = computed(() => this._snippets()['nested']);

@@ -1,34 +1,34 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { hlmCode } from '@spartan-ng/helm/typography';
 
 @Component({
 	selector: 'spartan-toggle-group-custom',
-	imports: [HlmToggleGroupImports, HlmFieldImports],
+	imports: [CapsToggleGroupImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel>Font Weight</label>
-			<hlm-toggle-group variant="outline" value="all" spacing="2" size="lg" [(value)]="fontWeight">
+		<caps-field>
+			<caps-field-label>Font Weight</caps-field-label>
+			<caps-toggle-group variant="outline" spacing="2" size="lg" [(value)]="fontWeight">
 				@for (weight of fontWeights; track $index) {
 					<button
-						hlmToggleGroupItem
+						capsToggleItem
 						[value]="weight.value"
-						[attr.aria-label]="weight.label"
+						[aria-label]="weight.label"
 						class="flex size-16 flex-col items-center justify-center rounded-xl"
 					>
 						<span class="text-2xl leading-none" [class]="weight.class">Aa</span>
 						<span class="text-muted-foreground text-xs">{{ weight.label }}</span>
 					</button>
 				}
-			</hlm-toggle-group>
-			<hlm-field-description>
+			</caps-toggle-group>
+			<caps-field-description>
 				Use
 				<code class="${hlmCode}">font-{{ fontWeight() }}</code>
 				to set the font weight.
-			</hlm-field-description>
-		</hlm-field>
+			</caps-field-description>
+		</caps-field>
 	`,
 })
 export class ToggleGroupCustomPreview {

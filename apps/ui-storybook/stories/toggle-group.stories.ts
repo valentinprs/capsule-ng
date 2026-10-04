@@ -1,19 +1,19 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
-import { Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBold, lucideItalic, lucideUnderline } from '@ng-icons/lucide';
 import { ToggleType } from '@spartan-ng/brain/toggle-group';
 
-import { HlmToggleGroup, HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
+import { CapsToggleGroup, CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { hlmP } from '@spartan-ng/helm/typography';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { argsToTemplate, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<HlmToggleGroup> = {
+const meta: Meta<CapsToggleGroup> = {
 	title: 'Toggle Group',
-	component: HlmToggleGroup,
+	component: CapsToggleGroup,
 	tags: ['autodocs'],
 	argTypes: {
 		variant: {
@@ -31,31 +31,31 @@ const meta: Meta<HlmToggleGroup> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToggleGroupImports, NgIcon],
+			imports: [CapsToggleGroupImports, NgIcon],
 			providers: [provideIcons({ lucideBold, lucideItalic, lucideUnderline })],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<HlmToggleGroup>;
+type Story = StoryObj<CapsToggleGroup>;
 
 export const Default: Story = {
 	render: (args) => ({
 		template: `
 		<div class="flex items-center justify-center p-4">
-	 <hlm-toggle-group type="single" ${argsToTemplate(args)}> <button aria-label="Bold Toggle" value="bold" hlmToggleGroupItem>
+	 <caps-toggle-group aria-label="Options" type="single" ${argsToTemplate(args)}> <button aria-label="Bold Toggle" value="bold" capsToggleItem>
 	   <ng-icon name="lucideBold" ${argsToTemplate(args)} />
 	 </button>
 
-	 <button aria-label="Italic Toggle" value="italic" hlmToggleGroupItem>
+	 <button aria-label="Italic Toggle" value="italic" capsToggleItem>
 	   <ng-icon name="lucideItalic" ${argsToTemplate(args)} />
 	 </button>
 
-	 <button aria-label="Underline Toggle" value="underline" hlmToggleGroupItem>
+	 <button aria-label="Underline Toggle" value="underline" capsToggleItem>
 	   <ng-icon name="lucideUnderline" ${argsToTemplate(args)} />
 	 </button>
-			</hlm-toggle-group>
+			</caps-toggle-group>
 		</div>
 		`,
 	}),
@@ -65,18 +65,18 @@ export const Outline: Story = {
 	render: (args) => ({
 		template: `
 		<div class="flex items-center justify-center p-4">
-	<hlm-toggle-group size="sm" variant="outline" type="multiple" ${argsToTemplate(args)}> <button aria-label="Bold" value="bold" hlmToggleGroupItem>
+	<caps-toggle-group aria-label="Options" size="sm" variant="outline" type="multiple" ${argsToTemplate(args)}> <button aria-label="Bold" value="bold" capsToggleItem>
 		 <ng-icon name="lucideBold" />
 	 </button>
 
-	 <button aria-label="Italic" value="italic" hlmToggleGroupItem>
+	 <button aria-label="Italic" value="italic" capsToggleItem>
 	   <ng-icon name="lucideItalic" />
 	 </button>
 
-	 <button aria-label="Underline" value="underline" hlmToggleGroupItem>
+	 <button aria-label="Underline" value="underline" capsToggleItem>
 	 	 <ng-icon name="lucideUnderline" />
 	 </button>
-	</hlm-toggle-group>
+	</caps-toggle-group>
 		</div>
 		`,
 	}),
@@ -86,16 +86,16 @@ export const Small: Story = {
 	render: (args) => ({
 		template: `
 	<div class="flex items-center justify-center p-4">
-	<hlm-toggle-group size="sm" ${argsToTemplate(args)} type="single"> <button aria-label="Bold" value="bold" hlmToggleGroupItem>
+	<caps-toggle-group aria-label="Options" size="sm" ${argsToTemplate(args)} type="single"> <button aria-label="Bold" value="bold" capsToggleItem>
 	 <ng-icon name="lucideBold" />
 	</button>
-	<button aria-label="Italic" value="italic" hlmToggleGroupItem>
+	<button aria-label="Italic" value="italic" capsToggleItem>
 	  <ng-icon name="lucideItalic" />
 	</button>
-	<button aria-label="Underline" value="underline" hlmToggleGroupItem>
+	<button aria-label="Underline" value="underline" capsToggleItem>
 		 <ng-icon name="lucideUnderline" />
 	</button>
-	</hlm-toggle-group>
+	</caps-toggle-group>
 	</div>
 		`,
 	}),
@@ -105,18 +105,18 @@ export const Large: Story = {
 	render: (args) => ({
 		template: `
 		<div class="flex items-center justify-center p-4">
-<hlm-toggle-group ${argsToTemplate(args)} type="single" size="lg"> <button aria-label="Bold" value="bold" hlmToggleGroupItem>
+<caps-toggle-group aria-label="Options" ${argsToTemplate(args)} type="single" size="lg"> <button aria-label="Bold" value="bold" capsToggleItem>
 		 <ng-icon  name="lucideBold" />
 	 </button>
 
-	 <button aria-label="Italic" value="italic" hlmToggleGroupItem>
+	 <button aria-label="Italic" value="italic" capsToggleItem>
 	   <ng-icon  name="lucideItalic" />
 	 </button>
 
-	 <button aria-label="Underline" value="underline" hlmToggleGroupItem>
+	 <button aria-label="Underline" value="underline" capsToggleItem>
 	 	 <ng-icon  name="lucideUnderline" />
 	 </button>
-	</hlm-toggle-group>
+	</caps-toggle-group>
 		</div>
 		`,
 	}),
@@ -126,16 +126,16 @@ export const Disabled: Story = {
 	render: () => ({
 		template: `
 	<div class="flex items-center justify-center p-4">
-  <hlm-toggle-group type="single" size="sm" disabled> <button aria-label="Bold" value="bold" hlmToggleGroupItem>
+  <caps-toggle-group aria-label="Options" type="single" size="sm" disabled> <button aria-label="Bold" value="bold" capsToggleItem>
 		 <ng-icon name="lucideBold" />
 	</button>
-	<button aria-label="Italic" value="italic" hlmToggleGroupItem>
+	<button aria-label="Italic" value="italic" capsToggleItem>
 	  <ng-icon name="lucideItalic" />
 	</button>
-	<button aria-label="Underline" value="underline" hlmToggleGroupItem>
+	<button aria-label="Underline" value="underline" capsToggleItem>
 		 <ng-icon name="lucideUnderline" />
 	</button>
-	</hlm-toggle-group>
+	</caps-toggle-group>
 	</div>
 		`,
 	}),
@@ -162,11 +162,12 @@ const CITIES = [
 ];
 
 @Component({
-	selector: 'hlm-toggle-group-story',
-	imports: [HlmToggleGroupImports, CapsButton, FormsModule],
+	selector: 'caps-toggle-group-story',
+	imports: [CapsToggleGroupImports, CapsButton, FormsModule],
 	template: `
 		<div class="flex space-x-4 p-4">
-			<hlm-toggle-group
+			<caps-toggle-group
+				aria-label="Options"
 				[disabled]="disabled()"
 				[nullable]="nullable()"
 				[type]="type()"
@@ -174,11 +175,11 @@ const CITIES = [
 				variant="merged"
 			>
 				@for (city of cities; track city.name; let last = $last) {
-					<button [value]="city" hlmToggleGroupItem>
+					<button [value]="city" capsToggleItem>
 						{{ city.name }}
 					</button>
 				}
-			</hlm-toggle-group>
+			</caps-toggle-group>
 
 			<button capsButton size="sm" (click)="setToSyracuse()">Set to Syracuse</button>
 			<button capsButton size="sm" (click)="addCity()">Add Piraeus</button>
@@ -187,7 +188,7 @@ const CITIES = [
 		<p class="${hlmP}">{{ type() === 'multiple' ? 'Cities selected' : 'City selected' }}: {{ selectedCities }}</p>
 	`,
 })
-class HlmToggleGroupStory {
+class CapsToggleGroupStory {
 	public readonly type = input<ToggleType>('single');
 	public readonly nullable = input<BooleanInput>(true);
 	public readonly disabled = input<BooleanInput>(false);
@@ -236,11 +237,11 @@ export const ToggleGroupSingleNullable: Story = {
 	name: 'Toggle Group - Single Nullable',
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToggleGroupStory],
+			imports: [CapsToggleGroupStory],
 		}),
 	],
 	render: () => ({
-		template: '<hlm-toggle-group-story/>',
+		template: '<caps-toggle-group-story/>',
 	}),
 };
 
@@ -248,11 +249,11 @@ export const ToggleGroupMultipleNullable: Story = {
 	name: 'Toggle Group - Multiple Nullable',
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToggleGroupStory],
+			imports: [CapsToggleGroupStory],
 		}),
 	],
 	render: () => ({
-		template: '<hlm-toggle-group-story type="multiple"/>',
+		template: '<caps-toggle-group-story type="multiple"/>',
 	}),
 };
 
@@ -260,7 +261,7 @@ export const ToggleGroupSingle: StoryObj<{ defaultValue: City }> = {
 	name: 'Toggle Group - Single',
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToggleGroupStory],
+			imports: [CapsToggleGroupStory],
 		}),
 	],
 	args: {
@@ -268,7 +269,7 @@ export const ToggleGroupSingle: StoryObj<{ defaultValue: City }> = {
 	},
 	render: ({ defaultValue }) => ({
 		props: { defaultValue },
-		template: '<hlm-toggle-group-story nullable="false" [defaultValue]="defaultValue"/>',
+		template: '<caps-toggle-group-story nullable="false" [defaultValue]="defaultValue"/>',
 	}),
 };
 
@@ -276,11 +277,11 @@ export const ToggleGroupDisabled: Story = {
 	name: 'Toggle Group - Disabled',
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToggleGroupStory],
+			imports: [CapsToggleGroupStory],
 		}),
 	],
 	render: () => ({
-		template: '<hlm-toggle-group-story [disabled]="true"/>',
+		template: '<caps-toggle-group-story [disabled]="true"/>',
 	}),
 };
 
@@ -288,7 +289,7 @@ export const ToggleGroupMultiple: StoryObj<{ defaultValue: City[] }> = {
 	name: 'Toggle Group - Multiple',
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToggleGroupStory],
+			imports: [CapsToggleGroupStory],
 		}),
 	],
 	args: {
@@ -296,28 +297,28 @@ export const ToggleGroupMultiple: StoryObj<{ defaultValue: City[] }> = {
 	},
 	render: ({ defaultValue }) => ({
 		props: { defaultValue },
-		template: '<hlm-toggle-group-story type="multiple" nullable="false" [defaultValue]="defaultValue"/>',
+		template: '<caps-toggle-group-story type="multiple" nullable="false" [defaultValue]="defaultValue"/>',
 	}),
 };
 
 @Component({
-	selector: 'hlm-toggle-group-form-story',
-	imports: [HlmToggleGroupImports, FormsModule, ReactiveFormsModule],
+	selector: 'caps-toggle-group-form-story',
+	imports: [CapsToggleGroupImports, FormsModule, ReactiveFormsModule],
 	template: `
 		<form class="flex space-x-4 p-4" [formGroup]="citiesForm">
-			<hlm-toggle-group formControlName="selectedCity" [nullable]="false">
+			<caps-toggle-group aria-label="Options" formControlName="selectedCity" [nullable]="false">
 				@for (city of cities; track city.name; let last = $last) {
-					<button [value]="city" hlmToggleGroupItem>
+					<button [value]="city" capsToggleItem>
 						{{ city.name }}
 					</button>
 				}
-			</hlm-toggle-group>
+			</caps-toggle-group>
 		</form>
 
 		<pre class="${hlmP}" data-testid="selectedCity">{{ citiesForm.controls.selectedCity?.getRawValue()?.name }}</pre>
 	`,
 })
-class HlmToggleGroupFormStory {
+class CapsToggleGroupFormStory {
 	protected readonly cities: City[] = CITIES;
 	protected readonly citiesForm = new FormGroup({
 		selectedCity: new FormControl(CITIES[0]),
@@ -328,10 +329,37 @@ export const ToggleGroupForm: Story = {
 	name: 'Toggle Group - Form',
 	decorators: [
 		moduleMetadata({
-			imports: [HlmToggleGroupFormStory],
+			imports: [CapsToggleGroupFormStory],
 		}),
 	],
 	render: () => ({
-		template: '<hlm-toggle-group-form-story/>',
+		template: '<caps-toggle-group-form-story/>',
 	}),
+};
+
+@Component({
+	selector: 'caps-toggle-group-disabled-form-story',
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	imports: [CapsToggleGroupImports, CapsButton, ReactiveFormsModule],
+	template: `
+		<div class="flex flex-col gap-4">
+			<caps-toggle-group [formControl]="choice" aria-label="Formatting">
+				<button capsToggleItem value="bold">Bold</button>
+				<button capsToggleItem value="italic" disabled>Italic</button>
+				<button capsToggleItem value="underline">Underline</button>
+			</caps-toggle-group>
+			<div class="flex gap-2">
+				<button capsButton variant="outline" (click)="choice.disable()">Disable group</button>
+				<button capsButton variant="outline" (click)="choice.enable()">Enable group</button>
+			</div>
+			<output data-testid="choice">{{ choice.value }}</output>
+		</div>
+	`,
+})
+class DisabledFormStory {
+	public readonly choice = new FormControl('bold');
+}
+export const DisabledForm: Story = {
+	decorators: [moduleMetadata({ imports: [DisabledFormStory] })],
+	render: () => ({ template: '<caps-toggle-group-disabled-form-story />' }),
 };

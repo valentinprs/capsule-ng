@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsToggleImports } from '@capsule-ng/caps/toggle';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBookmark } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmToggleImports } from '@spartan-ng/helm/toggle';
 
 @Component({
 	selector: 'spartan-toggle-rtl',
-	imports: [HlmToggleImports, NgIcon],
+	imports: [CapsToggleImports, NgIcon],
 	providers: [provideIcons({ lucideBookmark })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<button
-			hlmToggle
+			capsToggle
 			variant="outline"
 			[aria-label]="_t()['label']"
 			[dir]="_dir()"

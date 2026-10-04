@@ -80,6 +80,11 @@ export const routeMeta: RouteMeta = {
 				<spartan-code [code]="_defaultSkeleton" />
 			</div>
 
+			<p class="${hlmP}">
+				Choices are native pressed buttons, distinct from switches and tabs. Tab visits each enabled button; Enter and
+				Space activate it. There is no arrow navigation. The group supports Angular reactive, template-driven and signal
+				forms; Field supplies accessible names, descriptions and errors.
+			</p>
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
 			<h3 id="examples__outline" spartanH4>Outline</h3>
 			<p class="${hlmP}">
@@ -172,8 +177,8 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
 			<spartan-ui-api-docs docType="brain" />
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="tooltip" label="Tooltip" />

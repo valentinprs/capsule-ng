@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 
 @Component({
 	selector: 'spartan-button-group-separator',
-	imports: [HlmButtonImports, HlmButtonGroupImports],
+	imports: [CapsButtonImports, CapsButtonGroupImports],
 	template: `
-		<div hlmButtonGroup>
-			<button hlmBtn variant="secondary" size="sm">Copy</button>
-			<hlm-button-group-separator />
-			<button hlmBtn variant="secondary" size="sm">Paste</button>
-		</div>
+		<caps-button-group aria-label="Actions">
+			<button capsButton variant="secondary" size="sm">Copy</button>
+			<caps-separator orientation="vertical" />
+			<button capsButton variant="secondary" size="sm">Paste</button>
+		</caps-button-group>
 	`,
 })
 export class ButtonGroupSeparator {}

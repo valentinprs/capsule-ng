@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'spartan-toggle-group-rtl',
-	imports: [HlmToggleGroupImports],
+	imports: [CapsToggleGroupImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-toggle-group variant="outline" value="list" [dir]="_dir()">
-			<button hlmToggleGroupItem value="list" [aria-label]="_t()['list']">
+		<caps-toggle-group aria-label="Formatting" variant="outline" value="list" [dir]="_dir()">
+			<button capsToggleItem value="list" [aria-label]="_t()['list']">
 				{{ _t()['list'] }}
 			</button>
 
-			<button hlmToggleGroupItem value="grid" [aria-label]="_t()['grid']">
+			<button capsToggleItem value="grid" [aria-label]="_t()['grid']">
 				{{ _t()['grid'] }}
 			</button>
 
-			<button hlmToggleGroupItem value="cards" [aria-label]="_t()['cards']">
+			<button capsToggleItem value="cards" [aria-label]="_t()['cards']">
 				{{ _t()['cards'] }}
 			</button>
-		</hlm-toggle-group>
+		</caps-toggle-group>
 	`,
 })
 export class ToggleGroupRtlPreview {

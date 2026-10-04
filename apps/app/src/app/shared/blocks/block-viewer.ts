@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, input, signal, viewChild } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
+import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFullscreen, lucideMonitor, lucideSmartphone, lucideTablet } from '@ng-icons/lucide';
 import { ToggleValue } from '@spartan-ng/brain/toggle-group';
 import { HlmResizableImports, HlmResizablePanel } from '@spartan-ng/helm/resizable';
-import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 import { BlockLink } from './block-link';
 import { BlockPreview } from './block-preview';
 import { OpenInButton } from './open-in-button';
@@ -14,7 +14,7 @@ import { OpenInButton } from './open-in-button';
 	selector: 'spartan-block-viewer',
 	imports: [
 		HlmResizableImports,
-		HlmToggleGroupImports,
+		CapsToggleGroupImports,
 		CapsSeparatorImports,
 		CapsButtonImports,
 		OpenInButton,
@@ -33,22 +33,23 @@ import { OpenInButton } from './open-in-button';
 		<div class="flex items-center justify-between gap-4 px-2 md:pr-6">
 			<spartan-block-link [fragment]="id()">{{ title() }}</spartan-block-link>
 			<div class="ml-auto hidden h-8 items-center gap-1.5 rounded-md border p-1 shadow-none md:flex">
-				<hlm-toggle-group
+				<caps-toggle-group
+					aria-label="Preview viewport"
 					type="single"
 					[(value)]="_size"
 					(valueChange)="changeSize($event)"
 					class="gap-1 *:data-[slot=toggle-group-item]:size-6! *:data-[slot=toggle-group-item]:rounded-sm!"
 				>
-					<button hlmToggleGroupItem [value]="100" title="Desktop">
+					<button capsToggleItem [value]="100" title="Desktop">
 						<ng-icon name="lucideMonitor" />
 					</button>
-					<button hlmToggleGroupItem [value]="60" title="Tablet">
+					<button capsToggleItem [value]="60" title="Tablet">
 						<ng-icon name="lucideTablet" />
 					</button>
-					<button hlmToggleGroupItem [value]="30" title="Smartphone">
+					<button capsToggleItem [value]="30" title="Smartphone">
 						<ng-icon name="lucideSmartphone" />
 					</button>
-				</hlm-toggle-group>
+				</caps-toggle-group>
 				<caps-separator orientation="vertical" />
 				<a capsButton size="icon" variant="ghost" title="Open in New Tab" [href]="_previewUrl()" target="_blank">
 					<span class="sr-only">Open in New Tab</span>

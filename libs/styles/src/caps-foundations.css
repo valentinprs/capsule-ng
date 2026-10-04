@@ -189,6 +189,78 @@
 		}
 	}
 
+	/* MARK: Toggle */
+	.caps-toggle {
+		@apply hover:text-foreground aria-pressed:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive data-[state=on]:bg-muted gap-1 rounded-lg text-sm font-medium transition-all [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+	}
+
+	.caps-toggle-variant-default {
+		@apply bg-transparent;
+	}
+
+	.caps-toggle-variant-outline {
+		@apply border-input hover:bg-muted border bg-transparent;
+	}
+
+	.caps-toggle-size-default {
+		@apply h-8 min-w-8 px-2.5;
+	}
+
+	.caps-toggle-size-sm {
+		@apply h-7 min-w-7 rounded-[min(var(--radius-md),var(--caps-size-12px))] px-2.5 text-[length:var(--caps-size-0-8rem)] [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
+	}
+
+	.caps-toggle-size-lg {
+		@apply h-9 min-w-9 px-2.5;
+	}
+
+	/* MARK: Toggle Group */
+	.caps-toggle-group {
+		@apply rounded-lg data-[size=sm]:rounded-[min(var(--radius-md),var(--caps-size-10px))];
+	}
+
+	.caps-toggle-group-item {
+		@apply group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-s-lg group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-lg group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-e-lg group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-lg;
+	}
+
+	.caps-button-group {
+		@apply has-[>[data-slot=button-group]]:gap-2;
+	}
+	.caps-button-group[data-stacked='false'] > :not(:first-child) {
+		border-inline-start-width: 0;
+		border-start-start-radius: 0;
+		border-end-start-radius: 0;
+	}
+	.caps-button-group[data-stacked='false'] > :not(:last-child) {
+		border-start-end-radius: 0;
+		border-end-end-radius: 0;
+	}
+	.caps-button-group[data-stacked='true'] {
+		flex-direction: column;
+	}
+	.caps-button-group[data-stacked='true'] > :not(:first-child) {
+		border-top-width: 0;
+		border-start-start-radius: 0;
+		border-start-end-radius: 0;
+	}
+	.caps-button-group[data-stacked='true'] > :not(:last-child) {
+		border-end-start-radius: 0;
+		border-end-end-radius: 0;
+	}
+	.caps-button-group[data-fluid='true'] {
+		width: 100%;
+		flex-wrap: wrap;
+	}
+	.caps-button-group[data-fluid='true'] > :not(caps-separator) {
+		flex: 1 1 auto;
+	}
+	.caps-button-group-text {
+		@apply bg-muted gap-2 rounded-lg border px-2.5 text-sm font-medium [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+	}
+	.caps-button-group > caps-separator {
+		@apply bg-input;
+	}
+
 	/* MARK: Avatar */
 	.caps-avatar {
 		@apply size-8 rounded-full after:rounded-full data-[size=lg]:size-10 data-[size=sm]:size-6;

@@ -30,7 +30,7 @@ import { defaultImports, defaultSkeleton, defaultStyles, SelectPreview } from '.
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Select', api: 'select' },
-	meta: metaWith('Capsule — Select', 'A control that allows the user to toggle between checked and not checked.'),
+	meta: metaWith('Capsule — Select', 'A control that allows the user to choose an option from a list.'),
 	title: 'Capsule — Select',
 };
 @Component({

@@ -3,6 +3,7 @@ import { BrnSelect, BrnSelectMultiple } from '@spartan-ng/brain/select';
 import { CapsSelectOption } from './caps-select-option';
 import { CapsSelectPlaceholder, CapsSelectValue } from './caps-select-value';
 
+/** @internal Shared implementation; public inputs are documented on the two select components. */
 @Directive()
 export abstract class CapsSelectBase<T> {
 	protected readonly _select =

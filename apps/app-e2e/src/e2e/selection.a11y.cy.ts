@@ -57,4 +57,29 @@ describe('Capsule selection catalogue', () => {
 			}
 		}
 	}
+	it('renders forced errors and only styles invalid forms after touch', () => {
+		cy.visit('/components/select');
+		cy.get('spartan-select-form-preview').should('not.have.attr', 'ngh');
+		const trigger = 'spartan-select-form-preview [role="combobox"]';
+		cy.get(trigger).should('have.attr', 'aria-invalid', 'true').and('not.have.attr', 'data-matches-spartan-invalid');
+		cy.get(trigger)
+			.invoke('css', 'border-color')
+			.then((pristineBorder) => {
+				cy.get(trigger).scrollIntoView();
+				cy.get(trigger).focus();
+				cy.get(trigger).should('be.focused');
+				cy.get(trigger).blur();
+				cy.get(trigger)
+					.should('have.attr', 'data-matches-spartan-invalid', 'true')
+					.and('not.have.css', 'border-color', pristineBorder);
+				cy.get('spartan-select-invalid-preview [role="combobox"]')
+					.should('have.attr', 'data-matches-spartan-invalid', 'true')
+					.and('not.have.attr', 'aria-invalid');
+				cy.get('spartan-select-invalid-preview [role="combobox"]').should(
+					'not.have.css',
+					'border-color',
+					pristineBorder,
+				);
+			});
+	});
 });

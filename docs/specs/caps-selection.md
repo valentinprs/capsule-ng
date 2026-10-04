@@ -18,7 +18,7 @@ including ngValue, compareWith and multiple. A disabled empty option is the nati
 The browser owns the popup, arrows, keyboard and focus; no replacement popup or custom CVA.
 The visual size input is `controlSize`, leaving the native numeric size attribute available.
 
-No Brain edits and no dependency on issues #31/#33. Existing Capsule auxiliaries are reused;
+No Brain edits and no dependency on issue #33. Capsule choice APIs now available on main are reused;
 Helm remains only for unrelated components without a released Capsule API.
 
 ## Complete initial example inventory
@@ -69,4 +69,50 @@ Helm remains only for unrelated components without a released Capsule API.
 
 ## Verification and exceptions
 
-Pending implementation and final example audit.
+The inventory above was audited across executed templates, displayed strings and generated snippets.
+The Native Select page itself was additionally updated to show Capsule API tables. Both catalogue
+pages now document only the public Capsule API. Internal bases remain absent from tables while their
+inherited inputs are included; the extractor respects `@internal` (also hiding existing internal
+Helm dropdown-menu adapters).
+
+- Select owns trigger, value, placeholder, portal, listbox and indicators. All nominal, grouped,
+  multiple, rich/object, disabled, forced-invalid, form, scroll and RTL examples use that composition.
+- Native Select examples use real select/option/optgroup. Existing object values, native multiple,
+  compareWith and size remain native Angular/browser features. Native signal-form empty state is
+  a string rather than the old wrapper's nullable string, matching Angular's native select contract.
+- Unnamed single-child option groups and old content wrappers were removed. Rich value templates use
+  phrasing content suitable for a button; rich option containers use flow content. All interactive
+  options remain a single selection primitive, with decorative checks only.
+- Field associations are inferred. Deliberate standalone native-label stories and pagination controls
+  retain explicit for/id pairs. Radio-card associations from main are retained, including external
+  card labels and projected radio labels in their appropriate cases.
+- The home Field demo and complex form preserve main's choice composition and remove remaining
+  Field wrappers used only to arrange action buttons. Supporting Capsule Button/Input/Textarea/Label/
+  Field/Checkbox/Radio/Switch APIs are reused where available. Card, calendar internals and other
+  unrelated primitives remain Helm; no new component migration is introduced.
+- The optional Helm hover-scroll arrows are intentionally replaced by browser scrolling (wheel/touch)
+  and Brain's automatic active-option scrolling. Scrollability is exercised in the existing story test.
+- Consumer class sizes apply to the root; exceptional button appearance uses triggerClass. panelClass
+  is reserved for scroll height/width exceptions. Error appearance follows the shared matcher rather
+  than pristine aria-invalid; forced appearance does not falsely mark semantic invalidity.
+
+## Validation record
+
+Local pnpm 10.30.3 with Node 24.18.0 (repository CI pins Node 22.15.0).
+
+- Angular compiler checks pass for the catalogue and Storybook after integrating main 65193a0c0.
+- Full repository test suite passes; after the main merge, all 125 Capsule tests pass, including
+  selection contracts for CVA, Field labels/descriptions/errors, disabled controls/options,
+  dynamic projected labels, keyboard/typeahead/focus/reopening, scalar/array values, custom value
+  templates, blur/updateOn and pristine/touched/forced errors. Native object/multiple accessors tested.
+- Real server render of preselected value `fr` with projected `France` produces `France` before
+  hydration without an explicit label or itemToString. Catalogue hydration has no client exceptions;
+  grouped options survive opening, selection, closing and reopening.
+- Catalogue Cypress checks cover every Select and Native Select example with axe (including contrast),
+  light/dark themes and 1280/390px widths, plus native/custom interaction and error appearance.
+- Existing Select Storybook Cypress contracts (16 tests) pass after migration; the Field selection
+  test now activates the inferred native label. Representative screenshot review confirms the shared
+  catalogue layout, dropdown bounds, native controls, typography and themes on mobile/desktop.
+- Production catalogue/package builds, Storybook build, repository lint and format checks are run
+  before publication. API metadata/snapshot and all primitive snippets are regenerated.
+- Brain is unchanged relative to the integrated main branch. No npm publication or merge is performed.

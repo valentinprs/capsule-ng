@@ -56,6 +56,8 @@ export function extractInputsOutputs(project: Project, workspaceRoot: string) {
 		}
 
 		sourceFile.getClasses().forEach((cls) => {
+			// Internal implementation bases still contribute inherited members to public components.
+			if (cls.getJsDocs().some((doc) => doc.getTags().some((tag) => tag.getTagName() === 'internal'))) return;
 			const className = cls.getName();
 			// Get the full file path and make it relative to workspace root
 			const fullPath = sourceFile.getFilePath();

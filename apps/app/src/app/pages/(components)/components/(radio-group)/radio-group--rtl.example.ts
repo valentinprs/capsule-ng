@@ -1,40 +1,27 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, untracked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'spartan-radio-group-rtl-preview',
-	imports: [FormsModule, HlmRadioGroupImports, HlmLabelImports],
+	imports: [FormsModule, CapsRadioGroupImports, CapsFieldImports],
 	providers: [Directionality],
 	host: {
 		class: 'grid w-full max-w-sm gap-3',
 		'[dir]': '_dir()',
 	},
 	template: `
-		<label hlmLabel>{{ _t()['label'] }}</label>
-		<hlm-radio-group [(ngModel)]="_value">
-			<div class="flex items-center gap-3">
-				<hlm-radio value="default" inputId="rtl-r1">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				<label hlmLabel for="rtl-r1">{{ _t()['default'] }}</label>
-			</div>
-			<div class="flex items-center gap-3">
-				<hlm-radio value="comfortable" inputId="rtl-r2">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				<label hlmLabel for="rtl-r2">{{ _t()['comfortable'] }}</label>
-			</div>
-			<div class="flex items-center gap-3">
-				<hlm-radio value="compact" inputId="rtl-r3">
-					<hlm-radio-indicator indicator />
-				</hlm-radio>
-				<label hlmLabel for="rtl-r3">{{ _t()['compact'] }}</label>
-			</div>
-		</hlm-radio-group>
+		<caps-field>
+			<caps-field-label>{{ _t()['label'] }}</caps-field-label>
+			<caps-radio-group [(ngModel)]="_value">
+				<caps-radio value="default">{{ _t()['default'] }}</caps-radio>
+				<caps-radio value="comfortable">{{ _t()['comfortable'] }}</caps-radio>
+				<caps-radio value="compact">{{ _t()['compact'] }}</caps-radio>
+			</caps-radio-group>
+		</caps-field>
 	`,
 })
 export class RadioGroupRtlPreview {

@@ -3,11 +3,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 
 @Component({
 	selector: 'spartan-reactive-form-radio-group-demo',
-	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmRadioGroupImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
@@ -22,7 +22,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 						<caps-field-set>
 							<caps-field-legend>Plan</caps-field-legend>
 							<caps-field-description>You can upgrade or downgrade your plan at any time.</caps-field-description>
-							<hlm-radio-group formControlName="plan">
+							<caps-radio-group formControlName="plan">
 								@for (plan of plans; track plan.id) {
 									<caps-field-label [for]="'plan-' + plan.id">
 										<caps-field orientation="horizontal">
@@ -30,13 +30,11 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 												<span class="font-medium">{{ plan.title }}</span>
 												<caps-field-description>{{ plan.description }}</caps-field-description>
 											</caps-field-content>
-											<hlm-radio [value]="plan.id" [inputId]="'plan-' + plan.id">
-												<hlm-radio-indicator indicator />
-											</hlm-radio>
+											<caps-radio [value]="plan.id" [id]="'plan-' + plan.id" />
 										</caps-field>
 									</caps-field-label>
 								}
-							</hlm-radio-group>
+							</caps-radio-group>
 						</caps-field-set>
 						@if (form.controls.plan.invalid && form.controls.plan.touched) {
 							<caps-field-error>You must select a subscription plan to continue.</caps-field-error>
@@ -92,11 +90,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 
 @Component({
 	selector: 'spartan-reactive-form-radio-group-demo',
-	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmRadioGroupImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -111,7 +109,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 						<caps-field-set>
 							<caps-field-legend>Plan</caps-field-legend>
 							<caps-field-description>You can upgrade or downgrade your plan at any time.</caps-field-description>
-							<hlm-radio-group formControlName="plan">
+							<caps-radio-group formControlName="plan">
 								@for (plan of plans; track plan.id) {
 									<caps-field-label [for]="'plan-' + plan.id">
 										<caps-field orientation="horizontal">
@@ -119,13 +117,11 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 												<span class="font-medium">{{ plan.title }}</span>
 												<caps-field-description>{{ plan.description }}</caps-field-description>
 											</caps-field-content>
-											<hlm-radio [value]="plan.id" [inputId]="'plan-' + plan.id">
-												<hlm-radio-indicator indicator />
-											</hlm-radio>
+											<caps-radio [value]="plan.id" [id]="'plan-' + plan.id" />
 										</caps-field>
 									</caps-field-label>
 								}
-							</hlm-radio-group>
+							</caps-radio-group>
 						</caps-field-set>
 						@if (form.controls.plan.invalid && form.controls.plan.touched) {
 							<caps-field-error>You must select a subscription plan to continue.</caps-field-error>
@@ -134,7 +130,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 				</form>
 			</caps-card-content>
 			<caps-card-footer class="gap-2">
-<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
 					<button capsButton type="submit" form="form-radio-group-demo">Submit</button>
 				</caps-card-footer>
 		</caps-card>

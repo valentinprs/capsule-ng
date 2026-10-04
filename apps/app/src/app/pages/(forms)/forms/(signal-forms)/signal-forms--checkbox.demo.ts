@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { disabled, form, FormField, minLength, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 
 @Component({
 	selector: 'spartan-signal-form-checkbox-demo',
-	imports: [FormField, CapsCardImports, CapsFieldImports, HlmCheckboxImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
@@ -24,12 +24,10 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 							<caps-field-description>
 								Get notified for requests that take time, like research or image generation.
 							</caps-field-description>
-							<caps-field-group>
-								<caps-field orientation="horizontal">
-									<hlm-checkbox inputId="responses" [formField]="form.responses" />
-									<caps-field-label class="font-normal" for="responses">Push notifications</caps-field-label>
-								</caps-field>
-							</caps-field-group>
+							<caps-field orientation="horizontal">
+								<caps-checkbox [formField]="form.responses" />
+								<caps-field-label class="font-normal">Push notifications</caps-field-label>
+							</caps-field>
 						</caps-field-set>
 						<caps-field-separator />
 						<caps-field-group>
@@ -42,13 +40,12 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 											orientation="horizontal"
 											[forceInvalid]="form.tasks().invalid() && form.tasks().touched()"
 										>
-											<hlm-checkbox
-												[inputId]="'task-' + task.id"
+											<caps-checkbox
 												[forceInvalid]="form.tasks().invalid() && form.tasks().touched()"
 												[checked]="form.tasks().value().includes(task.id)"
 												(checkedChange)="handleChange($event, task.id)"
 											/>
-											<caps-field-label class="font-normal" [for]="'task-' + task.id">
+											<caps-field-label class="font-normal">
 												{{ task.label }}
 											</caps-field-label>
 										</caps-field>
@@ -131,12 +128,12 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { disabled, form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-signal-form-checkbox-demo',
-	imports: [FormField, CapsCardImports, CapsFieldImports, HlmCheckboxImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -153,12 +150,10 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 							<caps-field-description>
 								Get notified for requests that take time, like research or image generation.
 							</caps-field-description>
-							<caps-field-group>
-								<caps-field orientation="horizontal">
-									<hlm-checkbox inputId="responses" [formField]="form.responses" />
-									<caps-field-label class="font-normal" for="responses">Push notifications</caps-field-label>
+							<caps-field orientation="horizontal">
+									<caps-checkbox [formField]="form.responses" />
+									<caps-field-label class="font-normal">Push notifications</caps-field-label>
 								</caps-field>
-							</caps-field-group>
 						</caps-field-set>
 						<caps-field-separator />
 						<caps-field-group>
@@ -171,13 +166,13 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 											orientation="horizontal"
 											[forceInvalid]="form.tasks().invalid() && form.tasks().touched()"
 										>
-											<hlm-checkbox
-												[inputId]="'task-' + task.id"
+											<caps-checkbox
+
 												[forceInvalid]="form.tasks().invalid() && form.tasks().touched()"
 												[checked]="form.tasks().value().includes(task.id)"
 												(checkedChange)="handleChange($event, task.id)"
 											/>
-											<caps-field-label class="font-normal" [for]="'task-' + task.id">
+											<caps-field-label class="font-normal">
 												{{ task.label }}
 											</caps-field-label>
 										</caps-field>
@@ -194,7 +189,7 @@ import { CapsFieldImports } from '@capsule-ng/caps/field';
 				</form>
 			</caps-card-content>
 			<caps-card-footer class="gap-2">
-<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
 				</caps-card-footer>
 		</caps-card>

@@ -3,11 +3,11 @@ import { form, FormField, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-signal-form-switch-demo',
-	imports: [FormField, CapsCardImports, CapsFieldImports, HlmSwitchImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
@@ -18,22 +18,20 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			</caps-card-header>
 			<caps-card-content>
 				<form novalidate id="form-switch-demo" (submit)="submit($event)">
-					<caps-field-group>
-						<caps-field orientation="horizontal">
-							<caps-field-content>
-								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
-								<caps-field-description>
-									Enable multi-factor authentication to secure your account.
-								</caps-field-description>
-								@for (error of form.twoFactor().errors(); track error) {
-									<caps-field-error [validator]="error.kind">
-										{{ error.message }}
-									</caps-field-error>
-								}
-							</caps-field-content>
-							<hlm-switch inputId="two-factor" [formField]="form.twoFactor" />
-						</caps-field>
-					</caps-field-group>
+					<caps-field orientation="horizontal">
+						<caps-field-content>
+							<caps-field-label>Multi-factor authentication</caps-field-label>
+							<caps-field-description>
+								Enable multi-factor authentication to secure your account.
+							</caps-field-description>
+							@for (error of form.twoFactor().errors(); track error) {
+								<caps-field-error [validator]="error.kind">
+									{{ error.message }}
+								</caps-field-error>
+							}
+						</caps-field-content>
+						<caps-switch [formField]="form.twoFactor" />
+					</caps-field>
 				</form>
 			</caps-card-content>
 			<caps-card-footer class="gap-2">
@@ -78,11 +76,11 @@ import { form, FormField, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-signal-form-switch-demo',
-	imports: [FormField, CapsCardImports, CapsFieldImports, HlmSwitchImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -93,10 +91,9 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			</caps-card-header>
 			<caps-card-content>
 				<form novalidate id="form-switch-demo" (submit)="submit($event)">
-					<caps-field-group>
-						<caps-field orientation="horizontal">
+					<caps-field orientation="horizontal">
 							<caps-field-content>
-								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
+								<caps-field-label>Multi-factor authentication</caps-field-label>
 								<caps-field-description>
 									Enable multi-factor authentication to secure your account.
 								</caps-field-description>
@@ -106,13 +103,12 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 									</caps-field-error>
 								}
 							</caps-field-content>
-							<hlm-switch inputId="two-factor" [formField]="form.twoFactor" />
+							<caps-switch [formField]="form.twoFactor" />
 						</caps-field>
-					</caps-field-group>
 				</form>
 			</caps-card-content>
 			<caps-card-footer class="gap-2">
-<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-switch-demo">Submit</button>
 				</caps-card-footer>
 		</caps-card>

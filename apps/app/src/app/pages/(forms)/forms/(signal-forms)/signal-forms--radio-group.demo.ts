@@ -3,11 +3,11 @@ import { form, FormField, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 
 @Component({
 	selector: 'spartan-signal-form-radio-group-demo',
-	imports: [FormField, CapsCardImports, CapsFieldImports, HlmRadioGroupImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
@@ -21,7 +21,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 					<caps-field-set>
 						<caps-field-legend>Plan</caps-field-legend>
 						<caps-field-description>You can upgrade or downgrade your plan at any time.</caps-field-description>
-						<hlm-radio-group [formField]="form.plan">
+						<caps-radio-group [formField]="form.plan">
 							@for (plan of plans; track plan.id) {
 								<caps-field-label [for]="'plan-' + plan.id">
 									<caps-field orientation="horizontal">
@@ -29,13 +29,11 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 											<span class="font-medium">{{ plan.title }}</span>
 											<caps-field-description>{{ plan.description }}</caps-field-description>
 										</caps-field-content>
-										<hlm-radio [value]="plan.id" [inputId]="'plan-' + plan.id">
-											<hlm-radio-indicator indicator />
-										</hlm-radio>
+										<caps-radio [value]="plan.id" [id]="'plan-' + plan.id" />
 									</caps-field>
 								</caps-field-label>
 							}
-						</hlm-radio-group>
+						</caps-radio-group>
 
 						@if (form.plan().invalid() && form.plan().touched()) {
 							@for (error of form.plan().errors(); track error) {
@@ -105,11 +103,11 @@ import { form, FormField, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 
 @Component({
 	selector: 'spartan-signal-form-radio-group-demo',
-	imports: [FormField, CapsCardImports, CapsFieldImports, HlmRadioGroupImports, CapsButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -123,7 +121,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 					<caps-field-set>
 						<caps-field-legend>Plan</caps-field-legend>
 						<caps-field-description>You can upgrade or downgrade your plan at any time.</caps-field-description>
-						<hlm-radio-group [formField]="form.plan">
+						<caps-radio-group [formField]="form.plan">
 							@for (plan of plans; track plan.id) {
 								<caps-field-label [for]="'plan-' + plan.id">
 									<caps-field orientation="horizontal">
@@ -131,13 +129,11 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 											<span class="font-medium">{{ plan.title }}</span>
 											<caps-field-description>{{ plan.description }}</caps-field-description>
 										</caps-field-content>
-										<hlm-radio [value]="plan.id" [inputId]="'plan-' + plan.id">
-											<hlm-radio-indicator indicator />
-										</hlm-radio>
+										<caps-radio [value]="plan.id" [id]="'plan-' + plan.id" />
 									</caps-field>
 								</caps-field-label>
 							}
-						</hlm-radio-group>
+						</caps-radio-group>
 
 						@if (form.plan().invalid() && form.plan().touched()) {
 							@for (error of form.plan().errors(); track error) {
@@ -150,7 +146,7 @@ import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 				</form>
 			</caps-card-content>
 			<caps-card-footer class="gap-2">
-<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 					<button capsButton type="submit" form="form-radio-demo">Submit</button>
 				</caps-card-footer>
 		</caps-card>

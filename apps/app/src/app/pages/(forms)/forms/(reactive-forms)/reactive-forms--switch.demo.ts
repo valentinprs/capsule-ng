@@ -3,11 +3,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-reactive-form-switch-demo',
-	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmSwitchImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
@@ -18,18 +18,16 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			</caps-card-header>
 			<caps-card-content>
 				<form id="form-switch-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<caps-field-group>
-						<caps-field orientation="horizontal">
-							<caps-field-content>
-								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
-								<caps-field-description>
-									Enable multi-factor authentication to secure your account.
-								</caps-field-description>
-								<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
-							</caps-field-content>
-							<hlm-switch inputId="two-factor" formControlName="twoFactor" />
-						</caps-field>
-					</caps-field-group>
+					<caps-field orientation="horizontal">
+						<caps-field-content>
+							<caps-field-label>Multi-factor authentication</caps-field-label>
+							<caps-field-description>
+								Enable multi-factor authentication to secure your account.
+							</caps-field-description>
+							<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
+						</caps-field-content>
+						<caps-switch formControlName="twoFactor" />
+					</caps-field>
 				</form>
 			</caps-card-content>
 			<caps-card-footer class="gap-2">
@@ -62,11 +60,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-reactive-form-switch-demo',
-	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmSwitchImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -77,22 +75,20 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			</caps-card-header>
 			<caps-card-content>
 				<form id="form-switch-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<caps-field-group>
-						<caps-field orientation="horizontal">
+					<caps-field orientation="horizontal">
 							<caps-field-content>
-								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
+								<caps-field-label>Multi-factor authentication</caps-field-label>
 								<caps-field-description>
 									Enable multi-factor authentication to secure your account.
 								</caps-field-description>
 								<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
 							</caps-field-content>
-							<hlm-switch inputId="two-factor" formControlName="twoFactor" />
+							<caps-switch formControlName="twoFactor" />
 						</caps-field>
-					</caps-field-group>
 				</form>
 			</caps-card-content>
 			<caps-card-footer class="gap-2">
-<button capsButton variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
+					<button capsButton variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
 					<button capsButton type="submit" form="form-switch-demo">Submit</button>
 				</caps-card-footer>
 		</caps-card>

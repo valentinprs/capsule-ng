@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-field-preview',
 	imports: [
-		HlmCheckboxImports,
+		CapsCheckboxImports,
 		CapsTextareaImports,
 		CapsButtonImports,
 		CapsInputImports,
@@ -28,12 +28,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 					<caps-field-group>
 						<caps-field>
-							<caps-field-label for="field-preview-name-on-card">Name on card</caps-field-label>
-							<input capsInput placeholder="John Doe" id="field-preview-name-on-card" />
+							<caps-field-label>Name on card</caps-field-label>
+							<input capsInput placeholder="John Doe" />
 						</caps-field>
 						<caps-field class="col-span-2">
-							<caps-field-label for="field-preview-card-number">Card number</caps-field-label>
-							<input capsInput placeholder="1234 1234 1234 1234" id="field-preview-card-number" />
+							<caps-field-label>Card number</caps-field-label>
+							<input capsInput placeholder="1234 1234 1234 1234" />
 							<caps-field-description>Enter your 16-digit card number</caps-field-description>
 						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
@@ -80,8 +80,8 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 								</hlm-select>
 							</caps-field>
 							<caps-field>
-								<caps-field-label for="field-preview-cvv">CVV</caps-field-label>
-								<input capsInput placeholder="123" id="field-preview-cvv" />
+								<caps-field-label>CVV</caps-field-label>
+								<input capsInput placeholder="123" />
 							</caps-field>
 						</div>
 					</caps-field-group>
@@ -90,25 +90,22 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<caps-field-set>
 					<caps-field-legend>Billing Address</caps-field-legend>
 					<caps-field-description>The billing address associated with your payment method</caps-field-description>
-					<caps-field-group>
-						<caps-field orientation="horizontal">
-							<hlm-checkbox inputId="field-preview-billing-address" [checked]="true" />
-							<caps-field-label for="field-preview-billing-address">Same as shipping address.</caps-field-label>
-						</caps-field>
-					</caps-field-group>
+
+					<caps-field orientation="horizontal">
+						<caps-checkbox [checked]="true" />
+						<caps-field-label>Same as shipping address.</caps-field-label>
+					</caps-field>
 				</caps-field-set>
-				<caps-field-set>
-					<caps-field-group>
-						<caps-field>
-							<caps-field-label for="field-preview-comments">Comments</caps-field-label>
-							<textarea capsTextarea class="resize-none" id="field-preview-comments"></textarea>
-						</caps-field>
-					</caps-field-group>
-				</caps-field-set>
-				<caps-field orientation="horizontal">
+
+				<caps-field>
+					<caps-field-label>Comments</caps-field-label>
+					<textarea capsTextarea class="resize-none"></textarea>
+				</caps-field>
+
+				<div class="flex gap-2">
 					<button capsButton>Submit</button>
 					<button capsButton variant="outline">Cancel</button>
-				</caps-field>
+				</div>
 			</caps-field-group>
 		</form>
 	`,
@@ -125,20 +122,20 @@ export const defaultSkeleton = `
     <caps-field-description>This appears on invoices and emails.</caps-field-description>
     <caps-field-group>
         <caps-field>
-            <caps-field-label for="field-preview-fullname">Full name</caps-field-label>
-            <input capsInput id="field-preview-fullname" type="text" placeholder="John Doe" />
+            <caps-field-label>Full name</caps-field-label>
+            <input capsInput type="text" placeholder="John Doe" />
             <caps-field-description>This appears on invoices and emails.</caps-field-description>
         </caps-field>
         <caps-field>
-            <caps-field-label for="field-preview-username">Username</caps-field-label>
-            <input capsInput id="field-preview-username" type="text" placeholder="john_doe_99" />
+            <caps-field-label>Username</caps-field-label>
+            <input capsInput type="text" placeholder="john_doe_99" />
         </caps-field>
     </caps-field-group>
 </caps-field-set>
 `;
 export const anatomyCode = `
 <caps-field>
-    <caps-field-label for="field-preview-fullname">Label</caps-field-label>
+    <caps-field-label>Label</caps-field-label>
     <!-- Input, Select, Switch, etc. -->
     <caps-field-description>Optional helper text.</caps-field-description>
     <caps-field-error>Validation message.</caps-field-error>

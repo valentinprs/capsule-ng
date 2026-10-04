@@ -143,3 +143,27 @@ Component examples should use the Capsule API whenever that component already of
 This includes supporting buttons and links inside another component's examples, not only the
 component being documented. Preserve the intended behavior and visual variants during migration;
 Helm remains for primitives without a corresponding Capsule API.
+
+## Amendment 3: composite form choices own their native control (2026-10-03)
+
+For issue #31, Checkbox, Switch and Radio use dedicated `<caps-checkbox>`, `<caps-switch>` and
+`<caps-radio>` components. Each owns its Brain control and visual indicator. Checkbox and Switch
+retain Brain's native button with `role="checkbox"` or `role="switch"`; Radio retains Brain's native
+radio input. This is a deliberate exception to the consumer-owned native-element rule, analogous
+to Field's native internals: it hides indicator/thumb anatomy while keeping focus and activation on
+one native control. Generic Capsule hosts are not additional interactive ARIA nodes and do not use
+`display: contents`.
+
+`<caps-radio-group>` composes Brain's radiogroup and Angular value accessor. Radio labels are
+projected content; consumers do not construct indicators. Checkbox/Switch use `checked` and
+`checkedChange` outside forms, RadioGroup uses `value` and `valueChange`. Angular forms own value
+and disabled state when connected. Checkbox additionally exposes two-way `indeterminate`.
+
+A control's `id` belongs to its internal interactive element; labels and descriptions target that
+element. A Field around RadioGroup names the radiogroup with `aria-labelledby`, while individual
+radios retain their own labels. Field validation and explicit description IDs are composed in the
+Capsule layer. `forceInvalid` affects appearance only. Brain remains unchanged; Capsule forwards
+required/invalid state where Brain's composite internals do not expose it on the interactive node.
+
+Styles live in the existing Capsule preset and use shared foundation tokens, including focus,
+disabled opacity, light/dark colors and switch dimensions. No separate theme source is introduced.

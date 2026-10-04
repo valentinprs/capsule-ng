@@ -1,10 +1,10 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUpDown, lucideChevronDown, lucideEllipsis } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmTableImports } from '@spartan-ng/helm/table';
@@ -141,13 +141,13 @@ type RtlDataTableFeatures = typeof features;
 const columnHelper = createColumnHelper<RtlDataTableFeatures, Payment>();
 
 @Component({
-	imports: [HlmCheckboxImports],
+	imports: [CapsCheckboxImports],
 	host: {
 		class: 'flex',
-		'[attr.aria-label]': '_t()["selectAll"]',
 	},
 	template: `
-		<hlm-checkbox
+		<caps-checkbox
+			[aria-label]="_t()['selectAll']"
 			[checked]="table().getIsAllRowsSelected()"
 			[indeterminate]="table().getIsSomeRowsSelected() && !table().getIsAllPageRowsSelected()"
 			(checkedChange)="table().toggleAllPageRowsSelected($event)"
@@ -162,13 +162,16 @@ export class RtlTableHeadSelection {
 }
 
 @Component({
-	imports: [HlmCheckboxImports],
+	imports: [CapsCheckboxImports],
 	host: {
 		class: 'flex',
-		'[attr.aria-label]': '_t()["selectRow"]',
 	},
 	template: `
-		<hlm-checkbox [checked]="row().getIsSelected()" (checkedChange)="row().toggleSelected($event)" />
+		<caps-checkbox
+			[aria-label]="_t()['selectRow']"
+			[checked]="row().getIsSelected()"
+			(checkedChange)="row().toggleSelected($event)"
+		/>
 	`,
 })
 export class RtlTableRowSelection {

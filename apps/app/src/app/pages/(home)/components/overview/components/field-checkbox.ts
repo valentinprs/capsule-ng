@@ -1,20 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmCheckbox } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsCheckbox } from '@capsule-ng/caps/checkbox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-field-checkbox',
-	imports: [HlmFieldImports, HlmCheckbox],
+	imports: [CapsFieldImports, CapsCheckbox],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<fieldset hlmFieldSet>
-			<label hlmFieldLabel for="exp-checkbox">
-				<div hlmField orientation="horizontal">
-					<hlm-checkbox inputId="exp-checkbox" [checked]="true" />
-					<label hlmFieldLabel for="exp-checkbox">I agree to the terms and conditions</label>
-				</div>
-			</label>
-		</fieldset>
+		<caps-field orientation="horizontal">
+			<caps-checkbox [checked]="true" />
+			<caps-field-label>I agree to the terms and conditions</caps-field-label>
+		</caps-field>
 	`,
 })
 export class FieldCheckbox {}

@@ -15,6 +15,7 @@ import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
+import { CheckboxForm } from './checkbox--form.example';
 import { CheckboxRtlPreview } from './checkbox--rtl.example';
 import { CheckboxPreview, defaultImports, defaultSkeleton } from './checkbox.preview';
 
@@ -27,6 +28,7 @@ export const routeMeta: RouteMeta = {
 	selector: 'spartan-checkbox',
 	imports: [
 		UIApiDocs,
+		CheckboxForm,
 		MainSection,
 		Code,
 		SectionIntro,
@@ -63,6 +65,12 @@ export const routeMeta: RouteMeta = {
 				<spartan-code [code]="_defaultSkeleton" />
 			</div>
 
+			<spartan-section-sub-heading id="reactive-form">Reactive Form</spartan-section-sub-heading>
+			<spartan-tabs firstTab="Preview" secondTab="Code">
+				<div spartanCodePreview firstTab><spartan-checkbox-form /></div>
+				<spartan-code secondTab [code]="_formCode()" />
+			</spartan-tabs>
+
 			<spartan-header-rtl />
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanRtlCodePreview firstTab>
@@ -70,12 +78,8 @@ export const routeMeta: RouteMeta = {
 				</div>
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
-
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="collapsible" label="Collapsible" />
@@ -91,6 +95,7 @@ export default class CheckboxPage {
 	}
 
 	private readonly _snippets = inject(PrimitiveSnippetsService).getSnippets('checkbox');
+	protected readonly _formCode = computed(() => this._snippets()['form']);
 	protected readonly _defaultCode = computed(() => this._snippets()['default']);
 	protected readonly _rtlCode = computed(() => this._snippets()['rtl']);
 	protected readonly _defaultSkeleton = defaultSkeleton;

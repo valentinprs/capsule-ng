@@ -23,7 +23,7 @@ choose crop (`object-cover`), image alt and media sizing. No JavaScript resize m
 
 Each family exports individual standalone components and a Caps\*Imports array from its
 secondary entry point. Styles use shared semantic tokens and the Capsule preset; Brain and
-unmigrated Helm families remain unchanged. No dependency on issues #31 or #32.
+unmigrated Helm families remain unchanged. No dependency on issue #32. The initial design was based on main before #31 merged.
 
 ## Existing behaviors and example audit inventory
 
@@ -148,8 +148,10 @@ The Terms of Service scrolling region is named and keyboard focusable. Native li
 buttons, inputs and labels remain native and no Card adds a landmark implicitly.
 
 Auxiliary Button, Input, Textarea, Label, Field and Breadcrumb use their Capsule APIs.
-Select, radio, checkbox, switch, tabs, icons and other not-yet-migrated families retain Helm
-from main; this PR does not depend on #31/#32. Explicit `for`/control IDs remain for Helm
+Select, tabs, icons and other not-yet-migrated families retain Helm from main.
+After #31 merged during this work, its Checkbox/Radio/Switch APIs and simplified examples
+were integrated without reverting their form, label or hydration fixes. This PR remains
+independent of #32. Explicit `for`/control IDs remain for Helm
 controls, selected cards and examples demonstrating external submit targets. In the Card
 story, the Framework label targets Helm Select's native `buttonId`, not its custom host.
 The inset sidebar keeps its current breadcrumb visible on mobile; only its ancestor and
@@ -171,3 +173,6 @@ labels/focus, nested-interactive exclusions and actual 16:9 geometry. Storybook 
 are also inspected in Chromium with captured renders and axe checks.
 
 Local checks use pnpm 10.30.3 and Node 24.18.0 (CI uses Node 22). Brain is unchanged.
+
+After integrating main (#61), the complete suite passes 869 tests across 115 files,
+including 133 Capsule tests. Field and form-choice library sources remain identical to main.

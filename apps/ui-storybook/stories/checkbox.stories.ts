@@ -1,4 +1,3 @@
-import { NgIcon } from '@ng-icons/core';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -6,37 +5,30 @@ import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCheckbox, CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmCheckbox, HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 
 import { CapsLabel } from '@capsule-ng/caps/label';
 
 @Component({
-	selector: 'hlm-checkbox-component-tester',
-	imports: [HlmCheckboxImports, CapsButton, CapsLabel, ReactiveFormsModule, JsonPipe],
+	selector: 'caps-checkbox-component-tester',
+	imports: [CapsCheckboxImports, CapsButton, CapsFieldImports, ReactiveFormsModule, JsonPipe],
 	template: `
 		<form [formGroup]="form">
 			<div class="flex items-center gap-4">
-				<label id="checkbox-label" for="testCheckboxDis1" capsLabel>
-					Test Disabled Checkbox with Reactive Forms
-					<hlm-checkbox
-						class="ml-2"
-						inputId="testCheckboxDis1"
-						aria-labelledby="testCheckbox"
-						formControlName="checkbox"
-					/>
-				</label>
+				<caps-field orientation="horizontal">
+					<caps-field-label>Test Disabled Checkbox with Reactive Forms</caps-field-label>
+					<caps-checkbox formControlName="checkbox" />
+				</caps-field>
 
-				<button capsButton type="button" role="button" (click)="enableOrDisableCheckbox()">
-					Enable or disable checkbox
-				</button>
+				<button capsButton type="button" (click)="enableOrDisableCheckbox()">Enable or disable checkbox</button>
 			</div>
 		</form>
 		{{ form.value | json }}
 	`,
 })
-class HlmCheckboxTester {
-	form = inject(FormBuilder).group({
+class CapsCheckboxTester {
+	public readonly form = inject(FormBuilder).group({
 		checkbox: [false],
 	});
 
@@ -46,15 +38,16 @@ class HlmCheckboxTester {
 }
 
 @Component({
-	selector: 'hlm-checkbox-hint-error-story',
-	standalone: true,
-	imports: [HlmCheckboxImports, CapsButtonImports, CapsFieldImports, ReactiveFormsModule],
+	selector: 'caps-checkbox-hint-error-story',
+	imports: [CapsCheckboxImports, CapsButtonImports, CapsFieldImports, ReactiveFormsModule],
 	template: `
 		<form [formGroup]="form" class="space-y-3">
-			<caps-field orientation="horizontal" class="items-start gap-2">
-				<hlm-checkbox inputId="field-terms" formControlName="agreement" />
-				<caps-field-label class="font-normal">I agree to the terms and conditions.</caps-field-label>
-				<caps-field-error>You must accept the terms to continue.</caps-field-error>
+			<caps-field orientation="horizontal">
+				<caps-checkbox formControlName="agreement" />
+				<caps-field-content>
+					<caps-field-label>I agree to the terms and conditions.</caps-field-label>
+					<caps-field-error>You must accept the terms to continue.</caps-field-error>
+				</caps-field-content>
 			</caps-field>
 
 			<div class="flex flex-wrap gap-2">
@@ -70,21 +63,20 @@ class CheckboxHintErrorStory {
 	});
 }
 
-const meta: Meta<HlmCheckbox> = {
+const meta: Meta<CapsCheckbox> = {
 	title: 'Checkbox',
-	component: HlmCheckbox,
+	component: CapsCheckbox,
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
 			imports: [
-				HlmCheckboxImports,
+				CapsCheckboxImports,
 				CapsFieldImports,
 				CapsLabel,
-				NgIcon,
 
 				ReactiveFormsModule,
 				CapsButtonImports,
-				HlmCheckboxTester,
+				CapsCheckboxTester,
 				CheckboxHintErrorStory,
 			],
 		}),
@@ -92,12 +84,12 @@ const meta: Meta<HlmCheckbox> = {
 };
 
 export default meta;
-type Story = StoryObj<HlmCheckbox>;
+type Story = StoryObj<CapsCheckbox>;
 
 export const Default: Story = {
 	render: () => ({
 		template: /* HTML */ `
-			<hlm-checkbox inputId="testCheckbox" aria-checked="mixed" aria-label="test checkbox" />
+			<caps-checkbox id="testCheckbox" aria-label="test checkbox" />
 		`,
 	}),
 };
@@ -105,9 +97,9 @@ export const Default: Story = {
 export const InsideLabel: Story = {
 	render: () => ({
 		template: /* HTML */ `
-			<label id="checkbox-label" class="flex items-center" capsLabel>
+			<label class="gap-2" capsLabel>
 				Test Checkbox
-				<hlm-checkbox class="ml-2" inputId="testCheckbox" />
+				<caps-checkbox id="testCheckbox" />
 			</label>
 		`,
 	}),
@@ -116,9 +108,9 @@ export const InsideLabel: Story = {
 export const LabeledWithAriaLabeledBy: Story = {
 	render: () => ({
 		template: /* HTML */ `
-			<div id="checkbox-label" class="flex items-center">
+			<div class="flex items-center gap-2">
 				<label id="testCheckbox" for="testCheckboxAria" capsLabel>Test Checkbox</label>
-				<hlm-checkbox class="ml-2" inputId="testCheckboxAria" aria-labelledby="testCheckbox" />
+				<caps-checkbox id="testCheckboxAria" aria-labelledby="testCheckbox" />
 			</div>
 		`,
 	}),
@@ -126,51 +118,46 @@ export const LabeledWithAriaLabeledBy: Story = {
 
 export const Disabled: Story = {
 	render: () => ({
-		template: /* HTML */ `
-			<div class="flex items-center">
-				<label id="checkbox-label" for="testCheckboxDis1" capsLabel>Test Checkbox</label>
-				<hlm-checkbox disabled class="ml-2" inputId="testCheckboxDis1" aria-labelledby="testCheckbox" />
-			</div>
-
-			<div class="flex items-center pt-4">
-				<hlm-checkbox disabled inputId="testCheckboxDis2" />
-				<label class="ml-2" for="testCheckboxDis2" capsLabel>Test Checkbox 2</label>
-			</div>
-
-			<div class="flex items-center pt-4">
-				<hlm-checkbox inputId="testCheckboxDis3" />
-				<label class="ml-2" for="testCheckboxDis3" capsLabel>Test Checkbox 3 enabled</label>
-			</div>
-		`,
+		template: `
+  <caps-field-group>
+   <caps-field orientation="horizontal">
+    <caps-field-label>Test Checkbox</caps-field-label>
+    <caps-checkbox disabled />
+   </caps-field>
+   <caps-field orientation="horizontal">
+    <caps-checkbox disabled />
+    <caps-field-label>Test Checkbox 2</caps-field-label>
+   </caps-field>
+   <caps-field orientation="horizontal">
+    <caps-checkbox />
+    <caps-field-label>Test Checkbox 3 enabled</caps-field-label>
+   </caps-field>
+  </caps-field-group>
+ `,
 	}),
 };
 
 export const disabledWithForms: Story = {
 	render: () => ({
 		template: /* HTML */ `
-			<hlm-checkbox-component-tester />
+			<caps-checkbox-component-tester />
 		`,
 	}),
 };
 
 export const Indeterminate: Story = {
 	render: () => ({
-		template: /* HTML */ `
-			<div id="checkbox-label" class="flex items-center">
-				<label id="testCheckbox" for="testCheckboxIndeterminate" capsLabel>Test Checkbox</label>
-				<hlm-checkbox
-					indeterminate="true"
-					class="ml-2"
-					inputId="testCheckboxIndeterminate"
-					aria-labelledby="testCheckbox"
-				/>
-			</div>
-		`,
+		template: `
+  <caps-field orientation="horizontal">
+   <caps-field-label>Test Checkbox</caps-field-label>
+   <caps-checkbox [indeterminate]="true" id="testCheckboxIndeterminate" />
+  </caps-field>
+ `,
 	}),
 };
 
 export const WithHintAndError: Story = {
 	render: () => ({
-		template: `<hlm-checkbox-hint-error-story />`,
+		template: `<caps-checkbox-hint-error-story />`,
 	}),
 };

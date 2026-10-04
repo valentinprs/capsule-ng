@@ -2,11 +2,11 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'spartan-signal-form-complex-demo',
@@ -14,10 +14,10 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 		FormField,
 		CapsCardImports,
 		CapsFieldImports,
-		HlmRadioGroupImports,
-		HlmCheckboxImports,
+		CapsRadioGroupImports,
+		CapsCheckboxImports,
 		HlmSelectImports,
-		HlmSwitchImports,
+		CapsSwitchImports,
 		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +34,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 						<caps-field-set>
 							<caps-field-legend variant="label">Subscription Plan</caps-field-legend>
 							<caps-field-description>Choose your subscription plan.</caps-field-description>
-							<hlm-radio-group [formField]="form.plan">
+							<caps-radio-group [formField]="form.plan">
 								@for (plan of plans; track plan.id) {
 									<caps-field-label [for]="'complex-plan-' + plan.id">
 										<caps-field orientation="horizontal">
@@ -42,13 +42,11 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 												<span class="font-medium">{{ plan.title }}</span>
 												<caps-field-description>{{ plan.description }}</caps-field-description>
 											</caps-field-content>
-											<hlm-radio [value]="plan.id" [inputId]="'complex-plan-' + plan.id">
-												<hlm-radio-indicator indicator />
-											</hlm-radio>
+											<caps-radio [value]="plan.id" [id]="'complex-plan-' + plan.id" />
 										</caps-field>
 									</caps-field-label>
 								}
-							</hlm-radio-group>
+							</caps-radio-group>
 						</caps-field-set>
 						<caps-field-separator />
 						<caps-field>
@@ -84,14 +82,13 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 										orientation="horizontal"
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
-										<hlm-checkbox
-											[inputId]="'addon-' + addon.id"
+										<caps-checkbox
 											[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
 										/>
 										<caps-field-content>
-											<caps-field-label class="font-normal" [for]="'addon-' + addon.id">
+											<caps-field-label class="font-normal">
 												{{ addon.title }}
 											</caps-field-label>
 											<caps-field-description>{{ addon.description }}</caps-field-description>
@@ -108,7 +105,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 						<caps-field-separator />
 						<caps-field orientation="horizontal">
 							<caps-field-content>
-								<caps-field-label for="email-notifications">Email Notifications</caps-field-label>
+								<caps-field-label>Email Notifications</caps-field-label>
 								<caps-field-description>Receive email updates about your subscription</caps-field-description>
 								@for (error of form.emailNotifications().errors(); track error) {
 									<caps-field-error [validator]="error.kind">
@@ -116,16 +113,14 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 									</caps-field-error>
 								}
 							</caps-field-content>
-							<hlm-switch inputId="email-notifications" [formField]="form.emailNotifications" />
+							<caps-switch [formField]="form.emailNotifications" />
 						</caps-field>
 					</caps-field-group>
 				</form>
 			</caps-card-content>
-			<caps-card-footer>
-				<caps-field>
-					<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
-					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-				</caps-field>
+			<caps-card-footer class="flex-col items-stretch gap-2">
+				<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
 			</caps-card-footer>
 		</caps-card>
 	`,
@@ -223,11 +218,11 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-signal-form-complex-demo',
@@ -235,10 +230,10 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 		FormField,
 		CapsCardImports,
 		CapsFieldImports,
-		HlmRadioGroupImports,
-		HlmCheckboxImports,
+		CapsRadioGroupImports,
+		CapsCheckboxImports,
 		HlmSelectImports,
-		HlmSwitchImports,
+		CapsSwitchImports,
 		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -255,7 +250,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 						<caps-field-set>
 							<caps-field-legend variant="label">Subscription Plan</caps-field-legend>
 							<caps-field-description>Choose your subscription plan.</caps-field-description>
-							<hlm-radio-group [formField]="form.plan">
+							<caps-radio-group [formField]="form.plan">
 								@for (plan of plans; track plan.id) {
 									<caps-field-label [for]="'complex-plan-' + plan.id">
 										<caps-field orientation="horizontal">
@@ -263,13 +258,11 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 												<span class="font-medium">{{ plan.title }}</span>
 												<caps-field-description>{{ plan.description }}</caps-field-description>
 											</caps-field-content>
-											<hlm-radio [value]="plan.id" [inputId]="'complex-plan-' + plan.id">
-												<hlm-radio-indicator indicator />
-											</hlm-radio>
+											<caps-radio [value]="plan.id" [id]="'complex-plan-' + plan.id" />
 										</caps-field>
 									</caps-field-label>
 								}
-							</hlm-radio-group>
+							</caps-radio-group>
 						</caps-field-set>
 						<caps-field-separator />
 						<caps-field>
@@ -305,14 +298,14 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 										orientation="horizontal"
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
-										<hlm-checkbox
-											[inputId]="'addon-' + addon.id"
+										<caps-checkbox
+
 											[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
 										/>
 										<caps-field-content>
-											<caps-field-label class="font-normal" [for]="'addon-' + addon.id">
+											<caps-field-label class="font-normal">
 												{{ addon.title }}
 											</caps-field-label>
 											<caps-field-description>{{ addon.description }}</caps-field-description>
@@ -329,7 +322,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 						<caps-field-separator />
 						<caps-field orientation="horizontal">
 							<caps-field-content>
-								<caps-field-label for="email-notifications">Email Notifications</caps-field-label>
+								<caps-field-label>Email Notifications</caps-field-label>
 								<caps-field-description>Receive email updates about your subscription</caps-field-description>
 								@for (error of form.emailNotifications().errors(); track error) {
 									<caps-field-error [validator]="error.kind">
@@ -337,17 +330,15 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 									</caps-field-error>
 								}
 							</caps-field-content>
-							<hlm-switch inputId="email-notifications" [formField]="form.emailNotifications" />
+							<caps-switch [formField]="form.emailNotifications" />
 						</caps-field>
 					</caps-field-group>
 				</form>
 			</caps-card-content>
-			<caps-card-footer>
-				<caps-field>
+			<caps-card-footer class="flex-col items-stretch gap-2">
 					<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-				</caps-field>
-			</caps-card-footer>
+				</caps-card-footer>
 		</caps-card>
 	\`,
 })

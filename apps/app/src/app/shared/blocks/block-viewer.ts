@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, input, signal, viewChild } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFullscreen, lucideMonitor, lucideSmartphone, lucideTablet } from '@ng-icons/lucide';
 import { ToggleValue } from '@spartan-ng/brain/toggle-group';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmResizableImports, HlmResizablePanel } from '@spartan-ng/helm/resizable';
-import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 import { BlockLink } from './block-link';
 import { BlockPreview } from './block-preview';
@@ -15,8 +15,8 @@ import { OpenInButton } from './open-in-button';
 	imports: [
 		HlmResizableImports,
 		HlmToggleGroupImports,
-		HlmSeparatorImports,
-		HlmButtonImports,
+		CapsSeparatorImports,
+		CapsButtonImports,
 		OpenInButton,
 		BlockLink,
 		BlockPreview,
@@ -49,8 +49,8 @@ import { OpenInButton } from './open-in-button';
 						<ng-icon name="lucideSmartphone" />
 					</button>
 				</hlm-toggle-group>
-				<hlm-separator orientation="vertical" />
-				<a hlmBtn size="icon" variant="ghost" title="Open in New Tab" [href]="_previewUrl()" target="_blank">
+				<caps-separator orientation="vertical" />
+				<a capsButton size="icon" variant="ghost" title="Open in New Tab" [href]="_previewUrl()" target="_blank">
 					<span class="sr-only">Open in New Tab</span>
 					<ng-icon name="lucideFullscreen" />
 				</a>

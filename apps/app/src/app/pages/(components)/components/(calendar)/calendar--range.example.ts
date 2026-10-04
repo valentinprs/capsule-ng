@@ -1,19 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
-import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-calendar-range',
-	imports: [HlmCalendarImports, HlmCardImports],
+	imports: [HlmCalendarImports, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	hostDirectives: [HlmCard],
 	host: {
 		class: 'p-0 w-fit mx-auto',
 	},
 	template: `
-		<div hlmCardContent class="p-0">
-			<hlm-calendar-range [(startDate)]="start" [(endDate)]="end" [min]="minDate" [max]="maxDate" />
-		</div>
+		<caps-card class="p-0">
+			<caps-card-content class="p-0">
+				<hlm-calendar-range [(startDate)]="start" [(endDate)]="end" [min]="minDate" [max]="maxDate" />
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CalendarRangeExample {

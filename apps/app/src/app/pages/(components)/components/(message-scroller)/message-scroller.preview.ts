@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUp,
@@ -10,8 +12,6 @@ import {
 	lucideRotateCw,
 	lucideTelescope,
 } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
@@ -24,8 +24,8 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 	selector: 'spartan-message-scroller-preview',
 	imports: [
 		HlmMessageScrollerImports,
-		HlmCardImports,
-		HlmButtonImports,
+		CapsCardImports,
+		CapsButtonImports,
 		HlmEmptyImports,
 		HlmInputGroupImports,
 		HlmDropdownMenuImports,
@@ -52,13 +52,13 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 	template: `
 		<div hlmMessageScrollerProvider>
 			<div class="relative flex flex-col gap-4">
-				<hlm-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
-					<hlm-card-header class="gap-1 border-b">
-						<h3 hlmCardTitle>New Chat</h3>
-						<p hlmCardDescription>How can I help you today?</p>
-						<div hlmCardAction>
+				<caps-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
+					<caps-card-header class="gap-1 border-b">
+						<caps-card-title [level]="3">New Chat</caps-card-title>
+						<caps-card-description>How can I help you today?</caps-card-description>
+						<caps-card-action>
 							<button
-								hlmBtn
+								capsButton
 								type="button"
 								variant="outline"
 								size="icon"
@@ -69,10 +69,10 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 							>
 								<ng-icon name="lucideRotateCw" />
 							</button>
-						</div>
-					</hlm-card-header>
+						</caps-card-action>
+					</caps-card-header>
 
-					<div hlmCardContent class="min-h-0 flex-1 overflow-hidden p-0">
+					<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
 						@if (_chat.messages().length === 0) {
 							<hlm-empty class="h-full">
 								<hlm-empty-header>
@@ -109,9 +109,9 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 								<button hlmMessageScrollerButton></button>
 							</div>
 						}
-					</div>
+					</caps-card-content>
 
-					<hlm-card-footer class="flex-col gap-2">
+					<caps-card-footer class="flex-col gap-2">
 						<form class="w-full" (submit)="send($event)">
 							<hlm-input-group>
 								<div class="h-14 w-full px-3 py-2.5">
@@ -153,8 +153,8 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 								</hlm-input-group-addon>
 							</hlm-input-group>
 						</form>
-					</hlm-card-footer>
-				</hlm-card>
+					</caps-card-footer>
+				</caps-card>
 
 				<div class="text-muted-foreground px-0.5 text-center text-xs">
 					Demo is read only. Press send to send messages.

@@ -1,47 +1,47 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'spartan-bug-report-form',
 	imports: [
 		ReactiveFormsModule,
-		HlmCardImports,
-		HlmFieldImports,
-		HlmInputImports,
+		CapsCardImports,
+		CapsFieldImports,
+		CapsInputImports,
 		HlmInputGroupImports,
-		HlmButtonImports,
+		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Bug Report</h3>
-				<p hlmCardDescription>Help us improve by reporting bugs you encounter.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Bug Report</caps-card-title>
+				<caps-card-description>Help us improve by reporting bugs you encounter.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-bug-report" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="title">Bug Title</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="title">Bug Title</caps-field-label>
 							<input
-								hlmInput
+								capsInput
 								id="title"
 								placeholder="Login button not working on mobile"
 								autoComplete="off"
 								formControlName="title"
 							/>
-							<hlm-field-error validator="required">Title must be entered.</hlm-field-error>
-							<hlm-field-error validator="minlength">Title must be at least 5 characters.</hlm-field-error>
-							<hlm-field-error validator="maxlength">Title cannot exceed 32 characters.</hlm-field-error>
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="description">Description</label>
+							<caps-field-error validator="required">Title must be entered.</caps-field-error>
+							<caps-field-error validator="minlength">Title must be at least 5 characters.</caps-field-error>
+							<caps-field-error validator="maxlength">Title cannot exceed 32 characters.</caps-field-error>
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="description">Description</caps-field-label>
 							<hlm-input-group>
 								<textarea
 									hlmInputGroupTextarea
@@ -55,23 +55,21 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 									<span hlmInputGroupText>{{ form.controls.description.value?.length || 0 }}/100 characters</span>
 								</hlm-input-group-addon>
 							</hlm-input-group>
-							<hlm-field-description>
+							<caps-field-description>
 								Include steps to reproduce, expected behavior, and what actually happened.
-							</hlm-field-description>
-							<hlm-field-error validator="required">Description must be entered.</hlm-field-error>
-							<hlm-field-error validator="minlength">Description must be at least 20 characters.</hlm-field-error>
-							<hlm-field-error validator="maxlength">Description cannot exceed 100 characters.</hlm-field-error>
-						</hlm-field>
-					</hlm-field-group>
+							</caps-field-description>
+							<caps-field-error validator="required">Description must be entered.</caps-field-error>
+							<caps-field-error validator="minlength">Description must be at least 20 characters.</caps-field-error>
+							<caps-field-error validator="maxlength">Description cannot exceed 100 characters.</caps-field-error>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-bug-report">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="submit" form="form-bug-report">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class BugReportForm {
@@ -95,48 +93,48 @@ export class BugReportForm {
 export const demoCode = `
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'spartan-reactive-forms-demo',
 	imports: [
 		ReactiveFormsModule,
-		HlmCardImports,
-		HlmFieldImports,
-		HlmInputImports,
+		CapsCardImports,
+		CapsFieldImports,
+		CapsInputImports,
 		HlmInputGroupImports,
-		HlmButtonImports,
+		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Bug Report</h3>
-				<p hlmCardDescription>Help us improve by reporting bugs you encounter.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Bug Report</caps-card-title>
+				<caps-card-description>Help us improve by reporting bugs you encounter.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-bug-report" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="title">Bug Title</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="title">Bug Title</caps-field-label>
 							<input
-								hlmInput
+								capsInput
 								id="title"
 								placeholder="Login button not working on mobile"
 								autoComplete="off"
 								formControlName="title"
 							/>
-							<hlm-field-error validator="required">Title must be entered.</hlm-field-error>
-							<hlm-field-error validator="minlength">Title must be at least 5 characters.</hlm-field-error>
-							<hlm-field-error validator="maxlength">Title cannot exceed 32 characters.</hlm-field-error>
-						</hlm-field>
-						<hlm-field>
-							<label hlmFieldLabel for="description">Description</label>
+							<caps-field-error validator="required">Title must be entered.</caps-field-error>
+							<caps-field-error validator="minlength">Title must be at least 5 characters.</caps-field-error>
+							<caps-field-error validator="maxlength">Title cannot exceed 32 characters.</caps-field-error>
+						</caps-field>
+						<caps-field>
+							<caps-field-label for="description">Description</caps-field-label>
 							<hlm-input-group>
 								<textarea
 									hlmInputGroupTextarea
@@ -150,23 +148,21 @@ import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 									<span hlmInputGroupText>{{ form.controls.description.value?.length || 0 }}/100 characters</span>
 								</hlm-input-group-addon>
 							</hlm-input-group>
-							<hlm-field-description>
+							<caps-field-description>
 								Include steps to reproduce, expected behavior, and what actually happened.
-							</hlm-field-description>
-							<hlm-field-error validator="required">Description must be entered.</hlm-field-error>
-							<hlm-field-error validator="minlength">Description must be at least 20 characters.</hlm-field-error>
-							<hlm-field-error validator="maxlength">Description cannot exceed 100 characters.</hlm-field-error>
-						</hlm-field>
-					</hlm-field-group>
+							</caps-field-description>
+							<caps-field-error validator="required">Description must be entered.</caps-field-error>
+							<caps-field-error validator="minlength">Description must be at least 20 characters.</caps-field-error>
+							<caps-field-error validator="maxlength">Description cannot exceed 100 characters.</caps-field-error>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-bug-report">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+					<button capsButton type="submit" form="form-bug-report">Submit</button>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ReactiveFormsDemo {
@@ -189,26 +185,26 @@ export class ReactiveFormsDemo {
 `;
 
 export const demoAnatomyCode = `
-<hlm-field>
-	<label hlmFieldLabel>Bug Title</label>
+<caps-field>
+	<caps-field-label>Bug Title</caps-field-label>
 	<input
-		hlmInput
+		capsInput
 		id="title"
 		placeholder="Login button not working on mobile"
 		autoComplete="off"
 		formControlName="title"
 	/>
-	<hlm-field-error validator="required">Title is a required field.</hlm-field-error>
-	<hlm-field-error validator="minlength">Title must be at least 5 characters.</hlm-field-error>
-	<hlm-field-error validator="maxlength">Title cannot exceed 32 characters.</hlm-field-error>
-</hlm-field>`;
+	<caps-field-error validator="required">Title is a required field.</caps-field-error>
+	<caps-field-error validator="minlength">Title must be at least 5 characters.</caps-field-error>
+	<caps-field-error validator="maxlength">Title cannot exceed 32 characters.</caps-field-error>
+</caps-field>`;
 
 export const demoForceShowCode = `
-<hlm-field>
-	<label hlmFieldLabel for="title">Bug Title</label>
-	<input hlmInput id="title" formControlName="title" />
-	<hlm-field-error forceShow>This error is always visible.</hlm-field-error>
-</hlm-field>`;
+<caps-field>
+	<caps-field-label for="title">Bug Title</caps-field-label>
+	<input capsInput id="title" formControlName="title" />
+	<caps-field-error forceShow>This error is always visible.</caps-field-error>
+</caps-field>`;
 
 export const demoFormSchemaCode = `
 import { Component, inject } from '@angular/core';
@@ -260,7 +256,7 @@ export class BugReportForm {
 `;
 
 export const demoResetForm = `
-<button hlmBtn variant="outline" type="button" (click)="form.reset()">
+<button capsButton variant="outline" type="button" (click)="form.reset()">
 	Reset
 </button>
 `;

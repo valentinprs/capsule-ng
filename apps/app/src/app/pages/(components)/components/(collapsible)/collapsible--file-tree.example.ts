@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideFile, lucideFolder } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
@@ -54,14 +54,14 @@ const FILE_TREE: FileTreeItem[] = [
 
 @Component({
 	selector: 'spartan-file-tree-node',
-	imports: [HlmCollapsibleImports, HlmButtonImports, NgIcon, FileTreeNode],
+	imports: [HlmCollapsibleImports, CapsButtonImports, NgIcon, FileTreeNode],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		@if (item().items; as children) {
 			<hlm-collapsible class="w-full">
 				<button
 					hlmCollapsibleTrigger
-					hlmBtn
+					capsButton
 					variant="ghost"
 					size="sm"
 					class="group hover:bg-accent hover:text-accent-foreground w-full justify-start transition-none"
@@ -77,7 +77,7 @@ const FILE_TREE: FileTreeItem[] = [
 				</hlm-collapsible-content>
 			</hlm-collapsible>
 		} @else {
-			<button hlmBtn variant="link" size="sm" class="text-foreground w-full justify-start gap-2">
+			<button capsButton variant="link" size="sm" class="text-foreground w-full justify-start gap-2">
 				<ng-icon name="lucideFile" />
 				<span>{{ item().name }}</span>
 			</button>
@@ -90,28 +90,28 @@ export class FileTreeNode {
 
 @Component({
 	selector: 'spartan-collapsible-file-tree',
-	imports: [HlmCollapsibleImports, HlmButtonImports, HlmCardImports, HlmTabsImports, FileTreeNode],
+	imports: [HlmCollapsibleImports, CapsButtonImports, CapsCardImports, HlmTabsImports, FileTreeNode],
 	providers: [provideIcons({ lucideChevronRight, lucideFile, lucideFolder })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'mx-auto w-full max-w-xs' },
 	template: `
-		<hlm-card size="sm">
-			<hlm-card-header>
+		<caps-card size="sm">
+			<caps-card-header>
 				<hlm-tabs tab="explorer">
 					<hlm-tabs-list class="w-full">
 						<button hlmTabsTrigger="explorer">Explorer</button>
 						<button hlmTabsTrigger="outline">Outline</button>
 					</hlm-tabs-list>
 				</hlm-tabs>
-			</hlm-card-header>
-			<div hlmCardContent>
+			</caps-card-header>
+			<caps-card-content>
 				<div class="flex flex-col gap-1">
 					@for (item of fileTree; track item.name) {
 						<spartan-file-tree-node [item]="item" />
 					}
 				</div>
-			</div>
-		</hlm-card>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CollapsibleFileTree {

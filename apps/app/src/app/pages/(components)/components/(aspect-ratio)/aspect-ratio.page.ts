@@ -70,7 +70,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__square" spartanH4>Square</h3>
 			<p class="${hlmP}">
 				A square aspect ratio component using the
-				<code class="${hlmCode}">[hlmAspectRatio]="1 / 1"</code>
+				<code class="${hlmCode}">[ratio]="1 / 1"</code>
 				prop. This is useful for displaying images in a square format.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -83,7 +83,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__portrait" spartanH4>Portrait</h3>
 			<p class="${hlmP}">
 				A portrait aspect ratio component using the
-				<code class="${hlmCode}">[hlmAspectRatio]="9 / 16"</code>
+				<code class="${hlmCode}">[ratio]="9 / 16"</code>
 				prop. This is useful for displaying images in a portrait format.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -101,8 +101,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="attachment" label="Attachment" />

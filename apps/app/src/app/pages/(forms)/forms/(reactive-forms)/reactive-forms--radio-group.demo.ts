@@ -1,56 +1,54 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'spartan-reactive-form-radio-group-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmRadioGroupImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Subscription Plan</h3>
-				<p hlmCardDescription>See pricing and features for each plan.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Subscription Plan</caps-card-title>
+				<caps-card-description>See pricing and features for each plan.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-radio-group-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend>Plan</legend>
-							<hlm-field-description>You can upgrade or downgrade your plan at any time.</hlm-field-description>
+					<caps-field-group>
+						<caps-field-set>
+							<caps-field-legend>Plan</caps-field-legend>
+							<caps-field-description>You can upgrade or downgrade your plan at any time.</caps-field-description>
 							<hlm-radio-group formControlName="plan">
 								@for (plan of plans; track plan.id) {
-									<label hlmFieldLabel [for]="'plan-' + plan.id">
-										<hlm-field orientation="horizontal">
-											<hlm-field-content>
-												<hlm-field-title>{{ plan.title }}</hlm-field-title>
-												<hlm-field-description>{{ plan.description }}</hlm-field-description>
-											</hlm-field-content>
+									<caps-field-label [for]="'plan-' + plan.id">
+										<caps-field orientation="horizontal">
+											<caps-field-content>
+												<span class="font-medium">{{ plan.title }}</span>
+												<caps-field-description>{{ plan.description }}</caps-field-description>
+											</caps-field-content>
 											<hlm-radio [value]="plan.id" [inputId]="'plan-' + plan.id">
 												<hlm-radio-indicator indicator />
 											</hlm-radio>
-										</hlm-field>
-									</label>
+										</caps-field>
+									</caps-field-label>
 								}
 							</hlm-radio-group>
-						</fieldset>
+						</caps-field-set>
 						@if (form.controls.plan.invalid && form.controls.plan.touched) {
-							<hlm-field-error>You must select a subscription plan to continue.</hlm-field-error>
+							<caps-field-error>You must select a subscription plan to continue.</caps-field-error>
 						}
-					</hlm-field-group>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-radio-group-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+				<button capsButton type="submit" form="form-radio-group-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class ReactiveFormRadioGroupDemo {
@@ -91,57 +89,55 @@ export class ReactiveFormRadioGroupDemo {
 export const reactiveFormsRadioGroupDemoCode = `
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 
 @Component({
 	selector: 'spartan-reactive-form-radio-group-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmRadioGroupImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmRadioGroupImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Subscription Plan</h3>
-				<p hlmCardDescription>See pricing and features for each plan.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Subscription Plan</caps-card-title>
+				<caps-card-description>See pricing and features for each plan.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-radio-group-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend>Plan</legend>
-							<hlm-field-description>You can upgrade or downgrade your plan at any time.</hlm-field-description>
+					<caps-field-group>
+						<caps-field-set>
+							<caps-field-legend>Plan</caps-field-legend>
+							<caps-field-description>You can upgrade or downgrade your plan at any time.</caps-field-description>
 							<hlm-radio-group formControlName="plan">
 								@for (plan of plans; track plan.id) {
-									<label hlmFieldLabel [for]="'plan-' + plan.id">
-										<hlm-field orientation="horizontal">
-											<hlm-field-content>
-												<hlm-field-title>{{ plan.title }}</hlm-field-title>
-												<hlm-field-description>{{ plan.description }}</hlm-field-description>
-											</hlm-field-content>
+									<caps-field-label [for]="'plan-' + plan.id">
+										<caps-field orientation="horizontal">
+											<caps-field-content>
+												<span class="font-medium">{{ plan.title }}</span>
+												<caps-field-description>{{ plan.description }}</caps-field-description>
+											</caps-field-content>
 											<hlm-radio [value]="plan.id" [inputId]="'plan-' + plan.id">
 												<hlm-radio-indicator indicator />
 											</hlm-radio>
-										</hlm-field>
-									</label>
+										</caps-field>
+									</caps-field-label>
 								}
 							</hlm-radio-group>
-						</fieldset>
+						</caps-field-set>
 						@if (form.controls.plan.invalid && form.controls.plan.touched) {
-							<hlm-field-error>You must select a subscription plan to continue.</hlm-field-error>
+							<caps-field-error>You must select a subscription plan to continue.</caps-field-error>
 						}
-					</hlm-field-group>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-radio-group-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
+					<button capsButton type="submit" form="form-radio-group-demo">Submit</button>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ReactiveFormRadioGroupDemo {

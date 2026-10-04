@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, Injectable, OnInit, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import {
 	BrnCalendarI18nService,
 	injectBrnCalendarI18n,
 	MonthLabels,
 	provideBrnCalendarI18n,
 } from '@spartan-ng/brain/calendar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 const localizedStrings = {
@@ -95,19 +95,19 @@ export class LanguageService {
 
 @Component({
 	selector: 'spartan-calendar-localized',
-	imports: [HlmCalendar, HlmSelectImports, HlmCardImports, HlmButtonImports],
+	imports: [HlmCalendar, HlmSelectImports, CapsCardImports, CapsButtonImports],
 	providers: [provideBrnCalendarI18n(CALENDAR_I18N.vi)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex justify-center items-start p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg',
 	},
 	template: `
-		<section class="w-full max-w-sm overflow-auto" hlmCard>
-			<div hlmCardHeader>
-				<h3 hlmCardTitle>{{ _strings[lang].title }}</h3>
-				<p hlmCardDescription>{{ _strings[lang].description }}</p>
+		<caps-card class="w-full max-w-sm overflow-auto">
+			<caps-card-header>
+				<caps-card-title [level]="3">{{ _strings[lang].title }}</caps-card-title>
+				<caps-card-description>{{ _strings[lang].description }}</caps-card-description>
 
-				<div hlmCardAction>
+				<caps-card-action>
 					<hlm-select [value]="lang" (valueChange)="setLang($event)">
 						<hlm-select-trigger>
 							<hlm-select-value />
@@ -121,21 +121,21 @@ export class LanguageService {
 							</hlm-select-group>
 						</hlm-select-content>
 					</hlm-select>
-				</div>
-			</div>
+				</caps-card-action>
+			</caps-card-header>
 
-			<div hlmCardContent class="flex flex-row gap-3 px-6">
+			<caps-card-content class="flex flex-row gap-3 px-6">
 				<hlm-calendar class="h-80" />
 
 				<div class="no-scrollbar flex h-80 scroll-pb-6 flex-col gap-2 overflow-y-auto">
 					@for (time of _timeSlots; track time) {
-						<button hlmBtn class="w-full shadow-none">
+						<button capsButton class="w-full shadow-none">
 							{{ time }}
 						</button>
 					}
 				</div>
-			</div>
-		</section>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CalendarLocalizedComponent implements OnInit {

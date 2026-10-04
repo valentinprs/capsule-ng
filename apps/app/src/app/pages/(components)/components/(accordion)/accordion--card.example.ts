@@ -1,20 +1,22 @@
 import { Component } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-accordion-card',
-	imports: [HlmAccordionImports, HlmCardImports],
+	imports: [HlmAccordionImports, CapsCardImports],
 	host: {
 		class: 'max-w-lg h-[32rem] md:h-[28rem] flex flex-col justify-between',
 	},
 	template: `
-		<hlm-card class="w-full max-w-sm">
-			<hlm-card-header>
-				<h3 hlmCardTitle>Subscription & Billing</h3>
-				<p hlmCardDescription>Common questions about your account, plans, payments and cancellations.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card class="w-full max-w-sm">
+			<caps-card-header>
+				<caps-card-title [level]="3">Subscription & Billing</caps-card-title>
+				<caps-card-description>
+					Common questions about your account, plans, payments and cancellations.
+				</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<hlm-accordion>
 					@for (item of items; track $index) {
 						<hlm-accordion-item>
@@ -27,8 +29,8 @@ import { HlmCardImports } from '@spartan-ng/helm/card';
 						</hlm-accordion-item>
 					}
 				</hlm-accordion>
-			</div>
-		</hlm-card>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class AccordionCard {

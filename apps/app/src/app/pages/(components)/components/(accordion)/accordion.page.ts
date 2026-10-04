@@ -152,7 +152,7 @@ export const routeMeta: RouteMeta = {
 				Wrap the
 				<code class="${hlmCode}">hlm-accordion</code>
 				inside a
-				<code class="${hlmCode}">hlm-card</code>
+				<code class="${hlmCode}">caps-card</code>
 				component.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">

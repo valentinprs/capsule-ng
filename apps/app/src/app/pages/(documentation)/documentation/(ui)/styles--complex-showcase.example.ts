@@ -1,31 +1,31 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-styles-complex-showcase',
-	imports: [HlmCardImports, HlmBadgeImports, HlmInputImports, HlmSelectImports, HlmButtonImports, NgIcon],
+	imports: [CapsCardImports, HlmBadgeImports, CapsInputImports, HlmSelectImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideCheck })],
 	host: {
 		class: 'flex w-80',
 	},
 	template: `
-		<hlm-card class="w-full">
-			<hlm-card-header>
-				<h3 hlmCardTitle>Card Title</h3>
-				<p hlmCardDescription>Card description here</p>
-				<div hlmCardAction>
+		<caps-card class="w-full">
+			<caps-card-header>
+				<caps-card-title [level]="3">Card Title</caps-card-title>
+				<caps-card-description>Card description here</caps-card-description>
+				<caps-card-action>
 					<span hlmBadge>Badge</span>
-				</div>
-			</hlm-card-header>
-			<div hlmCardContent>
+				</caps-card-action>
+			</caps-card-header>
+			<caps-card-content>
 				<div class="flex flex-col gap-4">
-					<input hlmInput placeholder="Enter text..." />
+					<input capsInput placeholder="Enter text..." />
 					<hlm-select [itemToString]="itemToString">
 						<hlm-select-trigger class="w-full">
 							<hlm-select-value placeholder="Select option" />
@@ -37,15 +37,15 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						</hlm-select-content>
 					</hlm-select>
 					<div class="flex gap-2">
-						<button hlmBtn variant="outline" class="flex-1">Cancel</button>
-						<button hlmBtn class="flex-1">
+						<button capsButton variant="outline" class="flex-1">Cancel</button>
+						<button capsButton class="flex-1">
 							<ng-icon name="lucideCheck" class="mr-1" />
 							Submit
 						</button>
 					</div>
 				</div>
-			</div>
-		</hlm-card>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class StylesComplexShowcase {

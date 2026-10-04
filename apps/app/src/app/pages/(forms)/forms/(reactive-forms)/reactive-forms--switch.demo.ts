@@ -1,44 +1,42 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'spartan-reactive-form-switch-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmSwitchImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Security Settings</h3>
-				<p hlmCardDescription>Manage your account security preferences.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Security Settings</caps-card-title>
+				<caps-card-description>Manage your account security preferences.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-switch-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field orientation="horizontal">
-							<hlm-field-content>
-								<label hlmFieldLabel for="two-factor">Multi-factor authentication</label>
-								<hlm-field-description>
+					<caps-field-group>
+						<caps-field orientation="horizontal">
+							<caps-field-content>
+								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
+								<caps-field-description>
 									Enable multi-factor authentication to secure your account.
-								</hlm-field-description>
-								<hlm-field-error>It is highly recommended to enable two-factor authentication.</hlm-field-error>
-							</hlm-field-content>
+								</caps-field-description>
+								<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
+							</caps-field-content>
 							<hlm-switch inputId="two-factor" formControlName="twoFactor" />
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
-					<button hlmBtn type="submit" form="form-switch-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
+				<button capsButton type="submit" form="form-switch-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class ReactiveFormSwitchDemo {
@@ -61,45 +59,43 @@ export class ReactiveFormSwitchDemo {
 export const reactiveFormsSwitchDemoCode = `
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'spartan-reactive-form-switch-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmSwitchImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Security Settings</h3>
-				<p hlmCardDescription>Manage your account security preferences.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Security Settings</caps-card-title>
+				<caps-card-description>Manage your account security preferences.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form id="form-switch-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field orientation="horizontal">
-							<hlm-field-content>
-								<label hlmFieldLabel for="two-factor">Multi-factor authentication</label>
-								<hlm-field-description>
+					<caps-field-group>
+						<caps-field orientation="horizontal">
+							<caps-field-content>
+								<caps-field-label for="two-factor">Multi-factor authentication</caps-field-label>
+								<caps-field-description>
 									Enable multi-factor authentication to secure your account.
-								</hlm-field-description>
-								<hlm-field-error>It is highly recommended to enable two-factor authentication.</hlm-field-error>
-							</hlm-field-content>
+								</caps-field-description>
+								<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
+							</caps-field-content>
 							<hlm-switch inputId="two-factor" formControlName="twoFactor" />
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
-					<button hlmBtn type="submit" form="form-switch-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
+					<button capsButton type="submit" form="form-switch-demo">Submit</button>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class ReactiveFormSwitchDemo {

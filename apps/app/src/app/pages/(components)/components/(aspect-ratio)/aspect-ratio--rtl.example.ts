@@ -1,11 +1,11 @@
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsAspectRatioImports } from '@capsule-ng/caps/aspect-ratio';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
 
 @Component({
 	selector: 'spartan-aspect-ratio-rtl',
-	imports: [HlmAspectRatioImports, NgOptimizedImage],
+	imports: [CapsAspectRatioImports, NgOptimizedImage],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex items-center justify-center h-72 w-full',
@@ -13,9 +13,9 @@ import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
 	},
 	template: `
 		<figure class="w-full max-w-sm">
-			<div [hlmAspectRatio]="16 / 9" class="overflow-hidden">
+			<caps-aspect-ratio [ratio]="16 / 9" class="overflow-hidden">
 				<img ngSrc="/assets/mountains.jpg" fill alt="Mountain views" class="rounded-lg object-cover" />
-			</div>
+			</caps-aspect-ratio>
 			<figcaption class="text-muted-foreground mt-2 text-start text-sm">
 				{{ _t()['caption'] }}
 			</figcaption>

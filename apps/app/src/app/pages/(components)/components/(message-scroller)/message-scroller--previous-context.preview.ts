@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUp,
@@ -9,8 +11,6 @@ import {
 	lucideRotateCw,
 	lucideTelescope,
 } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
@@ -25,8 +25,8 @@ const DEFAULT_PEEK = 64;
 	selector: 'spartan-message-scroller-previous-context-preview',
 	imports: [
 		HlmMessageScrollerImports,
-		HlmCardImports,
-		HlmButtonImports,
+		CapsCardImports,
+		CapsButtonImports,
 		HlmInputGroupImports,
 		HlmDropdownMenuImports,
 		HlmSliderImports,
@@ -53,13 +53,13 @@ const DEFAULT_PEEK = 64;
 		@for (key of [_demoKey()]; track key) {
 			<div hlmMessageScrollerProvider [scrollMargin]="24" [scrollPreviousItemPeek]="_peek()">
 				<div class="relative flex flex-col gap-4">
-					<hlm-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
-						<hlm-card-header class="gap-1 border-b">
-							<h3 hlmCardTitle>Keeping Context Visible</h3>
-							<p hlmCardDescription>New turns keep part of the previous reply in view.</p>
-							<div hlmCardAction>
+					<caps-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
+						<caps-card-header class="gap-1 border-b">
+							<caps-card-title [level]="3">Keeping Context Visible</caps-card-title>
+							<caps-card-description>New turns keep part of the previous reply in view.</caps-card-description>
+							<caps-card-action>
 								<button
-									hlmBtn
+									capsButton
 									variant="outline"
 									size="icon"
 									hlmTooltip="Reset"
@@ -69,10 +69,10 @@ const DEFAULT_PEEK = 64;
 								>
 									<ng-icon name="lucideRotateCw" />
 								</button>
-							</div>
-						</hlm-card-header>
+							</caps-card-action>
+						</caps-card-header>
 
-						<div hlmCardContent class="flex-1 overflow-hidden p-0">
+						<caps-card-content class="flex-1 overflow-hidden p-0">
 							<div hlmMessageScroller>
 								<div hlmMessageScrollerViewport>
 									<div
@@ -97,9 +97,9 @@ const DEFAULT_PEEK = 64;
 								</div>
 								<button hlmMessageScrollerButton></button>
 							</div>
-						</div>
+						</caps-card-content>
 
-						<hlm-card-footer class="flex-col gap-2">
+						<caps-card-footer class="flex-col gap-2">
 							<form class="w-full" (submit)="send($event)">
 								<hlm-input-group>
 									<div class="h-14 w-full px-3 py-2.5">
@@ -153,8 +153,8 @@ const DEFAULT_PEEK = 64;
 									</hlm-input-group-addon>
 								</hlm-input-group>
 							</form>
-						</hlm-card-footer>
-					</hlm-card>
+						</caps-card-footer>
+					</caps-card>
 
 					<div class="text-muted-foreground px-0.5 text-center text-xs">
 						Adjust the slider and send. Observe the previous message peek

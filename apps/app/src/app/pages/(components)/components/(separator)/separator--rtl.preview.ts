@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 
 @Component({
 	selector: 'spartan-separator-rtl',
-	imports: [HlmSeparatorImports],
+	imports: [CapsSeparatorImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex max-w-sm flex-col gap-4 text-sm" [dir]="_dir()">
@@ -12,7 +12,7 @@ import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 				<div class="leading-none font-medium">{{ _t()['title'] }}</div>
 				<div class="text-muted-foreground">{{ _t()['subtitle'] }}</div>
 			</div>
-			<hlm-separator />
+			<caps-separator />
 			<div>{{ _t()['description'] }}</div>
 		</div>
 	`,

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
 import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
-import { HlmSeparatorImports } from '@spartan-ng/helm/separator';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'spartan-scroll-area-preview',
-	imports: [HlmSeparatorImports, HlmScrollAreaImports, NgScrollbarModule],
+	imports: [CapsSeparatorImports, HlmScrollAreaImports, NgScrollbarModule],
 	template: `
 		<ng-scrollbar hlm class="h-72 w-48 border" appearance="compact">
 			<div class="p-4" scrollViewport>
@@ -13,7 +13,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 				@for (tag of tags; track tag) {
 					<div class="text-sm">
 						{{ tag }}
-						<div hlmSeparator class="my-2"></div>
+						<caps-separator class="my-2"></caps-separator>
 					</div>
 				}
 			</div>

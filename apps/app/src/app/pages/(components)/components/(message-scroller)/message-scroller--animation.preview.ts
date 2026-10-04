@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideMessageCircleDashed, lucideRotateCw } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
@@ -61,8 +61,8 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 	selector: 'spartan-message-scroller-animation-preview',
 	imports: [
 		HlmMessageScrollerImports,
-		HlmCardImports,
-		HlmButtonImports,
+		CapsCardImports,
+		CapsButtonImports,
 		HlmEmptyImports,
 		HlmSelectImports,
 		MessageScrollerTranscriptRow,
@@ -75,13 +75,15 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 	},
 	template: `
 		<div class="relative flex flex-col gap-4">
-			<hlm-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
-				<hlm-card-header class="border-b">
-					<h3 hlmCardTitle>Animation</h3>
-					<p hlmCardDescription>Choose how user messages are animated when they are added to the conversation.</p>
-					<div hlmCardAction class="flex items-center gap-2">
+			<caps-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
+				<caps-card-header class="border-b">
+					<caps-card-title [level]="3">Animation</caps-card-title>
+					<caps-card-description>
+						Choose how user messages are animated when they are added to the conversation.
+					</caps-card-description>
+					<caps-card-action class="flex items-center gap-2">
 						<button
-							hlmBtn
+							capsButton
 							type="button"
 							variant="outline"
 							size="icon"
@@ -91,10 +93,10 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 						>
 							<ng-icon name="lucideRotateCw" />
 						</button>
-					</div>
-				</hlm-card-header>
+					</caps-card-action>
+				</caps-card-header>
 
-				<div hlmCardContent class="min-h-0 flex-1 overflow-hidden p-0">
+				<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
 					@if (_chat.messages().length === 0) {
 						<hlm-empty class="h-full">
 							<hlm-empty-header>
@@ -131,9 +133,9 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 							</div>
 						</div>
 					}
-				</div>
+				</caps-card-content>
 
-				<hlm-card-footer class="border-t">
+				<caps-card-footer class="border-t">
 					<hlm-select [value]="_presetId()" (valueChange)="onPresetChange($event)" [itemToString]="_presetToString">
 						<hlm-select-trigger aria-label="Animation preset">
 							<hlm-select-value />
@@ -146,7 +148,7 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 					</hlm-select>
 
 					<button
-						hlmBtn
+						capsButton
 						type="button"
 						size="icon"
 						class="ms-auto"
@@ -156,8 +158,8 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 						<ng-icon name="lucideArrowUp" />
 						<span class="sr-only">Send Message</span>
 					</button>
-				</hlm-card-footer>
-			</hlm-card>
+				</caps-card-footer>
+			</caps-card>
 		</div>
 
 		<div class="text-muted-foreground mx-auto max-w-sm px-0.5 text-center text-xs text-balance">

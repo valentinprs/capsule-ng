@@ -1,5 +1,6 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
+import { CapsAspectRatioImports } from '@capsule-ng/caps/aspect-ratio';
 import { MainSection } from '@spartan-ng/app/app/shared/layout/main-section';
 import { PageBottomNav } from '@spartan-ng/app/app/shared/layout/page-bottom-nav/page-bottom-nav';
 import { PageBottomNavLink } from '@spartan-ng/app/app/shared/layout/page-bottom-nav/page-bottom-nav-link';
@@ -7,7 +8,6 @@ import { PageNav } from '@spartan-ng/app/app/shared/layout/page-nav/page-nav';
 import { SectionIntro } from '@spartan-ng/app/app/shared/layout/section-intro';
 import { SectionSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-heading';
 import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
-import { HlmAspectRatioImports } from '@spartan-ng/helm/aspect-ratio';
 import { hlmP } from '@spartan-ng/helm/typography';
 
 export const routeMeta: RouteMeta = {
@@ -25,7 +25,7 @@ export const routeMeta: RouteMeta = {
 		PageBottomNavLink,
 		PageNav,
 		SectionSubHeading,
-		HlmAspectRatioImports,
+		CapsAspectRatioImports,
 	],
 	template: `
 		<section spartanMainSection>
@@ -41,7 +41,7 @@ export const routeMeta: RouteMeta = {
 				created a Figma UI kit for shadcn components. The original community resource is linked below:
 			</p>
 
-			<div class="mt-6" hlmAspectRatio="16/9"></div>
+			<caps-aspect-ratio class="mt-6" ratio="16/9"></caps-aspect-ratio>
 
 			<spartan-section-sub-heading id="get-started">Get the Figma Kit</spartan-section-sub-heading>
 

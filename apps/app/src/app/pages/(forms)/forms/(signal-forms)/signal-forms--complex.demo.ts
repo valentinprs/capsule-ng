@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmSwitchImports } from '@spartan-ng/helm/switch';
@@ -12,47 +12,47 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 	selector: 'spartan-signal-form-complex-demo',
 	imports: [
 		FormField,
-		HlmCardImports,
-		HlmFieldImports,
+		CapsCardImports,
+		CapsFieldImports,
 		HlmRadioGroupImports,
 		HlmCheckboxImports,
 		HlmSelectImports,
 		HlmSwitchImports,
-		HlmButtonImports,
+		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header class="border-b">
-				<h3 hlmCardTitle>You're almost there!</h3>
-				<p hlmCardDescription>Choose your subscription plan and billing period.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header class="border-b">
+				<caps-card-title [level]="3">You're almost there!</caps-card-title>
+				<caps-card-description>Choose your subscription plan and billing period.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-complex-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend variant="label">Subscription Plan</legend>
-							<hlm-field-description>Choose your subscription plan.</hlm-field-description>
+					<caps-field-group>
+						<caps-field-set>
+							<caps-field-legend variant="label">Subscription Plan</caps-field-legend>
+							<caps-field-description>Choose your subscription plan.</caps-field-description>
 							<hlm-radio-group [formField]="form.plan">
 								@for (plan of plans; track plan.id) {
-									<label hlmFieldLabel [for]="'complex-plan-' + plan.id">
-										<hlm-field orientation="horizontal">
-											<hlm-field-content>
-												<hlm-field-title>{{ plan.title }}</hlm-field-title>
-												<hlm-field-description>{{ plan.description }}</hlm-field-description>
-											</hlm-field-content>
+									<caps-field-label [for]="'complex-plan-' + plan.id">
+										<caps-field orientation="horizontal">
+											<caps-field-content>
+												<span class="font-medium">{{ plan.title }}</span>
+												<caps-field-description>{{ plan.description }}</caps-field-description>
+											</caps-field-content>
 											<hlm-radio [value]="plan.id" [inputId]="'complex-plan-' + plan.id">
 												<hlm-radio-indicator indicator />
 											</hlm-radio>
-										</hlm-field>
-									</label>
+										</caps-field>
+									</caps-field-label>
 								}
 							</hlm-radio-group>
-						</fieldset>
-						<hlm-field-separator />
-						<hlm-field>
-							<label hlmFieldLabel>Billing Period</label>
+						</caps-field-set>
+						<caps-field-separator />
+						<caps-field>
+							<caps-field-label>Billing Period</caps-field-label>
 							<hlm-select [formField]="form.billingPeriod" [itemToString]="itemToString">
 								<hlm-select-trigger buttonId="billingPeriod" class="w-full">
 									<hlm-select-value placeholder="Select" />
@@ -67,20 +67,20 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 									</hlm-select-group>
 								</hlm-select-content>
 							</hlm-select>
-							<hlm-field-description>Choose how often you want to be billed.</hlm-field-description>
+							<caps-field-description>Choose how often you want to be billed.</caps-field-description>
 							@for (error of form.billingPeriod().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field-separator />
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend variant="label">Add-ons</legend>
-							<hlm-field-description>Select additional features you'd like to include.</hlm-field-description>
-							<hlm-field-group data-slot="checkbox-group">
+						</caps-field>
+						<caps-field-separator />
+						<caps-field-set>
+							<caps-field-legend variant="label">Add-ons</caps-field-legend>
+							<caps-field-description>Select additional features you'd like to include.</caps-field-description>
+							<caps-field-group data-slot="checkbox-group">
 								@for (addon of addons; track addon.id) {
-									<hlm-field
+									<caps-field
 										orientation="horizontal"
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
@@ -90,44 +90,44 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
 										/>
-										<hlm-field-content>
-											<label hlmFieldLabel class="font-normal" [for]="'addon-' + addon.id">
+										<caps-field-content>
+											<caps-field-label class="font-normal" [for]="'addon-' + addon.id">
 												{{ addon.title }}
-											</label>
-											<hlm-field-description>{{ addon.description }}</hlm-field-description>
-										</hlm-field-content>
-									</hlm-field>
+											</caps-field-label>
+											<caps-field-description>{{ addon.description }}</caps-field-description>
+										</caps-field-content>
+									</caps-field>
 								}
-							</hlm-field-group>
-						</fieldset>
+							</caps-field-group>
+						</caps-field-set>
 						@if (form.addons().invalid() && form.addons().touched()) {
 							@for (error of form.addons().errors(); track error) {
-								<hlm-field-error>{{ error.message }}</hlm-field-error>
+								<caps-field-error>{{ error.message }}</caps-field-error>
 							}
 						}
-						<hlm-field-separator />
-						<hlm-field orientation="horizontal">
-							<hlm-field-content>
-								<label hlmFieldLabel for="email-notifications">Email Notifications</label>
-								<hlm-field-description>Receive email updates about your subscription</hlm-field-description>
+						<caps-field-separator />
+						<caps-field orientation="horizontal">
+							<caps-field-content>
+								<caps-field-label for="email-notifications">Email Notifications</caps-field-label>
+								<caps-field-description>Receive email updates about your subscription</caps-field-description>
 								@for (error of form.emailNotifications().errors(); track error) {
-									<hlm-field-error [validator]="error.kind">
+									<caps-field-error [validator]="error.kind">
 										{{ error.message }}
-									</hlm-field-error>
+									</caps-field-error>
 								}
-							</hlm-field-content>
+							</caps-field-content>
 							<hlm-switch inputId="email-notifications" [formField]="form.emailNotifications" />
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field>
-					<button hlmBtn type="submit" form="form-complex-demo">Save preferences</button>
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer>
+				<caps-field>
+					<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				</caps-field>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormComplexDemo {
@@ -221,10 +221,10 @@ export class SignalFormComplexDemo {
 export const signalFormsComplexDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmSwitchImports } from '@spartan-ng/helm/switch';
@@ -233,47 +233,47 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 	selector: 'spartan-signal-form-complex-demo',
 	imports: [
 		FormField,
-		HlmCardImports,
-		HlmFieldImports,
+		CapsCardImports,
+		CapsFieldImports,
 		HlmRadioGroupImports,
 		HlmCheckboxImports,
 		HlmSelectImports,
 		HlmSwitchImports,
-		HlmButtonImports,
+		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header class="border-b">
-				<h3 hlmCardTitle>You're almost there!</h3>
-				<p hlmCardDescription>Choose your subscription plan and billing period.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header class="border-b">
+				<caps-card-title [level]="3">You're almost there!</caps-card-title>
+				<caps-card-description>Choose your subscription plan and billing period.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-complex-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend variant="label">Subscription Plan</legend>
-							<hlm-field-description>Choose your subscription plan.</hlm-field-description>
+					<caps-field-group>
+						<caps-field-set>
+							<caps-field-legend variant="label">Subscription Plan</caps-field-legend>
+							<caps-field-description>Choose your subscription plan.</caps-field-description>
 							<hlm-radio-group [formField]="form.plan">
 								@for (plan of plans; track plan.id) {
-									<label hlmFieldLabel [for]="'complex-plan-' + plan.id">
-										<hlm-field orientation="horizontal">
-											<hlm-field-content>
-												<hlm-field-title>{{ plan.title }}</hlm-field-title>
-												<hlm-field-description>{{ plan.description }}</hlm-field-description>
-											</hlm-field-content>
+									<caps-field-label [for]="'complex-plan-' + plan.id">
+										<caps-field orientation="horizontal">
+											<caps-field-content>
+												<span class="font-medium">{{ plan.title }}</span>
+												<caps-field-description>{{ plan.description }}</caps-field-description>
+											</caps-field-content>
 											<hlm-radio [value]="plan.id" [inputId]="'complex-plan-' + plan.id">
 												<hlm-radio-indicator indicator />
 											</hlm-radio>
-										</hlm-field>
-									</label>
+										</caps-field>
+									</caps-field-label>
 								}
 							</hlm-radio-group>
-						</fieldset>
-						<hlm-field-separator />
-						<hlm-field>
-							<label hlmFieldLabel>Billing Period</label>
+						</caps-field-set>
+						<caps-field-separator />
+						<caps-field>
+							<caps-field-label>Billing Period</caps-field-label>
 							<hlm-select [formField]="form.billingPeriod" [itemToString]="itemToString">
 								<hlm-select-trigger buttonId="billingPeriod" class="w-full">
 									<hlm-select-value placeholder="Select" />
@@ -288,20 +288,20 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 									</hlm-select-group>
 								</hlm-select-content>
 							</hlm-select>
-							<hlm-field-description>Choose how often you want to be billed.</hlm-field-description>
+							<caps-field-description>Choose how often you want to be billed.</caps-field-description>
 							@for (error of form.billingPeriod().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-						<hlm-field-separator />
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend variant="label">Add-ons</legend>
-							<hlm-field-description>Select additional features you'd like to include.</hlm-field-description>
-							<hlm-field-group data-slot="checkbox-group">
+						</caps-field>
+						<caps-field-separator />
+						<caps-field-set>
+							<caps-field-legend variant="label">Add-ons</caps-field-legend>
+							<caps-field-description>Select additional features you'd like to include.</caps-field-description>
+							<caps-field-group data-slot="checkbox-group">
 								@for (addon of addons; track addon.id) {
-									<hlm-field
+									<caps-field
 										orientation="horizontal"
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
@@ -311,44 +311,44 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
 										/>
-										<hlm-field-content>
-											<label hlmFieldLabel class="font-normal" [for]="'addon-' + addon.id">
+										<caps-field-content>
+											<caps-field-label class="font-normal" [for]="'addon-' + addon.id">
 												{{ addon.title }}
-											</label>
-											<hlm-field-description>{{ addon.description }}</hlm-field-description>
-										</hlm-field-content>
-									</hlm-field>
+											</caps-field-label>
+											<caps-field-description>{{ addon.description }}</caps-field-description>
+										</caps-field-content>
+									</caps-field>
 								}
-							</hlm-field-group>
-						</fieldset>
+							</caps-field-group>
+						</caps-field-set>
 						@if (form.addons().invalid() && form.addons().touched()) {
 							@for (error of form.addons().errors(); track error) {
-								<hlm-field-error>{{ error.message }}</hlm-field-error>
+								<caps-field-error>{{ error.message }}</caps-field-error>
 							}
 						}
-						<hlm-field-separator />
-						<hlm-field orientation="horizontal">
-							<hlm-field-content>
-								<label hlmFieldLabel for="email-notifications">Email Notifications</label>
-								<hlm-field-description>Receive email updates about your subscription</hlm-field-description>
+						<caps-field-separator />
+						<caps-field orientation="horizontal">
+							<caps-field-content>
+								<caps-field-label for="email-notifications">Email Notifications</caps-field-label>
+								<caps-field-description>Receive email updates about your subscription</caps-field-description>
 								@for (error of form.emailNotifications().errors(); track error) {
-									<hlm-field-error [validator]="error.kind">
+									<caps-field-error [validator]="error.kind">
 										{{ error.message }}
-									</hlm-field-error>
+									</caps-field-error>
 								}
-							</hlm-field-content>
+							</caps-field-content>
 							<hlm-switch inputId="email-notifications" [formField]="form.emailNotifications" />
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field>
-					<button hlmBtn type="submit" form="form-complex-demo">Save preferences</button>
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer>
+				<caps-field>
+					<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				</caps-field>
+			</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormComplexDemo {

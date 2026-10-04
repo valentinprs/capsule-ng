@@ -109,7 +109,7 @@ export const routeMeta: RouteMeta = {
 				above a footer, use
 				<code class="${hlmCode}">-mb-(--card-spacing)</code>
 				on
-				<code class="${hlmCode}">hlmCardContent</code>
+				<code class="${hlmCode}">caps-card-content</code>
 				to remove the section gap.
 			</p>
 
@@ -136,8 +136,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="carousel" label="Carousel" />

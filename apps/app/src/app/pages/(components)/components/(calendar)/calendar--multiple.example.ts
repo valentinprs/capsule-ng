@@ -1,25 +1,26 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
-import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
 
 @Component({
 	selector: 'spartan-calendar-multiple',
-	imports: [HlmCalendarImports, HlmCardImports],
+	imports: [HlmCalendarImports, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	hostDirectives: [HlmCard],
 	host: {
 		class: 'p-0 w-fit mx-auto',
 	},
 	template: `
-		<div hlmCardContent class="p-0">
-			<hlm-calendar-multi
-				[(date)]="selectedDates"
-				[min]="minDate"
-				[max]="maxDate"
-				[minSelection]="2"
-				[maxSelection]="6"
-			/>
-		</div>
+		<caps-card class="p-0">
+			<caps-card-content class="p-0">
+				<hlm-calendar-multi
+					[(date)]="selectedDates"
+					[min]="minDate"
+					[max]="maxDate"
+					[minSelection]="2"
+					[maxSelection]="6"
+				/>
+			</caps-card-content>
+		</caps-card>
 	`,
 })
 export class CalendarMultipleExample {

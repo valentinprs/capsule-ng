@@ -1,52 +1,50 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, maxLength, minLength, required, submit } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-signal-form-textarea-demo',
-	imports: [FormField, HlmCardImports, HlmFieldImports, HlmTextareaImports, HlmButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsTextareaImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Personalization</h3>
-				<p hlmCardDescription>Customize your experience by telling us more about yourself.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Personalization</caps-card-title>
+				<caps-card-description>Customize your experience by telling us more about yourself.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-textarea-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="about">More about you</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="about">More about you</caps-field-label>
 							<textarea
-								hlmTextarea
+								capsTextarea
 								id="about"
 								class="min-h-32"
 								placeholder="I'm a software engineer..."
 								[formField]="form.about"
 							></textarea>
-							<hlm-field-description>
+							<caps-field-description>
 								Tell us more about yourself. This will be used to help us personalize your experience.
-							</hlm-field-description>
+							</caps-field-description>
 							@for (error of form.about().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-textarea-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				<button capsButton type="submit" form="form-textarea-demo">Submit</button>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class SignalFormTextareaDemo {
@@ -81,53 +79,51 @@ export class SignalFormTextareaDemo {
 export const signalFormsTextareaDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, maxLength, minLength, required, submit } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmTextareaImports } from '@spartan-ng/helm/textarea';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 
 @Component({
 	selector: 'spartan-signal-form-textarea-demo',
-	imports: [FormField, HlmCardImports, HlmFieldImports, HlmTextareaImports, HlmButtonImports],
+	imports: [FormField, CapsCardImports, CapsFieldImports, CapsTextareaImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
-		<hlm-card>
-			<hlm-card-header>
-				<h3 hlmCardTitle>Personalization</h3>
-				<p hlmCardDescription>Customize your experience by telling us more about yourself.</p>
-			</hlm-card-header>
-			<div hlmCardContent>
+		<caps-card>
+			<caps-card-header>
+				<caps-card-title [level]="3">Personalization</caps-card-title>
+				<caps-card-description>Customize your experience by telling us more about yourself.</caps-card-description>
+			</caps-card-header>
+			<caps-card-content>
 				<form novalidate id="form-textarea-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<hlm-field>
-							<label hlmFieldLabel for="about">More about you</label>
+					<caps-field-group>
+						<caps-field>
+							<caps-field-label for="about">More about you</caps-field-label>
 							<textarea
-								hlmTextarea
+								capsTextarea
 								id="about"
 								class="min-h-32"
 								placeholder="I'm a software engineer..."
 								[formField]="form.about"
 							></textarea>
-							<hlm-field-description>
+							<caps-field-description>
 								Tell us more about yourself. This will be used to help us personalize your experience.
-							</hlm-field-description>
+							</caps-field-description>
 							@for (error of form.about().errors(); track error) {
-								<hlm-field-error [validator]="error.kind">
+								<caps-field-error [validator]="error.kind">
 									{{ error.message }}
-								</hlm-field-error>
+								</caps-field-error>
 							}
-						</hlm-field>
-					</hlm-field-group>
+						</caps-field>
+					</caps-field-group>
 				</form>
-			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-textarea-demo">Submit</button>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+			</caps-card-content>
+			<caps-card-footer class="gap-2">
+<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton type="submit" form="form-textarea-demo">Submit</button>
+				</caps-card-footer>
+		</caps-card>
 	\`,
 })
 export class SignalFormTextareaDemo {

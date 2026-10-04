@@ -1,12 +1,12 @@
 import { afterNextRender, Component, computed, type OnDestroy, signal } from '@angular/core';
 import { form, FormField, FormRoot, maxLength, minLength, required, submit } from '@angular/forms/signals';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRefreshCw } from '@ng-icons/lucide';
 import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 
@@ -16,10 +16,10 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 		FormRoot,
 		FormField,
 		NgIcon,
-		HlmButtonImports,
+		CapsButtonImports,
 		HlmToasterImports,
-		HlmCardImports,
-		HlmFieldImports,
+		CapsCardImports,
+		CapsFieldImports,
 		BrnInputOtpImports,
 		HlmInputOtpImports,
 	],
@@ -29,68 +29,75 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 	},
 	template: `
 		<hlm-toaster />
-		<hlm-card class="mx-auto">
-			<hlm-card-header>
-				<div hlmCardTitle>Verify your login</div>
-				<div hlmCardDescription>
+		<caps-card class="mx-auto">
+			<caps-card-header>
+				<caps-card-title>Verify your login</caps-card-title>
+				<caps-card-description>
 					Enter the verification code we sent to your email address:
 					<span class="font-medium">m@example.com</span>
 					.
-				</div>
-			</hlm-card-header>
+				</caps-card-description>
+			</caps-card-header>
 
-			<form hlmCardContent id="otp-form" [formRoot]="form">
-				<hlm-field>
-					<div class="flex items-center justify-between">
-						<label hlmFieldLabel>Verification code</label>
-						<button hlmBtn variant="outline" size="xs" [disabled]="isResendDisabled()" (click)="resendOtp()">
-							<ng-icon name="lucideRefreshCw" />
-							Resend code
-							@if (countdown() > 0) {
-								in {{ countdown() }}s
-							}
-						</button>
-					</div>
-					<brn-input-otp
-						hlmInputOtp
-						[length]="maxLength"
-						inputId="otp-verification"
-						inputClass="disabled:cursor-not-allowed"
-						[formField]="form.otp"
-						[transformPaste]="transformPaste"
-						(completed)="submit()"
-					>
-						<hlm-input-otp-group
-							class="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl"
+			<caps-card-content>
+				<form id="otp-form" [formRoot]="form">
+					<caps-field>
+						<div class="flex items-center justify-between">
+							<caps-field-label>Verification code</caps-field-label>
+							<button
+								capsButton
+								type="button"
+								variant="outline"
+								size="xs"
+								[disabled]="isResendDisabled()"
+								(click)="resendOtp()"
+							>
+								<ng-icon name="lucideRefreshCw" />
+								Resend code
+								@if (countdown() > 0) {
+									in {{ countdown() }}s
+								}
+							</button>
+						</div>
+						<brn-input-otp
+							hlmInputOtp
+							[length]="maxLength"
+							inputId="otp-verification"
+							inputClass="disabled:cursor-not-allowed"
+							[formField]="form.otp"
+							[transformPaste]="transformPaste"
+							(completed)="submit()"
 						>
-							<hlm-input-otp-slot index="0" />
-							<hlm-input-otp-slot index="1" />
-							<hlm-input-otp-slot index="2" />
-						</hlm-input-otp-group>
-						<hlm-input-otp-separator />
-						<hlm-input-otp-group
-							class="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl"
-						>
-							<hlm-input-otp-slot index="3" />
-							<hlm-input-otp-slot index="4" />
-							<hlm-input-otp-slot index="5" />
-						</hlm-input-otp-group>
-					</brn-input-otp>
-					<hlm-field-description>
-						<a href="#">I no longer have access to this email address.</a>
-					</hlm-field-description>
-				</hlm-field>
-			</form>
-			<hlm-card-footer>
-				<hlm-field>
-					<button type="submit" form="otp-form" hlmBtn [disabled]="form().invalid()">Verify</button>
-					<div class="text-muted-foreground text-sm">
-						Having trouble signing in?
-						<a href="#" class="hover:text-primary underline underline-offset-4 transition-colors">Contact support</a>
-					</div>
-				</hlm-field>
-			</hlm-card-footer>
-		</hlm-card>
+							<hlm-input-otp-group
+								class="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl"
+							>
+								<hlm-input-otp-slot index="0" />
+								<hlm-input-otp-slot index="1" />
+								<hlm-input-otp-slot index="2" />
+							</hlm-input-otp-group>
+							<hlm-input-otp-separator />
+							<hlm-input-otp-group
+								class="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl"
+							>
+								<hlm-input-otp-slot index="3" />
+								<hlm-input-otp-slot index="4" />
+								<hlm-input-otp-slot index="5" />
+							</hlm-input-otp-group>
+						</brn-input-otp>
+						<caps-field-description>
+							<a href="#">I no longer have access to this email address.</a>
+						</caps-field-description>
+					</caps-field>
+				</form>
+			</caps-card-content>
+			<caps-card-footer class="flex-col items-stretch gap-3">
+				<button type="submit" form="otp-form" capsButton [disabled]="form().invalid()">Verify</button>
+				<div class="text-muted-foreground text-sm">
+					Having trouble signing in?
+					<a href="#" class="hover:text-primary underline underline-offset-4 transition-colors">Contact support</a>
+				</div>
+			</caps-card-footer>
+		</caps-card>
 	`,
 })
 export class InputOtpFormExample implements OnDestroy {

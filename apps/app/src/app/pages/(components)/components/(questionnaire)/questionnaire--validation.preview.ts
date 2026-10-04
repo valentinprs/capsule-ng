@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { form, FormField, FormRoot, required, validate } from '@angular/forms/signals';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { type BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 
 const items: readonly BrnQuestionnaireItemDefinition[] = [
@@ -12,14 +12,14 @@ const items: readonly BrnQuestionnaireItemDefinition[] = [
 
 @Component({
 	selector: 'spartan-questionnaire-validation-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports, HlmCardImports],
+	imports: [FormRoot, FormField, HlmQuestionnaireImports, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
 		<form hlmQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" [(item)]="item">
-			<hlm-card class="w-full">
+			<caps-card class="w-full">
 				<fieldset
 					hlmQuestionnaireItem
 					name="detail"
@@ -27,20 +27,20 @@ const items: readonly BrnQuestionnaireItemDefinition[] = [
 					[formField]="form.detail"
 					[itemInvalid]="_detailInvalid()"
 				>
-					<hlm-card-header>
+					<caps-card-header>
 						<legend hlmQuestionnaireTitle>How much detail should the answer include?</legend>
 						<p hlmQuestionnaireDescription>Choose the response depth.</p>
-						<div hlmCardAction>
+						<caps-card-action>
 							<div hlmQuestionnaireProgress class="min-w-0" valueText="%current / %total"></div>
-						</div>
-					</hlm-card-header>
-					<div hlmCardContent>
+						</caps-card-action>
+					</caps-card-header>
+					<caps-card-content>
 						<div hlmQuestionnaireChoices>
 							<label hlmQuestionnaireChoice value="summary">Concise summary</label>
 							<label hlmQuestionnaireChoice value="complete">Complete answer</label>
 						</div>
 						<p hlmQuestionnaireError [message]="_detailError()"></p>
-					</div>
+					</caps-card-content>
 				</fieldset>
 
 				<fieldset
@@ -50,30 +50,30 @@ const items: readonly BrnQuestionnaireItemDefinition[] = [
 					[formField]="form.audience"
 					[itemInvalid]="_audienceInvalid()"
 				>
-					<hlm-card-header>
+					<caps-card-header>
 						<legend hlmQuestionnaireTitle>Who will read the answer?</legend>
 						<p hlmQuestionnaireDescription>Public answers require complete context.</p>
-						<div hlmCardAction>
+						<caps-card-action>
 							<div hlmQuestionnaireProgress class="min-w-0" valueText="%current / %total"></div>
-						</div>
-					</hlm-card-header>
-					<div hlmCardContent>
+						</caps-card-action>
+					</caps-card-header>
+					<caps-card-content>
 						<div hlmQuestionnaireChoices>
 							<label hlmQuestionnaireChoice value="team">My team</label>
 							<label hlmQuestionnaireChoice value="public">Public audience</label>
 						</div>
 						<p hlmQuestionnaireError [message]="_audienceError()"></p>
-					</div>
+					</caps-card-content>
 				</fieldset>
 
-				<hlm-card-footer>
+				<caps-card-footer>
 					<div hlmQuestionnaireActions>
 						<button hlmQuestionnairePrevious>Previous</button>
 						<button hlmQuestionnaireNext>Next</button>
 						<button hlmQuestionnaireSubmit>Validate answers</button>
 					</div>
-				</hlm-card-footer>
-			</hlm-card>
+				</caps-card-footer>
+			</caps-card>
 		</form>
 	`,
 })

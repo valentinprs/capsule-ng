@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject } from '@angular/core';
+import { CapsCardImports } from '@capsule-ng/caps/card';
 import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
@@ -65,7 +65,7 @@ export class MessageScrollerTranscriptOutline {
 
 @Component({
 	selector: 'spartan-message-scroller-visibility-preview',
-	imports: [HlmMessageScrollerImports, HlmCardImports, MessageScrollerTranscriptRow, MessageScrollerTranscriptOutline],
+	imports: [HlmMessageScrollerImports, CapsCardImports, MessageScrollerTranscriptRow, MessageScrollerTranscriptOutline],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex w-full flex-col gap-4 pe-12',
@@ -73,13 +73,13 @@ export class MessageScrollerTranscriptOutline {
 	template: `
 		<div hlmMessageScrollerProvider [scrollMargin]="12">
 			<div class="relative mx-auto w-full max-w-sm">
-				<hlm-card class="h-[35rem] w-full gap-0">
-					<hlm-card-header class="gap-1 border-b">
-						<h3 hlmCardTitle>Transcript Outline</h3>
-						<p hlmCardDescription>Track the current anchored turn.</p>
-					</hlm-card-header>
+				<caps-card class="h-[35rem] w-full gap-0">
+					<caps-card-header class="gap-1 border-b">
+						<caps-card-title [level]="3">Transcript Outline</caps-card-title>
+						<caps-card-description>Track the current anchored turn.</caps-card-description>
+					</caps-card-header>
 
-					<div hlmCardContent class="min-h-0 flex-1 overflow-hidden p-0">
+					<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
 						<div hlmMessageScroller>
 							<div hlmMessageScrollerViewport>
 								<div hlmMessageScrollerContent class="p-(--card-spacing)">
@@ -97,8 +97,8 @@ export class MessageScrollerTranscriptOutline {
 							</div>
 							<button hlmMessageScrollerButton></button>
 						</div>
-					</div>
-				</hlm-card>
+					</caps-card-content>
+				</caps-card>
 
 				<div class="absolute -end-12 top-1/2 -translate-y-1/2">
 					<spartan-message-scroller-transcript-outline />

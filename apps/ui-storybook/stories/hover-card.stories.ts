@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
-import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsCard } from '@capsule-ng/caps/card';
+import { CapsHoverCardImports } from '@capsule-ng/caps/hover-card';
+import { CapsLink } from '@capsule-ng/caps/link';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendarDays } from '@ng-icons/lucide';
 import { type BrnHoverCard } from '@spartan-ng/brain/hover-card';
-import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 @Component({
 	selector: 'hover-card-example',
-	imports: [HlmHoverCardImports, CapsButton, NgIcon, CapsAvatarImports],
+	imports: [CapsHoverCardImports, CapsLink, NgIcon, CapsAvatarImports],
 	providers: [provideIcons({ lucideCalendarDays })],
 	host: {
 		class: 'flex w-full h-full justify-center py-80',
 	},
 	template: `
-		<hlm-hover-card>
-			<button capsButton variant="link" hlmHoverCardTrigger>&#64;analogjs</button>
-			<hlm-hover-card-content *hlmHoverCardPortal class="w-80">
+		<caps-hover-card>
+			<a capsLink capsHoverCardTrigger href="https://analogjs.org">&#64;analogjs</a>
+			<ng-template capsHoverCardContent [class]="'w-80'">
 				<div class="flex justify-between space-x-4">
 					<caps-avatar id="avatar-small">
 						<img src="https://analogjs.org/img/logos/analog-logo.svg" alt="AnalogLogo" capsAvatarImage />
@@ -33,8 +33,8 @@ import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 						</div>
 					</div>
 				</div>
-			</hlm-hover-card-content>
-		</hlm-hover-card>
+			</ng-template>
+		</caps-hover-card>
 	`,
 })
 class HoverCardExample {}

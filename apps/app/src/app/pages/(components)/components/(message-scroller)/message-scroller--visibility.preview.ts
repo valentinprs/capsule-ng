@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject } from '@angular/core';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsHoverCardImports } from '@capsule-ng/caps/hover-card';
 import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
-import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { VISIBILITY_SCRIPT, trimMessageText } from './message-scroller.shared';
 
 @Component({
 	selector: 'spartan-message-scroller-transcript-outline',
-	imports: [HlmHoverCardImports],
+	imports: [CapsHoverCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-hover-card>
+		<caps-hover-card>
 			<button
 				type="button"
-				hlmHoverCardTrigger
-				align="left"
+				capsHoverCardTrigger
+				placement="left"
 				[sideOffset]="-28"
 				aria-label="Open transcript outline"
 				class="focus-visible:ring-ring/50 flex h-9 w-9 flex-col items-center justify-center gap-1 rounded-md transition-colors outline-none focus-visible:ring-3"
@@ -27,7 +27,7 @@ import { VISIBILITY_SCRIPT, trimMessageText } from './message-scroller.shared';
 					></span>
 				}
 			</button>
-			<hlm-hover-card-content *hlmHoverCardPortal class="flex w-64 flex-col gap-1 rounded-2xl p-1">
+			<ng-template capsHoverCardContent [class]="'flex w-64 flex-col gap-1 rounded-2xl p-1'">
 				@for (message of _userMessages(); track message.id) {
 					<button
 						type="button"
@@ -38,8 +38,8 @@ import { VISIBILITY_SCRIPT, trimMessageText } from './message-scroller.shared';
 						<span class="line-clamp-1 min-w-0">{{ _trimMessageText(message.text) }}</span>
 					</button>
 				}
-			</hlm-hover-card-content>
-		</hlm-hover-card>
+			</ng-template>
+		</caps-hover-card>
 	`,
 })
 export class MessageScrollerTranscriptOutline {

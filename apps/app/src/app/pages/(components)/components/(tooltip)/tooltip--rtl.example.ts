@@ -1,22 +1,22 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-tooltip-rtl-preview',
-	imports: [HlmButtonImports, HlmTooltipImports],
+	imports: [CapsButtonImports, CapsTooltipImports],
 	providers: [Directionality],
 	host: {
 		class: 'flex w-full flex-wrap items-center justify-center gap-3',
 		'[dir]': '_dir()',
 	},
 	template: `
-		<button [hlmTooltip]="_t()['save']" position="top" hlmBtn variant="outline">{{ _t()['top'] }}</button>
-		<button [hlmTooltip]="_t()['save']" position="bottom" hlmBtn variant="outline">{{ _t()['bottom'] }}</button>
-		<button [hlmTooltip]="_t()['save']" position="left" hlmBtn variant="outline">{{ _t()['left'] }}</button>
-		<button [hlmTooltip]="_t()['save']" position="right" hlmBtn variant="outline">{{ _t()['right'] }}</button>
+		<button [capsTooltip]="_t()['save']" placement="top" capsButton variant="outline">{{ _t()['top'] }}</button>
+		<button [capsTooltip]="_t()['save']" placement="bottom" capsButton variant="outline">{{ _t()['bottom'] }}</button>
+		<button [capsTooltip]="_t()['save']" placement="left" capsButton variant="outline">{{ _t()['left'] }}</button>
+		<button [capsTooltip]="_t()['save']" placement="right" capsButton variant="outline">{{ _t()['right'] }}</button>
 	`,
 })
 export class TooltipRtlPreview {

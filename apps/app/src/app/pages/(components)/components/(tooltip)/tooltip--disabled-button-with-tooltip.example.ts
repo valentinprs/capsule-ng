@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 
 @Component({
 	selector: 'spartan-tooltip-disabled-button-with-tooltip',
-	imports: [HlmButtonImports, HlmTooltipImports],
+	imports: [CapsButtonImports, CapsTooltipImports],
 	template: `
-		<div hlmTooltip="Simple tooltip">
-			<button hlmBtn variant="outline" disabled>Disabled Button</button>
-		</div>
+		<span class="inline-flex" tabindex="0" capsTooltip="Simple tooltip">
+			<button capsButton variant="outline" disabled>Disabled Button</button>
+		</span>
 	`,
 })
 export class TooltipDisabledButtonWithTooltip {}

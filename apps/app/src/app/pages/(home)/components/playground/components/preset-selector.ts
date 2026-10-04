@@ -1,29 +1,29 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideChevronsUpDown, lucideSearch } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { Preset } from '../data/presets';
 
 @Component({
 	selector: 'spartan-preset-selector',
-	imports: [HlmPopoverImports, HlmCommandImports, NgIcon, HlmButton],
+	imports: [CapsPopoverImports, HlmCommandImports, NgIcon, CapsButton],
 	providers: [provideIcons({ lucideSearch, lucideCheck, lucideChevronsUpDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-popover sideOffset="5">
+		<caps-popover>
 			<button
 				id="select-preset"
-				hlmPopoverTrigger
-				hlmBtn
+				capsPopoverTrigger
+				capsButton
 				variant="outline"
 				class="w-[300px] flex-1 justify-between md:max-w-[200px] lg:max-w-[300px]"
 			>
 				{{ selectedPreset() ? selectedPreset()?.name : 'Load a preset...' }}
 				<ng-icon name="lucideChevronsUpDown" />
 			</button>
-			<hlm-popover-content class="w-[300px] p-0" *hlmPopoverPortal="let ctx">
+			<ng-template capsPopoverContent let-ctx [class]="'w-[300px] p-0'">
 				<hlm-command>
 					<hlm-command-input placeholder="Search Presets" />
 					<hlm-command-list>
@@ -51,8 +51,8 @@ import { Preset } from '../data/presets';
 					<!-- Empty state -->
 					<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
 				</hlm-command>
-			</hlm-popover-content>
-		</hlm-popover>
+			</ng-template>
+		</caps-popover>
 	`,
 })
 export class PresetSelector {

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-bubble-tooltip-preview',
-	imports: [HlmBubbleImports, HlmTooltipImports, HlmButton, NgIcon],
+	imports: [HlmBubbleImports, CapsTooltipImports, CapsButton, NgIcon],
 	providers: [provideIcons({ lucideCheck })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -20,7 +20,13 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 		<div hlmBubble align="end">
 			<div hlmBubbleContent>Yes, removed it from the registry.</div>
 			<div hlmBubbleReactions>
-				<button hlmTooltip="Read on Jan 5, 2026 at 4:32 PM" hlmBtn variant="ghost" size="icon-xs">
+				<button
+					aria-label="Read status"
+					capsTooltip="Read on Jan 5, 2026 at 4:32 PM"
+					capsButton
+					variant="ghost"
+					size="icon-xs"
+				>
 					<ng-icon name="lucideCheck" />
 				</button>
 			</div>

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsBadgeImports } from '@capsule-ng/caps/badge';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUp,
@@ -17,7 +18,6 @@ import { tablerCircleDashedPlus } from '@ng-icons/tabler-icons';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { MentionableItem } from './mentionable-item';
 
 export type MentionItem = {
@@ -40,7 +40,7 @@ type GroupedItems = {
 	selector: 'spartan-notion-prompt',
 	imports: [
 		HlmInputGroupImports,
-		HlmPopoverImports,
+		CapsPopoverImports,
 		HlmCommandImports,
 		HlmDropdownMenuImports,
 		NgIcon,
@@ -67,13 +67,14 @@ type GroupedItems = {
 	template: `
 		<div hlmInputGroup class="[--radius:1.2rem]">
 			<div hlmInputGroupAddon align="block-start">
-				<hlm-popover sideOffset="5">
+				<caps-popover>
 					<button
 						hlmInputGroupButton
-						hlmPopoverTrigger
+						capsPopoverTrigger
 						variant="outline"
 						class="rounded-full"
 						[size]="_mentionButtonSize()"
+						aria-label="Add mention"
 					>
 						<ng-icon name="lucideAtSign" />
 						@if (!_hasMention()) {
@@ -81,7 +82,7 @@ type GroupedItems = {
 						}
 					</button>
 
-					<hlm-popover-content class="p-0 [--radius:1.2rem]" *hlmPopoverPortal="let ctx">
+					<ng-template capsPopoverContent let-ctx [class]="'p-0 [--radius:1.2rem]'">
 						<hlm-command>
 							<hlm-command-input placeholder="Type a command or search..." />
 
@@ -102,8 +103,8 @@ type GroupedItems = {
 							<!-- Empty state -->
 							<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
 						</hlm-command>
-					</hlm-popover-content>
-				</hlm-popover>
+					</ng-template>
+				</caps-popover>
 				<div class="no-scrollbar -m-1.5 flex gap-1 overflow-y-auto p-1.5">
 					@for (mention of _mentions(); track mention) {
 						<button

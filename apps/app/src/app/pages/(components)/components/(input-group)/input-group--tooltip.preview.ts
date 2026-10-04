@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
 
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-input-group-tooltip-preview',
-	imports: [HlmInputGroupImports, HlmTooltipImports, NgIcon],
+	imports: [HlmInputGroupImports, CapsTooltipImports, NgIcon],
 	providers: [provideIcons({ lucideInfo })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'grid w-full max-w-sm gap-6' },
@@ -17,7 +17,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 			<hlm-input-group-addon align="inline-end">
 				<button
 					hlmInputGroupButton
-					[hlmTooltip]="'Password must be at least 8 characters'"
+					[capsTooltip]="'Password must be at least 8 characters'"
 					variant="ghost"
 					aria-label="Info"
 					size="icon-xs"
@@ -29,7 +29,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 		<hlm-input-group>
 			<input hlmInputGroupInput placeholder="Your email address" />
 			<hlm-input-group-addon align="inline-end">
-				<button hlmInputGroupButton [hlmTooltip]="tooltip" variant="ghost" aria-label="Info" size="icon-xs">
+				<button hlmInputGroupButton [capsTooltip]="tooltip" variant="ghost" aria-label="Info" size="icon-xs">
 					<ng-icon name="lucideInfo" />
 				</button>
 				<ng-template #tooltip>We'll use this to send you notifications</ng-template>
@@ -40,8 +40,8 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 			<hlm-input-group-addon>
 				<button
 					hlmInputGroupButton
-					[hlmTooltip]="'Click for help with API keys'"
-					position="left"
+					[capsTooltip]="'Click for help with API keys'"
+					placement="left"
 					variant="ghost"
 					aria-label="Info"
 					size="icon-xs"

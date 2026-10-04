@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
-import { provideBrnTooltipGroup } from '@spartan-ng/brain/tooltip';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 
 @Component({
 	selector: 'spartan-tooltip-group',
-	imports: [HlmButtonImports, HlmTooltipImports],
-	providers: [provideBrnTooltipGroup({ skipDelayDuration: 300 })],
+	imports: [CapsButtonImports, CapsTooltipImports],
 	template: `
 		<div class="flex gap-2">
-			<button [hlmTooltip]="'Save'" hlmBtn variant="outline">Save</button>
-			<button [hlmTooltip]="'Copy'" hlmBtn variant="outline">Copy</button>
-			<button [hlmTooltip]="'Paste'" hlmBtn variant="outline">Paste</button>
+			<button [capsTooltip]="'Save'" capsButton variant="outline">Save</button>
+			<button [capsTooltip]="'Copy'" capsButton variant="outline">Copy</button>
+			<button [capsTooltip]="'Paste'" capsButton variant="outline">Paste</button>
 		</div>
 	`,
 })

@@ -107,12 +107,9 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_simpleCode()" />
 			</spartan-tabs>
 
-			<h3 id="examples__group" spartanH4>Group</h3>
+			<h3 id="examples__group" spartanH4>Multiple controls</h3>
 			<p class="text-muted-foreground mt-2 mb-4 text-sm">
-				Provide
-				<code>provideBrnTooltipGroup</code>
-				on a wrapping component so that once one tooltip opens, the others in the group open instantly until the
-				skip-delay window elapses.
+				Each control uses the Carbon Angular enter and leave delays independently.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -161,11 +158,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="/documentation/scroll-fade" label="Scroll Fade" />

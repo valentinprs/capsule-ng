@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUp,
@@ -16,7 +17,6 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared';
 
@@ -29,7 +29,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 		HlmEmptyImports,
 		HlmInputGroupImports,
 		HlmDropdownMenuImports,
-		HlmTooltipImports,
+		CapsTooltipImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
 	],
@@ -62,7 +62,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 								type="button"
 								variant="outline"
 								size="icon"
-								hlmTooltip="Reset"
+								capsTooltip="Reset"
 								aria-label="Reset conversation"
 								[disabled]="_chat.isBusy()"
 								(click)="reset()"

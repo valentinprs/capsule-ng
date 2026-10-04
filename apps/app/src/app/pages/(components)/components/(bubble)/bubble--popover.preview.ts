@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
 import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'spartan-bubble-popover-preview',
-	imports: [HlmBubbleImports, HlmPopoverImports, HlmButton, NgIcon],
+	imports: [HlmBubbleImports, CapsPopoverImports, CapsButton, NgIcon],
 	providers: [provideIcons({ lucideInfo })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -20,10 +20,10 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 		<div hlmBubble variant="destructive">
 			<div hlmBubbleContent>Failed to run the command.</div>
 			<div hlmBubbleReactions>
-				<hlm-popover sideOffset="5">
+				<caps-popover>
 					<button
-						hlmPopoverTrigger
-						hlmBtn
+						capsPopoverTrigger
+						capsButton
 						variant="ghost"
 						size="icon-xs"
 						aria-label="Show error details"
@@ -31,13 +31,13 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					>
 						<ng-icon name="lucideInfo" />
 					</button>
-					<hlm-popover-content *hlmPopoverPortal="let ctx" class="w-72">
-						<hlm-popover-header>
-							<div hlmPopoverTitle>Command failed with exit code 1</div>
-							<p hlmPopoverDescription>ENOENT: no such file or directory, open pnpm-lock.yaml</p>
-						</hlm-popover-header>
-					</hlm-popover-content>
-				</hlm-popover>
+					<ng-template capsPopoverContent let-ctx [class]="'w-72'">
+						<div class="space-y-1">
+							<div class="font-medium">Command failed with exit code 1</div>
+							<p class="text-muted-foreground">ENOENT: no such file or directory, open pnpm-lock.yaml</p>
+						</div>
+					</ng-template>
+				</caps-popover>
 			</div>
 		</div>
 	`,

@@ -3,15 +3,15 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsDialogImports } from '@capsule-ng/caps/dialog';
 import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { CapsSwitchImports } from '@capsule-ng/caps/switch';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 
 @Component({
 	selector: 'spartan-dialog-dismiss-options',
-	imports: [CapsDialogImports, CapsButtonImports, CapsLabelImports, CapsSwitchImports, HlmTooltipImports],
+	imports: [CapsDialogImports, CapsButtonImports, CapsLabelImports, CapsSwitchImports, CapsTooltipImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-col gap-4">
-			<label capsLabel class="flex w-fit items-center" [hlmTooltip]="disableCloseTip">
+			<label capsLabel class="flex w-fit items-center" [capsTooltip]="disableCloseTip">
 				<caps-switch class="mr-2" [checked]="_disableClose()" (checkedChange)="_disableClose.set($event)" />
 				disableClose
 			</label>
@@ -22,7 +22,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 				</div>
 			</ng-template>
 
-			<label capsLabel class="flex w-fit items-center" [hlmTooltip]="outsideClickTip">
+			<label capsLabel class="flex w-fit items-center" [capsTooltip]="outsideClickTip">
 				<caps-switch
 					class="mr-2"
 					[checked]="_closeOnOutsidePointerEvents()"

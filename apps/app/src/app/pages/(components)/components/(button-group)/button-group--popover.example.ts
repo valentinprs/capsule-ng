@@ -1,27 +1,34 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBot, lucideChevronDown } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 
 @Component({
 	selector: 'spartan-button-group-popover',
-	imports: [HlmInputImports, HlmButtonImports, HlmButtonGroupImports, HlmPopoverImports, NgIcon],
+	imports: [CapsInputImports, CapsButtonImports, HlmButtonGroupImports, CapsPopoverImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown, lucideBot })],
 	template: `
-		<hlm-popover sideOffset="5" align="end">
+		<caps-popover placement="bottom-end">
 			<div hlmButtonGroup>
-				<button hlmBtn variant="outline">
+				<button capsButton variant="outline">
 					<ng-icon name="lucideBot" />
 					Copilot
 				</button>
-				<button id="edit-profile" variant="outline" hlmPopoverTrigger hlmBtn variant="outline" size="icon">
+				<button
+					id="edit-profile"
+					aria-label="More Copilot options"
+					capsPopoverTrigger
+					capsButton
+					variant="outline"
+					size="icon"
+				>
 					<ng-icon name="lucideChevronDown" />
 				</button>
-				<hlm-popover-content class="rounded-xl p-0 text-sm" *hlmPopoverPortal="let ctx">
+				<ng-template capsPopoverContent let-ctx [class]="'rounded-xl p-0 text-sm'">
 					<div class="border-input border-b px-4 py-3">
 						<div class="text-sm font-medium">Agent Tasks</div>
 					</div>
@@ -37,9 +44,9 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 							your review.
 						</p>
 					</div>
-				</hlm-popover-content>
+				</ng-template>
 			</div>
-		</hlm-popover>
+		</caps-popover>
 	`,
 })
 export class ButtonGroupPopover {}

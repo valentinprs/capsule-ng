@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsInput } from '@capsule-ng/caps/input';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCheck,
@@ -24,7 +25,6 @@ import {
 } from '@ng-icons/lucide';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { PriorityIconPipe } from '../pipes/priority-icon.pipe';
 import { StatusIconPipe } from '../pipes/status-icon.pipe';
 import type { TaskPriority, TaskStatus } from '../services/tasks.models';
@@ -39,7 +39,7 @@ import { TasksExample } from '../tasks';
 		NgIcon,
 		HlmDropdownMenuImports,
 		HlmCommandImports,
-		HlmPopoverImports,
+		CapsPopoverImports,
 		PriorityIconPipe,
 		StatusIconPipe,
 	],
@@ -74,8 +74,8 @@ import { TasksExample } from '../tasks';
 				<input capsInput class="h-8 w-full md:w-80" placeholder="Filter tasks..." (input)="taskFilterChange($event)" />
 
 				<!-- STATUS FILTER -->
-				<hlm-popover [state]="_statusState()" (stateChanged)="statusStateChanged($event)" sideOffset="5" align="start">
-					<button capsButton hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
+				<caps-popover [(open)]="_statusState" placement="bottom-start">
+					<button capsButton capsPopoverTrigger variant="outline" size="sm" class="border-dashed">
 						<ng-icon name="lucideCirclePlus" class="mr-2" />
 						Status
 						@if (_statusFilter().length) {
@@ -90,38 +90,37 @@ import { TasksExample } from '../tasks';
 							</div>
 						}
 					</button>
-					<hlm-command *hlmPopoverPortal="let ctx" hlmPopoverContent class="w-[200px] p-0">
-						<hlm-command-input placeholder="Search Status" />
-						<hlm-command-list>
-							<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-							<hlm-command-group>
-								@for (status of _statuses(); track status) {
-									<button hlm-command-item [value]="status" (selected)="statusSelected(status)">
-										<ng-icon
-											name="lucideCheck"
-											aria-hidden="true"
-											class="mr-2 size-4 shrink-0"
-											[class.opacity-0]="!isStatusSelected(status)"
-										/>
-										<span class="sr-only">{{ isStatusSelected(status) ? 'Filter active:' : 'Filter inactive:' }}</span>
+					<ng-template capsPopoverContent [class]="'w-[200px] p-0'">
+						<hlm-command>
+							<hlm-command-input placeholder="Search Status" />
+							<hlm-command-list>
+								<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
+								<hlm-command-group>
+									@for (status of _statuses(); track status) {
+										<button hlm-command-item [value]="status" (selected)="statusSelected(status)">
+											<ng-icon
+												name="lucideCheck"
+												aria-hidden="true"
+												class="mr-2 size-4 shrink-0"
+												[class.opacity-0]="!isStatusSelected(status)"
+											/>
+											<span class="sr-only">
+												{{ isStatusSelected(status) ? 'Filter active:' : 'Filter inactive:' }}
+											</span>
 
-										<ng-icon [name]="status | statusIcon" class="text-muted-foreground mx-2" />
-										{{ status }}
-									</button>
-								}
-							</hlm-command-group>
-						</hlm-command-list>
-					</hlm-command>
-				</hlm-popover>
+											<ng-icon [name]="status | statusIcon" class="text-muted-foreground mx-2" />
+											{{ status }}
+										</button>
+									}
+								</hlm-command-group>
+							</hlm-command-list>
+						</hlm-command>
+					</ng-template>
+				</caps-popover>
 
 				<!-- PRIORITY FILTER -->
-				<hlm-popover
-					[state]="_priorityState()"
-					(stateChanged)="priorityStateChanged($event)"
-					sideOffset="5"
-					align="start"
-				>
-					<button capsButton hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
+				<caps-popover [(open)]="_priorityState" placement="bottom-start">
+					<button capsButton capsPopoverTrigger variant="outline" size="sm" class="border-dashed">
 						<ng-icon name="lucideCirclePlus" class="mr-2" />
 						Priority
 						@if (_priorityFilter().length) {
@@ -136,31 +135,33 @@ import { TasksExample } from '../tasks';
 							</div>
 						}
 					</button>
-					<hlm-command *hlmPopoverPortal="let ctx" hlmPopoverContent class="w-[200px] p-0">
-						<hlm-command-input placeholder="Search Priority" />
-						<hlm-command-list>
-							<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-							<hlm-command-group>
-								@for (priority of _priorities(); track priority) {
-									<button hlm-command-item [value]="priority" (selected)="prioritySelected(priority)">
-										<ng-icon
-											name="lucideCheck"
-											aria-hidden="true"
-											class="mr-2 size-4 shrink-0"
-											[class.opacity-0]="!isPrioritySelected(priority)"
-										/>
-										<span class="sr-only">
-											{{ isPrioritySelected(priority) ? 'Filter active:' : 'Filter inactive:' }}
-										</span>
+					<ng-template capsPopoverContent [class]="'w-[200px] p-0'">
+						<hlm-command>
+							<hlm-command-input placeholder="Search Priority" />
+							<hlm-command-list>
+								<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
+								<hlm-command-group>
+									@for (priority of _priorities(); track priority) {
+										<button hlm-command-item [value]="priority" (selected)="prioritySelected(priority)">
+											<ng-icon
+												name="lucideCheck"
+												aria-hidden="true"
+												class="mr-2 size-4 shrink-0"
+												[class.opacity-0]="!isPrioritySelected(priority)"
+											/>
+											<span class="sr-only">
+												{{ isPrioritySelected(priority) ? 'Filter active:' : 'Filter inactive:' }}
+											</span>
 
-										<ng-icon [name]="priority | priorityIcon" class="text-muted-foreground mx-2" />
-										{{ priority }}
-									</button>
-								}
-							</hlm-command-group>
-						</hlm-command-list>
-					</hlm-command>
-				</hlm-popover>
+											<ng-icon [name]="priority | priorityIcon" class="text-muted-foreground mx-2" />
+											{{ priority }}
+										</button>
+									}
+								</hlm-command-group>
+							</hlm-command-list>
+						</hlm-command>
+					</ng-template>
+				</caps-popover>
 
 				@if (_statusFilter().length || _priorityFilter().length) {
 					<button capsButton variant="ghost" size="sm" align="end" (click)="resetFilters()">
@@ -201,11 +202,11 @@ export class TableActions {
 	protected readonly _hidableColumns = this._table.getAllColumns().filter((column) => column.getCanHide());
 	protected readonly _statusFilter = signal<TaskStatus[]>([]);
 	protected readonly _statuses = signal(['Backlog', 'Todo', 'In Progress', 'Done', 'Canceled'] satisfies TaskStatus[]);
-	protected readonly _statusState = signal<'closed' | 'open'>('closed');
+	protected readonly _statusState = signal(false);
 
 	protected readonly _priorityFilter = signal<TaskPriority[]>([]);
 	protected readonly _priorities = signal(['Low', 'Medium', 'High', 'Critical'] satisfies TaskPriority[]);
-	protected readonly _priorityState = signal<'closed' | 'open'>('closed');
+	protected readonly _priorityState = signal(false);
 
 	protected taskFilterChange(event: Event) {
 		this._table.getColumn('title')?.setFilterValue((event.target as HTMLInputElement).value);
@@ -213,10 +214,6 @@ export class TableActions {
 
 	isStatusSelected(status: TaskStatus): boolean {
 		return this._statusFilter().some((s) => s === status);
-	}
-
-	statusStateChanged(state: 'open' | 'closed') {
-		this._statusState.set(state);
 	}
 
 	statusSelected(status: TaskStatus): void {
@@ -232,10 +229,6 @@ export class TableActions {
 
 	isPrioritySelected(priority: TaskPriority): boolean {
 		return this._priorityFilter().some((p) => p === priority);
-	}
-
-	priorityStateChanged(state: 'open' | 'closed') {
-		this._priorityState.set(state);
 	}
 
 	prioritySelected(priority: TaskPriority): void {

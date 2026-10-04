@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 
 @Component({
 	selector: 'spartan-tooltip-position',
-	imports: [HlmButtonImports, HlmTooltipImports],
+	imports: [CapsButtonImports, CapsTooltipImports],
 	host: {
 		class: 'flex flex-col space-y-2',
 	},
 	template: `
-		<button type="button" hlmBtn variant="outline" hlmTooltip="Tooltip content" position="top">Top</button>
+		<button type="button" capsButton variant="outline" capsTooltip="Tooltip content" placement="top">Top</button>
 
 		<div class="flex space-x-2">
-			<button type="button" hlmBtn variant="outline" hlmTooltip="Tooltip content" position="left">Left</button>
-			<button type="button" hlmBtn variant="outline" hlmTooltip="Tooltip content" position="right">Right</button>
+			<button type="button" capsButton variant="outline" capsTooltip="Tooltip content" placement="left">Left</button>
+			<button type="button" capsButton variant="outline" capsTooltip="Tooltip content" placement="right">Right</button>
 		</div>
 
-		<button type="button" hlmBtn variant="outline" hlmTooltip="Tooltip content" position="bottom">Bottom</button>
+		<button type="button" capsButton variant="outline" capsTooltip="Tooltip content" placement="bottom">Bottom</button>
 	`,
 })
 export class TooltipPosition {}

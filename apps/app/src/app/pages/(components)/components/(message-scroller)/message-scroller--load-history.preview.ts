@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRotateCw } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { HISTORY_SCRIPT } from './message-scroller.shared';
 
@@ -19,7 +19,7 @@ const INITIAL_VISIBLE_COUNT = 5;
 		CapsCardImports,
 		CapsButtonImports,
 		HlmMarkerImports,
-		HlmTooltipImports,
+		CapsTooltipImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
 	],
@@ -41,7 +41,7 @@ const INITIAL_VISIBLE_COUNT = 5;
 								type="button"
 								variant="outline"
 								size="icon"
-								hlmTooltip="Reset"
+								capsTooltip="Reset"
 								aria-label="Reset loaded messages"
 								[disabled]="_visibleCount() === _initialVisibleCount"
 								(click)="reset()"

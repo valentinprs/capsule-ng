@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRotateCw } from '@ng-icons/lucide';
 import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 import { HlmMessageImports } from '@spartan-ng/helm/message';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 type GroupChatItem =
 	| {
@@ -76,7 +76,7 @@ const rockyMessage: GroupChatItem = {
 		HlmMessageImports,
 		HlmBubbleImports,
 		HlmMarkerImports,
-		HlmTooltipImports,
+		CapsTooltipImports,
 		NgIcon,
 	],
 	providers: [provideIcons({ lucideRotateCw })],
@@ -99,7 +99,7 @@ const rockyMessage: GroupChatItem = {
 								type="button"
 								variant="outline"
 								size="icon"
-								hlmTooltip="Reset"
+								capsTooltip="Reset"
 								aria-label="Reset conversation"
 								[disabled]="_rockyTurn() === 'idle'"
 								(click)="reset()"

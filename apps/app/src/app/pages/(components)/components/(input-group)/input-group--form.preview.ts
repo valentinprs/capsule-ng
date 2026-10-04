@@ -3,13 +3,13 @@ import { email, form, FormField, FormRoot, required } from '@angular/forms/signa
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
 
+import { CapsLabelImports } from '@capsule-ng/caps/label';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-input-group-form-preview',
-	imports: [FormRoot, FormField, HlmInputGroupImports, HlmLabelImports, HlmTooltipImports, NgIcon],
+	imports: [FormRoot, FormField, HlmInputGroupImports, CapsLabelImports, CapsTooltipImports, NgIcon],
 	providers: [provideIcons({ lucideInfo })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'grid w-full max-w-sm gap-6' },
@@ -18,10 +18,10 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 			<hlm-input-group>
 				<input hlmInputGroupInput id="email-form" placeholder="spartan-ng@github.com" [formField]="form.email" />
 				<hlm-input-group-addon align="block-start">
-					<label for="email-form" class="text-foreground" hlmLabel>Email</label>
+					<label for="email-form" class="text-foreground" capsLabel>Email</label>
 					<button
 						hlmInputGroupButton
-						[hlmTooltip]="tooltip"
+						[capsTooltip]="tooltip"
 						variant="ghost"
 						aria-label="Help"
 						class="ml-auto rounded-full"

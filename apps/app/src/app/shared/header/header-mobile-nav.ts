@@ -2,21 +2,27 @@ import { Component, computed, signal, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { pageNavs, sidenavItems } from '@spartan-ng/app/app/shared/components/navigation-items';
 import { SpartanNewMarker } from '@spartan-ng/app/app/shared/spartan-new-marker';
-import { BrnPopover } from '@spartan-ng/brain/popover';
+
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsPopover, CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'spartan-mobile-nav',
-	imports: [HlmButton, NgScrollbarModule, RouterLink, HlmPopoverImports, HlmBadgeImports, SpartanNewMarker],
+	imports: [CapsButton, NgScrollbarModule, RouterLink, CapsPopoverImports, HlmBadgeImports, SpartanNewMarker],
 	template: `
-		<hlm-popover align="start" (closed)="_closePopover()" offsetX="-24" sideOffset="12">
+		<caps-popover
+			placement="bottom-start"
+			[(open)]="_isOpen"
+			[autoAlign]="true"
+			[alignmentAxisOffset]="-24"
+			[caret]="false"
+			[dropShadow]="false"
+		>
 			<button
-				(click)="_toggleOpen()"
-				hlmPopoverTrigger
-				hlmBtn
+				capsPopoverTrigger
+				capsButton
 				variant="ghost"
 				class="extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent"
 			>
@@ -40,9 +46,10 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 				<span class="flex h-8 items-center text-lg leading-none font-medium">Menu</span>
 			</button>
 
-			<hlm-popover-content
-				class="no-scrollbar bg-background/90 h-screen w-screen overflow-y-auto rounded-none border-none p-0 shadow-none backdrop-blur duration-(--caps-duration-100)"
-				*hlmPopoverPortal="let ctx"
+			<ng-template
+				capsPopoverContent
+				let-ctx
+				[class]="'no-scrollbar bg-background/90 h-screen w-screen overflow-y-auto rounded-none border-none p-0 shadow-none backdrop-blur duration-(--caps-duration-100)'"
 			>
 				<div class="flex flex-col gap-12 overflow-auto px-6 py-6 [&_a]:text-2xl [&_a]:font-medium">
 					<div class="flex flex-col gap-4">
@@ -80,19 +87,15 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 						</div>
 					}
 				</div>
-			</hlm-popover-content>
-		</hlm-popover>
+			</ng-template>
+		</caps-popover>
 	`,
 })
 export class HeaderMobileNav {
-	protected readonly _popOver = viewChild.required(BrnPopover);
+	protected readonly _popOver = viewChild.required(CapsPopover);
 	protected readonly _isOpen = signal(false);
 	protected readonly _burgerClass = computed(() => (this._isOpen() ? 'top-[0.4rem] -rotate-45' : 'top-1'));
 	protected readonly _closeClass = computed(() => (this._isOpen() ? 'top-[0.4rem] rotate-45' : 'top-2'));
-
-	protected _toggleOpen(): void {
-		this._isOpen.update((open) => !open);
-	}
 
 	protected readonly _navItems = sidenavItems;
 	protected readonly _pageNavs = pageNavs;

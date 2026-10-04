@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsSeparator } from '@capsule-ng/caps/separator';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
 import { StyleService } from '@spartan-ng/app/app/shared/style.service';
 import { TranslateService } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: 'div[spartanRtlCodePreview]',
-	imports: [CapsSelectImports, NgIcon, HlmPopoverImports, CapsSeparator, CapsButtonImports],
+	imports: [CapsSelectImports, NgIcon, CapsPopoverImports, CapsSeparator, CapsButtonImports],
 	providers: [
 		provideIcons({
 			lucideInfo,
@@ -36,11 +36,11 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					</caps-select-option>
 				}
 			</caps-select>
-			<hlm-popover align="end">
-				<button hlmPopoverTrigger capsButton variant="ghost">
+			<caps-popover placement="bottom-end">
+				<button capsPopoverTrigger capsButton variant="ghost" aria-label="Translation information">
 					<ng-icon name="lucideInfo" />
 				</button>
-				<hlm-popover-content *hlmPopoverPortal="let ctx" class="flex w-56 flex-col gap-2.5 text-xs">
+				<ng-template capsPopoverContent let-ctx [class]="'flex w-56 flex-col gap-2.5 text-xs'">
 					<div>
 						I used AI to translate the text for demonstration purposes. It&apos;s not perfect and may contain errors.
 					</div>
@@ -53,8 +53,8 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					<div data-lang="he">
 						השתמשתי בבינה מלאכותית כדי לתרגם את הטקסט למטרות הדגמה. זה לא מושלם ויכול להכיל שגיאות.
 					</div>
-				</hlm-popover-content>
-			</hlm-popover>
+				</ng-template>
+			</caps-popover>
 		</div>
 		<div
 			class="preview flex min-h-[350px] w-full items-center justify-center px-4 py-10 lg:px-10"

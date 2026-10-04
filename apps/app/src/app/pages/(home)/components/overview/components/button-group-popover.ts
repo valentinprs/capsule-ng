@@ -1,33 +1,40 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
+import { CapsTextarea } from '@capsule-ng/caps/textarea';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBot, lucideChevronDown } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
-import { HlmTextarea } from '@spartan-ng/helm/textarea';
 
 @Component({
 	selector: 'spartan-button-group-popover',
-	imports: [HlmButtonGroupImports, HlmPopoverImports, HlmTextarea, HlmButton, NgIcon],
+	imports: [HlmButtonGroupImports, CapsPopoverImports, CapsTextarea, CapsButton, NgIcon],
 	providers: [provideIcons({ lucideBot, lucideChevronDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-popover sideOffset="5" align="end">
+		<caps-popover placement="bottom-end">
 			<div hlmButtonGroup>
-				<button hlmBtn variant="outline" size="sm">
+				<button capsButton variant="outline" size="sm">
 					<ng-icon name="lucideBot" />
 					Copilot
 				</button>
-				<button id="edit-profile" variant="outline" hlmPopoverTrigger hlmBtn variant="outline" size="icon-sm">
+				<button
+					id="edit-profile"
+					aria-label="More Copilot options"
+					capsPopoverTrigger
+					capsButton
+					variant="outline"
+					size="icon-sm"
+				>
 					<ng-icon name="lucideChevronDown" />
 				</button>
-				<hlm-popover-content class="rounded-xl p-0 text-sm" *hlmPopoverPortal="let ctx">
+				<ng-template capsPopoverContent let-ctx [class]="'rounded-xl p-0 text-sm'">
 					<div class="border-input border-b px-4 py-3">
 						<div class="text-sm font-medium">Agent Tasks</div>
 					</div>
 					<div class="p-4 text-sm">
 						<textarea
-							hlmTextarea
+							capsTextarea
 							placeholder="Describe your task in natural language."
 							class="mb-4 min-h-16 resize-none"
 						></textarea>
@@ -37,9 +44,9 @@ import { HlmTextarea } from '@spartan-ng/helm/textarea';
 							your review.
 						</p>
 					</div>
-				</hlm-popover-content>
+				</ng-template>
 			</div>
-		</hlm-popover>
+		</caps-popover>
 	`,
 })
 export class ButtonGroupPopover {}

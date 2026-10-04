@@ -1,9 +1,9 @@
 import { ReactiveFormsModule } from '@angular/forms';
 import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideCheck, lucideInfo, lucidePlus, lucideSearch, lucideSend } from '@ng-icons/lucide';
 import { HlmInputGroup, HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -13,7 +13,7 @@ export default {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmInputGroupImports, NgIcon, CapsSeparatorImports, HlmTooltipImports, ReactiveFormsModule],
+			imports: [HlmInputGroupImports, NgIcon, CapsSeparatorImports, CapsTooltipImports, ReactiveFormsModule],
 			providers: [provideIcons({ lucideSend, lucideSearch, lucideInfo, lucidePlus, lucideArrowUp, lucideCheck })],
 		}),
 	],
@@ -42,7 +42,7 @@ export const Default: Story = {
 					hlmInputGroupButton
 					class="rounded-full"
 					size="icon-xs"
-					[hlmTooltip]="'This is content in a tooltip.'"
+					[capsTooltip]="'This is content in a tooltip.'"
 				>
 					<ng-icon name="lucideInfo" />
 				</button>

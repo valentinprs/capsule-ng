@@ -100,14 +100,14 @@ describe('popover--near-viewport-edge', () => {
 	/** Reading geometry before the opening animation ends is off by a pixel. */
 	const settled = () =>
 		cy
-			.get('hlm-popover-content')
+			.get('.caps-popover-content')
 			.should('be.visible')
 			.then(($content) => cy.wrap(Promise.all($content[0].getAnimations().map((a: Animation) => a.finished))));
 
 	const geometry = () =>
 		cy.get('#edge-trigger').then(($trigger) => {
 			const trigger = $trigger[0].getBoundingClientRect();
-			return cy.get('hlm-popover-content').then(($content) => {
+			return cy.get('.caps-popover-content').then(($content) => {
 				const content = $content[0].getBoundingClientRect();
 				return { trigger, content, offsetY: Math.round(content.top - trigger.top) };
 			});
@@ -118,7 +118,7 @@ describe('popover--near-viewport-edge', () => {
 	 * than slept through.
 	 */
 	const expectGeometry = (assert: (boxes: { trigger: DOMRect; content: DOMRect }) => void) =>
-		cy.get('hlm-popover-content').should(($content) =>
+		cy.get('.caps-popover-content').should(($content) =>
 			assert({
 				trigger: Cypress.$('#edge-trigger')[0].getBoundingClientRect(),
 				content: $content[0].getBoundingClientRect(),
@@ -173,15 +173,15 @@ describe('popover--close-on-scroll', () => {
 		// Wait for the trigger directive (it sets data-state), or the click can land before it listens.
 		cy.get('#closing-trigger').should('have.attr', 'data-state', 'closed');
 		cy.get('#closing-trigger').click();
-		cy.get('hlm-popover-content').should('be.visible');
+		cy.get('.caps-popover-content').should('be.visible');
 	});
 
-	it('honours the scroll strategy the wrapper now forwards', () => {
+	it('closes through the controlled open state on document scroll', () => {
 		// Cypress scrolls by assigning `scrollTop`, which never reaches the listener
 		// `ScrollDispatcher` installs, so the strategy has to be told explicitly.
 		cy.scrollTo(0, 400);
 		cy.document().then((doc) => doc.dispatchEvent(new Event('scroll')));
 
-		cy.get('hlm-popover-content').should('not.exist');
+		cy.get('.caps-popover-content').should('not.exist');
 	});
 });

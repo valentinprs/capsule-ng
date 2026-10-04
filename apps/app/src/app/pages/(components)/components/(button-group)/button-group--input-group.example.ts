@@ -1,20 +1,20 @@
 import { Component, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAudioLines, lucidePlus } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-button-group-input-group',
-	imports: [HlmButtonImports, HlmButtonGroupImports, HlmInputGroupImports, HlmTooltipImports, NgIcon],
+	imports: [CapsButtonImports, HlmButtonGroupImports, HlmInputGroupImports, CapsTooltipImports, NgIcon],
 	providers: [provideIcons({ lucidePlus, lucideAudioLines })],
 	template: `
 		<div hlmButtonGroup class="[--radius:9999rem]">
 			<div hlmButtonGroup>
-				<button hlmBtn variant="outline" size="icon">
+				<button capsButton variant="outline" size="icon">
 					<ng-icon name="lucidePlus" />
 				</button>
 			</div>
@@ -28,7 +28,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 					<div hlmInputGroupAddon align="inline-end">
 						<button
 							hlmInputGroupButton
-							[hlmTooltip]="'Voice Mode'"
+							[capsTooltip]="'Voice Mode'"
 							size="icon-xs"
 							[attr.data-active]="voiceEnabled()"
 							[attr.aria-pressed]="voiceEnabled()"

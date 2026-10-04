@@ -164,6 +164,70 @@
 	@apply opacity-(--caps-opacity-disabled);
 }
 
+/* MARK: Form choices */
+.caps-checkbox {
+	@apply border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 flex size-4 items-center justify-center rounded-[var(--caps-size-4px)] border-[length:var(--caps-border-width)] shadow-xs transition-shadow focus-visible:ring-[length:var(--caps-focus-ring-width)];
+}
+.caps-checkbox[data-state='checked'],
+.caps-checkbox[data-state='indeterminate'] {
+	@apply border-primary bg-primary text-primary-foreground;
+}
+.caps-checkbox-indicator {
+	@apply flex items-center justify-center [&>ng-icon]:text-[length:--spacing(3.5)];
+}
+.caps-switch {
+	@apply bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/80 relative inline-flex shrink-0 items-center rounded-full border-[length:var(--caps-border-width)] border-transparent transition-[background-color,box-shadow] focus-visible:ring-[length:var(--caps-focus-ring-width)];
+}
+.caps-switch[data-state='checked'] {
+	@apply bg-primary;
+}
+.caps-switch[data-size='default'] {
+	height: var(--caps-size-18-4px);
+	width: var(--caps-size-32px);
+}
+.caps-switch[data-size='sm'] {
+	height: var(--caps-size-14px);
+	width: var(--caps-size-24px);
+}
+.caps-switch-thumb {
+	@apply bg-background dark:bg-foreground pointer-events-none block size-4 rounded-full transition-transform;
+}
+.caps-switch[data-size='sm'] .caps-switch-thumb {
+	@apply size-3;
+}
+.caps-switch[data-state='checked'] .caps-switch-thumb {
+	@apply dark:bg-primary-foreground translate-x-[calc(100%-2px)];
+}
+.caps-switch:dir(rtl)[data-state='checked'] .caps-switch-thumb {
+	@apply -translate-x-[calc(100%-2px)];
+}
+.caps-radio-group {
+	@apply grid gap-2;
+}
+.caps-radio-indicator {
+	@apply border-input text-primary dark:bg-input/30 relative flex size-4 shrink-0 items-center justify-center rounded-full border-[length:var(--caps-border-width)] shadow-xs transition-shadow;
+}
+.caps-radio:has(input:focus-visible) .caps-radio-indicator {
+	@apply border-ring ring-ring/50 ring-[length:var(--caps-focus-ring-width)];
+}
+.caps-checkbox[data-matches-spartan-invalid='true'],
+.caps-switch[data-matches-spartan-invalid='true'],
+.caps-radio[data-matches-spartan-invalid='true'] .caps-radio-indicator {
+	@apply border-destructive ring-destructive/20 dark:ring-destructive/40 ring-[length:var(--caps-focus-ring-width)];
+}
+@media (prefers-reduced-motion: reduce) {
+	.caps-checkbox,
+	.caps-switch,
+	.caps-switch-thumb,
+	.caps-radio-indicator {
+		transition: none;
+	}
+}
+.caps-checkbox,
+.caps-switch {
+	@apply cursor-default outline-none disabled:cursor-not-allowed disabled:opacity-(--caps-opacity-disabled);
+}
+
 /* MARK: Dialogs */
 
 .caps-alert-dialog-content {

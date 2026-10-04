@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { disabled, form, FormField, minLength, submit } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'spartan-signal-form-checkbox-demo',
-	imports: [FormField, HlmCardImports, HlmFieldImports, HlmCheckboxImports, HlmButtonImports],
+	imports: [FormField, HlmCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
@@ -18,57 +18,54 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form novalidate id="form-checkbox-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend variant="label">Responses</legend>
-							<hlm-field-description>
+					<caps-field-group>
+						<caps-field-set>
+							<caps-field-legend variant="label">Responses</caps-field-legend>
+							<caps-field-description>
 								Get notified for requests that take time, like research or image generation.
-							</hlm-field-description>
-							<hlm-field-group>
-								<hlm-field orientation="horizontal">
-									<hlm-checkbox inputId="responses" [formField]="form.responses" />
-									<label hlmFieldLabel class="font-normal" for="responses">Push notifications</label>
-								</hlm-field>
-							</hlm-field-group>
-						</fieldset>
-						<hlm-field-separator />
-						<hlm-field-group>
-							<fieldset hlmFieldSet>
-								<legend hlmFieldLegend variant="label">Tasks</legend>
-								<hlm-field-description>Get notified when tasks you've created have updates.</hlm-field-description>
-								<hlm-field-group data-slot="checkbox-group">
+							</caps-field-description>
+							<caps-field orientation="horizontal">
+								<caps-checkbox [formField]="form.responses" />
+								<caps-field-label class="font-normal">Push notifications</caps-field-label>
+							</caps-field>
+						</caps-field-set>
+						<caps-field-separator />
+						<caps-field-group>
+							<caps-field-set>
+								<caps-field-legend variant="label">Tasks</caps-field-legend>
+								<caps-field-description>Get notified when tasks you've created have updates.</caps-field-description>
+								<caps-field-group data-slot="checkbox-group">
 									@for (task of tasks; track task.id) {
-										<hlm-field
+										<caps-field
 											orientation="horizontal"
 											[forceInvalid]="form.tasks().invalid() && form.tasks().touched()"
 										>
-											<hlm-checkbox
-												[inputId]="'task-' + task.id"
+											<caps-checkbox
 												[forceInvalid]="form.tasks().invalid() && form.tasks().touched()"
 												[checked]="form.tasks().value().includes(task.id)"
 												(checkedChange)="handleChange($event, task.id)"
 											/>
-											<label hlmFieldLabel class="font-normal" [for]="'task-' + task.id">
+											<caps-field-label class="font-normal">
 												{{ task.label }}
-											</label>
-										</hlm-field>
+											</caps-field-label>
+										</caps-field>
 									}
-								</hlm-field-group>
-							</fieldset>
+								</caps-field-group>
+							</caps-field-set>
 							@if (form.tasks().invalid() && form.tasks().touched()) {
 								@for (error of form.tasks().errors(); track error) {
-									<hlm-field-error>{{ error.message }}</hlm-field-error>
+									<caps-field-error>{{ error.message }}</caps-field-error>
 								}
 							}
-						</hlm-field-group>
-					</hlm-field-group>
+						</caps-field-group>
+					</caps-field-group>
 				</form>
 			</div>
 			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-checkbox-demo">Submit</button>
-				</hlm-field>
+				<div class="flex gap-2">
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	`,
@@ -131,14 +128,14 @@ export class SignalFormCheckboxDemo {
 export const signalFormsCheckboxDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { disabled, form, FormField, minLength, required, submit } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-signal-form-checkbox-demo',
-	imports: [FormField, HlmCardImports, HlmFieldImports, HlmCheckboxImports, HlmButtonImports],
+	imports: [FormField, HlmCardImports, CapsFieldImports, CapsCheckboxImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -149,57 +146,55 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form novalidate id="form-checkbox-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<fieldset hlmFieldSet>
-							<legend hlmFieldLegend variant="label">Responses</legend>
-							<hlm-field-description>
+					<caps-field-group>
+						<caps-field-set>
+							<caps-field-legend variant="label">Responses</caps-field-legend>
+							<caps-field-description>
 								Get notified for requests that take time, like research or image generation.
-							</hlm-field-description>
-							<hlm-field-group>
-								<hlm-field orientation="horizontal">
-									<hlm-checkbox inputId="responses" [formField]="form.responses" />
-									<label hlmFieldLabel class="font-normal" for="responses">Push notifications</label>
-								</hlm-field>
-							</hlm-field-group>
-						</fieldset>
-						<hlm-field-separator />
-						<hlm-field-group>
-							<fieldset hlmFieldSet>
-								<legend hlmFieldLegend variant="label">Tasks</legend>
-								<hlm-field-description>Get notified when tasks you've created have updates.</hlm-field-description>
-								<hlm-field-group data-slot="checkbox-group">
+							</caps-field-description>
+							<caps-field orientation="horizontal">
+									<caps-checkbox [formField]="form.responses" />
+									<caps-field-label class="font-normal">Push notifications</caps-field-label>
+								</caps-field>
+						</caps-field-set>
+						<caps-field-separator />
+						<caps-field-group>
+							<caps-field-set>
+								<caps-field-legend variant="label">Tasks</caps-field-legend>
+								<caps-field-description>Get notified when tasks you've created have updates.</caps-field-description>
+								<caps-field-group data-slot="checkbox-group">
 									@for (task of tasks; track task.id) {
-										<hlm-field
+										<caps-field
 											orientation="horizontal"
 											[forceInvalid]="form.tasks().invalid() && form.tasks().touched()"
 										>
-											<hlm-checkbox
-												[inputId]="'task-' + task.id"
+											<caps-checkbox
+
 												[forceInvalid]="form.tasks().invalid() && form.tasks().touched()"
 												[checked]="form.tasks().value().includes(task.id)"
 												(checkedChange)="handleChange($event, task.id)"
 											/>
-											<label hlmFieldLabel class="font-normal" [for]="'task-' + task.id">
+											<caps-field-label class="font-normal">
 												{{ task.label }}
-											</label>
-										</hlm-field>
+											</caps-field-label>
+										</caps-field>
 									}
-								</hlm-field-group>
-							</fieldset>
+								</caps-field-group>
+							</caps-field-set>
 							@if (form.tasks().invalid() && form.tasks().touched()) {
 								@for (error of form.tasks().errors(); track error) {
-									<hlm-field-error>{{ error.message }}</hlm-field-error>
+									<caps-field-error>{{ error.message }}</caps-field-error>
 								}
 							}
-						</hlm-field-group>
-					</hlm-field-group>
+						</caps-field-group>
+					</caps-field-group>
 				</form>
 			</div>
 			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-checkbox-demo">Submit</button>
-				</hlm-field>
+				<div class="flex gap-2">
+					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton type="submit" form="form-checkbox-demo">Submit</button>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	\`,

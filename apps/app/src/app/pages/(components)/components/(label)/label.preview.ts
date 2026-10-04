@@ -1,17 +1,17 @@
 import { Component } from '@angular/core';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsLabelImports } from '@capsule-ng/caps/label';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 
 @Component({
 	selector: 'spartan-label-preview',
-	imports: [CapsFieldImports, CapsInputImports, CapsLabelImports, CapsTextareaImports, HlmCheckboxImports],
+	imports: [CapsFieldImports, CapsInputImports, CapsLabelImports, CapsTextareaImports, CapsCheckboxImports],
 	template: `
 		<div class="grid w-full max-w-sm gap-6">
 			<div class="flex gap-2">
-				<hlm-checkbox inputId="terms" />
+				<caps-checkbox id="terms" />
 				<label capsLabel for="terms">Accept terms and conditions</label>
 			</div>
 			<div class="grid gap-2">

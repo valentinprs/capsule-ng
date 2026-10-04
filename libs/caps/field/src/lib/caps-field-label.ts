@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { BrnField } from '@spartan-ng/brain/field';
 import { BrnLabel } from '@spartan-ng/brain/label';
 import { hlm } from '@spartan-ng/helm/utils';
 import { provideCapsFieldFormContext } from './caps-field-form-context';
@@ -9,13 +10,15 @@ import { provideCapsFieldFormContext } from './caps-field-form-context';
 	imports: [BrnLabel],
 	providers: [provideCapsFieldFormContext()],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	host: { 'data-slot': 'field-label', class: 'caps-field-label block min-w-0', '[attr.id]': 'null' },
+	host: { 'data-slot': 'field-label', '[attr.class]': '"caps-field-label block min-w-0"', '[attr.id]': 'null' },
 	template: `
 		<label brnLabel data-slot="field-label" [id]="id()" [for]="for()" [class]="_labelClass()"><ng-content /></label>
 	`,
 })
 export class CapsFieldLabel {
 	private static _id = 0;
+	/** Enclosing Field identity keeps nested option labels scoped to their own Field. */
+	public readonly field = inject(BrnField, { optional: true });
 	/** ID belongs to the native label, not the component host. */
 	public readonly id = input<string>(`caps-field-label-${++CapsFieldLabel._id}`);
 	/** Explicit control ID; otherwise Brain infers the control from the enclosing Field. */

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSwitch } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-switch-disabled',
-	imports: [HlmFieldImports, HlmSwitch],
+	imports: [CapsFieldImports, CapsSwitch],
 	template: `
-		<hlm-field orientation="horizontal" data-disabled="true">
-			<hlm-switch inputId="switch-disabled" disabled />
-			<label hlmFieldLabel for="switch-disabled">Disabled</label>
-		</hlm-field>
+		<caps-field orientation="horizontal">
+			<caps-switch disabled />
+			<caps-field-label>Disabled</caps-field-label>
+		</caps-field>
 	`,
 })
 export class SwitchDisabled {}

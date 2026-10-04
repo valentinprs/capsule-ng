@@ -1,15 +1,15 @@
 import { Component, computed, inject } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 @Component({
 	selector: 'spartan-field-rtl',
 	imports: [
-		HlmCheckboxImports,
+		CapsCheckboxImports,
 		CapsTextareaImports,
 		CapsButtonImports,
 		CapsInputImports,
@@ -29,21 +29,17 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 					<caps-field-group>
 						<caps-field>
 							<caps-field-label>{{ _t()['nameOnCard'] }}</caps-field-label>
-							<input capsInput placeholder="John Doe" id="field-rtl-name-on-card" />
+							<input capsInput placeholder="John Doe" />
 						</caps-field>
 						<caps-field class="col-span-2">
 							<caps-field-label>{{ _t()['cardNumber'] }}</caps-field-label>
-							<input capsInput placeholder="1234 1234 1234 1234" id="field-rtl-card-number" />
+							<input capsInput placeholder="1234 1234 1234 1234" />
 							<caps-field-description>{{ _t()['cardNumberDescription'] }}</caps-field-description>
 						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
 							<caps-field>
 								<caps-field-label>{{ _t()['month'] }}</caps-field-label>
-								<caps-select
-									[itemToString]="_monthToString"
-									id="field-rtl-exp-month--trigger"
-									class="inline-block w-full"
-								>
+								<caps-select [itemToString]="_monthToString" class="inline-block w-full">
 									@for (month of _months(); track month.value) {
 										<caps-select-option [value]="month.value">{{ month.label }}</caps-select-option>
 									}
@@ -51,7 +47,7 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 							</caps-field>
 							<caps-field>
 								<caps-field-label>{{ _t()['year'] }}</caps-field-label>
-								<caps-select id="field-rtl-exp-year--trigger" class="inline-block w-full">
+								<caps-select class="inline-block w-full">
 									@for (year of years; track year.value) {
 										<caps-select-option [value]="year.value">{{ year.label }}</caps-select-option>
 									}
@@ -59,7 +55,7 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 							</caps-field>
 							<caps-field>
 								<caps-field-label>{{ _t()['cvv'] }}</caps-field-label>
-								<input capsInput placeholder="123" id="field-rtl-cvv" />
+								<input capsInput placeholder="123" />
 							</caps-field>
 						</div>
 					</caps-field-group>
@@ -68,28 +64,19 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 				<caps-field-set>
 					<caps-field-legend>{{ _t()['billingAddress'] }}</caps-field-legend>
 					<caps-field-description>{{ _t()['billingAddressDescription'] }}</caps-field-description>
-					<caps-field-group>
-						<caps-field orientation="horizontal">
-							<hlm-checkbox inputId="field-rtl-billing-address" [checked]="true" />
-							<caps-field-label>{{ _t()['sameAsShipping'] }}</caps-field-label>
-						</caps-field>
-					</caps-field-group>
+					<caps-field orientation="horizontal">
+						<caps-checkbox [checked]="true" />
+						<caps-field-label>{{ _t()['sameAsShipping'] }}</caps-field-label>
+					</caps-field>
 				</caps-field-set>
-				<caps-field-set>
-					<caps-field-group>
-						<caps-field>
-							<caps-field-label>{{ _t()['comments'] }}</caps-field-label>
-							<textarea
-								capsTextarea
-								class="resize-none"
-								id="field-rtl-comments"
-								[placeholder]="_t()['commentsPlaceholder']"
-							></textarea>
-						</caps-field>
-					</caps-field-group>
-				</caps-field-set>
-				<button capsButton>{{ _t()['submit'] }}</button>
-				<button capsButton variant="outline">{{ _t()['cancel'] }}</button>
+				<caps-field>
+					<caps-field-label>{{ _t()['comments'] }}</caps-field-label>
+					<textarea capsTextarea class="resize-none" [placeholder]="_t()['commentsPlaceholder']"></textarea>
+				</caps-field>
+				<div class="flex gap-2">
+					<button capsButton>{{ _t()['submit'] }}</button>
+					<button capsButton variant="outline">{{ _t()['cancel'] }}</button>
+				</div>
 			</caps-field-group>
 		</form>
 	`,
@@ -102,9 +89,7 @@ export class FieldRtl {
 			value: m,
 		}));
 	});
-
 	protected readonly _monthToString = (value: string) => this._months().find((m) => m.value === value)?.label ?? value;
-
 	public readonly years = [
 		{ label: 'YYYY', value: null },
 		{ label: '2024', value: '2024' },
@@ -114,9 +99,7 @@ export class FieldRtl {
 		{ label: '2028', value: '2028' },
 		{ label: '2029', value: '2029' },
 	];
-
 	private readonly _language = inject(TranslateService).language;
-
 	private readonly _translations: Translations = {
 		en: {
 			dir: 'ltr',
@@ -218,7 +201,6 @@ export class FieldRtl {
 			},
 		},
 	};
-
 	private readonly _translation = computed(() => this._translations[this._language()]);
 	protected readonly _t = computed(() => this._translation().values);
 	protected readonly _dir = computed(() => this._translation().dir);

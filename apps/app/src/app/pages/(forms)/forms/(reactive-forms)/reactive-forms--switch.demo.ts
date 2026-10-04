@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'spartan-reactive-form-switch-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmSwitchImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, HlmCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
@@ -18,25 +18,23 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form id="form-switch-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field orientation="horizontal">
-							<hlm-field-content>
-								<label hlmFieldLabel for="two-factor">Multi-factor authentication</label>
-								<hlm-field-description>
-									Enable multi-factor authentication to secure your account.
-								</hlm-field-description>
-								<hlm-field-error>It is highly recommended to enable two-factor authentication.</hlm-field-error>
-							</hlm-field-content>
-							<hlm-switch inputId="two-factor" formControlName="twoFactor" />
-						</hlm-field>
-					</hlm-field-group>
+					<caps-field orientation="horizontal">
+						<caps-field-content>
+							<caps-field-label>Multi-factor authentication</caps-field-label>
+							<caps-field-description>
+								Enable multi-factor authentication to secure your account.
+							</caps-field-description>
+							<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
+						</caps-field-content>
+						<caps-switch formControlName="twoFactor" />
+					</caps-field>
 				</form>
 			</div>
 			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
-					<button hlmBtn type="submit" form="form-switch-demo">Submit</button>
-				</hlm-field>
+				<div class="flex gap-2">
+					<button capsButton variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
+					<button capsButton type="submit" form="form-switch-demo">Submit</button>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	`,
@@ -61,14 +59,14 @@ export class ReactiveFormSwitchDemo {
 export const reactiveFormsSwitchDemoCode = `
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-reactive-form-switch-demo',
-	imports: [ReactiveFormsModule, HlmCardImports, HlmFieldImports, HlmSwitchImports, HlmButtonImports],
+	imports: [ReactiveFormsModule, HlmCardImports, CapsFieldImports, CapsSwitchImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -79,25 +77,23 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form id="form-switch-demo" [formGroup]="form" (ngSubmit)="submit()">
-					<hlm-field-group>
-						<hlm-field orientation="horizontal">
-							<hlm-field-content>
-								<label hlmFieldLabel for="two-factor">Multi-factor authentication</label>
-								<hlm-field-description>
+					<caps-field orientation="horizontal">
+							<caps-field-content>
+								<caps-field-label>Multi-factor authentication</caps-field-label>
+								<caps-field-description>
 									Enable multi-factor authentication to secure your account.
-								</hlm-field-description>
-								<hlm-field-error>It is highly recommended to enable two-factor authentication.</hlm-field-error>
-							</hlm-field-content>
-							<hlm-switch inputId="two-factor" formControlName="twoFactor" />
-						</hlm-field>
-					</hlm-field-group>
+								</caps-field-description>
+								<caps-field-error>It is highly recommended to enable two-factor authentication.</caps-field-error>
+							</caps-field-content>
+							<caps-switch formControlName="twoFactor" />
+						</caps-field>
 				</form>
 			</div>
 			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
-					<button hlmBtn type="submit" form="form-switch-demo">Submit</button>
-				</hlm-field>
+				<div class="flex gap-2">
+					<button capsButton variant="outline" type="button" (click)="form.reset({ twoFactor: false })">Reset</button>
+					<button capsButton type="submit" form="form-switch-demo">Submit</button>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	\`,

@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 @Component({
 	selector: 'spartan-signal-form-complex-demo',
 	imports: [
 		FormField,
 		HlmCardImports,
 		CapsFieldImports,
-		HlmRadioGroupImports,
-		HlmCheckboxImports,
+		CapsRadioGroupImports,
+		CapsCheckboxImports,
 		CapsSelectImports,
-		HlmSwitchImports,
+		CapsSwitchImports,
 		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +33,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 						<caps-field-set>
 							<caps-field-legend variant="label">Subscription Plan</caps-field-legend>
 							<caps-field-description>Choose your subscription plan.</caps-field-description>
-							<hlm-radio-group [formField]="form.plan">
+							<caps-radio-group [formField]="form.plan">
 								@for (plan of plans; track plan.id) {
 									<caps-field-label [for]="'complex-plan-' + plan.id">
 										<caps-field orientation="horizontal">
@@ -41,13 +41,11 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 												<span class="font-medium">{{ plan.title }}</span>
 												<caps-field-description>{{ plan.description }}</caps-field-description>
 											</caps-field-content>
-											<hlm-radio [value]="plan.id" [inputId]="'complex-plan-' + plan.id">
-												<hlm-radio-indicator indicator />
-											</hlm-radio>
+											<caps-radio [value]="plan.id" [id]="'complex-plan-' + plan.id" />
 										</caps-field>
 									</caps-field-label>
 								}
-							</hlm-radio-group>
+							</caps-radio-group>
 						</caps-field-set>
 						<caps-field-separator />
 						<caps-field>
@@ -56,7 +54,6 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 								[formField]="form.billingPeriod"
 								[itemToString]="itemToString"
 								placeholder="Select"
-								id="billingPeriod"
 								class="w-full"
 							>
 								@for (billingPeriod of billingPeriods; track $index) {
@@ -82,14 +79,13 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 										orientation="horizontal"
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
-										<hlm-checkbox
-											[inputId]="'addon-' + addon.id"
+										<caps-checkbox
 											[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
 										/>
 										<caps-field-content>
-											<caps-field-label class="font-normal" [for]="'addon-' + addon.id">
+											<caps-field-label class="font-normal">
 												{{ addon.title }}
 											</caps-field-label>
 											<caps-field-description>{{ addon.description }}</caps-field-description>
@@ -114,16 +110,16 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 									</caps-field-error>
 								}
 							</caps-field-content>
-							<hlm-switch inputId="email-notifications" [formField]="form.emailNotifications" />
+							<caps-switch [formField]="form.emailNotifications" />
 						</caps-field>
 					</caps-field-group>
 				</form>
 			</div>
 			<hlm-card-footer class="gap-2">
-				<caps-field>
+				<div class="flex flex-col gap-2">
 					<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	`,
@@ -140,13 +136,11 @@ export class SignalFormComplexDemo {
 		addons: [],
 		emailNotifications: false,
 	});
-
 	public readonly form = form(this._model, (schemaPath) => {
 		required(schemaPath.plan, { message: 'Please select a subscription plan' });
 		required(schemaPath.billingPeriod, { message: 'Please select a billing period' });
 		minLength(schemaPath.addons, 1, { message: 'Please select at least one add-on' });
 	});
-
 	public plans = [
 		{
 			id: 'basic',
@@ -159,14 +153,11 @@ export class SignalFormComplexDemo {
 			description: 'For businesses with higher demands',
 		},
 	];
-
 	public billingPeriods = [
 		{ label: 'Monthly', value: 'monthly' },
 		{ label: 'Yearly', value: 'yearly' },
 	];
-
 	public itemToString = (value: string) => this.billingPeriods.find((period) => period.value === value)?.label ?? '';
-
 	public addons = [
 		{
 			id: 'analytics',
@@ -184,28 +175,22 @@ export class SignalFormComplexDemo {
 			description: '24/7 premium customer support',
 		},
 	];
-
 	async submit(event: Event) {
 		event.preventDefault();
-
 		// marks all fields as touched, revealing validation errors
 		submit(this.form, async () => {
 			const model = this._model();
-
 			console.log('You submitted the following values:', JSON.stringify(model, null, 2));
 		});
 	}
-
 	handleChange(checked: boolean, id: string) {
 		if (checked) {
 			this.form.addons().value.update((addons) => [...addons, id]);
 		} else {
 			this.form.addons().value.update((addons) => addons.filter((addonId) => addonId !== id));
 		}
-
 		this.form.addons().markAsTouched();
 	}
-
 	reset() {
 		this.form().reset({
 			plan: 'basic',
@@ -215,27 +200,26 @@ export class SignalFormComplexDemo {
 		});
 	}
 }
-
 export const signalFormsComplexDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmRadioGroupImports } from '@spartan-ng/helm/radio-group';
+import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
-import { HlmSwitchImports } from '@spartan-ng/helm/switch';
+import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 @Component({
 	selector: 'spartan-signal-form-complex-demo',
 	imports: [
 		FormField,
 		HlmCardImports,
 		CapsFieldImports,
-		HlmRadioGroupImports,
-		HlmCheckboxImports,
+		CapsRadioGroupImports,
+		CapsCheckboxImports,
 		CapsSelectImports,
-		HlmSwitchImports,
+		CapsSwitchImports,
 		CapsButtonImports,
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
@@ -249,10 +233,10 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 			<div hlmCardContent>
 				<form novalidate id="form-complex-demo" (submit)="submit($event)">
 					<caps-field-group>
-						<caps-field-set >
+						<caps-field-set>
 							<caps-field-legend variant="label">Subscription Plan</caps-field-legend>
 							<caps-field-description>Choose your subscription plan.</caps-field-description>
-							<hlm-radio-group [formField]="form.plan">
+							<caps-radio-group [formField]="form.plan">
 								@for (plan of plans; track plan.id) {
 									<caps-field-label [for]="'complex-plan-' + plan.id">
 										<caps-field orientation="horizontal">
@@ -260,19 +244,16 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 												<span class="font-medium">{{ plan.title }}</span>
 												<caps-field-description>{{ plan.description }}</caps-field-description>
 											</caps-field-content>
-											<hlm-radio [value]="plan.id" [inputId]="'complex-plan-' + plan.id">
-												<hlm-radio-indicator indicator />
-											</hlm-radio>
+											<caps-radio [value]="plan.id" [id]="'complex-plan-' + plan.id" />
 										</caps-field>
 									</caps-field-label>
 								}
-							</hlm-radio-group>
+							</caps-radio-group>
 						</caps-field-set>
 						<caps-field-separator />
 						<caps-field>
 							<caps-field-label>Billing Period</caps-field-label>
-							<caps-select [formField]="form.billingPeriod" [itemToString]="itemToString"   placeholder="Select"   id="billingPeriod" class="w-full">
-
+							<caps-select [formField]="form.billingPeriod" [itemToString]="itemToString"   placeholder="Select"   class="w-full">
 										@for (billingPeriod of billingPeriods; track $index) {
 											<caps-select-option [value]="billingPeriod.value">
 												{{ billingPeriod.label }}
@@ -287,7 +268,7 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 							}
 						</caps-field>
 						<caps-field-separator />
-						<caps-field-set >
+						<caps-field-set>
 							<caps-field-legend variant="label">Add-ons</caps-field-legend>
 							<caps-field-description>Select additional features you'd like to include.</caps-field-description>
 							<caps-field-group data-slot="checkbox-group">
@@ -296,14 +277,13 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 										orientation="horizontal"
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
-										<hlm-checkbox
-											[inputId]="'addon-' + addon.id"
+										<caps-checkbox
 											[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
 										/>
 										<caps-field-content>
-											<caps-field-label class="font-normal" [for]="'addon-' + addon.id">
+											<caps-field-label class="font-normal">
 												{{ addon.title }}
 											</caps-field-label>
 											<caps-field-description>{{ addon.description }}</caps-field-description>
@@ -328,16 +308,15 @@ import { HlmSwitchImports } from '@spartan-ng/helm/switch';
 									</caps-field-error>
 								}
 							</caps-field-content>
-							<hlm-switch inputId="email-notifications" [formField]="form.emailNotifications" />
+							<caps-switch [formField]="form.emailNotifications" />
 						</caps-field>
 					</caps-field-group>
 				</form>
 			</div>
-			<hlm-card-footer class="gap-2">
-				<caps-field>
+			<hlm-card-footer class="gap-2"><div class="flex flex-col gap-2">
 					<button capsButton type="submit" form="form-complex-demo">Save preferences</button>
 					<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
-				</caps-field>
+				</div>
 			</hlm-card-footer>
 		</hlm-card>
 	\`,
@@ -354,13 +333,11 @@ export class SignalFormComplexDemo {
 		addons: [],
 		emailNotifications: false,
 	});
-
 	public readonly form = form(this._model, (schemaPath) => {
 		required(schemaPath.plan, { message: 'Please select a subscription plan' });
 		required(schemaPath.billingPeriod, { message: 'Please select a billing period' });
 		minLength(schemaPath.addons, 1, { message: 'Please select at least one add-on' });
 	});
-
 	public plans = [
 		{
 			id: 'basic',
@@ -373,14 +350,11 @@ export class SignalFormComplexDemo {
 			description: 'For businesses with higher demands',
 		},
 	];
-
 	public billingPeriods = [
 		{ label: 'Monthly', value: 'monthly' },
 		{ label: 'Yearly', value: 'yearly' },
 	];
-
 	public itemToString = (value: string) => this.billingPeriods.find((period) => period.value === value)?.label ?? '';
-
 	public addons = [
 		{
 			id: 'analytics',
@@ -398,28 +372,22 @@ export class SignalFormComplexDemo {
 			description: '24/7 premium customer support',
 		},
 	];
-
 	async submit(event: Event) {
 		event.preventDefault();
-
 		// marks all fields as touched, revealing validation errors
 		submit(this.form, async () => {
 			const model = this._model();
-
 			console.log('You submitted the following values:', JSON.stringify(model, null, 2));
 		});
 	}
-
 	handleChange(checked: boolean, id: string) {
 		if (checked) {
 			this.form.addons().value.update((addons) => [...addons, id]);
 		} else {
 			this.form.addons().value.update((addons) => addons.filter((addonId) => addonId !== id));
 		}
-
 		this.form.addons().markAsTouched();
 	}
-
 	reset() {
 		this.form().reset({
 			plan: 'basic',

@@ -20,6 +20,7 @@ import { metaWith } from '../../../../shared/meta/meta.util';
 import { SwitchChoiceCard } from './switch--choice-card.example';
 import { SwitchDescription } from './switch--description.example';
 import { SwitchDisabled } from './switch--disabled.example';
+import { SwitchForm } from './switch--form.example';
 import { SwitchInvalid } from './switch--invalid.example';
 import { SwitchSizes } from './switch--sizes.example';
 import { SwitchPreview, defaultImports, defaultSkeleton } from './switch.preview';
@@ -33,6 +34,7 @@ export const routeMeta: RouteMeta = {
 	selector: 'spartan-switch',
 	imports: [
 		UIApiDocs,
+		SwitchForm,
 		MainSection,
 		Code,
 		SectionIntro,
@@ -116,6 +118,12 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_sizesCode()" />
 			</spartan-tabs>
 
+			<spartan-section-sub-heading id="reactive-form">Reactive Form</spartan-section-sub-heading>
+			<spartan-tabs firstTab="Preview" secondTab="Code">
+				<div spartanCodePreview firstTab><spartan-switch-form /></div>
+				<spartan-code secondTab [code]="_formCode()" />
+			</spartan-tabs>
+
 			<spartan-header-rtl />
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanRtlCodePreview firstTab>
@@ -123,12 +131,8 @@ export const routeMeta: RouteMeta = {
 				</div>
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
-
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="table" label="Table" />
@@ -144,6 +148,7 @@ export default class SkeletonPage {
 	}
 
 	private readonly _snippets = inject(PrimitiveSnippetsService).getSnippets('switch');
+	protected readonly _formCode = computed(() => this._snippets()['form']);
 	protected readonly _defaultCode = computed(() => this._snippets()['default']);
 	protected readonly _rtlCode = computed(() => this._snippets()['rtl']);
 	protected readonly _descriptionCode = computed(() => this._snippets()['description']);

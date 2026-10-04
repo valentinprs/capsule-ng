@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSwitch } from '@capsule-ng/caps/switch';
 
 @Component({
 	selector: 'spartan-switch-invalid',
-	imports: [HlmFieldImports, HlmSwitch],
+	imports: [CapsFieldImports, CapsSwitch],
 	template: `
-		<hlm-field orientation="horizontal" class="max-w-sm" forceInvalid>
-			<hlm-field-content>
-				<label hlmFieldLabel for="switch-invalid">Accept terms and conditions</label>
-				<p hlmFieldDescription>You must accept the terms and conditions to continue.</p>
-			</hlm-field-content>
-			<hlm-switch inputId="switch-invalid" forceInvalid />
-		</hlm-field>
+		<caps-field orientation="horizontal" class="max-w-sm" forceInvalid>
+			<caps-field-content>
+				<caps-field-label>Accept terms and conditions</caps-field-label>
+				<caps-field-description>You must accept the terms and conditions to continue.</caps-field-description>
+			</caps-field-content>
+			<caps-switch forceInvalid />
+		</caps-field>
 	`,
 })
 export class SwitchInvalid {}

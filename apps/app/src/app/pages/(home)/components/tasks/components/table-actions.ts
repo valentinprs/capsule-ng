@@ -1,5 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsInput } from '@capsule-ng/caps/input';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCheck,
@@ -20,11 +22,8 @@ import {
 	lucideSettings2,
 	lucideX,
 } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmInput } from '@spartan-ng/helm/input';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { PriorityIconPipe } from '../pipes/priority-icon.pipe';
 import { StatusIconPipe } from '../pipes/status-icon.pipe';
@@ -34,14 +33,13 @@ import { TasksExample } from '../tasks';
 @Component({
 	selector: 'spartan-table-actions',
 	imports: [
-		HlmButton,
+		CapsButton,
 		FormsModule,
-		HlmInput,
+		CapsInput,
 		NgIcon,
 		HlmDropdownMenuImports,
 		HlmCommandImports,
 		HlmPopoverImports,
-		HlmCheckboxImports,
 		PriorityIconPipe,
 		StatusIconPipe,
 	],
@@ -73,11 +71,11 @@ import { TasksExample } from '../tasks';
 		<div class="wip-table-search flex flex-col justify-between gap-4 sm:flex-row">
 			<div class="flex flex-col justify-between gap-4 sm:flex-row">
 				<!-- TASK TITLE FILTER -->
-				<input hlmInput class="h-8 w-full md:w-80" placeholder="Filter tasks..." (input)="taskFilterChange($event)" />
+				<input capsInput class="h-8 w-full md:w-80" placeholder="Filter tasks..." (input)="taskFilterChange($event)" />
 
 				<!-- STATUS FILTER -->
 				<hlm-popover [state]="_statusState()" (stateChanged)="statusStateChanged($event)" sideOffset="5" align="start">
-					<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
+					<button capsButton hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
 						<ng-icon name="lucideCirclePlus" class="mr-2" />
 						Status
 						@if (_statusFilter().length) {
@@ -99,7 +97,13 @@ import { TasksExample } from '../tasks';
 							<hlm-command-group>
 								@for (status of _statuses(); track status) {
 									<button hlm-command-item [value]="status" (selected)="statusSelected(status)">
-										<hlm-checkbox class="mr-2" [checked]="isStatusSelected(status)" />
+										<ng-icon
+											name="lucideCheck"
+											aria-hidden="true"
+											class="mr-2 size-4 shrink-0"
+											[class.opacity-0]="!isStatusSelected(status)"
+										/>
+										<span class="sr-only">{{ isStatusSelected(status) ? 'Filter active:' : 'Filter inactive:' }}</span>
 
 										<ng-icon [name]="status | statusIcon" class="text-muted-foreground mx-2" />
 										{{ status }}
@@ -117,7 +121,7 @@ import { TasksExample } from '../tasks';
 					sideOffset="5"
 					align="start"
 				>
-					<button hlmBtn hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
+					<button capsButton hlmPopoverTrigger variant="outline" size="sm" class="border-dashed">
 						<ng-icon name="lucideCirclePlus" class="mr-2" />
 						Priority
 						@if (_priorityFilter().length) {
@@ -139,7 +143,15 @@ import { TasksExample } from '../tasks';
 							<hlm-command-group>
 								@for (priority of _priorities(); track priority) {
 									<button hlm-command-item [value]="priority" (selected)="prioritySelected(priority)">
-										<hlm-checkbox class="mr-2" [checked]="isPrioritySelected(priority)" />
+										<ng-icon
+											name="lucideCheck"
+											aria-hidden="true"
+											class="mr-2 size-4 shrink-0"
+											[class.opacity-0]="!isPrioritySelected(priority)"
+										/>
+										<span class="sr-only">
+											{{ isPrioritySelected(priority) ? 'Filter active:' : 'Filter inactive:' }}
+										</span>
 
 										<ng-icon [name]="priority | priorityIcon" class="text-muted-foreground mx-2" />
 										{{ priority }}
@@ -151,7 +163,7 @@ import { TasksExample } from '../tasks';
 				</hlm-popover>
 
 				@if (_statusFilter().length || _priorityFilter().length) {
-					<button hlmBtn variant="ghost" size="sm" align="end" (click)="resetFilters()">
+					<button capsButton variant="ghost" size="sm" align="end" (click)="resetFilters()">
 						Reset
 						<ng-icon name="lucideX" class="ml-2" />
 					</button>
@@ -159,7 +171,7 @@ import { TasksExample } from '../tasks';
 			</div>
 
 			<!-- Column visibility -->
-			<button hlmBtn variant="outline" align="end" [hlmDropdownMenuTrigger]="menu">
+			<button capsButton variant="outline" align="end" [hlmDropdownMenuTrigger]="menu">
 				Columns
 				<ng-icon name="lucideChevronDown" class="ml-2" />
 			</button>

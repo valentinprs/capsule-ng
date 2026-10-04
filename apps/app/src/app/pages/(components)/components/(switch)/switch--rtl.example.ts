@@ -1,22 +1,22 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSwitch } from '@capsule-ng/caps/switch';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'spartan-switch-rtl-preview',
-	imports: [HlmFieldImports, HlmSwitch],
+	imports: [CapsFieldImports, CapsSwitch],
 	host: {
 		'[dir]': '_dir()',
 	},
 	template: `
-		<hlm-field orientation="horizontal" class="max-w-sm">
-			<hlm-field-content>
-				<label hlmFieldLabel for="switch-focus-mode-rtl">{{ _t()['label'] }}</label>
-				<p hlmFieldDescription>{{ _t()['description'] }}</p>
-			</hlm-field-content>
-			<hlm-switch inputId="switch-focus-mode-rtl" />
-		</hlm-field>
+		<caps-field orientation="horizontal" class="max-w-sm">
+			<caps-field-content>
+				<caps-field-label>{{ _t()['label'] }}</caps-field-label>
+				<caps-field-description>{{ _t()['description'] }}</caps-field-description>
+			</caps-field-content>
+			<caps-switch />
+		</caps-field>
 	`,
 })
 export class SwitchRtlPreview {

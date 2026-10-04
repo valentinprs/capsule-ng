@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 
 @Component({
 	selector: 'spartan-popover-align',
-	imports: [HlmPopoverImports, HlmButtonImports],
+	imports: [CapsPopoverImports, CapsButtonImports],
 	template: `
 		<div class="flex gap-6">
-			<hlm-popover sideOffset="5" align="start">
-				<button hlmPopoverTrigger hlmBtn variant="outline">Start</button>
-				<hlm-popover-content class="w-40" *hlmPopoverPortal="let ctx">Aligned to start</hlm-popover-content>
-			</hlm-popover>
-			<hlm-popover sideOffset="5" align="center">
-				<button hlmPopoverTrigger hlmBtn variant="outline">Center</button>
-				<hlm-popover-content class="w-40" *hlmPopoverPortal="let ctx">Aligned to center</hlm-popover-content>
-			</hlm-popover>
-			<hlm-popover sideOffset="5" align="end">
-				<button hlmPopoverTrigger hlmBtn variant="outline">End</button>
-				<hlm-popover-content class="w-40" *hlmPopoverPortal="let ctx">Aligned to end</hlm-popover-content>
-			</hlm-popover>
+			<caps-popover placement="bottom-start">
+				<button capsPopoverTrigger capsButton variant="outline">Start</button>
+				<ng-template capsPopoverContent let-ctx [class]="'w-40'">Aligned to start</ng-template>
+			</caps-popover>
+			<caps-popover placement="bottom">
+				<button capsPopoverTrigger capsButton variant="outline">Center</button>
+				<ng-template capsPopoverContent let-ctx [class]="'w-40'">Aligned to center</ng-template>
+			</caps-popover>
+			<caps-popover placement="bottom-end">
+				<button capsPopoverTrigger capsButton variant="outline">End</button>
+				<ng-template capsPopoverContent let-ctx [class]="'w-40'">Aligned to end</ng-template>
+			</caps-popover>
 		</div>
 	`,
 })

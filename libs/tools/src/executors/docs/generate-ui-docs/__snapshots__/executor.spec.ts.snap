@@ -6060,6 +6060,64 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "[brnHoverCardTrigger]:not(ng-container),[brnHoverCardTriggerFor]:not(ng-container)",
       },
     },
+    "caps": {
+      "CapsHoverCard": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "Direction | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-hover-card",
+      },
+      "CapsHoverCardContent": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "ng-template[capsHoverCardContent]",
+      },
+      "CapsHoverCardTrigger": {
+        "inputs": [
+          {
+            "name": "placement",
+            "required": false,
+            "type": "CapsHoverCardPlacement",
+          },
+          {
+            "name": "showDelay",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "hideDelay",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "animationDelay",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsHoverCardTrigger],button[capsHoverCardTrigger]",
+      },
+    },
     "helm": {
       "HlmHoverCard": {
         "inputs": [],
@@ -7788,6 +7846,111 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "button[brnPopoverTrigger],button[brnPopoverTriggerFor]",
+      },
+    },
+    "caps": {
+      "CapsPopover": {
+        "exportAs": "capsPopover",
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "Direction | undefined",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "placement",
+            "required": false,
+            "type": "CapsPlacement",
+          },
+          {
+            "name": "autoAlign",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "caret",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "dropShadow",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "highContrast",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "alignmentAxisOffset",
+            "required": false,
+            "type": "number | undefined",
+          },
+        ],
+        "models": [
+          {
+            "name": "open",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "onOpen",
+            "type": "void",
+          },
+          {
+            "name": "onClose",
+            "type": "void",
+          },
+        ],
+        "selector": "caps-popover",
+      },
+      "CapsPopoverClose": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsPopoverClose]",
+      },
+      "CapsPopoverContent": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "ng-template[capsPopoverContent]",
+      },
+      "CapsPopoverTrigger": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsPopoverTrigger]",
       },
     },
     "helm": {
@@ -12207,6 +12370,86 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnTooltipStringTemplateOutlet]",
+      },
+    },
+    "caps": {
+      "CapsTooltip": {
+        "exportAs": "capsTooltip",
+        "inputs": [
+          {
+            "name": "capsTooltip",
+            "required": false,
+            "type": "string | TemplateRef<unknown>",
+          },
+          {
+            "name": "tooltipDisabled",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "enterDelayMs",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "leaveDelayMs",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "templateContext",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "placement",
+            "required": false,
+            "type": "CapsPlacement",
+          },
+          {
+            "name": "autoAlign",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "caret",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "dropShadow",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "highContrast",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "alignmentAxisOffset",
+            "required": false,
+            "type": "number | undefined",
+          },
+        ],
+        "models": [
+          {
+            "name": "open",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "onOpen",
+            "type": "void",
+          },
+          {
+            "name": "onClose",
+            "type": "void",
+          },
+        ],
+        "selector": "[capsTooltip]",
       },
     },
     "helm": {

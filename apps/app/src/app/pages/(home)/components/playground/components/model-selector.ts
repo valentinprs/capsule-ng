@@ -1,28 +1,27 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideChevronsUpDown, lucideSearch } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { Model, ModelType } from '../data/models';
 
 @Component({
 	selector: 'spartan-model-selector',
-	imports: [HlmPopoverImports, HlmCommandImports, NgIcon, HlmButton, HlmLabel],
+	imports: [CapsPopoverImports, HlmCommandImports, NgIcon, CapsButton],
 	providers: [provideIcons({ lucideChevronsUpDown, lucideSearch, lucideCheck })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'grid gap-3',
 	},
 	template: `
-		<span hlmLabel>Model</span>
-		<hlm-popover sideOffset="5">
-			<button id="select-preset" variant="outline" hlmPopoverTrigger hlmBtn class="w-full flex-1 justify-between">
+		<span capsLabel>Model</span>
+		<caps-popover>
+			<button id="select-preset" variant="outline" capsPopoverTrigger capsButton class="w-full flex-1 justify-between">
 				{{ selectedModel() ? selectedModel()?.name : 'Load a model...' }}
 				<ng-icon name="lucideChevronsUpDown" />
 			</button>
-			<hlm-popover-content class="w-full p-0" *hlmPopoverPortal="let ctx">
+			<ng-template capsPopoverContent let-ctx [class]="'w-full p-0'">
 				<hlm-command>
 					<hlm-command-input placeholder="Search Models" />
 					<hlm-command-list>
@@ -48,8 +47,8 @@ import { Model, ModelType } from '../data/models';
 					<!-- Empty state -->
 					<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
 				</hlm-command>
-			</hlm-popover-content>
-		</hlm-popover>
+			</ng-template>
+		</caps-popover>
 	`,
 })
 export class ModelSelector {

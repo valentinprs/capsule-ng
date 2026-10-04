@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 
 @Component({
 	selector: 'spartan-popover-basic',
-	imports: [HlmPopoverImports, HlmButtonImports],
+	imports: [CapsPopoverImports, CapsButtonImports],
 	template: `
-		<hlm-popover sideOffset="5" align="start">
-			<button hlmPopoverTrigger hlmBtn variant="outline">Open Popover</button>
-			<hlm-popover-content *hlmPopoverPortal="let ctx">
-				<hlm-popover-header>
-					<div hlmPopoverTitle>Dimensions</div>
-					<p hlmPopoverDescription>Set the dimensions for the layer.</p>
-				</hlm-popover-header>
-			</hlm-popover-content>
-		</hlm-popover>
+		<caps-popover placement="bottom-start" autoAlign>
+			<button capsPopoverTrigger capsButton variant="outline">Open Popover</button>
+			<ng-template capsPopoverContent let-ctx>
+				<div class="space-y-1">
+					<div class="font-medium">Dimensions</div>
+					<p class="text-muted-foreground">Set the dimensions for the layer.</p>
+				</div>
+			</ng-template>
+		</caps-popover>
 	`,
 })
 export class PopoverBasic {}

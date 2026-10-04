@@ -1,39 +1,39 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsLabelImports } from '@capsule-ng/caps/label';
+import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
-import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'spartan-popover-rtl-preview',
-	imports: [HlmPopoverImports, HlmButtonImports, HlmLabelImports, HlmInputImports],
+	imports: [CapsPopoverImports, CapsButtonImports, CapsLabelImports, CapsInputImports],
 	providers: [Directionality],
 	host: {
 		class: 'flex w-full justify-center',
 		'[dir]': '_dir()',
 	},
 	template: `
-		<hlm-popover sideOffset="5">
-			<button hlmPopoverTrigger hlmBtn variant="outline">{{ _t()['open'] }}</button>
-			<hlm-popover-content class="grid w-80 gap-4" *hlmPopoverPortal="let ctx">
+		<caps-popover>
+			<button capsPopoverTrigger capsButton variant="outline">{{ _t()['open'] }}</button>
+			<ng-template capsPopoverContent let-ctx [class]="'grid w-80 gap-4'">
 				<div class="space-y-2">
 					<h4 class="leading-none font-medium">{{ _t()['title'] }}</h4>
 					<p class="text-muted-foreground text-sm">{{ _t()['description'] }}</p>
 				</div>
 				<div class="grid gap-2">
 					<div class="grid grid-cols-3 items-center gap-4">
-						<label hlmLabel for="width">{{ _t()['width'] }}</label>
-						<input hlmInput id="width" [defaultValue]="'100%'" class="col-span-2 h-8" />
+						<label capsLabel for="width">{{ _t()['width'] }}</label>
+						<input capsInput id="width" [defaultValue]="'100%'" class="col-span-2 h-8" />
 					</div>
 					<div class="grid grid-cols-3 items-center gap-4">
-						<label hlmLabel for="height">{{ _t()['height'] }}</label>
-						<input hlmInput id="height" [defaultValue]="'25px'" class="col-span-2 h-8" />
+						<label capsLabel for="height">{{ _t()['height'] }}</label>
+						<input capsInput id="height" [defaultValue]="'25px'" class="col-span-2 h-8" />
 					</div>
 				</div>
-			</hlm-popover-content>
-		</hlm-popover>
+			</ng-template>
+		</caps-popover>
 	`,
 })
 export class PopoverRtlPreview {

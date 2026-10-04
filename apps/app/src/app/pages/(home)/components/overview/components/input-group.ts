@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsSeparator } from '@capsule-ng/caps/separator';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideCheck, lucideInfo, lucidePlus, lucideSearch } from '@ng-icons/lucide';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-input-group',
-	imports: [HlmInputGroupImports, NgIcon, HlmTooltipImports, CapsSeparator],
+	imports: [HlmInputGroupImports, NgIcon, CapsTooltipImports, CapsSeparator],
 	providers: [
 		provideIcons({
 			lucideSearch,
@@ -40,7 +40,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 						hlmInputGroupButton
 						class="rounded-full"
 						size="icon-xs"
-						[hlmTooltip]="'This is content in a tooltip.'"
+						[capsTooltip]="'This is content in a tooltip.'"
 					>
 						<ng-icon name="lucideInfo" />
 					</button>

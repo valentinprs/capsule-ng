@@ -4,12 +4,12 @@ import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAudioLines, lucidePlus } from '@ng-icons/lucide';
 
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 
 @Component({
 	selector: 'spartan-button-group-input-group',
-	imports: [CapsButtonImports, CapsButtonGroupImports, HlmInputGroupImports, HlmTooltipImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, HlmInputGroupImports, CapsTooltipImports, NgIcon],
 	providers: [provideIcons({ lucidePlus, lucideAudioLines })],
 	template: `
 		<caps-button-group aria-label="Actions" class="[--radius:9999rem]">
@@ -28,7 +28,7 @@ import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
 					<button
 						hlmInputGroupButton
 						aria-label="Voice mode"
-						[hlmTooltip]="'Voice Mode'"
+						[capsTooltip]="'Voice Mode'"
 						size="icon-xs"
 						[attr.data-active]="voiceEnabled()"
 						[attr.aria-pressed]="voiceEnabled()"

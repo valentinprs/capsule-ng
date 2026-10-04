@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 
 @Component({
 	selector: 'spartan-tooltip-preview',
-	imports: [HlmTooltipImports, HlmButtonImports],
+	imports: [CapsTooltipImports, CapsButtonImports],
 	template: `
-		<button hlmTooltip="Add to library" hlmBtn variant="outline">Default</button>
+		<button capsTooltip="Add to library" capsButton variant="outline">Default</button>
 	`,
 })
 export class TooltipPreview {}
 
 export const defaultImports = `
-import { HlmTooltipImports } from '@spartan-ng/helm/tooltip';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 `;
-export const defaultSkeleton = `<button hlmTooltip="Add to library"  hlmBtn variant="outline">Default</button>`;
+export const defaultSkeleton = `<button capsTooltip="Add to library" capsButton variant="outline">Default</button>`;

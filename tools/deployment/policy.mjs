@@ -1,15 +1,40 @@
 export const repository = 'valentinprs/capsule-ng';
 export const commentMarker = '<!-- capsule-deployments -->';
 
-export function deploymentContext(event) {
+export const deploymentPolicyVersion = 2;
+export function currentDraftEvent(event, remote) {
+	return remote?.state === 'open' && remote.draft === true && event.pull_request?.head.sha === remote.head.sha;
+}
+export const previewLabel = 'capsule-preview';
+export function previewRequested(event) {
+	return Boolean(event.inputs) || (event.action === 'labeled' && event.label?.name === previewLabel);
+}
+export function deploymentContext(event, remote) {
+	if (event.inputs) {
+		const pr = event.inputs.pr;
+		if (!/^[1-9]\d*$/.test(pr ?? '') || !Number.isSafeInteger(Number(pr))) throw new Error('Invalid manual PR number');
+		if (!/^[a-f0-9]{40}$/.test(event.inputs.sha ?? ''))
+			throw new Error('Manual preview requires the exact current SHA');
+		if (!['main', 'develop', 'refs/heads/main', 'refs/heads/develop'].includes(event.ref))
+			throw new Error('Untrusted workflow dispatch ref');
+		if (!remote || remote.number !== Number(pr) || remote.state !== 'open' || remote.head.sha !== event.inputs.sha)
+			throw new Error('Manual request is stale or PR is closed');
+		if (remote.head.repo.full_name !== repository || remote.base.repo.full_name !== repository)
+			throw new Error('Only same-repository PRs may deploy');
+		return { pr: Number(pr), sha: event.inputs.sha, cleanup: false, production: false, requested: true };
+	}
 	if (event.pull_request) {
 		const pr = event.pull_request;
 		if (pr.head.repo.full_name !== repository || pr.base.repo.full_name !== repository)
 			throw new Error('Only same-repository PRs may deploy');
-		if (!['opened', 'synchronize', 'reopened', 'closed'].includes(event.action))
+		if (!['opened', 'synchronize', 'reopened', 'closed', 'ready_for_review', 'labeled'].includes(event.action))
 			throw new Error('Unsupported PR event');
 		if (!Number.isSafeInteger(pr.number) || pr.number < 1) throw new Error('Invalid PR number');
-		return { pr: pr.number, sha: pr.head.sha, cleanup: event.action === 'closed', production: false };
+		const requested = previewRequested(event);
+		if (event.action === 'labeled' && !requested) throw new Error('Unsupported preview label');
+		if (event.action !== 'closed' && pr.draft && !requested)
+			throw new Error('Draft previews require an explicit request');
+		return { pr: pr.number, sha: pr.head.sha, cleanup: event.action === 'closed', production: false, requested };
 	}
 	const run = event.workflow_run;
 	if (
@@ -38,7 +63,13 @@ export function previewAlias(project, pr) {
 }
 
 export function isCurrent(context, remote) {
-	return context.production ? remote.sha === context.sha : remote.state === 'open' && remote.head.sha === context.sha;
+	return context.production
+		? remote.sha === context.sha
+		: remote.state === 'open' &&
+				remote.head.repo?.full_name === repository &&
+				remote.base.repo?.full_name === repository &&
+				remote.head.sha === context.sha &&
+				(context.requested || !remote.draft);
 }
 
 export function deploymentUrl(output) {

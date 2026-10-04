@@ -2,7 +2,17 @@ name: deploy
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened, closed, ready_for_review, converted_to_draft, labeled]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: 'Open same-repository PR number (preview only)'
+        required: true
+        type: string
+      sha:
+        description: 'Exact current 40-character PR head SHA'
+        required: true
+        type: string
   workflow_run:
     workflows: [ci]
     types: [completed]
@@ -10,53 +20,95 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
+  actions: read
+  pull-requests: read
 
 jobs:
-  build:
-    concurrency:
-      group: deploy-build-${{ github.event.pull_request.number || 'production' }}
-      cancel-in-progress: true
+  authorize:
     if: >-
-      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository) ||
+      (github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository &&
+        (github.event.action != 'labeled' || github.event.label.name == 'capsule-preview')) ||
+      (github.event_name == 'workflow_dispatch' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')) ||
       (github.event_name == 'workflow_run' && github.event.workflow_run.event == 'push' && github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
-    timeout-minutes: 60
-    env:
-      NODE_OPTIONS: --max-old-space-size=6000
-      NX_DAEMON: 'false'
-      VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
-      VERCEL_CATALOGUE_PROJECT_ID: ${{ vars.VERCEL_CATALOGUE_PROJECT_ID }}
-      VERCEL_STORYBOOK_PROJECT_ID: ${{ vars.VERCEL_STORYBOOK_PROJECT_ID }}
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      GH_TOKEN: ${{ github.token }}
-      DEPLOY_SHA: ${{ github.event.pull_request.head.sha || github.event.workflow_run.head_sha }}
+    timeout-minutes: 12
+    outputs:
+      deploy: ${{ steps.policy.outputs.deploy }}
+      pr: ${{ steps.policy.outputs.pr }}
+      sha: ${{ steps.policy.outputs.sha }}
+      cleanup: ${{ steps.policy.outputs.cleanup }}
     steps:
+      # PR policy runs with a read-only token, never Vercel secrets. Dispatch uses only main/develop.
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.event.workflow_run.head_sha }}
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
+      - name: Authorize current request after quick checks
+        id: policy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/deployment/authorize.mjs
+
+  build:
+    needs: authorize
+    if: needs.authorize.result == 'success'
+    concurrency:
+      group: deploy-build-${{ needs.authorize.outputs.pr || 'production' }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      compatible: ${{ steps.compatibility.outputs.compatible }}
+    steps:
+      # This job also runs cheaply on draft synchronization/conversion to cancel an obsolete build.
+      - uses: actions/checkout@v6
+        if: needs.authorize.outputs.deploy == 'true' && needs.authorize.outputs.cleanup != 'true'
+        with:
+          ref: ${{ needs.authorize.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        if: needs.authorize.outputs.deploy == 'true' && needs.authorize.outputs.cleanup != 'true'
+        with:
+          node-version-file: .node-version
       - uses: pnpm/action-setup@v5
-        if: github.event.action != 'closed'
+        if: needs.authorize.outputs.deploy == 'true' && needs.authorize.outputs.cleanup != 'true'
+      - name: Verify source deployment policy compatibility without secrets
+        id: compatibility
+        if: needs.authorize.outputs.deploy == 'true' && needs.authorize.outputs.cleanup != 'true'
+        run: |
+          node --input-type=module -e "const p = await import('./tools/deployment/policy.mjs'); if(p.deploymentPolicyVersion !== 2) throw new Error('Rebase this PR onto updated develop/main before requesting a preview (deployment policy v2 required).');"
+          echo 'compatible=true' >> "$GITHUB_OUTPUT"
       - name: Build and upload deployments
-        if: github.event.action != 'closed'
+        if: needs.authorize.outputs.deploy == 'true' && needs.authorize.outputs.cleanup != 'true'
+        env:
+          NODE_OPTIONS: --max-old-space-size=6000
+          NX_DAEMON: 'false'
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_CATALOGUE_PROJECT_ID: ${{ vars.VERCEL_CATALOGUE_PROJECT_ID }}
+          VERCEL_STORYBOOK_PROJECT_ID: ${{ vars.VERCEL_STORYBOOK_PROJECT_ID }}
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: node tools/deployment/deploy.mjs build
       - uses: actions/upload-artifact@v4
-        if: always() && github.event.action != 'closed'
+        if: always() && needs.authorize.outputs.deploy == 'true' && needs.authorize.outputs.cleanup != 'true'
         with:
-          name: deployment-results
+          name: deployment-results-${{ needs.authorize.outputs.sha }}
           path: deployment-results.json
           if-no-files-found: ignore
           retention-days: 1
+
   publish:
-    needs: build
-    if: always() && !cancelled() && needs.build.result != 'skipped'
+    needs: [authorize, build]
+    if: always() && !cancelled() && needs.authorize.outputs.deploy == 'true' && (needs.authorize.outputs.cleanup == 'true' || needs.build.outputs.compatible == 'true')
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pull-requests: write
     concurrency:
-      group: deploy-publish-${{ github.event.pull_request.number || 'production' }}
+      group: deploy-publish-${{ needs.authorize.outputs.pr || 'production' }}
       cancel-in-progress: false
     env:
       VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
@@ -65,16 +117,17 @@ jobs:
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       GH_TOKEN: ${{ github.token }}
     steps:
+      # Cleanup executes trusted base code, not the closed PR's code.
       - uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.sha || github.event.workflow_run.head_sha }}
+          ref: ${{ needs.authorize.outputs.cleanup == 'true' && github.event.pull_request.base.sha || needs.authorize.outputs.sha }}
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version-file: .node-version
       - uses: actions/download-artifact@v4
-        if: github.event.action != 'closed'
+        if: needs.authorize.outputs.cleanup != 'true'
         with:
-          name: deployment-results
+          name: deployment-results-${{ needs.authorize.outputs.sha }}
       - name: Promote current deployments or clean closed PR
         run: node tools/deployment/deploy.mjs publish

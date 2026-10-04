@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
-  pull_request: {}
+      - develop
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
 
-# nx-set-shas reads successful Actions runs to select the main-branch base.
+# nx-set-shas reads successful Actions runs on the PR target/push branch to select the affected base.
 permissions:
   contents: read
   actions: read
@@ -24,6 +26,7 @@ env:
 jobs:
   commitlint:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       actions: read
       contents: read
@@ -45,6 +48,7 @@ jobs:
           helpURL: https://github.com/valentinprs/capsule-ng/blob/main/CONTRIBUTING.md#-commit-message-guidelines
 
   format-and-lint:
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -56,14 +60,19 @@ jobs:
           filter: blob:none
       - uses: ./.github/actions/setup
       - uses: nrwl/nx-set-shas@v5
+        with:
+          main-branch-name: ${{ github.base_ref || github.ref_name }}
       - name: Deployment policy and URL audit
-        run: node --test tools/deployment/*.test.mjs
+        run: node --test tools/deployment/*.test.mjs tools/ci/*.test.mjs
       - name: format
         run: pnpm nx format:check --base=$NX_BASE --head=$NX_HEAD
       - name: lint
         run: pnpm nx affected -t lint --parallel=3
 
   build:
+    needs: [commitlint, format-and-lint, types, unit]
+    if: github.event_name == 'push' || !github.event.pull_request.draft
+    timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -71,10 +80,13 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/setup
       - uses: nrwl/nx-set-shas@v5
+        with:
+          main-branch-name: ${{ github.base_ref || github.ref_name }}
       - name: Build
-        run: pnpm nx affected -t build --parallel=1
+        run: pnpm run build
 
   unit:
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     # No longer gated on `build`: vitest runs against source, so unit tests start immediately and
     # run in parallel with the build instead of waiting ~13 min for it.
@@ -87,6 +99,8 @@ jobs:
           filter: blob:none
       - uses: ./.github/actions/setup
       - uses: nrwl/nx-set-shas@v5
+        with:
+          main-branch-name: ${{ github.base_ref || github.ref_name }}
       # The brain/helm suites run in a real browser via Vitest browser mode (Playwright/Chromium),
       # so the Chromium binary must be present. Cache it across runs (keyed on the lockfile, which
       # pins the playwright version) to avoid re-downloading ~150 MB each time.
@@ -105,6 +119,9 @@ jobs:
         run: pnpm nx affected -t test --parallel=3
 
   e2e:
+    needs: [commitlint, format-and-lint, types, unit]
+    if: github.event_name == 'push' || !github.event.pull_request.draft
+    timeout-minutes: 50
     runs-on: ubuntu-latest
     # Not gated on `build`: each e2e project serves what it tests itself, so the job is independent
     # of the docs-app build and runs in parallel with it.
@@ -124,10 +141,46 @@ jobs:
           restore-keys: cypress-${{ runner.os }}-
       - uses: ./.github/actions/setup
       - uses: nrwl/nx-set-shas@v5
+        with:
+          main-branch-name: ${{ github.base_ref || github.ref_name }}
       - name: Install Cypress
         run: npx cypress install
       - name: End-to-end test
         # Exclude trpc-app-e2e: it is not tagged scope:e2e and was never run in CI (it needs a
         # database/health endpoint that is not provisioned here). The storybook and docs-app (axe)
         # e2e projects run.
-        run: pnpm nx affected -t e2e --exclude=trpc-app-e2e --parallel=1 --outputStyle=stream
+        run: pnpm run e2e
+
+  types:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          filter: blob:none
+      - uses: ./.github/actions/setup
+      - uses: nrwl/nx-set-shas@v5
+        with:
+          main-branch-name: ${{ github.base_ref || github.ref_name }}
+      - name: Typecheck affected TypeScript and Angular templates
+        run: node tools/ci/typecheck.mjs
+
+  ci-complete:
+    if: always()
+    needs: [commitlint, format-and-lint, types, unit, build, e2e]
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+      - name: Verify complete validation on the current ready SHA
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CI_RESULTS: '{"commitlint":"${{ needs.commitlint.result }}","format-and-lint":"${{ needs.format-and-lint.result }}","types":"${{ needs.types.result }}","unit":"${{ needs.unit.result }}","build":"${{ needs.build.result }}","e2e":"${{ needs.e2e.result }}"}'
+        run: node tools/ci/complete.mjs

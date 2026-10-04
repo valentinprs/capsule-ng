@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-styles-complex-showcase',
-	imports: [CapsCardImports, HlmBadgeImports, CapsInputImports, HlmSelectImports, CapsButtonImports, NgIcon],
+	imports: [CapsCardImports, HlmBadgeImports, CapsInputImports, CapsSelectImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideCheck })],
 	host: {
 		class: 'flex w-80',
@@ -26,16 +26,11 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 			<caps-card-content>
 				<div class="flex flex-col gap-4">
 					<input capsInput placeholder="Enter text..." />
-					<hlm-select [itemToString]="itemToString">
-						<hlm-select-trigger class="w-full">
-							<hlm-select-value placeholder="Select option" />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal>
-							<hlm-select-item value="1">Option 1</hlm-select-item>
-							<hlm-select-item value="2">Option 2</hlm-select-item>
-							<hlm-select-item value="3">Option 3</hlm-select-item>
-						</hlm-select-content>
-					</hlm-select>
+					<caps-select [itemToString]="itemToString" placeholder="Select option" class="w-full">
+						<caps-select-option value="1">Option 1</caps-select-option>
+						<caps-select-option value="2">Option 2</caps-select-option>
+						<caps-select-option value="3">Option 3</caps-select-option>
+					</caps-select>
 					<div class="flex gap-2">
 						<button capsButton variant="outline" class="flex-1">Cancel</button>
 						<button capsButton class="flex-1">

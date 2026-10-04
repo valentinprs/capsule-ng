@@ -30,7 +30,7 @@ import { defaultImports, defaultSkeleton, defaultStyles, SelectPreview } from '.
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Select', api: 'select' },
-	meta: metaWith('Capsule — Select', 'A control that allows the user to toggle between checked and not checked.'),
+	meta: metaWith('Capsule — Select', 'A control that allows the user to choose an option from a list.'),
 	title: 'Capsule — Select',
 };
 @Component({
@@ -132,12 +132,12 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__placeholder" spartanH4>Placeholder</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlm-select-placeholder</code>
+				<code class="${hlmCode}">ng-template capsSelectPlaceholder</code>
 				to display a custom placeholder when no value is selected. If you only display a text as placeholder, you can
 				also use the
 				<code class="${hlmCode}">placeholder</code>
 				input on
-				<code class="${hlmCode}">hlm-select-value</code>
+				<code class="${hlmCode}">caps-select</code>
 				.
 			</p>
 
@@ -164,11 +164,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="separator" label="Separator" />

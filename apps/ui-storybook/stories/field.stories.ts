@@ -5,11 +5,10 @@ import { CapsCheckbox } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsSwitch } from '@capsule-ng/caps/switch';
 import { CapsTextarea } from '@capsule-ng/caps/textarea';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
-
 const meta: Meta = {
 	title: 'Field',
 	tags: ['autodocs'],
@@ -22,7 +21,7 @@ const meta: Meta = {
 				CapsSwitch,
 				CapsTextarea,
 				CapsButton,
-				HlmSelectImports,
+				CapsSelectImports,
 				CapsRadioGroupImports,
 				ReactiveFormsModule,
 				JsonPipe,
@@ -30,10 +29,8 @@ const meta: Meta = {
 		}),
 	],
 };
-
 export default meta;
 type Story = StoryObj;
-
 export const Default: Story = {
 	render: () => ({
 		template: `
@@ -53,7 +50,6 @@ export const Default: Story = {
 		`,
 	}),
 };
-
 export const WithInput: Story = {
 	name: 'With Input',
 	render: () => ({
@@ -75,7 +71,6 @@ export const WithInput: Story = {
 		`,
 	}),
 };
-
 export const WithCheckbox: Story = {
 	name: 'With Checkbox',
 	render: () => ({
@@ -117,7 +112,6 @@ export const WithCheckbox: Story = {
 		`,
 	}),
 };
-
 export const WithSwitch: Story = {
 	name: 'With Switch',
 	render: () => ({
@@ -135,7 +129,6 @@ export const WithSwitch: Story = {
 		`,
 	}),
 };
-
 export const WithRadio: Story = {
 	name: 'With Radio',
 	render: () => ({
@@ -152,35 +145,26 @@ export const WithRadio: Story = {
 		`,
 	}),
 };
-
 export const WithSelect: Story = {
 	name: 'With Select',
 	render: () => ({
 		template: `
 			<div class="w-full max-w-md">
 				<caps-field>
-					<caps-field-label for="field-select-country">Country</caps-field-label>
-					<hlm-select class="inline-block">
-						<hlm-select-trigger class="w-full" buttonId="field-select-country">
-							<hlm-select-value placeholder="Select a country" />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal>
-							<hlm-select-group>
-								<hlm-select-item value="us">United States</hlm-select-item>
-								<hlm-select-item value="uk">United Kingdom</hlm-select-item>
-								<hlm-select-item value="ca">Canada</hlm-select-item>
-								<hlm-select-item value="au">Australia</hlm-select-item>
-								<hlm-select-item value="de">Germany</hlm-select-item>
-							</hlm-select-group>
-						</hlm-select-content>
-					</hlm-select>
+					<caps-field-label>Country</caps-field-label>
+					<caps-select    placeholder="Select a country"    class="inline-block w-full">
+								<caps-select-option value="us">United States</caps-select-option>
+								<caps-select-option value="uk">United Kingdom</caps-select-option>
+								<caps-select-option value="ca">Canada</caps-select-option>
+								<caps-select-option value="au">Australia</caps-select-option>
+								<caps-select-option value="de">Germany</caps-select-option>
+					</caps-select>
 					<caps-field-description>Select your country of residence.</caps-field-description>
 				</caps-field>
 			</div>
 		`,
 	}),
 };
-
 export const WithTextarea: Story = {
 	name: 'With Textarea',
 	render: () => ({
@@ -195,7 +179,6 @@ export const WithTextarea: Story = {
 		`,
 	}),
 };
-
 export const WithError: Story = {
 	name: 'With Error',
 	render: () => {
@@ -224,7 +207,6 @@ export const WithError: Story = {
 							<caps-field-error validator="minlength">Username must be at least 3 characters.</caps-field-error>
 						</caps-field>
 					</caps-field-group>
-
 					<div class="flex gap-2 mt-3">
 						<button id="validate" capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
 						<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
@@ -235,7 +217,6 @@ export const WithError: Story = {
 		};
 	},
 };
-
 export const FieldGroup: Story = {
 	name: 'Field Group',
 	render: () => ({
@@ -246,7 +227,6 @@ export const FieldGroup: Story = {
 					<caps-field-description>
 						Get notified when ChatGPT responds to requests that take time, like research or image generation.
 					</caps-field-description>
-
 					<caps-field orientation="horizontal">
 						<caps-checkbox disabled [checked]="true" />
 						<caps-field-label class="font-normal">Push notifications</caps-field-label>
@@ -274,7 +254,6 @@ export const FieldGroup: Story = {
 		`,
 	}),
 };
-
 export const ComplexForm: Story = {
 	name: 'Complex Form',
 	render: () => ({
@@ -285,7 +264,6 @@ export const ComplexForm: Story = {
 						<caps-field-set>
 							<caps-field-legend>Payment Method</caps-field-legend>
 							<caps-field-description>All transactions are secure and encrypted</caps-field-description>
-
 							<caps-field-group>
 								<caps-field>
 									<caps-field-label>Name on card</caps-field-label>
@@ -298,46 +276,32 @@ export const ComplexForm: Story = {
 								</caps-field>
 								<div class="grid grid-cols-3 gap-4">
 									<caps-field>
-										<caps-field-label for="field-complex-expiration-month">Month</caps-field-label>
-										<hlm-select class="inline-block">
-											<hlm-select-trigger class="w-full" id="field-complex-expiration-month">
-												<hlm-select-value placeholder="MM" />
-											</hlm-select-trigger>
-											<hlm-select-content *hlmSelectPortal>
-												<hlm-select-group>
-													<hlm-select-item value="01">01</hlm-select-item>
-													<hlm-select-item value="02">02</hlm-select-item>
-													<hlm-select-item value="03">03</hlm-select-item>
-													<hlm-select-item value="04">04</hlm-select-item>
-													<hlm-select-item value="05">05</hlm-select-item>
-													<hlm-select-item value="06">06</hlm-select-item>
-													<hlm-select-item value="07">07</hlm-select-item>
-													<hlm-select-item value="08">08</hlm-select-item>
-													<hlm-select-item value="09">09</hlm-select-item>
-													<hlm-select-item value="10">10</hlm-select-item>
-													<hlm-select-item value="11">11</hlm-select-item>
-													<hlm-select-item value="12">12</hlm-select-item>
-												</hlm-select-group>
-											</hlm-select-content>
-										</hlm-select>
+										<caps-field-label>Month</caps-field-label>
+										<caps-select    placeholder="MM"    class="inline-block w-full">
+													<caps-select-option value="01">01</caps-select-option>
+													<caps-select-option value="02">02</caps-select-option>
+													<caps-select-option value="03">03</caps-select-option>
+													<caps-select-option value="04">04</caps-select-option>
+													<caps-select-option value="05">05</caps-select-option>
+													<caps-select-option value="06">06</caps-select-option>
+													<caps-select-option value="07">07</caps-select-option>
+													<caps-select-option value="08">08</caps-select-option>
+													<caps-select-option value="09">09</caps-select-option>
+													<caps-select-option value="10">10</caps-select-option>
+													<caps-select-option value="11">11</caps-select-option>
+													<caps-select-option value="12">12</caps-select-option>
+										</caps-select>
 									</caps-field>
 									<caps-field>
-										<caps-field-label for="field-complex-expiration-year">Year</caps-field-label>
-										<hlm-select class="inline-block">
-											<hlm-select-trigger class="w-full" id="field-complex-expiration-year">
-												<hlm-select-value placeholder="YYYY" />
-											</hlm-select-trigger>
-											<hlm-select-content *hlmSelectPortal>
-												<hlm-select-group>
-													<hlm-select-item value="2024">2024</hlm-select-item>
-													<hlm-select-item value="2025">2025</hlm-select-item>
-													<hlm-select-item value="2026">2026</hlm-select-item>
-													<hlm-select-item value="2027">2027</hlm-select-item>
-													<hlm-select-item value="2028">2028</hlm-select-item>
-													<hlm-select-item value="2029">2029</hlm-select-item>
-												</hlm-select-group>
-											</hlm-select-content>
-										</hlm-select>
+										<caps-field-label>Year</caps-field-label>
+										<caps-select    placeholder="YYYY"    class="inline-block w-full">
+													<caps-select-option value="2024">2024</caps-select-option>
+													<caps-select-option value="2025">2025</caps-select-option>
+													<caps-select-option value="2026">2026</caps-select-option>
+													<caps-select-option value="2027">2027</caps-select-option>
+													<caps-select-option value="2028">2028</caps-select-option>
+													<caps-select-option value="2029">2029</caps-select-option>
+										</caps-select>
 									</caps-field>
 									<caps-field>
 										<caps-field-label>CVV</caps-field-label>
@@ -350,18 +314,15 @@ export const ComplexForm: Story = {
 						<caps-field-set>
 							<caps-field-legend>Billing Address</caps-field-legend>
 							<caps-field-description>The billing address associated with your payment method</caps-field-description>
-
 							<caps-field orientation="horizontal">
 								<caps-checkbox [checked]="true" />
 								<caps-field-label>Same as shipping address.</caps-field-label>
 							</caps-field>
 						</caps-field-set>
-
 						<caps-field>
 							<caps-field-label>Comments</caps-field-label>
 							<textarea capsTextarea class="resize-none" rows="4"></textarea>
 						</caps-field>
-
 						<div class="flex gap-2">
 							<button capsButton type="button">Submit</button>
 							<button capsButton variant="outline" type="button">Cancel</button>
@@ -372,7 +333,6 @@ export const ComplexForm: Story = {
 		`,
 	}),
 };
-
 export const HorizontalOrientation: Story = {
 	name: 'Horizontal Orientation',
 	render: () => ({
@@ -394,7 +354,6 @@ export const HorizontalOrientation: Story = {
 		`,
 	}),
 };
-
 export const WithFieldContent: Story = {
 	name: 'With Field Content',
 	render: () => ({
@@ -421,7 +380,6 @@ export const WithFieldContent: Story = {
 		`,
 	}),
 };
-
 export const WithFieldTitle: Story = {
 	name: 'With Field Title',
 	render: () => ({

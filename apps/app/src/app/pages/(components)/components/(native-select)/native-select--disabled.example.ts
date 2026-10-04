@@ -1,17 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
-
+import { CapsNativeSelectImports } from '@capsule-ng/caps/native-select';
 @Component({
 	selector: 'spartan-native-select-disabled-example',
-	imports: [HlmNativeSelectImports],
+	imports: [CapsNativeSelectImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-native-select disabled>
-			<option hlmNativeSelectOption value="">Disabled</option>
-			<option hlmNativeSelectOption value="apple">Apple</option>
-			<option hlmNativeSelectOption value="banana">Banana</option>
-			<option hlmNativeSelectOption value="blueberry">Blueberry</option>
-		</hlm-native-select>
+		<select capsNativeSelect aria-label="Fruit" disabled>
+			<option value="">Disabled</option>
+			<option value="apple">Apple</option>
+			<option value="banana">Banana</option>
+			<option value="blueberry">Blueberry</option>
+		</select>
 	`,
 })
 export class NativeSelectDisabledExample {}

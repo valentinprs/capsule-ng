@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideMessageCircleDashed, lucideRotateCw } from '@ng-icons/lucide';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { ANIMATION_SCRIPT, ScriptedChatRunner } from './message-scroller.shared';
 
@@ -56,7 +56,6 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 		className: 'motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 duration-(--caps-duration-300)',
 	},
 ];
-
 @Component({
 	selector: 'spartan-message-scroller-animation-preview',
 	imports: [
@@ -64,7 +63,7 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 		CapsCardImports,
 		CapsButtonImports,
 		HlmEmptyImports,
-		HlmSelectImports,
+		CapsSelectImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
 	],
@@ -136,16 +135,16 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 				</caps-card-content>
 
 				<caps-card-footer class="border-t">
-					<hlm-select [value]="_presetId()" (valueChange)="onPresetChange($event)" [itemToString]="_presetToString">
-						<hlm-select-trigger aria-label="Animation preset">
-							<hlm-select-value />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal>
-							@for (preset of _presets; track preset.id) {
-								<hlm-select-item [value]="preset.id">{{ preset.name }}</hlm-select-item>
-							}
-						</hlm-select-content>
-					</hlm-select>
+					<caps-select
+						[value]="_presetId()"
+						(valueChange)="onPresetChange($event)"
+						[itemToString]="_presetToString"
+						aria-label="Animation preset"
+					>
+						@for (preset of _presets; track preset.id) {
+							<caps-select-option [value]="preset.id">{{ preset.name }}</caps-select-option>
+						}
+					</caps-select>
 
 					<button
 						capsButton
@@ -161,7 +160,6 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 				</caps-card-footer>
 			</caps-card>
 		</div>
-
 		<div class="text-muted-foreground mx-auto max-w-sm px-0.5 text-center text-xs text-balance">
 			Select an animation then click send to see it in action.
 		</div>

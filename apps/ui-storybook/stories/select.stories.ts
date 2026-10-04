@@ -4,9 +4,9 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsLabel } from '@capsule-ng/caps/label';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCitrus } from '@ng-icons/lucide';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
 interface BrnSelectStoryArgs {
@@ -28,7 +28,7 @@ const meta: Meta<BrnSelectStoryArgs> = {
 				CommonModule,
 				FormsModule,
 				ReactiveFormsModule,
-				HlmSelectImports,
+				CapsSelectImports,
 				CapsFieldImports,
 				CapsButton,
 				CapsLabel,
@@ -46,21 +46,20 @@ export const Default: Story = {
 	render: (args) => ({
 		props: { ...args },
 		template: /* HTML */ `
-			<hlm-select ${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}>
-				<hlm-select-trigger class="w-56">
-					<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						<hlm-select-label>Fruits</hlm-select-label>
-						<hlm-select-item value="apple">Apple</hlm-select-item>
-						<hlm-select-item value="banana">Banana</hlm-select-item>
-						<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-						<hlm-select-item value="grapes">Grapes</hlm-select-item>
-						<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select>
+			<caps-select
+				aria-label="Fruit"
+				${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+				${argsToTemplate(args, { include: ['placeholder'] })}
+				class="w-56"
+			>
+				<caps-select-group label="Fruits">
+					<caps-select-option value="apple">Apple</caps-select-option>
+					<caps-select-option value="banana">Banana</caps-select-option>
+					<caps-select-option value="blueberry">Blueberry</caps-select-option>
+					<caps-select-option value="grapes">Grapes</caps-select-option>
+					<caps-select-option value="pineapple">Pineapple</caps-select-option>
+				</caps-select-group>
+			</caps-select>
 		`,
 	}),
 };
@@ -69,24 +68,22 @@ export const Multiple: Story = {
 	render: (args) => ({
 		props: { ...args },
 		template: /* HTML */ `
-			<hlm-select-multiple ${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}>
-				<hlm-select-trigger class="w-56">
-					<hlm-select-placeholder>Select fruits</hlm-select-placeholder>
-					<ng-template hlmSelectValues let-values>
-						<hlm-select-values-content>@for (value of values; track value) { {{ value }} }</hlm-select-values-content>
-					</ng-template>
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						<hlm-select-label>Fruits</hlm-select-label>
-						<hlm-select-item value="apple">Apple</hlm-select-item>
-						<hlm-select-item value="banana">Banana</hlm-select-item>
-						<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-						<hlm-select-item value="grapes">Grapes</hlm-select-item>
-						<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select-multiple>
+			<caps-select-multiple
+				aria-label="Fruit"
+				${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+				placeholder="Select fruits"
+				class="w-56"
+			>
+				<ng-template capsSelectValue let-values>@for (value of values; track value) { {{ value }} }</ng-template>
+
+				<caps-select-group label="Fruits">
+					<caps-select-option value="apple">Apple</caps-select-option>
+					<caps-select-option value="banana">Banana</caps-select-option>
+					<caps-select-option value="blueberry">Blueberry</caps-select-option>
+					<caps-select-option value="grapes">Grapes</caps-select-option>
+					<caps-select-option value="pineapple">Pineapple</caps-select-option>
+				</caps-select-group>
+			</caps-select-multiple>
 		`,
 	}),
 };
@@ -99,21 +96,21 @@ export const ReactiveFormControl: Story = {
 				<pre>Form Control Value: {{ fruitGroup.controls.fruit.value | json }}</pre>
 			</div>
 			<form [formGroup]="fruitGroup">
-				<hlm-select class="w-56" ${argsToTemplate(args, { exclude: ['value', 'placeholder'] })} formControlName="fruit">
-					<hlm-select-trigger>
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							<hlm-select-item value="apple">Apple</hlm-select-item>
-							<hlm-select-item value="banana">Banana</hlm-select-item>
-							<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-							<hlm-select-item value="grapes">Grapes</hlm-select-item>
-							<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+				<caps-select
+					aria-label="Fruit"
+					class="w-56"
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+					formControlName="fruit"
+					${argsToTemplate(args, { include: ['placeholder'] })}
+				>
+					<caps-select-group label="Fruits">
+						<caps-select-option value="apple">Apple</caps-select-option>
+						<caps-select-option value="banana">Banana</caps-select-option>
+						<caps-select-option value="blueberry">Blueberry</caps-select-option>
+						<caps-select-option value="grapes">Grapes</caps-select-option>
+						<caps-select-option value="pineapple">Pineapple</caps-select-option>
+					</caps-select-group>
+				</caps-select>
 			</form>
 		`,
 	}),
@@ -127,21 +124,21 @@ export const DisabledOption: Story = {
 				<pre>Form Control Value: {{ fruitGroup.controls.fruit.value | json }}</pre>
 			</div>
 			<form [formGroup]="fruitGroup">
-				<hlm-select class="w-56" ${argsToTemplate(args, { exclude: ['value', 'placeholder'] })} formControlName="fruit">
-					<hlm-select-trigger>
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							<hlm-select-item value="apple">Apple</hlm-select-item>
-							<hlm-select-item data-testid="banana-option" value="banana" disabled>Banana</hlm-select-item>
-							<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-							<hlm-select-item value="grapes">Grapes</hlm-select-item>
-							<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+				<caps-select
+					aria-label="Fruit"
+					class="w-56"
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+					formControlName="fruit"
+					${argsToTemplate(args, { include: ['placeholder'] })}
+				>
+					<caps-select-group label="Fruits">
+						<caps-select-option value="apple">Apple</caps-select-option>
+						<caps-select-option data-testid="banana-option" value="banana" disabled>Banana</caps-select-option>
+						<caps-select-option value="blueberry">Blueberry</caps-select-option>
+						<caps-select-option value="grapes">Grapes</caps-select-option>
+						<caps-select-option value="pineapple">Pineapple</caps-select-option>
+					</caps-select-group>
+				</caps-select>
 			</form>
 		`,
 	}),
@@ -162,26 +159,22 @@ export const SelectItemToString: Story = {
 				<pre>Form Control Value: {{ fruitGroup.controls.fruit.value | json }}</pre>
 			</div>
 			<form [formGroup]="fruitGroup">
-				<hlm-select
+				<caps-select
+					aria-label="Fruit"
 					class="w-56"
-					${argsToTemplate(args, { exclude: ['value'] })}
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
 					formControlName="fruit"
 					[itemToString]="itemToString"
+					${argsToTemplate(args, { include: ['placeholder'] })}
 				>
-					<hlm-select-trigger>
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							<hlm-select-item value="apple">Apple</hlm-select-item>
-							<hlm-select-item data-testid="banana-option" value="banana" disabled>Banana</hlm-select-item>
-							<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-							<hlm-select-item value="grapes">Grapes</hlm-select-item>
-							<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+					<caps-select-group label="Fruits">
+						<caps-select-option value="apple">Apple</caps-select-option>
+						<caps-select-option data-testid="banana-option" value="banana" disabled>Banana</caps-select-option>
+						<caps-select-option value="blueberry">Blueberry</caps-select-option>
+						<caps-select-option value="grapes">Grapes</caps-select-option>
+						<caps-select-option value="pineapple">Pineapple</caps-select-option>
+					</caps-select-group>
+				</caps-select>
 			</form>
 		`,
 	}),
@@ -210,19 +203,19 @@ export const ReactiveFormControlWithForAndInitialValue: Story = {
 				<pre>Form Control Value: {{ fruitGroup.controls.fruit.value | json }}</pre>
 			</div>
 			<form [formGroup]="fruitGroup">
-				<hlm-select class="w-56" ${argsToTemplate(args, { exclude: ['value'] })} formControlName="fruit">
-					<hlm-select-trigger>
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							@for(option of options; track option.value){
-							<hlm-select-item [value]="option.value">{{option.label}}</hlm-select-item>
-							}
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+				<caps-select
+					aria-label="Fruit"
+					class="w-56"
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+					formControlName="fruit"
+					${argsToTemplate(args, { include: ['placeholder'] })}
+				>
+					<caps-select-group label="Fruits">
+						@for(option of options; track option.value){
+						<caps-select-option [value]="option.value">{{option.label}}</caps-select-option>
+						}
+					</caps-select-group>
+				</caps-select>
 				@if (fruitGroup.controls.fruit.invalid && fruitGroup.controls.fruit.touched){
 				<span class="text-destructive">Required</span>
 				}
@@ -287,26 +280,21 @@ export const ReactiveFormControlWithForAndInitialValueAndMultiple: StoryObj<
 				<pre>Form Control Value: {{ initialFormValue?.controls.fruit.value | json }}</pre>
 			</div>
 			<form [formGroup]="initialFormValue">
-				<hlm-select-multiple
+				<caps-select-multiple
+					aria-label="Fruit"
 					class="w-56"
 					${argsToTemplate(args, { exclude: ['value', 'options', 'placeholder', 'initialFormValue'] })}
 					formControlName="fruit"
+					placeholder="Select fruits"
 				>
-					<hlm-select-trigger>
-						<hlm-select-placeholder>Select fruits</hlm-select-placeholder>
-						<ng-template hlmSelectValues let-values>
-							<hlm-select-values-content>@for (value of values; track value) { {{ value }} }</hlm-select-values-content>
-						</ng-template>
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							@for(option of options; track option.value){
-							<hlm-select-item [value]="option.value">{{option.label}}</hlm-select-item>
-							}
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select-multiple>
+					<ng-template capsSelectValue let-values>@for (value of values; track value) { {{ value }} }</ng-template>
+
+					<caps-select-group label="Fruits">
+						@for(option of options; track option.value){
+						<caps-select-option [value]="option.value">{{option.label}}</caps-select-option>
+						}
+					</caps-select-group>
+				</caps-select-multiple>
 				@if (fruitGroup?.controls.fruit.invalid && fruitGroup.controls.fruit.touched){
 				<span class="text-destructive">Required</span>
 				}
@@ -328,21 +316,21 @@ export const ReactiveFormControlWithValidation: Story = {
 				<pre>Form Control Value: {{ fruitGroup.controls.fruit.valueChanges | async | json }}</pre>
 			</div>
 			<form [formGroup]="fruitGroup">
-				<hlm-select class="w-56" formControlName="fruit" ${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}>
-					<hlm-select-trigger>
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							<hlm-select-item value="apple">Apple</hlm-select-item>
-							<hlm-select-item value="banana">Banana</hlm-select-item>
-							<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-							<hlm-select-item value="grapes">Grapes</hlm-select-item>
-							<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+				<caps-select
+					aria-label="Fruit"
+					class="w-56"
+					formControlName="fruit"
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+					${argsToTemplate(args, { include: ['placeholder'] })}
+				>
+					<caps-select-group label="Fruits">
+						<caps-select-option value="apple">Apple</caps-select-option>
+						<caps-select-option value="banana">Banana</caps-select-option>
+						<caps-select-option value="blueberry">Blueberry</caps-select-option>
+						<caps-select-option value="grapes">Grapes</caps-select-option>
+						<caps-select-option value="pineapple">Pineapple</caps-select-option>
+					</caps-select-group>
+				</caps-select>
 				@if (fruitGroup.controls.fruit.invalid && fruitGroup.controls.fruit.touched){
 				<span class="text-destructive">Required</span>
 				}
@@ -364,22 +352,22 @@ export const ReactiveFormControlWithValidationWithLabel: Story = {
 				<pre>Form Control Value: {{ fruitGroup.controls.fruit.valueChanges | async | json }}</pre>
 			</div>
 			<form [formGroup]="fruitGroup">
-				<label capsLabel>Select a Fruit</label>
-				<hlm-select class="w-56" formControlName="fruit" ${argsToTemplate(args, { exclude: ['value'] })}>
-					<hlm-select-trigger>
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							<hlm-select-item value="apple">Apple</hlm-select-item>
-							<hlm-select-item value="banana">Banana</hlm-select-item>
-							<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-							<hlm-select-item value="grapes">Grapes</hlm-select-item>
-							<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+				<label capsLabel for="fruit-select">Select a Fruit</label>
+				<caps-select
+					id="fruit-select"
+					class="w-56"
+					formControlName="fruit"
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+					${argsToTemplate(args, { include: ['placeholder'] })}
+				>
+					<caps-select-group label="Fruits">
+						<caps-select-option value="apple">Apple</caps-select-option>
+						<caps-select-option value="banana">Banana</caps-select-option>
+						<caps-select-option value="blueberry">Blueberry</caps-select-option>
+						<caps-select-option value="grapes">Grapes</caps-select-option>
+						<caps-select-option value="pineapple">Pineapple</caps-select-option>
+					</caps-select-group>
+				</caps-select>
 				@if (fruitGroup.controls.fruit.invalid && fruitGroup.controls.fruit.touched){
 				<span class="text-destructive">Required</span>
 				}
@@ -400,31 +388,24 @@ export const WithHintAndError: Story = {
 			<form [formGroup]="form" class="w-full max-w-sm space-y-3">
 				<caps-field>
 					<caps-field-label>Fruit *</caps-field-label>
-					<hlm-select
+					<caps-select
+						aria-label="Fruit"
 						class="w-56"
 						formControlName="fruit"
 						${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+						${argsToTemplate(args, { include: ['placeholder'] })}
 					>
-						<hlm-select-trigger>
-							<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal>
-							<hlm-select-group>
-								<hlm-select-label>Fruits</hlm-select-label>
-								<hlm-option value="apple">Apple</hlm-option>
-								<hlm-option value="banana">Banana</hlm-option>
-								<hlm-option value="blueberry">Blueberry</hlm-option>
-								<hlm-option value="grapes">Grapes</hlm-option>
-								<hlm-option value="pineapple">Pineapple</hlm-option>
-							</hlm-select-group>
-						</hlm-select-content>
-					</hlm-select>
-
+						<caps-select-group label="Fruits">
+							<caps-select-option value="apple">Apple</caps-select-option>
+							<caps-select-option value="banana">Banana</caps-select-option>
+							<caps-select-option value="blueberry">Blueberry</caps-select-option>
+							<caps-select-option value="grapes">Grapes</caps-select-option>
+							<caps-select-option value="pineapple">Pineapple</caps-select-option>
+						</caps-select-group>
+					</caps-select>
 					<caps-field-description>Pick a fruit so we can tailor the recommendations.</caps-field-description>
-
 					<caps-field-error>Select your favorite fruit to continue.</caps-field-error>
 				</caps-field>
-
 				<div class="flex flex-wrap items-center gap-2">
 					<button capsButton type="button" (click)="form.markAllAsTouched()">Validate</button>
 					<button capsButton variant="outline" type="button" (click)="form.reset()">Reset</button>
@@ -445,22 +426,23 @@ export const NgModelFormControl: Story = {
 				<div class="mb-3">
 					<pre>Form Control Value: {{fruit() | json }}</pre>
 				</div>
-				<label capsLabel>Select a Fruit</label>
-				<hlm-select class="w-56" ${argsToTemplate(args, { exclude: ['value'] })} [(ngModel)]="fruit" name="fruit">
-					<hlm-select-trigger>
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							<hlm-select-item value="apple">Apple</hlm-select-item>
-							<hlm-select-item value="banana">Banana</hlm-select-item>
-							<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-							<hlm-select-item value="grapes">Grapes</hlm-select-item>
-							<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+				<label capsLabel for="fruit-select">Select a Fruit</label>
+				<caps-select
+					id="fruit-select"
+					class="w-56"
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+					[(ngModel)]="fruit"
+					name="fruit"
+					${argsToTemplate(args, { include: ['placeholder'] })}
+				>
+					<caps-select-group label="Fruits">
+						<caps-select-option value="apple">Apple</caps-select-option>
+						<caps-select-option value="banana">Banana</caps-select-option>
+						<caps-select-option value="blueberry">Blueberry</caps-select-option>
+						<caps-select-option value="grapes">Grapes</caps-select-option>
+						<caps-select-option value="pineapple">Pineapple</caps-select-option>
+					</caps-select-group>
+				</caps-select>
 			</form>
 		`,
 	}),
@@ -483,29 +465,24 @@ export const NgModelFormControlInitialValue: Story = {
                 <div class="mb-3">
                     <pre>Form Control Value: {{fruit() | json }}</pre>
                 </div>
-                    <label capsLabel>Select a Fruit</label>
-                <hlm-select
+                    <label capsLabel for="fruit-select">Select a Fruit</label>
+                <caps-select id="fruit-select"
                     class="w-56"
                     ${argsToTemplate(args, {
-											exclude: ['value'],
+											exclude: ['value', 'placeholder'],
 										})}
                     [(ngModel)]="fruit"
                     name="fruit"
-                >
-                    <hlm-select-trigger>
-                        <hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-                    </hlm-select-trigger>
-                    <hlm-select-content *hlmSelectPortal>
-						<hlm-select-group>
-                        	<hlm-select-label>Fruits</hlm-select-label>
-                        	<hlm-select-item value="apple">Apple</hlm-select-item>
-                        	<hlm-select-item value="banana">Banana</hlm-select-item>
-                        	<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-                        	<hlm-select-item value="grapes">Grapes</hlm-select-item>
-                        	<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-                    	</hlm-select-group>
-					</hlm-select-content>
-                </hlm-select>
+                   ${argsToTemplate(args, { include: ['placeholder'] })}  >
+
+						<caps-select-group label="Fruits">
+							<caps-select-option value="apple">Apple</caps-select-option>
+							<caps-select-option value="banana">Banana</caps-select-option>
+							<caps-select-option value="blueberry">Blueberry</caps-select-option>
+							<caps-select-option value="grapes">Grapes</caps-select-option>
+							<caps-select-option value="pineapple">Pineapple</caps-select-option>
+						</caps-select-group>
+                </caps-select>
             </form>
         `,
 	}),
@@ -517,21 +494,22 @@ export const SelectWithLabel: Story = {
 		template: /* HTML */ `
 			<form [formGroup]="fruitGroup">
 				<label capsLabel for="select-trigger">Select a Fruit</label>
-				<hlm-select formControlName="fruit" ${argsToTemplate(args, { exclude: ['value'] })}>
-					<hlm-select-trigger class="w-56" buttonId="select-trigger">
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal class="w-56">
-						<hlm-select-group>
-							<hlm-select-label>Fruits</hlm-select-label>
-							<hlm-select-item value="apple">Apple</hlm-select-item>
-							<hlm-select-item value="banana">Banana</hlm-select-item>
-							<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-							<hlm-select-item value="grapes">Grapes</hlm-select-item>
-							<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+				<caps-select
+					formControlName="fruit"
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+					${argsToTemplate(args, { include: ['placeholder'] })}
+					class="w-56"
+					id="select-trigger"
+					panelClass="w-56"
+				>
+					<caps-select-group label="Fruits">
+						<caps-select-option value="apple">Apple</caps-select-option>
+						<caps-select-option value="banana">Banana</caps-select-option>
+						<caps-select-option value="blueberry">Blueberry</caps-select-option>
+						<caps-select-option value="grapes">Grapes</caps-select-option>
+						<caps-select-option value="pineapple">Pineapple</caps-select-option>
+					</caps-select-group>
+				</caps-select>
 			</form>
 		`,
 	}),
@@ -542,59 +520,52 @@ export const Scrollable: Story = {
 		props: { ...args, myform: new FormGroup({ timezone: new FormControl() }) },
 		template: /* HTML */ `
 			<form [formGroup]="myform">
-				<hlm-select formControlName="timezone" ${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}>
-					<hlm-select-trigger class="w-[280px]">
-						<hlm-select-value ${argsToTemplate(args, { include: ['placeholder'] })} />
-					</hlm-select-trigger>
-					<hlm-select-content *hlmSelectPortal showScroll class="min-w-content max-h-96">
-						<hlm-select-group>
-							<hlm-select-label>North America</hlm-select-label>
-							<hlm-select-item value="est">Eastern Standard Time (EST)</hlm-select-item>
-							<hlm-select-item value="cst">Central Standard Time (CST)</hlm-select-item>
-							<hlm-select-item value="mst">Mountain Standard Time (MST)</hlm-select-item>
-							<hlm-select-item value="pst">Pacific Standard Time (PST)</hlm-select-item>
-							<hlm-select-item value="akst">Alaska Standard Time (AKST)</hlm-select-item>
-							<hlm-select-item value="hst">Hawaii Standard Time (HST)</hlm-select-item>
-						</hlm-select-group>
-
-						<hlm-select-group>
-							<hlm-select-label>Europe & Africa</hlm-select-label>
-							<hlm-select-item value="gmt">Greenwich Mean Time (GMT)</hlm-select-item>
-							<hlm-select-item value="cet">Central European Time (CET)</hlm-select-item>
-							<hlm-select-item value="eet">Eastern European Time (EET)</hlm-select-item>
-							<hlm-select-item value="west">Western European Summer Time (WEST)</hlm-select-item>
-							<hlm-select-item value="cat">Central Africa Time (CAT)</hlm-select-item>
-							<hlm-select-item value="eat">East Africa Time (EAT)</hlm-select-item>
-						</hlm-select-group>
-
-						<hlm-select-group>
-							<hlm-select-label>Asia</hlm-select-label>
-							<hlm-select-item value="msk">Moscow Time (MSK)</hlm-select-item>
-							<hlm-select-item value="ist">India Standard Time (IST)</hlm-select-item>
-							<hlm-select-item value="cst_china">China Standard Time (CST)</hlm-select-item>
-							<hlm-select-item value="jst">Japan Standard Time (JST)</hlm-select-item>
-							<hlm-select-item value="kst">Korea Standard Time (KST)</hlm-select-item>
-							<hlm-select-item value="ist_indonesia">Indonesia Central Standard Time (WITA)</hlm-select-item>
-						</hlm-select-group>
-
-						<hlm-select-group>
-							<hlm-select-label>Australia & Pacific</hlm-select-label>
-							<hlm-select-item value="awst">Australian Western Standard Time (AWST)</hlm-select-item>
-							<hlm-select-item value="acst">Australian Central Standard Time (ACST)</hlm-select-item>
-							<hlm-select-item value="aest">Australian Eastern Standard Time (AEST)</hlm-select-item>
-							<hlm-select-item value="nzst">New Zealand Standard Time (NZST)</hlm-select-item>
-							<hlm-select-item value="fjt">Fiji Time (FJT)</hlm-select-item>
-						</hlm-select-group>
-
-						<hlm-select-group>
-							<hlm-select-label>South America</hlm-select-label>
-							<hlm-select-item value="art">Argentina Time (ART)</hlm-select-item>
-							<hlm-select-item value="bot">Bolivia Time (BOT)</hlm-select-item>
-							<hlm-select-item value="brt">Brasilia Time (BRT)</hlm-select-item>
-							<hlm-select-item value="clt">Chile Standard Time (CLT)</hlm-select-item>
-						</hlm-select-group>
-					</hlm-select-content>
-				</hlm-select>
+				<caps-select
+					aria-label="Time zone"
+					formControlName="timezone"
+					${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+					${argsToTemplate(args, { include: ['placeholder'] })}
+					class="w-[280px]"
+					panelClass="min-w-content max-h-96"
+				>
+					<caps-select-group label="North America">
+						<caps-select-option value="est">Eastern Standard Time (EST)</caps-select-option>
+						<caps-select-option value="cst">Central Standard Time (CST)</caps-select-option>
+						<caps-select-option value="mst">Mountain Standard Time (MST)</caps-select-option>
+						<caps-select-option value="pst">Pacific Standard Time (PST)</caps-select-option>
+						<caps-select-option value="akst">Alaska Standard Time (AKST)</caps-select-option>
+						<caps-select-option value="hst">Hawaii Standard Time (HST)</caps-select-option>
+					</caps-select-group>
+					<caps-select-group label="Europe & Africa">
+						<caps-select-option value="gmt">Greenwich Mean Time (GMT)</caps-select-option>
+						<caps-select-option value="cet">Central European Time (CET)</caps-select-option>
+						<caps-select-option value="eet">Eastern European Time (EET)</caps-select-option>
+						<caps-select-option value="west">Western European Summer Time (WEST)</caps-select-option>
+						<caps-select-option value="cat">Central Africa Time (CAT)</caps-select-option>
+						<caps-select-option value="eat">East Africa Time (EAT)</caps-select-option>
+					</caps-select-group>
+					<caps-select-group label="Asia">
+						<caps-select-option value="msk">Moscow Time (MSK)</caps-select-option>
+						<caps-select-option value="ist">India Standard Time (IST)</caps-select-option>
+						<caps-select-option value="cst_china">China Standard Time (CST)</caps-select-option>
+						<caps-select-option value="jst">Japan Standard Time (JST)</caps-select-option>
+						<caps-select-option value="kst">Korea Standard Time (KST)</caps-select-option>
+						<caps-select-option value="ist_indonesia">Indonesia Central Standard Time (WITA)</caps-select-option>
+					</caps-select-group>
+					<caps-select-group label="Australia & Pacific">
+						<caps-select-option value="awst">Australian Western Standard Time (AWST)</caps-select-option>
+						<caps-select-option value="acst">Australian Central Standard Time (ACST)</caps-select-option>
+						<caps-select-option value="aest">Australian Eastern Standard Time (AEST)</caps-select-option>
+						<caps-select-option value="nzst">New Zealand Standard Time (NZST)</caps-select-option>
+						<caps-select-option value="fjt">Fiji Time (FJT)</caps-select-option>
+					</caps-select-group>
+					<caps-select-group label="South America">
+						<caps-select-option value="art">Argentina Time (ART)</caps-select-option>
+						<caps-select-option value="bot">Bolivia Time (BOT)</caps-select-option>
+						<caps-select-option value="brt">Brasilia Time (BRT)</caps-select-option>
+						<caps-select-option value="clt">Chile Standard Time (CLT)</caps-select-option>
+					</caps-select-group>
+				</caps-select>
 			</form>
 		`,
 	}),
@@ -604,25 +575,24 @@ export const CustomPlaceholder: Story = {
 	render: (args) => ({
 		props: { ...args },
 		template: /* HTML */ `
-			<hlm-select class="inline-block" ${argsToTemplate(args, { exclude: ['value'] })}>
-				<hlm-select-trigger class="w-56">
-					<hlm-select-placeholder>
-						<ng-icon name="lucideCitrus" />
-						Select a fruit
-					</hlm-select-placeholder>
-					<hlm-select-value />
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						<hlm-select-label>Fruits</hlm-select-label>
-						<hlm-select-item value="apple">Apple</hlm-select-item>
-						<hlm-select-item value="banana">Banana</hlm-select-item>
-						<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-						<hlm-select-item value="grapes">Grapes</hlm-select-item>
-						<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select>
+			<caps-select
+				aria-label="Fruit"
+				${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+				class="inline-block w-56"
+			>
+				<ng-template capsSelectPlaceholder>
+					<ng-icon name="lucideCitrus" />
+					Select a fruit
+				</ng-template>
+
+				<caps-select-group label="Fruits">
+					<caps-select-option value="apple">Apple</caps-select-option>
+					<caps-select-option value="banana">Banana</caps-select-option>
+					<caps-select-option value="blueberry">Blueberry</caps-select-option>
+					<caps-select-option value="grapes">Grapes</caps-select-option>
+					<caps-select-option value="pineapple">Pineapple</caps-select-option>
+				</caps-select-group>
+			</caps-select>
 		`,
 	}),
 };
@@ -639,29 +609,23 @@ export const WithLabelAndForm: Story = {
 	selector: 'label-and-form-component',
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [FormsModule, ReactiveFormsModule, HlmSelectImports, CapsLabel, CapsButton],
+	imports: [FormsModule, ReactiveFormsModule, CapsSelectImports, CapsLabel, CapsButton],
 	providers: [],
 	host: {
 		class: '',
 	},
 	template: `
 		<form class="space-y-5" (ngSubmit)="handleSubmit()">
-			<label capsLabel>Select a Fruit*</label>
-			<hlm-select class="w-56" [(ngModel)]="fruit">
-				<hlm-select-trigger>
-					<hlm-select-value placeholder="Select a fruit" />
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						<hlm-select-label>Fruits</hlm-select-label>
-						<hlm-select-item value="apple">Apple</hlm-select-item>
-						<hlm-select-item value="banana">Banana</hlm-select-item>
-						<hlm-select-item value="blueberry">Blueberry</hlm-select-item>
-						<hlm-select-item value="grapes">Grapes</hlm-select-item>
-						<hlm-select-item value="pineapple">Pineapple</hlm-select-item>
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select>
+			<label capsLabel for="fruit-select">Select a Fruit*</label>
+			<caps-select id="fruit-select" class="w-56" [(ngModel)]="fruit" placeholder="Select a fruit">
+				<caps-select-group label="Fruits">
+					<caps-select-option value="apple">Apple</caps-select-option>
+					<caps-select-option value="banana">Banana</caps-select-option>
+					<caps-select-option value="blueberry">Blueberry</caps-select-option>
+					<caps-select-option value="grapes">Grapes</caps-select-option>
+					<caps-select-option value="pineapple">Pineapple</caps-select-option>
+				</caps-select-group>
+			</caps-select>
 			<button capsButton>Submit</button>
 		</form>
 	`,
@@ -686,7 +650,7 @@ export const DynamicOptionsMultiSelect: Story = {
 	selector: 'dynamic-options-multi-select-component',
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	imports: [FormsModule, ReactiveFormsModule, HlmSelectImports, CapsLabel, CapsButton, JsonPipe],
+	imports: [FormsModule, ReactiveFormsModule, CapsSelectImports, CapsLabel, CapsButton, JsonPipe],
 	providers: [],
 	host: {
 		class: '',
@@ -696,32 +660,23 @@ export const DynamicOptionsMultiSelect: Story = {
 			<div class="mb-3">
 				<pre>Form Control Value: {{ fruit.value | json }}</pre>
 			</div>
-			<label capsLabel>Select a Fruit*</label>
-			<hlm-select-multiple class="w-56" [formControl]="fruit">
-				<hlm-select-trigger>
-					<hlm-select-placeholder>Select an option</hlm-select-placeholder>
-					<ng-template hlmSelectValues let-values>
-						<hlm-select-values-content>
-							@for (value of values; track value) {
-								{{ itemToString(value) }}
-							}
-						</hlm-select-values-content>
-					</ng-template>
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						<hlm-select-label>Fruits</hlm-select-label>
-						@for (option of options(); track option.value) {
-							<hlm-select-item [value]="option.value">{{ option.label }}</hlm-select-item>
-						}
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select-multiple>
+			<label capsLabel for="fruit-select">Select a Fruit*</label>
+			<caps-select-multiple id="fruit-select" class="w-56" [formControl]="fruit" placeholder="Select an option">
+				<ng-template capsSelectValue let-values>
+					@for (value of values; track value) {
+						{{ itemToString(value) }}
+					}
+				</ng-template>
+
+				<caps-select-group label="Fruits">
+					@for (option of options(); track option.value) {
+						<caps-select-option [value]="option.value">{{ option.label }}</caps-select-option>
+					}
+				</caps-select-group>
+			</caps-select-multiple>
 		</form>
 		<button capsButton class="mt-2" (click)="updateOptions()">Update Options</button>
-
 		<button capsButton class="mt-2" (click)="updateDiffOptions()">Update Diff Options</button>
-
 		<button capsButton class="mt-2" (click)="updatePartialOptions()">Update Partial Options</button>
 	`,
 })
@@ -783,15 +738,15 @@ export const FalsyValue: Story = {
 			<div class="mb-3">
 				<pre data-testid="value">Form Control Value: {{ allowPayments.value | json }}</pre>
 			</div>
-			<hlm-select class="w-56" [formControl]="allowPayments">
-				<hlm-select-trigger>
-					<hlm-select-value placeholder="Select an option" />
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-item [value]="true">Allowed</hlm-select-item>
-					<hlm-select-item [value]="false">Not allowed</hlm-select-item>
-				</hlm-select-content>
-			</hlm-select>
+			<caps-select
+				aria-label="Allow payments"
+				class="w-56"
+				[formControl]="allowPayments"
+				placeholder="Select an option"
+			>
+				<caps-select-option [value]="true">Allowed</caps-select-option>
+				<caps-select-option [value]="false">Not allowed</caps-select-option>
+			</caps-select>
 		`,
 	}),
 };

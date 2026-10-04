@@ -1,38 +1,35 @@
 import { Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 @Component({
 	selector: 'spartan-select-form-preview',
-	imports: [HlmFieldImports, HlmSelectImports, HlmButtonImports, FormRoot, FormField],
+	imports: [CapsFieldImports, CapsSelectImports, CapsButtonImports, FormRoot, FormField],
 	host: {
 		class: 'w-full max-w-xs',
 	},
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="fruit">Fruit</label>
-					<hlm-select [formField]="form.fruit" [itemToString]="itemToString">
-						<hlm-select-trigger buttonId="fruit" class="w-56">
-							<hlm-select-value placeholder="Select a fruit" />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal>
-							<hlm-select-group>
-								<hlm-select-label>Fruits</hlm-select-label>
-								@for (item of items; track item.value) {
-									<hlm-select-item [value]="item.value">{{ item.label }}</hlm-select-item>
-								}
-							</hlm-select-group>
-						</hlm-select-content>
-					</hlm-select>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn>Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Fruit</caps-field-label>
+					<caps-select
+						[formField]="form.fruit"
+						[itemToString]="itemToString"
+						placeholder="Select a fruit"
+						id="fruit"
+						class="w-56"
+					>
+						<caps-select-group label="Fruits">
+							@for (item of items; track item.value) {
+								<caps-select-option [value]="item.value">{{ item.label }}</caps-select-option>
+							}
+						</caps-select-group>
+					</caps-select>
+				</caps-field>
+				<button type="submit" capsButton>Submit</button>
+			</caps-field-group>
 		</form>
 	`,
 })

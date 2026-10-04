@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsSeparator } from '@capsule-ng/caps/separator';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
 import { StyleService } from '@spartan-ng/app/app/shared/style.service';
 import { TranslateService } from '@spartan-ng/app/app/shared/translate.service';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	// eslint-disable-next-line @angular-eslint/component-selector
 	selector: 'div[spartanRtlCodePreview]',
-	imports: [HlmSelectImports, NgIcon, HlmPopoverImports, CapsSeparator, CapsButtonImports],
+	imports: [CapsSelectImports, NgIcon, HlmPopoverImports, CapsSeparator, CapsButtonImports],
 	providers: [
 		provideIcons({
 			lucideInfo,
@@ -24,21 +24,18 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	},
 	template: `
 		<div class="border-border flex flex-row items-center justify-between border-b p-4">
-			<hlm-select class="inline-block" [(value)]="_languageService.language" [itemToString]="itemToString">
-				<hlm-select-trigger class="w-52">
-					<hlm-select-value />
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						@for (language of languages; track language.value) {
-							<hlm-select-item [value]="language.value">
-								{{ language.label }}
-							</hlm-select-item>
-						}
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select>
-
+			<caps-select
+				aria-label="Preview language"
+				[(value)]="_languageService.language"
+				[itemToString]="itemToString"
+				class="inline-block w-52"
+			>
+				@for (language of languages; track language.value) {
+					<caps-select-option [value]="language.value">
+						{{ language.label }}
+					</caps-select-option>
+				}
+			</caps-select>
 			<hlm-popover align="end">
 				<button hlmPopoverTrigger capsButton variant="ghost">
 					<ng-icon name="lucideInfo" />

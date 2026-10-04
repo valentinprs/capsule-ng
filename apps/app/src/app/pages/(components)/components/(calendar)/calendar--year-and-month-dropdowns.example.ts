@@ -2,12 +2,12 @@ import { Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-calendar-year-and-month-dropdown',
-	imports: [HlmCalendar, HlmSelectImports, FormsModule, CapsCardImports],
+	imports: [HlmCalendar, CapsSelectImports, FormsModule, CapsCardImports],
 	host: {
 		class: 'flex flex-col gap-4',
 	},
@@ -18,18 +18,17 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 			</caps-card-content>
 		</caps-card>
 
-		<hlm-select class="inline-block" [(ngModel)]="_captionLayout" [itemToString]="itemToString">
-			<hlm-select-trigger class="w-full">
-				<hlm-select-value placeholder="Select an option" />
-			</hlm-select-trigger>
-			<hlm-select-content *hlmSelectPortal>
-				<hlm-select-group>
-					<hlm-select-item value="dropdown">Month and Year</hlm-select-item>
-					<hlm-select-item value="dropdown-months">Only Month</hlm-select-item>
-					<hlm-select-item value="dropdown-years">Only Year</hlm-select-item>
-				</hlm-select-group>
-			</hlm-select-content>
-		</hlm-select>
+		<caps-select
+			aria-label="Calendar caption layout"
+			[(ngModel)]="_captionLayout"
+			[itemToString]="itemToString"
+			placeholder="Select an option"
+			class="inline-block w-full"
+		>
+			<caps-select-option value="dropdown">Month and Year</caps-select-option>
+			<caps-select-option value="dropdown-months">Only Month</caps-select-option>
+			<caps-select-option value="dropdown-years">Only Year</caps-select-option>
+		</caps-select>
 	`,
 })
 export class CalendarYearAndMonthDropdownsExample {

@@ -148,12 +148,9 @@ The Terms of Service scrolling region is named and keyboard focusable. Native li
 buttons, inputs and labels remain native and no Card adds a landmark implicitly.
 
 Auxiliary Button, Input, Textarea, Label, Field and Breadcrumb use their Capsule APIs.
-Select, tabs, icons and other not-yet-migrated families retain Helm from main.
+Tabs, icons and other not-yet-migrated families retain Helm from main. Select now uses Capsule in the develop integration with #32.
 After #31 merged during this work, its Checkbox/Radio/Switch APIs and simplified examples
-were integrated without reverting their form, label or hydration fixes. This PR remains
-independent of #32. Explicit `for`/control IDs remain for Helm
-controls, selected cards and examples demonstrating external submit targets. In the Card
-story, the Framework label targets Helm Select's native `buttonId`, not its custom host.
+were integrated without reverting their form, label or hydration fixes. The original implementation was independent of #32; develop combines both families. Explicit `for`/control IDs remain for selected cards and examples demonstrating external submit targets. The Card story Framework label now automatically targets the native Capsule Select trigger.
 The inset sidebar keeps its current breadcrumb visible on mobile; only its ancestor and
 separator hide. Plain FieldTitle text becomes styled text, without nested labels.
 

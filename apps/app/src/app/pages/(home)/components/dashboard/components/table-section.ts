@@ -1,5 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsLabel } from '@capsule-ng/caps/label';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerChevronLeft, tablerChevronRight, tablerChevronsLeft, tablerChevronsRight } from '@ng-icons/tabler-icons';
 import {
@@ -8,9 +11,6 @@ import {
 } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/selection-column';
 import { TableHeadSortButton } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/sort-header-button';
 import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import {
@@ -114,19 +114,18 @@ const columns = columnHelper.columns([
 		cell: () => ActionDropdown,
 	}),
 ]);
-
 @Component({
 	selector: 'spartan-dashboard-table-section',
 	imports: [
 		HlmTabsImports,
 		HlmTableImports,
-		HlmSelectImports,
-		HlmButton,
+		CapsSelectImports,
+		CapsButton,
 		FormsModule,
 		HlmBadge,
 		FlexRender,
 		NgIcon,
-		HlmLabel,
+		CapsLabel,
 		DashboardTableActions,
 	],
 	providers: [
@@ -206,34 +205,30 @@ const columns = columnHelper.columns([
 					</span>
 					<div class="mt-2 flex gap-8 sm:mt-0">
 						<div class="flex gap-2">
-							<span hlmLabel>Row per page:</span>
-							<hlm-select
-								class="inline-block"
+							<label capsLabel for="dashboard-page-size">Rows per page:</label>
+							<caps-select
+								id="dashboard-page-size"
 								[ngModel]="table.atoms.pagination.get().pageSize"
 								(ngModelChange)="table.setPageSize($event); table.resetPageIndex()"
+								placeholder="{{ _availablePageSizes[0] }}"
+								size="sm"
+								class="mr-1 inline-block inline-flex h-8 w-fit"
 							>
-								<hlm-select-trigger size="sm" class="mr-1 inline-flex h-8 w-fit">
-									<hlm-select-value placeholder="{{ _availablePageSizes[0] }}" />
-								</hlm-select-trigger>
-								<hlm-select-content *hlmSelectPortal>
-									<hlm-select-group>
-										@for (size of _availablePageSizes; track size) {
-											<hlm-select-item [value]="size">
-												{{ size === 10000 ? 'All' : size }}
-											</hlm-select-item>
-										}
-									</hlm-select-group>
-								</hlm-select-content>
-							</hlm-select>
+								@for (size of _availablePageSizes; track size) {
+									<caps-select-option [value]="size">
+										{{ size === 10000 ? 'All' : size }}
+									</caps-select-option>
+								}
+							</caps-select>
 						</div>
-
-						<span hlmLabel>Page {{ table.atoms.pagination.get().pageIndex + 1 }} of {{ table.getPageCount() }}</span>
-
+						<span class="text-sm font-medium">
+							Page {{ table.atoms.pagination.get().pageIndex + 1 }} of {{ table.getPageCount() }}
+						</span>
 						<div class="flex space-x-1">
 							<button
 								size="icon-sm"
 								variant="outline"
-								hlmBtn
+								capsButton
 								[disabled]="!table.getCanPreviousPage()"
 								(click)="table.firstPage()"
 							>
@@ -242,7 +237,7 @@ const columns = columnHelper.columns([
 							<button
 								size="icon-sm"
 								variant="outline"
-								hlmBtn
+								capsButton
 								[disabled]="!table.getCanPreviousPage()"
 								(click)="table.previousPage()"
 							>
@@ -251,7 +246,7 @@ const columns = columnHelper.columns([
 							<button
 								size="icon-sm"
 								variant="outline"
-								hlmBtn
+								capsButton
 								[disabled]="!table.getCanNextPage()"
 								(click)="table.nextPage()"
 							>
@@ -260,7 +255,7 @@ const columns = columnHelper.columns([
 							<button
 								size="icon-sm"
 								variant="outline"
-								hlmBtn
+								capsButton
 								[disabled]="!table.getCanNextPage()"
 								(click)="table.lastPage()"
 							>

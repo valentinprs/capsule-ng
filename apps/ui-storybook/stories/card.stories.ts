@@ -2,8 +2,8 @@ import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsCard, CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInput } from '@capsule-ng/caps/input';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { HlmBadge } from '@spartan-ng/helm/badge';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -18,7 +18,9 @@ const meta: Meta<CapsCard> = {
 		density: { control: 'select', options: ['default', 'compact'] },
 	},
 	decorators: [
-		moduleMetadata({ imports: [CapsCardImports, CapsFieldImports, CapsInput, CapsButton, HlmBadge, HlmSelectImports] }),
+		moduleMetadata({
+			imports: [CapsCardImports, CapsFieldImports, CapsInput, CapsButton, HlmBadge, CapsSelectImports],
+		}),
 	],
 };
 export default meta;
@@ -40,18 +42,13 @@ export const Default: Story = {
       <input capsInput placeholder="Name of your project" />
      </caps-field>
      <caps-field>
-      <caps-field-label for="card-framework">Framework</caps-field-label>
-      <!-- Helm Select remains until its Capsule family is available. Its trigger needs an explicit label target. -->
-      <hlm-select>
-       <hlm-select-trigger buttonId="card-framework" class="w-full"><hlm-select-value placeholder="Select an option" /></hlm-select-trigger>
-       <hlm-select-content *hlmSelectPortal>
-        <hlm-select-group>
-         <hlm-select-item value="Angular">Angular</hlm-select-item>
-         <hlm-select-item value="React">React</hlm-select-item>
-         <hlm-select-item value="Vue">Vue</hlm-select-item>
-        </hlm-select-group>
-       </hlm-select-content>
-      </hlm-select>
+      <caps-field-label>Framework</caps-field-label>
+      <caps-select placeholder="Select an option">
+
+                <caps-select-option value="Angular">Angular</caps-select-option>
+                <caps-select-option value="React">React</caps-select-option>
+                <caps-select-option value="Vue">Vue</caps-select-option>
+        </caps-select>
      </caps-field>
     </caps-field-group>
    </caps-card-content>

@@ -1,9 +1,9 @@
 describe('select', () => {
 	const verifySelectSetup = ({ disabled = false, groups = false } = {}) => {
-		const triggerId = 'hlm-select-trigger-0';
-
 		// Trigger
-		cy.get('[brnselecttrigger]').should('have.id', triggerId);
+		cy.get('[brnselecttrigger]')
+			.invoke('attr', 'id')
+			.should('match', /^caps-select-/);
 		cy.get('[brnselecttrigger]').should('have.attr', 'role', 'combobox');
 		cy.get('[brnselecttrigger]').should('have.attr', 'aria-haspopup', 'listbox');
 		cy.get('[brnselecttrigger]').should('have.attr', 'aria-expanded', 'false');
@@ -13,22 +13,18 @@ describe('select', () => {
 			cy.get('[brnselecttrigger]').click();
 
 			// Listbox
-			cy.get('hlm-select-content>div').should('have.attr', 'role', 'listbox');
+			cy.get('[role="listbox"]').should('have.attr', 'role', 'listbox');
 
 			// Item
-			cy.get('hlm-select-item').should('have.attr', 'role', 'option');
-			cy.get('hlm-select-item').should('have.attr', 'aria-selected', 'false');
-			cy.get('hlm-select-item').should('have.attr', 'aria-disabled', 'false');
+			cy.get('caps-select-option').should('have.attr', 'role', 'option');
+			cy.get('caps-select-option').should('have.attr', 'aria-selected', 'false');
+			cy.get('caps-select-option').should('have.attr', 'aria-disabled', 'false');
 
 			if (groups) {
-				// validate groups and labels
-				cy.get('hlm-select-group').each(($group, index) => {
+				cy.get('caps-select-group').each(($group) => {
 					cy.wrap($group).should('have.attr', 'role', 'group');
-					cy.wrap($group)
-						.find('hlm-select-label')
-						.then(($el) => {
-							cy.get('hlm-select-group').eq(index).should('have.attr', 'aria-labelledBy', $el.attr('id'));
-						});
+					cy.wrap($group).invoke('attr', 'aria-label').should('not.be.empty');
+					cy.wrap($group).find('.caps-select-group-label').invoke('text').should('equal', $group.attr('aria-label'));
 				});
 			}
 
@@ -73,14 +69,14 @@ describe('select', () => {
 			verifySelectSetup();
 			cy.get('[brnselecttrigger]').click();
 
-			cy.get('hlm-select-item')
+			cy.get('caps-select-option')
 				.eq(0)
 				.then(($el) => {
 					const optionValue = $el.attr('value');
-					cy.get('hlm-select-item').eq(0).click();
-					cy.get('hlm-select-content').should('not.exist');
+					cy.get('caps-select-option').eq(0).click();
+					cy.get('.caps-select-content').should('not.exist');
 					cy.get('[brnselecttrigger]').should('have.attr', 'aria-expanded', 'false');
-					cy.get('hlm-select-value').contains(optionValue, { matchCase: false });
+					cy.get('[data-slot="select-trigger"]').contains(optionValue, { matchCase: false });
 				});
 		});
 	});
@@ -94,23 +90,23 @@ describe('select', () => {
 			cy.visit('/iframe.html?id=select--multiple');
 			verifySelectSetup();
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-content').should('exist');
-			cy.get('hlm-select-item').eq(0).click();
-			cy.get('hlm-select-content').should('exist');
-			cy.get('hlm-select-item')
+			cy.get('.caps-select-content').should('exist');
+			cy.get('caps-select-option').eq(0).click();
+			cy.get('.caps-select-content').should('exist');
+			cy.get('caps-select-option')
 				.eq(0)
 				.then(($el) => {
 					const optionValue = $el.attr('value');
-					cy.get('hlm-select-item').eq(1).click();
-					cy.get('hlm-select-item')
+					cy.get('caps-select-option').eq(1).click();
+					cy.get('caps-select-option')
 						.eq(1)
 						.then(($el2) => {
 							const optionValue2 = $el2.attr('value');
-							cy.get('hlm-select-trigger').contains(optionValue, { matchCase: false });
-							cy.get('hlm-select-trigger').contains(optionValue2, { matchCase: false });
+							cy.get('[data-slot="select-trigger"]').contains(optionValue, { matchCase: false });
+							cy.get('[data-slot="select-trigger"]').contains(optionValue2, { matchCase: false });
 
 							cy.get('body').click();
-							cy.get('hlm-select-content').should('not.exist');
+							cy.get('.caps-select-content').should('not.exist');
 							cy.get('[brnselecttrigger]').should('have.attr', 'aria-expanded', 'false');
 						});
 				});
@@ -120,23 +116,23 @@ describe('select', () => {
 			cy.visit('/iframe.html?id=select--multiple');
 			verifySelectSetup();
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-content').should('exist');
-			cy.get('hlm-select-item').eq(0).click();
-			cy.get('hlm-select-content').should('exist');
-			cy.get('hlm-select-item')
+			cy.get('.caps-select-content').should('exist');
+			cy.get('caps-select-option').eq(0).click();
+			cy.get('.caps-select-content').should('exist');
+			cy.get('caps-select-option')
 				.eq(0)
 				.then(($el) => {
 					const optionValue = $el.attr('value');
-					cy.get('hlm-select-item').eq(1).click();
-					cy.get('hlm-select-item')
+					cy.get('caps-select-option').eq(1).click();
+					cy.get('caps-select-option')
 						.eq(1)
 						.then(($el2) => {
 							const optionValue2 = $el2.attr('value');
-							cy.get('hlm-select-trigger').contains(optionValue, { matchCase: false });
-							cy.get('hlm-select-trigger').contains(optionValue2, { matchCase: false });
+							cy.get('[data-slot="select-trigger"]').contains(optionValue, { matchCase: false });
+							cy.get('[data-slot="select-trigger"]').contains(optionValue2, { matchCase: false });
 
 							cy.get('[brnselecttrigger]').click();
-							cy.get('hlm-select-content').should('not.exist');
+							cy.get('.caps-select-content').should('not.exist');
 							cy.get('[brnselecttrigger]').should('have.attr', 'aria-expanded', 'false');
 						});
 				});
@@ -148,18 +144,18 @@ describe('select', () => {
 			cy.get('[brnselecttrigger]').click();
 
 			// select the first item
-			cy.get('hlm-select-item').eq(0).realType('{enter}');
-			cy.get('hlm-select-item').eq(0).should('have.attr', 'aria-selected', 'true');
+			cy.get('caps-select-option').eq(0).realType('{enter}');
+			cy.get('caps-select-option').eq(0).should('have.attr', 'aria-selected', 'true');
 
-			cy.get('hlm-select-trigger').contains('Apple', { matchCase: false });
+			cy.get('[data-slot="select-trigger"]').contains('Apple', { matchCase: false });
 
 			// deselect the first item
-			cy.get('hlm-select-item').eq(0).realType('{enter}');
+			cy.get('caps-select-option').eq(0).realType('{enter}');
 
 			// check if the first item is deselected
-			cy.get('hlm-select-item').eq(0).should('have.attr', 'aria-selected', 'false');
+			cy.get('caps-select-option').eq(0).should('have.attr', 'aria-selected', 'false');
 
-			cy.get('hlm-select-trigger').should('not.contain.text', 'Apple');
+			cy.get('[data-slot="select-trigger"]').should('not.contain.text', 'Apple');
 		});
 	});
 
@@ -172,8 +168,8 @@ describe('select', () => {
 		it('should not open if disabled', () => {
 			verifySelectSetup({ disabled: true });
 			cy.get('[brnselecttrigger]').should('be.disabled');
-			cy.get('hlm-select-trigger').click({ force: true });
-			cy.get('hlm-select-content').should('not.exist');
+			cy.get('[data-slot="select-trigger"]').click({ force: true });
+			cy.get('.caps-select-content').should('not.exist');
 		});
 	});
 
@@ -181,12 +177,12 @@ describe('select', () => {
 		it('should not be able to select a disabled option', () => {
 			cy.visit('/iframe.html?id=select--disabled-option');
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-item').eq(0).should('not.have.attr', 'data-disabled');
+			cy.get('caps-select-option').eq(0).should('not.have.attr', 'data-disabled');
 			cy.get('[data-testid="banana-option"]').should('have.attr', 'aria-disabled', 'true');
 			cy.get('[data-testid="banana-option"]').should('have.attr', 'data-disabled', '');
 			cy.get('[data-testid="banana-option"]').click({ force: true });
 			cy.get('pre').should('have.text', 'Form Control Value: ""');
-			cy.get('hlm-select-item').eq(0).click();
+			cy.get('caps-select-option').eq(0).click();
 			cy.get('pre').should('have.text', 'Form Control Value: "apple"');
 		});
 	});
@@ -220,9 +216,9 @@ describe('select', () => {
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-matches-spartan-invalid', 'true');
 
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-item').first().click();
+			cy.get('caps-select-option').first().click();
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-item').last().click();
+			cy.get('caps-select-option').last().click();
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-touched', 'true');
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-dirty', 'true');
 			cy.get('[brnselecttrigger]').should('not.have.attr', 'aria-invalid', 'true');
@@ -230,7 +226,7 @@ describe('select', () => {
 
 			// on real selection
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-item').eq(0).click();
+			cy.get('caps-select-option').eq(0).click();
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-touched', 'true');
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-dirty', 'true');
 			cy.get('[brnselecttrigger]').should('not.have.attr', 'aria-invalid');
@@ -262,7 +258,7 @@ describe('select', () => {
 
 			// on real selection
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-item').eq(0).click();
+			cy.get('caps-select-option').eq(0).click();
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-touched', 'true');
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-dirty', 'true');
 			cy.get('[brnselecttrigger]').should('not.have.attr', 'aria-invalid');
@@ -294,7 +290,7 @@ describe('select', () => {
 
 			// on real selection
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-item').eq(0).click();
+			cy.get('caps-select-option').eq(0).click();
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-touched', 'true');
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-dirty', 'true');
 			cy.get('[brnselecttrigger]').should('not.have.attr', 'aria-invalid');
@@ -326,7 +322,7 @@ describe('select', () => {
 
 			// on real selection
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-item').eq(0).click();
+			cy.get('caps-select-option').eq(0).click();
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-touched', 'true');
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-dirty', 'true');
 			cy.get('[brnselecttrigger]').should('not.have.attr', 'aria-invalid');
@@ -358,7 +354,7 @@ describe('select', () => {
 
 			// on real selection
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-item').eq(0).click();
+			cy.get('caps-select-option').eq(0).click();
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-touched', 'true');
 			cy.get('[brnselecttrigger]').should('have.attr', 'data-dirty', 'true');
 			cy.get('[brnselecttrigger]').should('not.have.attr', 'aria-invalid');
@@ -375,24 +371,16 @@ describe('select', () => {
 		it('should be scrollable', () => {
 			verifySelectSetup({ groups: true });
 			cy.get('[brnselecttrigger]').click();
-			cy.get('hlm-select-content').should('exist');
-			cy.get('hlm-select-scroll-up').should('have.attr', 'data-hidden', '');
-			cy.get('hlm-select-scroll-down').should('exist');
-
-			// Scroll a down from top
-			cy.get('hlm-select-content').realMouseWheel({ deltaY: 500 });
-			cy.get('hlm-select-scroll-up').should('exist');
-			cy.get('hlm-select-scroll-down').should('exist');
-
-			// Scroll to bottom
-			cy.get('hlm-select-content').realMouseWheel({ deltaY: 2000 });
-			cy.get('hlm-select-scroll-up').should('exist');
-			cy.get('hlm-select-scroll-down').should('have.attr', 'data-hidden', '');
-
-			// Scroll back up a bit
-			cy.get('hlm-select-content').realMouseWheel({ deltaY: -500 });
-			cy.get('hlm-select-scroll-up').should('exist');
-			cy.get('hlm-select-scroll-down').should('exist');
+			cy.get('.caps-select-content').should('exist');
+			cy.get('.caps-select-content').should(($panel) => expect($panel[0].scrollTop).to.equal(0));
+			cy.get('.caps-select-content').realMouseWheel({ deltaY: 500 });
+			cy.get('.caps-select-content').should(($panel) => expect($panel[0].scrollTop).to.be.greaterThan(0));
+			cy.get('.caps-select-content').scrollTo('bottom');
+			cy.get('.caps-select-content').should(($panel) => {
+				expect(Math.ceil($panel[0].scrollTop + $panel[0].clientHeight)).to.be.at.least($panel[0].scrollHeight);
+			});
+			cy.get('.caps-select-content').scrollTo('top');
+			cy.get('.caps-select-content').should(($panel) => expect($panel[0].scrollTop).to.equal(0));
 		});
 	});
 
@@ -409,7 +397,7 @@ describe('select', () => {
 			cy.realPress('Enter');
 
 			// the falsy value is committed and the panel closes
-			cy.get('hlm-select-content').should('not.exist');
+			cy.get('.caps-select-content').should('not.exist');
 			cy.get('[brnselecttrigger]').should('have.attr', 'aria-expanded', 'false');
 			cy.get('[data-testid="value"]').should('contain.text', 'false');
 		});

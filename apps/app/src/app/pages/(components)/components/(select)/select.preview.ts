@@ -1,23 +1,16 @@
 import { Component } from '@angular/core';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 @Component({
 	selector: 'spartan-select-preview',
-	imports: [HlmSelectImports],
+	imports: [CapsSelectImports],
 	template: `
-		<hlm-select [itemToString]="itemToString">
-			<hlm-select-trigger class="w-56">
-				<hlm-select-value placeholder="Select a fruit" />
-			</hlm-select-trigger>
-			<hlm-select-content *hlmSelectPortal>
-				<hlm-select-group>
-					<hlm-select-label>Fruits</hlm-select-label>
-					@for (item of items; track item.value) {
-						<hlm-select-item [value]="item.value">{{ item.label }}</hlm-select-item>
-					}
-				</hlm-select-group>
-			</hlm-select-content>
-		</hlm-select>
+		<caps-select aria-label="Fruit" [itemToString]="itemToString" placeholder="Select a fruit" class="w-56">
+			<caps-select-group label="Fruits">
+				@for (item of items; track item.value) {
+					<caps-select-option [value]="item.value">{{ item.label }}</caps-select-option>
+				}
+			</caps-select-group>
+		</caps-select>
 	`,
 })
 export class SelectPreview {
@@ -33,23 +26,18 @@ export class SelectPreview {
 }
 
 export const defaultImports = `
-import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 `;
 
 export const defaultSkeleton = `
-<hlm-select>
-	<hlm-select-trigger>
-		<hlm-select-value placeholder="Select a fruit" />
-	</hlm-select-trigger>
-	<hlm-select-content *hlmSelectPortal>
-		<hlm-select-group>
-			<hlm-select-label>Fruits</hlm-select-label>
+<caps-select aria-label="Fruit"   placeholder="Select a fruit"  >
+
+		<caps-select-group label="Fruits">
 			@for (item of items; track item.value) {
-				<hlm-select-item [value]="item.value">{{ item.label }}</hlm-select-item>
+				<caps-select-option [value]="item.value">{{ item.label }}</caps-select-option>
 			}
-		</hlm-select-group>
-	</hlm-select-content>
-</hlm-select>
+		</caps-select-group>
+</caps-select>
 `;
 
 export const defaultStyles = `

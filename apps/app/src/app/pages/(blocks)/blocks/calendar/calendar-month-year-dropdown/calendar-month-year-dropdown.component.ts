@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
 @Component({
 	selector: 'spartan-calendar-month-and-year-dropdown',
-	imports: [HlmCalendar, HlmSelectImports, FormsModule],
+	imports: [HlmCalendar, CapsSelectImports, FormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex justify-center p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg overflow-auto',
@@ -13,19 +12,16 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 	template: `
 		<div class="flex w-max flex-col gap-2">
 			<hlm-calendar class="bg-background" [captionLayout]="_captionLayout()" />
-
-			<hlm-select class="bg-background" [(ngModel)]="_captionLayout" [itemToString]="itemToString">
-				<hlm-select-trigger class="w-full">
-					<hlm-select-value />
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						@for (option of options; track option.value) {
-							<hlm-select-item [value]="option.value">{{ option.label }}</hlm-select-item>
-						}
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select>
+			<caps-select
+				aria-label="Calendar caption layout"
+				[(ngModel)]="_captionLayout"
+				[itemToString]="itemToString"
+				class="bg-background w-full"
+			>
+				@for (option of options; track option.value) {
+					<caps-select-option [value]="option.value">{{ option.label }}</caps-select-option>
+				}
+			</caps-select>
 		</div>
 	`,
 })

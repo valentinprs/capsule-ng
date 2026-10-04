@@ -1,37 +1,34 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
-
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsNativeSelectImports } from '@capsule-ng/caps/native-select';
 @Component({
 	selector: 'spartan-native-select-form-example',
-	imports: [FormRoot, FormField, HlmNativeSelectImports, HlmFieldImports, HlmButtonImports],
+	imports: [FormRoot, FormField, CapsNativeSelectImports, CapsFieldImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-xs',
 	},
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="fruit">Favorite Fruit</label>
-					<hlm-native-select selectId="fruit" [formField]="form.fruit">
-						<option hlmNativeSelectOption value="">Select a fruit</option>
-						<option hlmNativeSelectOption value="apple">Apple</option>
-						<option hlmNativeSelectOption value="banana">Banana</option>
-						<option hlmNativeSelectOption value="blueberry">Blueberry</option>
-					</hlm-native-select>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn type="submit" [disabled]="form().submitting()">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Favorite Fruit</caps-field-label>
+					<select capsNativeSelect id="fruit" [formField]="form.fruit">
+						<option value="">Select a fruit</option>
+						<option value="apple">Apple</option>
+						<option value="banana">Banana</option>
+						<option value="blueberry">Blueberry</option>
+					</select>
+				</caps-field>
+				<button capsButton type="submit" [disabled]="form().submitting()">Submit</button>
+			</caps-field-group>
 		</form>
 	`,
 })
 export class NativeSelectFormExample {
-	protected readonly _model = signal<{ fruit: string | null }>({ fruit: null });
+	protected readonly _model = signal<{ fruit: string }>({ fruit: '' });
 
 	public readonly form = form(
 		this._model,

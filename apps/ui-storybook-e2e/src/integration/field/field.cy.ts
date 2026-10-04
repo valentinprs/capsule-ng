@@ -147,9 +147,10 @@ describe('field', () => {
 		});
 
 		it('should allow selecting an option', () => {
-			cy.get('hlm-select-trigger').click();
+			cy.contains('label', 'Country').click();
+			cy.get('[data-slot="select-trigger"]').should('be.focused');
 			cy.contains('United States').click();
-			cy.get('hlm-select-trigger').should('contain.text', 'us');
+			cy.get('[data-slot="select-trigger"]').should('contain.text', 'United States');
 		});
 	});
 

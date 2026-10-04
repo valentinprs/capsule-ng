@@ -1,19 +1,18 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsNativeSelectImports } from '@capsule-ng/caps/native-select';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
-
 @Component({
 	selector: 'spartan-native-select-rtl',
-	imports: [HlmNativeSelectImports],
+	imports: [CapsNativeSelectImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-native-select [attr.dir]="_dir()">
-			<option hlmNativeSelectOption value="">{{ _t()['placeholder'] }}</option>
-			<option hlmNativeSelectOption value="todo">{{ _t()['todo'] }}</option>
-			<option hlmNativeSelectOption value="in-progress">{{ _t()['inProgress'] }}</option>
-			<option hlmNativeSelectOption value="done">{{ _t()['done'] }}</option>
-			<option hlmNativeSelectOption value="cancelled">{{ _t()['cancelled'] }}</option>
-		</hlm-native-select>
+		<select capsNativeSelect aria-label="Status" [attr.dir]="_dir()">
+			<option value="">{{ _t()['placeholder'] }}</option>
+			<option value="todo">{{ _t()['todo'] }}</option>
+			<option value="in-progress">{{ _t()['inProgress'] }}</option>
+			<option value="done">{{ _t()['done'] }}</option>
+			<option value="cancelled">{{ _t()['cancelled'] }}</option>
+		</select>
 	`,
 })
 export class NativeSelectRtl {

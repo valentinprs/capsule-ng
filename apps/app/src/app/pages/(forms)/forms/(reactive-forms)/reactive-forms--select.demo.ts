@@ -10,11 +10,11 @@ import {
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 
 @Component({
 	selector: 'spartan-reactive-form-select-demo',
-	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmSelectImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-lg' },
 	template: `
@@ -28,27 +28,20 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					<caps-field-group>
 						<caps-field orientation="responsive">
 							<caps-field-content>
-								<caps-field-label for="language">Spoken Language</caps-field-label>
+								<caps-field-label>Spoken Language</caps-field-label>
 								<caps-field-description>For best results, select the language you speak.</caps-field-description>
 								<caps-field-error validator="required">Please select your spoken language.</caps-field-error>
 								<caps-field-error validator="autoDetect">
 									Auto-detection is not allowed. Please select a specific language.
 								</caps-field-error>
 							</caps-field-content>
-							<hlm-select formControlName="language" [itemToString]="itemToString">
-								<hlm-select-trigger buttonId="language">
-									<hlm-select-value placeholder="Select" />
-								</hlm-select-trigger>
-								<hlm-select-content *hlmSelectPortal>
-									<hlm-select-group>
-										<hlm-select-item value="auto">Auto</hlm-select-item>
-										<div hlmSelectSeparator></div>
-										@for (language of spokenLanguages; track $index) {
-											<hlm-select-item [value]="language.value">{{ language.label }}</hlm-select-item>
-										}
-									</hlm-select-group>
-								</hlm-select-content>
-							</hlm-select>
+							<caps-select formControlName="language" [itemToString]="itemToString" placeholder="Select" id="language">
+								<caps-select-option value="auto">Auto</caps-select-option>
+								<caps-select-separator />
+								@for (language of spokenLanguages; track $index) {
+									<caps-select-option [value]="language.value">{{ language.label }}</caps-select-option>
+								}
+							</caps-select>
 						</caps-field>
 					</caps-field-group>
 				</form>
@@ -114,11 +107,11 @@ import {
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 
 @Component({
 	selector: 'spartan-reactive-form-select-demo',
-	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, HlmSelectImports, CapsButtonImports],
+	imports: [ReactiveFormsModule, CapsCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -132,27 +125,21 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					<caps-field-group>
 						<caps-field orientation="responsive">
 							<caps-field-content>
-								<caps-field-label for="language">Spoken Language</caps-field-label>
+								<caps-field-label>Spoken Language</caps-field-label>
 								<caps-field-description>For best results, select the language you speak.</caps-field-description>
 								<caps-field-error validator="required">Please select your spoken language.</caps-field-error>
 								<caps-field-error validator="autoDetect">
 									Auto-detection is not allowed. Please select a specific language.
 								</caps-field-error>
 							</caps-field-content>
-							<hlm-select formControlName="language" [itemToString]="itemToString">
-								<hlm-select-trigger buttonId="language">
-									<hlm-select-value placeholder="Select" />
-								</hlm-select-trigger>
-								<hlm-select-content *hlmSelectPortal>
-									<hlm-select-group>
-										<hlm-select-item value="auto">Auto</hlm-select-item>
-										<div hlmSelectSeparator></div>
+							<caps-select formControlName="language" [itemToString]="itemToString"   placeholder="Select"   id="language">
+
+										<caps-select-option value="auto">Auto</caps-select-option>
+										<caps-select-separator />
 										@for (language of spokenLanguages; track $index) {
-											<hlm-select-item [value]="language.value">{{ language.label }}</hlm-select-item>
+											<caps-select-option [value]="language.value">{{ language.label }}</caps-select-option>
 										}
-									</hlm-select-group>
-								</hlm-select-content>
-							</hlm-select>
+							</caps-select>
 						</caps-field>
 					</caps-field-group>
 				</form>

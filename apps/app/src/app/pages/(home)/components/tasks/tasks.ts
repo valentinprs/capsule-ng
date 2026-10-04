@@ -1,5 +1,8 @@
 import { Component, inject, signal, type TrackByFunction } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsLabel } from '@capsule-ng/caps/label';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUpDown,
@@ -25,10 +28,7 @@ import {
 	lucideUser,
 } from '@ng-icons/lucide';
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import {
 	columnFilteringFeature,
@@ -113,20 +113,19 @@ const columns = columnHelper.columns([
 		enableHiding: false,
 	}),
 ]);
-
 @Component({
 	selector: 'spartan-tasks-example',
 	imports: [
 		FormsModule,
 		HlmDropdownMenuImports,
 		HlmTableImports,
-		HlmButtonImports,
-		HlmSelectImports,
+		CapsButtonImports,
+		CapsSelectImports,
 		TableActions,
 		NgIcon,
 		HlmAvatarImports,
 		FlexRender,
-		HlmLabel,
+		CapsLabel,
 	],
 	providers: [
 		provideIcons({
@@ -171,16 +170,13 @@ const columns = columnHelper.columns([
 					<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" hlmAvatarImage />
 					<span class="bg-destructive text-white" hlmAvatarFallback>KL</span>
 				</hlm-avatar>
-
 				<ng-template #profile>
 					<hlm-dropdown-menu class="min-w-56">
 						<div class="flex flex-col items-start gap-1" hlmDropdownMenuItem>
 							<p class="text-sm leading-none font-medium">spartan</p>
 							<p class="text-muted-foreground text-xs leading-none">m&#64;example.com</p>
 						</div>
-
 						<hlm-dropdown-menu-separator />
-
 						<hlm-dropdown-menu-group>
 							<hlm-dropdown-menu-group>
 								<button hlmDropdownMenuItem>
@@ -188,22 +184,18 @@ const columns = columnHelper.columns([
 									<span>Profile</span>
 									<hlm-dropdown-menu-shortcut>⇧⌘P</hlm-dropdown-menu-shortcut>
 								</button>
-
 								<button hlmDropdownMenuItem>
 									<ng-icon name="lucideLayers" />
 									<span>Billing</span>
 									<hlm-dropdown-menu-shortcut>⌘B</hlm-dropdown-menu-shortcut>
 								</button>
-
 								<button hlmDropdownMenuItem>
 									<ng-icon name="lucideCog" />
 									<span>Settings</span>
 									<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
 								</button>
 							</hlm-dropdown-menu-group>
-
 							<hlm-dropdown-menu-separator />
-
 							<button hlmDropdownMenuItem>
 								<ng-icon name="lucideLogOut" />
 								<span>Logout</span>
@@ -213,9 +205,7 @@ const columns = columnHelper.columns([
 					</hlm-dropdown-menu>
 				</ng-template>
 			</div>
-
 			<spartan-table-actions table="table" />
-
 			<div class="max-h-[700px] w-full overflow-auto rounded-md border">
 				<div hlmTableContainer>
 					<table hlmTable>
@@ -262,33 +252,30 @@ const columns = columnHelper.columns([
 				</span>
 				<div class="mt-2 flex gap-8 sm:mt-0">
 					<div class="flex gap-2">
-						<span hlmLabel>Row per page:</span>
-						<hlm-select
+						<label capsLabel for="tasks-page-size">Rows per page:</label>
+						<caps-select
+							id="tasks-page-size"
 							[ngModel]="table.atoms.pagination.get().pageSize"
 							(ngModelChange)="table.setPageSize($event); table.resetPageIndex()"
+							placeholder="{{ _availablePageSizes[0] }}"
+							size="sm"
+							class="mr-1 inline-flex h-8 w-fit"
 						>
-							<hlm-select-trigger size="sm" class="mr-1 inline-flex h-8 w-fit">
-								<hlm-select-value placeholder="{{ _availablePageSizes[0] }}" />
-							</hlm-select-trigger>
-							<hlm-select-content *hlmSelectPortal>
-								<hlm-select-group>
-									@for (size of _availablePageSizes; track size) {
-										<hlm-select-item [value]="size">
-											{{ size === 10000 ? 'All' : size }}
-										</hlm-select-item>
-									}
-								</hlm-select-group>
-							</hlm-select-content>
-						</hlm-select>
+							@for (size of _availablePageSizes; track size) {
+								<caps-select-option [value]="size">
+									{{ size === 10000 ? 'All' : size }}
+								</caps-select-option>
+							}
+						</caps-select>
 					</div>
-
-					<span hlmLabel>Page {{ table.atoms.pagination.get().pageIndex + 1 }} of {{ table.getPageCount() }}</span>
-
+					<span class="text-sm font-medium">
+						Page {{ table.atoms.pagination.get().pageIndex + 1 }} of {{ table.getPageCount() }}
+					</span>
 					<div class="flex space-x-1">
 						<button
 							size="icon-sm"
 							variant="outline"
-							hlmBtn
+							capsButton
 							[disabled]="!table.getCanPreviousPage()"
 							(click)="table.firstPage()"
 						>
@@ -297,7 +284,7 @@ const columns = columnHelper.columns([
 						<button
 							size="icon-sm"
 							variant="outline"
-							hlmBtn
+							capsButton
 							[disabled]="!table.getCanPreviousPage()"
 							(click)="table.previousPage()"
 						>
@@ -306,7 +293,7 @@ const columns = columnHelper.columns([
 						<button
 							size="icon-sm"
 							variant="outline"
-							hlmBtn
+							capsButton
 							[disabled]="!table.getCanNextPage()"
 							(click)="table.nextPage()"
 						>
@@ -315,7 +302,7 @@ const columns = columnHelper.columns([
 						<button
 							size="icon-sm"
 							variant="outline"
-							hlmBtn
+							capsButton
 							[disabled]="!table.getCanNextPage()"
 							(click)="table.lastPage()"
 						>

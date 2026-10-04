@@ -5,8 +5,8 @@ import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsSwitchImports } from '@capsule-ng/caps/switch';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 @Component({
 	selector: 'spartan-signal-form-complex-demo',
@@ -16,7 +16,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		CapsFieldImports,
 		CapsRadioGroupImports,
 		CapsCheckboxImports,
-		HlmSelectImports,
+		CapsSelectImports,
 		CapsSwitchImports,
 		CapsButtonImports,
 	],
@@ -51,20 +51,18 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						<caps-field-separator />
 						<caps-field>
 							<caps-field-label>Billing Period</caps-field-label>
-							<hlm-select [formField]="form.billingPeriod" [itemToString]="itemToString">
-								<hlm-select-trigger buttonId="billingPeriod" class="w-full">
-									<hlm-select-value placeholder="Select" />
-								</hlm-select-trigger>
-								<hlm-select-content *hlmSelectPortal>
-									<hlm-select-group>
-										@for (billingPeriod of billingPeriods; track $index) {
-											<hlm-select-item [value]="billingPeriod.value">
-												{{ billingPeriod.label }}
-											</hlm-select-item>
-										}
-									</hlm-select-group>
-								</hlm-select-content>
-							</hlm-select>
+							<caps-select
+								[formField]="form.billingPeriod"
+								[itemToString]="itemToString"
+								placeholder="Select"
+								class="w-full"
+							>
+								@for (billingPeriod of billingPeriods; track $index) {
+									<caps-select-option [value]="billingPeriod.value">
+										{{ billingPeriod.label }}
+									</caps-select-option>
+								}
+							</caps-select>
 							<caps-field-description>Choose how often you want to be billed.</caps-field-description>
 							@for (error of form.billingPeriod().errors(); track error) {
 								<caps-field-error [validator]="error.kind">
@@ -137,13 +135,11 @@ export class SignalFormComplexDemo {
 		addons: [],
 		emailNotifications: false,
 	});
-
 	public readonly form = form(this._model, (schemaPath) => {
 		required(schemaPath.plan, { message: 'Please select a subscription plan' });
 		required(schemaPath.billingPeriod, { message: 'Please select a billing period' });
 		minLength(schemaPath.addons, 1, { message: 'Please select at least one add-on' });
 	});
-
 	public plans = [
 		{
 			id: 'basic',
@@ -156,14 +152,11 @@ export class SignalFormComplexDemo {
 			description: 'For businesses with higher demands',
 		},
 	];
-
 	public billingPeriods = [
 		{ label: 'Monthly', value: 'monthly' },
 		{ label: 'Yearly', value: 'yearly' },
 	];
-
 	public itemToString = (value: string) => this.billingPeriods.find((period) => period.value === value)?.label ?? '';
-
 	public addons = [
 		{
 			id: 'analytics',
@@ -181,28 +174,22 @@ export class SignalFormComplexDemo {
 			description: '24/7 premium customer support',
 		},
 	];
-
 	async submit(event: Event) {
 		event.preventDefault();
-
 		// marks all fields as touched, revealing validation errors
 		submit(this.form, async () => {
 			const model = this._model();
-
 			console.log('You submitted the following values:', JSON.stringify(model, null, 2));
 		});
 	}
-
 	handleChange(checked: boolean, id: string) {
 		if (checked) {
 			this.form.addons().value.update((addons) => [...addons, id]);
 		} else {
 			this.form.addons().value.update((addons) => addons.filter((addonId) => addonId !== id));
 		}
-
 		this.form.addons().markAsTouched();
 	}
-
 	reset() {
 		this.form().reset({
 			plan: 'basic',
@@ -212,7 +199,6 @@ export class SignalFormComplexDemo {
 		});
 	}
 }
-
 export const signalFormsComplexDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, minLength, required, submit } from '@angular/forms/signals';
@@ -221,9 +207,8 @@ import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsSwitchImports } from '@capsule-ng/caps/switch';
-
 @Component({
 	selector: 'spartan-signal-form-complex-demo',
 	imports: [
@@ -232,7 +217,7 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 		CapsFieldImports,
 		CapsRadioGroupImports,
 		CapsCheckboxImports,
-		HlmSelectImports,
+		CapsSelectImports,
 		CapsSwitchImports,
 		CapsButtonImports,
 	],
@@ -267,20 +252,13 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 						<caps-field-separator />
 						<caps-field>
 							<caps-field-label>Billing Period</caps-field-label>
-							<hlm-select [formField]="form.billingPeriod" [itemToString]="itemToString">
-								<hlm-select-trigger buttonId="billingPeriod" class="w-full">
-									<hlm-select-value placeholder="Select" />
-								</hlm-select-trigger>
-								<hlm-select-content *hlmSelectPortal>
-									<hlm-select-group>
+							<caps-select [formField]="form.billingPeriod" [itemToString]="itemToString"   placeholder="Select"   class="w-full">
 										@for (billingPeriod of billingPeriods; track $index) {
-											<hlm-select-item [value]="billingPeriod.value">
+											<caps-select-option [value]="billingPeriod.value">
 												{{ billingPeriod.label }}
-											</hlm-select-item>
+											</caps-select-option>
 										}
-									</hlm-select-group>
-								</hlm-select-content>
-							</hlm-select>
+							</caps-select>
 							<caps-field-description>Choose how often you want to be billed.</caps-field-description>
 							@for (error of form.billingPeriod().errors(); track error) {
 								<caps-field-error [validator]="error.kind">
@@ -299,7 +277,6 @@ import { CapsSwitchImports } from '@capsule-ng/caps/switch';
 										[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 									>
 										<caps-checkbox
-
 											[forceInvalid]="form.addons().invalid() && form.addons().touched()"
 											[checked]="form.addons().value().includes(addon.id)"
 											(checkedChange)="handleChange($event, addon.id)"
@@ -354,13 +331,11 @@ export class SignalFormComplexDemo {
 		addons: [],
 		emailNotifications: false,
 	});
-
 	public readonly form = form(this._model, (schemaPath) => {
 		required(schemaPath.plan, { message: 'Please select a subscription plan' });
 		required(schemaPath.billingPeriod, { message: 'Please select a billing period' });
 		minLength(schemaPath.addons, 1, { message: 'Please select at least one add-on' });
 	});
-
 	public plans = [
 		{
 			id: 'basic',
@@ -373,14 +348,11 @@ export class SignalFormComplexDemo {
 			description: 'For businesses with higher demands',
 		},
 	];
-
 	public billingPeriods = [
 		{ label: 'Monthly', value: 'monthly' },
 		{ label: 'Yearly', value: 'yearly' },
 	];
-
 	public itemToString = (value: string) => this.billingPeriods.find((period) => period.value === value)?.label ?? '';
-
 	public addons = [
 		{
 			id: 'analytics',
@@ -398,28 +370,22 @@ export class SignalFormComplexDemo {
 			description: '24/7 premium customer support',
 		},
 	];
-
 	async submit(event: Event) {
 		event.preventDefault();
-
 		// marks all fields as touched, revealing validation errors
 		submit(this.form, async () => {
 			const model = this._model();
-
 			console.log('You submitted the following values:', JSON.stringify(model, null, 2));
 		});
 	}
-
 	handleChange(checked: boolean, id: string) {
 		if (checked) {
 			this.form.addons().value.update((addons) => [...addons, id]);
 		} else {
 			this.form.addons().value.update((addons) => addons.filter((addonId) => addonId !== id));
 		}
-
 		this.form.addons().markAsTouched();
 	}
-
 	reset() {
 		this.form().reset({
 			plan: 'basic',

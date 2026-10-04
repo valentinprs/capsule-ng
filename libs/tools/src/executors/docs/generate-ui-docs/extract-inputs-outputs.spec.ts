@@ -241,6 +241,20 @@ describe('extractInputsOutputs', () => {
 	});
 
 	describe('inheritance', () => {
+		it('hides internal bases while retaining their inherited public inputs', () => {
+			const result = extract({
+				'libs/brain/foo/src/lib/brn-foo.ts': `
+    import { Directive, input } from '@angular/core';
+    /** @internal */
+    @Directive()
+    export class InternalBase { readonly placeholder = input(''); }
+    @Directive({ selector: '[brnFoo]' })
+    export class BrnFoo extends InternalBase {}
+   `,
+			});
+			expect(result['InternalBase']).toBeUndefined();
+			expect(names(result['BrnFoo'].inputs)).toEqual(['placeholder']);
+		});
 		it('collects inputs, outputs and models across a multi-level extends chain', () => {
 			const result = extract({
 				'libs/brain/foo/src/lib/base.ts': `

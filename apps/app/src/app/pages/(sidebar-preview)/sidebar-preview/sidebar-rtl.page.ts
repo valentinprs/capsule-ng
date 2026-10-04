@@ -1,5 +1,6 @@
 import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideBadgeCheck,
@@ -28,9 +29,7 @@ import { TranslateService, Translations, type Language } from '@spartan-ng/app/a
 import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
-
 @Component({
 	selector: 'spartan-sidebar-rtl',
 	imports: [
@@ -40,7 +39,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 		RouterLink,
 		HlmAvatarImports,
 		HlmDropdownMenuImports,
-		HlmSelectImports,
+		CapsSelectImports,
 	],
 	providers: [
 		provideIcons({
@@ -148,7 +147,6 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 							</li>
 						</ul>
 					</hlm-sidebar-group>
-
 					<ng-template #projectMenu let-ctx>
 						<hlm-dropdown-menu class="w-48">
 							<hlm-dropdown-menu-group>
@@ -193,7 +191,6 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 							</button>
 						</li>
 					</ul>
-
 					<ng-template #avatarMenu>
 						<hlm-dropdown-menu class="min-w-56 rounded-lg">
 							<hlm-dropdown-menu-label>
@@ -242,21 +239,19 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 			<main hlmSidebarInset>
 				<header class="flex h-12 items-center justify-between gap-4 px-4">
 					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-
-					<hlm-select class="inline-block" [(value)]="_languageService.language" [itemToString]="itemToString">
-						<hlm-select-trigger class="w-52">
-							<hlm-select-value />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal [dir]="_dir()">
-							<hlm-select-group>
-								@for (language of languages; track language.value) {
-									<hlm-select-item [value]="language.value">
-										{{ language.label }}
-									</hlm-select-item>
-								}
-							</hlm-select-group>
-						</hlm-select-content>
-					</hlm-select>
+					<caps-select
+						aria-label="Preview language"
+						[(value)]="_languageService.language"
+						[itemToString]="itemToString"
+						[dir]="_dir()"
+						class="inline-block w-52"
+					>
+						@for (language of languages; track language.value) {
+							<caps-select-option [value]="language.value">
+								{{ language.label }}
+							</caps-select-option>
+						}
+					</caps-select>
 				</header>
 				<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
 					<div class="grid auto-rows-min gap-4 md:grid-cols-3">

@@ -1,15 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsCheckbox } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInput } from '@capsule-ng/caps/input';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsTextarea } from '@capsule-ng/caps/textarea';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
 @Component({
 	selector: 'spartan-field-demo',
-	imports: [CapsFieldImports, HlmSelectImports, CapsInput, CapsTextarea, CapsButton, CapsCheckbox],
+	imports: [CapsFieldImports, CapsSelectImports, CapsInput, CapsTextarea, CapsButton, CapsCheckbox],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-md rounded-lg border p-6 h-full',
@@ -20,7 +18,6 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<caps-field-set>
 					<caps-field-legend>Payment Method</caps-field-legend>
 					<caps-field-description>All transactions are secure and encrypted</caps-field-description>
-
 					<caps-field-group>
 						<caps-field>
 							<caps-field-label>Name on card</caps-field-label>
@@ -39,46 +36,32 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						</div>
 						<div class="grid grid-cols-2 gap-4">
 							<caps-field>
-								<caps-field-label for="field-exp-month">Month</caps-field-label>
-								<hlm-select class="inline-block">
-									<hlm-select-trigger class="w-full" buttonId="field-exp-month">
-										<hlm-select-value placeholder="MM" />
-									</hlm-select-trigger>
-									<hlm-select-content *hlmSelectPortal>
-										<hlm-select-group>
-											<hlm-select-item value="01">01</hlm-select-item>
-											<hlm-select-item value="02">02</hlm-select-item>
-											<hlm-select-item value="03">03</hlm-select-item>
-											<hlm-select-item value="04">04</hlm-select-item>
-											<hlm-select-item value="05">05</hlm-select-item>
-											<hlm-select-item value="06">06</hlm-select-item>
-											<hlm-select-item value="07">07</hlm-select-item>
-											<hlm-select-item value="08">08</hlm-select-item>
-											<hlm-select-item value="09">09</hlm-select-item>
-											<hlm-select-item value="10">10</hlm-select-item>
-											<hlm-select-item value="11">11</hlm-select-item>
-											<hlm-select-item value="12">12</hlm-select-item>
-										</hlm-select-group>
-									</hlm-select-content>
-								</hlm-select>
+								<caps-field-label>Month</caps-field-label>
+								<caps-select placeholder="MM" class="inline-block w-full">
+									<caps-select-option value="01">01</caps-select-option>
+									<caps-select-option value="02">02</caps-select-option>
+									<caps-select-option value="03">03</caps-select-option>
+									<caps-select-option value="04">04</caps-select-option>
+									<caps-select-option value="05">05</caps-select-option>
+									<caps-select-option value="06">06</caps-select-option>
+									<caps-select-option value="07">07</caps-select-option>
+									<caps-select-option value="08">08</caps-select-option>
+									<caps-select-option value="09">09</caps-select-option>
+									<caps-select-option value="10">10</caps-select-option>
+									<caps-select-option value="11">11</caps-select-option>
+									<caps-select-option value="12">12</caps-select-option>
+								</caps-select>
 							</caps-field>
 							<caps-field>
-								<caps-field-label for="field-exp-year">Year</caps-field-label>
-								<hlm-select class="inline-block">
-									<hlm-select-trigger class="w-full" buttonId="field-exp-year">
-										<hlm-select-value placeholder="YYYY" />
-									</hlm-select-trigger>
-									<hlm-select-content *hlmSelectPortal>
-										<hlm-select-group>
-											<hlm-select-item value="2024">2024</hlm-select-item>
-											<hlm-select-item value="2025">2025</hlm-select-item>
-											<hlm-select-item value="2026">2026</hlm-select-item>
-											<hlm-select-item value="2027">2027</hlm-select-item>
-											<hlm-select-item value="2028">2028</hlm-select-item>
-											<hlm-select-item value="2029">2029</hlm-select-item>
-										</hlm-select-group>
-									</hlm-select-content>
-								</hlm-select>
+								<caps-field-label>Year</caps-field-label>
+								<caps-select placeholder="YYYY" class="inline-block w-full">
+									<caps-select-option value="2024">2024</caps-select-option>
+									<caps-select-option value="2025">2025</caps-select-option>
+									<caps-select-option value="2026">2026</caps-select-option>
+									<caps-select-option value="2027">2027</caps-select-option>
+									<caps-select-option value="2028">2028</caps-select-option>
+									<caps-select-option value="2029">2029</caps-select-option>
+								</caps-select>
 							</caps-field>
 						</div>
 					</caps-field-group>

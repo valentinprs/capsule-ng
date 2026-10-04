@@ -22,7 +22,7 @@ import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 				<div class="flex justify-between gap-4">
 					<caps-avatar size="sm">
 						<img src="https://analogjs.org/img/logos/analog-logo.svg" alt="AnalogLogo" capsAvatarImage />
-						<caps-avatar-fallback class="bg-red-600 text-red-800">AN</caps-avatar-fallback>
+						<caps-avatar-fallback class="bg-muted text-foreground">AN</caps-avatar-fallback>
 					</caps-avatar>
 					<div class="space-y-1">
 						<h4 class="text-sm font-semibold">&#64;analogjs</h4>

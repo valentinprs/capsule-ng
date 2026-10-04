@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideMessageCircleDashed, lucideRotateCw } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { ANIMATION_SCRIPT, ScriptedChatRunner } from './message-scroller.shared';
 
@@ -56,15 +56,14 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 		className: 'motion-safe:animate-in motion-safe:fade-in motion-safe:zoom-in-95 duration-(--caps-duration-300)',
 	},
 ];
-
 @Component({
 	selector: 'spartan-message-scroller-animation-preview',
 	imports: [
 		HlmMessageScrollerImports,
 		HlmCardImports,
-		HlmButtonImports,
+		CapsButtonImports,
 		HlmEmptyImports,
-		HlmSelectImports,
+		CapsSelectImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
 	],
@@ -81,7 +80,7 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 					<p hlmCardDescription>Choose how user messages are animated when they are added to the conversation.</p>
 					<div hlmCardAction class="flex items-center gap-2">
 						<button
-							hlmBtn
+							capsButton
 							type="button"
 							variant="outline"
 							size="icon"
@@ -93,7 +92,6 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 						</button>
 					</div>
 				</hlm-card-header>
-
 				<div hlmCardContent class="min-h-0 flex-1 overflow-hidden p-0">
 					@if (_chat.messages().length === 0) {
 						<hlm-empty class="h-full">
@@ -132,21 +130,19 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 						</div>
 					}
 				</div>
-
 				<hlm-card-footer class="border-t">
-					<hlm-select [value]="_presetId()" (valueChange)="onPresetChange($event)" [itemToString]="_presetToString">
-						<hlm-select-trigger aria-label="Animation preset">
-							<hlm-select-value />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal>
-							@for (preset of _presets; track preset.id) {
-								<hlm-select-item [value]="preset.id">{{ preset.name }}</hlm-select-item>
-							}
-						</hlm-select-content>
-					</hlm-select>
-
+					<caps-select
+						[value]="_presetId()"
+						(valueChange)="onPresetChange($event)"
+						[itemToString]="_presetToString"
+						aria-label="Animation preset"
+					>
+						@for (preset of _presets; track preset.id) {
+							<caps-select-option [value]="preset.id">{{ preset.name }}</caps-select-option>
+						}
+					</caps-select>
 					<button
-						hlmBtn
+						capsButton
 						type="button"
 						size="icon"
 						class="ms-auto"
@@ -159,7 +155,6 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 				</hlm-card-footer>
 			</hlm-card>
 		</div>
-
 		<div class="text-muted-foreground mx-auto max-w-sm px-0.5 text-center text-xs text-balance">
 			Select an animation then click send to see it in action.
 		</div>

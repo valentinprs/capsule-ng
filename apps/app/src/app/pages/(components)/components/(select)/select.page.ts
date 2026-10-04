@@ -132,12 +132,12 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__placeholder" spartanH4>Placeholder</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlm-select-placeholder</code>
+				<code class="${hlmCode}">ng-template capsSelectPlaceholder</code>
 				to display a custom placeholder when no value is selected. If you only display a text as placeholder, you can
 				also use the
 				<code class="${hlmCode}">placeholder</code>
 				input on
-				<code class="${hlmCode}">hlm-select-value</code>
+				<code class="${hlmCode}">caps-select</code>
 				.
 			</p>
 

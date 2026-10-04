@@ -85,7 +85,6 @@ import { Component, input } from '@angular/core';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import { type ColumnDef, FlexRender, injectTable, type RowData } from '@tanstack/angular-table';
 import { features, type DataTableFeatures } from './data-table-features';
-
 @Component({
 	selector: 'app-data-table',
 	imports: [FlexRender, HlmTableImports],
@@ -149,7 +148,6 @@ import { Component, signal } from '@angular/core';
 import { columns } from './columns';
 import { DataTable } from './data-table';
 import { type Payment } from './payments';
-
 @Component({
 	selector: 'app-demo-page',
 	imports: [DataTable],
@@ -196,22 +194,20 @@ export const actionDropdownCode = `
 import { Component, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import type { Row } from '@tanstack/angular-table';
 import { type DataTableFeatures } from './data-table-features';
 import { type Payment } from './payments';
-
 @Component({
 	selector: 'app-action-dropdown',
-	imports: [HlmButtonImports, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsButtonImports, NgIcon, HlmDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: \`
-		<button hlmBtn size="icon-sm" variant="ghost" [hlmDropdownMenuTrigger]="ActionDropDownMenu">
+		<button capsButton size="icon-sm" variant="ghost" [hlmDropdownMenuTrigger]="ActionDropDownMenu">
 			<span class="sr-only">Open menu</span>
 			<ng-icon name="lucideEllipsis" />
 		</button>
-
 		<ng-template #ActionDropDownMenu>
 			<hlm-dropdown-menu>
 				<hlm-dropdown-menu-label>Actions</hlm-dropdown-menu-label>
@@ -247,19 +243,17 @@ export const columns = columnHelper.columns([
 `;
 
 export const paginationCode = `
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 @Component({
 	selector: 'app-data-table',
-	imports: [FlexRender, HlmButtonImports, HlmTableImports],
+	imports: [FlexRender, CapsButtonImports, HlmTableImports],
 	template: \`
 		<div class="overflow-hidden rounded-md border">
 			<!-- table -->
 		</div>
-
 		<div class="flex items-center justify-end space-x-2 py-4">
 			<button
-				hlmBtn
+				capsButton
 				variant="outline"
 				size="sm"
 				[disabled]="!table.getCanPreviousPage()"
@@ -267,7 +261,7 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 			>
 				Previous
 			</button>
-			<button hlmBtn variant="outline" size="sm" [disabled]="!table.getCanNextPage()" (click)="table.nextPage()">
+			<button capsButton variant="outline" size="sm" [disabled]="!table.getCanNextPage()" (click)="table.nextPage()">
 				Next
 			</button>
 		</div>
@@ -301,16 +295,15 @@ export const sortHeaderButtonCode = `
 import { Component, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUpDown } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { type Column } from '@tanstack/angular-table';
 import { type DataTableFeatures } from './data-table-features';
 import { type Payment } from './payments';
-
 @Component({
-	imports: [HlmButtonImports, NgIcon],
+	imports: [CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideArrowUpDown })],
 	template: \`
-		<button hlmBtn size="sm" variant="ghost" class="capitalize" (click)="sortClick()">
+		<button capsButton size="sm" variant="ghost" class="capitalize" (click)="sortClick()">
 			{{ column().id }}
 			<ng-icon name="lucideArrowUpDown" />
 		</button>
@@ -338,15 +331,14 @@ export const columns = columnHelper.columns([
 
 export const filteringCode = `
 import { Component, input, signal } from '@angular/core';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { type ColumnFiltersState, injectTable, isFunction } from '@tanstack/angular-table';
-
 @Component({
 	selector: 'app-data-table',
-	imports: [FlexRender, HlmButtonImports, HlmInputImports, HlmTableImports],
+	imports: [FlexRender, CapsButtonImports, CapsInputImports, HlmTableImports],
 	template: \`
 		<div class="flex items-center py-4">
-			<input hlmInput class="w-full md:w-80" placeholder="Filter emails..." (input)="filterChanged($event)" />
+			<input capsInput class="w-full md:w-80" placeholder="Filter emails..." (input)="filterChanged($event)" />
 		</div>
 		<div class="overflow-hidden rounded-md border">
 			<!-- table -->
@@ -379,16 +371,14 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { type ColumnVisibilityState, injectTable, isFunction } from '@tanstack/angular-table';
-
 @Component({
 	selector: 'app-data-table',
-	imports: [FlexRender, HlmButtonImports, HlmDropdownMenuImports, HlmInputImports, HlmTableImports, NgIcon],
+	imports: [FlexRender, CapsButtonImports, HlmDropdownMenuImports, CapsInputImports, HlmTableImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown })],
 	template: \`
 		<div class="flex items-center py-4">
 			<!-- filter input -->
-
-			<button hlmBtn variant="outline" align="end" class="ml-auto" [hlmDropdownMenuTrigger]="menu">
+			<button capsButton variant="outline" align="end" class="ml-auto" [hlmDropdownMenuTrigger]="menu">
 				Columns
 				<ng-icon name="lucideChevronDown" class="ml-2" />
 			</button>
@@ -437,7 +427,6 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 import { type Row, type Table } from '@tanstack/angular-table';
 import { type DataTableFeatures } from './data-table-features';
 import { type Payment } from './payments';
-
 @Component({
 	imports: [HlmCheckboxImports],
 	host: {
@@ -455,7 +444,6 @@ import { type Payment } from './payments';
 export class TableHeadSelection {
 	public readonly table = input.required<Table<DataTableFeatures, Payment>>();
 }
-
 @Component({
 	imports: [HlmCheckboxImports],
 	host: {
@@ -515,21 +503,20 @@ export const columnHeaderCode = `
 import { Component, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowDown, lucideArrowUp, lucideChevronsUpDown, lucideEyeOff } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { type Column } from '@tanstack/angular-table';
 import { type DataTableFeatures } from './data-table-features';
 import { type Payment } from './payments';
-
 @Component({
 	selector: 'app-data-table-column-header',
-	imports: [HlmButtonImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, HlmDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideArrowDown, lucideArrowUp, lucideChevronsUpDown, lucideEyeOff })],
 	template: \`
 		@if (column().getCanSort()) {
 			<div class="flex items-center gap-2">
 				<button
-					hlmBtn
+					capsButton
 					variant="ghost"
 					size="sm"
 					class="data-[state=open]:bg-accent -ml-3 h-8"
@@ -593,13 +580,12 @@ export const reusablePaginationCode = `
 import { Component, computed } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight, lucideChevronsLeft, lucideChevronsRight } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { injectTableContext } from '@tanstack/angular-table';
-
 @Component({
 	selector: 'app-data-table-pagination',
-	imports: [HlmButtonImports, HlmSelectImports, NgIcon],
+	imports: [CapsButtonImports, CapsSelectImports, NgIcon],
 	providers: [provideIcons({ lucideChevronLeft, lucideChevronRight, lucideChevronsLeft, lucideChevronsRight })],
 	template: \`
 		<div class="flex items-center justify-between px-2">
@@ -610,23 +596,19 @@ import { injectTableContext } from '@tanstack/angular-table';
 			<div class="flex items-center space-x-6 lg:space-x-8">
 				<div class="flex items-center space-x-2">
 					<p class="text-sm font-medium">Rows per page</p>
-					<hlm-select [value]="pagination().pageSize" (valueChange)="setPageSize($event)">
-						<hlm-select-trigger class="h-8 w-[70px]">
-							<hlm-select-value />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal>
+					<caps-select [value]="pagination().pageSize" (valueChange)="setPageSize($event)"     size="sm" class="w-[70px]" aria-label="Rows per page">
+
 							@for (pageSize of pageSizes; track pageSize) {
-								<hlm-select-item [value]="pageSize">{{ pageSize }}</hlm-select-item>
+								<caps-select-option [value]="pageSize">{{ pageSize }}</caps-select-option>
 							}
-						</hlm-select-content>
-					</hlm-select>
+					</caps-select>
 				</div>
 				<div class="flex w-[100px] items-center justify-center text-sm font-medium">
 					Page {{ pagination().pageIndex + 1 }} of {{ table().getPageCount() }}
 				</div>
 				<div class="flex items-center space-x-2">
 					<button
-						hlmBtn
+						capsButton
 						variant="outline"
 						size="icon"
 						class="hidden size-8 lg:flex"
@@ -637,7 +619,7 @@ import { injectTableContext } from '@tanstack/angular-table';
 						<ng-icon name="lucideChevronsLeft" />
 					</button>
 					<button
-						hlmBtn
+						capsButton
 						variant="outline"
 						size="icon"
 						class="size-8"
@@ -648,7 +630,7 @@ import { injectTableContext } from '@tanstack/angular-table';
 						<ng-icon name="lucideChevronLeft" />
 					</button>
 					<button
-						hlmBtn
+						capsButton
 						variant="outline"
 						size="icon"
 						class="size-8"
@@ -659,7 +641,7 @@ import { injectTableContext } from '@tanstack/angular-table';
 						<ng-icon name="lucideChevronRight" />
 					</button>
 					<button
-						hlmBtn
+						capsButton
 						variant="outline"
 						size="icon"
 						class="hidden size-8 lg:flex"
@@ -693,7 +675,6 @@ export class DataTablePagination {
 export const reusablePaginationUsageCode = `
 import { TanStackTable } from '@tanstack/angular-table';
 import { DataTablePagination } from './data-table-pagination';
-
 @Component({
 	selector: 'app-data-table',
 	imports: [DataTablePagination, FlexRender, HlmTableImports, TanStackTable],
@@ -701,7 +682,6 @@ import { DataTablePagination } from './data-table-pagination';
 		<div class="overflow-hidden rounded-md border">
 			<!-- table -->
 		</div>
-
 		<div class="py-4" [tanStackTable]="table">
 			<app-data-table-pagination />
 		</div>
@@ -716,17 +696,16 @@ export const viewOptionsCode = `
 import { Component, computed } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSettings2 } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { injectTableContext } from '@tanstack/angular-table';
-
 @Component({
 	selector: 'app-data-table-view-options',
-	imports: [HlmButtonImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, HlmDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideSettings2 })],
 	template: \`
 		<button
-			hlmBtn
+			capsButton
 			variant="outline"
 			size="sm"
 			class="ml-auto hidden h-8 lg:flex"

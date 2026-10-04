@@ -1,29 +1,28 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
-
+import { CapsNativeSelectImports } from '@capsule-ng/caps/native-select';
 @Component({
 	selector: 'spartan-native-select-groups-example',
-	imports: [HlmNativeSelectImports],
+	imports: [CapsNativeSelectImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-native-select>
-			<option hlmNativeSelectOption value="">Select department</option>
-			<optgroup hlmNativeSelectOptGroup label="Engineering">
-				<option hlmNativeSelectOption value="frontend">Frontend</option>
-				<option hlmNativeSelectOption value="backend">Backend</option>
-				<option hlmNativeSelectOption value="devops">DevOps</option>
+		<select capsNativeSelect aria-label="Fruit">
+			<option value="">Select department</option>
+			<optgroup label="Engineering">
+				<option value="frontend">Frontend</option>
+				<option value="backend">Backend</option>
+				<option value="devops">DevOps</option>
 			</optgroup>
-			<optgroup hlmNativeSelectOptGroup label="Sales">
-				<option hlmNativeSelectOption value="sales-rep">Sales Rep</option>
-				<option hlmNativeSelectOption value="account-manager">Account Manager</option>
-				<option hlmNativeSelectOption value="sales-director">Sales Director</option>
+			<optgroup label="Sales">
+				<option value="sales-rep">Sales Rep</option>
+				<option value="account-manager">Account Manager</option>
+				<option value="sales-director">Sales Director</option>
 			</optgroup>
-			<optgroup hlmNativeSelectOptGroup label="Operations">
-				<option hlmNativeSelectOption value="support">Support</option>
-				<option hlmNativeSelectOption value="product-manager">Product Manager</option>
-				<option hlmNativeSelectOption value="ops-manager">Ops Manager</option>
+			<optgroup label="Operations">
+				<option value="support">Support</option>
+				<option value="product-manager">Product Manager</option>
+				<option value="ops-manager">Ops Manager</option>
 			</optgroup>
-		</hlm-native-select>
+		</select>
 	`,
 })
 export class NativeSelectGroupsExample {}

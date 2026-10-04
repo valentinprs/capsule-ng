@@ -2,11 +2,10 @@ import { Component, computed, inject } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
 @Component({
 	selector: 'spartan-field-rtl',
 	imports: [
@@ -15,7 +14,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		CapsButtonImports,
 		CapsInputImports,
 		CapsFieldImports,
-		HlmSelectImports,
+		CapsSelectImports,
 	],
 	host: {
 		class: 'w-full max-w-md',
@@ -27,50 +26,39 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<caps-field-set>
 					<caps-field-legend>{{ _t()['paymentMethod'] }}</caps-field-legend>
 					<caps-field-description>{{ _t()['secureTransactions'] }}</caps-field-description>
-
 					<caps-field-group>
 						<caps-field>
-							<caps-field-label for="field-rtl-name-on-card">{{ _t()['nameOnCard'] }}</caps-field-label>
+							<caps-field-label>{{ _t()['nameOnCard'] }}</caps-field-label>
 							<input capsInput placeholder="John Doe" id="field-rtl-name-on-card" />
 						</caps-field>
 						<caps-field class="col-span-2">
-							<caps-field-label for="field-rtl-card-number">{{ _t()['cardNumber'] }}</caps-field-label>
+							<caps-field-label>{{ _t()['cardNumber'] }}</caps-field-label>
 							<input capsInput placeholder="1234 1234 1234 1234" id="field-rtl-card-number" />
 							<caps-field-description>{{ _t()['cardNumberDescription'] }}</caps-field-description>
 						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
 							<caps-field>
-								<caps-field-label for="field-rtl-exp-month--trigger">{{ _t()['month'] }}</caps-field-label>
-								<hlm-select id="field-rtl-exp-month" class="inline-block" [itemToString]="_monthToString">
-									<hlm-select-trigger buttonId="field-rtl-exp-month--trigger" class="w-full">
-										<hlm-select-value />
-									</hlm-select-trigger>
-									<hlm-select-content *hlmSelectPortal>
-										<hlm-select-group>
-											@for (month of _months(); track month.value) {
-												<hlm-select-item [value]="month.value">{{ month.label }}</hlm-select-item>
-											}
-										</hlm-select-group>
-									</hlm-select-content>
-								</hlm-select>
+								<caps-field-label>{{ _t()['month'] }}</caps-field-label>
+								<caps-select
+									[itemToString]="_monthToString"
+									id="field-rtl-exp-month--trigger"
+									class="inline-block w-full"
+								>
+									@for (month of _months(); track month.value) {
+										<caps-select-option [value]="month.value">{{ month.label }}</caps-select-option>
+									}
+								</caps-select>
 							</caps-field>
 							<caps-field>
-								<caps-field-label for="field-rtl-exp-year--trigger">{{ _t()['year'] }}</caps-field-label>
-								<hlm-select id="field-rtl-exp-year" class="inline-block">
-									<hlm-select-trigger buttonId="field-rtl-exp-year--trigger" class="w-full">
-										<hlm-select-value />
-									</hlm-select-trigger>
-									<hlm-select-content *hlmSelectPortal>
-										<hlm-select-group>
-											@for (year of years; track year.value) {
-												<hlm-select-item [value]="year.value">{{ year.label }}</hlm-select-item>
-											}
-										</hlm-select-group>
-									</hlm-select-content>
-								</hlm-select>
+								<caps-field-label>{{ _t()['year'] }}</caps-field-label>
+								<caps-select id="field-rtl-exp-year--trigger" class="inline-block w-full">
+									@for (year of years; track year.value) {
+										<caps-select-option [value]="year.value">{{ year.label }}</caps-select-option>
+									}
+								</caps-select>
 							</caps-field>
 							<caps-field>
-								<caps-field-label for="field-rtl-cvv">{{ _t()['cvv'] }}</caps-field-label>
+								<caps-field-label>{{ _t()['cvv'] }}</caps-field-label>
 								<input capsInput placeholder="123" id="field-rtl-cvv" />
 							</caps-field>
 						</div>
@@ -83,14 +71,14 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					<caps-field-group>
 						<caps-field orientation="horizontal">
 							<hlm-checkbox inputId="field-rtl-billing-address" [checked]="true" />
-							<caps-field-label for="field-rtl-billing-address">{{ _t()['sameAsShipping'] }}</caps-field-label>
+							<caps-field-label>{{ _t()['sameAsShipping'] }}</caps-field-label>
 						</caps-field>
 					</caps-field-group>
 				</caps-field-set>
 				<caps-field-set>
 					<caps-field-group>
 						<caps-field>
-							<caps-field-label for="field-rtl-comments">{{ _t()['comments'] }}</caps-field-label>
+							<caps-field-label>{{ _t()['comments'] }}</caps-field-label>
 							<textarea
 								capsTextarea
 								class="resize-none"
@@ -100,10 +88,8 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 						</caps-field>
 					</caps-field-group>
 				</caps-field-set>
-				<caps-field orientation="horizontal">
-					<button capsButton>{{ _t()['submit'] }}</button>
-					<button capsButton variant="outline">{{ _t()['cancel'] }}</button>
-				</caps-field>
+				<button capsButton>{{ _t()['submit'] }}</button>
+				<button capsButton variant="outline">{{ _t()['cancel'] }}</button>
 			</caps-field-group>
 		</form>
 	`,

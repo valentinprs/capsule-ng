@@ -35,4 +35,18 @@ describe('Capsule public CSS foundations', () => {
 		expect(preset).toContain('--caps-focus-ring-width');
 		expect(preset).not.toMatch(/(?:10px|12px|0\.8rem|opacity-50|ring-3)/);
 	});
+	it('styles select validation through the shared error matcher rather than pristine aria-invalid', () => {
+		const css = postcss.parse(read('libs/caps/caps-preset.css'));
+		const rules: string[] = [];
+		css.walkRules('.caps-select-trigger', (rule) => {
+			rule.walkAtRules('apply', (atRule) => {
+				rules.push(atRule.params);
+			});
+		});
+		expect(rules.join(' ')).toContain('data-[matches-spartan-invalid=true]:border-destructive');
+		expect(rules.join(' ')).not.toContain('aria-invalid:border-destructive');
+		expect(read('libs/caps/caps-preset.css')).toContain(
+			".caps-field[data-matches-spartan-invalid='true'] .caps-select-trigger",
+		);
+	});
 });

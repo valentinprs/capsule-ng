@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, required, submit, validate } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
 @Component({
 	selector: 'spartan-signal-form-select-demo',
-	imports: [FormField, HlmCardImports, HlmFieldImports, HlmSelectImports, HlmButtonImports],
+	imports: [FormField, HlmCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: `
@@ -18,43 +17,33 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form novalidate id="form-select-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<hlm-field orientation="responsive">
-							<hlm-field-content>
-								<label hlmFieldLabel for="language">Spoken Language</label>
-								<hlm-field-description>For best results, select the language you speak.</hlm-field-description>
-
+					<caps-field-group>
+						<caps-field orientation="responsive">
+							<caps-field-content>
+								<caps-field-label>Spoken Language</caps-field-label>
+								<caps-field-description>For best results, select the language you speak.</caps-field-description>
 								@for (error of form.language().errors(); track error) {
-									<hlm-field-error [validator]="error.kind">
+									<caps-field-error [validator]="error.kind">
 										{{ error.message }}
-									</hlm-field-error>
+									</caps-field-error>
 								}
-							</hlm-field-content>
-							<hlm-select [formField]="form.language" [itemToString]="itemToString">
-								<hlm-select-trigger buttonId="language">
-									<hlm-select-value placeholder="Select" />
-								</hlm-select-trigger>
-								<hlm-select-content *hlmSelectPortal>
-									<hlm-select-group>
-										<hlm-select-item value="auto">Auto</hlm-select-item>
-										<div hlmSelectSeparator></div>
-										@for (language of spokenLanguages; track $index) {
-											<hlm-select-item [value]="language.value">
-												{{ language.label }}
-											</hlm-select-item>
-										}
-									</hlm-select-group>
-								</hlm-select-content>
-							</hlm-select>
-						</hlm-field>
-					</hlm-field-group>
+							</caps-field-content>
+							<caps-select [formField]="form.language" [itemToString]="itemToString" placeholder="Select" id="language">
+								<caps-select-option value="auto">Auto</caps-select-option>
+								<caps-select-separator />
+								@for (language of spokenLanguages; track $index) {
+									<caps-select-option [value]="language.value">
+										{{ language.label }}
+									</caps-select-option>
+								}
+							</caps-select>
+						</caps-field>
+					</caps-field-group>
 				</form>
 			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-select-demo">Submit</button>
-				</hlm-field>
+			<hlm-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+				<button capsButton type="submit" form="form-select-demo">Submit</button>
 			</hlm-card-footer>
 		</hlm-card>
 	`,
@@ -118,14 +107,13 @@ export class SignalFormSelectDemo {
 export const signalFormsSelectDemoCode = `
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, required, submit, validate } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 @Component({
 	selector: 'spartan-signal-form-select-demo',
-	imports: [FormField, HlmCardImports, HlmFieldImports, HlmSelectImports, HlmButtonImports],
+	imports: [FormField, HlmCardImports, CapsFieldImports, CapsSelectImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full sm:max-w-md' },
 	template: \`
@@ -136,43 +124,34 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 			</hlm-card-header>
 			<div hlmCardContent>
 				<form novalidate id="form-select-demo" (submit)="submit($event)">
-					<hlm-field-group>
-						<hlm-field orientation="responsive">
-							<hlm-field-content>
-								<label hlmFieldLabel for="language">Spoken Language</label>
-								<hlm-field-description>For best results, select the language you speak.</hlm-field-description>
-
+					<caps-field-group>
+						<caps-field orientation="responsive">
+							<caps-field-content>
+								<caps-field-label>Spoken Language</caps-field-label>
+								<caps-field-description>For best results, select the language you speak.</caps-field-description>
 								@for (error of form.language().errors(); track error) {
-									<hlm-field-error [validator]="error.kind">
+									<caps-field-error [validator]="error.kind">
 										{{ error.message }}
-									</hlm-field-error>
+									</caps-field-error>
 								}
-							</hlm-field-content>
-							<hlm-select [formField]="form.language" [itemToString]="itemToString">
-								<hlm-select-trigger buttonId="language">
-									<hlm-select-value placeholder="Select" />
-								</hlm-select-trigger>
-								<hlm-select-content *hlmSelectPortal>
-									<hlm-select-group>
-										<hlm-select-item value="auto">Auto</hlm-select-item>
-										<div hlmSelectSeparator></div>
+							</caps-field-content>
+							<caps-select [formField]="form.language" [itemToString]="itemToString"   placeholder="Select"   id="language">
+
+										<caps-select-option value="auto">Auto</caps-select-option>
+										<caps-select-separator />
 										@for (language of spokenLanguages; track $index) {
-											<hlm-select-item [value]="language.value">
+											<caps-select-option [value]="language.value">
 												{{ language.label }}
-											</hlm-select-item>
+											</caps-select-option>
 										}
-									</hlm-select-group>
-								</hlm-select-content>
-							</hlm-select>
-						</hlm-field>
-					</hlm-field-group>
+							</caps-select>
+						</caps-field>
+					</caps-field-group>
 				</form>
 			</div>
-			<hlm-card-footer>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn variant="outline" type="button" (click)="reset()">Reset</button>
-					<button hlmBtn type="submit" form="form-select-demo">Submit</button>
-				</hlm-field>
+			<hlm-card-footer class="gap-2">
+				<button capsButton variant="outline" type="button" (click)="reset()">Reset</button>
+					<button capsButton type="submit" form="form-select-demo">Submit</button>
 			</hlm-card-footer>
 		</hlm-card>
 	\`,

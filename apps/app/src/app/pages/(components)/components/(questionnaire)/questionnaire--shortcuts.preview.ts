@@ -1,16 +1,15 @@
 import { ChangeDetectionStrategy, Component, computed, ElementRef, signal, viewChild } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
 import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { answerLabel, type QuestionnaireShortcutMode } from './questionnaire.shared';
 
 type ShortcutSelectValue = 'none' | 'letters' | 'numbers';
-
 @Component({
 	selector: 'spartan-questionnaire-shortcuts-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports, HlmSelectImports],
+	imports: [FormRoot, FormField, HlmQuestionnaireImports, CapsSelectImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex min-h-[350px] w-full flex-1 self-stretch justify-center py-6',
@@ -20,24 +19,18 @@ type ShortcutSelectValue = 'none' | 'letters' | 'numbers';
 	template: `
 		<div class="relative mx-auto flex h-full min-h-[300px] w-full max-w-md flex-col">
 			<label class="sr-only" for="questionnaire-shortcut-style">Shortcut style</label>
-			<hlm-select
-				class="absolute end-0 top-0 z-(--caps-z-10)"
+			<caps-select
 				[value]="shortcutsSelectValue()"
 				[itemToString]="shortcutLabel"
 				(valueChange)="onShortcutsChange($event)"
+				placeholder="Shortcuts"
+				id="questionnaire-shortcut-style"
+				class="absolute end-0 top-0 z-(--caps-z-10) w-36"
 			>
-				<hlm-select-trigger class="w-36" buttonId="questionnaire-shortcut-style">
-					<hlm-select-value placeholder="Shortcuts" />
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						@for (option of shortcutOptions; track option.value) {
-							<hlm-select-item [value]="option.value">{{ option.label }}</hlm-select-item>
-						}
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select>
-
+				@for (option of shortcutOptions; track option.value) {
+					<caps-select-option [value]="option.value">{{ option.label }}</caps-select-option>
+				}
+			</caps-select>
 			<form
 				#questionnaireForm
 				hlmQuestionnaire
@@ -57,7 +50,6 @@ type ShortcutSelectValue = 'none' | 'letters' | 'numbers';
 					</div>
 					<p hlmQuestionnaireError></p>
 				</fieldset>
-
 				<div hlmQuestionnaireActions>
 					<button hlmQuestionnaireSubmit>Confirm action</button>
 				</div>

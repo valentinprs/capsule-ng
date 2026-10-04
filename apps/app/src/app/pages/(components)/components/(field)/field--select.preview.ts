@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 @Component({
 	selector: 'spartan-field-select-preview',
-	imports: [CapsFieldImports, HlmSelectImports],
+	imports: [CapsFieldImports, CapsSelectImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
@@ -12,21 +11,19 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		<caps-field-set>
 			<caps-field-group>
 				<caps-field>
-					<caps-field-label for="field-select-department">Department</caps-field-label>
-					<hlm-select [itemToString]="itemToString">
-						<hlm-select-trigger class="w-full" buttonId="field-select-department">
-							<hlm-select-value placeholder="Choose a department" />
-						</hlm-select-trigger>
-						<hlm-select-content *hlmSelectPortal>
-							<hlm-select-group>
-								@for (department of departments; track department.value) {
-									<hlm-select-item [value]="department.value">
-										{{ department.label }}
-									</hlm-select-item>
-								}
-							</hlm-select-group>
-						</hlm-select-content>
-					</hlm-select>
+					<caps-field-label>Department</caps-field-label>
+					<caps-select
+						[itemToString]="itemToString"
+						placeholder="Choose a department"
+						class="w-full"
+						id="field-select-department"
+					>
+						@for (department of departments; track department.value) {
+							<caps-select-option [value]="department.value">
+								{{ department.label }}
+							</caps-select-option>
+						}
+					</caps-select>
 					<caps-field-description>Select your department or area of work.</caps-field-description>
 				</caps-field>
 			</caps-field-group>

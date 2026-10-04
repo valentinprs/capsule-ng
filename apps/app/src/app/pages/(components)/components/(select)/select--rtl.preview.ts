@@ -1,31 +1,30 @@
 import { Component, computed, inject } from '@angular/core';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
 @Component({
 	selector: 'spartan-select-rtl',
-	imports: [HlmSelectImports],
+	imports: [CapsSelectImports],
 	template: `
-		<hlm-select [attr.dir]="_dir()" [itemToString]="itemToString">
-			<hlm-select-trigger class="w-32">
-				<hlm-select-value [placeholder]="_t()['selectFruit']" />
-			</hlm-select-trigger>
-			<hlm-select-content *hlmSelectPortal [attr.dir]="_dir()">
-				<hlm-select-group>
-					<hlm-select-label>{{ _t()['fruits'] }}</hlm-select-label>
-					@for (fruit of _fruits(); track fruit.value) {
-						<hlm-select-item [value]="fruit.value">{{ fruit.label }}</hlm-select-item>
-					}
-				</hlm-select-group>
-				<hlm-select-separator />
-				<hlm-select-group>
-					<hlm-select-label>{{ _t()['vegetables'] }}</hlm-select-label>
-					@for (vegetable of _vegetables(); track vegetable.value) {
-						<hlm-select-item [value]="vegetable.value">{{ vegetable.label }}</hlm-select-item>
-					}
-				</hlm-select-group>
-			</hlm-select-content>
-		</hlm-select>
+		<caps-select
+			aria-label="Fruit"
+			[attr.dir]="_dir()"
+			[itemToString]="itemToString"
+			[placeholder]="_t()['selectFruit']"
+			class="w-32"
+			[dir]="_dir()"
+		>
+			<caps-select-group label="{{ _t()['fruits'] }}">
+				@for (fruit of _fruits(); track fruit.value) {
+					<caps-select-option [value]="fruit.value">{{ fruit.label }}</caps-select-option>
+				}
+			</caps-select-group>
+			<caps-select-separator />
+			<caps-select-group label="{{ _t()['vegetables'] }}">
+				@for (vegetable of _vegetables(); track vegetable.value) {
+					<caps-select-option [value]="vegetable.value">{{ vegetable.label }}</caps-select-option>
+				}
+			</caps-select-group>
+		</caps-select>
 	`,
 })
 export class SelectRtlPreview {

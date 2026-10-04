@@ -1,32 +1,31 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
-
+import { CapsNativeSelectImports } from '@capsule-ng/caps/native-select';
 @Component({
 	selector: 'spartan-native-select-preview',
-	imports: [HlmNativeSelectImports],
+	imports: [CapsNativeSelectImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-native-select>
-			<option hlmNativeSelectOption value="">Select status</option>
-			<option hlmNativeSelectOption value="todo">Todo</option>
-			<option hlmNativeSelectOption value="in-progress">In Progress</option>
-			<option hlmNativeSelectOption value="done">Done</option>
-			<option hlmNativeSelectOption value="cancelled">Cancelled</option>
-		</hlm-native-select>
+		<select capsNativeSelect aria-label="Status">
+			<option value="">Select status</option>
+			<option value="todo">Todo</option>
+			<option value="in-progress">In Progress</option>
+			<option value="done">Done</option>
+			<option value="cancelled">Cancelled</option>
+		</select>
 	`,
 })
 export class NativeSelectPreview {}
 
 export const defaultImports = `
-import { HlmNativeSelectImports } from '@spartan-ng/helm/native-select';
+import { CapsNativeSelectImports } from '@capsule-ng/caps/native-select';
 `;
 
 export const defaultSkeleton = `
-<hlm-native-select>
-  <option hlmNativeSelectOption value="">Select a fruit</option>
-  <option hlmNativeSelectOption value="apple">Apple</option>
-  <option hlmNativeSelectOption value="banana">Banana</option>
-  <option hlmNativeSelectOption value="blueberry">Blueberry</option>
-  <option hlmNativeSelectOption value="pineapple">Pineapple</option>
-</hlm-native-select>
+<select capsNativeSelect aria-label="Status">
+  <option value="">Select a fruit</option>
+  <option value="apple">Apple</option>
+  <option value="banana">Banana</option>
+  <option value="blueberry">Blueberry</option>
+  <option value="pineapple">Pineapple</option>
+</select>
 `;

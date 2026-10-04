@@ -1,9 +1,9 @@
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsLabel } from '@capsule-ng/caps/label';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmCard, HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -13,7 +13,7 @@ const meta: Meta<HlmCard> = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmCardImports, CapsLabel, CapsInput, CapsButton, HlmBadge, HlmSelectImports],
+			imports: [HlmCardImports, CapsLabel, CapsInput, CapsButton, HlmBadge, CapsSelectImports],
 		}),
 	],
 };
@@ -36,18 +36,12 @@ export const Default: Story = {
        <input class='w-full mt-1.5' placeholder='Name of your project' capsInput>
        </label>
        <label class='block my-4' capsLabel>Framework
-       <hlm-select class="inline-block w-full mt-1.5">
-            <hlm-select-trigger class="w-full">
-                <hlm-select-value placeholder="Select an option" />
-            </hlm-select-trigger>
-            <hlm-select-content *hlmSelectPortal>
-              <hlm-select-group>
-                <hlm-select-item value="Angular">Angular</hlm-select-item>
-                <hlm-select-item value="React">React</hlm-select-item>
-                <hlm-select-item value="Vue">Vue</hlm-select-item>
-              </hlm-select-group>
-            </hlm-select-content>
-        </hlm-select>
+       <caps-select aria-label="Project framework"    placeholder="Select an option"    class="inline-block w-full mt-1.5 w-full">
+
+                <caps-select-option value="Angular">Angular</caps-select-option>
+                <caps-select-option value="React">React</caps-select-option>
+                <caps-select-option value="Vue">Vue</caps-select-option>
+        </caps-select>
        </label>
       </p>
       <div hlmCardFooter class='justify-between'>

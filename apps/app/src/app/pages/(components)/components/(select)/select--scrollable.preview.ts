@@ -1,25 +1,24 @@
 import { Component } from '@angular/core';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 @Component({
 	selector: 'spartan-select-scrollable-preview',
-	imports: [HlmSelectImports],
+	imports: [CapsSelectImports],
 	template: `
-		<hlm-select [itemToString]="itemToString">
-			<hlm-select-trigger class="w-80">
-				<hlm-select-value placeholder="Select a time zone" />
-			</hlm-select-trigger>
-			<hlm-select-content *hlmSelectPortal showScroll class="max-h-96">
-				@for (timezone of timezones; track $index) {
-					<hlm-select-group>
-						<hlm-select-label>{{ timezone.group }}</hlm-select-label>
-						@for (option of timezone.options; track $index) {
-							<hlm-select-item [value]="option.value">{{ option.label }}</hlm-select-item>
-						}
-					</hlm-select-group>
-				}
-			</hlm-select-content>
-		</hlm-select>
+		<caps-select
+			aria-label="Time zone"
+			[itemToString]="itemToString"
+			placeholder="Select a time zone"
+			class="w-80"
+			panelClass="max-h-96"
+		>
+			@for (timezone of timezones; track $index) {
+				<caps-select-group label="{{ timezone.group }}">
+					@for (option of timezone.options; track $index) {
+						<caps-select-option [value]="option.value">{{ option.label }}</caps-select-option>
+					}
+				</caps-select-group>
+			}
+		</caps-select>
 	`,
 })
 export class SelectScrollablePreview {

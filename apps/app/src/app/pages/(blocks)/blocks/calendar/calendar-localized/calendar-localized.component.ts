@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject, Injectable, OnInit, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import {
 	BrnCalendarI18nService,
 	injectBrnCalendarI18n,
 	MonthLabels,
 	provideBrnCalendarI18n,
 } from '@spartan-ng/brain/calendar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCalendar } from '@spartan-ng/helm/calendar';
 import { HlmCardImports } from '@spartan-ng/helm/card';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
 
 const localizedStrings = {
 	vi: {
@@ -83,7 +83,6 @@ const timeSlots: string[] = Array.from({ length: 37 }, (_, i) => {
 
 	return `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
 });
-
 @Injectable({ providedIn: 'root' })
 export class LanguageService {
 	public language = signal<'en' | 'vi' | 'de'>('vi');
@@ -92,10 +91,9 @@ export class LanguageService {
 		this.language.set(lang);
 	}
 }
-
 @Component({
 	selector: 'spartan-calendar-localized',
-	imports: [HlmCalendar, HlmSelectImports, HlmCardImports, HlmButtonImports],
+	imports: [HlmCalendar, CapsSelectImports, HlmCardImports, CapsButtonImports],
 	providers: [provideBrnCalendarI18n(CALENDAR_I18N.vi)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -106,30 +104,19 @@ export class LanguageService {
 			<div hlmCardHeader>
 				<h3 hlmCardTitle>{{ _strings[lang].title }}</h3>
 				<p hlmCardDescription>{{ _strings[lang].description }}</p>
-
 				<div hlmCardAction>
-					<hlm-select [value]="lang" (valueChange)="setLang($event)">
-						<hlm-select-trigger>
-							<hlm-select-value />
-						</hlm-select-trigger>
-
-						<hlm-select-content *hlmSelectPortal>
-							<hlm-select-group>
-								@for (l of _supportedLanguages; track l) {
-									<hlm-select-item [value]="l">{{ l }}</hlm-select-item>
-								}
-							</hlm-select-group>
-						</hlm-select-content>
-					</hlm-select>
+					<caps-select aria-label="Calendar language" [value]="lang" (valueChange)="setLang($event)">
+						@for (l of _supportedLanguages; track l) {
+							<caps-select-option [value]="l">{{ l }}</caps-select-option>
+						}
+					</caps-select>
 				</div>
 			</div>
-
 			<div hlmCardContent class="flex flex-row gap-3 px-6">
 				<hlm-calendar class="h-80" />
-
 				<div class="no-scrollbar flex h-80 scroll-pb-6 flex-col gap-2 overflow-y-auto">
 					@for (time of _timeSlots; track time) {
-						<button hlmBtn class="w-full shadow-none">
+						<button capsButton class="w-full shadow-none">
 							{{ time }}
 						</button>
 					}

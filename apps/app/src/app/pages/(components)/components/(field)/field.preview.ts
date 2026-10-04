@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
 @Component({
 	selector: 'spartan-field-preview',
 	imports: [
@@ -14,7 +13,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		CapsButtonImports,
 		CapsInputImports,
 		CapsFieldImports,
-		HlmSelectImports,
+		CapsSelectImports,
 	],
 	host: {
 		class: 'w-full max-w-md',
@@ -25,62 +24,47 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 				<caps-field-set>
 					<caps-field-legend>Payment Method</caps-field-legend>
 					<caps-field-description>All transactions are secure and encrypted</caps-field-description>
-
 					<caps-field-group>
 						<caps-field>
-							<caps-field-label for="field-preview-name-on-card">Name on card</caps-field-label>
+							<caps-field-label>Name on card</caps-field-label>
 							<input capsInput placeholder="John Doe" id="field-preview-name-on-card" />
 						</caps-field>
 						<caps-field class="col-span-2">
-							<caps-field-label for="field-preview-card-number">Card number</caps-field-label>
+							<caps-field-label>Card number</caps-field-label>
 							<input capsInput placeholder="1234 1234 1234 1234" id="field-preview-card-number" />
 							<caps-field-description>Enter your 16-digit card number</caps-field-description>
 						</caps-field>
 						<div class="grid grid-cols-3 gap-4">
 							<caps-field>
-								<caps-field-label for="field-exp-month--trigger">Month</caps-field-label>
-								<hlm-select id="field-exp-month" class="inline-block">
-									<hlm-select-trigger buttonId="field-exp-month--trigger" class="w-full">
-										<hlm-select-value />
-									</hlm-select-trigger>
-									<hlm-select-content *hlmSelectPortal>
-										<hlm-select-group>
-											<hlm-select-item value="01">01</hlm-select-item>
-											<hlm-select-item value="02">02</hlm-select-item>
-											<hlm-select-item value="03">03</hlm-select-item>
-											<hlm-select-item value="04">04</hlm-select-item>
-											<hlm-select-item value="05">05</hlm-select-item>
-											<hlm-select-item value="06">06</hlm-select-item>
-											<hlm-select-item value="07">07</hlm-select-item>
-											<hlm-select-item value="08">08</hlm-select-item>
-											<hlm-select-item value="09">09</hlm-select-item>
-											<hlm-select-item value="10">10</hlm-select-item>
-											<hlm-select-item value="11">11</hlm-select-item>
-											<hlm-select-item value="12">12</hlm-select-item>
-										</hlm-select-group>
-									</hlm-select-content>
-								</hlm-select>
+								<caps-field-label>Month</caps-field-label>
+								<caps-select id="field-exp-month--trigger" class="inline-block w-full">
+									<caps-select-option value="01">01</caps-select-option>
+									<caps-select-option value="02">02</caps-select-option>
+									<caps-select-option value="03">03</caps-select-option>
+									<caps-select-option value="04">04</caps-select-option>
+									<caps-select-option value="05">05</caps-select-option>
+									<caps-select-option value="06">06</caps-select-option>
+									<caps-select-option value="07">07</caps-select-option>
+									<caps-select-option value="08">08</caps-select-option>
+									<caps-select-option value="09">09</caps-select-option>
+									<caps-select-option value="10">10</caps-select-option>
+									<caps-select-option value="11">11</caps-select-option>
+									<caps-select-option value="12">12</caps-select-option>
+								</caps-select>
 							</caps-field>
 							<caps-field>
-								<caps-field-label for="field-exp-year--trigger">Year</caps-field-label>
-								<hlm-select id="field-exp-year" class="inline-block">
-									<hlm-select-trigger buttonId="field-exp-year--trigger" class="w-full">
-										<hlm-select-value placeholder="YYYY" />
-									</hlm-select-trigger>
-									<hlm-select-content *hlmSelectPortal>
-										<hlm-select-group>
-											<hlm-select-item value="2024">2024</hlm-select-item>
-											<hlm-select-item value="2025">2025</hlm-select-item>
-											<hlm-select-item value="2026">2026</hlm-select-item>
-											<hlm-select-item value="2027">2027</hlm-select-item>
-											<hlm-select-item value="2028">2028</hlm-select-item>
-											<hlm-select-item value="2029">2029</hlm-select-item>
-										</hlm-select-group>
-									</hlm-select-content>
-								</hlm-select>
+								<caps-field-label>Year</caps-field-label>
+								<caps-select placeholder="YYYY" id="field-exp-year--trigger" class="inline-block w-full">
+									<caps-select-option value="2024">2024</caps-select-option>
+									<caps-select-option value="2025">2025</caps-select-option>
+									<caps-select-option value="2026">2026</caps-select-option>
+									<caps-select-option value="2027">2027</caps-select-option>
+									<caps-select-option value="2028">2028</caps-select-option>
+									<caps-select-option value="2029">2029</caps-select-option>
+								</caps-select>
 							</caps-field>
 							<caps-field>
-								<caps-field-label for="field-preview-cvv">CVV</caps-field-label>
+								<caps-field-label>CVV</caps-field-label>
 								<input capsInput placeholder="123" id="field-preview-cvv" />
 							</caps-field>
 						</div>
@@ -93,22 +77,20 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 					<caps-field-group>
 						<caps-field orientation="horizontal">
 							<hlm-checkbox inputId="field-preview-billing-address" [checked]="true" />
-							<caps-field-label for="field-preview-billing-address">Same as shipping address.</caps-field-label>
+							<caps-field-label>Same as shipping address.</caps-field-label>
 						</caps-field>
 					</caps-field-group>
 				</caps-field-set>
 				<caps-field-set>
 					<caps-field-group>
 						<caps-field>
-							<caps-field-label for="field-preview-comments">Comments</caps-field-label>
+							<caps-field-label>Comments</caps-field-label>
 							<textarea capsTextarea class="resize-none" id="field-preview-comments"></textarea>
 						</caps-field>
 					</caps-field-group>
 				</caps-field-set>
-				<caps-field orientation="horizontal">
-					<button capsButton>Submit</button>
-					<button capsButton variant="outline">Cancel</button>
-				</caps-field>
+				<button capsButton>Submit</button>
+				<button capsButton variant="outline">Cancel</button>
 			</caps-field-group>
 		</form>
 	`,
@@ -125,12 +107,12 @@ export const defaultSkeleton = `
     <caps-field-description>This appears on invoices and emails.</caps-field-description>
     <caps-field-group>
         <caps-field>
-            <caps-field-label for="field-preview-fullname">Full name</caps-field-label>
+            <caps-field-label>Full name</caps-field-label>
             <input capsInput id="field-preview-fullname" type="text" placeholder="John Doe" />
             <caps-field-description>This appears on invoices and emails.</caps-field-description>
         </caps-field>
         <caps-field>
-            <caps-field-label for="field-preview-username">Username</caps-field-label>
+            <caps-field-label>Username</caps-field-label>
             <input capsInput id="field-preview-username" type="text" placeholder="john_doe_99" />
         </caps-field>
     </caps-field-group>
@@ -138,7 +120,7 @@ export const defaultSkeleton = `
 `;
 export const anatomyCode = `
 <caps-field>
-    <caps-field-label for="field-preview-fullname">Label</caps-field-label>
+    <caps-field-label>Label</caps-field-label>
     <!-- Input, Select, Switch, etc. -->
     <caps-field-description>Optional helper text.</caps-field-description>
     <caps-field-error>Validation message.</caps-field-error>

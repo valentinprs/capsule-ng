@@ -155,7 +155,8 @@
 
 /* Forced Field appearance stays separate from the native control's validation ARIA. */
 .caps-field[data-matches-spartan-invalid='true'] .caps-input,
-.caps-field[data-matches-spartan-invalid='true'] .caps-textarea {
+.caps-field[data-matches-spartan-invalid='true'] .caps-textarea,
+.caps-field[data-matches-spartan-invalid='true'] .caps-select-trigger {
 	@apply border-destructive ring-destructive/20 dark:border-destructive/50 dark:ring-destructive/40 ring-[length:var(--caps-focus-ring-width)];
 }
 .caps-field:has(:disabled) > .caps-field-label,
@@ -216,4 +217,29 @@
 
 .caps-alert-dialog-content {
 	width: min(100%, calc(100vw - var(--spacing) * 8));
+}
+
+/* MARK: Selection — shared Capsule control and surface tokens. */
+.caps-select-trigger {
+	@apply border-input bg-background text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive data-[matches-spartan-invalid=true]:ring-destructive/20 h-(--caps-control-height) rounded-lg border px-3 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-8;
+}
+.caps-select-content {
+	@apply bg-popover text-popover-foreground rounded-lg border p-1 shadow-md;
+}
+.caps-select-option {
+	@apply data-highlighted:bg-accent data-highlighted:text-accent-foreground gap-2 rounded-md px-2 py-1.5 text-sm;
+}
+.caps-select-check {
+	@apply w-4 shrink-0;
+}
+.caps-select-group-label {
+	@apply text-muted-foreground px-2 py-1.5 text-xs font-medium;
+}
+.caps-native-select {
+	@apply h-(--caps-control-height) px-3 data-[size=sm]:h-8;
+}
+
+.caps-native-select[multiple],
+.caps-native-select[size]:not([size='1']) {
+	height: auto;
 }

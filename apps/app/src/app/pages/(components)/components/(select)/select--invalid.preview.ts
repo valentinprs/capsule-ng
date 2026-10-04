@@ -1,28 +1,21 @@
 import { Component } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 @Component({
 	selector: 'spartan-select-invalid-preview',
-	imports: [HlmSelectImports, HlmFieldImports],
+	imports: [CapsSelectImports, CapsFieldImports],
 	template: `
-		<hlm-field forceInvalid class="w-56">
-			<label hlmFieldLabel for="select-invalid">Fruit</label>
-			<hlm-select>
-				<hlm-select-trigger forceInvalid buttonId="select-invalid" class="w-full">
-					<hlm-select-value placeholder="Select a fruit" />
-				</hlm-select-trigger>
-				<hlm-select-content *hlmSelectPortal>
-					<hlm-select-group>
-						<hlm-select-label>Fruits</hlm-select-label>
-						@for (item of items; track item.value) {
-							<hlm-select-item [value]="item.value">{{ item.label }}</hlm-select-item>
-						}
-					</hlm-select-group>
-				</hlm-select-content>
-			</hlm-select>
-			<hlm-field-error>Please select a fruit.</hlm-field-error>
-		</hlm-field>
+		<caps-field forceInvalid class="w-56">
+			<caps-field-label>Fruit</caps-field-label>
+			<caps-select placeholder="Select a fruit" forceInvalid id="select-invalid" class="w-full">
+				<caps-select-group label="Fruits">
+					@for (item of items; track item.value) {
+						<caps-select-option [value]="item.value">{{ item.label }}</caps-select-option>
+					}
+				</caps-select-group>
+			</caps-select>
+			<caps-field-error forceShow>Please select a fruit.</caps-field-error>
+		</caps-field>
 	`,
 })
 export class SelectInvalidPreview {

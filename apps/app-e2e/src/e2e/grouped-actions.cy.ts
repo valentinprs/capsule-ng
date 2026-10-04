@@ -1,3 +1,5 @@
+import 'cypress-real-events';
+
 describe('Capsule grouped actions', () => {
 	for (const family of ['toggle', 'toggle-group', 'button-group']) {
 		it(`server-renders and hydrates all ${family} examples with native controls`, () => {
@@ -12,7 +14,18 @@ describe('Capsule grouped actions', () => {
 				.should('not.exist');
 			cy.get('main').find('button button,button a,a button,a a,label label').should('not.exist');
 			cy.injectAxe();
-			cy.get('main .preview').each((preview) => cy.checkA11y(preview[0]));
+			cy.get('main .preview').each((preview) =>
+				cy.checkA11y(preview[0], undefined, (violations) => {
+					cy.task(
+						'log',
+						JSON.stringify(
+							violations.map(({ id, nodes }) => ({ id, nodes })),
+							null,
+							2,
+						),
+					);
+				}),
+			);
 		});
 	}
 	it('keeps standalone toggle native pressed state and disabled buttons', () => {
@@ -45,7 +58,7 @@ describe('Capsule grouped actions', () => {
 			.should('have.attr', 'data-fluid', 'true')
 			.and('have.css', 'flex-direction', 'row');
 		cy.get('spartan-button-group-popover button[aria-label="Open agent tasks"]').click();
-		cy.contains('Agent Tasks').should('be.visible');
+		cy.get('.caps-popover-content[data-state="open"]').should('be.visible').and('contain.text', 'Agent Tasks');
 		cy.realPress('Escape');
 		cy.get('spartan-button-group-popover button[aria-label="Open agent tasks"]').should('be.focused');
 	});

@@ -12,7 +12,7 @@ import { lucidePlus } from '@ng-icons/lucide';
 		<caps-button-group aria-label="Actions">
 			<button capsButton variant="secondary">Button</button>
 			<caps-separator orientation="vertical" />
-			<button capsButton variant="secondary" size="icon">
+			<button capsButton variant="secondary" size="icon" aria-label="Add">
 				<ng-icon name="lucidePlus" />
 			</button>
 		</caps-button-group>

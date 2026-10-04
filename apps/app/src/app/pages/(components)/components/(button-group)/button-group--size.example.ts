@@ -14,7 +14,7 @@ import { lucidePlus } from '@ng-icons/lucide';
 				<button capsButton variant="outline" size="sm">Small</button>
 				<button capsButton variant="outline" size="sm">Button</button>
 				<button capsButton variant="outline" size="sm">Group</button>
-				<button capsButton variant="outline" size="icon-sm">
+				<button capsButton variant="outline" size="icon-sm" aria-label="Add">
 					<ng-icon name="lucidePlus" />
 				</button>
 			</caps-button-group>
@@ -22,7 +22,7 @@ import { lucidePlus } from '@ng-icons/lucide';
 				<button capsButton variant="outline">Default</button>
 				<button capsButton variant="outline">Button</button>
 				<button capsButton variant="outline">Group</button>
-				<button capsButton variant="outline" size="icon">
+				<button capsButton variant="outline" size="icon" aria-label="Add">
 					<ng-icon name="lucidePlus" />
 				</button>
 			</caps-button-group>
@@ -30,7 +30,7 @@ import { lucidePlus } from '@ng-icons/lucide';
 				<button capsButton variant="outline" size="lg">Large</button>
 				<button capsButton variant="outline" size="lg">Button</button>
 				<button capsButton variant="outline" size="lg">Group</button>
-				<button capsButton variant="outline" size="icon-lg">
+				<button capsButton variant="outline" size="icon-lg" aria-label="Add">
 					<ng-icon name="lucidePlus" />
 				</button>
 			</caps-button-group>

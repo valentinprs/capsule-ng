@@ -38,7 +38,7 @@
 	}
 
 	.caps-avatar-fallback {
-		@apply bg-muted text-muted-foreground rounded-full;
+		@apply bg-muted text-foreground rounded-full;
 	}
 
 	.caps-avatar-image {
@@ -50,7 +50,7 @@
 	}
 
 	.caps-avatar-group-count {
-		@apply bg-muted text-muted-foreground size-8 rounded-full text-sm group-has-data-[size=lg]/avatar-group:size-10 group-has-data-[size=sm]/avatar-group:size-6 [&>ng-icon]:text-[length:--spacing(4)] group-has-data-[size=lg]/avatar-group:[&>ng-icon]:text-[length:--spacing(5)] group-has-data-[size=sm]/avatar-group:[&>ng-icon]:text-[length:--spacing(3)];
+		@apply bg-muted text-foreground size-8 rounded-full text-sm group-has-data-[size=lg]/avatar-group:size-10 group-has-data-[size=sm]/avatar-group:size-6 [&>ng-icon]:text-[length:--spacing(4)] group-has-data-[size=lg]/avatar-group:[&>ng-icon]:text-[length:--spacing(5)] group-has-data-[size=sm]/avatar-group:[&>ng-icon]:text-[length:--spacing(3)];
 	}
 
 	.caps-item-content {

@@ -22,7 +22,7 @@ import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 				<div class="flex justify-between space-x-4">
 					<caps-avatar id="avatar-small">
 						<img src="https://analogjs.org/img/logos/analog-logo.svg" alt="AnalogLogo" capsAvatarImage />
-						<caps-avatar-fallback class="bg-sky-600 text-sky-50">AN</caps-avatar-fallback>
+						<caps-avatar-fallback class="bg-sky-700 text-sky-50">AN</caps-avatar-fallback>
 					</caps-avatar>
 					<div class="space-y-1">
 						<h4 class="text-sm font-semibold">&#64;analogjs</h4>

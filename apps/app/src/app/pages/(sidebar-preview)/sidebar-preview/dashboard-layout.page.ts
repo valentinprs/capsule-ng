@@ -180,7 +180,7 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 							>
 								<caps-avatar class="size-8 rounded-lg grayscale">
 									<img [src]="_items.user.avatar" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
-									<caps-avatar-fallback class="rounded-lg bg-[#FD005B] text-white">SP</caps-avatar-fallback>
+									<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">SP</caps-avatar-fallback>
 								</caps-avatar>
 								<div class="grid flex-1 text-left text-sm leading-tight">
 									<span class="truncate font-medium">{{ _items.user.name }}</span>
@@ -198,7 +198,7 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 								<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 									<caps-avatar class="size-8 rounded-lg">
 										<img [src]="_items.user.avatar" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
-										<caps-avatar-fallback class="rounded-lg bg-[#FD005B] text-white">SP</caps-avatar-fallback>
+										<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">SP</caps-avatar-fallback>
 									</caps-avatar>
 									<div class="grid flex-1 text-left text-sm leading-tight">
 										<span class="truncate font-medium">{{ _items.user.name }}</span>

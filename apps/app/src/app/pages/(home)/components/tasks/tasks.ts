@@ -168,7 +168,7 @@ const columns = columnHelper.columns([
 				</div>
 				<caps-avatar [hlmDropdownMenuTrigger]="profile" align="end">
 					<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
-					<caps-avatar-fallback class="bg-destructive text-white">KL</caps-avatar-fallback>
+					<caps-avatar-fallback class="bg-red-700 text-white">KL</caps-avatar-fallback>
 				</caps-avatar>
 				<ng-template #profile>
 					<hlm-dropdown-menu class="min-w-56">

@@ -18,9 +18,43 @@ describe('Capsule identity and item compositions', () => {
 			}
 
 			cy.injectAxe();
-			cy.get('main .preview').each(($preview) => cy.checkA11y($preview[0]));
+			cy.get('main .preview').each(($preview) =>
+				cy.checkA11y($preview[0], undefined, (violations) => {
+					cy.task(
+						'table',
+						violations.map(({ id, impact, nodes }) => ({
+							id,
+							impact,
+							targets: nodes.map(({ target }) => target.join(' ')).join(', '),
+						})),
+					);
+				}),
+			);
 		});
 	}
+	it('keeps failed-image avatar fallbacks accessible in both themes', () => {
+		cy.intercept('GET', '**/assets/avatar.png', { statusCode: 404, body: '' });
+		cy.visit('/components/avatar');
+		cy.get('spartan-avatar-preview').should('not.have.attr', 'ngh');
+		cy.get('spartan-avatar-basic-preview caps-avatar-fallback').should('be.visible').and('have.text', 'RG');
+		cy.get('spartan-avatar-basic-preview [role="img"]').should('have.attr', 'aria-label', '@spartan-ui logo');
+		cy.injectAxe();
+		for (const theme of ['light', 'dark']) {
+			cy.document().then((document) => document.documentElement.classList.toggle('dark', theme === 'dark'));
+			cy.get('main .preview').each(($preview) =>
+				cy.checkA11y($preview[0], undefined, (violations) => {
+					cy.task(
+						'table',
+						violations.map(({ id, impact, nodes }) => ({
+							id,
+							impact,
+							targets: nodes.map(({ target }) => target.join(' ')).join(', '),
+						})),
+					);
+				}),
+			);
+		}
+	});
 	it('composes list actions and preserves whole-item native links', () => {
 		cy.visit('/components/item');
 		cy.get('spartan-item-link-preview a[capsItem]').first().focus();

@@ -33,7 +33,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 				<button hlmSidebarMenuButton size="lg" [hlmDropdownMenuTrigger]="menu" [side]="_menuSide()" align="end">
 					<caps-avatar class="rounded-lg">
 						<img [src]="u.avatar" [alt]="u.name" capsAvatarImage />
-						<caps-avatar-fallback class="rounded-lg bg-[#FD005B] text-white">RG</caps-avatar-fallback>
+						<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">RG</caps-avatar-fallback>
 					</caps-avatar>
 					<div class="grid flex-1 text-left text-sm leading-tight">
 						<span class="truncate font-medium">{{ u.name }}</span>
@@ -50,7 +50,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 					<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 						<caps-avatar class="rounded-lg">
 							<img [src]="u.avatar" [alt]="u.name" capsAvatarImage />
-							<caps-avatar-fallback class="rounded-lg bg-[#FD005B] text-white">RG</caps-avatar-fallback>
+							<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">RG</caps-avatar-fallback>
 						</caps-avatar>
 						<div class="grid flex-1 text-left text-sm leading-tight">
 							<span class="truncate font-medium">{{ u.name }}</span>

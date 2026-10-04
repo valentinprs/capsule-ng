@@ -15,7 +15,7 @@ import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 				<div hlmEmptyMedia>
 					<caps-avatar class="size-12">
 						<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
-						<caps-avatar-fallback class="bg-[#FD005B] text-white">RG</caps-avatar-fallback>
+						<caps-avatar-fallback class="bg-[#D6004C] text-white">RG</caps-avatar-fallback>
 					</caps-avatar>
 				</div>
 				<div hlmEmptyTitle>User Offline</div>

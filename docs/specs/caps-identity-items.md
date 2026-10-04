@@ -243,3 +243,17 @@ new Capsule entry points. The existing Item Storybook E2E suite is migrated to t
 The new APIs do not publish an npm package or merge any branch. #36 remains independently compilable;
 its floating-content consumers overlap with the Avatar/Badge migration and will need the coordinated
 source union when both PRs are integrated.
+
+### Failed-image contrast regression
+
+The CI catalogue audit exposed fallback text after an image request failed: `text-muted-foreground`
+on `bg-muted` was 4.34:1 in the light theme. Avatar fallback and group-count defaults now use
+`text-foreground`. The explicit consumer palettes retain their hue with sky-700, `#D6004C` and
+red-700 backgrounds; their previous sky/rose pairs failed in both themes and the destructive/white
+pair failed in dark mode. No global theme token, public input or Brain behavior changes.
+
+The regression intercepts the real avatar image request with HTTP 404 and audits all Avatar previews
+in light and dark while preserving the full accessible alternative. It failed before the color fix;
+the original five catalogue tests plus the regression now pass (6/6) on the CI Vite configuration.
+A minimized single-avatar loop also changes from red to green, and all five default/custom palette
+pairs pass axe in both themes. Axe failure details are now printed to the CI terminal.

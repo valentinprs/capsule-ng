@@ -19,15 +19,15 @@ import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 					>
 						<caps-avatar class="size-12">
 							<img src="https://picsum.photos/1000/800?grayscale&random=1" alt="avatar 1" capsAvatarImage />
-							<caps-avatar-fallback class="bg-[#FD005B] text-white">A1</caps-avatar-fallback>
+							<caps-avatar-fallback class="bg-[#D6004C] text-white">A1</caps-avatar-fallback>
 						</caps-avatar>
 						<caps-avatar class="size-12">
 							<img src="https://picsum.photos/1000/800?grayscale&random=2" alt="avatar 2" capsAvatarImage />
-							<caps-avatar-fallback class="bg-[#FD005B] text-white">A2</caps-avatar-fallback>
+							<caps-avatar-fallback class="bg-[#D6004C] text-white">A2</caps-avatar-fallback>
 						</caps-avatar>
 						<caps-avatar class="size-12">
 							<img src="https://picsum.photos/1000/800?grayscale&random=3" alt="avatar 3" capsAvatarImage />
-							<caps-avatar-fallback class="bg-[#FD005B] text-white">A3</caps-avatar-fallback>
+							<caps-avatar-fallback class="bg-[#D6004C] text-white">A3</caps-avatar-fallback>
 						</caps-avatar>
 					</div>
 				</div>

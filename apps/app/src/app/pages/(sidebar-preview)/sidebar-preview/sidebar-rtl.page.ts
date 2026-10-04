@@ -181,7 +181,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 							>
 								<caps-avatar class="rounded-lg">
 									<img src="/assets/avatar.png" alt="spartan" capsAvatarImage />
-									<caps-avatar-fallback class="rounded-lg bg-[#FD005B] text-white">RG</caps-avatar-fallback>
+									<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">RG</caps-avatar-fallback>
 								</caps-avatar>
 								<div class="grid flex-1 text-start text-sm leading-tight">
 									<span class="truncate font-medium">spartan</span>
@@ -197,7 +197,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 								<div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
 									<caps-avatar class="rounded-lg">
 										<img src="/assets/avatar.png" alt="spartan" capsAvatarImage />
-										<caps-avatar-fallback class="rounded-lg bg-[#FD005B] text-white">RG</caps-avatar-fallback>
+										<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">RG</caps-avatar-fallback>
 									</caps-avatar>
 									<div class="grid flex-1 text-start text-sm leading-tight">
 										<span class="truncate font-medium">spartan</span>

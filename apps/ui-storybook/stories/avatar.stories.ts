@@ -15,7 +15,7 @@ const meta: Meta<CapsAvatar> = {
 		template: `
     <caps-avatar ${argsToTemplate(args)}>
       <img src='/mountains.jpg' alt='Snow-covered mountains'  capsAvatarImage>
-      <caps-avatar-fallback class='bg-sky-600 text-sky-50'>MT</caps-avatar-fallback>
+      <caps-avatar-fallback class='bg-sky-700 text-sky-50'>MT</caps-avatar-fallback>
     </caps-avatar>
 `,
 	}),

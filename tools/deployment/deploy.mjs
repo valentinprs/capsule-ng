@@ -158,6 +158,7 @@ if (stage === 'publish' && context.cleanup) {
 				[
 					'deploy',
 					'--prebuilt',
+					'--archive=tgz',
 					'--yes',
 					'--local-config',
 					project.config,

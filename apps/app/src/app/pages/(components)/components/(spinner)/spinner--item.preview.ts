@@ -1,32 +1,32 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmItemImports } from '@spartan-ng/helm/item';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 import { HlmProgressImports } from '@spartan-ng/helm/progress';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-spinner-item-preview',
-	imports: [HlmSpinnerImports, HlmItemImports, HlmButtonImports, HlmProgressImports],
+	imports: [HlmSpinnerImports, CapsItemImports, CapsButtonImports, HlmProgressImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex w-full max-w-md flex-col gap-4 [--radius:1rem]">
-			<div hlmItem variant="outline">
-				<hlm-item-media variant="icon">
+			<caps-item>
+				<caps-item-media>
 					<hlm-spinner />
-				</hlm-item-media>
-				<hlm-item-content>
-					<hlm-item-title>Downloading...</hlm-item-title>
-					<p hlmItemDescription>129 MB / 1000 MB</p>
-				</hlm-item-content>
-				<hlm-item-actions class="hidden sm:flex">
-					<button hlmBtn variant="outline" size="sm">Cancel</button>
-				</hlm-item-actions>
-				<hlm-item-footer>
+				</caps-item-media>
+				<caps-item-content>
+					<caps-item-title>Downloading...</caps-item-title>
+					<caps-item-description>129 MB / 1000 MB</caps-item-description>
+				</caps-item-content>
+				<caps-item-actions class="hidden sm:flex">
+					<button capsButton variant="outline" size="sm">Cancel</button>
+				</caps-item-actions>
+				<caps-item-footer>
 					<hlm-progress value="75">
 						<hlm-progress-indicator />
 					</hlm-progress>
-				</hlm-item-footer>
-			</div>
+				</caps-item-footer>
+			</caps-item>
 		</div>
 	`,
 })

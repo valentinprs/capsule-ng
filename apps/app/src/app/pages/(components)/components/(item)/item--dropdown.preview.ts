@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmItemImports } from '@spartan-ng/helm/item';
 
 @Component({
 	selector: 'spartan-item-dropdown-preview',
-	imports: [HlmItemImports, HlmButtonImports, HlmAvatarImports, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsItemImports, CapsButtonImports, CapsAvatarImports, NgIcon, HlmDropdownMenuImports],
 	providers: [provideIcons({ lucideChevronDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex min-h-64 w-full max-w-md flex-col items-center gap-6',
 	},
 	template: `
-		<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="people" align="end">
+		<button capsButton variant="outline" [hlmDropdownMenuTrigger]="people" align="end">
 			Select
 			<ng-icon name="lucideChevronDown" />
 		</button>
@@ -24,20 +24,20 @@ import { HlmItemImports } from '@spartan-ng/helm/item';
 			<hlm-dropdown-menu class="w-48">
 				@for (person of _people; track person.email) {
 					<hlm-dropdown-menu-item class="p-0">
-						<hlm-item size="xs" class="w-full p-2">
-							<hlm-item-media>
-								<hlm-avatar class="size-6.5">
-									<img hlmAvatarImage [src]="person.avatar" [alt]="person.username" class="grayscale" />
-									<span hlmAvatarFallback>
+						<caps-item class="w-full p-2">
+							<caps-item-media>
+								<caps-avatar class="size-6.5">
+									<img capsAvatarImage [src]="person.avatar" alt="" class="grayscale" />
+									<caps-avatar-fallback>
 										{{ person.username.charAt(0).toUpperCase() }}
-									</span>
-								</hlm-avatar>
-							</hlm-item-media>
-							<hlm-item-content class="gap-0">
-								<hlm-item-title>{{ person.username }}</hlm-item-title>
-								<p hlmItemDescription class="leading-none">{{ person.email }}</p>
-							</hlm-item-content>
-						</hlm-item>
+									</caps-avatar-fallback>
+								</caps-avatar>
+							</caps-item-media>
+							<caps-item-content class="gap-0">
+								<caps-item-title>{{ person.username }}</caps-item-title>
+								<caps-item-description class="leading-none">{{ person.email }}</caps-item-description>
+							</caps-item-content>
+						</caps-item>
 					</hlm-dropdown-menu-item>
 				}
 			</hlm-dropdown-menu>

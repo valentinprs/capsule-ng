@@ -1,4 +1,6 @@
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsItem, CapsItemImports } from '@capsule-ng/caps/item';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideBadgeCheck,
@@ -8,19 +10,17 @@ import {
 	lucidePlus,
 	lucideShieldAlert,
 } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmItem, HlmItemImports } from '@spartan-ng/helm/item';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
 export default {
 	title: 'Item',
-	component: HlmItem,
+	component: CapsItem,
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmItemImports, CapsButtonImports, NgIcon, HlmAvatarImports, HlmDropdownMenuImports],
+			imports: [CapsItemImports, CapsButtonImports, NgIcon, CapsAvatarImports, HlmDropdownMenuImports],
 			providers: [
 				provideIcons({
 					lucideBadgeCheck,
@@ -33,33 +33,33 @@ export default {
 			],
 		}),
 	],
-} as Meta<HlmItem>;
+} as Meta<CapsItem>;
 
-type Story = StoryObj<HlmItem>;
+type Story = StoryObj<CapsItem>;
 
 export const Default: Story = {
 	render: () => ({
 		template: `
 		<div class="flex w-full max-w-md flex-col gap-6 p-4">
-			<hlm-item variant="outline">
-				<hlm-item-content>
-					<hlm-item-title>Basic Item</hlm-item-title>
-					<p hlmItemDescription>A simple item with title and description.</p>
-				</hlm-item-content>
-				<hlm-item-actions>
+			<caps-item>
+				<caps-item-content>
+					<caps-item-title>Basic Item</caps-item-title>
+					<caps-item-description>A simple item with title and description.</caps-item-description>
+				</caps-item-content>
+				<caps-item-actions>
 					<button capsButton variant="outline" size="sm">Action</button>
-				</hlm-item-actions>
-			</hlm-item>
-			<a hlmItem variant="outline" size="sm">
-				<hlm-item-media>
+				</caps-item-actions>
+			</caps-item>
+			<a capsItem href="#verified">
+				<caps-item-media>
 					<ng-icon name="lucideBadgeCheck" class="text-[length:--spacing(5)]" />
-				</hlm-item-media>
-				<hlm-item-content>
-					<hlm-item-title>Your profile has been verified.</hlm-item-title>
-				</hlm-item-content>
-				<div hlmItemActions>
+				</caps-item-media>
+				<caps-item-content>
+					<caps-item-title>Your profile has been verified.</caps-item-title>
+				</caps-item-content>
+				<caps-item-actions>
 					<ng-icon name="lucideChevronRight"  />
-				</div>
+				</caps-item-actions>
 			</a>
 		</div>
 		`,
@@ -71,52 +71,52 @@ export const Avatar: Story = {
 		template: `
 		<div class="flex w-full max-w-lg flex-col gap-6 p-4">
 			<!-- Item 1: Evil Rabbit -->
-			<hlm-item variant="outline">
-				<hlm-item-media>
-					<hlm-avatar class="size-10">
-						<img hlmAvatarImage src="https://github.com/evilrabbit.png" alt="Evil Rabbit" />
-						<span hlmAvatarFallback>ER</span>
-					</hlm-avatar>
-				</hlm-item-media>
-				<hlm-item-content>
-					<hlm-item-title>Evil Rabbit</hlm-item-title>
-					<p hlmItemDescription>Last seen 5 months ago</p>
-				</hlm-item-content>
-				<hlm-item-actions>
+			<caps-item>
+				<caps-item-media>
+					<caps-avatar class="size-10">
+						<img capsAvatarImage src="https://github.com/evilrabbit.png" alt="Evil Rabbit" />
+						<caps-avatar-fallback>ER</caps-avatar-fallback>
+					</caps-avatar>
+				</caps-item-media>
+				<caps-item-content>
+					<caps-item-title>Evil Rabbit</caps-item-title>
+					<caps-item-description>Last seen 5 months ago</caps-item-description>
+				</caps-item-content>
+				<caps-item-actions>
 					<button capsButton size="icon-sm" variant="ghost" class="rounded-full" aria-label="Invite">
 						<ng-icon name="lucidePlus" />
 					</button>
-				</hlm-item-actions>
-			</hlm-item>
+				</caps-item-actions>
+			</caps-item>
 
 			<!-- Item 2: No Team Members -->
-			<hlm-item variant="outline">
-				<hlm-item-media>
+			<caps-item>
+				<caps-item-media>
 					<div
 						class="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale"
 					>
-						<hlm-avatar class="hidden sm:flex">
-							<img hlmAvatarImage src="/assets/capsule.svg" alt="Capsule" />
-							<span hlmAvatarFallback>CN</span>
-						</hlm-avatar>
-						<hlm-avatar class="hidden sm:flex">
-							<img hlmAvatarImage src="https://github.com/maxleiter.png" alt="@maxleiter" />
-							<span hlmAvatarFallback>LR</span>
-						</hlm-avatar>
-						<hlm-avatar>
-							<img hlmAvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
-							<span hlmAvatarFallback>ER</span>
-						</hlm-avatar>
+						<caps-avatar class="hidden sm:flex">
+							<img capsAvatarImage src="/assets/capsule.svg" alt="Capsule" />
+							<caps-avatar-fallback>CN</caps-avatar-fallback>
+						</caps-avatar>
+						<caps-avatar class="hidden sm:flex">
+							<img capsAvatarImage src="https://github.com/maxleiter.png" alt="@maxleiter" />
+							<caps-avatar-fallback>LR</caps-avatar-fallback>
+						</caps-avatar>
+						<caps-avatar>
+							<img capsAvatarImage src="https://github.com/evilrabbit.png" alt="@evilrabbit" />
+							<caps-avatar-fallback>ER</caps-avatar-fallback>
+						</caps-avatar>
 					</div>
-				</hlm-item-media>
-				<hlm-item-content>
-					<hlm-item-title>No Team Members</hlm-item-title>
-					<p hlmItemDescription>Invite your team to collaborate on this project.</p>
-				</hlm-item-content>
-				<hlm-item-actions>
+				</caps-item-media>
+				<caps-item-content>
+					<caps-item-title>No Team Members</caps-item-title>
+					<caps-item-description>Invite your team to collaborate on this project.</caps-item-description>
+				</caps-item-content>
+				<caps-item-actions>
 					<button capsButton size="sm" variant="outline">Invite</button>
-				</hlm-item-actions>
-			</hlm-item>
+				</caps-item-actions>
+			</caps-item>
 		</div>
 		`,
 	}),
@@ -154,20 +154,20 @@ export const Dropdown: Story = {
 				<hlm-dropdown-menu class="w-48">
 					@for (person of people; track person.email) {
 						<button hlmDropdownMenuItem class="p-0 w-full">
-							<hlm-item size="xs" class="w-full p-2">
-								<hlm-item-media>
-									<hlm-avatar class="size-8">
-										<img hlmAvatarImage [src]="person.avatar" [alt]="person.username" class="grayscale" />
-										<span hlmAvatarFallback>
+							<caps-item class="w-full p-2">
+								<caps-item-media>
+									<caps-avatar class="size-8">
+										<img capsAvatarImage [src]="person.avatar" alt="" class="grayscale" />
+										<caps-avatar-fallback>
 											{{ person.username.charAt(0).toUpperCase() }}
-										</span>
-									</hlm-avatar>
-								</hlm-item-media>
-								<hlm-item-content class="gap-0">
-									<span hlmItemTitle>{{ person.username }}</span>
-									<span hlmItemDescription>{{ person.email }}</span>
-								</hlm-item-content>
-							</hlm-item>
+										</caps-avatar-fallback>
+									</caps-avatar>
+								</caps-item-media>
+								<caps-item-content class="gap-0">
+									<caps-item-title>{{ person.username }}</caps-item-title>
+									<caps-item-description>{{ person.email }}</caps-item-description>
+								</caps-item-content>
+							</caps-item>
 						</button>
 					}
 				</hlm-dropdown-menu>
@@ -200,29 +200,29 @@ export const Group: Story = {
 		},
 		template: `
 		<div class="flex w-full max-w-md flex-col gap-6 p-4">
-			<hlm-item-group>
+			<caps-item-group>
 				@for (person of people; track person.username; let last = $last) {
-					<hlm-item variant="outline">
-						<hlm-item-media>
-							<hlm-avatar>
-								<img hlmAvatarImage [src]="person.avatar" [alt]="person.username" class="grayscale" />
-								<span hlmAvatarFallback>{{ person.username.charAt(0).toUpperCase() }}</span>
-							</hlm-avatar>
-						</hlm-item-media>
+					<caps-item>
+						<caps-item-media>
+							<caps-avatar>
+								<img capsAvatarImage [src]="person.avatar" alt="" class="grayscale" />
+								<caps-avatar-fallback>{{ person.username.charAt(0).toUpperCase() }}</caps-avatar-fallback>
+							</caps-avatar>
+						</caps-item-media>
 
-						<hlm-item-content class="gap-1">
-							<hlm-item-title>{{ person.username }}</hlm-item-title>
-							<p hlmItemDescription>{{ person.email }}</p>
-						</hlm-item-content>
+						<caps-item-content class="gap-1">
+							<caps-item-title>{{ person.username }}</caps-item-title>
+							<caps-item-description>{{ person.email }}</caps-item-description>
+						</caps-item-content>
 
-						<hlm-item-actions>
+						<caps-item-actions>
 							<button capsButton variant="ghost" size="icon" class="rounded-full" aria-label="Add person">
 								<ng-icon name="lucidePlus" />
 							</button>
-						</hlm-item-actions>
-					</hlm-item>
+						</caps-item-actions>
+					</caps-item>
 				}
-			</hlm-item-group>
+			</caps-item-group>
 		</div>
 		`,
 	}),
@@ -251,10 +251,10 @@ export const Header: Story = {
 		},
 		template: `
 		<div class="flex w-full max-w-xl flex-col gap-6 p-4">
-			<hlm-item-group class="grid grid-cols-3 gap-4">
+			<caps-item-group class="[&>.caps-item-list]:grid [&>.caps-item-list]:grid-cols-1 [&>.caps-item-list]:gap-4 sm:[&>.caps-item-list]:grid-cols-3">
 				@for (model of models; track model.name) {
-					<hlm-item variant="outline">
-						<hlm-item-header>
+					<caps-item>
+						<caps-item-header>
 							<img
 								[src]="model.image"
 								[alt]="model.name"
@@ -262,14 +262,14 @@ export const Header: Story = {
 								height="128"
 								class="aspect-square w-full rounded-sm object-cover"
 							/>
-						</hlm-item-header>
-						<hlm-item-content>
-							<hlm-item-title>{{ model.name }}</hlm-item-title>
-							<p hlmItemDescription>{{ model.description }}</p>
-						</hlm-item-content>
-					</hlm-item>
+						</caps-item-header>
+						<caps-item-content>
+							<caps-item-title>{{ model.name }}</caps-item-title>
+							<caps-item-description>{{ model.description }}</caps-item-description>
+						</caps-item-content>
+					</caps-item>
 				}
-			</hlm-item-group>
+			</caps-item-group>
 		</div>
 		`,
 	}),
@@ -279,18 +279,18 @@ export const Icon: Story = {
 	render: () => ({
 		template: `
 		<div class="flex w-full max-w-lg flex-col gap-6 p-4">
-			<div hlmItem variant="outline">
-				<div hlmItemMedia variant="icon">
+			<caps-item>
+				<caps-item-media>
 					<ng-icon name="lucideShieldAlert" />
-				</div>
-				<div hlmItemContent>
-					<div hlmItemTitle>Security Alert</div>
-					<p hlmItemDescription>New login detected from unknown device.</p>
-				</div>
-				<div hlmItemActions>
+				</caps-item-media>
+				<caps-item-content>
+					<caps-item-title>Security Alert</caps-item-title>
+					<caps-item-description>New login detected from unknown device.</caps-item-description>
+				</caps-item-content>
+				<caps-item-actions>
 					<button capsButton size="sm" variant="outline">Review</button>
-				</div>
-			</div>
+				</caps-item-actions>
+			</caps-item>
 		</div>
 		`,
 	}),
@@ -322,10 +322,10 @@ export const Image: Story = {
 		},
 		template: `
 		<div class="flex w-full max-w-md flex-col gap-6 p-4">
-			<div hlmItemGroup class="gap-4" role="list">
+			<caps-item-group class="gap-4">
 				@for (song of songs; track song.title) {
-					<a hlmItem variant="outline" role="listitem" href="#">
-						<div hlmItemMedia variant="image">
+					<caps-item><a capsItem href="#">
+						<caps-item-media class="size-10 overflow-hidden">
 							<img
 								[src]="'https://avatar.vercel.sh/' + song.title"
 								alt=""
@@ -333,22 +333,22 @@ export const Image: Story = {
 								height="32"
 								class="object-cover grayscale"
 							/>
-						</div>
+						</caps-item-media>
 
-						<div hlmItemContent>
-							<div hlmItemTitle class="line-clamp-1">
+						<caps-item-content>
+							<caps-item-title class="line-clamp-1">
 								{{ song.title }} -
 								<span class="text-muted-foreground">{{ song.album }}</span>
-							</div>
-							<p hlmItemDescription>{{ song.artist }}</p>
-						</div>
+							</caps-item-title>
+							<caps-item-description>{{ song.artist }}</caps-item-description>
+						</caps-item-content>
 
-						<div hlmItemContent class="flex-none text-center">
-							<p hlmItemDescription>{{ song.duration }}</p>
-						</div>
-					</a>
+						<caps-item-content class="flex-none text-center">
+							<caps-item-description>{{ song.duration }}</caps-item-description>
+						</caps-item-content>
+					</a></caps-item>
 				}
-			</div>
+			</caps-item-group>
 		</div>
 		`,
 	}),
@@ -358,23 +358,23 @@ export const Link: Story = {
 	render: () => ({
 		template: `
 		<div class="flex w-full max-w-md flex-col gap-6 p-4">
-			<a hlmItem href="#">
-				<div hlmItemContent>
-					<div hlmItemTitle>Visit our documentation</div>
-					<p hlmItemDescription>Learn how to get started with our components.</p>
-				</div>
-				<div hlmItemActions>
+			<a capsItem href="#">
+				<caps-item-content>
+					<caps-item-title>Visit our documentation</caps-item-title>
+					<caps-item-description>Learn how to get started with our components.</caps-item-description>
+				</caps-item-content>
+				<caps-item-actions>
 					<ng-icon name="lucideChevronRight" />
-				</div>
+				</caps-item-actions>
 			</a>
-			<a hlmItem variant="outline" href="#" target="_blank" rel="noopener noreferrer">
-				<div hlmItemContent>
-					<div hlmItemTitle>External resource</div>
-					<p hlmItemDescription>Opens in a new tab with security attributes.</p>
-				</div>
-				<div hlmItemActions>
+			<a capsItem href="#" target="_blank" rel="noopener noreferrer">
+				<caps-item-content>
+					<caps-item-title>External resource</caps-item-title>
+					<caps-item-description>Opens in a new tab with security attributes.</caps-item-description>
+				</caps-item-content>
+				<caps-item-actions>
 					<ng-icon name="lucideExternalLink" />
-				</div>
+				</caps-item-actions>
 			</a>
 		</div>
 		`,
@@ -384,64 +384,15 @@ export const Link: Story = {
 export const Size: Story = {
 	render: () => ({
 		template: `
-		<div class="flex w-full max-w-md flex-col gap-6 p-4">
-			<div hlmItem variant="outline">
-				<div hlmItemContent>
-					<div hlmItemTitle>Basic Item</div>
-					<p hlmItemDescription>A simple item with title and description.</p>
-				</div>
-				<div hlmItemActions>
-					<button capsButton variant="outline" size="sm">Action</button>
-				</div>
-			</div>
-			<a hlmItem variant="outline" size="sm" href="#">
-				<div hlmItemMedia variant="icon">
-					<ng-icon  name="lucideBadgeCheck"  />
-				</div>
-				<div hlmItemContent>
-					<div hlmItemTitle>Your profile has been verified.</div>
-				</div>
-				<div hlmItemActions>
-					<ng-icon name="lucideChevronRight" />
-				</div>
-			</a>
-		</div>
-		`,
+ <div class="flex w-full max-w-md flex-col gap-6 p-4">
+<caps-item-group size="sm" label="sm"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group><caps-item-group size="md" label="md"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group><caps-item-group size="lg" label="lg"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group><caps-item-group size="xl" label="xl"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group></div>`,
 	}),
 };
 
 export const Variants: Story = {
 	render: () => ({
 		template: `
-		<div class="flex w-full max-w-md flex-col gap-6 p-4">
-			<div hlmItem>
-				<div hlmItemContent>
-					<div hlmItemTitle>Default Variant</div>
-					<p hlmItemDescription>Standard styling with subtle background and borders.</p>
-				</div>
-				<div hlmItemActions>
-					<button capsButton variant="outline" size="sm">Open</button>
-				</div>
-			</div>
-			<div hlmItem variant="outline">
-				<div hlmItemContent>
-					<div hlmItemTitle>Outline Variant</div>
-					<p hlmItemDescription>Outlined style with clear borders and transparent background.</p>
-				</div>
-				<div hlmItemActions>
-					<button capsButton variant="outline" size="sm">Open</button>
-				</div>
-			</div>
-			<div hlmItem variant="muted">
-				<div hlmItemContent>
-					<div hlmItemTitle>Muted Variant</div>
-					<p hlmItemDescription>Subdued appearance with muted colors for secondary content.</p>
-				</div>
-				<div hlmItemActions>
-					<button capsButton variant="outline" size="sm">Open</button>
-				</div>
-			</div>
-		</div>
-		`,
+ <div class="flex w-full max-w-md flex-col gap-6 p-4">
+<caps-item-group kind="on-page" label="on-page"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group><caps-item-group kind="disclosed" label="disclosed"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group></div>`,
 	}),
 };

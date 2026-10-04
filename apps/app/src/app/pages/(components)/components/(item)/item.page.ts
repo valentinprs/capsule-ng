@@ -98,10 +98,10 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="item-vs-field">Item vs Field</spartan-section-sub-heading>
 			<p hlmP>
 				Use
-				<span hlmCode>hlmField</span>
+				<span hlmCode>caps-field</span>
 				if you need to display a form input such as a checkbox, input, radio, or select. If you only need to display
 				content such as a title, description, and actions, use
-				<span hlmCode>hlmItem</span>
+				<span hlmCode>caps-item</span>
 				.
 			</p>
 
@@ -109,9 +109,7 @@ export const routeMeta: RouteMeta = {
 
 			<h3 id="examples_variants" spartanH4>Variants</h3>
 			<p hlmP>
-				Use the
-				<code hlmCode>variant</code>
-				prop to change the visual style of the item.
+				Choose the list group kind: on-page or disclosed. Item projects media, content and independent actions.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -121,17 +119,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-tabs>
 
 			<h3 id="examples_size" spartanH4>Size</h3>
-			<p hlmP>
-				Use the
-				<code hlmCode>size</code>
-				prop to change the size of the item. Available sizes are
-				<code hlmCode>default</code>
-				,
-				<code hlmCode>sm</code>
-				, and
-				<code hlmCode>xs</code>
-				.
-			</p>
+			<p hlmP>Set size on caps-item-group: sm, md, lg (default), or xl.</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
 					<spartan-item-size-preview />
@@ -140,13 +128,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-tabs>
 
 			<h3 id="examples_icon" spartanH4>Icon</h3>
-			<p hlmP>
-				Use
-				<span hlmCode>hlm-item-media</span>
-				with
-				<span hlmCode>variant="icon"</span>
-				to display an icon.
-			</p>
+			<p hlmP>Project an icon or image into caps-item-media.</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
 					<spartan-item-icon-preview />
@@ -163,13 +145,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-tabs>
 
 			<h3 id="examples_image" spartanH4>Image</h3>
-			<p hlmP>
-				Use
-				<span hlmCode>hlm-item-media</span>
-				with
-				<span hlmCode>variant="image"</span>
-				to display an image.
-			</p>
+			<p hlmP>Project an icon or image into caps-item-media.</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
 					<spartan-item-image-preview />
@@ -222,8 +198,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="kbd" label="Kbd" />

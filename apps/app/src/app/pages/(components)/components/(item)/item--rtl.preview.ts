@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBadgeCheck, lucideChevronRight } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmItemImports } from '@spartan-ng/helm/item';
 
 @Component({
 	selector: 'spartan-item-rtl-preview',
-	imports: [HlmItemImports, HlmButtonImports, NgIcon],
+	imports: [CapsItemImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideBadgeCheck, lucideChevronRight })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -15,25 +15,25 @@ import { HlmItemImports } from '@spartan-ng/helm/item';
 		'[dir]': '_dir()',
 	},
 	template: `
-		<hlm-item variant="outline">
-			<hlm-item-content>
-				<hlm-item-title>{{ _t()['basicItem'] }}</hlm-item-title>
-				<p hlmItemDescription>{{ _t()['basicItemDesc'] }}</p>
-			</hlm-item-content>
-			<hlm-item-actions>
-				<button hlmBtn variant="outline" size="sm">{{ _t()['action'] }}</button>
-			</hlm-item-actions>
-		</hlm-item>
-		<a hlmItem href="#" variant="outline" size="sm">
-			<hlm-item-media>
+		<caps-item>
+			<caps-item-content>
+				<caps-item-title>{{ _t()['basicItem'] }}</caps-item-title>
+				<caps-item-description>{{ _t()['basicItemDesc'] }}</caps-item-description>
+			</caps-item-content>
+			<caps-item-actions>
+				<button capsButton variant="outline" size="sm">{{ _t()['action'] }}</button>
+			</caps-item-actions>
+		</caps-item>
+		<a capsItem href="#">
+			<caps-item-media>
 				<ng-icon name="lucideBadgeCheck" class="text-[length:--spacing(5)]" />
-			</hlm-item-media>
-			<hlm-item-content>
-				<hlm-item-title>{{ _t()['verifiedTitle'] }}</hlm-item-title>
-			</hlm-item-content>
-			<hlm-item-actions>
+			</caps-item-media>
+			<caps-item-content>
+				<caps-item-title>{{ _t()['verifiedTitle'] }}</caps-item-title>
+			</caps-item-content>
+			<caps-item-actions>
 				<ng-icon name="lucideChevronRight" class="text-[length:--spacing(4)]" />
-			</hlm-item-actions>
+			</caps-item-actions>
 		</a>
 	`,
 })

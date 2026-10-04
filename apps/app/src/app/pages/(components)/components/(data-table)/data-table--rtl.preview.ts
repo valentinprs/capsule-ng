@@ -185,7 +185,7 @@ export class RtlTableRowSelection {
 	imports: [HlmButtonImports, NgIcon],
 	providers: [provideIcons({ lucideArrowUpDown })],
 	template: `
-		<button hlmBtn size="sm" variant="ghost" (click)="sortClick()">
+		<button capsButton size="sm" variant="ghost" (click)="sortClick()">
 			{{ _t()['email'] }}
 			<ng-icon name="lucideArrowUpDown" />
 		</button>
@@ -206,7 +206,7 @@ export class RtlTableHeadSortButton {
 	imports: [HlmButtonImports, NgIcon, HlmDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: `
-		<button hlmBtn size="icon-sm" variant="ghost" [hlmDropdownMenuTrigger]="menu">
+		<button capsButton size="icon-sm" variant="ghost" [hlmDropdownMenuTrigger]="menu">
 			<span class="sr-only">{{ _t()['openMenu'] }}</span>
 			<ng-icon name="lucideEllipsis" />
 		</button>
@@ -246,7 +246,7 @@ export class RtlActionDropdown {
 		<div class="flex flex-col justify-between gap-4 py-4 sm:flex-row sm:items-center">
 			<input hlmInput class="w-full md:w-80" [placeholder]="_t()['filter']" (input)="_filterChanged($event)" />
 
-			<button hlmBtn variant="outline" align="end" [hlmDropdownMenuTrigger]="menu">
+			<button capsButton variant="outline" align="end" [hlmDropdownMenuTrigger]="menu">
 				{{ _t()['columns'] }}
 				<ng-icon name="lucideChevronDown" class="ms-2" />
 			</button>
@@ -310,13 +310,19 @@ export class RtlActionDropdown {
 				<button
 					size="sm"
 					variant="outline"
-					hlmBtn
+					capsButton
 					[disabled]="!_table.getCanPreviousPage()"
 					(click)="_table.previousPage()"
 				>
 					{{ _t()['previous'] }}
 				</button>
-				<button size="sm" variant="outline" hlmBtn [disabled]="!_table.getCanNextPage()" (click)="_table.nextPage()">
+				<button
+					size="sm"
+					variant="outline"
+					capsButton
+					[disabled]="!_table.getCanNextPage()"
+					(click)="_table.nextPage()"
+				>
 					{{ _t()['next'] }}
 				</button>
 			</div>

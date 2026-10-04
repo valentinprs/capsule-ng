@@ -1,42 +1,42 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmItemImports } from '@spartan-ng/helm/item';
 
 @Component({
 	selector: 'spartan-item-group-preview',
-	imports: [HlmItemImports, HlmAvatarImports, HlmButtonImports, NgIcon],
+	imports: [CapsItemImports, CapsAvatarImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucidePlus })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-md flex-col gap-6',
 	},
 	template: `
-		<hlm-item-group>
+		<caps-item-group>
 			@for (person of _people; track person.username; let last = $last) {
-				<hlm-item variant="outline">
-					<hlm-item-media>
-						<hlm-avatar>
-							<img hlmAvatarImage [src]="person.avatar" [alt]="person.username" class="grayscale" />
-							<span hlmAvatarFallback>{{ person.username.charAt(0).toUpperCase() }}</span>
-						</hlm-avatar>
-					</hlm-item-media>
+				<caps-item>
+					<caps-item-media>
+						<caps-avatar>
+							<img capsAvatarImage [src]="person.avatar" alt="" class="grayscale" />
+							<caps-avatar-fallback>{{ person.username.charAt(0).toUpperCase() }}</caps-avatar-fallback>
+						</caps-avatar>
+					</caps-item-media>
 
-					<hlm-item-content class="gap-1">
-						<hlm-item-title>{{ person.username }}</hlm-item-title>
-						<p hlmItemDescription>{{ person.email }}</p>
-					</hlm-item-content>
+					<caps-item-content class="gap-1">
+						<caps-item-title>{{ person.username }}</caps-item-title>
+						<caps-item-description>{{ person.email }}</caps-item-description>
+					</caps-item-content>
 
-					<hlm-item-actions>
-						<button hlmBtn variant="ghost" size="icon" class="rounded-full">
+					<caps-item-actions>
+						<button capsButton variant="ghost" size="icon" class="rounded-full" aria-label="Add person">
 							<ng-icon name="lucidePlus" />
 						</button>
-					</hlm-item-actions>
-				</hlm-item>
+					</caps-item-actions>
+				</caps-item>
 			}
-		</hlm-item-group>
+		</caps-item-group>
 	`,
 })
 export class ItemGroupPreview {

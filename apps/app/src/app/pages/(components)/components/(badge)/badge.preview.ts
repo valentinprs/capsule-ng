@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 
 @Component({
 	selector: 'spartan-badge-preview',
-	imports: [HlmBadgeImports],
+	imports: [CapsBadgeImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex w-full flex-wrap justify-center gap-2">
-			<span hlmBadge>Badge</span>
-			<span hlmBadge variant="secondary">Secondary</span>
-			<span hlmBadge variant="destructive">Destructive</span>
-			<span hlmBadge variant="outline">Outline</span>
+			<caps-badge variant="high-contrast">Badge</caps-badge>
+			<caps-badge variant="gray">Secondary</caps-badge>
+			<caps-badge variant="red">Destructive</caps-badge>
+			<caps-badge variant="outline">Outline</caps-badge>
 		</div>
 	`,
 })
 export class BadgePreview {}
 
 export const defaultImports = `
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 `;
 
 export const defaultSkeleton = `
-<span hlmBadge variant="default | outline | secondary | destructive">Badge</span>
+<caps-badge variant="gray" size="md">Badge</caps-badge>
 `;

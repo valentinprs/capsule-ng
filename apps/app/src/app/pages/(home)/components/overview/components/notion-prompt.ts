@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUp,
@@ -13,7 +14,6 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { tablerCircleDashedPlus } from '@ng-icons/tabler-icons';
-import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
@@ -45,7 +45,7 @@ type GroupedItems = {
 		HlmDropdownMenuImports,
 		NgIcon,
 		MentionableItem,
-		HlmBadge,
+		CapsBadgeImports,
 	],
 	providers: [
 		provideIcons({
@@ -137,13 +137,12 @@ type GroupedItems = {
 								<button hlmDropdownMenuCheckbox [checked]="isChecked(model)" (triggered)="selectModel(model)">
 									<span>{{ model.name }}</span>
 									@if (model.badge) {
-										<span
-											hlmBadge
-											variant="secondary"
+										<caps-badge
+											variant="gray"
 											class="ml-2 h-5 rounded-sm bg-blue-100 px-1 text-xs text-blue-800 dark:bg-blue-900 dark:text-blue-100"
 										>
 											{{ model.badge }}
-										</span>
+										</caps-badge>
 									}
 									<hlm-dropdown-menu-checkbox-indicator />
 								</button>

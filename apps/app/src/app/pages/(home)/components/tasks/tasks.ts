@@ -1,5 +1,6 @@
 import { Component, inject, signal, type TrackByFunction } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
@@ -27,7 +28,6 @@ import {
 	lucideLogOut,
 	lucideUser,
 } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import {
@@ -123,7 +123,7 @@ const columns = columnHelper.columns([
 		CapsSelectImports,
 		TableActions,
 		NgIcon,
-		HlmAvatarImports,
+		CapsAvatarImports,
 		FlexRender,
 		CapsLabel,
 	],
@@ -166,10 +166,10 @@ const columns = columnHelper.columns([
 					<h2 class="text-2xl font-bold tracking-tight">Welcome back!</h2>
 					<p class="text-muted-foreground">Here's a list of your tasks for this month!</p>
 				</div>
-				<hlm-avatar [hlmDropdownMenuTrigger]="profile" align="end">
-					<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" hlmAvatarImage />
-					<span class="bg-destructive text-white" hlmAvatarFallback>KL</span>
-				</hlm-avatar>
+				<caps-avatar [hlmDropdownMenuTrigger]="profile" align="end">
+					<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
+					<caps-avatar-fallback class="bg-destructive text-white">KL</caps-avatar-fallback>
+				</caps-avatar>
 				<ng-template #profile>
 					<hlm-dropdown-menu class="min-w-56">
 						<div class="flex flex-col items-start gap-1" hlmDropdownMenuItem>

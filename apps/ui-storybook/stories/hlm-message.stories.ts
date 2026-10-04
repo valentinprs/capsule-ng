@@ -1,4 +1,4 @@
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 import { HlmMessageImports } from '@spartan-ng/helm/message';
@@ -10,7 +10,7 @@ const meta: Meta = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmMessageImports, HlmBubbleImports, HlmAvatarImports, HlmMarkerImports],
+			imports: [HlmMessageImports, HlmBubbleImports, CapsAvatarImports, HlmMarkerImports],
 		}),
 	],
 };
@@ -24,9 +24,9 @@ export const Conversation: Story = {
 			<div class="flex w-full max-w-sm flex-col gap-6 p-4">
 				<div hlmMessage align="end">
 					<div hlmMessageAvatar>
-						<hlm-avatar>
-							<span hlmAvatarFallback>ME</span>
-						</hlm-avatar>
+						<caps-avatar>
+							<caps-avatar-fallback>ME</caps-avatar-fallback>
+						</caps-avatar>
 					</div>
 					<div hlmMessageContent>
 						<div hlmBubble>
@@ -36,9 +36,9 @@ export const Conversation: Story = {
 				</div>
 				<div hlmMessage>
 					<div hlmMessageAvatar>
-						<hlm-avatar>
-							<span hlmAvatarFallback>R</span>
-						</hlm-avatar>
+						<caps-avatar>
+							<caps-avatar-fallback>R</caps-avatar-fallback>
+						</caps-avatar>
 					</div>
 					<div hlmMessageContent>
 						<div hlmBubble variant="muted">
@@ -48,9 +48,9 @@ export const Conversation: Story = {
 				</div>
 				<div hlmMessage align="end">
 					<div hlmMessageAvatar>
-						<hlm-avatar>
-							<span hlmAvatarFallback>ME</span>
-						</hlm-avatar>
+						<caps-avatar>
+							<caps-avatar-fallback>ME</caps-avatar-fallback>
+						</caps-avatar>
 					</div>
 					<div hlmMessageContent>
 						<div hlmBubble>
@@ -61,9 +61,9 @@ export const Conversation: Story = {
 				</div>
 				<div hlmMessage>
 					<div hlmMessageAvatar>
-						<hlm-avatar>
-							<span hlmAvatarFallback>R</span>
-						</hlm-avatar>
+						<caps-avatar>
+							<caps-avatar-fallback>R</caps-avatar-fallback>
+						</caps-avatar>
 					</div>
 					<div hlmMessageContent>
 						<div hlmBubbleGroup>

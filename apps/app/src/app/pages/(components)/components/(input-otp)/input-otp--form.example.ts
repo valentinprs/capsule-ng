@@ -3,11 +3,10 @@ import { form, FormField, FormRoot, maxLength, minLength, required, submit } fro
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputOtpImports } from '@capsule-ng/caps/input-otp';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRefreshCw } from '@ng-icons/lucide';
-import { BrnInputOtpImports } from '@spartan-ng/brain/input-otp';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmInputOtpImports } from '@spartan-ng/helm/input-otp';
 import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 
 @Component({
@@ -20,8 +19,7 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 		HlmToasterImports,
 		CapsCardImports,
 		CapsFieldImports,
-		BrnInputOtpImports,
-		HlmInputOtpImports,
+		CapsInputOtpImports,
 	],
 	providers: [provideIcons({ lucideRefreshCw })],
 	host: {
@@ -59,31 +57,29 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 								}
 							</button>
 						</div>
-						<brn-input-otp
-							hlmInputOtp
+						<caps-input-otp
 							[length]="maxLength"
-							inputId="otp-verification"
-							inputClass="disabled:cursor-not-allowed"
+							id="otp-verification"
 							[formField]="form.otp"
 							[transformPaste]="transformPaste"
 							(completed)="submit()"
 						>
-							<hlm-input-otp-group
+							<caps-input-otp-group
 								class="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl"
 							>
-								<hlm-input-otp-slot index="0" />
-								<hlm-input-otp-slot index="1" />
-								<hlm-input-otp-slot index="2" />
-							</hlm-input-otp-group>
-							<hlm-input-otp-separator />
-							<hlm-input-otp-group
+								<caps-input-otp-slot index="0" />
+								<caps-input-otp-slot index="1" />
+								<caps-input-otp-slot index="2" />
+							</caps-input-otp-group>
+							<caps-input-otp-separator />
+							<caps-input-otp-group
 								class="*:data-[slot=input-otp-slot]:h-12 *:data-[slot=input-otp-slot]:w-11 *:data-[slot=input-otp-slot]:text-xl"
 							>
-								<hlm-input-otp-slot index="3" />
-								<hlm-input-otp-slot index="4" />
-								<hlm-input-otp-slot index="5" />
-							</hlm-input-otp-group>
-						</brn-input-otp>
+								<caps-input-otp-slot index="3" />
+								<caps-input-otp-slot index="4" />
+								<caps-input-otp-slot index="5" />
+							</caps-input-otp-group>
+						</caps-input-otp>
 						<caps-field-description>
 							<a href="#">I no longer have access to this email address.</a>
 						</caps-field-description>
@@ -101,7 +97,7 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 	`,
 })
 export class InputOtpFormExample implements OnDestroy {
-	private _intervalId?: NodeJS.Timeout;
+	private _intervalId?: ReturnType<typeof setInterval>;
 
 	public readonly countdown = signal(60);
 	public readonly isResendDisabled = computed(() => this.countdown() > 0);

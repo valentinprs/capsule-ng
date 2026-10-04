@@ -111,7 +111,7 @@ export const routeMeta: RouteMeta = {
 				Use the
 				<span hlmCode>HlmKbd</span>
 				component inside a
-				<span hlmCode>HlmInputGroupAddon</span>
+				<span hlmCode>CapsInputGroupAddon</span>
 				to display a keyboard key inside an input group.
 			</p>
 

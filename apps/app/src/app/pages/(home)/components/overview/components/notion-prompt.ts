@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsBadgeImports } from '@capsule-ng/caps/badge';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUp,
@@ -17,7 +20,6 @@ import {
 import { tablerCircleDashedPlus } from '@ng-icons/tabler-icons';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { MentionableItem } from './mentionable-item';
 
 export type MentionItem = {
@@ -39,7 +41,9 @@ type GroupedItems = {
 @Component({
 	selector: 'spartan-notion-prompt',
 	imports: [
-		HlmInputGroupImports,
+		CapsButtonImports,
+		CapsTextareaImports,
+		CapsInputGroupImports,
 		CapsPopoverImports,
 		HlmCommandImports,
 		HlmDropdownMenuImports,
@@ -65,16 +69,18 @@ type GroupedItems = {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full' },
 	template: `
-		<div hlmInputGroup class="[--radius:1.2rem]">
-			<div hlmInputGroupAddon align="block-start">
+		<caps-input-group class="[--radius:1.2rem]">
+			<caps-input-group-addon align="block-start">
 				<caps-popover>
 					<button
-						hlmInputGroupButton
+						capsButton
 						capsPopoverTrigger
 						variant="outline"
 						class="rounded-full"
 						[size]="_mentionButtonSize()"
 						aria-label="Add mention"
+						size="xs"
+						type="button"
 					>
 						<ng-icon name="lucideAtSign" />
 						@if (!_hasMention()) {
@@ -108,11 +114,12 @@ type GroupedItems = {
 				<div class="no-scrollbar -m-1.5 flex gap-1 overflow-y-auto p-1.5">
 					@for (mention of _mentions(); track mention) {
 						<button
-							hlmInputGroupButton
+							capsButton
 							variant="secondary"
 							class="rounded-full"
 							size="sm"
 							(click)="removeMention(mention)"
+							type="button"
 						>
 							<spartan-mentionable-item [item]="mention" />
 							{{ mention.title }}
@@ -120,14 +127,26 @@ type GroupedItems = {
 						</button>
 					}
 				</div>
-			</div>
-			<textarea hlmInputGroupTextarea placeholder="Ask, Search or make anything..."></textarea>
-			<div hlmInputGroupAddon align="block-end" class="no-scrollbar gap-1 overflow-y-auto">
-				<button hlmInputGroupButton class="rounded-full" size="icon-sm">
+			</caps-input-group-addon>
+			<textarea
+				capsTextarea
+				placeholder="Ask, Search or make anything..."
+				aria-label="Ask, Search or make anything"
+			></textarea>
+			<caps-input-group-addon align="block-end" class="no-scrollbar gap-1 overflow-y-auto">
+				<button capsButton class="rounded-full" size="icon-sm" variant="ghost" type="button">
 					<ng-icon name="lucidePaperclip" />
 					<span class="sr-only">Attachment</span>
 				</button>
-				<button hlmInputGroupButton class="rounded-full" size="sm" [hlmDropdownMenuTrigger]="model" #menuTrigger>
+				<button
+					capsButton
+					class="rounded-full"
+					size="sm"
+					[hlmDropdownMenuTrigger]="model"
+					#menuTrigger
+					variant="ghost"
+					type="button"
+				>
 					{{ _selectedModel() ? _selectedModel()?.name : 'Agent Mode' }}
 				</button>
 				<ng-template #model>
@@ -152,7 +171,14 @@ type GroupedItems = {
 					</hlm-dropdown-menu>
 				</ng-template>
 
-				<button hlmInputGroupButton class="rounded-full" size="sm" [hlmDropdownMenuTrigger]="sources">
+				<button
+					capsButton
+					class="rounded-full"
+					size="sm"
+					[hlmDropdownMenuTrigger]="sources"
+					variant="ghost"
+					type="button"
+				>
 					<ng-icon name="lucideGlobe" />
 					All Sources
 				</button>
@@ -198,12 +224,12 @@ type GroupedItems = {
 					</hlm-dropdown-menu>
 				</ng-template>
 
-				<button hlmInputGroupButton variant="default" class="ml-auto rounded-full" size="icon-sm">
+				<button capsButton variant="default" class="ml-auto rounded-full" size="icon-sm" type="button">
 					<ng-icon name="lucideArrowUp" />
 					<span class="sr-only">Send</span>
 				</button>
-			</div>
-		</div>
+			</caps-input-group-addon>
+		</caps-input-group>
 	`,
 })
 export class NotionPrompt {

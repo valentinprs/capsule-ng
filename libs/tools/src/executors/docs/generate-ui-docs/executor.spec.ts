@@ -106,4 +106,29 @@ describe('generate-ui-docs executor', () => {
 		expect(field['CapsFieldLabel'].selector).toBe('caps-field-label');
 		expect(field['CapsFieldSet'].inputs.map(({ name }) => name)).toContain('disabled');
 	});
+	it('documents composed Capsule inputs without exposing the private OTP view adapter', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const group = generated['input-group']['caps'];
+		expect(Object.keys(group)).toEqual(['CapsInputGroup', 'CapsInputGroupAddon', 'CapsInputGroupText']);
+		expect(group['CapsInputGroupAddon'].inputs.map(({ name }) => name)).toEqual(['align']);
+		const otp = generated['input-otp']['caps'];
+		expect(Object.keys(otp)).not.toContain('CapsInputOtpBrain');
+		expect(otp['CapsInputOtp'].inputs.map(({ name }) => name)).toEqual(
+			expect.arrayContaining([
+				'length',
+				'inputMode',
+				'autocomplete',
+				'autofocus',
+				'disabled',
+				'value',
+				'transformPaste',
+				'id',
+				'aria-label',
+				'aria-labelledby',
+				'aria-describedby',
+			]),
+		);
+		expect(otp['CapsInputOtp'].inputs.map(({ name }) => name)).not.toContain('inputStyles');
+		expect(otp['CapsInputOtp'].outputs.map(({ name }) => name)).toEqual(['valueChange', 'completed']);
+	});
 });

@@ -2,63 +2,80 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerCheck, tablerCopy, tablerInfoCircle, tablerStar } from '@ng-icons/tabler-icons';
 
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'spartan-input-group-button-preview',
-	imports: [HlmInputGroupImports, CapsPopoverImports, NgIcon],
+	imports: [CapsButtonImports, CapsInputImports, CapsInputGroupImports, CapsPopoverImports, NgIcon],
 	providers: [provideIcons({ tablerCheck, tablerCopy, tablerInfoCircle, tablerStar })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'grid w-full max-w-sm gap-6' },
 	template: `
-		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="https://github.com/valentinprs/capsule-ng" readOnly />
-			<hlm-input-group-addon align="inline-end">
+		<caps-input-group>
+			<input
+				capsInput
+				placeholder="https://github.com/valentinprs/capsule-ng"
+				readOnly
+				aria-label="https://github.com/valentinprs/capsule-ng"
+			/>
+			<caps-input-group-addon align="inline-end">
 				<button
-					hlmInputGroupButton
+					capsButton
 					aria-label="Copy"
 					title="Copy"
 					size="icon-xs"
 					(click)="_copy('https://github.com/valentinprs/capsule-ng')"
+					variant="ghost"
+					type="button"
 				>
 					<ng-icon [name]="_isCopied() ? 'tablerCheck' : 'tablerCopy'" />
 				</button>
-			</hlm-input-group-addon>
-		</hlm-input-group>
+			</caps-input-group-addon>
+		</caps-input-group>
 		<caps-popover placement="bottom-start">
-			<hlm-input-group class="[--radius:9999px]">
-				<hlm-input-group-addon>
+			<caps-input-group class="[--radius:9999px]">
+				<caps-input-group-addon>
 					<button
-						hlmInputGroupButton
+						capsButton
 						variant="secondary"
 						size="icon-xs"
 						capsPopoverTrigger
 						aria-label="Connection information"
+						type="button"
 					>
 						<ng-icon name="tablerInfoCircle" />
 					</button>
-				</hlm-input-group-addon>
+				</caps-input-group-addon>
 
-				<hlm-input-group-addon class="text-muted-foreground pl-1.5">https://</hlm-input-group-addon>
-				<input hlmInputGroupInput id="input-secure-19" />
-				<hlm-input-group-addon align="inline-end">
-					<button hlmInputGroupButton size="icon-xs" aria-label="Toggle favorite" (click)="_toggleFavorite()">
+				<caps-input-group-addon class="text-muted-foreground pl-1.5">https://</caps-input-group-addon>
+				<input capsInput id="input-secure-19" aria-label="Website address" />
+				<caps-input-group-addon align="inline-end">
+					<button
+						capsButton
+						size="icon-xs"
+						aria-label="Toggle favorite"
+						(click)="_toggleFavorite()"
+						variant="ghost"
+						type="button"
+					>
 						<ng-icon name="tablerStar" [class]="_favoriteClass()" />
 					</button>
-				</hlm-input-group-addon>
-			</hlm-input-group>
+				</caps-input-group-addon>
+			</caps-input-group>
 			<ng-template capsPopoverContent let-ctx [class]="'flex flex-col gap-1 rounded-xl text-sm'">
 				<p class="font-medium">Your connection is not secure.</p>
 				<p>You should not enter any sensitive information on this site.</p>
 			</ng-template>
 		</caps-popover>
-		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="Type to search..." />
-			<hlm-input-group-addon align="inline-end">
-				<button hlmInputGroupButton variant="secondary">Search</button>
-			</hlm-input-group-addon>
-		</hlm-input-group>
+		<caps-input-group>
+			<input capsInput placeholder="Type to search..." aria-label="Type to search" />
+			<caps-input-group-addon align="inline-end">
+				<button capsButton variant="secondary" size="xs" type="button">Search</button>
+			</caps-input-group-addon>
+		</caps-input-group>
 	`,
 })
 export class InputGroupButtonPreview {

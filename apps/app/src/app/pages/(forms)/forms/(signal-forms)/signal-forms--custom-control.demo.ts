@@ -335,20 +335,20 @@ export const demoPasswordInputGroupCode = `
 <!-- Password field with input group -->
 <caps-field>
 	<caps-field-label for="password">Password</caps-field-label>
-	<hlm-input-group>
-		<input 
-			hlmInputGroupInput 
-			id="password" 
-			autoComplete="current-password" 
-			[type]="_inputType()" 
+	<caps-input-group>
+		<input
+			capsInput
+			id="password"
+			autoComplete="current-password"
+			[type]="_inputType()"
 			[formField]="form.password" />
-		<hlm-input-group-addon align="inline-end">
-			<button hlmInputGroupButton size="icon-xs" (click)="togglePasswordVisibility()">
+		<caps-input-group-addon align="inline-end">
+			<button capsButton variant="ghost" type="button" size="icon-xs" (click)="togglePasswordVisibility()">
 				<ng-icon [name]="_icon()" />
 				<span class="sr-only">Toggle password visibility</span>
 			</button>
-		</hlm-input-group-addon>
-	</hlm-input-group>
+		</caps-input-group-addon>
+	</caps-input-group>
 	@for (error of form.password().errors(); track error.kind) {
 		<caps-field-error [validator]="error.kind">
 			{{ error.message }}

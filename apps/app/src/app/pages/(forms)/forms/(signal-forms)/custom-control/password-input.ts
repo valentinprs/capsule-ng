@@ -1,33 +1,45 @@
 import { ChangeDetectionStrategy, Component, computed, input, model, output, signal } from '@angular/core';
 import { FormValueControl } from '@angular/forms/signals';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEye, lucideEyeOff } from '@ng-icons/lucide';
-import { HlmInputGroup, HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'spartan-password-input',
-	imports: [HlmInputGroupImports, NgIcon],
+	imports: [CapsButtonImports, CapsInputImports, CapsInputGroupImports, NgIcon],
 	providers: [provideIcons({ lucideEye, lucideEyeOff })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	hostDirectives: [HlmInputGroup],
 	template: `
-		<input
-			hlmInputGroupInput
-			[id]="inputId()"
-			[placeholder]="placeholder()"
-			[value]="value()"
-			[disabled]="disabled()"
-			[readonly]="readonly()"
-			autoComplete="current-password"
-			[type]="_inputType()"
-			(input)="value.set($event.target.value)"
-			(blur)="touchedChange.emit(true)"
-		/>
-		<hlm-input-group-addon align="inline-end">
-			<button hlmInputGroupButton size="icon-xs" (click)="togglePasswordVisibility()">
-				<ng-icon [name]="_icon()" />
-			</button>
-		</hlm-input-group-addon>
+		<caps-input-group>
+			<input
+				capsInput
+				[id]="inputId()"
+				[placeholder]="placeholder()"
+				[value]="value()"
+				[disabled]="disabled()"
+				[readonly]="readonly()"
+				autoComplete="current-password"
+				[type]="_inputType()"
+				(input)="value.set($event.target.value)"
+				(blur)="touchedChange.emit(true)"
+				[attr.aria-label]="placeholder()"
+			/>
+			<caps-input-group-addon align="inline-end">
+				<button
+					capsButton
+					size="icon-xs"
+					[disabled]="disabled()"
+					[attr.aria-label]="_inputType() === 'password' ? 'Show password' : 'Hide password'"
+					(click)="togglePasswordVisibility()"
+					variant="ghost"
+					type="button"
+				>
+					<ng-icon [name]="_icon()" />
+				</button>
+			</caps-input-group-addon>
+		</caps-input-group>
 	`,
 })
 export class PasswordInput implements FormValueControl<string> {
@@ -58,17 +70,19 @@ import { ChangeDetectionStrategy, Component, computed, input, model, output, sig
 import { FormValueControl } from '@angular/forms/signals';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEye, lucideEyeOff } from '@ng-icons/lucide';
-import { HlmInputGroup, HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 
 @Component({
 	selector: 'spartan-password-input',
-	imports: [HlmInputGroupImports, NgIcon],
+	imports: [CapsButtonImports, CapsInputImports, CapsInputGroupImports, NgIcon],
 	providers: [provideIcons({ lucideEye, lucideEyeOff })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	hostDirectives: [HlmInputGroup],
 	template: \`
+		<caps-input-group>
 		<input
-			hlmInputGroupInput
+			capsInput
 			[id]="inputId()"
 			[placeholder]="placeholder()"
 			[value]="value()"
@@ -77,13 +91,13 @@ import { HlmInputGroup, HlmInputGroupImports } from '@spartan-ng/helm/input-grou
 			autoComplete="current-password"
 			[type]="_inputType()"
 			(input)="value.set($event.target.value)"
-			(blur)="touchedChange.emit(true)"
-		/>
-		<hlm-input-group-addon align="inline-end">
-			<button hlmInputGroupButton size="icon-xs" (click)="togglePasswordVisibility()">
+			(blur)="touchedChange.emit(true)" [attr.aria-label]="placeholder()">
+		<caps-input-group-addon align="inline-end">
+			<button capsButton size="icon-xs" [disabled]="disabled()" [attr.aria-label]="_inputType() === 'password' ? 'Show password' : 'Hide password'" (click)="togglePasswordVisibility()" variant="ghost" type="button">
 				<ng-icon [name]="_icon()" />
 			</button>
-		</hlm-input-group-addon>
+		</caps-input-group-addon>
+		</caps-input-group>
 	\`,
 })
 export class PasswordInput implements FormValueControl<string> {

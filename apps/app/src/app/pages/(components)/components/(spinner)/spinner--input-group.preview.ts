@@ -1,33 +1,36 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp } from '@ng-icons/lucide';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-spinner-input-group-preview',
-	imports: [HlmSpinnerImports, HlmInputGroupImports, NgIcon],
+	imports: [CapsButtonImports, CapsTextareaImports, CapsInputImports, HlmSpinnerImports, CapsInputGroupImports, NgIcon],
 	providers: [provideIcons({ lucideArrowUp })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex w-full max-w-md flex-col gap-4">
-			<hlm-input-group>
-				<input hlmInputGroupInput placeholder="Send a message..." disabled />
-				<hlm-input-group-addon align="inline-end">
+			<caps-input-group>
+				<input capsInput placeholder="Send a message..." disabled aria-label="Send a message" />
+				<caps-input-group-addon align="inline-end">
 					<hlm-spinner />
-				</hlm-input-group-addon>
-			</hlm-input-group>
-			<hlm-input-group>
-				<textarea hlmInputGroupTextarea placeholder="Send a message..." disabled></textarea>
-				<hlm-input-group-addon align="block-end">
+				</caps-input-group-addon>
+			</caps-input-group>
+			<caps-input-group>
+				<textarea capsTextarea placeholder="Send a message..." disabled aria-label="Send a message"></textarea>
+				<caps-input-group-addon align="block-end">
 					<hlm-spinner />
 					Validating...
-					<button class="ml-auto" hlmInputGroupButton variant="default">
+					<button class="ml-auto" capsButton variant="default" size="xs" type="button">
 						<ng-icon name="lucideArrowUp" />
 						<span class="sr-only">Send</span>
 					</button>
-				</hlm-input-group-addon>
-			</hlm-input-group>
+				</caps-input-group-addon>
+			</caps-input-group>
 		</div>
 	`,
 })

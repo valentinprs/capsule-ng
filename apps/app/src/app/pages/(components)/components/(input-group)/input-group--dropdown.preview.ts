@@ -3,47 +3,52 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideEllipsis } from '@ng-icons/lucide';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 
 @Component({
 	selector: 'spartan-input-group-dropdown-preview',
-	imports: [HlmInputGroupImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsInputImports, CapsInputGroupImports, HlmDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideEllipsis, lucideChevronDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'grid w-full max-w-sm gap-6' },
 	template: `
-		<hlm-input-group>
-			<input hlmInputGroupInput placeholder="Enter file name" />
+		<caps-input-group>
+			<input capsInput placeholder="Enter file name" aria-label="Enter file name" />
 
-			<hlm-input-group-addon align="inline-end">
+			<caps-input-group-addon align="inline-end">
 				<button
-					hlmInputGroupButton
+					capsButton
 					variant="ghost"
 					aria-label="More"
 					size="icon-xs"
 					[hlmDropdownMenuTrigger]="fileMenu"
 					align="end"
+					type="button"
 				>
 					<ng-icon name="lucideEllipsis" />
 				</button>
-			</hlm-input-group-addon>
-		</hlm-input-group>
-		<hlm-input-group class="[--radius:1rem]">
-			<input hlmInputGroupInput placeholder="Enter search query" />
+			</caps-input-group-addon>
+		</caps-input-group>
+		<caps-input-group class="[--radius:1rem]">
+			<input capsInput placeholder="Enter search query" aria-label="Enter search query" />
 
-			<hlm-input-group-addon align="inline-end">
+			<caps-input-group-addon align="inline-end">
 				<button
-					hlmInputGroupButton
+					capsButton
 					variant="ghost"
 					class="pe-1.5! text-xs"
 					[hlmDropdownMenuTrigger]="searchMenu"
 					align="end"
+					size="xs"
+					type="button"
 				>
 					Search In...
 					<ng-icon name="lucideChevronDown" />
 				</button>
-			</hlm-input-group-addon>
-		</hlm-input-group>
+			</caps-input-group-addon>
+		</caps-input-group>
 
 		<ng-template #fileMenu>
 			<hlm-dropdown-menu class="w-48">

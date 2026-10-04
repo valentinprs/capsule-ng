@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -13,7 +14,6 @@ import {
 	lucideTelescope,
 } from '@ng-icons/lucide';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { HlmSliderImports } from '@spartan-ng/helm/slider';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
@@ -27,7 +27,7 @@ const DEFAULT_PEEK = 64;
 		HlmMessageScrollerImports,
 		CapsCardImports,
 		CapsButtonImports,
-		HlmInputGroupImports,
+		CapsInputGroupImports,
 		HlmDropdownMenuImports,
 		HlmSliderImports,
 		CapsTooltipImports,
@@ -101,7 +101,7 @@ const DEFAULT_PEEK = 64;
 
 						<caps-card-footer class="flex-col gap-2">
 							<form class="w-full" (submit)="send($event)">
-								<hlm-input-group>
+								<caps-input-group>
 									<div class="h-14 w-full px-3 py-2.5">
 										<span
 											class="line-clamp-2 opacity-(--caps-opacity-60) data-[status=ready]:opacity-100"
@@ -114,9 +114,9 @@ const DEFAULT_PEEK = 64;
 											}
 										</span>
 									</div>
-									<hlm-input-group-addon align="block-end" class="pt-1">
+									<caps-input-group-addon align="block-end" class="pt-1">
 										<button
-											hlmInputGroupButton
+											capsButton
 											type="button"
 											size="icon-sm"
 											variant="outline"
@@ -140,7 +140,7 @@ const DEFAULT_PEEK = 64;
 											/>
 										</div>
 										<button
-											hlmInputGroupButton
+											capsButton
 											type="submit"
 											variant="default"
 											size="icon-sm"
@@ -150,8 +150,8 @@ const DEFAULT_PEEK = 64;
 											<ng-icon name="lucideArrowUp" />
 											<span class="sr-only">Send</span>
 										</button>
-									</hlm-input-group-addon>
-								</hlm-input-group>
+									</caps-input-group-addon>
+								</caps-input-group>
 							</form>
 						</caps-card-footer>
 					</caps-card>

@@ -167,3 +167,17 @@ required/invalid state where Brain's composite internals do not expose it on the
 
 Styles live in the existing Capsule preset and use shared foundation tokens, including focus,
 disabled opacity, light/dark colors and switch dimensions. No separate theme source is introduced.
+
+## Amendment 4: composed OTP owns one native input (2026-10-04)
+
+For issue #35, `<caps-input-otp>` owns one native text input through the existing Brain OTP behavior.
+Consumers project indexed `<caps-input-otp-slot>` elements, optional groups and separators to choose
+its visual layout. These slots are decorative, not separate focusable inputs. The generic host has
+no additional interactive ARIA role; the native input owns focus, editing, value, ID and labels.
+This preserves autocomplete, paste, selection and the existing Angular value accessor while hiding
+Brain's internal input styling API. Brain remains unchanged; a private view adapter binds native
+ARIA and keeps the native value synchronized with Brain without altering its value/event algorithms.
+
+Input Group follows the ordinary rule: `<caps-input-group>` and its addon/text components project
+consumer-owned native `input capsInput`, `textarea capsTextarea` and `button capsButton` controls.
+It has no value accessor. This keeps fields and actions independently labeled and controlled.

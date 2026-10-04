@@ -1,24 +1,23 @@
 import { Component } from '@angular/core';
-import { BrnInputOtp } from '@spartan-ng/brain/input-otp';
-import { HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSeparator, HlmInputOtpSlot } from '@spartan-ng/helm/input-otp';
+import { CapsInputOtp, CapsInputOtpGroup, CapsInputOtpSeparator, CapsInputOtpSlot } from '@capsule-ng/caps/input-otp';
 
 @Component({
 	selector: 'spartan-input-otp-disabled',
-	imports: [HlmInputOtp, HlmInputOtpGroup, HlmInputOtpSeparator, HlmInputOtpSlot, BrnInputOtp],
+	imports: [CapsInputOtp, CapsInputOtpGroup, CapsInputOtpSeparator, CapsInputOtpSlot],
 	template: `
-		<brn-input-otp hlmInputOtp value="123456" disabled length="6" inputClass="disabled:cursor-not-allowed">
-			<hlm-input-otp-group>
-				<hlm-input-otp-slot index="0" />
-				<hlm-input-otp-slot index="1" />
-				<hlm-input-otp-slot index="2" />
-			</hlm-input-otp-group>
-			<hlm-input-otp-separator />
-			<hlm-input-otp-group>
-				<hlm-input-otp-slot index="3" />
-				<hlm-input-otp-slot index="4" />
-				<hlm-input-otp-slot index="5" />
-			</hlm-input-otp-group>
-		</brn-input-otp>
+		<caps-input-otp aria-label="Verification code" value="123456" disabled length="6">
+			<caps-input-otp-group>
+				<caps-input-otp-slot index="0" />
+				<caps-input-otp-slot index="1" />
+				<caps-input-otp-slot index="2" />
+			</caps-input-otp-group>
+			<caps-input-otp-separator />
+			<caps-input-otp-group>
+				<caps-input-otp-slot index="3" />
+				<caps-input-otp-slot index="4" />
+				<caps-input-otp-slot index="5" />
+			</caps-input-otp-group>
+		</caps-input-otp>
 	`,
 })
 export class InputOtpDisabled {}

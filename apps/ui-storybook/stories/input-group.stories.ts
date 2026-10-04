@@ -1,75 +1,87 @@
 import { ReactiveFormsModule } from '@angular/forms';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroup, CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideCheck, lucideInfo, lucidePlus, lucideSearch, lucideSend } from '@ng-icons/lucide';
-import { HlmInputGroup, HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
 export default {
 	title: 'Input Group',
-	component: HlmInputGroup,
+	component: CapsInputGroup,
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmInputGroupImports, NgIcon, CapsSeparatorImports, CapsTooltipImports, ReactiveFormsModule],
+			imports: [
+				CapsButtonImports,
+				CapsTextareaImports,
+				CapsInputImports,
+				CapsInputGroupImports,
+				NgIcon,
+				CapsSeparatorImports,
+				CapsTooltipImports,
+				ReactiveFormsModule,
+			],
 			providers: [provideIcons({ lucideSend, lucideSearch, lucideInfo, lucidePlus, lucideArrowUp, lucideCheck })],
 		}),
 	],
-} as Meta<HlmInputGroup>;
+} as Meta<CapsInputGroup>;
 
-type Story = StoryObj<HlmInputGroup>;
+type Story = StoryObj<CapsInputGroup>;
 
 export const Default: Story = {
 	render: () => ({
 		template: `
 <div class="grid w-full max-w-sm gap-6">
-			<div hlmInputGroup>
-			<input hlmInputGroupInput placeholder="Search..." />
-			<div hlmInputGroupAddon>
+			<caps-input-group>
+			<input capsInput placeholder="Search..." aria-label="Search">
+			<caps-input-group-addon>
 				<ng-icon name="lucideSearch" />
-			</div>
-			<div hlmInputGroupAddon align="inline-end">12 results</div>
-		</div>
-		<div hlmInputGroup>
-			<input hlmInputGroupInput placeholder="example.com" class="!pl-1" />
-			<div hlmInputGroupAddon>
-				<span hlmInputGroupText>https://</span>
-			</div>
-			<div hlmInputGroupAddon align="inline-end">
+			</caps-input-group-addon>
+			<caps-input-group-addon align="inline-end">12 results</caps-input-group-addon>
+		</caps-input-group>
+		<caps-input-group>
+			<input capsInput placeholder="example.com" class="!pl-1" aria-label="example.com">
+			<caps-input-group-addon>
+				<caps-input-group-text>https://</caps-input-group-text>
+			</caps-input-group-addon>
+			<caps-input-group-addon align="inline-end">
 				<button
-					hlmInputGroupButton
+					capsButton
 					class="rounded-full"
 					size="icon-xs"
 					[capsTooltip]="'This is content in a tooltip.'"
-				>
+				 variant="ghost" type="button" aria-label="More information">
 					<ng-icon name="lucideInfo" />
 				</button>
-			</div>
-		</div>
-		<div hlmInputGroup>
-			<textarea hlmInputGroupTextarea placeholder="Ask, Search or Chat..."></textarea>
-			<div hlmInputGroupAddon align="block-end">
-				<button hlmInputGroupButton variant="outline" class="rounded-full" size="icon-xs">
+			</caps-input-group-addon>
+		</caps-input-group>
+		<caps-input-group>
+			<textarea capsTextarea placeholder="Ask, Search or Chat..." aria-label="Ask, Search or Chat"></textarea>
+			<caps-input-group-addon align="block-end">
+				<button capsButton variant="outline" class="rounded-full" size="icon-xs" type="button" aria-label="Add attachment">
 					<ng-icon name="lucidePlus" />
 				</button>
-				<span hlmInputGroupText class="ml-auto">52% used</span>
+				<caps-input-group-text class="ml-auto">52% used</caps-input-group-text>
 				<caps-separator orientation="vertical" class="!h-4" />
-				<button hlmInputGroupButton variant="default" class="rounded-full" size="icon-xs" disabled>
+				<button capsButton variant="default" class="rounded-full" size="icon-xs" disabled type="button">
 					<ng-icon name="lucideArrowUp" />
 					<span class="sr-only">Send</span>
 				</button>
-			</div>
-		</div>
-		<div hlmInputGroup>
-			<input hlmInputGroupInput placeholder="@spartan" />
-			<div hlmInputGroupAddon align="inline-end">
+			</caps-input-group-addon>
+		</caps-input-group>
+		<caps-input-group>
+			<input capsInput placeholder="@spartan" aria-label="@spartan">
+			<caps-input-group-addon align="inline-end">
 				<div class="bg-primary text-primary-foreground flex size-4 items-center justify-center rounded-full">
 					<ng-icon  name="lucideCheck" />
 				</div>
-			</div>
-		</div>
+			</caps-input-group-addon>
+		</caps-input-group>
 		</div>
 		`,
 	}),

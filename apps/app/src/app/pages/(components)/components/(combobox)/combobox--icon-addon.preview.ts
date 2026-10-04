@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsInputGroupAddon } from '@capsule-ng/caps/input-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGlobe } from '@ng-icons/lucide';
 import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
-import { HlmInputGroupAddon } from '@spartan-ng/helm/input-group';
 
 @Component({
 	selector: 'spartan-combobox-icon-addon-preview',
-	imports: [HlmComboboxImports, HlmInputGroupAddon, NgIcon],
+	imports: [HlmComboboxImports, CapsInputGroupAddon, NgIcon],
 	providers: [provideIcons({ lucideGlobe })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<hlm-combobox>
 			<hlm-combobox-input placeholder="Select a timezone">
-				<hlm-input-group-addon>
+				<caps-input-group-addon>
 					<ng-icon name="lucideGlobe" />
-				</hlm-input-group-addon>
+				</caps-input-group-addon>
 			</hlm-combobox-input>
 			<hlm-combobox-content *hlmComboboxPortal>
 				<hlm-combobox-empty>No items found.</hlm-combobox-empty>

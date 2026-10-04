@@ -1,53 +1,64 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-input-group-rtl',
-	imports: [HlmInputGroupImports, NgIcon, HlmSpinnerImports, HlmFieldImports],
+	imports: [
+		CapsButtonImports,
+		CapsTextareaImports,
+		CapsInputImports,
+		CapsInputGroupImports,
+		NgIcon,
+		HlmSpinnerImports,
+		CapsFieldImports,
+	],
 	providers: [provideIcons({ lucideSearch })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'grid w-full max-w-sm gap-6' },
 	template: `
-		<hlm-input-group [dir]="_dir()">
-			<input hlmInputGroupInput [placeholder]="_t()['placeholder']" />
-			<hlm-input-group-addon>
+		<caps-input-group [dir]="_dir()">
+			<input capsInput [placeholder]="_t()['placeholder']" [attr.aria-label]="_t()['placeholder']" />
+			<caps-input-group-addon>
 				<ng-icon name="lucideSearch" />
-			</hlm-input-group-addon>
-			<hlm-input-group-addon align="inline-end">{{ _t()['results'] }}</hlm-input-group-addon>
-		</hlm-input-group>
+			</caps-input-group-addon>
+			<caps-input-group-addon align="inline-end">{{ _t()['results'] }}</caps-input-group-addon>
+		</caps-input-group>
 
-		<hlm-input-group [dir]="_dir()">
-			<input hlmInputGroupInput [placeholder]="_t()['searching']" />
-			<hlm-input-group-addon align="inline-end">
+		<caps-input-group [dir]="_dir()">
+			<input capsInput [placeholder]="_t()['searching']" [attr.aria-label]="_t()['searching']" />
+			<caps-input-group-addon align="inline-end">
 				<hlm-spinner />
-			</hlm-input-group-addon>
-		</hlm-input-group>
+			</caps-input-group-addon>
+		</caps-input-group>
 
-		<hlm-input-group [dir]="_dir()">
-			<input hlmInputGroupInput [placeholder]="_t()['savingChanges']" />
-			<hlm-input-group-addon align="inline-end">
-				<hlm-input-group-text>{{ _t()['saving'] }}</hlm-input-group-text>
+		<caps-input-group [dir]="_dir()">
+			<input capsInput [placeholder]="_t()['savingChanges']" [attr.aria-label]="_t()['savingChanges']" />
+			<caps-input-group-addon align="inline-end">
+				<caps-input-group-text>{{ _t()['saving'] }}</caps-input-group-text>
 				<hlm-spinner />
-			</hlm-input-group-addon>
-		</hlm-input-group>
+			</caps-input-group-addon>
+		</caps-input-group>
 
-		<hlm-field-group [dir]="_dir()">
-			<hlm-field>
-				<label hlmFieldLabel for="rtl-textarea">{{ _t()['textareaLabel'] }}</label>
-				<hlm-input-group>
-					<textarea hlmInputGroupTextarea id="rtl-textarea" [placeholder]="_t()['textareaPlaceholder']"></textarea>
-					<hlm-input-group-addon align="block-end">
-						<hlm-input-group-text>{{ _t()['characterCount'] }}</hlm-input-group-text>
-						<button hlmInputGroupButton variant="default" size="sm" class="ms-auto">{{ _t()['post'] }}</button>
-					</hlm-input-group-addon>
-				</hlm-input-group>
-			</hlm-field>
-		</hlm-field-group>
+		<caps-field-group [dir]="_dir()">
+			<caps-field>
+				<caps-field-label for="rtl-textarea">{{ _t()['textareaLabel'] }}</caps-field-label>
+				<caps-input-group>
+					<textarea capsTextarea id="rtl-textarea" [placeholder]="_t()['textareaPlaceholder']"></textarea>
+					<caps-input-group-addon align="block-end">
+						<caps-input-group-text>{{ _t()['characterCount'] }}</caps-input-group-text>
+						<button capsButton variant="default" size="sm" class="ms-auto" type="button">{{ _t()['post'] }}</button>
+					</caps-input-group-addon>
+				</caps-input-group>
+			</caps-field>
+		</caps-field-group>
 	`,
 })
 export class InputGroupRtl {

@@ -234,7 +234,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__input_group" spartanH4>Input Group</h3>
 			<p class="${hlmP} mb-2">
 				Wrap an
-				<code class="${hlmCode} mr-0.5">HlmInputGroup</code>
+				<code class="${hlmCode} mr-0.5">CapsInputGroup</code>
 				component to create complex input layouts
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">

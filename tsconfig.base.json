@@ -169,7 +169,9 @@
 			"@capsule-ng/caps/alert-dialog": ["libs/caps/alert-dialog/src/index.ts"],
 			"@capsule-ng/caps/avatar": ["libs/caps/avatar/src/index.ts"],
 			"@capsule-ng/caps/badge": ["libs/caps/badge/src/index.ts"],
-			"@capsule-ng/caps/item": ["libs/caps/item/src/index.ts"]
+			"@capsule-ng/caps/item": ["libs/caps/item/src/index.ts"],
+			"@capsule-ng/caps/input-group": ["libs/caps/input-group/src/index.ts"],
+			"@capsule-ng/caps/input-otp": ["libs/caps/input-otp/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

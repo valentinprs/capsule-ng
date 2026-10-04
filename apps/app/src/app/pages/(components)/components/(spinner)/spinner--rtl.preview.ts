@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmItemImports } from '@spartan-ng/helm/item';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-spinner-rtl',
-	imports: [HlmSpinnerImports, HlmItemImports],
+	imports: [HlmSpinnerImports, CapsItemImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex w-full max-w-xs flex-col gap-4 [--radius:1rem]">
-			<hlm-item variant="muted" [dir]="_dir()">
-				<hlm-item-media>
+			<caps-item [dir]="_dir()">
+				<caps-item-media>
 					<hlm-spinner />
-				</hlm-item-media>
-				<hlm-item-content>
-					<hlm-item-title>{{ _t()['title'] }}</hlm-item-title>
-				</hlm-item-content>
-				<hlm-item-content class="flex-none justify-end">
+				</caps-item-media>
+				<caps-item-content>
+					<caps-item-title>{{ _t()['title'] }}</caps-item-title>
+				</caps-item-content>
+				<caps-item-content class="flex-none justify-end">
 					<span class="text-sm tabular-nums">{{ _t()['amount'] }}</span>
-				</hlm-item-content>
-			</hlm-item>
+				</caps-item-content>
+			</caps-item>
 		</div>
 	`,
 })

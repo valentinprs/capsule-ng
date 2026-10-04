@@ -1,15 +1,15 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 
 @Component({
 	selector: 'spartan-hover-card-rtl-preview',
-	imports: [HlmHoverCardImports, HlmButtonImports, HlmAvatarImports, NgIcon],
+	imports: [HlmHoverCardImports, CapsButtonImports, CapsAvatarImports, NgIcon],
 	providers: [Directionality, provideIcons({ lucideCalendar })],
 	host: {
 		class: 'flex w-full justify-center',
@@ -17,13 +17,13 @@ import { HlmHoverCardImports } from '@spartan-ng/helm/hover-card';
 	},
 	template: `
 		<hlm-hover-card>
-			<button hlmBtn variant="link" hlmHoverCardTrigger>&#64;analogjs</button>
+			<button capsButton variant="link" hlmHoverCardTrigger>&#64;analogjs</button>
 			<hlm-hover-card-content *hlmHoverCardPortal class="w-80">
 				<div class="flex justify-between gap-4">
-					<hlm-avatar size="sm">
-						<img src="https://analogjs.org/img/logos/analog-logo.svg" alt="AnalogLogo" hlmAvatarImage />
-						<span class="bg-red-600 text-red-800" hlmAvatarFallback>AN</span>
-					</hlm-avatar>
+					<caps-avatar size="sm">
+						<img src="https://analogjs.org/img/logos/analog-logo.svg" alt="AnalogLogo" capsAvatarImage />
+						<caps-avatar-fallback class="bg-muted text-foreground">AN</caps-avatar-fallback>
+					</caps-avatar>
 					<div class="space-y-1">
 						<h4 class="text-sm font-semibold">&#64;analogjs</h4>
 						<p class="text-sm">{{ _t()['description'] }}</p>

@@ -1,20 +1,19 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerCircleCheck, tablerLoader } from '@ng-icons/tabler-icons';
-import { HlmBadge } from '@spartan-ng/helm/badge';
 import { type Row } from '@tanstack/angular-table';
 import { type DashboardData } from './dashboard-data.model';
 import { type DashboardFeatures } from './table-section';
 
 @Component({
 	selector: 'spartan-status-cell',
-	imports: [HlmBadge, NgIcon],
+	imports: [CapsBadgeImports, NgIcon],
 	providers: [provideIcons({ tablerCircleCheck, tablerLoader })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<span
+		<caps-badge
 			id="{{ _data().id }}-status"
-			hlmBadge
 			variant="outline"
 			class="text-muted-foreground rounded-full px-1.5 text-xs"
 		>
@@ -24,7 +23,7 @@ import { type DashboardFeatures } from './table-section';
 				<ng-icon name="tablerLoader" />
 			}
 			{{ _data().status }}
-		</span>
+		</caps-badge>
 	`,
 })
 export class StatusCell {

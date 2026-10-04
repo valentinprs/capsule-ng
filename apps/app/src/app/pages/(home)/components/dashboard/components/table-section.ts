@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
@@ -10,7 +11,6 @@ import {
 	TableRowSelection,
 } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/selection-column';
 import { TableHeadSortButton } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/sort-header-button';
-import { HlmBadge } from '@spartan-ng/helm/badge';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import {
@@ -122,7 +122,7 @@ const columns = columnHelper.columns([
 		CapsSelectImports,
 		CapsButton,
 		FormsModule,
-		HlmBadge,
+		CapsBadgeImports,
 		FlexRender,
 		NgIcon,
 		CapsLabel,
@@ -146,11 +146,11 @@ const columns = columnHelper.columns([
 					<button hlmTabsTrigger="account">Outline</button>
 					<button hlmTabsTrigger="past-performance">
 						Past Performance
-						<span hlmBadge variant="secondary">3</span>
+						<caps-badge variant="gray">3</caps-badge>
 					</button>
 					<button hlmTabsTrigger="key-personnel">
 						Key Personnel
-						<span hlmBadge variant="secondary">2</span>
+						<caps-badge variant="gray">2</caps-badge>
 					</button>
 					<button hlmTabsTrigger="focus-documents">Focus Documents</button>
 				</hlm-tabs-list>

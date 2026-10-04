@@ -1,24 +1,24 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmItemImports } from '@spartan-ng/helm/item';
+import { CapsItemImports } from '@capsule-ng/caps/item';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-spinner-preview',
-	imports: [HlmSpinnerImports, HlmItemImports],
+	imports: [HlmSpinnerImports, CapsItemImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex w-full max-w-xs flex-col gap-4 [--radius:1rem]">
-			<div hlmItem variant="muted">
-				<hlm-item-media>
+			<caps-item>
+				<caps-item-media>
 					<hlm-spinner />
-				</hlm-item-media>
-				<hlm-item-content>
-					<div hlmItemTitle class="line-clamp-1">Processing payment...</div>
-				</hlm-item-content>
-				<hlm-item-content>
+				</caps-item-media>
+				<caps-item-content>
+					<caps-item-title class="line-clamp-1">Processing payment...</caps-item-title>
+				</caps-item-content>
+				<caps-item-content>
 					<span class="text-sm tabular-nums">$100.00</span>
-				</hlm-item-content>
-			</div>
+				</caps-item-content>
+			</caps-item>
 		</div>
 	`,
 })

@@ -1,8 +1,8 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, VERSION } from '@angular/core';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideExternalLink } from '@ng-icons/lucide';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { REPOSITORY_URL } from '../../../../../site.config';
 
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
@@ -31,7 +31,7 @@ export const routeMeta: RouteMeta = {
 		PageBottomNavLink,
 		NgIcon,
 
-		HlmBadgeImports,
+		CapsBadgeImports,
 	],
 	providers: [provideIcons({ lucideChevronRight, lucideExternalLink })],
 	template: `
@@ -53,21 +53,21 @@ export const routeMeta: RouteMeta = {
 			<div class="mt-4 flex flex-col gap-4 rounded-lg border p-6">
 				<div class="flex flex-wrap items-center justify-between gap-3">
 					<div class="flex flex-wrap items-center gap-3">
-						<span hlmBadge variant="default">Angular {{ version + 1 }}</span>
+						<caps-badge variant="high-contrast">Angular {{ version + 1 }}</caps-badge>
 						<span class="text-muted-foreground text-sm">Actively supported</span>
 					</div>
 					<span class="text-muted-foreground text-sm">Until {{ getSupportEndDate(version + 1) }}</span>
 				</div>
 				<div class="flex flex-wrap items-center justify-between gap-3">
 					<div class="flex flex-wrap items-center gap-3">
-						<span hlmBadge variant="outline">Angular {{ version }}</span>
+						<caps-badge variant="outline">Angular {{ version }}</caps-badge>
 						<span class="text-muted-foreground text-sm">Actively supported</span>
 					</div>
 					<span class="text-muted-foreground text-sm">Until {{ getSupportEndDate(version) }}</span>
 				</div>
 				<div class="flex flex-wrap items-center justify-between gap-3">
 					<div class="flex flex-wrap items-center gap-3">
-						<span hlmBadge variant="secondary">Angular {{ version - 1 }}</span>
+						<caps-badge variant="gray">Angular {{ version - 1 }}</caps-badge>
 						<span class="text-muted-foreground text-sm">Not supported</span>
 					</div>
 					<span class="text-muted-foreground text-sm">Support ended</span>

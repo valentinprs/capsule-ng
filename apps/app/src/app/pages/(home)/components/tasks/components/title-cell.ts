@@ -1,16 +1,16 @@
 import { Component, computed, input } from '@angular/core';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { type Row } from '@tanstack/angular-table';
 import type { Task } from '../services/tasks.models';
 import { type TaskFeatures } from '../tasks';
 
 @Component({
 	selector: 'spartan-title-cell',
-	imports: [HlmBadgeImports],
+	imports: [CapsBadgeImports],
 	template: `
-		<div hlmBadge variant="outline">
+		<caps-badge variant="outline">
 			{{ _data().type }}
-		</div>
+		</caps-badge>
 		{{ _data().title }}
 	`,
 })

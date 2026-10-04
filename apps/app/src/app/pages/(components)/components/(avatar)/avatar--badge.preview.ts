@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 
 @Component({
 	selector: 'spartan-avatar-badge-preview',
-	imports: [HlmAvatarImports],
+	imports: [CapsAvatarImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-avatar>
-			<img hlmAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" />
-			<span hlmAvatarFallback>RG</span>
-			<hlm-avatar-badge class="bg-red-600 dark:bg-red-800" />
-		</hlm-avatar>
+		<caps-avatar>
+			<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" />
+			<caps-avatar-fallback>RG</caps-avatar-fallback>
+			<caps-avatar-badge class="bg-red-600 dark:bg-red-800" />
+		</caps-avatar>
 	`,
 })
 export class AvatarBadgePreview {}

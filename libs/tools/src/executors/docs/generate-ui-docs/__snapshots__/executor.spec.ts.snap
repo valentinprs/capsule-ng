@@ -1344,6 +1344,57 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "img[brnAvatarImage]",
       },
     },
+    "caps": {
+      "CapsAvatar": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "'default' | 'sm' | 'lg'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-avatar",
+      },
+      "CapsAvatarBadge": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-avatar-badge",
+      },
+      "CapsAvatarFallback": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-avatar-fallback",
+      },
+      "CapsAvatarGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-avatar-group",
+      },
+      "CapsAvatarGroupCount": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-avatar-group-count",
+      },
+      "CapsAvatarImage": {
+        "exportAs": "capsAvatarImage",
+        "inputs": [
+          {
+            "name": "alt",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "img[capsAvatarImage]",
+      },
+    },
     "helm": {
       "HlmAvatar": {
         "inputs": [
@@ -1392,6 +1443,52 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "badge": {
+    "caps": {
+      "CapsBadge": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsBadgeVariant",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsBadgeSize",
+          },
+          {
+            "name": "skeleton",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-badge",
+      },
+      "CapsBadgeDirective": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsBadgeVariant",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsBadgeSize",
+          },
+          {
+            "name": "skeleton",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsBadge], button[capsBadge]",
+      },
+    },
     "helm": {
       "HlmBadge": {
         "inputs": [
@@ -6263,6 +6360,106 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "item": {
+    "caps": {
+      "CapsItem": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item",
+      },
+      "CapsItemActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item-actions",
+      },
+      "CapsItemContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item-content",
+      },
+      "CapsItemDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item-description",
+      },
+      "CapsItemDirective": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsItem], button[capsItem]",
+      },
+      "CapsItemFooter": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item-footer",
+      },
+      "CapsItemGroup": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsItemGroupSize",
+          },
+          {
+            "name": "kind",
+            "required": false,
+            "type": "CapsItemGroupKind",
+          },
+          {
+            "name": "isInset",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "label",
+            "required": false,
+            "type": "string | TemplateRef<unknown>",
+          },
+          {
+            "name": "labelId",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item-group",
+      },
+      "CapsItemHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item-header",
+      },
+      "CapsItemMedia": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item-media",
+      },
+      "CapsItemTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-item-title",
+      },
+    },
     "helm": {
       "HlmItem": {
         "inputs": [

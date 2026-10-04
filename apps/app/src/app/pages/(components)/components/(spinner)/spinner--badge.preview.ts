@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-spinner-badge-preview',
-	imports: [HlmSpinnerImports, HlmBadgeImports],
+	imports: [HlmSpinnerImports, CapsBadgeImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex items-center gap-4 [--radius:1.2rem]">
-			<span hlmBadge>
+			<caps-badge>
 				<hlm-spinner class="text-xs" />
 				Syncing
-			</span>
-			<span hlmBadge variant="secondary">
+			</caps-badge>
+			<caps-badge variant="gray">
 				<hlm-spinner class="text-xs" />
 				Updating
-			</span>
-			<span hlmBadge variant="outline">
+			</caps-badge>
+			<caps-badge variant="outline">
 				<hlm-spinner class="text-xs" />
 				Processing
-			</span>
+			</caps-badge>
 		</div>
 	`,
 })

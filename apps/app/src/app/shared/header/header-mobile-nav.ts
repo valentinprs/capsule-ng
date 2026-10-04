@@ -1,22 +1,22 @@
 import { Component, computed, signal, viewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { pageNavs, sidenavItems } from '@spartan-ng/app/app/shared/components/navigation-items';
 import { SpartanNewMarker } from '@spartan-ng/app/app/shared/spartan-new-marker';
 import { BrnPopover } from '@spartan-ng/brain/popover';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'spartan-mobile-nav',
-	imports: [HlmButton, NgScrollbarModule, RouterLink, HlmPopoverImports, HlmBadgeImports, SpartanNewMarker],
+	imports: [CapsButton, NgScrollbarModule, RouterLink, HlmPopoverImports, CapsBadgeImports, SpartanNewMarker],
 	template: `
 		<hlm-popover align="start" (closed)="_closePopover()" offsetX="-24" sideOffset="12">
 			<button
 				(click)="_toggleOpen()"
 				hlmPopoverTrigger
-				hlmBtn
+				capsButton
 				variant="ghost"
 				class="extend-touch-target h-8 touch-manipulation items-center justify-start gap-2.5 !p-0 hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 active:bg-transparent dark:hover:bg-transparent"
 			>
@@ -73,7 +73,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 										<span spartanNewMarker></span>
 									}
 									@if (link.wip) {
-										<span hlmBadge>soon</span>
+										<caps-badge>soon</caps-badge>
 									}
 								</a>
 							}

@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMessageCircle } from '@ng-icons/lucide';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 
 @Component({
 	selector: 'spartan-empty-avatar',
-	imports: [NgIcon, HlmButton, HlmEmptyImports, HlmAvatarImports],
+	imports: [NgIcon, CapsButton, HlmEmptyImports, CapsAvatarImports],
 	providers: [provideIcons({ lucideMessageCircle })],
 	template: `
 		<div hlmEmpty>
 			<div hlmEmptyHeader>
 				<div hlmEmptyMedia>
-					<hlm-avatar class="size-12">
-						<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" hlmAvatarImage />
-						<span class="bg-[#FD005B] text-white" hlmAvatarFallback>RG</span>
-					</hlm-avatar>
+					<caps-avatar class="size-12">
+						<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
+						<caps-avatar-fallback class="bg-[#D6004C] text-white">RG</caps-avatar-fallback>
+					</caps-avatar>
 				</div>
 				<div hlmEmptyTitle>User Offline</div>
 				<div hlmEmptyDescription>
@@ -24,7 +24,7 @@ import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 				</div>
 			</div>
 			<div hlmEmptyContent>
-				<button hlmBtn size="sm">
+				<button capsButton size="sm">
 					<ng-icon name="lucideMessageCircle" />
 					Leave message
 				</button>

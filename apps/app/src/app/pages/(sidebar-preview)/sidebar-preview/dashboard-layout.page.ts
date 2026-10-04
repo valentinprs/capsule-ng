@@ -1,4 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	tablerCamera,
@@ -27,8 +29,6 @@ import {
 	tablerUserCircle,
 	tablerUsers,
 } from '@ng-icons/tabler-icons';
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { DashboardCardSection } from '../../(home)/components/dashboard/components/card-section';
@@ -40,8 +40,8 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 		HlmSidebarImports,
 		NgIcon,
 		HlmDropdownMenuImports,
-		HlmAvatarImports,
-		HlmButton,
+		CapsAvatarImports,
+		CapsButton,
 		DashboardCardSection,
 		DashboardTableSection,
 	],
@@ -178,10 +178,10 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 								class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 								[hlmDropdownMenuTrigger]="userMenu"
 							>
-								<hlm-avatar class="size-8 rounded-lg grayscale">
-									<img [src]="_items.user.avatar" alt="spartan logo. Resembling a spartanic shield" hlmAvatarImage />
-									<span class="rounded-lg bg-[#FD005B] text-white" hlmAvatarFallback>SP</span>
-								</hlm-avatar>
+								<caps-avatar class="size-8 rounded-lg grayscale">
+									<img [src]="_items.user.avatar" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
+									<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">SP</caps-avatar-fallback>
+								</caps-avatar>
 								<div class="grid flex-1 text-left text-sm leading-tight">
 									<span class="truncate font-medium">{{ _items.user.name }}</span>
 									<span class="text-muted-foreground truncate text-xs">
@@ -196,10 +196,10 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 						<hlm-dropdown-menu class="min-w-56 rounded-lg">
 							<hlm-dropdown-menu-label class="p-0 font-normal">
 								<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-									<hlm-avatar class="size-8 rounded-lg">
-										<img [src]="_items.user.avatar" alt="spartan logo. Resembling a spartanic shield" hlmAvatarImage />
-										<span class="rounded-lg bg-[#FD005B] text-white" hlmAvatarFallback>SP</span>
-									</hlm-avatar>
+									<caps-avatar class="size-8 rounded-lg">
+										<img [src]="_items.user.avatar" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
+										<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">SP</caps-avatar-fallback>
+									</caps-avatar>
 									<div class="grid flex-1 text-left text-sm leading-tight">
 										<span class="truncate font-medium">{{ _items.user.name }}</span>
 										<span class="text-muted-foreground truncate text-xs">
@@ -239,7 +239,7 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 					<div class="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
 						<h1 class="text-base font-medium">Documents</h1>
 						<div class="ml-auto flex items-center gap-2">
-							<button hlmBtn size="sm" class="hidden h-7 sm:flex">
+							<button capsButton size="sm" class="hidden h-7 sm:flex">
 								<ng-icon name="tablerCirclePlus" />
 								<span>Quick Create</span>
 							</button>

@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerTrendingDown, tablerTrendingUp } from '@ng-icons/tabler-icons';
-import { HlmBadge } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'spartan-dashboard-card-section',
-	imports: [CapsCardImports, HlmBadge, NgIcon],
+	imports: [CapsCardImports, CapsBadgeImports, NgIcon],
 	providers: [
 		provideIcons({
 			tablerTrendingUp,
@@ -26,10 +26,10 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 					</caps-card-title>
 
 					<caps-card-action>
-						<span hlmBadge variant="outline">
+						<caps-badge variant="outline">
 							<ng-icon name="tablerTrendingUp" />
 							+12.5%
-						</span>
+						</caps-badge>
 					</caps-card-action>
 				</caps-card-header>
 				<caps-card-footer class="flex-col items-start gap-1.5 text-sm">
@@ -48,10 +48,10 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 					</caps-card-title>
 
 					<caps-card-action>
-						<span hlmBadge variant="outline">
+						<caps-badge variant="outline">
 							<ng-icon name="tablerTrendingDown" />
 							-20.4%
-						</span>
+						</caps-badge>
 					</caps-card-action>
 				</caps-card-header>
 				<caps-card-footer class="flex-col items-start gap-1.5 text-sm">
@@ -70,10 +70,10 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 					</caps-card-title>
 
 					<caps-card-action>
-						<span hlmBadge variant="outline">
+						<caps-badge variant="outline">
 							<ng-icon name="tablerTrendingUp" />
 							+12.5%
-						</span>
+						</caps-badge>
 					</caps-card-action>
 				</caps-card-header>
 				<caps-card-footer class="flex-col items-start gap-1.5 text-sm">
@@ -92,10 +92,10 @@ import { HlmBadge } from '@spartan-ng/helm/badge';
 					</caps-card-title>
 
 					<caps-card-action>
-						<span hlmBadge variant="outline">
+						<caps-badge variant="outline">
 							<ng-icon name="tablerTrendingUp" />
 							4.5%
-						</span>
+						</caps-badge>
 					</caps-card-action>
 				</caps-card-header>
 				<caps-card-footer class="flex-col items-start gap-1.5 text-sm">

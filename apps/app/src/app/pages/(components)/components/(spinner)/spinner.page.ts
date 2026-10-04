@@ -178,7 +178,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP}">
 				Use the spinner inside
-				<code class="${hlmCode}">HlmItemMedia</code>
+				<code class="${hlmCode}">caps-item-media</code>
 				to indicate a loading state.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">

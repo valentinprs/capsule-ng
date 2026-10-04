@@ -1,4 +1,4 @@
-import { HlmAvatarImports } from '@spartan-ng/helm/avatar';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 import { HlmMessageImports } from '@spartan-ng/helm/message';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
@@ -10,7 +10,7 @@ const meta: Meta = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmMessageScrollerImports, HlmMessageImports, HlmBubbleImports, HlmAvatarImports],
+			imports: [HlmMessageScrollerImports, HlmMessageImports, HlmBubbleImports, CapsAvatarImports],
 		}),
 	],
 };
@@ -35,9 +35,9 @@ function turn(id: string, who: 'me' | 'ai', text: string, anchor = false) {
 								<div hlmMessageScrollerItem messageId="${id}"${scrollAnchor}>
 									<div hlmMessage${align}>
 										<div hlmMessageAvatar>
-											<hlm-avatar>
-												<span hlmAvatarFallback>${fallback}</span>
-											</hlm-avatar>
+											<caps-avatar>
+												<caps-avatar-fallback>${fallback}</caps-avatar-fallback>
+											</caps-avatar>
 										</div>
 										<div hlmMessageContent>
 											<div hlmBubble${variant}>

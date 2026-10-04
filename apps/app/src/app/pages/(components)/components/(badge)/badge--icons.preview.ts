@@ -1,23 +1,23 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBadgeCheck, lucideBookmark } from '@ng-icons/lucide';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 @Component({
 	selector: 'spartan-badge-icons-preview',
-	imports: [HlmBadgeImports, NgIcon],
+	imports: [CapsBadgeImports, NgIcon],
 	providers: [provideIcons({ lucideBadgeCheck, lucideBookmark })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex w-full flex-wrap justify-center gap-2">
-			<span hlmBadge variant="secondary">
+			<caps-badge variant="gray">
 				<ng-icon name="lucideBadgeCheck" />
 				Verified
-			</span>
-			<span hlmBadge variant="outline">
+			</caps-badge>
+			<caps-badge variant="outline">
 				Bookmark
 				<ng-icon name="lucideBookmark" />
-			</span>
+			</caps-badge>
 		</div>
 	`,
 })

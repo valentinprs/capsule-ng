@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowRight } from '@ng-icons/lucide';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 @Component({
 	selector: 'spartan-button-group-select',
-	imports: [CapsInputImports, CapsButtonImports, CapsSelectImports, HlmButtonGroupImports, NgIcon],
+	imports: [CapsInputImports, CapsButtonImports, CapsSelectImports, CapsButtonGroupImports, NgIcon],
 	providers: [provideIcons({ lucideArrowRight })],
 	template: `
-		<div hlmButtonGroup>
-			<div hlmButtonGroup class="[&>caps-select>button]:rounded-r-none">
+		<caps-button-group aria-label="Actions">
+			<caps-button-group aria-label="Actions" class="[&>caps-select>button]:rounded-r-none">
 				<caps-select
 					aria-label="Currency"
 					class="inline-block"
@@ -29,14 +29,13 @@ import { CapsSelectImports } from '@capsule-ng/caps/select';
 						</caps-select-option>
 					}
 				</caps-select>
-				<input capsInput placeholder="10.00" />
-			</div>
-			<div hlmButtonGroup>
-				<button capsButton variant="outline" size="icon">
-					<ng-icon name="lucideArrowRight" />
-				</button>
-			</div>
-		</div>
+				<input capsInput placeholder="10.00" aria-label="Amount" />
+			</caps-button-group>
+
+			<button capsButton variant="outline" size="icon" aria-label="Convert currency">
+				<ng-icon name="lucideArrowRight" />
+			</button>
+		</caps-button-group>
 	`,
 })
 export class ButtonGroupSelect {

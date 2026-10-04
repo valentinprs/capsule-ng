@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsRadioGroupImports } from '@capsule-ng/caps/radio-group';
 import { CapsSwitch } from '@capsule-ng/caps/switch';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMinus, lucidePlus } from '@ng-icons/lucide';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
 @Component({
 	selector: 'spartan-appearance-settings',
-	imports: [CapsRadioGroupImports, CapsFieldImports, HlmButtonGroupImports, CapsSwitch, NgIcon, CapsInput, CapsButton],
+	imports: [CapsRadioGroupImports, CapsFieldImports, CapsButtonGroupImports, CapsSwitch, NgIcon, CapsInput, CapsButton],
 	providers: [provideIcons({ lucidePlus, lucideMinus })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
@@ -45,7 +45,7 @@ import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 					<caps-field-label>Number of GPUs</caps-field-label>
 					<caps-field-description>You can add more later.</caps-field-description>
 				</caps-field-content>
-				<div hlmButtonGroup>
+				<caps-button-group aria-label="Actions">
 					<input capsInput class="h-7 !w-14 font-mono" [value]="_gpuCount()" />
 					<button
 						capsButton
@@ -65,7 +65,7 @@ import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 					>
 						<ng-icon name="lucidePlus" />
 					</button>
-				</div>
+				</caps-button-group>
 			</caps-field>
 			<caps-field-separator />
 			<caps-field orientation="horizontal">

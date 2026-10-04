@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
 @Component({
 	selector: 'spartan-button-group-split',
-	imports: [HlmButtonImports, HlmButtonGroupImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, NgIcon],
 	providers: [provideIcons({ lucidePlus })],
 	template: `
-		<div hlmButtonGroup>
-			<button hlmBtn variant="secondary">Button</button>
-			<hlm-button-group-separator />
-			<button hlmBtn variant="secondary" size="icon">
+		<caps-button-group aria-label="Actions">
+			<button capsButton variant="secondary">Button</button>
+			<caps-separator orientation="vertical" />
+			<button capsButton variant="secondary" size="icon" aria-label="Add">
 				<ng-icon name="lucidePlus" />
 			</button>
-		</div>
+		</caps-button-group>
 	`,
 })
 export class ButtonGroupSplit {}

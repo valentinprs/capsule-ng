@@ -1,27 +1,33 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBold, lucideItalic, lucideUnderline } from '@ng-icons/lucide';
-import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 
 @Component({
 	selector: 'spartan-toggle-group-vertical',
-	imports: [HlmToggleGroupImports, NgIcon],
+	imports: [CapsToggleGroupImports, NgIcon],
 	providers: [provideIcons({ lucideBold, lucideItalic, lucideUnderline })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-toggle-group type="multiple" orientation="vertical" spacing="1" [value]="['bold', 'italic']">
-			<button hlmToggleGroupItem value="bold" aria-label="Toggle bold">
+		<caps-toggle-group
+			aria-label="Formatting"
+			type="multiple"
+			orientation="vertical"
+			spacing="1"
+			[value]="['bold', 'italic']"
+		>
+			<button capsToggleItem value="bold" aria-label="Toggle bold">
 				<ng-icon name="lucideBold" />
 			</button>
 
-			<button hlmToggleGroupItem value="italic" aria-label="Toggle italic">
+			<button capsToggleItem value="italic" aria-label="Toggle italic">
 				<ng-icon name="lucideItalic" />
 			</button>
 
-			<button hlmToggleGroupItem value="underline" aria-label="Toggle underline">
+			<button capsToggleItem value="underline" aria-label="Toggle underline">
 				<ng-icon name="lucideUnderline" />
 			</button>
-		</hlm-toggle-group>
+		</caps-toggle-group>
 	`,
 })
 export class ToggleGroupVerticalPreview {}

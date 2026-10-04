@@ -1,5 +1,7 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, signal, untracked } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArchive,
@@ -14,13 +16,11 @@ import {
 	lucideTrash,
 } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-button-group-rtl-preview',
-	imports: [HlmButtonImports, HlmButtonGroupImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, HlmDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideArrowLeft,
@@ -40,20 +40,19 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 		'[dir]': '_dir()',
 	},
 	template: `
-		<div hlmButtonGroup>
-			<div hlmButtonGroup class="hidden sm:flex">
-				<button hlmBtn variant="outline" size="icon" [attr.aria-label]="_t().goBack">
-					<ng-icon name="lucideArrowLeft" class="rtl:rotate-180" />
-				</button>
-			</div>
-			<div hlmButtonGroup>
-				<button hlmBtn variant="outline">{{ _t().archive }}</button>
-				<button hlmBtn variant="outline">{{ _t().report }}</button>
-			</div>
-			<div hlmButtonGroup>
-				<button hlmBtn variant="outline">{{ _t().snooze }}</button>
+		<caps-button-group aria-label="Actions">
+			<button capsButton variant="outline" size="icon" [attr.aria-label]="_t().goBack" class="hidden sm:flex">
+				<ng-icon name="lucideArrowLeft" class="rtl:rotate-180" />
+			</button>
+
+			<caps-button-group aria-label="Actions">
+				<button capsButton variant="outline">{{ _t().archive }}</button>
+				<button capsButton variant="outline">{{ _t().report }}</button>
+			</caps-button-group>
+			<caps-button-group aria-label="Actions">
+				<button capsButton variant="outline">{{ _t().snooze }}</button>
 				<button
-					hlmBtn
+					capsButton
 					variant="outline"
 					[attr.aria-label]="_t().moreOptions"
 					[hlmDropdownMenuTrigger]="menu"
@@ -61,8 +60,8 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 				>
 					<ng-icon name="lucideEllipsis" />
 				</button>
-			</div>
-		</div>
+			</caps-button-group>
+		</caps-button-group>
 		<ng-template #menu>
 			<hlm-dropdown-menu class="w-52" [dir]="_dir()">
 				<hlm-dropdown-menu-group>

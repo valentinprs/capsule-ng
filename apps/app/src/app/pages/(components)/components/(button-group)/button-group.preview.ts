@@ -1,4 +1,6 @@
 import { Component, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArchive,
@@ -12,13 +14,11 @@ import {
 	lucideTag,
 	lucideTrash,
 } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-button-group-preview',
-	imports: [HlmButtonImports, HlmButtonGroupImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, HlmDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideArrowLeft,
@@ -34,23 +34,22 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 		}),
 	],
 	template: `
-		<div hlmButtonGroup>
-			<div hlmButtonGroup class="hidden sm:flex">
-				<button hlmBtn variant="outline" size="icon" aria-label="Go Back">
-					<ng-icon name="lucideArrowLeft" />
-				</button>
-			</div>
-			<div hlmButtonGroup>
-				<button hlmBtn variant="outline">Archive</button>
-				<button hlmBtn variant="outline">Report</button>
-			</div>
-			<div hlmButtonGroup>
-				<button hlmBtn variant="outline">Snooze</button>
-				<button hlmBtn variant="outline" aria-label="More Options" [hlmDropdownMenuTrigger]="menu" align="end">
+		<caps-button-group aria-label="Actions">
+			<button capsButton variant="outline" size="icon" aria-label="Go Back" class="hidden sm:flex">
+				<ng-icon name="lucideArrowLeft" />
+			</button>
+
+			<caps-button-group aria-label="Actions">
+				<button capsButton variant="outline">Archive</button>
+				<button capsButton variant="outline">Report</button>
+			</caps-button-group>
+			<caps-button-group aria-label="Actions">
+				<button capsButton variant="outline">Snooze</button>
+				<button capsButton variant="outline" aria-label="More Options" [hlmDropdownMenuTrigger]="menu" align="end">
 					<ng-icon name="lucideEllipsis" />
 				</button>
-			</div>
-		</div>
+			</caps-button-group>
+		</caps-button-group>
 		<ng-template #menu>
 			<hlm-dropdown-menu class="w-52">
 				<hlm-dropdown-menu-group>
@@ -127,19 +126,20 @@ export class ButtonGroupPreview {
 }
 
 export const defaultImports = `
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 `;
 
 export const defaultSkeleton = `
-<div hlmButtonGroup>
-  <button hlmBtn variant="outline">Button 1</button>
-  <button hlmBtn variant="outline">Button 2</button>
-</div>
+<caps-button-group aria-label="Actions">
+  <button capsButton variant="outline">Button 1</button>
+  <button capsButton variant="outline">Button 2</button>
+</caps-button-group>
 `;
 
 export const accessibilityCode = `
-<div hlmButtonGroup aria-label="Button group">
-	<button hlmBtn variant="outline">Button 1</button>
-	<button hlmBtn variant="outline">Button 2</button>
-</div>
+<caps-button-group aria-label="Button group">
+	<button capsButton variant="outline">Button 1</button>
+	<button capsButton variant="outline">Button 2</button>
+</caps-button-group>
 `;

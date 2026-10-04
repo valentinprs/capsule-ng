@@ -1,22 +1,22 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-button-group-input',
-	imports: [HlmButtonImports, HlmButtonGroupImports, HlmInputImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, CapsInputImports, NgIcon],
 	providers: [provideIcons({ lucideSearch })],
 	template: `
-		<div hlmButtonGroup>
-			<input hlmInput placeholder="Search..." />
-			<button hlmBtn variant="outline">
+		<caps-button-group aria-label="Actions">
+			<input capsInput placeholder="Search..." aria-label="Search" />
+			<button capsButton variant="outline" aria-label="Search">
 				<ng-icon name="lucideSearch" />
 			</button>
-		</div>
+		</caps-button-group>
 	`,
 })
 export class ButtonGroupInput {}

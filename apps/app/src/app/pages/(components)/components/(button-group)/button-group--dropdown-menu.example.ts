@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCheck,
@@ -10,13 +12,11 @@ import {
 	lucideUserRoundX,
 	lucideVolumeOff,
 } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-button-group-dropdown-menu',
-	imports: [HlmButtonImports, HlmButtonGroupImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, HlmDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideChevronDown,
@@ -30,12 +30,19 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 		}),
 	],
 	template: `
-		<div hlmButtonGroup>
-			<button hlmBtn variant="outline">Follow</button>
-			<button hlmBtn variant="outline" size="icon" [hlmDropdownMenuTrigger]="menu" align="end">
+		<caps-button-group aria-label="Actions">
+			<button capsButton variant="outline">Follow</button>
+			<button
+				capsButton
+				variant="outline"
+				size="icon"
+				aria-label="Conversation options"
+				[hlmDropdownMenuTrigger]="menu"
+				align="end"
+			>
 				<ng-icon name="lucideChevronDown" />
 			</button>
-		</div>
+		</caps-button-group>
 		<ng-template #menu>
 			<hlm-dropdown-menu class="w-[49] [--radius:1rem]">
 				<hlm-dropdown-menu-group>

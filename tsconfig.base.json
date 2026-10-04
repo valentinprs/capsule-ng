@@ -166,7 +166,10 @@
 			"@capsule-ng/caps/alert-dialog": ["libs/caps/alert-dialog/src/index.ts"],
 			"@capsule-ng/caps/avatar": ["libs/caps/avatar/src/index.ts"],
 			"@capsule-ng/caps/badge": ["libs/caps/badge/src/index.ts"],
-			"@capsule-ng/caps/item": ["libs/caps/item/src/index.ts"]
+			"@capsule-ng/caps/item": ["libs/caps/item/src/index.ts"],
+			"@capsule-ng/caps/toggle": ["libs/caps/toggle/src/index.ts"],
+			"@capsule-ng/caps/toggle-group": ["libs/caps/toggle-group/src/index.ts"],
+			"@capsule-ng/caps/button-group": ["libs/caps/button-group/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideMessageCircleDashed, lucideRotateCw } from '@ng-icons/lucide';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 
@@ -16,7 +16,7 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 		CapsCardImports,
 		CapsButtonImports,
 		HlmEmptyImports,
-		HlmToggleGroupImports,
+		CapsToggleGroupImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
 	],
@@ -85,16 +85,16 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 			</caps-card-content>
 
 			<caps-card-footer>
-				<hlm-toggle-group
+				<caps-toggle-group
 					type="single"
 					[spacing]="2"
 					[value]="_anchorRole()"
 					(valueChange)="onAnchorRoleChange($event)"
 					aria-label="Select scroll anchor role"
 				>
-					<button hlmToggleGroupItem value="user" aria-label="Anchor user messages">User</button>
-					<button hlmToggleGroupItem value="assistant" aria-label="Anchor assistant messages">Assistant</button>
-				</hlm-toggle-group>
+					<button capsToggleItem value="user" aria-label="Anchor user messages">User</button>
+					<button capsToggleItem value="assistant" aria-label="Anchor assistant messages">Assistant</button>
+				</caps-toggle-group>
 				<button capsButton type="button" size="icon" class="ms-auto" [disabled]="!_nextMessage()" (click)="sendNext()">
 					<ng-icon name="lucideArrowUp" />
 					<span class="sr-only">Send Message</span>

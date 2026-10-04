@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBot, lucideChevronDown } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmButtonGroupImports } from '@spartan-ng/helm/button-group';
 
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsTextarea } from '@capsule-ng/caps/textarea';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 
 @Component({
 	selector: 'spartan-button-group-popover',
-	imports: [HlmInputImports, HlmButtonImports, HlmButtonGroupImports, HlmPopoverImports, NgIcon],
+	imports: [CapsTextarea, CapsButtonImports, CapsButtonGroupImports, HlmPopoverImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown, lucideBot })],
 	template: `
 		<hlm-popover sideOffset="5" align="end">
-			<div hlmButtonGroup>
-				<button hlmBtn variant="outline">
+			<caps-button-group aria-label="Actions">
+				<button capsButton variant="outline">
 					<ng-icon name="lucideBot" />
 					Copilot
 				</button>
-				<button id="edit-profile" variant="outline" hlmPopoverTrigger hlmBtn variant="outline" size="icon">
+				<button aria-label="Open agent tasks" hlmPopoverTrigger capsButton variant="outline" size="icon">
 					<ng-icon name="lucideChevronDown" />
 				</button>
 				<hlm-popover-content class="rounded-xl p-0 text-sm" *hlmPopoverPortal="let ctx">
@@ -27,7 +27,8 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 					</div>
 					<div class="p-4 text-sm">
 						<textarea
-							hlmInput
+							capsTextarea
+							aria-label="Task description"
 							placeholder="Describe your task in natural language."
 							class="mb-4 min-h-16 resize-none"
 						></textarea>
@@ -38,7 +39,7 @@ import { HlmPopoverImports } from '@spartan-ng/helm/popover';
 						</p>
 					</div>
 				</hlm-popover-content>
-			</div>
+			</caps-button-group>
 		</hlm-popover>
 	`,
 })

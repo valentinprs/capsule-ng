@@ -46,7 +46,7 @@ for (const production of [false, true]) {
      const path = new URL(url).pathname;
      if (path.startsWith('/v9/projects/')) return Response.json({targets:{production:{id:'initialized'}}});
      if (path.endsWith('/commits/main')) return Response.json({sha:'current-sha'});
-     if (path.endsWith('/pulls/65')) return Response.json({state:'open',head:{sha:'current-sha'}});
+     if (path.endsWith('/pulls/65')) return Response.json({state:'open',draft:false,head:{sha:'current-sha',repo:{full_name:'valentinprs/capsule-ng'}},base:{repo:{full_name:'valentinprs/capsule-ng'}}});
      throw new Error('Unexpected network request: '+path);
     };
    `,

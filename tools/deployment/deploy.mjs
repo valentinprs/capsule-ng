@@ -14,7 +14,7 @@ import {
 
 const stage = process.argv[2];
 if (!['build', 'publish'].includes(stage)) throw new Error('Expected build or publish stage');
-const context = deploymentContext(JSON.parse(await readFile(process.env.GITHUB_EVENT_PATH, 'utf8')));
+const event = JSON.parse(await readFile(process.env.GITHUB_EVENT_PATH, 'utf8'));
 for (const key of [
 	'VERCEL_TOKEN',
 	'VERCEL_ORG_ID',
@@ -49,6 +49,9 @@ async function api(path, { github = false, method = 'GET', body, allow404 = fals
 	return res.status === 204 ? null : res.json();
 }
 const github = (path, options = {}) => api(`/repos/${repository}${path}`, { ...options, github: true });
+if (event.inputs && !['refs/heads/main', 'refs/heads/develop'].includes(process.env.GITHUB_REF))
+	throw new Error('Untrusted dispatch ref');
+const context = deploymentContext(event, event.inputs ? await github(`/pulls/${Number(event.inputs.pr)}`) : undefined);
 async function current() {
 	const remote = await github(context.production ? '/commits/main' : `/pulls/${context.pr}`);
 	return isCurrent(context, remote);

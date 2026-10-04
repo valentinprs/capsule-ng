@@ -25,7 +25,7 @@ Repository variables:
 - `VERCEL_CATALOGUE_PROJECT_ID`
 - `VERCEL_STORYBOOK_PROJECT_ID`
 
-Use Node 22 and pnpm 10.30.3. The deployment script pins Vercel CLI 62.1.0. Builds run in Actions through `vercel build`; `vercel deploy --prebuilt` uploads the resulting Build Output API artifact. The catalogue uses the Nitro Vercel preset. Storybook explicitly builds its separate Nx target.
+Use Node 22 and pnpm 10.30.3. The deployment script pins Vercel CLI 62.1.0. Builds run in Actions through `vercel build`; `vercel deploy --prebuilt --archive=tgz` uploads the resulting Build Output API artifact. The [official archive mode](https://vercel.com/docs/cli/deploy#archive) compresses the upload instead of sending thousands of files individually, reducing the upload requests that triggered the `api-upload-free` per-file limit in CI. It does not change preview/production targets or promotion checks. The catalogue uses the Nitro Vercel preset. Storybook explicitly builds its separate Nx target.
 
 ## Lifecycle
 

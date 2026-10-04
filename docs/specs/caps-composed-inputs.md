@@ -46,3 +46,9 @@ Local validation:
 Finite time-based transitions settle before theme contrast measurements. Infinite caret/spinner animations and scroll-driven scrollbar timelines remain active; they are not awaited or disabled. No axe rule is excluded.
 
 Manual screen-reader sessions were not performed. Automated accessibility, native keyboard/focus, forms and browser checks provide the evidence above; the draft does not claim manual assistive-technology certification or full end-to-end CI.
+
+## Inline border alignment regression
+
+An inline InputGroup beside a 32px icon button grew to 38px: its native 32px input counted the group's two borders again, while an inline addon combined a 24px action with 12px vertical padding. The visible bottom seam differed by 6px. Inline native inputs now subtract the outer borders from the control-height token, and inline addons use zero block padding. The root retains intrinsic height and a 32px minimum, so larger content grows naturally. Direct textareas and block-start/end addons keep their existing layout.
+
+The real adjacent-button regression failed before the correction and passes in eight combinations of 390/1280px, light/dark and LTR/RTL. Twenty-one targeted Chrome Cypress cases pass without retries on the combined local #67/#68 catalogue, covering geometry, grouped actions, forms, focus, editing and accessibility. Browser measurements also preserve actual 28/32/36px button sizes, stacked/fluid layouts, containment across 32 InputGroup examples and natural growth for larger addons. The shared stylesheet is compiled by the running catalogue; unchanged full builds and unit suites were not repeated for this CSS correction. Brain, public API and ButtonGroup styling are unchanged.

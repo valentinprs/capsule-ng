@@ -34,7 +34,14 @@
 @layer caps {
 	.caps-input-group {
 		@apply border-input dark:bg-input/30 rounded-lg border transition-colors;
-		min-height: --spacing(8);
+		min-height: var(--caps-control-height);
+	}
+	.caps-input-group:not(:has(> textarea, > [data-align='block-start'], > [data-align='block-end'])) > input.caps-input {
+		height: calc(var(--caps-control-height) - 2 * var(--caps-border-width));
+	}
+	.caps-input-group:not(:has(> textarea, > [data-align='block-start'], > [data-align='block-end']))
+		> .caps-input-group-addon {
+		padding-block: 0;
 	}
 	.caps-input-group:has(input:focus-visible, textarea:focus-visible) {
 		@apply border-ring ring-ring/50 ring-3;

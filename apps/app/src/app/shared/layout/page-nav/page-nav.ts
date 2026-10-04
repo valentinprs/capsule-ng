@@ -119,7 +119,7 @@ export class PageNav implements AfterViewInit, OnDestroy {
 			}));
 
 		// Only insert links if they exist
-		if (brainLinks.length) {
+		if (brainLinks.length && brnLinkIndex !== -1) {
 			pageLinks.splice(brnLinkIndex + 1, 0, ...brainLinks);
 		}
 

@@ -1,49 +1,61 @@
 import { Component } from '@angular/core';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmLabelImports } from '@spartan-ng/helm/label';
+import { FormsModule } from '@angular/forms';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-checkbox-preview',
-	imports: [HlmLabelImports, HlmCheckboxImports, HlmFieldImports],
+	imports: [FormsModule, CapsCheckboxImports, CapsFieldImports],
+	host: { class: 'block w-full max-w-md' },
 	template: `
-		<div class="flex flex-col gap-6">
-			<div class="flex items-center gap-3">
-				<hlm-checkbox inputId="terms" />
-				<label hlmLabel for="terms">Accept terms and conditions</label>
-			</div>
-			<div class="flex items-start gap-3">
-				<hlm-checkbox inputId="terms-2" [checked]="true" />
-				<div class="grid gap-2">
-					<label hlmLabel for="terms-2">Accept terms and conditions</label>
-					<p hlmFieldDescription>By clicking this checkbox, you agree to the terms and conditions.</p>
-				</div>
-			</div>
-			<div class="flex items-start gap-3">
-				<hlm-checkbox inputId="toggle" disabled />
-				<label hlmLabel for="toggle">Enable notifications</label>
-			</div>
-			<label
-				class="hover:bg-accent/50 flex items-start gap-3 rounded-lg border p-3 has-[[aria-checked=true]]:border-blue-600 has-[[aria-checked=true]]:bg-blue-50 dark:has-[[aria-checked=true]]:border-blue-900 dark:has-[[aria-checked=true]]:bg-blue-950"
+		<caps-field-group class="gap-6">
+			<caps-field orientation="horizontal">
+				<caps-checkbox [(ngModel)]="accepted" />
+				<caps-field-label>Accept terms and conditions</caps-field-label>
+			</caps-field>
+			<caps-field orientation="horizontal">
+				<caps-checkbox [checked]="true" />
+				<caps-field-content>
+					<caps-field-label>Accept terms and conditions</caps-field-label>
+					<caps-field-description>
+						By clicking this checkbox, you agree to the terms and conditions.
+					</caps-field-description>
+				</caps-field-content>
+			</caps-field>
+			<caps-field orientation="horizontal">
+				<caps-checkbox disabled />
+				<caps-field-label>Enable notifications</caps-field-label>
+			</caps-field>
+			<caps-field orientation="horizontal">
+				<caps-checkbox [indeterminate]="true" />
+				<caps-field-label>Select all notifications</caps-field-label>
+			</caps-field>
+			<caps-field-label
+				for="toggle-2"
+				class="hover:bg-accent/50 has-[[aria-checked=true]]:border-primary has-[[aria-checked=true]]:bg-accent/50 rounded-lg border p-3"
 			>
-				<hlm-checkbox
-					inputId="toggle-2"
-					[checked]="true"
-					class="data-[state=checked]:border-blue-600 data-[state=checked]:bg-blue-600 data-[state=checked]:text-white dark:data-[state=checked]:border-blue-700 dark:data-[state=checked]:bg-blue-700"
-				/>
-				<div class="grid gap-1.5 font-normal">
-					<p class="text-sm leading-none font-medium">Enable notifications</p>
-					<p hlmFieldDescription>You can enable or disable notifications at any time.</p>
-				</div>
-			</label>
-		</div>
+				<caps-field orientation="horizontal">
+					<caps-checkbox id="toggle-2" [checked]="true" />
+					<caps-field-content>
+						<span class="text-sm font-medium">Enable notifications</span>
+						<caps-field-description>You can enable or disable notifications at any time.</caps-field-description>
+					</caps-field-content>
+				</caps-field>
+			</caps-field-label>
+		</caps-field-group>
 	`,
 })
-export class CheckboxPreview {}
+export class CheckboxPreview {
+	public accepted = false;
+}
 
 export const defaultImports = `
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 `;
 export const defaultSkeleton = `
-<hlm-checkbox />
+<caps-field orientation="horizontal">
+  <caps-checkbox />
+  <caps-field-label>Accept terms and conditions</caps-field-label>
+</caps-field>
 `;

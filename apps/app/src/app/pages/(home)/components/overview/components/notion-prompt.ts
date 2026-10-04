@@ -18,7 +18,6 @@ import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
 import { HlmPopoverImports } from '@spartan-ng/helm/popover';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
 import { MentionableItem } from './mentionable-item';
 
 export type MentionItem = {
@@ -47,7 +46,6 @@ type GroupedItems = {
 		NgIcon,
 		MentionableItem,
 		HlmBadge,
-		HlmSwitch,
 	],
 	providers: [
 		provideIcons({
@@ -161,32 +159,22 @@ type GroupedItems = {
 				<ng-template #sources>
 					<hlm-dropdown-menu class="w-75 [--radius:1rem]">
 						<hlm-dropdown-menu-group>
-							<button hlmDropdownMenuItem (click)="$event.stopPropagation()">
-								<label for="web-search" (click)="$event.stopPropagation()" class="flex flex-1 items-center">
-									<ng-icon name="lucideGlobe" class="mr-2" />
-									Web Search
-									<hlm-switch
-										inputId="web-search"
-										class="ml-auto"
-										[checked]="true"
-										(click)="$event.stopPropagation()"
-									/>
-								</label>
+							<button hlmDropdownMenuCheckbox [checked]="_webSearch()" (triggered)="_webSearch.set(!_webSearch())">
+								<ng-icon name="lucideGlobe" class="mr-2" />
+								Web Search
+								<hlm-dropdown-menu-checkbox-indicator aria-hidden="true" />
 							</button>
 						</hlm-dropdown-menu-group>
 						<hlm-dropdown-menu-separator />
 						<hlm-dropdown-menu-group>
-							<button hlmDropdownMenuItem (click)="$event.stopPropagation()">
-								<label for="app-integrations" class="flex flex-1" (click)="$event.stopPropagation()">
-									<ng-icon name="lucideBlocks" class="mr-2" />
-									Apps and Integrations
-									<hlm-switch
-										inputId="app-integrations"
-										class="ml-auto"
-										[checked]="true"
-										(click)="$event.stopPropagation()"
-									/>
-								</label>
+							<button
+								hlmDropdownMenuCheckbox
+								[checked]="_appIntegrations()"
+								(triggered)="_appIntegrations.set(!_appIntegrations())"
+							>
+								<ng-icon name="lucideBlocks" class="mr-2" />
+								Apps and Integrations
+								<hlm-dropdown-menu-checkbox-indicator aria-hidden="true" />
 							</button>
 							<button hlmDropdownMenuItem>
 								<ng-icon name="tablerCircleDashedPlus" />
@@ -219,6 +207,8 @@ type GroupedItems = {
 	`,
 })
 export class NotionPrompt {
+	protected readonly _webSearch = signal(true);
+	protected readonly _appIntegrations = signal(true);
 	protected _models = SAMPLE_DATA.models;
 	protected _mentions = signal<MentionItem[]>([]);
 	protected _selectedModel = signal<ModelItem | undefined>(this._models[0]);

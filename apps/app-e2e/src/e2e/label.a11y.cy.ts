@@ -53,11 +53,11 @@ describe('Capsule Label docs accessibility and native activation', { testIsolati
 		cy.get('label[for="label-disabled-terms"]').should('have.css', 'opacity', '0.5');
 	});
 
-	it('preserves the existing Helm checkbox association', () => {
+	it('activates the Capsule checkbox through its standalone label', () => {
 		cy.get('spartan-label-preview label[for="terms"]').click();
-		cy.get('spartan-label-preview hlm-checkbox [role="checkbox"]').should('have.attr', 'aria-checked', 'true');
+		cy.get('spartan-label-preview caps-checkbox button[role="checkbox"]').should('have.attr', 'aria-checked', 'true');
 		cy.get('spartan-label-preview label[for="terms"]').click();
-		cy.get('spartan-label-preview hlm-checkbox [role="checkbox"]').should('have.attr', 'aria-checked', 'false');
+		cy.get('spartan-label-preview caps-checkbox button[role="checkbox"]').should('have.attr', 'aria-checked', 'false');
 	});
 
 	it('infers the associated Capsule input from Capsule Field', () => {

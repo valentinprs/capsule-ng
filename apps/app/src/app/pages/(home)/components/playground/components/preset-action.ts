@@ -1,19 +1,26 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsDialogImports } from '@capsule-ng/caps/dialog';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSwitch } from '@capsule-ng/caps/switch';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSwitch } from '@spartan-ng/helm/switch';
 
 @Component({
 	selector: 'spartan-preset-actions',
-	imports: [HlmDropdownMenuImports, HlmDialogImports, HlmButton, NgIcon, HlmSwitch, HlmLabel],
+	imports: [HlmDropdownMenuImports, CapsDialogImports, CapsButton, NgIcon, CapsSwitch, CapsFieldImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="secondary" align="end" [hlmDropdownMenuTrigger]="menu" size="icon">
+		<button
+			capsButton
+			variant="secondary"
+			align="end"
+			[hlmDropdownMenuTrigger]="menu"
+			size="icon"
+			aria-label="Preset actions"
+		>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 		<ng-template #menu>
@@ -29,50 +36,50 @@ import { HlmSwitch } from '@spartan-ng/helm/switch';
 				</hlm-dropdown-menu-group>
 			</hlm-dropdown-menu>
 		</ng-template>
-		<hlm-dialog>
-			<button id="filter" hlmDialogTrigger class="hidden" #contentFilter>Save</button>
-			<hlm-dialog-content class="sm:max-w-[512px]" *hlmDialogPortal="let ctx">
-				<hlm-dialog-header>
-					<h3 hlmDialogTitle>Content filter preferences</h3>
-					<p hlmDialogDescription>
+		<caps-dialog>
+			<button id="filter" capsDialogTrigger class="hidden" #contentFilter>Save</button>
+			<ng-template capsDialogContent let-ctx class="sm:max-w-[512px]">
+				<caps-dialog-header>
+					<caps-dialog-title>Content filter preferences</caps-dialog-title>
+					<caps-dialog-description>
 						The content filter flags text that may violate our content policy. It's powered by our moderation endpoint
 						which is free to use to moderate your OpenAI API traffic. Learn more.
-					</p>
-				</hlm-dialog-header>
+					</caps-dialog-description>
+				</caps-dialog-header>
 				<div class="py-6">
 					<h4 class="text-muted-foreground text-sm">Playground Warnings</h4>
-					<div class="flex items-start justify-between gap-4 pt-3">
-						<hlm-switch name="show" inputId="show" [checked]="true" />
-						<label hlmLabel class="grid gap-1 font-normal" for="show">
-							<span class="font-semibold">Show a warning when content is flagged</span>
-							<span class="text-muted-foreground text-sm">
+					<caps-field orientation="horizontal" class="pt-3">
+						<caps-switch name="show" [checked]="true" />
+						<caps-field-content>
+							<caps-field-label>Show a warning when content is flagged</caps-field-label>
+							<caps-field-description>
 								A warning will be shown when sexual, hateful, violent or self-harm content is detected.
-							</span>
-						</label>
-					</div>
+							</caps-field-description>
+						</caps-field-content>
+					</caps-field>
 				</div>
-				<hlm-dialog-footer>
-					<button hlmBtn type="submit" variant="secondary" (click)="ctx.close()">Close</button>
-				</hlm-dialog-footer>
-			</hlm-dialog-content>
-		</hlm-dialog>
-		<hlm-dialog>
-			<button id="delete" hlmDialogTrigger class="hidden" #delete>Save</button>
-			<hlm-dialog-content class="sm:max-w-[512px]" *hlmDialogPortal="let ctx">
-				<hlm-dialog-header>
-					<h3 hlmDialogTitle>Are you absolutely sure?</h3>
-					<p hlmDialogDescription>
+				<caps-dialog-footer>
+					<button capsButton type="submit" variant="secondary" (click)="ctx.close()">Close</button>
+				</caps-dialog-footer>
+			</ng-template>
+		</caps-dialog>
+		<caps-dialog>
+			<button id="delete" capsDialogTrigger class="hidden" #delete>Save</button>
+			<ng-template capsDialogContent let-ctx class="sm:max-w-[512px]">
+				<caps-dialog-header>
+					<caps-dialog-title>Are you absolutely sure?</caps-dialog-title>
+					<caps-dialog-description>
 						This action cannot be undone. This preset will no longer be accessible by you or others you've shared it
 						with.
-					</p>
-				</hlm-dialog-header>
+					</caps-dialog-description>
+				</caps-dialog-header>
 
-				<hlm-dialog-footer>
-					<button hlmBtn variant="outline" (click)="ctx.close()">Cancel</button>
-					<button hlmBtn type="submit" variant="destructive" (click)="ctx.close()">Delete</button>
-				</hlm-dialog-footer>
-			</hlm-dialog-content>
-		</hlm-dialog>
+				<caps-dialog-footer>
+					<button capsButton variant="outline" (click)="ctx.close()">Cancel</button>
+					<button capsButton type="submit" variant="destructive" (click)="ctx.close()">Delete</button>
+				</caps-dialog-footer>
+			</ng-template>
+		</caps-dialog>
 	`,
 })
 export class PresetActions {}

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsLinkImports } from '@capsule-ng/caps/link';
-import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 
 @Component({
 	selector: 'spartan-field-group-preview',
-	imports: [CapsLinkImports, CapsFieldImports, HlmCheckboxImports],
+	imports: [CapsLinkImports, CapsFieldImports, CapsCheckboxImports],
 	host: {
 		class: 'w-full max-w-md',
 	},
@@ -16,14 +16,11 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 				<caps-field-description>
 					Get notified when ChatGPT responds to requests that take time, like research or image generation.
 				</caps-field-description>
-				<caps-field-group data-slot="checkbox-group">
-					<caps-field orientation="horizontal">
-						<hlm-checkbox inputId="field-group-push-notifications" disabled [checked]="true" />
-						<caps-field-label for="field-group-push-notifications" class="font-normal">
-							Push notifications
-						</caps-field-label>
-					</caps-field>
-				</caps-field-group>
+
+				<caps-field orientation="horizontal">
+					<caps-checkbox disabled [checked]="true" />
+					<caps-field-label class="font-normal">Push notifications</caps-field-label>
+				</caps-field>
 			</caps-field-set>
 			<caps-field-separator />
 			<caps-field-set>
@@ -34,12 +31,12 @@ import { HlmCheckboxImports } from '@spartan-ng/helm/checkbox';
 				</caps-field-description>
 				<caps-field-group data-slot="checkbox-group">
 					<caps-field orientation="horizontal">
-						<hlm-checkbox inputId="field-group-push-task" />
-						<caps-field-label for="field-group-push-task" class="font-normal">Push notifications</caps-field-label>
+						<caps-checkbox />
+						<caps-field-label class="font-normal">Push notifications</caps-field-label>
 					</caps-field>
 					<caps-field orientation="horizontal">
-						<hlm-checkbox inputId="field-group-email-task" />
-						<caps-field-label for="field-group-email-task" class="font-normal">Email notifications</caps-field-label>
+						<caps-checkbox />
+						<caps-field-label class="font-normal">Email notifications</caps-field-label>
 					</caps-field>
 				</caps-field-group>
 			</caps-field-set>

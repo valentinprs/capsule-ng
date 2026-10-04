@@ -30,7 +30,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 		cy.findByLabelText(labelText, { selector: 'button' }).should('exist').should('have.attr', 'value', 'off');
 
 		// The component should have data-state attribute set to 'unchecked'
-		cy.get('brn-switch').should('have.attr', 'data-state', 'unchecked');
+		cy.get('caps-switch').should('have.attr', 'data-state', 'unchecked');
 	};
 
 	/**
@@ -45,7 +45,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 		cy.findByLabelText(labelText, { selector: 'button' }).should('exist').should('have.attr', 'value', 'on');
 
 		// The component should have data-state attribute set to 'checked'
-		cy.get('brn-switch').should('have.attr', 'data-state', 'checked');
+		cy.get('caps-switch').should('have.attr', 'data-state', 'checked');
 	};
 
 	/**
@@ -71,7 +71,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 	/**
 	 * Utility function to verify that the switch has been touched (i.e., interacted with).
 	 */
-	const verifySwitchTouched = () => cy.get('hlm-switch').should('have.class', 'ng-touched');
+	const verifySwitchTouched = () => cy.get('caps-switch').should('have.class', 'ng-touched');
 
 	/**
 	 * Executes tests for toggling the switch using [Tab] and [Enter] keys.
@@ -147,11 +147,11 @@ describe('brn-switch accessibility and functionality tests', () => {
 		verifySwitchOff(labelText);
 
 		// Click on the label to toggle the switch
-		cy.get('brn-switch').find('button').click('right');
+		cy.get('caps-switch').find('button').click('right');
 		verifySwitchOn(labelText);
 
 		// Click again to toggle back to 'off' state
-		cy.get('brn-switch').find('button').click('left');
+		cy.get('caps-switch').find('button').click('left');
 		verifySwitchOff(labelText);
 	};
 
@@ -261,7 +261,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 			verifyChangedValueTrue();
 
 			// Click on the switch to toggle back
-			cy.get('brn-switch').find('button').click();
+			cy.get('caps-switch').find('button').click();
 			verifySwitchOff(labelText);
 			verifySwitchValueFalse();
 			verifyChangedValueFalse();
@@ -293,7 +293,7 @@ describe('brn-switch accessibility and functionality tests', () => {
 			cy.findByLabelText(labelText, { selector: 'button' }).should('be.disabled');
 
 			// Clicking should not toggle the switch when disabled (force: true bypasses Cypress's built-in disabled element detection)
-			cy.get('brn-switch').find('button').click({ force: true });
+			cy.get('caps-switch').find('button').click({ force: true });
 			verifySwitchOff(labelText);
 
 			// Keyboard users should not be able to focus disabled controls

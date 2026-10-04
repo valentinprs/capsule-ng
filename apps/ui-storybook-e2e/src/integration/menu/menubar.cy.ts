@@ -76,6 +76,9 @@ describe('menubar', () => {
 			cy.findByText('View').should('have.attr', 'aria-expanded', 'false');
 			cy.findByText('Profiles').should('have.attr', 'aria-expanded', 'false');
 
+			// Native pointer position survives cy.visit(). Keep it away from the menus so mouseenter
+			// cannot reopen a sibling menu while the keyboard test transfers focus.
+			cy.get('body').realHover({ position: 'bottomRight' });
 			cy.findByText('File').focus();
 			pressArrow('ArrowDown');
 			cy.findByText('File').should('have.attr', 'aria-expanded', 'true');

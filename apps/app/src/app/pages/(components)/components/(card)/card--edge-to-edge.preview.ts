@@ -9,7 +9,7 @@ import { CapsLabelImports } from '@capsule-ng/caps/label';
 	imports: [CapsCardImports, CapsLabelImports, CapsInputImports, CapsButtonImports],
 	host: { class: 'w-full max-w-md' },
 	template: `
-		<caps-card class="mx-auto w-full max-w-sm">
+		<caps-card maxWidth="sm" class="mx-auto">
 			<caps-card-header>
 				<caps-card-title [level]="3">Terms of Service</caps-card-title>
 				<caps-card-description>Review the terms before accepting the agreement.</caps-card-description>

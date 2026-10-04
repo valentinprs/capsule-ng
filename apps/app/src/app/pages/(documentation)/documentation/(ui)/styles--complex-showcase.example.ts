@@ -15,7 +15,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		class: 'flex w-80',
 	},
 	template: `
-		<caps-card class="w-full">
+		<caps-card>
 			<caps-card-header>
 				<caps-card-title [level]="3">Card Title</caps-card-title>
 				<caps-card-description>Card description here</caps-card-description>

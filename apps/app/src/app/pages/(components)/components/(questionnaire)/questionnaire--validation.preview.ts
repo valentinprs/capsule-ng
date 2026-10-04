@@ -19,7 +19,7 @@ const items: readonly BrnQuestionnaireItemDefinition[] = [
 	},
 	template: `
 		<form hlmQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" [(item)]="item">
-			<caps-card class="w-full">
+			<caps-card>
 				<fieldset
 					hlmQuestionnaireItem
 					name="detail"

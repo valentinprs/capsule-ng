@@ -2254,9 +2254,19 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
       "CapsCard": {
         "inputs": [
           {
-            "name": "size",
+            "name": "width",
             "required": false,
-            "type": "'default' | 'sm'",
+            "type": "CapsCardWidth",
+          },
+          {
+            "name": "maxWidth",
+            "required": false,
+            "type": "CapsCardMaxWidth",
+          },
+          {
+            "name": "density",
+            "required": false,
+            "type": "CapsCardDensity",
           },
         ],
         "models": [],

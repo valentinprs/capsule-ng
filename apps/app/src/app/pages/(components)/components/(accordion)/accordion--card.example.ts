@@ -9,7 +9,7 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 		class: 'max-w-lg h-[32rem] md:h-[28rem] flex flex-col justify-between',
 	},
 	template: `
-		<caps-card class="w-full max-w-sm">
+		<caps-card maxWidth="sm">
 			<caps-card-header>
 				<caps-card-title [level]="3">Subscription & Billing</caps-card-title>
 				<caps-card-description>

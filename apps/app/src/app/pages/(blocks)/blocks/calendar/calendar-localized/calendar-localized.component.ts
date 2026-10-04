@@ -102,7 +102,7 @@ export class LanguageService {
 		class: 'flex justify-center items-start p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg',
 	},
 	template: `
-		<caps-card class="w-full max-w-sm overflow-auto">
+		<caps-card maxWidth="sm" class="overflow-auto">
 			<caps-card-header>
 				<caps-card-title [level]="3">{{ _strings[lang].title }}</caps-card-title>
 				<caps-card-description>{{ _strings[lang].description }}</caps-card-description>

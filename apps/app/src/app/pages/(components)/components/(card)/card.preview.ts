@@ -10,7 +10,7 @@ import { CapsLinkImports } from '@capsule-ng/caps/link';
 	imports: [CapsCardImports, CapsFieldImports, CapsLinkImports, CapsInputImports, CapsButtonImports],
 	host: { class: 'w-full max-w-md' },
 	template: `
-		<caps-card class="w-full max-w-sm">
+		<caps-card maxWidth="sm">
 			<caps-card-header>
 				<caps-card-title [level]="2">Login to your account</caps-card-title>
 				<caps-card-description>Enter your email below to login to your account</caps-card-description>

@@ -81,7 +81,7 @@ export class MessageScrollerOpeningPositionScroller {
 		class: 'relative flex w-full max-w-sm flex-col gap-4',
 	},
 	template: `
-		<caps-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
+		<caps-card maxWidth="sm" class="mx-auto h-[35rem] gap-0">
 			<caps-card-header class="gap-1 border-b">
 				<caps-card-title [level]="3">Opening Position</caps-card-title>
 				<caps-card-description>Choose where a saved transcript opens.</caps-card-description>

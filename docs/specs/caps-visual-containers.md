@@ -3,7 +3,7 @@
 ## API design, recorded before implementation
 
 Card is a generic visual container, not an automatic landmark or clickable surface.
-The public anatomy is `caps-card` (`size="default" | "sm"`), `caps-card-header`,
+The public anatomy is `caps-card` (`width="fill" | "auto"`, `maxWidth="sm" | "md" | "lg" | "none"`, `density="default" | "compact"`), `caps-card-header`,
 `caps-card-title` (`level` 1–6, default 3), `caps-card-description`,
 `caps-card-content`, `caps-card-footer`, and optional `caps-card-action` for a header action.
 Titles render native headings, retaining the existing heading levels when migrated.
@@ -27,7 +27,7 @@ unmigrated Helm families remain unchanged. No dependency on issue #32. The initi
 
 ## Existing behaviors and example audit inventory
 
-Retain Card default/small sizes, spacing overrides, edge-to-edge content, image, header
+Retain Card default/compact densities, spacing overrides, edge-to-edge content, image, header
 actions and RTL; Aspect Ratio square/portrait/landscape/RTL; Separator horizontal,
 vertical, menu/list compositions and RTL. Consumer cards, shared shells and stories are
 included, not only family pages. Auxiliary components use Capsule when available on main.
@@ -56,7 +56,7 @@ regenerated from these source examples):
 - `apps/app/src/app/pages/(components)/components/(card)/card--edge-to-edge.preview.ts`
 - `apps/app/src/app/pages/(components)/components/(card)/card--image.preview.ts`
 - `apps/app/src/app/pages/(components)/components/(card)/card--rtl.preview.ts`
-- `apps/app/src/app/pages/(components)/components/(card)/card--size.preview.ts`
+- `apps/app/src/app/pages/(components)/components/(card)/card--density.preview.ts`
 - `apps/app/src/app/pages/(components)/components/(card)/card--spacing.preview.ts`
 - `apps/app/src/app/pages/(components)/components/(card)/card.page.ts`
 - `apps/app/src/app/pages/(components)/components/(card)/card.preview.ts`
@@ -176,3 +176,15 @@ Local checks use pnpm 10.30.3 and Node 24.18.0 (CI uses Node 22). Brain is uncha
 
 After integrating main (#61), the complete suite passes 869 tests across 115 files,
 including 133 Capsule tests. Field and form-choice library sources remain identical to main.
+
+## Card layout contract (2026-10-04)
+
+`width="fill"` (default) fills the available parent width. `width="auto"` uses content width via CSS fit-content, including flex-column and grid parents with stretch alignment. Both use border-box, min-width: 0 and a parent-width clamp. No alignment is imposed: centering and parent layout remain consumer choices.
+
+`maxWidth="none"` (default) has no nominal cap. `sm`, `md`, and `lg` use foundation aliases `--caps-card-max-width-sm/md/lg`, referencing the existing Tailwind container tokens (24rem, 28rem, 32rem); each cap is clamped to 100% of the parent. Themes may override these aliases.
+
+`density="compact"` replaces the unpublished `size="sm"` API, preserving spacing 3 and text-sm title; default keeps spacing 4 and text-base title. Width and density are independent. Native Button size remains unchanged.
+
+Consumers use these props for common full-width/container caps; classes remain for responsive or specific dimensions, margins, parent layout and custom spacing. Utility classes and inline styles override the Capsule CSS layer when intentional. No Footer or Button API is added.
+
+The layout revision is validated by 870 unit tests, compiled foundation-token checks, catalogue/Storybook builds, and the 13 production catalogue scenarios covering all 17 examples. Card geometry is measured in flex-column/grid stretch parents, with all three caps on mobile/desktop and compact spacing/title typography. Chromium inspection also confirms utility overrides (`max-w-xs` and `w-full`) and no horizontal page overflow in light/dark themes.

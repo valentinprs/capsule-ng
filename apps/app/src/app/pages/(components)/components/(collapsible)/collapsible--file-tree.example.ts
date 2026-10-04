@@ -95,7 +95,7 @@ export class FileTreeNode {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'mx-auto w-full max-w-xs' },
 	template: `
-		<caps-card size="sm">
+		<caps-card density="compact">
 			<caps-card-header>
 				<hlm-tabs tab="explorer">
 					<hlm-tabs-list class="w-full">

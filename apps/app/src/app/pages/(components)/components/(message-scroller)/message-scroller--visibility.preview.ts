@@ -73,7 +73,7 @@ export class MessageScrollerTranscriptOutline {
 	template: `
 		<div hlmMessageScrollerProvider [scrollMargin]="12">
 			<div class="relative mx-auto w-full max-w-sm">
-				<caps-card class="h-[35rem] w-full gap-0">
+				<caps-card class="h-[35rem] gap-0">
 					<caps-card-header class="gap-1 border-b">
 						<caps-card-title [level]="3">Transcript Outline</caps-card-title>
 						<caps-card-description>Track the current anchored turn.</caps-card-description>

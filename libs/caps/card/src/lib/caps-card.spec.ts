@@ -7,7 +7,7 @@ import { CapsCardImports } from '../index';
 	imports: [CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<caps-card [size]="size()" class="w-full">
+		<caps-card [width]="width()" [maxWidth]="maxWidth()" [density]="density()">
 			<caps-card-header>
 				<caps-card-title [level]="level()" class="text-2xl">
 					Workspace
@@ -27,12 +27,30 @@ import { CapsCardImports } from '../index';
 	`,
 })
 class CardHost {
-	public readonly size = signal<'default' | 'sm'>('default');
+	public readonly density = signal<'default' | 'compact'>('default');
+	public readonly width = signal<'fill' | 'auto'>('fill');
+	public readonly maxWidth = signal<'sm' | 'md' | 'lg' | 'none'>('none');
 	public readonly level = signal<1 | 2 | 3 | 4 | 5 | 6>(2);
 	public actions = 0;
 }
 
 describe('CapsCard composition', () => {
+	it('defaults to fill without a nominal cap and updates public layout inputs', () => {
+		const fixture = TestBed.createComponent(CardHost);
+		fixture.detectChanges();
+		const card: HTMLElement = fixture.nativeElement.querySelector('caps-card');
+		expect(card.getAttribute('data-width')).toBe('fill');
+		expect(card.getAttribute('data-max-width')).toBe('none');
+		expect(card.getAttribute('data-density')).toBe('default');
+		fixture.componentInstance.width.set('auto');
+		for (const bound of ['sm', 'md', 'lg', 'none'] as const) {
+			fixture.componentInstance.maxWidth.set(bound);
+			fixture.detectChanges();
+			expect(card.getAttribute('data-max-width')).toBe(bound);
+			expect(card.getAttribute('data-width')).toBe('auto');
+		}
+		expect(card.hasAttribute('data-size')).toBe(false);
+	});
 	it('preserves native heading levels, projected content, and generic container semantics', () => {
 		const fixture = TestBed.createComponent(CardHost);
 		fixture.detectChanges();
@@ -47,13 +65,13 @@ describe('CapsCard composition', () => {
 			expect(root.querySelector('caps-card-title')?.getAttribute('role')).toBeNull();
 		}
 	});
-	it('keeps size and consumer classes without replacing native actions or form controls', () => {
+	it('keeps density and consumer classes without replacing native actions or form controls', () => {
 		const fixture = TestBed.createComponent(CardHost);
 		fixture.detectChanges();
 		const root: HTMLElement = fixture.nativeElement;
-		fixture.componentInstance.size.set('sm');
+		fixture.componentInstance.density.set('compact');
 		fixture.detectChanges();
-		expect(root.querySelector('caps-card')?.getAttribute('data-size')).toBe('sm');
+		expect(root.querySelector('caps-card')?.getAttribute('data-density')).toBe('compact');
 		expect(root.querySelector('caps-card-title')?.classList.contains('text-2xl')).toBe(true);
 		root.querySelector('button')?.click();
 		expect(fixture.componentInstance.actions).toBe(1);

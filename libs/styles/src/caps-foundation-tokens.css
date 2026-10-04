@@ -27,6 +27,10 @@
 	--caps-chip-offset-wide: -0.3rem;
 	--caps-chip-offset-compact: -0.275rem;
 	--caps-layout-max-width: 1400px;
+	/* Card bounds reuse the shared container scale: 24rem, 28rem and 32rem. */
+	--caps-card-max-width-sm: var(--container-sm);
+	--caps-card-max-width-md: var(--container-md);
+	--caps-card-max-width-lg: var(--container-lg);
 }
 :root,
 .dark {

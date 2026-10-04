@@ -14,7 +14,7 @@ import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'mx-auto w-full max-w-xs' },
 	template: `
-		<caps-card size="sm">
+		<caps-card density="compact">
 			<caps-card-header>
 				<caps-card-title>Radius</caps-card-title>
 				<caps-card-description>Set the corner radius of the element.</caps-card-description>

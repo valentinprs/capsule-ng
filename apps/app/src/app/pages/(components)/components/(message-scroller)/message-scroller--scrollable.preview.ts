@@ -42,7 +42,7 @@ export class MessageScrollerScrollableFooter {
 		class: 'mx-auto flex w-full max-w-sm flex-col gap-4',
 	},
 	template: `
-		<caps-card class="h-[35rem] w-full gap-0 overflow-hidden">
+		<caps-card class="h-[35rem] gap-0 overflow-hidden">
 			<caps-card-header class="gap-1 border-b">
 				<caps-card-title [level]="3">Scroll Status</caps-card-title>
 				<caps-card-description>

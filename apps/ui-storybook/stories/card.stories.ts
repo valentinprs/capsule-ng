@@ -11,6 +11,12 @@ const meta: Meta<CapsCard> = {
 	title: 'Card',
 	component: CapsCard,
 	tags: ['autodocs'],
+	args: { width: 'fill', maxWidth: 'lg', density: 'default' },
+	argTypes: {
+		width: { control: 'select', options: ['fill', 'auto'] },
+		maxWidth: { control: 'select', options: ['none', 'sm', 'md', 'lg'] },
+		density: { control: 'select', options: ['default', 'compact'] },
+	},
 	decorators: [
 		moduleMetadata({ imports: [CapsCardImports, CapsFieldImports, CapsInput, CapsButton, HlmBadge, HlmSelectImports] }),
 	],
@@ -19,9 +25,10 @@ export default meta;
 type Story = StoryObj<CapsCard>;
 
 export const Default: Story = {
-	render: () => ({
+	render: (args) => ({
+		props: args,
 		template: `
-  <caps-card class="mx-auto max-w-lg">
+  <caps-card [width]="width" [maxWidth]="maxWidth" [density]="density" class="mx-auto">
    <caps-card-header>
     <caps-card-title [level]="2">Create new project</caps-card-title>
     <caps-card-description>Deploy your new project in one click.</caps-card-description>
@@ -57,9 +64,10 @@ export const Default: Story = {
 };
 
 export const Transposed: Story = {
-	render: () => ({
+	render: (args) => ({
+		props: args,
 		template: `
-  <caps-card class="mx-auto max-w-lg">
+  <caps-card [width]="width" [maxWidth]="maxWidth" [density]="density" class="mx-auto">
    <caps-card-header>
     <caps-card-title [level]="2">AngularGPT</caps-card-title>
     <caps-card-action><span hlmBadge variant="secondary">beta</span></caps-card-action>
@@ -77,3 +85,6 @@ export const Transposed: Story = {
   `,
 	}),
 };
+
+export const Compact: Story = { ...Default, args: { density: 'compact', maxWidth: 'sm' } };
+export const ContentWidth: Story = { ...Default, args: { width: 'auto', maxWidth: 'none' } };

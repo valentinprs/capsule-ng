@@ -52,7 +52,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 	template: `
 		<div hlmMessageScrollerProvider>
 			<div class="relative flex flex-col gap-4">
-				<caps-card class="mx-auto h-[35rem] w-full max-w-sm gap-0">
+				<caps-card maxWidth="sm" class="mx-auto h-[35rem] gap-0">
 					<caps-card-header class="gap-1 border-b">
 						<caps-card-title [level]="3">New Chat</caps-card-title>
 						<caps-card-description>How can I help you today?</caps-card-description>

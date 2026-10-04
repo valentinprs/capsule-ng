@@ -11,7 +11,7 @@ import { HlmSkeletonImports } from '@spartan-ng/helm/skeleton';
 		class: 'w-full max-w-xs',
 	},
 	template: `
-		<caps-card class="w-full max-w-xs">
+		<caps-card class="max-w-xs">
 			<caps-card-header>
 				<hlm-skeleton class="h-4 w-2/3" />
 				<hlm-skeleton class="h-4 w-1/2" />

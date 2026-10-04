@@ -12,7 +12,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 		class: 'flex flex-col gap-4',
 	},
 	template: `
-		<caps-card class="mx-auto w-fit p-0">
+		<caps-card width="auto" class="mx-auto p-0">
 			<caps-card-content class="p-0">
 				<hlm-calendar [captionLayout]="_captionLayout()" />
 			</caps-card-content>

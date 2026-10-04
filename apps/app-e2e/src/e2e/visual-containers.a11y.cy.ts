@@ -3,7 +3,9 @@ import 'cypress-real-events/support';
 const examples = {
 	card: [
 		'spartan-card-preview',
-		'spartan-card-size-preview',
+		'spartan-card-density-preview',
+		'spartan-card-width-preview',
+		'spartan-card-max-width-preview',
 		'spartan-card-spacing',
 		'spartan-card-edge-to-edge',
 		'spartan-card-image-preview',
@@ -68,6 +70,28 @@ for (const family of ['card', 'separator', 'aspect-ratio'] as const) {
 					if (family === 'card') {
 						cy.get('spartan-card-preview caps-card-title > h2').should('contain.text', 'Login to your account');
 						cy.get('spartan-card-preview caps-card').should('not.have.attr', 'role');
+						cy.get('spartan-card-width-preview [data-width-parent]').each(($parent) => {
+							const parentWidth = $parent[0].getBoundingClientRect().width;
+							const cards = $parent[0].querySelectorAll('caps-card');
+							expect(cards[0].getBoundingClientRect().width).to.be.closeTo(parentWidth, 1);
+							expect(cards[1].getBoundingClientRect().width).to.be.lessThan(parentWidth - 10);
+						});
+						cy.get('spartan-card-max-width-preview caps-card').each(($card, index) => {
+							const card = $card[0];
+							const parentWidth = card.parentElement!.getBoundingClientRect().width;
+							const actualWidth = card.getBoundingClientRect().width;
+							expect(actualWidth).to.be.at.most(parentWidth + 1);
+							if (index < 3) {
+								const rem = parseFloat(getComputedStyle(card.ownerDocument.documentElement).fontSize);
+								expect(actualWidth).to.be.closeTo(Math.min(parentWidth, [24, 28, 32][index] * rem), 1);
+							}
+							expect(card.scrollWidth).to.be.at.most(card.clientWidth + 1);
+						});
+						cy.get('spartan-card-density-preview caps-card').then(($card) => {
+							expect(getComputedStyle($card[0]).paddingTop).to.equal('12px');
+							const title = $card[0].querySelector('caps-card-title')!;
+							expect(getComputedStyle(title).fontSize).to.equal('14px');
+						});
 					}
 				});
 			}

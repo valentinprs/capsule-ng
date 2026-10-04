@@ -11,7 +11,7 @@ import { TranslateService, Translations } from '@spartan-ng/app/app/shared/trans
 	imports: [CapsCardImports, CapsFieldImports, CapsLinkImports, CapsInputImports, CapsButtonImports],
 	host: { class: 'w-full max-w-md' },
 	template: `
-		<caps-card class="w-full max-w-sm" [dir]="_dir()">
+		<caps-card maxWidth="sm" [dir]="_dir()">
 			<caps-card-header>
 				<caps-card-title [level]="3">{{ _t()['title'] }}</caps-card-title>
 				<caps-card-description>{{ _t()['description'] }}</caps-card-description>

@@ -8,7 +8,7 @@ import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 	imports: [CapsCardImports, CapsButtonImports, HlmBadgeImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<caps-card class="relative mx-auto w-full max-w-sm pt-0">
+		<caps-card maxWidth="sm" class="relative mx-auto pt-0">
 			<div
 				class="bg-primary absolute inset-0 z-(--caps-z-30) aspect-video opacity-(--caps-opacity-50) mix-blend-color"
 			></div>

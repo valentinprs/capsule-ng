@@ -18,7 +18,7 @@ import { HlmToggleGroupImports } from '@spartan-ng/helm/toggle-group';
 			}
 		</hlm-toggle-group>
 
-		<caps-card class="w-full max-w-sm" [class]="spacingClass()">
+		<caps-card maxWidth="sm" [class]="spacingClass()">
 			<caps-card-header>
 				<caps-card-title [level]="3">Login to your account</caps-card-title>
 				<caps-card-description>Enter your email below to login to your account</caps-card-description>

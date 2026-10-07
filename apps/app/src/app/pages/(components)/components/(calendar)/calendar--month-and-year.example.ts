@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsCalendarImports } from '@capsule-ng/caps/calendar';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 
 @Component({
 	selector: 'spartan-month-year-example',
-	imports: [CapsCardImports, HlmCalendarImports],
+	imports: [CapsCardImports, CapsCalendarImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'p-0 w-fit mx-auto',
@@ -12,7 +12,7 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 	template: `
 		<caps-card class="p-0">
 			<caps-card-content class="p-0">
-				<hlm-month-year-calendar [(date)]="selectedDate" />
+				<caps-month-year-calendar [(date)]="selectedDate" />
 			</caps-card-content>
 		</caps-card>
 	`,

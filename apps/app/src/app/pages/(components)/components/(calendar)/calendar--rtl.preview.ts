@@ -1,15 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsCalendar, injectCapsCalendarI18n, provideCapsCalendarI18n } from '@capsule-ng/caps/calendar';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { injectBrnCalendarI18n, provideBrnCalendarI18n } from '@spartan-ng/brain/calendar';
-import { HlmCalendar } from '@spartan-ng/helm/calendar';
 import { DateTime } from 'luxon';
 import { CALENDAR_I18N } from '../(date-picker)/date-picker--rtl.preview';
 
 @Component({
 	selector: 'spartan-calendar-rtl',
-	imports: [HlmCalendar, CapsCardImports],
-	providers: [provideBrnCalendarI18n()],
+	imports: [CapsCalendar, CapsCardImports],
+	providers: [provideCapsCalendarI18n()],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		'[dir]': '_dir()',
@@ -18,7 +17,7 @@ import { CALENDAR_I18N } from '../(date-picker)/date-picker--rtl.preview';
 	template: `
 		<caps-card class="p-0">
 			<caps-card-content class="p-0">
-				<hlm-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" captionLayout="dropdown" />
+				<caps-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" captionLayout="dropdown" />
 			</caps-card-content>
 		</caps-card>
 	`,
@@ -34,7 +33,7 @@ export class CalendarRtl {
 	public maxDate = new Date(new Date().setMonth(new Date().getMonth() + 2));
 
 	private readonly _language = inject(TranslateService).language;
-	private readonly _calendarI18n = injectBrnCalendarI18n();
+	private readonly _calendarI18n = injectCapsCalendarI18n();
 
 	constructor() {
 		effect(() => {

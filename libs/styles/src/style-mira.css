@@ -265,7 +265,8 @@
 	}
 
 	/* MARK: Calendar */
-	.spartan-calendar {
+	.spartan-calendar,
+	.caps-calendar {
 		@apply p-3 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(6)];
 	}
 

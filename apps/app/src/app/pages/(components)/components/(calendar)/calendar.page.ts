@@ -27,7 +27,10 @@ import { CalendarPreview, defaultImports, defaultSkeleton, i18nProviders, i18nRu
 
 export const routeMeta: RouteMeta = {
 	data: { breadcrumb: 'Calendar', api: 'calendar' },
-	meta: metaWith('Capsule — Calendar', 'A date field component that allows users to enter and edit date.'),
+	meta: metaWith(
+		'Capsule — Calendar',
+		'An inline calendar for selecting dates, multiple days, ranges, months and years.',
+	),
 	title: 'Capsule — Calendar',
 };
 
@@ -59,7 +62,7 @@ export const routeMeta: RouteMeta = {
 		<section spartanMainSection>
 			<spartan-section-intro
 				name="Calendar"
-				lead="A date field component that allows users to enter and edit date."
+				lead="An inline calendar for selecting dates, multiple days, ranges, months and years."
 				showThemeToggle
 			/>
 
@@ -80,7 +83,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP} mb-6">
 				The calendar supports internationalization (i18n) via the
-				<code class="${hlmCode}">BrnCalendarI18nService</code>
+				<code class="${hlmCode}">CapsCalendarI18nService</code>
 				. By default, weekday names and month headers are rendered in English. You can provide a custom configuration
 				globally or swap it at runtime to support multiple locales.
 			</p>
@@ -89,7 +92,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP} mb-6">
 				Use
-				<code class="${hlmCode}">provideBrnCalendarI18n</code>
+				<code class="${hlmCode}">provideCapsCalendarI18n</code>
 				in your app bootstrap to configure labels and formats globally:
 			</p>
 
@@ -99,7 +102,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP} mb-6">
 				You can dynamically switch calendar language at runtime by injecting
-				<code class="${hlmCode}">BrnCalendarI18nService</code>
+				<code class="${hlmCode}">CapsCalendarI18nService</code>
 				and calling
 				<code class="${hlmCode}">use()</code>
 				:
@@ -111,12 +114,12 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP} mb-6">
 				Use
-				<code class="${hlmCode}">hlm-calendar-multi</code>
+				<code class="${hlmCode}">caps-calendar-multi</code>
 				for multiple date selection. Limit the selectable dates using
 				<code class="${hlmCode}">minSelection</code>
 				and
 				<code class="${hlmCode}">maxSelection</code>
-				inputs.
+				inputs. When maxSelection is reached, choosing another day starts a new selection.
 			</p>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -130,7 +133,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP} mb-6">
 				Use
-				<code class="${hlmCode}">hlm-calendar-range</code>
+				<code class="${hlmCode}">caps-calendar-range</code>
 				for range date selection. Set the range by using
 				<code class="${hlmCode}">startDate</code>
 				and
@@ -154,7 +157,7 @@ export const routeMeta: RouteMeta = {
 				years in the past through 10 years in the future. Override
 				<code class="${hlmCode}">years</code>
 				with
-				<code class="${hlmCode}">provideBrnCalendarI18n</code>
+				<code class="${hlmCode}">provideCapsCalendarI18n</code>
 				if you need a different range.
 			</p>
 
@@ -195,11 +198,8 @@ export const routeMeta: RouteMeta = {
 				</a>
 			</p>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="card" label="Card" />
@@ -209,7 +209,7 @@ export const routeMeta: RouteMeta = {
 		<spartan-page-nav />
 	`,
 })
-export default class CardPage {
+export default class CalendarPage {
 	constructor() {
 		injectComponentDocs();
 	}

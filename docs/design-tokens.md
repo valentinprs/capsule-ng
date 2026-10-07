@@ -129,3 +129,6 @@ Capsule's public rendered structure. Build both applications after token changes
   6 px gap, 1 px border, semantic colors, opacity, shadow and 150 ms easing.
 - Separate standards/spec reviews: no outstanding findings. The installation
   page now explicitly lists the private Capsule/Helm archives and font peers.
+
+Calendar (`caps-calendar`) shares each existing skin’s cell spacing and radius declarations;
+selection, today, disabled and focus styles consume the existing semantic colors and focus tokens.

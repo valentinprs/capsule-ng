@@ -2212,6 +2212,240 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "button[brnMonthYearCalendarYearButton]",
       },
     },
+    "caps": {
+      "CapsCalendar": {
+        "inputs": [
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "min",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T",
+          },
+        ],
+        "selector": "caps-calendar",
+      },
+      "CapsCalendarMulti": {
+        "inputs": [
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "min",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "minSelection",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "maxSelection",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T[]",
+          },
+        ],
+        "selector": "caps-calendar-multi",
+      },
+      "CapsCalendarRange": {
+        "inputs": [
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "min",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "startDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "endDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "endDateChange",
+            "type": "T",
+          },
+          {
+            "name": "startDateChange",
+            "type": "T",
+          },
+        ],
+        "selector": "caps-calendar-range",
+      },
+      "CapsMonthYearCalendar": {
+        "inputs": [
+          {
+            "name": "min",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "view",
+            "required": false,
+            "type": "BrnMonthYearCalendarView",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T",
+          },
+        ],
+        "selector": "caps-month-year-calendar",
+      },
+    },
     "helm": {
       "HlmCalendar": {
         "inputs": [

@@ -1,6 +1,20 @@
+function renderFrames(): void {
+	cy.window().then(
+		(win) =>
+			new Promise<void>((resolve) => win.requestAnimationFrame(() => win.requestAnimationFrame(() => resolve()))),
+	);
+}
 describe('Slider', () => {
 	beforeEach(() => {
 		cy.visit('/iframe.html?id=slider--default');
+		cy.get('#storybook-root caps-slider').should((hosts) => {
+			for (const host of hosts) {
+				expect(host.querySelector('[ngh]')).to.equal(null);
+				for (let node: Element | null = host; node; node = node.parentElement)
+					expect(node.hasAttribute('ngh')).to.equal(false);
+			}
+		});
+		renderFrames();
 	});
 
 	it('should render the slider with the correct initial value', () => {
@@ -45,9 +59,11 @@ describe('Slider', () => {
 	});
 
 	it('should support keyboard interactions', () => {
-		cy.get('[role="slider"]').focus();
+		cy.get('[role="slider"]').realClick();
+		cy.get('[role="slider"]').should('be.focused');
 
-		cy.get('[role="slider"]').type('{rightarrow}');
+		cy.realPress('ArrowRight');
+		renderFrames();
 
 		cy.get('[role="slider"]')
 			.invoke('attr', 'aria-valuenow')
@@ -56,7 +72,8 @@ describe('Slider', () => {
 			});
 
 		// Press left arrow key
-		cy.get('[role="slider"]').type('{leftarrow}');
+		cy.realPress('ArrowLeft');
+		renderFrames();
 		cy.get('[role="slider"]')
 			.invoke('attr', 'aria-valuenow')
 			.then((newValue) => {
@@ -64,7 +81,8 @@ describe('Slider', () => {
 			});
 
 		// Press Shift + right arrow key
-		cy.get('[role="slider"]').type('{shift}{rightarrow}');
+		cy.realPress(['Shift', 'ArrowRight']);
+		renderFrames();
 		cy.get('[role="slider"]')
 			.invoke('attr', 'aria-valuenow')
 			.then((newValue) => {
@@ -72,7 +90,8 @@ describe('Slider', () => {
 			});
 
 		// Press Shift + left arrow key
-		cy.get('[role="slider"]').type('{shift}{leftarrow}');
+		cy.realPress(['Shift', 'ArrowLeft']);
+		renderFrames();
 		cy.get('[role="slider"]')
 			.invoke('attr', 'aria-valuenow')
 			.then((newValue) => {
@@ -80,7 +99,8 @@ describe('Slider', () => {
 			});
 
 		// Press End key
-		cy.get('[role="slider"]').type('{end}');
+		cy.realPress('End');
+		renderFrames();
 		cy.get('[role="slider"]')
 			.invoke('attr', 'aria-valuenow')
 			.then((newValue) => {
@@ -88,7 +108,8 @@ describe('Slider', () => {
 			});
 
 		// Press Home key
-		cy.get('[role="slider"]').type('{home}');
+		cy.realPress('Home');
+		renderFrames();
 		cy.get('[role="slider"]')
 			.invoke('attr', 'aria-valuenow')
 			.then((newValue) => {
@@ -231,5 +252,28 @@ describe('Slider', () => {
 							});
 					});
 			});
+	});
+	it('keeps disabled sliders native and out of tab order', () => {
+		cy.visit('/iframe.html?id=slider--disabled');
+		cy.get('caps-slider button[role=slider]')
+			.should('be.disabled')
+			.and('have.attr', 'aria-disabled', 'true')
+			.and('have.attr', 'tabindex', '-1');
+		cy.injectAxe();
+		cy.checkA11y('caps-slider');
+	});
+	it('associates Field validation with the actual thumb and activates it by its label', () => {
+		cy.visit('/iframe.html?id=slider--validation');
+		cy.get('caps-field-label label').realClick();
+		cy.get('caps-slider button[role=slider]').should('be.focused').and('have.attr', 'aria-invalid', 'true');
+		cy.contains('button', 'Validate').realClick();
+		cy.get('caps-field-error')
+			.should('be.visible')
+			.invoke('attr', 'id')
+			.then((id) => {
+				cy.get('caps-slider button[role=slider]').invoke('attr', 'aria-describedby').should('contain', id);
+			});
+		cy.injectAxe();
+		cy.checkA11y('form');
 	});
 });

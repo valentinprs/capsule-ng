@@ -1,24 +1,27 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
+
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 
 @Component({
 	selector: 'spartan-top-p-selector',
-	imports: [HlmSliderImports, HlmLabel],
+	imports: [CapsSliderImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
-		class: 'grid gap-3',
+		class: 'block',
 	},
 	template: `
-		<div class="flex justify-between">
-			<span hlmLabel>Top P</span>
-			<span
-				class="text-muted-foreground hover:border-border w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm"
-			>
-				{{ value() }}
-			</span>
-		</div>
-		<hlm-slider [step]="0.1" [min]="0" [max]="1" [(value)]="value" class="w-full" />
+		<caps-field>
+			<div class="flex justify-between">
+				<caps-field-label>Top P</caps-field-label>
+				<span
+					class="text-muted-foreground hover:border-border w-12 rounded-md border border-transparent px-2 py-0.5 text-right text-sm"
+				>
+					{{ value() }}
+				</span>
+			</div>
+			<caps-slider [step]="0.1" [min]="0" [max]="1" [(value)]="value" class="w-full" />
+		</caps-field>
 	`,
 })
 export class TopPSelector {

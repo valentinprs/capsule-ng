@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 
 @Component({
 	selector: 'spartan-slider-ticks-with-label',
-	imports: [HlmSliderImports, HlmLabel],
+	imports: [CapsSliderImports, CapsFieldImports],
 	styles: `
 		:host {
 			display: block;
@@ -12,10 +12,10 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 		}
 	`,
 	template: `
-		<div class="flex flex-col gap-2">
-			<label hlmLabel for="volume">Volume</label>
-			<hlm-slider id="volume" [(value)]="value" [showTicks]="true" />
-		</div>
+		<caps-field>
+			<caps-field-label>Volume</caps-field-label>
+			<caps-slider [(value)]="value" [showTicks]="true" />
+		</caps-field>
 	`,
 })
 export class SliderTicksWithLabel {

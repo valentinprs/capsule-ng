@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 
 @Component({
 	selector: 'spartan-slider-draggable-range',
-	imports: [HlmSliderImports],
+	imports: [CapsSliderImports],
 	styles: `
 		:host {
 			display: block;
@@ -11,7 +11,7 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 		}
 	`,
 	template: `
-		<hlm-slider [(value)]="value" [draggableRange]="true" />
+		<caps-slider aria-label="Volume" [(value)]="value" [draggableRange]="true" />
 	`,
 })
 export class SliderDraggableRange {

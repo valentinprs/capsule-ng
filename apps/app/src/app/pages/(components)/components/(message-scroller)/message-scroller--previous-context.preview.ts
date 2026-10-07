@@ -3,6 +3,7 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -15,7 +16,6 @@ import {
 	lucideTelescope,
 } from '@ng-icons/lucide';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared';
 
@@ -29,7 +29,7 @@ const DEFAULT_PEEK = 64;
 		CapsButtonImports,
 		CapsInputGroupImports,
 		CapsDropdownMenuImports,
-		HlmSliderImports,
+		CapsSliderImports,
 		CapsTooltipImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
@@ -128,7 +128,7 @@ const DEFAULT_PEEK = 64;
 										</button>
 										<div class="flex w-28 items-center gap-2">
 											<span class="text-muted-foreground text-xs tabular-nums">{{ _peek() }}px</span>
-											<hlm-slider
+											<caps-slider
 												aria-label="Previous context peek"
 												[value]="[_peek()]"
 												[min]="64"

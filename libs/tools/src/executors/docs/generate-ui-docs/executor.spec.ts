@@ -252,4 +252,40 @@ describe('Capsule conversation API metadata', () => {
 		for (const family of ['bubble', 'message', 'attachment'])
 			for (const component of Object.values(docs[family]['caps'])) expect(component.outputs).toHaveLength(0);
 	});
+	it('documents the Capsule slider value, accessibility and retained range contracts', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const slider = generated['slider']['caps']['CapsSlider'];
+		expect(slider.selector).toBe('caps-slider');
+		expect(slider.inputs.map(({ name }) => name)).toEqual(
+			expect.arrayContaining([
+				'value',
+				'min',
+				'max',
+				'step',
+				'disabled',
+				'orientation',
+				'inverted',
+				'thumbLabels',
+				'valueText',
+				'minStepsBetweenThumbs',
+				'maxStepsBetweenThumbs',
+				'preventStepOverThumb',
+				'showTicks',
+				'maxTicks',
+				'tickLabelInterval',
+				'formatTick',
+				'draggableRange',
+				'draggableRangeOnly',
+				'aria-label',
+				'aria-labelledby',
+				'aria-describedby',
+			]),
+		);
+		expect(slider.inputs).toContainEqual(
+			expect.objectContaining({ name: 'value', type: 'number[]', defaultValue: '[]' }),
+		);
+		expect(slider.outputs).toContainEqual(expect.objectContaining({ name: 'valueChange', type: 'number[]' }));
+		expect(slider.outputs.map(({ name }) => name)).toEqual(['valueChange']);
+		expect(slider.inputs.map(({ name }) => name)).not.toContain('mode');
+	});
 });

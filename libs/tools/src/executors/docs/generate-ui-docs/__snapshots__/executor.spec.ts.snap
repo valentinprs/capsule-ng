@@ -12830,6 +12830,130 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "[brnSliderTrack]",
       },
     },
+    "caps": {
+      "CapsSlider": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "number[]",
+          },
+          {
+            "name": "min",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "step",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+          {
+            "name": "inverted",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "minStepsBetweenThumbs",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "maxStepsBetweenThumbs",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "preventStepOverThumb",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "draggableRange",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "draggableRangeOnly",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "showTicks",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "maxTicks",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "tickLabelInterval",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "formatTick",
+            "required": false,
+            "type": "(value: number) => string",
+          },
+          {
+            "name": "thumbLabels",
+            "required": false,
+            "type": "readonly string[]",
+          },
+          {
+            "name": "valueText",
+            "required": false,
+            "type": "((value: number) => string) | null",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "number[]",
+          },
+        ],
+        "selector": "caps-slider",
+      },
+    },
     "helm": {
       "HlmSlider": {
         "inputs": [

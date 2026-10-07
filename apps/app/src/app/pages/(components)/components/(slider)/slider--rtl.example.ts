@@ -1,20 +1,22 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, signal, untracked } from '@angular/core';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmLabel } from '@spartan-ng/helm/label';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
 
 @Component({
 	selector: 'spartan-slider-rtl-preview',
-	imports: [HlmLabel, HlmSliderImports],
+	imports: [CapsFieldImports, CapsSliderImports],
 	providers: [Directionality],
 	host: {
 		class: 'grid w-full max-w-sm gap-3',
 		'[dir]': '_dir()',
 	},
 	template: `
-		<label hlmLabel>{{ _t()['volume'] }}</label>
-		<hlm-slider [(value)]="_value" />
+		<caps-field>
+			<caps-field-label>{{ _t()['volume'] }}</caps-field-label>
+			<caps-slider [(value)]="_value" />
+		</caps-field>
 	`,
 })
 export class SliderRtlPreview {

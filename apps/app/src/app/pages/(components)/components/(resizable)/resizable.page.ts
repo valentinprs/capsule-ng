@@ -95,7 +95,7 @@ export const routeMeta: RouteMeta = {
 				You can set or hide the handle by using the
 				<span hlmCode>withHandle</span>
 				prop on the
-				<span hlmCode>hlm-resizable-handle</span>
+				<span hlmCode>caps-resizable-handle</span>
 				component.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -122,11 +122,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="scroll-area" label="Scroll Area" />

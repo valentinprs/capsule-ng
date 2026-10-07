@@ -13,9 +13,8 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { CapsScrollArea } from '@capsule-ng/caps/scroll-area';
 import { ApiDocsService } from '@spartan-ng/app/app/core/services/api-docs.service';
-import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 import { PageNavLink } from './page-nav-link';
 import { pageNavTmpl } from './page-nav-outlet';
 
@@ -28,7 +27,7 @@ type SamePageAnchorLink = {
 @Component({
 	selector: 'spartan-page-nav',
 
-	imports: [HlmScrollArea, NgScrollbarModule, NgClass, PageNavLink],
+	imports: [CapsScrollArea, NgClass, PageNavLink],
 	host: {
 		class: 'hidden max-w-sm xl:block text-sm',
 	},
@@ -38,7 +37,11 @@ type SamePageAnchorLink = {
 				<div class="h-(--top-spacing) shrink-0"></div>
 				<div>
 					<p class="text-muted-foreground bg-background px-4 pb-2 text-xs">On This Page</p>
-					<ng-scrollbar hlm class="h-[calc(100svh-14rem-var(--footer-height)+2rem-var(--stable-height))] py-2">
+					<caps-scroll-area
+						orientation="vertical"
+						aria-label="On this page"
+						class="h-[calc(100svh-14rem-var(--footer-height)+2rem-var(--stable-height))] py-2"
+					>
 						<div class="flex flex-col gap-2 p-4 pt-0 text-sm">
 							@for (link of _computedLinks(); track link.id) {
 								<spartan-page-nav-link
@@ -48,7 +51,7 @@ type SamePageAnchorLink = {
 								/>
 							}
 						</div>
-					</ng-scrollbar>
+					</caps-scroll-area>
 				</div>
 			} @else {
 				@if (_isDevMode()) {

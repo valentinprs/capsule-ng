@@ -1,12 +1,14 @@
 import { Component, Input, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 
 @Component({
 	selector: 'spartan-page-nav-link',
-	imports: [RouterLink],
+	imports: [RouterLink, CapsLinkImports],
 
 	template: `
 		<a
+			capsLink
 			[routerLink]="[]"
 			[relativeTo]="_activatedRoute"
 			[fragment]="fragment"

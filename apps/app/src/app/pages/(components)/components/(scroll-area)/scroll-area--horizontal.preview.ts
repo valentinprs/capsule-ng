@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
-import { NgScrollbarModule } from 'ngx-scrollbar';
+import { CapsScrollAreaImports } from '@capsule-ng/caps/scroll-area';
 
 @Component({
 	selector: 'spartan-scroll-area-horizontal-preview',
-	imports: [HlmScrollAreaImports, NgScrollbarModule],
+	imports: [CapsScrollAreaImports],
+	host: { class: 'block w-full max-w-96 min-w-0' },
 	template: `
-		<ng-scrollbar hlm class="w-96 border whitespace-nowrap">
+		<caps-scroll-area
+			orientation="horizontal"
+			aria-label="Artwork gallery"
+			class="w-96 max-w-full border whitespace-nowrap"
+		>
 			<div class="flex w-max space-x-4 p-4">
 				@for (artwork of _works; track artwork.artist) {
 					<figure class="shrink-0">
@@ -15,8 +19,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 								[src]="artwork.art"
 								[alt]="'Photo by ' + artwork.artist"
 								class="aspect-[3/4] h-fit w-fit object-cover"
-								width="{300}"
-								height="{400}"
+								width="300"
+								height="400"
 							/>
 						</div>
 						<figcaption class="text-muted-foreground pt-2 text-xs">
@@ -28,7 +32,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 					</figure>
 				}
 			</div>
-		</ng-scrollbar>
+		</caps-scroll-area>
 	`,
 })
 export class ScrollAreaHorizontalPreview {

@@ -1,5 +1,6 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { ScrollAreaHorizontalPreview } from '@spartan-ng/app/app/pages/(components)/components/(scroll-area)/scroll-area--horizontal.preview';
@@ -7,7 +8,6 @@ import { ScrollAreaRtlPreview } from '@spartan-ng/app/app/pages/(components)/com
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { link } from '@spartan-ng/app/app/shared/typography/link';
 import { hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
@@ -30,6 +30,7 @@ export const routeMeta: RouteMeta = {
 @Component({
 	selector: 'spartan-scroll-area',
 	imports: [
+		CapsLinkImports,
 		UIApiDocs,
 		MainSection,
 		Code,
@@ -66,11 +67,11 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="about">About</spartan-section-sub-heading>
 			<p class="${hlmP}">
 				Scroll area is built on top of
-				<a href="https://ngx-scrollbar.netlify.app/#/" target="_blank" rel="noreferrer" class="${link}">
+				<a capsLink href="https://ngx-scrollbar.netlify.app/#/" target="_blank" rel="noreferrer">
 					ngx-scrollbar directive
 				</a>
 				by
-				<a href="https://github.com/murhafsousli" target="_blank" rel="noreferrer" class="${link}">&#64;murhafsousli</a>
+				<a capsLink href="https://github.com/murhafsousli" target="_blank" rel="noreferrer">&#64;murhafsousli</a>
 				.
 			</p>
 
@@ -99,8 +100,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="select" label="Select" />

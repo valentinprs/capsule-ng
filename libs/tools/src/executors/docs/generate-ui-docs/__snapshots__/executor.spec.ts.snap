@@ -10946,6 +10946,95 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "brn-resizable-panel, [brnResizablePanel]",
       },
     },
+    "caps": {
+      "CapsResizableGroup": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "direction",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+        ],
+        "models": [
+          {
+            "name": "layout",
+            "required": false,
+            "type": "number[]",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "dragStart",
+            "type": "void",
+          },
+          {
+            "name": "dragEnd",
+            "type": "void",
+          },
+          {
+            "name": "layoutChanged",
+            "type": "number[]",
+          },
+        ],
+        "selector": "caps-resizable-group",
+      },
+      "CapsResizableHandle": {
+        "exportAs": "capsResizableHandle",
+        "inputs": [
+          {
+            "name": "withHandle",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-resizable-handle",
+      },
+      "CapsResizablePanel": {
+        "exportAs": "capsResizablePanel",
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "defaultSize",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "minSize",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "maxSize",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "collapsible",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-resizable-panel",
+      },
+    },
     "helm": {
       "HlmResizableGroup": {
         "inputs": [
@@ -11031,6 +11120,110 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "scroll-area": {
+    "caps": {
+      "CapsScrollArea": {
+        "exportAs": "capsScrollArea",
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "ScrollbarOrientation",
+          },
+          {
+            "name": "visibility",
+            "required": false,
+            "type": "ScrollbarVisibility",
+          },
+          {
+            "name": "appearance",
+            "required": false,
+            "type": "ScrollbarAppearance",
+          },
+          {
+            "name": "position",
+            "required": false,
+            "type": "ScrollbarPosition",
+          },
+          {
+            "name": "withButtons",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disableInteraction",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disableSensor",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "hoverOffset",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sensorThrottleTime",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "trackScrollDuration",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "trackClass",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "thumbClass",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "buttonClass",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "tabindex",
+            "required": false,
+            "type": "number",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "afterInit",
+            "type": "void",
+          },
+          {
+            "name": "afterUpdate",
+            "type": "void",
+          },
+        ],
+        "selector": "caps-scroll-area",
+      },
+    },
     "helm": {
       "HlmScrollArea": {
         "inputs": [],

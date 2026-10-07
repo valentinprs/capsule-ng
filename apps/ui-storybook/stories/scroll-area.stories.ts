@@ -1,87 +1,69 @@
 import { Component } from '@angular/core';
-import { CapsSeparator } from '@capsule-ng/caps/separator';
-import { HlmScrollArea } from '@spartan-ng/helm/scroll-area';
+import { CapsScrollArea, CapsScrollAreaImports } from '@capsule-ng/caps/scroll-area';
+import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
 import type { Meta, StoryObj } from '@storybook/angular';
-import { argsToTemplate, moduleMetadata } from '@storybook/angular';
-import { NgScrollbar, NgScrollbarModule } from 'ngx-scrollbar';
+import { argsToTemplate, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 
 @Component({
 	selector: 'scroll-area-stories',
-	imports: [CapsSeparator, HlmScrollArea, NgScrollbarModule],
+	imports: [CapsSeparatorImports, CapsScrollAreaImports],
 	template: `
-		<ng-scrollbar hlm class="border-border h-72 w-48 rounded-md border">
+		<caps-scroll-area orientation="vertical" aria-label="Release tags" class="h-72 w-48 rounded-md border">
 			<div class="p-4">
-				<h4 class="mb-4 text-sm leading-none font-medium">Tags</h4>
+				<h2 class="mb-4 text-sm font-medium">Tags</h2>
 				@for (tag of tags; track tag) {
 					<div class="text-sm">
 						{{ tag }}
-						<caps-separator class="my-2"></caps-separator>
+						<caps-separator class="my-2" />
 					</div>
 				}
 			</div>
-		</ng-scrollbar>
+		</caps-scroll-area>
 	`,
 })
 class ScrollAreaStories {
-	tags = Array.from({ length: 50 }).map((_, i, a) => `v1.2.0-beta.${a.length - i}`);
+	public readonly tags = Array.from({ length: 50 }, (_, i) => `v1.2.0-beta.${50 - i}`);
 }
-
-const meta: Meta<NgScrollbar> = {
+const meta: Meta<CapsScrollArea> = {
 	title: 'Scroll Area',
-	component: NgScrollbar,
+	component: CapsScrollArea,
 	tags: ['autodocs'],
-	args: {
-		track: 'all',
-		visibility: 'native',
-	} as any, // this is required as storybook isn't inferring types from signals
 	argTypes: {
-		track: {
-			options: ['vertical', 'horizontal', 'all'],
-			control: {
-				type: 'select',
-			},
-			table: {
-				defaultValue: { summary: 'all' },
-			},
-		},
-		visibility: {
-			options: ['hover', 'always', 'native'],
-			control: {
-				type: 'select',
-			},
-			table: {
-				defaultValue: { summary: 'native' },
-			},
-		},
-	} as any,
+		orientation: { options: ['auto', 'vertical', 'horizontal'], control: 'select' },
+		visibility: { options: ['native', 'hover', 'visible'], control: 'select' },
+		appearance: { options: ['native', 'compact'], control: 'select' },
+		position: { options: ['native', 'invertX', 'invertY', 'invertAll'], control: 'select' },
+	},
 	decorators: [
-		moduleMetadata({
-			imports: [HlmScrollArea, NgScrollbarModule, ScrollAreaStories],
-		}),
+		componentWrapperDecorator((story) => `<main><h1 class="sr-only">Scroll Area example</h1>${story}</main>`),
+		moduleMetadata({ imports: [CapsScrollAreaImports, ScrollAreaStories] }),
 	],
 };
-
 export default meta;
-type Story = StoryObj<HlmScrollArea>;
-
-export const Default: Story = {
-	render: () => ({
-		template: `
-       <scroll-area-stories/>
-    `,
+type Story = StoryObj<CapsScrollArea>;
+export const Default: Story = { render: () => ({ template: '<scroll-area-stories />' }) };
+const content =
+	'<div class="w-[600px] p-6"><h2>Scrollable content</h2>' +
+	'<p>A line of content in the viewport.</p>'.repeat(24) +
+	'</div>';
+export const Vertical: Story = {
+	args: { orientation: 'vertical' },
+	render: (args) => ({
+		props: args,
+		template: `<caps-scroll-area ${argsToTemplate(args)} aria-label="Article" class="h-48 w-72 max-w-full rounded-md border">${content}</caps-scroll-area>`,
 	}),
 };
-
-export const Vertical: Story = {
-	render: ({ ...args }) => ({
+export const Horizontal: Story = {
+	args: { orientation: 'horizontal' },
+	render: (args) => ({
 		props: args,
-		template: `
-        <ng-scrollbar hlm ${argsToTemplate(args)} class="border w-72 rounded-md border-border">
-        <div class='p-6 whitespace-nowrap'>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium architecto,<br>
-        asperiores beatae consequuntur dolor ducimus et exercitationem facilis fugiat magni<br>
-        nisi officiis quibusdam rem repellat reprehenderit totam veritatis voluptatibus! Nobis.
-        </div>
-        </ng-scrollbar>`,
+		template: `<caps-scroll-area ${argsToTemplate(args)} aria-label="Wide article" class="w-72 max-w-full rounded-md border">${content}</caps-scroll-area>`,
+	}),
+};
+export const BothAxes: Story = {
+	args: { orientation: 'auto', visibility: 'visible', appearance: 'compact' },
+	render: (args) => ({
+		props: args,
+		template: `<caps-scroll-area ${argsToTemplate(args)} aria-label="Article in both axes" class="h-48 w-72 max-w-full rounded-md border">${content}</caps-scroll-area>`,
 	}),
 };

@@ -197,7 +197,9 @@
 			"@capsule-ng/caps/drawer": ["libs/caps/drawer/src/index.ts"],
 			"@capsule-ng/caps/bubble": ["libs/caps/bubble/src/index.ts"],
 			"@capsule-ng/caps/message": ["libs/caps/message/src/index.ts"],
-			"@capsule-ng/caps/attachment": ["libs/caps/attachment/src/index.ts"]
+			"@capsule-ng/caps/attachment": ["libs/caps/attachment/src/index.ts"],
+			"@capsule-ng/caps/scroll-area": ["libs/caps/scroll-area/src/index.ts"],
+			"@capsule-ng/caps/resizable": ["libs/caps/resizable/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

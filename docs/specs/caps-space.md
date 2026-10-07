@@ -1,0 +1,44 @@
+# Capsule space containers — issue #51
+
+## Contract chosen before implementation; Spartan documentation audit (2026-10-07)
+
+Base: dc141c8daa87acf64dcb4c3c288199b467e2abd4. Brain and Helm source remain unchanged.
+
+The current user instruction makes official Spartan documentation and the existing public Brain API the source of properties. [Spartan Resizable](https://spartan.ng/components/resizable) documents the group/panel/handle inputs and outputs below. [Spartan Scroll Area](https://spartan.ng/components/scroll-area) uses ngx-scrollbar, demonstrates bounded dimensions, compact appearance and RTL, and supplies hover visibility through its provider. Its Helm directive adds styling rather than a separate Brain property interface. The installed ngx-scrollbar 19.1.5 public entrypoint therefore supplies the retained scrolling options. The obsolete Storybook track/all and visibility/always controls are replaced with the installed orientation/auto and visibility/visible API.
+
+| Surface                     | Properties and defaults                                                                                                                                          | Verified source                                                                |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| Resizable group             | id, direction horizontal/vertical (horizontal), layout number[] ([])                                                                                             | Spartan Brain API and exported BrnResizableGroup                               |
+| Group events                | dragStart, dragEnd, layoutChanged; layoutChange for the two-way model                                                                                            | Spartan Brain API and public outputs/model                                     |
+| Resizable panel             | id, defaultSize (undefined), minSize (0), maxSize (100), collapsible (true)                                                                                      | Spartan Brain API and exported BrnResizablePanel                               |
+| Resizable handle            | withHandle (false), disabled (false)                                                                                                                             | Spartan Brain/Helm API and exported BrnResizableHandle                         |
+| Scroll modes                | orientation auto/vertical/horizontal, visibility native/hover/visible (hover), appearance native/compact, position native/invertX/invertY/invertAll              | ngx-scrollbar 19.1.5 exported types; hover provider also documented by Spartan |
+| Native scrolling options    | withButtons, disableInteraction, disableSensor, sensorThrottleTime, hoverOffset, trackScrollDuration, trackClass, thumbClass, buttonClass; afterInit/afterUpdate | Public ScrollbarInputOutputs entrypoint                                        |
+| Existing imperative methods | panel setSize; ScrollArea scrollTo/scrollToElement                                                                                                               | Exported BrnResizablePanel and public NgScrollbarExt                           |
+| Accessibility routing       | Native aria-label/aria-labelledby/aria-describedby and tabindex on the owned viewport; native naming attributes on handles/groups                                | Existing semantic attributes, owned Capsule anatomy                            |
+
+Local source verification: libs/brain/resizable/src/index.ts exports the three classes; their input/model/output declarations match the documented names. libs/helm/resizable preserves panel setSize. The ngx-scrollbar package public export maps to types/ngx-scrollbar.d.ts and explicitly exports ScrollbarInputOutputs and NgScrollbarExt. No private import is needed. Capsule IDs preserve the existing id property with SSR-safe generated defaults. This audit changes the documented source of the contract, not the prepared runtime API, consumers or tests.
+
+## Anatomy
+
+`CapsScrollAreaImports` exports `CapsScrollArea`. `<caps-scroll-area>` owns ngx-scrollbar, a focusable native viewport, its content wrapper and decorative tracks. Consumers project content directly. Root classes/dimensions constrain the viewport; content must not supply scrollViewport. Native overflow works before JavaScript and during SSR. orientation is auto/vertical/horizontal, visibility is native/hover/visible (hover default, as Helm), appearance native/compact. Existing ngx-scrollbar positioning, buttons, sensor and interaction inputs remain available through its public ScrollbarInputOutputs base. aria-label/aria-labelledby/aria-describedby and tabindex address the viewport, not an additional focus target. Without a specific label, Scrollable content is the fallback. Scroll events and focused descendants use native browser scrolling.
+
+`CapsResizableImports` exports group, panel and handle. Groups own layout direction and two-way percentage layout, dragStart/dragEnd/layoutChanged events and model layoutChange. Panels project arbitrary content and retain defaultSize/minSize/maxSize/collapsible/id and setSize. Handle owns decorative grip, separator semantics, one focus target, disabled state and withHandle. Native ARIA naming attributes are applied to the handle; examples always supply a meaningful name. aria-controls resolves the preceding direct panel; aria-valuenow/min/max describe its percentage and the feasible interval shared with its adjacent panel. IDs preserve server identity and avoid hydration collisions using the established CDK generator pattern.
+
+Brain provides group membership, layout reconciliation and pointer resizing. Capsule uses only exported public classes and methods. The handle adapter scopes panel lookup to the direct group's panels, supports touch initiation, mirrors horizontal keyboard direction in RTL and bounds Home/End against both panels. Enter/Space collapses/restores a collapsible adjacent panel only when the adjacent constraints allow it. Nested groups remain independent. Panels are generic containers; groups have role group and may be explicitly named. These are layout components, not form controls; projected controls keep their original forms context and focus.
+
+The public percentage inputs require finite, feasible values: 0 <= minSize <= defaultSize <= maxSize <= 100 and a layout totaling 100. Collapsibility is an explicit exception to the panel minimum (0), retained from Brain. No automatic storage/persistence or product feature is added.
+
+## Exhaustive consumer inventory
+
+- Scroll Area: default, horizontal artwork, RTL previews; page usage/import/code and API tables; Storybook Default and axis/mode controls; shared page-nav and its native CapsLink navigation links.
+- Resizable: default nested, vertical, handle, dynamic panels, RTL previews; page usage/import/code and API tables; Storybook default nested and dynamic panels plus bounded/disabled coverage; shared block-viewer with programmatic panel sizes, and named preview iframes. The viewer appears 16 times across /blocks/login (2), /blocks/signup (2), /blocks/sidebar (2) and /blocks/stepper (10). Its mobile preview images are existing static assets; desktop renders the live preview iframe.
+- Existing auxiliary APIs: CapsSeparator in ScrollArea, CapsButton in dynamic panels, CapsLink in the ScrollArea attribution. BlockViewer already has Capsule Button/ToggleGroup/Separator.
+- No home consumer or existing family Cypress file was found. All existing executable/source string references are covered, followed by generated snippets and metadata.
+- Layout wrappers remain only for padding, nested composition or real toolbar/layout alignment. Mobile examples cap width at their parent, with explicit vertical heights.
+
+## Verification plan and current limits
+
+Public consumer tests cover native overflow and keyboard/focus, inputs/modes, controlled layouts, min/max, nested index isolation, disabled and named/value handles, pointer/touch, RTL, projected forms and SSR identity. Real catalogue/Storybook QA covers both themes at desktop/mobile, axes, dynamic panels, axe and hydration. All heavy commands wait for central allocation under coord-B/lot22, lot22/issue51; no pipeline or QA pass is claimed before execution. No screen reader session is planned; global pipeline is reserved for the final union.
+
+See the [exhaustive API provenance matrix](caps-space-api-matrix.md) for every property, default, output, method and native/Caps adaptation. Central read-only API review is required before delivery.

@@ -1,10 +1,10 @@
 import type { RouteMeta } from '@analogjs/router';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsAccordionImports } from '@capsule-ng/caps/accordion';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
-import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { MainSection } from '../../../shared/layout/main-section';
@@ -32,13 +32,13 @@ export const routeMeta: RouteMeta = {
 		SectionIntro,
 		SectionSubHeading,
 		PageNav,
-		HlmAccordionImports,
+		CapsAccordionImports,
 		RouterLink,
 		PageNav,
 		PageBottomNavLink,
 		PageBottomNav,
 		PageBottomNavPlaceholder,
-		HlmButtonImports,
+		CapsButtonImports,
 		NgIcon,
 	],
 	providers: [provideIcons({ lucideChevronRight })],
@@ -98,7 +98,7 @@ export const routeMeta: RouteMeta = {
 			</p>
 
 			<div class="mt-6 flex items-center justify-end">
-				<a routerLink="/documentation/installation" variant="secondary" size="sm" hlmBtn outline="">
+				<a routerLink="/documentation/installation" variant="secondary" size="sm" capsButton outline="">
 					Get started with spartan/ui
 					<ng-icon name="lucideChevronRight" class="ml-2" />
 				</a>
@@ -127,71 +127,85 @@ export const routeMeta: RouteMeta = {
 				<code class="${hlmCode}">Drizzle</code>
 			</p>
 			<div class="mt-6 flex items-center justify-end">
-				<a routerLink="/stack" variant="secondary" size="sm" hlmBtn outline="">
+				<a routerLink="/stack" variant="secondary" size="sm" capsButton outline="">
 					Explore spartan/stack
 					<ng-icon name="lucideChevronRight" class="ml-2" />
 				</a>
 			</div>
 
 			<spartan-section-sub-heading id="faq">FAQ</spartan-section-sub-heading>
-			<hlm-accordion>
-				<hlm-accordion-item>
-					<hlm-accordion-trigger>What is spartan/ui?</hlm-accordion-trigger>
-					<hlm-accordion-content>
-						A collection of accessible UI primitives for Angular. You install behavior via npm and copy styles into your
-						codebase for complete customization.
-					</hlm-accordion-content>
-				</hlm-accordion-item>
+			<caps-accordion>
+				<caps-accordion-item
+					title="What is spartan/ui?"
+					id="introduction-page-1"
+					[expanded]="_activeItem() === 'introduction-page-1'"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					A collection of accessible UI primitives for Angular. You install behavior via npm and copy styles into your
+					codebase for complete customization.
+				</caps-accordion-item>
 
-				<hlm-accordion-item>
-					<hlm-accordion-trigger>Do I need AnalogJs or a full-stack setup?</hlm-accordion-trigger>
-					<hlm-accordion-content>
-						No. spartan/ui works with any Angular application. The spartan/stack is optional for full-stack development.
-					</hlm-accordion-content>
-				</hlm-accordion-item>
+				<caps-accordion-item
+					title="Do I need AnalogJs or a full-stack setup?"
+					id="introduction-page-2"
+					[expanded]="_activeItem() === 'introduction-page-2'"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					No. spartan/ui works with any Angular application. The spartan/stack is optional for full-stack development.
+				</caps-accordion-item>
 
-				<hlm-accordion-item>
-					<hlm-accordion-trigger>What's the difference between Brain and Helm?</hlm-accordion-trigger>
-					<hlm-accordion-content>
-						Brain (brn) is the unstyled, accessible primitive you install from npm - we maintain it with updates. Helm
-						(hlm) is the styled layer you copy into your project - you own and customize it.
-					</hlm-accordion-content>
-				</hlm-accordion-item>
+				<caps-accordion-item
+					title="What's the difference between Brain and Helm?"
+					id="introduction-page-3"
+					[expanded]="_activeItem() === 'introduction-page-3'"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					Brain (brn) is the unstyled, accessible primitive you install from npm - we maintain it with updates. Helm
+					(hlm) is the styled layer you copy into your project - you own and customize it.
+				</caps-accordion-item>
 
-				<hlm-accordion-item>
-					<hlm-accordion-trigger>Why copy components instead of installing them?</hlm-accordion-trigger>
-					<hlm-accordion-content>
-						Copying styles gives you complete control. No theming API to learn, no version conflicts, no waiting for
-						maintainers to add features. Edit Tailwind classes directly and ship.
-					</hlm-accordion-content>
-				</hlm-accordion-item>
+				<caps-accordion-item
+					title="Why copy components instead of installing them?"
+					id="introduction-page-4"
+					[expanded]="_activeItem() === 'introduction-page-4'"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					Copying styles gives you complete control. No theming API to learn, no version conflicts, no waiting for
+					maintainers to add features. Edit Tailwind classes directly and ship.
+				</caps-accordion-item>
 
-				<hlm-accordion-item>
-					<hlm-accordion-trigger>Why are there so few unit tests in the codebase?</hlm-accordion-trigger>
-					<hlm-accordion-content>
-						We run comprehensive end-to-end tests in real browsers instead of JSDOM. UI components need to test behavior
-						(focus management, keyboard navigation, ARIA announcements) that only works properly in actual browser
-						environments. We found ourselves duplicating tests just to satisfy coverage metrics when the e2e tests
-						already proved the components work.
-					</hlm-accordion-content>
-				</hlm-accordion-item>
+				<caps-accordion-item
+					title="Why are there so few unit tests in the codebase?"
+					id="introduction-page-5"
+					[expanded]="_activeItem() === 'introduction-page-5'"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					We run comprehensive end-to-end tests in real browsers instead of JSDOM. UI components need to test behavior
+					(focus management, keyboard navigation, ARIA announcements) that only works properly in actual browser
+					environments. We found ourselves duplicating tests just to satisfy coverage metrics when the e2e tests already
+					proved the components work.
+				</caps-accordion-item>
 
-				<hlm-accordion-item>
-					<hlm-accordion-trigger>Is spartan/ui inspired by shadcn/ui?</hlm-accordion-trigger>
-					<hlm-accordion-content>
-						Yes. We adapted the copy-paste philosophy and design patterns from shadcn/ui (React) and Radix UI for
-						Angular, using signals, standalone components, and Angular-native APIs.
-					</hlm-accordion-content>
-				</hlm-accordion-item>
+				<caps-accordion-item
+					title="Is spartan/ui inspired by shadcn/ui?"
+					id="introduction-page-6"
+					[expanded]="_activeItem() === 'introduction-page-6'"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					Yes. We adapted the copy-paste philosophy and design patterns from shadcn/ui (React) and Radix UI for Angular,
+					using signals, standalone components, and Angular-native APIs.
+				</caps-accordion-item>
 
-				<hlm-accordion-item>
-					<hlm-accordion-trigger>What is spartan/stack?</hlm-accordion-trigger>
-					<hlm-accordion-content>
-						An optional collection of full-stack technologies for end-to-end type-safe Angular development with
-						AnalogJs. Not required for using spartan/ui.
-					</hlm-accordion-content>
-				</hlm-accordion-item>
-			</hlm-accordion>
+				<caps-accordion-item
+					title="What is spartan/stack?"
+					id="introduction-page-7"
+					[expanded]="_activeItem() === 'introduction-page-7'"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					An optional collection of full-stack technologies for end-to-end type-safe Angular development with AnalogJs.
+					Not required for using spartan/ui.
+				</caps-accordion-item>
+			</caps-accordion>
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="changelog" label="Changelog" />
@@ -202,4 +216,6 @@ export const routeMeta: RouteMeta = {
 		<spartan-page-nav />
 	`,
 })
-export default class DocsIntroPage {}
+export default class DocsIntroPage {
+	protected readonly _activeItem = signal<string | null>(null);
+}

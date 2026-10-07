@@ -3,21 +3,21 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideExternalLink } from '@ng-icons/lucide';
-import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
-import { Code } from '@spartan-ng/app/app/shared/code/code';
-import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { MainSection } from '@spartan-ng/app/app/shared/layout/main-section';
-import { PageBottomNav } from '@spartan-ng/app/app/shared/layout/page-bottom-nav/page-bottom-nav';
-import { PageBottomNavLink } from '@spartan-ng/app/app/shared/layout/page-bottom-nav/page-bottom-nav-link';
-import { PageNav } from '@spartan-ng/app/app/shared/layout/page-nav/page-nav';
-import { SectionIntro } from '@spartan-ng/app/app/shared/layout/section-intro';
-import { SectionSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-heading';
-import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { Tabs } from '@spartan-ng/app/app/shared/layout/tabs';
-import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
-import { SidebarPreview } from '@spartan-ng/app/app/shared/sidebar-preview/sidebar-preview';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCode, HlmP } from '@spartan-ng/helm/typography';
+import { injectComponentDocs } from '../../../../core/services/component-docs';
+import { Code } from '../../../../shared/code/code';
+import { RtlHeader } from '../../../../shared/code/rtl-header';
+import { MainSection } from '../../../../shared/layout/main-section';
+import { PageBottomNav } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav';
+import { PageBottomNavLink } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav-link';
+import { PageNav } from '../../../../shared/layout/page-nav/page-nav';
+import { SectionIntro } from '../../../../shared/layout/section-intro';
+import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
+import { SectionSubSubHeading } from '../../../../shared/layout/section-sub-sub-heading';
+import { Tabs } from '../../../../shared/layout/tabs';
+import { metaWith } from '../../../../shared/meta/meta.util';
+import { SidebarPreview } from '../../../../shared/sidebar-preview/sidebar-preview';
 import { link } from '../../../../shared/typography/link';
 import {
 	button,
@@ -491,7 +491,7 @@ export const routeMeta: RouteMeta = {
 				To make a
 				<span hlmCode>HlmSidebarGroup</span>
 				collapsible, wrap it in a
-				<span hlmCode>HlmCollapsible</span>
+				<span hlmCode>CapsCollapsible</span>
 			</p>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -672,7 +672,7 @@ export const routeMeta: RouteMeta = {
 				component collapsible, wrap it and the
 				<span>HlmSidebarMenuSub</span>
 				components in a
-				<span hlmCode>HlmCollapsible</span>
+				<span hlmCode>CapsCollapsible</span>
 				.
 			</p>
 

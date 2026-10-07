@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-menu-sub-collapsable',
-	imports: [HlmSidebarImports, HlmCollapsibleImports, NgIcon],
+	imports: [HlmSidebarImports, CapsCollapsibleImports, NgIcon],
 	providers: [provideIcons({ lucideChevronRight })],
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
@@ -19,10 +19,10 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 						<div hlmSidebarGroupContent>
 							<ul hlmSidebarMenu>
 								@for (item of _items; track item.title) {
-									<hlm-collapsible [expanded]="item.defaultOpen" class="group/collapsible">
-										<li hlmSidebarMenuItem>
+									<li hlmSidebarMenuItem>
+										<caps-collapsible [expanded]="item.defaultOpen" class="group/collapsible">
 											<button
-												hlmCollapsibleTrigger
+												capsCollapsibleTrigger
 												hlmSidebarMenuButton
 												class="flex w-full items-center justify-between"
 											>
@@ -33,7 +33,7 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 													hlm
 												/>
 											</button>
-											<hlm-collapsible-content>
+											<caps-collapsible-content>
 												<ul hlmSidebarMenuSub>
 													@for (subItem of item.items; track subItem.title) {
 														<li hlmSidebarMenuSubItem>
@@ -43,9 +43,9 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 														</li>
 													}
 												</ul>
-											</hlm-collapsible-content>
-										</li>
-									</hlm-collapsible>
+											</caps-collapsible-content>
+										</caps-collapsible>
+									</li>
 								}
 							</ul>
 						</div>

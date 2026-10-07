@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideFile, lucideFolder } from '@ng-icons/lucide';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 type FileTreeItem = { name: string; items?: FileTreeItem[] };
@@ -54,13 +54,13 @@ const FILE_TREE: FileTreeItem[] = [
 
 @Component({
 	selector: 'spartan-file-tree-node',
-	imports: [HlmCollapsibleImports, CapsButtonImports, NgIcon, FileTreeNode],
+	imports: [CapsCollapsibleImports, CapsButtonImports, NgIcon, FileTreeNode],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		@if (item().items; as children) {
-			<hlm-collapsible class="w-full">
+			<caps-collapsible class="w-full">
 				<button
-					hlmCollapsibleTrigger
+					capsCollapsibleTrigger
 					capsButton
 					variant="ghost"
 					size="sm"
@@ -70,12 +70,12 @@ const FILE_TREE: FileTreeItem[] = [
 					<ng-icon name="lucideFolder" />
 					{{ item().name }}
 				</button>
-				<hlm-collapsible-content class="mt-1 ml-5 flex flex-col gap-1">
+				<caps-collapsible-content class="ms-5 mt-1 flex flex-col gap-1">
 					@for (child of children; track child.name) {
 						<spartan-file-tree-node [item]="child" />
 					}
-				</hlm-collapsible-content>
-			</hlm-collapsible>
+				</caps-collapsible-content>
+			</caps-collapsible>
 		} @else {
 			<button capsButton variant="link" size="sm" class="text-foreground w-full justify-start gap-2">
 				<ng-icon name="lucideFile" />
@@ -90,7 +90,7 @@ export class FileTreeNode {
 
 @Component({
 	selector: 'spartan-collapsible-file-tree',
-	imports: [HlmCollapsibleImports, CapsButtonImports, CapsCardImports, HlmTabsImports, FileTreeNode],
+	imports: [CapsCollapsibleImports, CapsButtonImports, CapsCardImports, HlmTabsImports, FileTreeNode],
 	providers: [provideIcons({ lucideChevronRight, lucideFile, lucideFolder })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'mx-auto w-full max-w-xs' },

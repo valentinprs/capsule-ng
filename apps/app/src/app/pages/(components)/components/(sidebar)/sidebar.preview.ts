@@ -471,19 +471,19 @@ import {
   lucideLifeBuoy,
   lucideSend,
 } from '@ng-icons/lucide';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [ NgIcon, HlmCollapsibleImports, HlmSidebarImports],
+  imports: [ NgIcon, CapsCollapsibleImports, HlmSidebarImports],
   template: \`
     <div hlmSidebarWrapper>
       <hlm-sidebar>
         <div hlmSidebarContent>
-          <hlm-collapsible [expanded]="true" class="group/collapsible">
+          <caps-collapsible [expanded]="true" class="group/collapsible">
             <div hlmSidebarGroup>
               <button
-                hlmCollapsibleTrigger
+                capsCollapsibleTrigger
                 hlmSidebarGroupLabel
                 class="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
               >
@@ -494,7 +494,7 @@ import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
                   class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
                 />
               </button>
-              <hlm-collapsible-content>
+              <caps-collapsible-content>
                 <div hlmSidebarGroupContent>
                   <ul hlmSidebarMenu>
                     <li hlmSidebarMenuItem>
@@ -511,9 +511,9 @@ import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
                     </li>
                   </ul>
                 </div>
-              </hlm-collapsible-content>
+              </caps-collapsible-content>
             </div>
-          </hlm-collapsible>
+          </caps-collapsible>
         </div>
       </hlm-sidebar>
       <ng-content />
@@ -882,13 +882,13 @@ export const menuSubCollapsableExample = `
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
   selector: 'app-sidebar',
-    imports: [HlmSidebarImports, HlmCollapsibleImports, NgIcon, ],
+    imports: [HlmSidebarImports, CapsCollapsibleImports, NgIcon, ],
   template: \`
     <div hlmSidebarWrapper>
             <hlm-sidebar>
@@ -897,10 +897,10 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
                         <div hlmSidebarGroupContent>
                             <ul hlmSidebarMenu>
                                 @for (item of _items; track item.title) {
-                                    <hlm-collapsible [expanded]="item.defaultOpen" class="group/collapsible">
-                                        <li hlmSidebarMenuItem>
+                                    <li hlmSidebarMenuItem>
+                                        <caps-collapsible [expanded]="item.defaultOpen" class="group/collapsible">
                                             <button
-                                                hlmCollapsibleTrigger
+                                                capsCollapsibleTrigger
                                                 hlmSidebarMenuButton
                                                 class="flex w-full items-center justify-between"
                                             >
@@ -911,7 +911,7 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
                                                     hlm
                                                 />
                                             </button>
-                                            <hlm-collapsible-content>
+                                            <caps-collapsible-content>
                                                 <ul hlmSidebarMenuSub>
                                                     @for (subItem of item.items; track subItem.title) {
                                                         <li hlmSidebarMenuSubItem>
@@ -921,9 +921,9 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
                                                         </li>
                                                     }
                                                 </ul>
-                                            </hlm-collapsible-content>
-                                        </li>
-                                    </hlm-collapsible>
+                                            </caps-collapsible-content>
+                                        </caps-collapsible>
+                                    </li>
                                 }
                             </ul>
                         </div>

@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { CapsAccordionImports } from '@capsule-ng/caps/accordion';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 
 @Component({
 	selector: 'spartan-accordion-card',
-	imports: [HlmAccordionImports, CapsCardImports],
+	imports: [CapsAccordionImports, CapsCardImports],
 	host: {
-		class: 'max-w-lg h-[32rem] md:h-[28rem] flex flex-col justify-between',
+		class: 'block max-w-lg',
 	},
 	template: `
 		<caps-card maxWidth="sm">
@@ -17,23 +17,24 @@ import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
 				</caps-card-description>
 			</caps-card-header>
 			<caps-card-content>
-				<hlm-accordion>
+				<caps-accordion>
 					@for (item of items; track $index) {
-						<hlm-accordion-item>
-							<hlm-accordion-trigger>
-								{{ item.trigger }}
-							</hlm-accordion-trigger>
-							<hlm-accordion-content>
-								{{ item.content }}
-							</hlm-accordion-content>
-						</hlm-accordion-item>
+						<caps-accordion-item
+							[title]="item.trigger"
+							[id]="'accordion--card-example-' + item.value"
+							[expanded]="_activeItem() === 'accordion--card-example-' + item.value"
+							(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+						>
+							{{ item.content }}
+						</caps-accordion-item>
 					}
-				</hlm-accordion>
+				</caps-accordion>
 			</caps-card-content>
 		</caps-card>
 	`,
 })
 export class AccordionCard {
+	protected readonly _activeItem = signal<string | null>(null);
 	public items = [
 		{
 			value: 'plans',

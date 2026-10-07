@@ -2,12 +2,12 @@ import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, signal, untracked } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArchive,
 	lucideArrowLeft,
 	lucideCalendarPlus,
-	lucideChevronRight,
 	lucideClock,
 	lucideEllipsis,
 	lucideListFilterPlus,
@@ -16,11 +16,10 @@ import {
 	lucideTrash,
 } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-button-group-rtl-preview',
-	imports: [CapsButtonImports, CapsButtonGroupImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, CapsDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideArrowLeft,
@@ -32,7 +31,6 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 			lucideListFilterPlus,
 			lucideTag,
 			lucideTrash,
-			lucideChevronRight,
 		}),
 		Directionality,
 	],
@@ -55,81 +53,65 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 					capsButton
 					variant="outline"
 					[attr.aria-label]="_t().moreOptions"
-					[hlmDropdownMenuTrigger]="menu"
-					align="end"
+					[capsDropdownMenuTrigger]="menu"
+					placement="bottom-end"
 				>
 					<ng-icon name="lucideEllipsis" />
 				</button>
 			</caps-button-group>
 		</caps-button-group>
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-52" [dir]="_dir()">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu class="w-52" [dir]="_dir()">
+				<caps-menu-group>
+					<button capsMenuItem>
 						<ng-icon name="lucideMailCheck" />
 						<span>{{ _t().markAsRead }}</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideArchive" />
 						<span>{{ _t().archive }}</span>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group>
+					<button capsMenuItem>
 						<ng-icon name="lucideClock" />
 						<span>{{ _t().snooze }}</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideCalendarPlus" />
 						<span>{{ _t().addToCalendar }}</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideListFilterPlus" />
 						<span>{{ _t().addToList }}</span>
 					</button>
-					<button
-						hlmDropdownMenuItem
-						class="flex justify-between"
-						align="start"
-						side="right"
-						[hlmDropdownMenuTrigger]="submenu"
-					>
-						<div class="flex items-center gap-2">
-							<ng-icon name="lucideTag" />
-							<span>{{ _t().labelAs }}</span>
-						</div>
-						<ng-icon name="lucideChevronRight" class="rtl:rotate-180" />
+					<button align="start" side="right" [capsMenuSubTrigger]="submenu">
+						<ng-icon name="lucideTag" />
+						<span>{{ _t().labelAs }}</span>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button
-						hlmDropdownMenuItem
-						variant="destructive"
-						class="hover:bg-destructive/10 dark:hover:bg-destructive/40"
-					>
-						<ng-icon name="lucideTrash" />
-						<span>{{ _t().delete }}</span>
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem danger>
+					<ng-icon name="lucideTrash" />
+					<span>{{ _t().delete }}</span>
+				</button>
+			</caps-menu>
 		</ng-template>
 		<ng-template #submenu>
-			<hlm-dropdown-menu-sub class="w-40" [dir]="_dir()">
-				<button hlmDropdownMenuRadio [checked]="label() === 'personal'" (click)="label.set('personal')">
-					<hlm-dropdown-menu-radio-indicator />
-					<span>{{ _t().personal }}</span>
-				</button>
-				<button hlmDropdownMenuRadio [checked]="label() === 'work'" (click)="label.set('work')">
-					<hlm-dropdown-menu-radio-indicator />
-					<span>{{ _t().work }}</span>
-				</button>
-				<button hlmDropdownMenuRadio [checked]="label() === 'other'" (click)="label.set('other')">
-					<hlm-dropdown-menu-radio-indicator />
-					<span>{{ _t().other }}</span>
-				</button>
-			</hlm-dropdown-menu-sub>
+			<caps-menu class="w-40" [dir]="_dir()">
+				<caps-menu-group type="radio" [(value)]="label">
+					<button capsMenuRadioItem value="personal">
+						<span>{{ _t().personal }}</span>
+					</button>
+					<button capsMenuRadioItem value="work">
+						<span>{{ _t().work }}</span>
+					</button>
+					<button capsMenuRadioItem value="other">
+						<span>{{ _t().other }}</span>
+					</button>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 	`,
 })
@@ -207,7 +189,7 @@ export class ButtonGroupRtl {
 		},
 	};
 
-	public readonly label = signal('personal');
+	public readonly label = signal<string | string[]>('personal');
 
 	private readonly _translation = computed(() => this._translations[this._language()]);
 	protected readonly _t = computed(() => this._translation().values);

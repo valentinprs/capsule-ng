@@ -1,3 +1,3 @@
 import { loadComponentDocs } from '@spartan-ng/app/app/core/services/component-docs-loader';
 
-export const load = () => loadComponentDocs('context-menu');
+export const load = () => loadComponentDocs('context-menu', { capsApiFrom: ['menu'] });

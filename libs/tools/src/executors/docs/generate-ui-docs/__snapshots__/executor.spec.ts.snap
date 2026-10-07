@@ -3993,6 +3993,49 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "context-menu": {
+    "caps": {
+      "CapsContextMenuTrigger": {
+        "inputs": [
+          {
+            "name": "capsContextMenuTrigger",
+            "required": true,
+            "type": "TemplateRef<unknown>",
+          },
+          {
+            "name": "capsContextMenuTriggerData",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "MenuAlign",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "MenuSide",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "opened",
+            "type": "void",
+          },
+          {
+            "name": "closed",
+            "type": "void",
+          },
+        ],
+        "selector": "[capsContextMenuTrigger]",
+      },
+    },
     "helm": {
       "HlmContextMenuTrigger": {
         "inputs": [
@@ -5530,6 +5573,50 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "dropdown-menu": {
+    "caps": {
+      "CapsDropdownMenuTrigger": {
+        "inputs": [
+          {
+            "name": "capsDropdownMenuTrigger",
+            "required": true,
+            "type": "TemplateRef<unknown>",
+          },
+          {
+            "name": "capsDropdownMenuTriggerData",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "placement",
+            "required": false,
+            "type": "CapsMenuPlacement",
+          },
+        ],
+        "models": [
+          {
+            "name": "open",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "opened",
+            "type": "void",
+          },
+          {
+            "name": "closed",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsDropdownMenuTrigger]",
+      },
+    },
     "helm": {
       "HlmDropdownMenu": {
         "inputs": [
@@ -6870,7 +6957,262 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
       },
     },
   },
+  "menu": {
+    "caps": {
+      "CapsMenu": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "'xs' | 'sm' | 'md' | 'lg'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menu",
+      },
+      "CapsMenuCheckboxItem": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [
+          {
+            "name": "checked",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "itemClick",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenuCheckboxItem]",
+      },
+      "CapsMenuGroup": {
+        "inputs": [
+          {
+            "name": "label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "type",
+            "required": false,
+            "type": "'radio' | 'checkbox' | null",
+          },
+        ],
+        "models": [
+          {
+            "name": "value",
+            "required": false,
+            "type": "string | string[]",
+          },
+        ],
+        "outputs": [],
+        "selector": "caps-menu-group",
+      },
+      "CapsMenuItem": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "danger",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "dangerDescription",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "info",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "itemClick",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenuItem],a[capsMenuItem]",
+      },
+      "CapsMenuLabel": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menu-label",
+      },
+      "CapsMenuRadioItem": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [
+          {
+            "name": "checked",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "itemClick",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenuRadioItem]",
+      },
+      "CapsMenuSeparator": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menu-separator",
+      },
+      "CapsMenuShortcut": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menu-shortcut",
+      },
+      "CapsMenuSubTrigger": {
+        "inputs": [
+          {
+            "name": "capsMenuSubTrigger",
+            "required": true,
+            "type": "TemplateRef<unknown>",
+          },
+          {
+            "name": "capsMenuTriggerData",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "MenuAlign",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "MenuSide",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "opened",
+            "type": "void",
+          },
+          {
+            "name": "closed",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenuSubTrigger]",
+      },
+    },
+  },
   "menubar": {
+    "caps": {
+      "CapsMenubar": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menubar",
+      },
+      "CapsMenubarTrigger": {
+        "inputs": [
+          {
+            "name": "capsMenubarTrigger",
+            "required": true,
+            "type": "TemplateRef<unknown>",
+          },
+          {
+            "name": "capsMenubarTriggerData",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "MenuAlign",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "MenuSide",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "opened",
+            "type": "void",
+          },
+          {
+            "name": "closed",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenubarTrigger]",
+      },
+    },
     "helm": {
       "HlmMenubar": {
         "inputs": [],

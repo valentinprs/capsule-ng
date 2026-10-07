@@ -6,6 +6,7 @@
 	},
 	"assets": [
 		"caps-preset.css",
+		"menu.css",
 		"foundations.css",
 		{
 			"input": ".generated/styles",

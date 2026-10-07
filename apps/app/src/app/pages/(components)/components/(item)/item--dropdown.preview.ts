@@ -1,29 +1,29 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsItemImports } from '@capsule-ng/caps/item';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-item-dropdown-preview',
-	imports: [CapsItemImports, CapsButtonImports, CapsAvatarImports, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsItemImports, CapsButtonImports, CapsAvatarImports, NgIcon, CapsDropdownMenuImports],
 	providers: [provideIcons({ lucideChevronDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex min-h-64 w-full max-w-md flex-col items-center gap-6',
 	},
 	template: `
-		<button capsButton variant="outline" [hlmDropdownMenuTrigger]="people" align="end">
+		<button capsButton variant="outline" [capsDropdownMenuTrigger]="people" placement="bottom-end">
 			Select
 			<ng-icon name="lucideChevronDown" />
 		</button>
 
 		<ng-template #people>
-			<hlm-dropdown-menu class="w-48">
+			<caps-menu class="w-48">
 				@for (person of _people; track person.email) {
-					<hlm-dropdown-menu-item class="p-0">
+					<button capsMenuItem class="p-0">
 						<caps-item class="w-full p-2">
 							<caps-item-media>
 								<caps-avatar class="size-6.5">
@@ -38,9 +38,9 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 								<caps-item-description class="leading-none">{{ person.email }}</caps-item-description>
 							</caps-item-content>
 						</caps-item>
-					</hlm-dropdown-menu-item>
+					</button>
 				}
-			</hlm-dropdown-menu>
+			</caps-menu>
 		</ng-template>
 	`,
 })

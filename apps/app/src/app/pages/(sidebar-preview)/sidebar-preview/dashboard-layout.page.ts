@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	tablerCamera,
@@ -29,7 +30,6 @@ import {
 	tablerUserCircle,
 	tablerUsers,
 } from '@ng-icons/tabler-icons';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { DashboardCardSection } from '../../(home)/components/dashboard/components/card-section';
 import { DashboardTableSection } from '../../(home)/components/dashboard/components/table-section';
@@ -39,7 +39,7 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 	imports: [
 		HlmSidebarImports,
 		NgIcon,
-		HlmDropdownMenuImports,
+		CapsDropdownMenuImports,
 		CapsAvatarImports,
 		CapsButton,
 		DashboardCardSection,
@@ -121,7 +121,7 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 											<ng-icon [name]="item.icon" />
 											<span>{{ item.name }}</span>
 										</a>
-										<button hlmSidebarMenuAction [showOnHover]="true" [hlmDropdownMenuTrigger]="menu">
+										<button hlmSidebarMenuAction [showOnHover]="true" [capsDropdownMenuTrigger]="menu">
 											<ng-icon name="tablerDots" />
 											<span class="sr-only">More</span>
 										</button>
@@ -134,22 +134,22 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 									</a>
 								</li>
 								<ng-template #menu>
-									<hlm-dropdown-menu class="w-24 rounded-lg">
-										<button hlmDropdownMenuItem>
+									<caps-menu class="w-24 rounded-lg">
+										<button capsMenuItem>
 											<ng-icon name="tablerFolder" />
 											<span>Open</span>
 										</button>
 
-										<button hlmDropdownMenuItem>
+										<button capsMenuItem>
 											<ng-icon name="tablerShare3" />
 											<span>Share</span>
 										</button>
-										<hlm-dropdown-menu-separator />
-										<button hlmDropdownMenuItem variant="destructive">
+										<caps-menu-separator />
+										<button capsMenuItem danger>
 											<ng-icon name="tablerTrash" />
 											<span>Delete</span>
 										</button>
-									</hlm-dropdown-menu>
+									</caps-menu>
 								</ng-template>
 							</ul>
 						</div>
@@ -172,11 +172,11 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 				<div hlmSidebarFooter>
 					<ul hlmSidebarMenu>
 						<li hlmSidebarMenuItem>
-							<a
+							<button
 								hlmSidebarMenuButton
 								size="lg"
 								class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-								[hlmDropdownMenuTrigger]="userMenu"
+								[capsDropdownMenuTrigger]="userMenu"
 							>
 								<caps-avatar class="size-8 rounded-lg grayscale">
 									<img [src]="_items.user.avatar" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
@@ -189,12 +189,12 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 									</span>
 								</div>
 								<ng-icon name="tablerDotsVertical" class="ml-auto" />
-							</a>
+							</button>
 						</li>
 					</ul>
 					<ng-template #userMenu>
-						<hlm-dropdown-menu class="min-w-56 rounded-lg">
-							<hlm-dropdown-menu-label class="p-0 font-normal">
+						<caps-menu class="min-w-56 rounded-lg">
+							<caps-menu-label class="p-0 font-normal">
 								<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 									<caps-avatar class="size-8 rounded-lg">
 										<img [src]="_items.user.avatar" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
@@ -207,28 +207,28 @@ import { DashboardTableSection } from '../../(home)/components/dashboard/compone
 										</span>
 									</div>
 								</div>
-							</hlm-dropdown-menu-label>
-							<hlm-dropdown-menu-separator />
-							<hlm-dropdown-menu-group>
-								<button hlmDropdownMenuItem>
+							</caps-menu-label>
+							<caps-menu-separator />
+							<caps-menu-group>
+								<button capsMenuItem>
 									<ng-icon name="tablerUserCircle" />
 									<span>Account</span>
 								</button>
-								<button hlmDropdownMenuItem>
+								<button capsMenuItem>
 									<ng-icon name="tablerCreditCard" />
 									<span>Billing</span>
 								</button>
-								<button hlmDropdownMenuItem>
+								<button capsMenuItem>
 									<ng-icon name="tablerNotification" />
 									<span>Notifications</span>
 								</button>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
+							</caps-menu-group>
+							<caps-menu-separator />
+							<button capsMenuItem>
 								<ng-icon name="tablerLogout" />
 								<span>Logout</span>
 							</button>
-						</hlm-dropdown-menu>
+						</caps-menu>
 					</ng-template>
 				</div>
 			</hlm-sidebar>

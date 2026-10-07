@@ -29,6 +29,7 @@ export default defineConfig(({ mode }) => ({
 			headless: true,
 			provider: 'playwright',
 			name: 'chromium',
+			fileParallelism: false,
 		},
 	},
 	define: {

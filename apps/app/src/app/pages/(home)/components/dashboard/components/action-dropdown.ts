@@ -1,36 +1,41 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideEllipsis } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { type Row } from '@tanstack/angular-table';
 import { type DashboardData } from './dashboard-data.model';
 import { type DashboardFeatures } from './table-section';
 
 @Component({
 	selector: 'spartan-action-dropdown-dashboard',
-	imports: [HlmButton, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsButton, NgIcon, CapsDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis, lucideChevronRight })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="ghost" size="icon-sm" align="end" [hlmDropdownMenuTrigger]="menu">
+		<button
+			capsButton
+			variant="ghost"
+			size="icon-sm"
+			[capsDropdownMenuTrigger]="menu"
+			placement="bottom-end"
+			[attr.aria-label]="'Actions for ' + _data().header"
+		>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>Edit</button>
-					<button hlmDropdownMenuItem>Make a copy</button>
-					<button hlmDropdownMenuItem>Favorite</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
-						Delete
-						<span class="ml-auto text-xs tracking-widest opacity-(--caps-opacity-60)">⌘⌫</span>
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<caps-menu-group>
+					<button capsMenuItem>Edit</button>
+					<button capsMenuItem>Make a copy</button>
+					<button capsMenuItem>Favorite</button>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem>
+					Delete
+					<span class="ml-auto text-xs tracking-widest opacity-(--caps-opacity-60)">⌘⌫</span>
+				</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

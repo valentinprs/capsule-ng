@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -14,7 +15,6 @@ import {
 	lucideRotateCw,
 	lucideTelescope,
 } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
@@ -28,7 +28,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 		CapsButtonImports,
 		HlmEmptyImports,
 		CapsInputGroupImports,
-		HlmDropdownMenuImports,
+		CapsDropdownMenuImports,
 		CapsTooltipImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
@@ -131,8 +131,8 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 									size="icon-sm"
 									variant="outline"
 									aria-label="Add files"
-									[hlmDropdownMenuTrigger]="attachmentMenu"
-									align="start"
+									[capsDropdownMenuTrigger]="attachmentMenu"
+									placement="bottom-start"
 								>
 									<ng-icon name="lucidePlus" />
 								</button>
@@ -161,25 +161,25 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 		</div>
 
 		<ng-template #attachmentMenu>
-			<hlm-dropdown-menu class="w-44">
-				<button hlmDropdownMenuItem>
+			<caps-menu class="w-44">
+				<button capsMenuItem>
 					<ng-icon name="lucidePaperclip" />
 					Add Photos &amp; Files
 				</button>
-				<div hlmDropdownMenuSeparator></div>
-				<button hlmDropdownMenuItem>
+				<caps-menu-separator />
+				<button capsMenuItem>
 					<ng-icon name="lucideImage" />
 					Create Image
 				</button>
-				<button hlmDropdownMenuItem>
+				<button capsMenuItem>
 					<ng-icon name="lucideTelescope" />
 					Deep Research
 				</button>
-				<button hlmDropdownMenuItem>
+				<button capsMenuItem>
 					<ng-icon name="lucideGlobe" />
 					Web Search
 				</button>
-			</hlm-dropdown-menu>
+			</caps-menu>
 		</ng-template>
 	`,
 })

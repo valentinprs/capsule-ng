@@ -1,63 +1,52 @@
 import { Component, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideUndo2 } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-dropdown-with-state',
-	imports: [HlmDropdownMenuImports, HlmButtonImports, NgIcon],
+	imports: [CapsDropdownMenuImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideUndo2 })],
 	template: `
 		<div class="flex w-full items-center justify-center pt-[20%]">
-			<button hlmBtn variant="outline" align="center" [hlmDropdownMenuTrigger]="menu">Open</button>
+			<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom">Open</button>
 		</div>
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-56">
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>Appearance</hlm-dropdown-menu-label>
-
-					<button hlmDropdownMenuCheckbox [checked]="statusBar()" (triggered)="statusBar.set(!statusBar())">
-						<hlm-dropdown-menu-checkbox-indicator />
+			<caps-menu class="w-56">
+				<caps-menu-group label="Appearance">
+					<button capsMenuCheckboxItem [(checked)]="statusBar">
 						<span>Status Bar</span>
 					</button>
 
-					<button
-						hlmDropdownMenuCheckbox
-						disabled
-						[checked]="activityBar()"
-						(triggered)="activityBar.set(!activityBar())"
-					>
-						<hlm-dropdown-menu-checkbox-indicator />
+					<button capsMenuCheckboxItem disabled [(checked)]="activityBar">
 						<span>Activity Bar</span>
 					</button>
 
-					<button hlmDropdownMenuCheckbox [checked]="panel()" (triggered)="panel.set(!panel())">
-						<hlm-dropdown-menu-checkbox-indicator />
+					<button capsMenuCheckboxItem [(checked)]="panel">
 						<span>Panel</span>
 					</button>
-				</hlm-dropdown-menu-group>
+				</caps-menu-group>
 
-				<hlm-dropdown-menu-separator />
+				<caps-menu-separator />
 
-				<hlm-dropdown-menu-label>Panel Position</hlm-dropdown-menu-label>
+				<caps-menu-label>Panel Position</caps-menu-label>
 
-				<hlm-dropdown-menu-group>
+				<caps-menu-group type="radio" [(value)]="selectedPosition">
 					@for (size of panelPositions; track size) {
-						<button hlmDropdownMenuRadio [checked]="size === selectedPosition" (triggered)="selectedPosition = size">
-							<hlm-dropdown-menu-radio-indicator />
+						<button capsMenuRadioItem [value]="size">
 							<span>{{ size }}</span>
 						</button>
 					}
-				</hlm-dropdown-menu-group>
+				</caps-menu-group>
 
-				<hlm-dropdown-menu-separator />
+				<caps-menu-separator />
 
-				<button hlmDropdownMenuItem (triggered)="reset()">
+				<button capsMenuItem (itemClick)="reset()">
 					<ng-icon name="lucideUndo2" />
 					Reset
 				</button>
-			</hlm-dropdown-menu>
+			</caps-menu>
 		</ng-template>
 	`,
 })
@@ -67,7 +56,7 @@ export class DropdownWithStatePreview {
 	public readonly panel = signal(false);
 
 	public panelPositions = ['Top', 'Bottom', 'Right', 'Left'] as const;
-	public selectedPosition: (typeof this.panelPositions)[number] | undefined = 'Bottom';
+	public selectedPosition: string | string[] = 'Bottom';
 
 	reset() {
 		this.statusBar.set(false);

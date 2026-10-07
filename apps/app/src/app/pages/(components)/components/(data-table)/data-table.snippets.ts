@@ -195,27 +195,27 @@ import { Component, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import type { Row } from '@tanstack/angular-table';
 import { type DataTableFeatures } from './data-table-features';
 import { type Payment } from './payments';
 @Component({
 	selector: 'app-action-dropdown',
-	imports: [CapsButtonImports, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsButtonImports, NgIcon, CapsDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: \`
-		<button capsButton size="icon-sm" variant="ghost" [hlmDropdownMenuTrigger]="ActionDropDownMenu">
+		<button capsButton size="icon-sm" variant="ghost" [capsDropdownMenuTrigger]="ActionDropDownMenu">
 			<span class="sr-only">Open menu</span>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 		<ng-template #ActionDropDownMenu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-label>Actions</hlm-dropdown-menu-label>
-				<button hlmDropdownMenuItem (click)="copyPaymentId()">Copy payment ID</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>View customer</button>
-				<button hlmDropdownMenuItem>View payment details</button>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<caps-menu-label>Actions</caps-menu-label>
+				<button capsMenuItem (itemClick)="copyPaymentId()">Copy payment ID</button>
+				<caps-menu-separator />
+				<button capsMenuItem>View customer</button>
+				<button capsMenuItem>View payment details</button>
+			</caps-menu>
 		</ng-template>
 	\`,
 })
@@ -369,33 +369,32 @@ export const visibilityCode = `
 import { Component, input, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { type ColumnVisibilityState, injectTable, isFunction } from '@tanstack/angular-table';
 @Component({
 	selector: 'app-data-table',
-	imports: [FlexRender, CapsButtonImports, HlmDropdownMenuImports, CapsInputImports, HlmTableImports, NgIcon],
+	imports: [FlexRender, CapsButtonImports, CapsDropdownMenuImports, CapsInputImports, HlmTableImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown })],
 	template: \`
 		<div class="flex items-center py-4">
 			<!-- filter input -->
-			<button capsButton variant="outline" align="end" class="ml-auto" [hlmDropdownMenuTrigger]="menu">
+			<button capsButton variant="outline" class="ml-auto" [capsDropdownMenuTrigger]="menu" placement="bottom-end">
 				Columns
 				<ng-icon name="lucideChevronDown" class="ml-2" />
 			</button>
 			<ng-template #menu>
-				<hlm-dropdown-menu class="w-32">
+				<caps-menu class="w-32">
 					@for (column of hidableColumns; track column.id) {
 						<button
-							hlmDropdownMenuCheckbox
+							capsMenuCheckboxItem
 							class="capitalize"
 							[checked]="column.getIsVisible()"
-							(triggered)="column.toggleVisibility()"
+							(itemClick)="column.toggleVisibility()"
 						>
-							<hlm-dropdown-menu-checkbox-indicator />
 							{{ column.columnDef.id }}
 						</button>
 					}
-				</hlm-dropdown-menu>
+				</caps-menu>
 			</ng-template>
 		</div>
 		<div class="overflow-hidden rounded-md border">
@@ -503,13 +502,13 @@ import { Component, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowDown, lucideArrowUp, lucideChevronsUpDown, lucideEyeOff } from '@ng-icons/lucide';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { type Column } from '@tanstack/angular-table';
 import { type DataTableFeatures } from './data-table-features';
 import { type Payment } from './payments';
 @Component({
 	selector: 'app-data-table-column-header',
-	imports: [CapsButtonImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideArrowDown, lucideArrowUp, lucideChevronsUpDown, lucideEyeOff })],
 	template: \`
 		@if (column().getCanSort()) {
@@ -519,9 +518,8 @@ import { type Payment } from './payments';
 					variant="ghost"
 					size="sm"
 					class="data-[state=open]:bg-accent -ml-3 h-8"
-					align="start"
-					[hlmDropdownMenuTrigger]="menu"
-				>
+					[capsDropdownMenuTrigger]="menu"
+				 placement="bottom-start">
 					<span>{{ title() }}</span>
 					@switch (column().getIsSorted()) {
 						@case ('desc') {
@@ -536,21 +534,21 @@ import { type Payment } from './payments';
 					}
 				</button>
 				<ng-template #menu>
-					<hlm-dropdown-menu>
-						<button hlmDropdownMenuItem (click)="column().toggleSorting(false)">
+					<caps-menu>
+						<button capsMenuItem (itemClick)="column().toggleSorting(false)">
 							<ng-icon name="lucideArrowUp" />
 							Asc
 						</button>
-						<button hlmDropdownMenuItem (click)="column().toggleSorting(true)">
+						<button capsMenuItem (itemClick)="column().toggleSorting(true)">
 							<ng-icon name="lucideArrowDown" />
 							Desc
 						</button>
-						<hlm-dropdown-menu-separator />
-						<button hlmDropdownMenuItem (click)="column().toggleVisibility(false)">
+						<caps-menu-separator />
+						<button capsMenuItem (itemClick)="column().toggleVisibility(false)">
 							<ng-icon name="lucideEyeOff" />
 							Hide
 						</button>
-					</hlm-dropdown-menu>
+					</caps-menu>
 				</ng-template>
 			</div>
 		} @else {
@@ -696,11 +694,11 @@ import { Component, computed } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSettings2 } from '@ng-icons/lucide';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { injectTableContext } from '@tanstack/angular-table';
 @Component({
 	selector: 'app-data-table-view-options',
-	imports: [CapsButtonImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideSettings2 })],
 	template: \`
 		<button
@@ -708,28 +706,26 @@ import { injectTableContext } from '@tanstack/angular-table';
 			variant="outline"
 			size="sm"
 			class="ml-auto hidden h-8 lg:flex"
-			align="end"
-			[hlmDropdownMenuTrigger]="menu"
-		>
+			[capsDropdownMenuTrigger]="menu"
+		 placement="bottom-end">
 			<ng-icon name="lucideSettings2" />
 			View
 		</button>
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-[150px]">
-				<hlm-dropdown-menu-label>Toggle columns</hlm-dropdown-menu-label>
-				<hlm-dropdown-menu-separator />
+			<caps-menu class="w-[150px]">
+				<caps-menu-label>Toggle columns</caps-menu-label>
+				<caps-menu-separator />
 				@for (column of hidableColumns(); track column.id) {
 					<button
-						hlmDropdownMenuCheckbox
+						capsMenuCheckboxItem
 						class="capitalize"
 						[checked]="column.getIsVisible()"
-						(triggered)="column.toggleVisibility()"
+						(itemClick)="column.toggleVisibility()"
 					>
-						<hlm-dropdown-menu-checkbox-indicator />
 						{{ column.id }}
 					</button>
 				}
-			</hlm-dropdown-menu>
+			</caps-menu>
 		</ng-template>
 	\`,
 })

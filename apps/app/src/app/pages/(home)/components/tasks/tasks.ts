@@ -2,6 +2,7 @@ import { Component, inject, signal, type TrackByFunction } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -28,7 +29,6 @@ import {
 	lucideLogOut,
 	lucideUser,
 } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import {
 	columnFilteringFeature,
@@ -117,7 +117,7 @@ const columns = columnHelper.columns([
 	selector: 'spartan-tasks-example',
 	imports: [
 		FormsModule,
-		HlmDropdownMenuImports,
+		CapsDropdownMenuImports,
 		HlmTableImports,
 		CapsButtonImports,
 		CapsSelectImports,
@@ -166,43 +166,52 @@ const columns = columnHelper.columns([
 					<h2 class="text-2xl font-bold tracking-tight">Welcome back!</h2>
 					<p class="text-muted-foreground">Here's a list of your tasks for this month!</p>
 				</div>
-				<caps-avatar [hlmDropdownMenuTrigger]="profile" align="end">
-					<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
-					<caps-avatar-fallback class="bg-red-700 text-white">KL</caps-avatar-fallback>
-				</caps-avatar>
+				<button
+					capsButton
+					variant="ghost"
+					size="icon"
+					[capsDropdownMenuTrigger]="profile"
+					placement="bottom-end"
+					aria-label="Open profile menu"
+				>
+					<caps-avatar>
+						<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
+						<caps-avatar-fallback class="bg-red-700 text-white">KL</caps-avatar-fallback>
+					</caps-avatar>
+				</button>
 				<ng-template #profile>
-					<hlm-dropdown-menu class="min-w-56">
-						<div class="flex flex-col items-start gap-1" hlmDropdownMenuItem>
+					<caps-menu class="min-w-56">
+						<caps-menu-label class="flex flex-col items-start gap-1">
 							<p class="text-sm leading-none font-medium">spartan</p>
 							<p class="text-muted-foreground text-xs leading-none">m&#64;example.com</p>
-						</div>
-						<hlm-dropdown-menu-separator />
-						<hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-group>
-								<button hlmDropdownMenuItem>
+						</caps-menu-label>
+						<caps-menu-separator />
+						<caps-menu-group>
+							<caps-menu-group>
+								<button capsMenuItem>
 									<ng-icon name="lucideUser" />
 									<span>Profile</span>
-									<hlm-dropdown-menu-shortcut>⇧⌘P</hlm-dropdown-menu-shortcut>
+									<caps-menu-shortcut>⇧⌘P</caps-menu-shortcut>
 								</button>
-								<button hlmDropdownMenuItem>
+								<button capsMenuItem>
 									<ng-icon name="lucideLayers" />
 									<span>Billing</span>
-									<hlm-dropdown-menu-shortcut>⌘B</hlm-dropdown-menu-shortcut>
+									<caps-menu-shortcut>⌘B</caps-menu-shortcut>
 								</button>
-								<button hlmDropdownMenuItem>
+								<button capsMenuItem>
 									<ng-icon name="lucideCog" />
 									<span>Settings</span>
-									<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
+									<caps-menu-shortcut>⌘S</caps-menu-shortcut>
 								</button>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
+							</caps-menu-group>
+							<caps-menu-separator />
+							<button capsMenuItem>
 								<ng-icon name="lucideLogOut" />
 								<span>Logout</span>
-								<hlm-dropdown-menu-shortcut>⇧⌘Q</hlm-dropdown-menu-shortcut>
+								<caps-menu-shortcut>⇧⌘Q</caps-menu-shortcut>
 							</button>
-						</hlm-dropdown-menu-group>
-					</hlm-dropdown-menu>
+						</caps-menu-group>
+					</caps-menu>
 				</ng-template>
 			</div>
 			<spartan-table-actions table="table" />

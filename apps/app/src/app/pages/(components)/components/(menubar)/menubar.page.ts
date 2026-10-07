@@ -1,6 +1,7 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsLink } from '@capsule-ng/caps/link';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { MenubarRtl } from '@spartan-ng/app/app/pages/(components)/components/(menubar)/menubar--rtl.preview';
@@ -33,6 +34,7 @@ export const routeMeta: RouteMeta = {
 @Component({
 	selector: 'spartan-menubar',
 	imports: [
+		CapsLink,
 		UIApiDocs,
 		MainSection,
 		Code,
@@ -73,7 +75,7 @@ export const routeMeta: RouteMeta = {
 					Menu
 				</a>
 				from Material CDK and
-				<a routerLink="/components/dropdown-menu" hlmBtn variant="link" class="${link}">Dropdown Menu</a>
+				<a routerLink="/components/dropdown-menu" capsLink class="${link}">Dropdown Menu</a>
 				.
 			</p>
 
@@ -100,8 +102,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="message" label="Message" />

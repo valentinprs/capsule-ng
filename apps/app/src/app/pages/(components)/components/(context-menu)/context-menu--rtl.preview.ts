@@ -1,14 +1,13 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowLeft, lucideArrowRight, lucideRotateCcw } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-context-menu-rtl',
-	imports: [HlmDropdownMenuImports, HlmContextMenuImports, NgIcon],
+	imports: [CapsContextMenuImports, NgIcon],
 	providers: [provideIcons({ lucideArrowLeft, lucideArrowRight, lucideRotateCcw }), Directionality],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -16,98 +15,88 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 	},
 	template: `
 		<div
-			[hlmContextMenuTrigger]="menu"
+			[capsContextMenuTrigger]="menu"
 			align="start"
 			side="right"
 			class="flex aspect-video w-full min-w-xs items-center justify-center rounded-xl border border-dashed text-sm"
+			tabindex="0"
 		>
 			<span class="hidden pointer-fine:inline-block">{{ _t()['rightClick'] }}</span>
 			<span class="hidden pointer-coarse:inline-block">{{ _t()['longPress'] }}</span>
 		</div>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-48">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]="navigationMenu" side="right" align="start">
+			<caps-menu class="w-48">
+				<caps-menu-group>
+					<button [capsMenuSubTrigger]="navigationMenu" side="right" align="start">
 						{{ _t()['navigation'] }}
-						<hlm-dropdown-menu-item-sub-indicator />
 					</button>
-					<button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]="moreToolsMenu" side="right" align="start">
+					<button [capsMenuSubTrigger]="moreToolsMenu" side="right" align="start">
 						{{ _t()['moreTools'] }}
-						<hlm-dropdown-menu-item-sub-indicator />
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuCheckbox checked>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group>
+					<button capsMenuCheckboxItem [checked]="true">
 						{{ _t()['showBookmarks'] }}
-						<hlm-dropdown-menu-checkbox-indicator />
 					</button>
-					<button hlmDropdownMenuCheckbox>
+					<button capsMenuCheckboxItem>
 						{{ _t()['showFullUrls'] }}
-						<hlm-dropdown-menu-checkbox-indicator />
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>{{ _t()['people'] }}</hlm-dropdown-menu-label>
-					<button hlmDropdownMenuRadio checked>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group label="{{ _t()['people'] }}">
+					<button capsMenuRadioItem [checked]="true">
 						{{ _t()['pedro'] }}
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-					<button hlmDropdownMenuRadio>
+					<button capsMenuRadioItem>
 						{{ _t()['colm'] }}
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 
 		<ng-template #navigationMenu>
-			<hlm-dropdown-menu-sub class="w-44">
-				<button hlmDropdownMenuItem>
+			<caps-menu class="w-44">
+				<button capsMenuItem>
 					<ng-icon name="lucideArrowLeft" />
 					{{ _t()['back'] }}
-					<hlm-dropdown-menu-shortcut>⌘[</hlm-dropdown-menu-shortcut>
+					<caps-menu-shortcut>⌘[</caps-menu-shortcut>
 				</button>
-				<button hlmDropdownMenuItem disabled>
+				<button capsMenuItem disabled>
 					<ng-icon name="lucideArrowRight" />
 					{{ _t()['forward'] }}
-					<hlm-dropdown-menu-shortcut>⌘]</hlm-dropdown-menu-shortcut>
+					<caps-menu-shortcut>⌘]</caps-menu-shortcut>
 				</button>
-				<button hlmDropdownMenuItem>
+				<button capsMenuItem>
 					<ng-icon name="lucideRotateCcw" />
 					{{ _t()['reload'] }}
-					<hlm-dropdown-menu-shortcut>⌘R</hlm-dropdown-menu-shortcut>
+					<caps-menu-shortcut>⌘R</caps-menu-shortcut>
 				</button>
-			</hlm-dropdown-menu-sub>
+			</caps-menu>
 		</ng-template>
 		<ng-template #moreToolsMenu>
-			<hlm-dropdown-menu-sub class="w-44">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu class="w-44">
+				<caps-menu-group>
+					<button capsMenuItem>
 						{{ _t()['savePage'] }}
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						{{ _t()['createShortcut'] }}
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						{{ _t()['nameWindow'] }}
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
-						{{ _t()['developerTools'] }}
-					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem variant="destructive">
-						{{ _t()['delete'] }}
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu-sub>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem>
+					{{ _t()['developerTools'] }}
+				</button>
+				<caps-menu-separator />
+				<button capsMenuItem danger>
+					{{ _t()['delete'] }}
+				</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

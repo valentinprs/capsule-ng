@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
@@ -19,7 +20,6 @@ import {
 } from '@ng-icons/lucide';
 import { tablerCircleDashedPlus } from '@ng-icons/tabler-icons';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { MentionableItem } from './mentionable-item';
 
 export type MentionItem = {
@@ -46,7 +46,7 @@ type GroupedItems = {
 		CapsInputGroupImports,
 		CapsPopoverImports,
 		HlmCommandImports,
-		HlmDropdownMenuImports,
+		CapsDropdownMenuImports,
 		NgIcon,
 		MentionableItem,
 		CapsBadgeImports,
@@ -142,7 +142,7 @@ type GroupedItems = {
 					capsButton
 					class="rounded-full"
 					size="sm"
-					[hlmDropdownMenuTrigger]="model"
+					[capsDropdownMenuTrigger]="model"
 					#menuTrigger
 					variant="ghost"
 					type="button"
@@ -150,11 +150,11 @@ type GroupedItems = {
 					{{ _selectedModel() ? _selectedModel()?.name : 'Agent Mode' }}
 				</button>
 				<ng-template #model>
-					<hlm-dropdown-menu class="w-50 [--radius:1rem]">
-						<hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-label class="text-muted-foreground text-xs">Select Agent Mode</hlm-dropdown-menu-label>
+					<caps-menu class="w-50 [--radius:1rem]">
+						<caps-menu-group>
+							<caps-menu-label class="text-muted-foreground text-xs">Select Agent Mode</caps-menu-label>
 							@for (model of _models; track model.name) {
-								<button hlmDropdownMenuCheckbox [checked]="isChecked(model)" (triggered)="selectModel(model)">
+								<button capsMenuCheckboxItem [checked]="isChecked(model)" (itemClick)="selectModel(model)">
 									<span>{{ model.name }}</span>
 									@if (model.badge) {
 										<caps-badge
@@ -164,18 +164,17 @@ type GroupedItems = {
 											{{ model.badge }}
 										</caps-badge>
 									}
-									<hlm-dropdown-menu-checkbox-indicator />
 								</button>
 							}
-						</hlm-dropdown-menu-group>
-					</hlm-dropdown-menu>
+						</caps-menu-group>
+					</caps-menu>
 				</ng-template>
 
 				<button
 					capsButton
 					class="rounded-full"
 					size="sm"
-					[hlmDropdownMenuTrigger]="sources"
+					[capsDropdownMenuTrigger]="sources"
 					variant="ghost"
 					type="button"
 				>
@@ -183,45 +182,37 @@ type GroupedItems = {
 					All Sources
 				</button>
 				<ng-template #sources>
-					<hlm-dropdown-menu class="w-75 [--radius:1rem]">
-						<hlm-dropdown-menu-group>
-							<button hlmDropdownMenuCheckbox [checked]="_webSearch()" (triggered)="_webSearch.set(!_webSearch())">
-								<ng-icon name="lucideGlobe" class="mr-2" />
-								Web Search
-								<hlm-dropdown-menu-checkbox-indicator aria-hidden="true" />
-							</button>
-						</hlm-dropdown-menu-group>
-						<hlm-dropdown-menu-separator />
-						<hlm-dropdown-menu-group>
-							<button
-								hlmDropdownMenuCheckbox
-								[checked]="_appIntegrations()"
-								(triggered)="_appIntegrations.set(!_appIntegrations())"
-							>
+					<caps-menu class="w-75 [--radius:1rem]">
+						<button capsMenuCheckboxItem [(checked)]="_webSearch">
+							<ng-icon name="lucideGlobe" class="mr-2" />
+							Web Search
+						</button>
+						<caps-menu-separator />
+						<caps-menu-group>
+							<button capsMenuCheckboxItem [(checked)]="_appIntegrations">
 								<ng-icon name="lucideBlocks" class="mr-2" />
 								Apps and Integrations
-								<hlm-dropdown-menu-checkbox-indicator aria-hidden="true" />
 							</button>
-							<button hlmDropdownMenuItem>
+							<button capsMenuItem>
 								<ng-icon name="tablerCircleDashedPlus" />
 								All Sources I can access
 							</button>
-							<button hlmDropdownMenuItem>
+							<button capsMenuItem>
 								<ng-icon name="lucideBookOpen" />
 								Help Center
 							</button>
-						</hlm-dropdown-menu-group>
-						<hlm-dropdown-menu-separator />
-						<hlm-dropdown-menu-group>
-							<button hlmDropdownMenuItem>
+						</caps-menu-group>
+						<caps-menu-separator />
+						<caps-menu-group>
+							<button capsMenuItem>
 								<ng-icon name="lucidePlus" />
 								Connect Apps
 							</button>
-							<hlm-dropdown-menu-label class="text-muted-foreground text-xs">
+							<caps-menu-label class="text-muted-foreground text-xs">
 								We&apos;ll only search in the sources selected here.
-							</hlm-dropdown-menu-label>
-						</hlm-dropdown-menu-group>
-					</hlm-dropdown-menu>
+							</caps-menu-label>
+						</caps-menu-group>
+					</caps-menu>
 				</ng-template>
 
 				<button capsButton variant="default" class="ml-auto rounded-full" size="icon-sm" type="button">

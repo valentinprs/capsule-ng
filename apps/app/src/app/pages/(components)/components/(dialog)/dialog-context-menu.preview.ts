@@ -1,39 +1,39 @@
 import { Component } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
 import { CapsDialogImports } from '@capsule-ng/caps/dialog';
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-dialog-context-menu',
-	imports: [CapsDialogImports, CapsButtonImports, HlmDropdownMenuImports, HlmContextMenuImports],
+	imports: [CapsDialogImports, CapsButtonImports, CapsContextMenuImports],
 	template: `
 		<div
-			[hlmContextMenuTrigger]="menu"
+			[capsContextMenuTrigger]="menu"
 			class="border-border flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm"
+			tabindex="0"
 		>
 			Right click here
 		</div>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-64">
-				<hlm-dropdown-menu-group>
-					<button inset hlmDropdownMenuItem>
+			<caps-menu class="w-64">
+				<caps-menu-group>
+					<button capsMenuItem>
 						Save
-						<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘S</caps-menu-shortcut>
 					</button>
 
-					<button disabled inset hlmDropdownMenuItem>
+					<button disabled capsMenuItem>
 						Archive
-						<hlm-dropdown-menu-shortcut>⌘A</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘A</caps-menu-shortcut>
 					</button>
 
-					<button hlmDropdownMenuItem inset="true" [capsDialogTriggerFor]="dialog">
+					<button capsMenuItem inset="true" [capsDialogTriggerFor]="dialog">
 						Print
-						<hlm-dropdown-menu-shortcut>⌘P</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘P</caps-menu-shortcut>
 					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 
 		<caps-dialog #dialog>

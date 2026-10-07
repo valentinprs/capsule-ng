@@ -174,7 +174,11 @@
 			"@capsule-ng/caps/toggle-group": ["libs/caps/toggle-group/src/index.ts"],
 			"@capsule-ng/caps/button-group": ["libs/caps/button-group/src/index.ts"],
 			"@capsule-ng/caps/input-group": ["libs/caps/input-group/src/index.ts"],
-			"@capsule-ng/caps/input-otp": ["libs/caps/input-otp/src/index.ts"]
+			"@capsule-ng/caps/input-otp": ["libs/caps/input-otp/src/index.ts"],
+			"@capsule-ng/caps/menu": ["libs/caps/menu/src/index.ts"],
+			"@capsule-ng/caps/dropdown-menu": ["libs/caps/dropdown-menu/src/index.ts"],
+			"@capsule-ng/caps/context-menu": ["libs/caps/context-menu/src/index.ts"],
+			"@capsule-ng/caps/menubar": ["libs/caps/menubar/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

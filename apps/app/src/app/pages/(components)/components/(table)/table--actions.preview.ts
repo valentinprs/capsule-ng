@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMoreHorizontal } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 
 @Component({
 	selector: 'spartan-table-actions',
-	imports: [HlmTableImports, HlmButtonImports, HlmDropdownMenuImports, NgIcon],
+	imports: [HlmTableImports, CapsButtonImports, CapsDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideMoreHorizontal })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -29,7 +29,13 @@ import { HlmTableImports } from '@spartan-ng/helm/table';
 							<td hlmTableCell class="font-medium">{{ product.name }}</td>
 							<td hlmTableCell>{{ product.price }}</td>
 							<td hlmTableCell class="text-right">
-								<button hlmBtn variant="ghost" size="icon-sm" [hlmDropdownMenuTrigger]="menu" align="end">
+								<button
+									capsButton
+									variant="ghost"
+									size="icon-sm"
+									[capsDropdownMenuTrigger]="menu"
+									placement="bottom-end"
+								>
 									<ng-icon name="lucideMoreHorizontal" />
 									<span class="sr-only">Open menu</span>
 								</button>
@@ -41,12 +47,12 @@ import { HlmTableImports } from '@spartan-ng/helm/table';
 		</div>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<button hlmDropdownMenuItem>Edit</button>
-				<button hlmDropdownMenuItem>Duplicate</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem variant="destructive">Delete</button>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<button capsMenuItem>Edit</button>
+				<button capsMenuItem>Duplicate</button>
+				<caps-menu-separator />
+				<button capsMenuItem danger>Delete</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

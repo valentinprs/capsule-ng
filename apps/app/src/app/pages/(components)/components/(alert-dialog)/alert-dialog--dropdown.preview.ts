@@ -1,24 +1,24 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsAlertDialogImports } from '@capsule-ng/caps/alert-dialog';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 
 @Component({
 	selector: 'spartan-alert-dialog-dropdown',
-	imports: [CapsAlertDialogImports, CapsButtonImports, HlmDropdownMenuImports],
+	imports: [CapsAlertDialogImports, CapsButtonImports, CapsDropdownMenuImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button capsButton variant="outline" [hlmDropdownMenuTrigger]="menu">Open Menu</button>
+		<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu">Open Menu</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>Edit</button>
-					<button hlmDropdownMenuItem>Share</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem variant="destructive" [capsAlertDialogTriggerFor]="deleteDialog">Delete</button>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<caps-menu-group>
+					<button capsMenuItem>Edit</button>
+					<button capsMenuItem>Share</button>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem danger [capsAlertDialogTriggerFor]="deleteDialog">Delete</button>
+			</caps-menu>
 		</ng-template>
 
 		<caps-alert-dialog #deleteDialog="capsAlertDialog">

@@ -1,21 +1,21 @@
 import { NgIcon } from '@ng-icons/core';
 
 import { CapsButton } from '@capsule-ng/caps/button';
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenu, HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
+import { CapsMenu } from '@capsule-ng/caps/dropdown-menu';
 
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-const meta: Meta<HlmDropdownMenu> = {
+const meta: Meta<CapsMenu> = {
 	title: 'Context Menu',
-	component: HlmDropdownMenu,
+	component: CapsMenu,
 	tags: ['autodocs'],
 	args: {
-		sideOffset: '1',
+		size: 'lg',
 	},
 	argTypes: {
-		sideOffset: {
-			options: ['1', '1.5', '2'],
+		size: {
+			options: ['xs', 'sm', 'md', 'lg'],
 			control: {
 				type: 'select',
 			},
@@ -23,92 +23,87 @@ const meta: Meta<HlmDropdownMenu> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDropdownMenuImports, HlmContextMenuImports, CapsButton, NgIcon],
+			imports: [CapsContextMenuImports, CapsButton, NgIcon],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<HlmDropdownMenu>;
+type Story = StoryObj<CapsMenu>;
 
 export const Default: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-        <div [hlmContextMenuTrigger]='menu'
-         class='border-border flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm'>
+        <div [capsContextMenuTrigger]='menu'
+         class='border-border flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm' tabindex="0">
       Right click here
     </div>
 
     <ng-template #menu>
-      <hlm-dropdown-menu ${argsToTemplate(args)} class='w-64'>
-        <hlm-dropdown-menu-group>
-          <button inset hlmDropdownMenuItem>
+      <caps-menu ${argsToTemplate(args)} class='w-64'>
+        <caps-menu-group>
+          <button capsMenuItem>
             Back
-            <hlm-dropdown-menu-shortcut>⌘[</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘[</caps-menu-shortcut>
           </button>
 
-          <button disabled inset hlmDropdownMenuItem>
+          <button disabled capsMenuItem>
             Forward
-            <hlm-dropdown-menu-shortcut>⌘]</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘]</caps-menu-shortcut>
           </button>
 
-          <button disabled inset hlmDropdownMenuItem>
+          <button disabled capsMenuItem>
             Reload
-            <hlm-dropdown-menu-shortcut>⌘R</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘R</caps-menu-shortcut>
           </button>
 
-          <button inset hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]='moreTools'>
+          <button inset [capsMenuSubTrigger]='moreTools'>
             More Tools
-            <hlm-dropdown-menu-item-sub-indicator />
           </button>
-        </hlm-dropdown-menu-group>
+        </caps-menu-group>
 
-        <hlm-dropdown-menu-separator />
+        <caps-menu-separator />
 
-        <hlm-dropdown-menu-group>
-          <button hlmDropdownMenuCheckbox checked>
-            <hlm-dropdown-menu-checkbox-indicator />
+        <caps-menu-group>
+          <button capsMenuCheckboxItem [checked]="true">
             Show Bookmarks Bar
-            <hlm-dropdown-menu-shortcut>⌘⇧B</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘⇧B</caps-menu-shortcut>
           </button>
-          <button hlmDropdownMenuCheckbox>
-            <hlm-dropdown-menu-checkbox-indicator />
+          <button capsMenuCheckboxItem>
             Show full URLs
           </button>
-        </hlm-dropdown-menu-group>
+        </caps-menu-group>
 
-        <hlm-dropdown-menu-separator />
-        <hlm-dropdown-menu-label inset>People</hlm-dropdown-menu-label>
-        <hlm-dropdown-menu-separator />
-        <hlm-dropdown-menu-group>
-          <button hlmDropdownMenuRadio checked>
-            <hlm-dropdown-menu-radio-indicator />
+        <caps-menu-separator />
+        <caps-menu-label>People</caps-menu-label>
+        <caps-menu-separator />
+        <caps-menu-group>
+          <button capsMenuRadioItem [checked]="true">
             Pedro Duarte
           </button>
-          <button hlmDropdownMenuRadio>
-            <hlm-dropdown-menu-radio-indicator />
+          <button capsMenuRadioItem>
             Colm Tuite
           </button>
-        </hlm-dropdown-menu-group>
-      </hlm-dropdown-menu>
+        </caps-menu-group>
+      </caps-menu>
     </ng-template>
 
     <ng-template #moreTools>
-      <hlm-dropdown-menu-sub class='w-48'>
-        <button hlmDropdownMenuItem>
+      <caps-menu class='w-48'>
+        <button capsMenuItem>
           Save Page as...
-          <hlm-dropdown-menu-shortcut>⇧⌘S</hlm-dropdown-menu-shortcut>
+          <caps-menu-shortcut>⇧⌘S</caps-menu-shortcut>
         </button>
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           Create Shortcut...
         </button>
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           Name Window...
         </button>
-        <hlm-dropdown-menu-separator />
-        <button hlmDropdownMenuItem>Developer Tools</button>
-      </hlm-dropdown-menu-sub>
+        <caps-menu-separator />
+        <button capsMenuItem>Developer Tools</button>
+      </caps-menu>
     </ng-template>
     `,
 	}),

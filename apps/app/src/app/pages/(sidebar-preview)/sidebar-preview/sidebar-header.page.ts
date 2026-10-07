@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-header',
-	imports: [HlmSidebarImports, HlmDropdownMenuImports, NgIcon],
+	imports: [HlmSidebarImports, CapsDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideChevronDown,
@@ -20,15 +20,15 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 				<div hlmSidebarHeader>
 					<ul hlmSidebarMenu>
 						<li hlmSidebarMenuItem>
-							<button hlmSidebarMenuButton [hlmDropdownMenuTrigger]="menu">
+							<button hlmSidebarMenuButton [capsDropdownMenuTrigger]="menu">
 								Select Workspace
 								<ng-icon name="lucideChevronDown" class="ml-auto" />
 							</button>
 							<ng-template #menu>
-								<hlm-dropdown-menu class="w-60">
-									<button hlmDropdownMenuItem>Acme Inc</button>
-									<button hlmDropdownMenuItem>Acme Corp.</button>
-								</hlm-dropdown-menu>
+								<caps-menu class="w-60">
+									<button capsMenuItem>Acme Inc</button>
+									<button capsMenuItem>Acme Corp.</button>
+								</caps-menu>
 							</ng-template>
 						</li>
 					</ul>

@@ -1,6 +1,7 @@
 import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsDropdownMenuImports, type CapsMenuPlacement } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideBadgeCheck,
@@ -26,13 +27,12 @@ import {
 	lucideTrash2,
 } from '@ng-icons/lucide';
 import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-collapsable-icons',
-	imports: [HlmSidebarImports, HlmCollapsibleImports, RouterLink, CapsAvatarImports, HlmDropdownMenuImports, NgIcon],
+	imports: [HlmSidebarImports, HlmCollapsibleImports, RouterLink, CapsAvatarImports, CapsDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideFrame,
@@ -123,10 +123,9 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 									<button
 										hlmSidebarMenuAction
 										showOnHover
-										[hlmDropdownMenuTrigger]="projectMenu"
-										[hlmDropdownMenuTriggerData]="{ $implicit: { project } }"
-										[side]="_menuSide()"
-										[align]="_menuAlign()"
+										[capsDropdownMenuTrigger]="projectMenu"
+										[capsDropdownMenuTriggerData]="{ $implicit: { project } }"
+										[placement]="_menuPlacement()"
 									>
 										<ng-icon name="lucideEllipsis" />
 										<span class="sr-only">More</span>
@@ -143,25 +142,23 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 					</hlm-sidebar-group>
 
 					<ng-template #projectMenu let-ctx>
-						<hlm-dropdown-menu class="w-48">
-							<hlm-dropdown-menu-group>
-								<hlm-dropdown-menu-label>{{ ctx.project.name }}</hlm-dropdown-menu-label>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
+						<caps-menu class="w-48">
+							<caps-menu-label>{{ ctx.project.name }}</caps-menu-label>
+							<caps-menu-separator />
+							<button capsMenuItem>
 								<ng-icon name="lucideFolder" />
 								View Project
 							</button>
-							<button hlmDropdownMenuItem>
+							<button capsMenuItem>
 								<ng-icon name="lucideShare" />
 								Share Project
 							</button>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
+							<caps-menu-separator />
+							<button capsMenuItem>
 								<ng-icon name="lucideTrash2" />
 								Delete Project
 							</button>
-						</hlm-dropdown-menu>
+						</caps-menu>
 					</ng-template>
 				</hlm-sidebar-content>
 				<hlm-sidebar-footer>
@@ -170,9 +167,8 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 							<button
 								hlmSidebarMenuButton
 								size="lg"
-								[hlmDropdownMenuTrigger]="avatarMenu"
-								[side]="_menuSide()"
-								align="end"
+								[capsDropdownMenuTrigger]="avatarMenu"
+								[placement]="_avatarPlacement()"
 							>
 								<caps-avatar class="rounded-lg">
 									<img src="/assets/avatar.png" alt="spartan" capsAvatarImage />
@@ -188,8 +184,8 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 					</ul>
 
 					<ng-template #avatarMenu>
-						<hlm-dropdown-menu class="min-w-56 rounded-lg">
-							<hlm-dropdown-menu-label>
+						<caps-menu class="min-w-56 rounded-lg">
+							<caps-menu-label>
 								<div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 									<caps-avatar class="rounded-lg">
 										<img src="/assets/avatar.png" alt="spartan" capsAvatarImage />
@@ -200,35 +196,33 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 										<span class="truncate text-xs">hello@spartan.com</span>
 									</div>
 								</div>
-							</hlm-dropdown-menu-label>
-							<hlm-dropdown-menu-separator />
-							<hlm-dropdown-menu-group>
-								<button hlmDropdownMenuItem>
-									<ng-icon name="lucideSparkles" />
-									Upgrade to Pro
-								</button>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<hlm-dropdown-menu-group>
-								<button hlmDropdownMenuItem>
+							</caps-menu-label>
+							<caps-menu-separator />
+							<button capsMenuItem>
+								<ng-icon name="lucideSparkles" />
+								Upgrade to Pro
+							</button>
+							<caps-menu-separator />
+							<caps-menu-group>
+								<button capsMenuItem>
 									<ng-icon name="lucideBadgeCheck" />
 									Account
 								</button>
-								<button hlmDropdownMenuItem>
+								<button capsMenuItem>
 									<ng-icon name="lucideCreditCard" />
 									Billing
 								</button>
-								<button hlmDropdownMenuItem>
+								<button capsMenuItem>
 									<ng-icon name="lucideBell" />
 									Notifications
 								</button>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
+							</caps-menu-group>
+							<caps-menu-separator />
+							<button capsMenuItem>
 								<ng-icon name="lucideLogOut" />
 								Log out
 							</button>
-						</hlm-dropdown-menu>
+						</caps-menu>
 					</ng-template>
 				</hlm-sidebar-footer>
 			</hlm-sidebar>
@@ -249,6 +243,8 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 	`,
 })
 export default class SidebarCollapsableIconsPage {
+	protected readonly _avatarPlacement = computed<CapsMenuPlacement>(() => `${this._menuSide()}-end`);
+	protected readonly _menuPlacement = computed<CapsMenuPlacement>(() => `${this._menuSide()}-${this._menuAlign()}`);
 	private readonly _sidebarService = inject(HlmSidebarService);
 	protected readonly _menuSide = computed(() => (this._sidebarService.isMobile() ? 'top' : 'right'));
 	protected readonly _menuAlign = computed(() => (this._sidebarService.isMobile() ? 'end' : 'start'));

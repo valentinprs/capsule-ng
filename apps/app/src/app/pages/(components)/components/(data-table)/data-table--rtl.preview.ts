@@ -1,11 +1,11 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUpDown, lucideChevronDown, lucideEllipsis } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import { hlmMuted } from '@spartan-ng/helm/typography';
@@ -182,7 +182,7 @@ export class RtlTableRowSelection {
 }
 
 @Component({
-	imports: [HlmButtonImports, NgIcon],
+	imports: [CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideArrowUpDown })],
 	template: `
 		<button capsButton size="sm" variant="ghost" (click)="sortClick()">
@@ -203,22 +203,22 @@ export class RtlTableHeadSortButton {
 }
 
 @Component({
-	imports: [HlmButtonImports, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsButtonImports, NgIcon, CapsDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: `
-		<button capsButton size="icon-sm" variant="ghost" [hlmDropdownMenuTrigger]="menu">
+		<button capsButton size="icon-sm" variant="ghost" [capsDropdownMenuTrigger]="menu">
 			<span class="sr-only">{{ _t()['openMenu'] }}</span>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-label>{{ _t()['actions'] }}</hlm-dropdown-menu-label>
-				<button hlmDropdownMenuItem (click)="copyPaymentId()">{{ _t()['copyId'] }}</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>{{ _t()['viewCustomer'] }}</button>
-				<button hlmDropdownMenuItem>{{ _t()['viewPayment'] }}</button>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<caps-menu-label>{{ _t()['actions'] }}</caps-menu-label>
+				<button capsMenuItem (itemClick)="copyPaymentId()">{{ _t()['copyId'] }}</button>
+				<caps-menu-separator />
+				<button capsMenuItem>{{ _t()['viewCustomer'] }}</button>
+				<button capsMenuItem>{{ _t()['viewPayment'] }}</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })
@@ -235,7 +235,7 @@ export class RtlActionDropdown {
 
 @Component({
 	selector: 'spartan-data-table-rtl',
-	imports: [FlexRender, HlmButtonImports, HlmDropdownMenuImports, HlmInputImports, HlmTableImports, NgIcon],
+	imports: [FlexRender, CapsButtonImports, CapsDropdownMenuImports, HlmInputImports, HlmTableImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown }), Directionality],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -246,19 +246,18 @@ export class RtlActionDropdown {
 		<div class="flex flex-col justify-between gap-4 py-4 sm:flex-row sm:items-center">
 			<input hlmInput class="w-full md:w-80" [placeholder]="_t()['filter']" (input)="_filterChanged($event)" />
 
-			<button capsButton variant="outline" align="end" [hlmDropdownMenuTrigger]="menu">
+			<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom-end">
 				{{ _t()['columns'] }}
 				<ng-icon name="lucideChevronDown" class="ms-2" />
 			</button>
 			<ng-template #menu>
-				<hlm-dropdown-menu class="w-32">
+				<caps-menu class="w-32">
 					@for (column of _hidableColumns; track column.id) {
-						<button hlmDropdownMenuCheckbox [checked]="column.getIsVisible()" (triggered)="column.toggleVisibility()">
-							<hlm-dropdown-menu-checkbox-indicator />
+						<button capsMenuCheckboxItem [checked]="column.getIsVisible()" (itemClick)="column.toggleVisibility()">
 							{{ _t()[column.id] }}
 						</button>
 					}
-				</hlm-dropdown-menu>
+				</caps-menu>
 			</ng-template>
 		</div>
 		<div class="overflow-hidden rounded-md border">

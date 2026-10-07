@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -24,7 +25,6 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { HlmCommandImports } from '@spartan-ng/helm/command';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { PriorityIconPipe } from '../pipes/priority-icon.pipe';
 import { StatusIconPipe } from '../pipes/status-icon.pipe';
 import type { TaskPriority, TaskStatus } from '../services/tasks.models';
@@ -37,7 +37,7 @@ import { TasksExample } from '../tasks';
 		FormsModule,
 		CapsInput,
 		NgIcon,
-		HlmDropdownMenuImports,
+		CapsDropdownMenuImports,
 		HlmCommandImports,
 		CapsPopoverImports,
 		PriorityIconPipe,
@@ -172,24 +172,23 @@ import { TasksExample } from '../tasks';
 			</div>
 
 			<!-- Column visibility -->
-			<button capsButton variant="outline" align="end" [hlmDropdownMenuTrigger]="menu">
+			<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom-end">
 				Columns
 				<ng-icon name="lucideChevronDown" class="ml-2" />
 			</button>
 			<ng-template #menu>
-				<hlm-dropdown-menu class="w-32">
+				<caps-menu class="w-32">
 					@for (column of _hidableColumns; track column.id) {
 						<button
-							hlmDropdownMenuCheckbox
+							capsMenuCheckboxItem
 							class="capitalize"
 							[checked]="column.getIsVisible()"
-							(triggered)="column.toggleVisibility()"
+							(itemClick)="column.toggleVisibility()"
 						>
-							<hlm-dropdown-menu-checkbox-indicator />
 							{{ column.columnDef.id }}
 						</button>
 					}
-				</hlm-dropdown-menu>
+				</caps-menu>
 			</ng-template>
 		</div>
 	`,

@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
 
 @Component({
 	selector: 'spartan-context-menu-with-state',
-	imports: [HlmDropdownMenuImports, HlmContextMenuImports],
+	imports: [CapsContextMenuImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div
 			align="start"
 			side="right"
-			[hlmContextMenuTriggerData]="{ $implicit: { data: 'Changes Saved' } }"
-			[hlmContextMenuTrigger]="menu"
+			[capsContextMenuTriggerData]="{ $implicit: { data: 'Changes Saved' } }"
+			[capsContextMenuTrigger]="menu"
 			class="flex aspect-video w-full min-w-xs items-center justify-center rounded-xl border border-dashed text-sm"
+			tabindex="0"
 		>
 			<span class="hidden pointer-fine:inline-block">Right click here</span>
 			<span class="hidden pointer-coarse:inline-block">Long press here</span>
@@ -20,28 +20,26 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 		<div class="mt-2 text-center font-mono text-xs">{{ _pastedContent() }}</div>
 
 		<ng-template #menu let-ctx>
-			<hlm-dropdown-menu class="w-64">
-				<hlm-dropdown-menu-group>
-					<button (click)="_pastedContent.set(ctx.data)" inset hlmDropdownMenuItem>
-						Save
-						<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
-					</button>
-				</hlm-dropdown-menu-group>
-				<button (click)="_pastedContent.set('Unsaved Changes')" inset hlmDropdownMenuItem>
+			<caps-menu class="w-64">
+				<button (itemClick)="_pastedContent.set(ctx.data)" capsMenuItem>
+					Save
+					<caps-menu-shortcut>⌘S</caps-menu-shortcut>
+				</button>
+				<button (itemClick)="_pastedContent.set('Unsaved Changes')" capsMenuItem>
 					Back
-					<hlm-dropdown-menu-shortcut>⌘[</hlm-dropdown-menu-shortcut>
+					<caps-menu-shortcut>⌘[</caps-menu-shortcut>
 				</button>
 
-				<button disabled inset hlmDropdownMenuItem>
+				<button disabled capsMenuItem>
 					Forward
-					<hlm-dropdown-menu-shortcut>⌘]</hlm-dropdown-menu-shortcut>
+					<caps-menu-shortcut>⌘]</caps-menu-shortcut>
 				</button>
 
-				<button disabled inset hlmDropdownMenuItem>
+				<button disabled capsMenuItem>
 					Reload
-					<hlm-dropdown-menu-shortcut>⌘R</hlm-dropdown-menu-shortcut>
+					<caps-menu-shortcut>⌘R</caps-menu-shortcut>
 				</button>
-			</hlm-dropdown-menu>
+			</caps-menu>
 		</ng-template>
 	`,
 })

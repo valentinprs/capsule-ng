@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
 import {
 	CapsDialog,
 	CapsDialogImports,
@@ -12,8 +13,6 @@ import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
@@ -109,34 +108,35 @@ export const NestedDialog: Story = {
 
 @Component({
 	selector: 'dialog-context-menu-story',
-	imports: [CapsButtonImports, HlmContextMenuImports, CapsDialogImports, HlmDropdownMenuImports],
+	imports: [CapsButtonImports, CapsContextMenuImports, CapsDialogImports],
 	template: `
 		<div
-			[hlmContextMenuTrigger]="menu"
+			[capsContextMenuTrigger]="menu"
 			class="border-border flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm"
+			tabindex="0"
 		>
 			Right click here
 		</div>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-64">
-				<hlm-dropdown-menu-group>
-					<button inset hlmDropdownMenuItem>
+			<caps-menu class="w-64">
+				<caps-menu-group>
+					<button capsMenuItem>
 						Save
-						<hlm-dropdown-menu-shortcut>Cmd+S</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>Cmd+S</caps-menu-shortcut>
 					</button>
 
-					<button disabled inset hlmDropdownMenuItem>
+					<button disabled capsMenuItem>
 						Archive
-						<hlm-dropdown-menu-shortcut>Cmd+A</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>Cmd+A</caps-menu-shortcut>
 					</button>
 
-					<button hlmDropdownMenuItem inset="true" [capsDialogTriggerFor]="dialog">
+					<button capsMenuItem inset="true" [capsDialogTriggerFor]="dialog">
 						Print
-						<hlm-dropdown-menu-shortcut>Cmd+P</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>Cmd+P</caps-menu-shortcut>
 					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 
 		<caps-dialog #dialog>

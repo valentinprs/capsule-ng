@@ -131,4 +131,32 @@ describe('generate-ui-docs executor', () => {
 		expect(otp['CapsInputOtp'].inputs.map(({ name }) => name)).not.toContain('inputStyles');
 		expect(otp['CapsInputOtp'].outputs.map(({ name }) => name)).toEqual(['valueChange', 'completed']);
 	});
+	it('documents native action menus and their controlled selection contracts', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const menu = generated['menu']['caps'];
+		expect(menu['CapsMenu'].inputs).toContainEqual(
+			expect.objectContaining({ name: 'size', type: "'xs' | 'sm' | 'md' | 'lg'", defaultValue: "'lg'" }),
+		);
+		expect(menu['CapsMenuItem'].selector).toBe('button[capsMenuItem],a[capsMenuItem]');
+		expect(menu['CapsMenuItem'].outputs.map(({ name }) => name)).toEqual(['itemClick']);
+		for (const name of ['CapsMenuCheckboxItem', 'CapsMenuRadioItem']) {
+			expect(menu[name].selector).toMatch(/^button\[capsMenu/);
+			expect(menu[name].models).toContainEqual(expect.objectContaining({ name: 'checked', type: 'boolean' }));
+		}
+		expect(menu['CapsMenuGroup'].models).toContainEqual(
+			expect.objectContaining({ name: 'value', type: 'string | string[]' }),
+		);
+		const dropdown = generated['dropdown-menu']['caps']['CapsDropdownMenuTrigger'];
+		expect(dropdown.selector).toBe('button[capsDropdownMenuTrigger]');
+		expect(dropdown.models).toContainEqual(expect.objectContaining({ name: 'open', type: 'boolean' }));
+		expect(dropdown.inputs).toContainEqual(
+			expect.objectContaining({ name: 'capsDropdownMenuTrigger', required: true }),
+		);
+		expect(dropdown.outputs.map(({ name }) => name)).toEqual(['opened', 'closed']);
+		expect(generated['context-menu']['caps']['CapsContextMenuTrigger'].inputs.map(({ name }) => name)).toContain(
+			'disabled',
+		);
+		expect(generated['menubar']['caps']['CapsMenubarTrigger'].selector).toBe('button[capsMenubarTrigger]');
+		expect(Object.keys(menu)).not.toEqual(expect.arrayContaining(['CapsMenuCdk', 'CapsMenuSelection']));
+	});
 });

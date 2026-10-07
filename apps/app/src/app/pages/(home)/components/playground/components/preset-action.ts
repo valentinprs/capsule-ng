@@ -1,40 +1,40 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsDialogImports } from '@capsule-ng/caps/dialog';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsSwitch } from '@capsule-ng/caps/switch';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-preset-actions',
-	imports: [HlmDropdownMenuImports, CapsDialogImports, CapsButton, NgIcon, CapsSwitch, CapsFieldImports],
+	imports: [CapsDropdownMenuImports, CapsDialogImports, CapsButton, NgIcon, CapsSwitch, CapsFieldImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<button
 			capsButton
 			variant="secondary"
-			align="end"
-			[hlmDropdownMenuTrigger]="menu"
+			[capsDropdownMenuTrigger]="menu"
 			size="icon"
 			aria-label="Preset actions"
+			placement="bottom-end"
 		>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-56">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem (click)="contentFilter.click()">
+			<caps-menu class="w-56">
+				<caps-menu-group>
+					<button capsMenuItem (itemClick)="contentFilter.click()">
 						<span>Content filter preferences</span>
 					</button>
-					<hlm-dropdown-menu-separator />
-					<button hlmDropdownMenuItem variant="destructive" (click)="delete.click()">
+					<caps-menu-separator />
+					<button capsMenuItem danger (itemClick)="delete.click()">
 						<span>Delete preset</span>
 					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 		<caps-dialog>
 			<button id="filter" capsDialogTrigger class="hidden" #contentFilter>Save</button>

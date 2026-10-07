@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideEllipsis } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsInputImports } from '@capsule-ng/caps/input';
@@ -9,7 +9,7 @@ import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 
 @Component({
 	selector: 'spartan-input-group-dropdown-preview',
-	imports: [CapsButtonImports, CapsInputImports, CapsInputGroupImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsInputImports, CapsInputGroupImports, CapsDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideEllipsis, lucideChevronDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'grid w-full max-w-sm gap-6' },
@@ -23,9 +23,9 @@ import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 					variant="ghost"
 					aria-label="More"
 					size="icon-xs"
-					[hlmDropdownMenuTrigger]="fileMenu"
-					align="end"
+					[capsDropdownMenuTrigger]="fileMenu"
 					type="button"
+					placement="bottom-end"
 				>
 					<ng-icon name="lucideEllipsis" />
 				</button>
@@ -39,10 +39,10 @@ import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 					capsButton
 					variant="ghost"
 					class="pe-1.5! text-xs"
-					[hlmDropdownMenuTrigger]="searchMenu"
-					align="end"
+					[capsDropdownMenuTrigger]="searchMenu"
 					size="xs"
 					type="button"
+					placement="bottom-end"
 				>
 					Search In...
 					<ng-icon name="lucideChevronDown" />
@@ -51,19 +51,19 @@ import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 		</caps-input-group>
 
 		<ng-template #fileMenu>
-			<hlm-dropdown-menu class="w-48">
-				<button hlmDropdownMenuItem>Settings</button>
-				<button hlmDropdownMenuItem>Copy path</button>
-				<button hlmDropdownMenuItem>Open location</button>
-			</hlm-dropdown-menu>
+			<caps-menu class="w-48">
+				<button capsMenuItem>Settings</button>
+				<button capsMenuItem>Copy path</button>
+				<button capsMenuItem>Open location</button>
+			</caps-menu>
 		</ng-template>
 
 		<ng-template #searchMenu>
-			<hlm-dropdown-menu class="w-56 [--radius:0.95rem]">
-				<button hlmDropdownMenuItem>Documentation</button>
-				<button hlmDropdownMenuItem>Blog Posts</button>
-				<button hlmDropdownMenuItem>Changelog</button>
-			</hlm-dropdown-menu>
+			<caps-menu class="w-56 [--radius:0.95rem]">
+				<button capsMenuItem>Documentation</button>
+				<button capsMenuItem>Blog Posts</button>
+				<button capsMenuItem>Changelog</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

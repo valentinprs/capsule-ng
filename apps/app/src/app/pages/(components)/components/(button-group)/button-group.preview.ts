@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArchive,
 	lucideArrowLeft,
 	lucideCalendarPlus,
-	lucideChevronRight,
 	lucideClock,
 	lucideEllipsis,
 	lucideListFilterPlus,
@@ -14,11 +14,10 @@ import {
 	lucideTag,
 	lucideTrash,
 } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-button-group-preview',
-	imports: [CapsButtonImports, CapsButtonGroupImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, CapsDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideArrowLeft,
@@ -30,7 +29,6 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 			lucideListFilterPlus,
 			lucideTag,
 			lucideTrash,
-			lucideChevronRight,
 		}),
 	],
 	template: `
@@ -45,84 +43,74 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 			</caps-button-group>
 			<caps-button-group aria-label="Actions">
 				<button capsButton variant="outline">Snooze</button>
-				<button capsButton variant="outline" aria-label="More Options" [hlmDropdownMenuTrigger]="menu" align="end">
+				<button
+					capsButton
+					variant="outline"
+					aria-label="More Options"
+					[capsDropdownMenuTrigger]="menu"
+					placement="bottom-end"
+				>
 					<ng-icon name="lucideEllipsis" />
 				</button>
 			</caps-button-group>
 		</caps-button-group>
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-52">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu class="w-52">
+				<caps-menu-group>
+					<button capsMenuItem>
 						<ng-icon name="lucideMailCheck" />
 						<span>Mark as Read</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideArchive" />
 						<span>Archive</span>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group>
+					<button capsMenuItem>
 						<ng-icon name="lucideClock" />
 						<span>Snooze</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideCalendarPlus" />
 						<span>Add to Calendar</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideListFilterPlus" />
 						<span>Add to List</span>
 					</button>
-					<button
-						hlmDropdownMenuItem
-						class="flex justify-between"
-						align="start"
-						side="right"
-						[hlmDropdownMenuTrigger]="submenu"
-					>
-						<div class="flex items-center gap-2">
-							<ng-icon name="lucideTag" />
-							<span>Label as...</span>
-						</div>
-						<ng-icon name="lucideChevronRight" />
+					<button align="start" side="right" [capsMenuSubTrigger]="submenu">
+						<ng-icon name="lucideTag" />
+						<span>Label as...</span>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button
-						hlmDropdownMenuItem
-						variant="destructive"
-						class="hover:bg-destructive/10 dark:hover:bg-destructive/40"
-					>
-						<ng-icon name="lucideTrash" />
-						<span>Delete</span>
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem danger>
+					<ng-icon name="lucideTrash" />
+					<span>Delete</span>
+				</button>
+			</caps-menu>
 		</ng-template>
 		<ng-template #submenu>
-			<hlm-dropdown-menu-sub class="w-40">
-				<button hlmDropdownMenuRadio [checked]="label() === 'personal'" (click)="label.set('personal')">
-					<hlm-dropdown-menu-radio-indicator />
-					<span>Personal</span>
-				</button>
-				<button hlmDropdownMenuRadio [checked]="label() === 'work'" (click)="label.set('work')">
-					<hlm-dropdown-menu-radio-indicator />
-					<span>Work</span>
-				</button>
-				<button hlmDropdownMenuRadio [checked]="label() === 'other'" (click)="label.set('other')">
-					<hlm-dropdown-menu-radio-indicator />
-					<span>Other</span>
-				</button>
-			</hlm-dropdown-menu-sub>
+			<caps-menu class="w-40">
+				<caps-menu-group type="radio" [(value)]="label">
+					<button capsMenuRadioItem value="personal">
+						<span>Personal</span>
+					</button>
+					<button capsMenuRadioItem value="work">
+						<span>Work</span>
+					</button>
+					<button capsMenuRadioItem value="other">
+						<span>Other</span>
+					</button>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 	`,
 })
 export class ButtonGroupPreview {
-	public readonly label = signal('personal');
+	public readonly label = signal<string | string[]>('personal');
 }
 
 export const defaultImports = `

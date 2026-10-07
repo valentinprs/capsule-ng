@@ -1,64 +1,60 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsMenubarImports } from '@capsule-ng/caps/menubar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFile, lucideFolder, lucideHelpCircle, lucideSave, lucideSettings, lucideTrash } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmMenubarImports } from '@spartan-ng/helm/menubar';
 
 @Component({
 	selector: 'spartan-menubar-icons',
-	imports: [HlmMenubarImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsMenubarImports, CapsDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideFile, lucideFolder, lucideSave, lucideSettings, lucideHelpCircle, lucideTrash })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-menubar>
-			<button [hlmMenubarTrigger]="file">File</button>
-			<button [hlmMenubarTrigger]="more">More</button>
-		</hlm-menubar>
+		<caps-menubar>
+			<button [capsMenubarTrigger]="file">File</button>
+			<button [capsMenubarTrigger]="more">More</button>
+		</caps-menubar>
 
 		<ng-template #file>
-			<hlm-dropdown-menu sideOffset="2" class="w-48">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu class="w-48">
+				<caps-menu-group>
+					<button capsMenuItem>
 						<ng-icon name="lucideFile" />
 						New File
-						<hlm-dropdown-menu-shortcut>⌘N</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘N</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideFolder" />
 						Open Folder
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
-						<ng-icon name="lucideSave" />
-						Save
-						<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem>
+					<ng-icon name="lucideSave" />
+					Save
+					<caps-menu-shortcut>⌘S</caps-menu-shortcut>
+				</button>
+			</caps-menu>
 		</ng-template>
 
 		<ng-template #more>
-			<hlm-dropdown-menu sideOffset="2">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu>
+				<caps-menu-group>
+					<button capsMenuItem>
 						<ng-icon name="lucideSettings" />
 						Settings
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideHelpCircle" />
 						Help
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem variant="destructive">
-						<ng-icon name="lucideTrash" />
-						Delete
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem danger>
+					<ng-icon name="lucideTrash" />
+					Delete
+				</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

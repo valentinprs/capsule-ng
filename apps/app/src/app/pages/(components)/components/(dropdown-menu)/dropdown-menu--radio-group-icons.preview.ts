@@ -1,39 +1,34 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBuilding2, lucideCreditCard, lucideWallet } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-dropdown-radio-group-icons',
-	imports: [HlmDropdownMenuImports, HlmButtonImports, NgIcon],
+	imports: [CapsDropdownMenuImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideCreditCard, lucideWallet, lucideBuilding2 })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="menu">Payment Method</button>
+		<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu">Payment Method</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-56">
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>Select Payment Method</hlm-dropdown-menu-label>
-					@let p = payment();
-					<button hlmDropdownMenuRadio [checked]="p === 'card'" (triggered)="payment.set('card')">
+			<caps-menu class="w-56">
+				<caps-menu-group label="Select Payment Method" type="radio" [(value)]="payment">
+					<button capsMenuRadioItem value="card">
 						<ng-icon name="lucideCreditCard" />
 						Credit Card
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-					<button hlmDropdownMenuRadio [checked]="p === 'paypal'" (triggered)="payment.set('paypal')">
+					<button capsMenuRadioItem value="paypal">
 						<ng-icon name="lucideWallet" />
 						PayPal
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-					<button hlmDropdownMenuRadio [checked]="p === 'bank'" (triggered)="payment.set('bank')">
+					<button capsMenuRadioItem value="bank">
 						<ng-icon name="lucideBuilding2" />
 						Bank Transfer
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 	`,
 })

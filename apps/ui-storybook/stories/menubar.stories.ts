@@ -1,180 +1,173 @@
 import { NgIcon } from '@ng-icons/core';
 
 import { CapsButton } from '@capsule-ng/caps/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 
-import { HlmMenubar, HlmMenubarImports } from '@spartan-ng/helm/menubar';
+import { CapsMenubar, CapsMenubarImports } from '@capsule-ng/caps/menubar';
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-const meta: Meta<HlmMenubar> = {
+const meta: Meta<CapsMenubar> = {
 	title: 'Menubar',
-	component: HlmMenubar,
+	component: CapsMenubar,
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmMenubarImports, HlmDropdownMenuImports, CapsButton, NgIcon],
+			imports: [CapsMenubarImports, CapsDropdownMenuImports, CapsButton, NgIcon],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<HlmMenubar>;
+type Story = StoryObj<CapsMenubar>;
 
 export const Default: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-    <hlm-menubar >
-      <button [hlmMenubarTrigger]='file'>File</button>
-      <button [hlmMenubarTrigger]='edit'>Edit</button>
-      <button [hlmMenubarTrigger]='view'>View</button>
-      <button [hlmMenubarTrigger]='profiles'>Profiles</button>
-    </hlm-menubar>
+    <caps-menubar >
+      <button [capsMenubarTrigger]='file'>File</button>
+      <button [capsMenubarTrigger]='edit'>Edit</button>
+      <button [capsMenubarTrigger]='view'>View</button>
+      <button [capsMenubarTrigger]='profiles'>Profiles</button>
+    </caps-menubar>
 
     <ng-template #file>
-      <hlm-dropdown-menu ${argsToTemplate(args)} class='w-48'>
-        <hlm-dropdown-menu-group>
-          <button hlmDropdownMenuItem>
+      <caps-menu ${argsToTemplate(args)} class='w-48'>
+        <caps-menu-group>
+          <button capsMenuItem>
             New Tab
-            <hlm-dropdown-menu-shortcut>⌘T</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘T</caps-menu-shortcut>
           </button>
-          <button hlmDropdownMenuItem>
+          <button capsMenuItem>
             New Window
-            <hlm-dropdown-menu-shortcut>⌘N</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘N</caps-menu-shortcut>
           </button>
-          <button hlmDropdownMenuItem disabled>New Incognito Window</button>
+          <button capsMenuItem disabled>New Incognito Window</button>
 
-        </hlm-dropdown-menu-group>
+        </caps-menu-group>
 
-        <hlm-dropdown-menu-separator />
+        <caps-menu-separator />
 
-        <button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]='share'>
+        <button [capsMenuSubTrigger]='share'>
           Share
-          <hlm-dropdown-menu-item-sub-indicator />
         </button>
 
-        <hlm-dropdown-menu-separator />
+        <caps-menu-separator />
 
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           Print...
-          <hlm-dropdown-menu-shortcut>⌘P</hlm-dropdown-menu-shortcut>
+          <caps-menu-shortcut>⌘P</caps-menu-shortcut>
         </button>
 
-      </hlm-dropdown-menu>
+      </caps-menu>
     </ng-template>
     <ng-template #share>
-      <hlm-dropdown-menu-sub>
-        <button hlmDropdownMenuItem>
+      <caps-menu>
+        <button capsMenuItem>
           Email link
         </button>
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           Messages
         </button>
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           Notes
         </button>
-      </hlm-dropdown-menu-sub>
+      </caps-menu>
     </ng-template>
 
     <ng-template #edit>
-      <hlm-dropdown-menu ${argsToTemplate(args)} class='w-48'>
-        <hlm-dropdown-menu-group>
-          <button hlmDropdownMenuItem>
+      <caps-menu ${argsToTemplate(args)} class='w-48'>
+        <caps-menu-group>
+          <button capsMenuItem>
             Undo
-            <hlm-dropdown-menu-shortcut>⌘Z</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘Z</caps-menu-shortcut>
           </button>
-          <button hlmDropdownMenuItem>
+          <button capsMenuItem>
             Redo
-            <hlm-dropdown-menu-shortcut>⇧⌘Z</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⇧⌘Z</caps-menu-shortcut>
           </button>
-        </hlm-dropdown-menu-group>
+        </caps-menu-group>
 
-        <hlm-dropdown-menu-separator />
+        <caps-menu-separator />
 
-        <button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]='share'>
+        <button [capsMenuSubTrigger]='share'>
           Share
-          <hlm-dropdown-menu-item-sub-indicator />
         </button>
 
-        <hlm-dropdown-menu-separator />
+        <caps-menu-separator />
 
-        <button hlmDropdownMenuItem>Cut</button>
-        <button hlmDropdownMenuItem>Copy</button>
-        <button hlmDropdownMenuItem>Paste</button>
+        <button capsMenuItem>Cut</button>
+        <button capsMenuItem>Copy</button>
+        <button capsMenuItem>Paste</button>
 
-      </hlm-dropdown-menu>
+      </caps-menu>
     </ng-template>
     <ng-template #share>
-      <hlm-dropdown-menu-sub>
-        <button hlmDropdownMenuItem>
+      <caps-menu>
+        <button capsMenuItem>
           Search the web
         </button>
-        <hlm-dropdown-menu-separator />
-        <button hlmDropdownMenuItem>
+        <caps-menu-separator />
+        <button capsMenuItem>
           Find...
         </button>
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           Find Next
         </button>
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           Find Previous
         </button>
-      </hlm-dropdown-menu-sub>
+      </caps-menu>
     </ng-template>
 
     <ng-template #view>
-      <hlm-dropdown-menu ${argsToTemplate(args)}>
-        <button hlmDropdownMenuCheckbox>
-          <hlm-dropdown-menu-checkbox-indicator />
+      <caps-menu ${argsToTemplate(args)}>
+        <button capsMenuCheckboxItem>
           Always Show Bookmarks Bar
         </button>
-        <button hlmDropdownMenuCheckbox checked>
-          <hlm-dropdown-menu-checkbox-indicator />
+        <button capsMenuCheckboxItem [checked]="true">
           Always Show Full URLs
         </button>
-        <hlm-dropdown-menu-separator />
-        <button inset hlmDropdownMenuItem>
+        <caps-menu-separator />
+        <button capsMenuItem>
           Reload
-          <hlm-dropdown-menu-shortcut>⌘R</hlm-dropdown-menu-shortcut>
+          <caps-menu-shortcut>⌘R</caps-menu-shortcut>
         </button>
-        <button inset disabled hlmDropdownMenuItem>
+        <button disabled capsMenuItem>
           Force Reload
-          <hlm-dropdown-menu-shortcut>⇧⌘R</hlm-dropdown-menu-shortcut>
+          <caps-menu-shortcut>⇧⌘R</caps-menu-shortcut>
         </button>
-        <hlm-dropdown-menu-separator />
-        <button inset hlmDropdownMenuItem>
+        <caps-menu-separator />
+        <button capsMenuItem>
           Toggle Fullscreen
         </button>
-        <hlm-dropdown-menu-separator />
-        <button inset hlmDropdownMenuItem>
+        <caps-menu-separator />
+        <button capsMenuItem>
           Hide Sidebar
         </button>
-      </hlm-dropdown-menu>
+      </caps-menu>
     </ng-template>
 
     <ng-template #profiles>
-      <hlm-dropdown-menu ${argsToTemplate(args)} class='w-48'>
-        <button hlmDropdownMenuRadio>
-          <hlm-dropdown-menu-radio-indicator />
+      <caps-menu ${argsToTemplate(args)} class='w-48'>
+        <button capsMenuRadioItem>
           Andy
         </button>
-        <button hlmDropdownMenuRadio checked>
-          <hlm-dropdown-menu-radio-indicator />
+        <button capsMenuRadioItem [checked]="true">
           Benoit
         </button>
-        <button hlmDropdownMenuRadio>
-          <hlm-dropdown-menu-radio-indicator />
+        <button capsMenuRadioItem>
           Lewis
         </button>
-        <hlm-dropdown-menu-separator />
-        <button inset hlmDropdownMenuItem>
+        <caps-menu-separator />
+        <button capsMenuItem>
           Edit...
         </button>
-        <hlm-dropdown-menu-separator />
-        <button inset hlmDropdownMenuItem>
+        <caps-menu-separator />
+        <button capsMenuItem>
           Add Profile...
         </button>
-      </hlm-dropdown-menu>
+      </caps-menu>
     </ng-template>
     `,
 	}),

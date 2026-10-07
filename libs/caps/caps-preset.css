@@ -2,6 +2,8 @@
    Import it after Tailwind is set up (it uses `@apply`), e.g. from the showcase site's styles.css:
    @import '../../../libs/caps/caps-preset.css' layer(caps); */
 
+@import './menu.css';
+
 /* MARK: Breadcrumb */
 .caps-breadcrumb-list {
 	@apply text-muted-foreground gap-1.5 text-sm;

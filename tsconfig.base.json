@@ -177,6 +177,7 @@
 			"@capsule-ng/caps/avatar": ["libs/caps/avatar/src/index.ts"],
 			"@capsule-ng/caps/badge": ["libs/caps/badge/src/index.ts"],
 			"@capsule-ng/caps/item": ["libs/caps/item/src/index.ts"],
+			"@capsule-ng/caps/navigation-menu": ["libs/caps/navigation-menu/src/index.ts"],
 			"@capsule-ng/caps/tabs": ["libs/caps/tabs/src/index.ts"],
 			"@capsule-ng/caps/calendar": ["libs/caps/calendar/src/index.ts"],
 			"@capsule-ng/caps/toggle": ["libs/caps/toggle/src/index.ts"],

@@ -8541,6 +8541,113 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "button[brnNavigationMenuTrigger]",
       },
     },
+    "caps": {
+      "CapsNavigationMenu": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "delayDuration",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "skipDelayDuration",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+          {
+            "name": "openOn",
+            "required": false,
+            "type": "'hover' | 'click'",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "string",
+          },
+        ],
+        "selector": "caps-navigation-menu",
+      },
+      "CapsNavigationMenuContent": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "navOffset",
+            "required": false,
+            "type": "number",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "ng-template[capsNavigationMenuContent]",
+      },
+      "CapsNavigationMenuItem": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "li[capsNavigationMenuItem]",
+      },
+      "CapsNavigationMenuLink": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "active",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsNavigationMenuLink]",
+      },
+      "CapsNavigationMenuTrigger": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "MenuAlign",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[caps-navigation-menu-trigger]",
+      },
+    },
     "helm": {
       "HlmNavigationMenu": {
         "inputs": [

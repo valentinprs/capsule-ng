@@ -494,3 +494,85 @@ caps-questionnaire-item[hidden] {
 		transition: none !important;
 	}
 }
+
+/* Site navigation: native destinations, disclosure buttons, no action-menu roles. */
+.caps-navigation-menu-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem;
+}
+.caps-navigation-menu[data-orientation='vertical'] > .caps-navigation-menu-list {
+	flex-direction: column;
+	align-items: stretch;
+}
+.caps-navigation-menu-trigger,
+a.caps-navigation-menu-link {
+	min-height: calc(var(--caps-spacing) * 10);
+	padding: calc(var(--caps-spacing) * 2) calc(var(--caps-spacing) * 3);
+	border-radius: var(--radius-md);
+	color: var(--foreground);
+	background: transparent;
+	font-size: 0.875rem;
+	text-decoration: none;
+	outline: none;
+	transition:
+		background-color var(--caps-duration-150),
+		box-shadow var(--caps-duration-150);
+}
+.caps-navigation-menu-trigger {
+	font-weight: 500;
+	cursor: pointer;
+}
+.caps-navigation-menu-trigger:hover,
+a.caps-navigation-menu-link:hover,
+.caps-navigation-menu-trigger[data-state='open'],
+a.caps-navigation-menu-link[aria-current='page'] {
+	background: var(--muted);
+}
+.caps-navigation-menu-trigger:focus-visible,
+a.caps-navigation-menu-link:focus-visible {
+	box-shadow: 0 0 0 var(--caps-focus-ring-width) color-mix(in oklab, var(--ring) 50%, transparent);
+}
+.caps-navigation-menu-trigger:disabled {
+	pointer-events: none;
+	opacity: var(--caps-opacity-disabled);
+}
+.caps-navigation-menu-chevron {
+	font-size: 0.75rem;
+	transition: transform var(--caps-duration-150);
+}
+.caps-navigation-menu-trigger[data-state='open'] .caps-navigation-menu-chevron {
+	transform: rotate(180deg);
+}
+.caps-navigation-menu-content {
+	@apply data-[motion^=from-]:animate-in data-[motion^=from-]:fade-in data-[motion^=to-]:animate-out data-[motion^=to-]:fade-out;
+	animation-duration: var(--caps-duration-normal);
+	display: block;
+	max-width: calc(100vw - 2rem);
+	max-height: calc(100dvh - 2rem);
+	overflow: auto;
+	margin-top: calc(var(--caps-navigation-menu-offset, 1.5) * var(--caps-spacing));
+	padding: 0.5rem;
+	border-radius: calc(var(--radius-md) + var(--caps-spacing) * 2);
+	background: var(--popover);
+	color: var(--popover-foreground);
+	box-shadow:
+		0 4px 16px color-mix(in oklab, var(--foreground) 10%, transparent),
+		0 0 0 1px color-mix(in oklab, var(--foreground) 10%, transparent);
+	outline: none;
+}
+.caps-navigation-menu-content[data-orientation='vertical'] {
+	margin-top: 0;
+	margin-inline: calc(var(--caps-navigation-menu-offset, 1.5) * var(--caps-spacing));
+}
+@media (prefers-reduced-motion: reduce) {
+	.caps-navigation-menu-content {
+		animation: none;
+	}
+	.caps-navigation-menu-trigger,
+	a.caps-navigation-menu-link,
+	.caps-navigation-menu-chevron {
+		transition: none;
+	}
+}

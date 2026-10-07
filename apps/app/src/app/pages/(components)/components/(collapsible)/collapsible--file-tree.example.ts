@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideFile, lucideFolder } from '@ng-icons/lucide';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 
 type FileTreeItem = { name: string; items?: FileTreeItem[] };
 
@@ -90,28 +90,29 @@ export class FileTreeNode {
 
 @Component({
 	selector: 'spartan-collapsible-file-tree',
-	imports: [CapsCollapsibleImports, CapsButtonImports, CapsCardImports, HlmTabsImports, FileTreeNode],
+	imports: [CapsCollapsibleImports, CapsButtonImports, CapsCardImports, CapsTabsImports, FileTreeNode],
 	providers: [provideIcons({ lucideChevronRight, lucideFile, lucideFolder })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'mx-auto w-full max-w-xs' },
 	template: `
-		<caps-card density="compact">
-			<caps-card-header>
-				<hlm-tabs tab="explorer">
-					<hlm-tabs-list class="w-full">
-						<button hlmTabsTrigger="explorer">Explorer</button>
-						<button hlmTabsTrigger="outline">Outline</button>
-					</hlm-tabs-list>
-				</hlm-tabs>
-			</caps-card-header>
-			<caps-card-content>
-				<div class="flex flex-col gap-1">
-					@for (item of fileTree; track item.name) {
-						<spartan-file-tree-node [item]="item" />
-					}
-				</div>
-			</caps-card-content>
-		</caps-card>
+		<caps-tabs value="explorer">
+			<caps-card density="compact">
+				<caps-card-header>
+					<caps-tabs-list aria-label="Sections" class="w-full">
+						<button capsTabsTrigger value="explorer">Explorer</button>
+						<button capsTabsTrigger value="outline">Outline</button>
+					</caps-tabs-list>
+				</caps-card-header>
+				<caps-card-content>
+					<caps-tabs-content value="explorer" class="flex flex-col gap-1">
+						@for (item of fileTree; track item.name) {
+							<spartan-file-tree-node [item]="item" />
+						}
+					</caps-tabs-content>
+					<caps-tabs-content value="outline">No symbols in the selected file.</caps-tabs-content>
+				</caps-card-content>
+			</caps-card>
+		</caps-tabs>
 	`,
 })
 export class CollapsibleFileTree {

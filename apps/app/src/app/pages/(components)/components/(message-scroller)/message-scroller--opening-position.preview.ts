@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { OPENING_POSITION_SCRIPT } from './message-scroller.shared';
 
@@ -75,7 +75,7 @@ export class MessageScrollerOpeningPositionScroller {
 
 @Component({
 	selector: 'spartan-message-scroller-opening-position-preview',
-	imports: [CapsCardImports, HlmTabsImports, HlmMessageScrollerImports, MessageScrollerOpeningPositionScroller],
+	imports: [CapsCardImports, CapsToggleGroupImports, HlmMessageScrollerImports, MessageScrollerOpeningPositionScroller],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex w-full max-w-sm flex-col gap-4',
@@ -94,13 +94,17 @@ export class MessageScrollerOpeningPositionScroller {
 			</caps-card-content>
 
 			<caps-card-footer class="flex items-center justify-center border-t">
-				<hlm-tabs [tab]="_position()" class="w-full" (tabActivated)="onPositionChange($event)">
-					<hlm-tabs-list class="w-full">
-						<button hlmTabsTrigger="start">start</button>
-						<button hlmTabsTrigger="end">end</button>
-						<button hlmTabsTrigger="last-anchor">last-anchor</button>
-					</hlm-tabs-list>
-				</hlm-tabs>
+				<caps-toggle-group
+					type="single"
+					[nullable]="false"
+					aria-label="Transcript opening position"
+					[value]="_position()"
+					(valueChange)="onPositionChange($event)"
+				>
+					<button capsToggleItem value="start">start</button>
+					<button capsToggleItem value="end">end</button>
+					<button capsToggleItem value="last-anchor">last-anchor</button>
+				</caps-toggle-group>
 			</caps-card-footer>
 		</caps-card>
 
@@ -113,7 +117,7 @@ export class MessageScrollerOpeningPositionPreview {
 	protected readonly _position = signal<'start' | 'end' | 'last-anchor'>('last-anchor');
 	protected readonly _positionKey = signal(0);
 
-	protected onPositionChange(value: string): void {
+	protected onPositionChange(value: string | string[] | null | undefined): void {
 		if (value === 'start' || value === 'end' || value === 'last-anchor') {
 			this._position.set(value);
 			this._positionKey.update((key) => key + 1);

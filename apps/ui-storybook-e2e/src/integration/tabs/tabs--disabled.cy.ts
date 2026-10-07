@@ -1,20 +1,22 @@
 describe('tabs--disabled', () => {
 	const verifyTabsSetup = () => {
-		// TODO: investigate why this fails
-		// cy.checkA11y('#storybook-root', {
-		//   rules: {
-		//     'page-has-heading-one': { enabled: false },
-		//     'landmark-one-main': { enabled: false },
-		//   },
-		// });
+		cy.checkA11y('#storybook-root', { rules: { region: { enabled: false } } });
 
 		cy.findByRole('tablist').should('exist');
 		cy.findByRole('tablist').should('have.attr', 'aria-label');
 		cy.findByRole('tablist').should('have.attr', 'data-orientation', 'horizontal');
 		cy.findByRole('tablist').should('have.attr', 'aria-orientation', 'horizontal');
+		cy.findAllByRole('tab').each(($tab) => {
+			const target = $tab.attr('aria-controls');
+			cy.get(`[id="${target}"]`).should('have.attr', 'aria-labelledby', $tab.attr('id'));
+		});
 		cy.findAllByRole('tab').should('have.length', 2);
-		cy.findByRole('tab', { name: /account/i }).should('have.attr', 'aria-controls', 'brn-tabs-content-account');
-		cy.findByRole('tab', { name: /password/i }).should('have.attr', 'aria-controls', 'brn-tabs-content-password');
+		cy.findByRole('tab', { name: /account/i })
+			.invoke('attr', 'aria-controls')
+			.should('match', /-panel-account$/);
+		cy.findByRole('tab', { name: /password/i })
+			.invoke('attr', 'aria-controls')
+			.should('match', /-panel-password$/);
 	};
 
 	describe('default', () => {

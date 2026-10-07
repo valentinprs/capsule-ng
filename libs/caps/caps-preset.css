@@ -346,3 +346,29 @@
 .caps-native-select[size]:not([size='1']) {
 	height: auto;
 }
+
+/* MARK: Tabs */
+.caps-tabs-list {
+	@apply text-muted-foreground gap-1 rounded-lg p-[var(--caps-size-3px)] data-[orientation=horizontal]:h-(--caps-control-height);
+}
+.caps-tabs-list[data-type='contained'] {
+	@apply bg-muted;
+}
+.caps-tabs-list[data-type='line'] {
+	@apply rounded-none bg-transparent;
+}
+.caps-tabs-trigger {
+	@apply text-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:bg-background data-[state=active]:text-foreground h-full gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+}
+.caps-tabs-list[data-type='line'] .caps-tabs-trigger[data-state='active'] {
+	@apply border-b-primary rounded-none bg-transparent shadow-none;
+}
+.caps-tabs-list[data-type='line'][data-orientation='vertical'] .caps-tabs-trigger[data-state='active'] {
+	@apply border-e-primary border-b-transparent;
+}
+.caps-tabs-content {
+	@apply focus-visible:outline-ring;
+}
+.caps-tabs-content[hidden] {
+	display: none !important;
+}

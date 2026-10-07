@@ -1,10 +1,10 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideStar } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { REPOSITORY_URL } from '../../site.config';
 import { metaWith } from '../shared/meta/meta.util';
 import { AuthenticationExample } from './(home)/components/authentication/authentication';
@@ -27,10 +27,10 @@ const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 @Component({
 	selector: 'spartan-home',
 	imports: [
-		HlmButton,
+		CapsButton,
 		RouterLink,
 		NgIcon,
-		HlmTabsImports,
+		CapsTabsImports,
 		OverviewExample,
 		DashboardExample,
 		TasksExample,
@@ -54,9 +54,9 @@ const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 					behavior. Copy the styles. Customize without limits.
 				</p>
 				<div class="flex flex-wrap justify-center gap-4">
-					<a hlmBtn size="sm" routerLink="/documentation">Get Started</a>
-					<a hlmBtn size="sm" variant="ghost" routerLink="/components">View Components</a>
-					<a hlmBtn size="sm" variant="ghost" target="_blank" rel="noreferrer" href="${REPOSITORY_URL}">
+					<a capsButton size="sm" routerLink="/documentation">Get Started</a>
+					<a capsButton size="sm" variant="ghost" routerLink="/components">View Components</a>
+					<a capsButton size="sm" variant="ghost" target="_blank" rel="noreferrer" href="${REPOSITORY_URL}">
 						<ng-icon class="mr-0.5" name="lucideStar" />
 						View on GitHub
 					</a>
@@ -65,47 +65,53 @@ const lead = 'text-foreground max-w-3xl text-base text-balance sm:text-lg';
 		</section>
 
 		<section class="container px-6">
-			<hlm-tabs [tab]="_activeTab()" class="w-full">
+			<caps-tabs [value]="_activeTab()" class="w-full">
 				<div
 					class="w-full scrollbar-none overflow-x-auto [mask-image:linear-gradient(to_right,transparent,#000_16px,#000_calc(100%_-_16px),transparent)] [-ms-overflow-style:none] [-webkit-mask-image:linear-gradient(to_right,transparent,#000_16px,#000_calc(100%_-_16px),transparent)] [&::-webkit-scrollbar]:hidden"
 				>
-					<hlm-tabs-list
+					<caps-tabs-list
 						aria-label="tabs example"
-						class="bg-background dark:[&>a]:bg-background [&>a]:text-muted-foreground [&>a]:data-[state=active]:text-primary [&>a]:hover:text-primary dark:[&>a]:data-[state=active]:bg-background w-max [&>a]:shrink-0 [&>a]:cursor-pointer [&>a]:data-[state=active]:shadow-none dark:[&>a]:data-[state=active]:border-none"
+						class="bg-background dark:[&>button]:bg-background [&>button]:text-muted-foreground [&>button]:data-[state=active]:text-primary [&>button]:hover:text-primary dark:[&>button]:data-[state=active]:bg-background w-max [&>button]:shrink-0 [&>button]:cursor-pointer [&>button]:data-[state=active]:shadow-none dark:[&>button]:data-[state=active]:border-none"
 					>
-						<a hlmTabsTrigger="examples" routerLink=".">Examples</a>
-						<a hlmTabsTrigger="dashboard" routerLink="." fragment="dashboard">Dashboard</a>
-						<a hlmTabsTrigger="tasks" routerLink="." fragment="tasks">Tasks</a>
-						<a hlmTabsTrigger="playground" routerLink="." fragment="playground">Playground</a>
-						<a hlmTabsTrigger="authentication" routerLink="." fragment="authentication">Authentication</a>
-					</hlm-tabs-list>
+						<button type="button" capsTabsTrigger value="examples" routerLink=".">Examples</button>
+						<button type="button" capsTabsTrigger value="dashboard" routerLink="." fragment="dashboard">
+							Dashboard
+						</button>
+						<button type="button" capsTabsTrigger value="tasks" routerLink="." fragment="tasks">Tasks</button>
+						<button type="button" capsTabsTrigger value="playground" routerLink="." fragment="playground">
+							Playground
+						</button>
+						<button type="button" capsTabsTrigger value="authentication" routerLink="." fragment="authentication">
+							Authentication
+						</button>
+					</caps-tabs-list>
 				</div>
-				<div hlmTabsContent="examples" class="mt-0">
-					<ng-template hlmTabsContentLazy>
+				<caps-tabs-content value="examples" class="mt-0">
+					<ng-template capsTabsContentLazy>
 						<spartan-overview-example />
 					</ng-template>
-				</div>
-				<div hlmTabsContent="dashboard" class="mt-0">
-					<ng-template hlmTabsContentLazy>
+				</caps-tabs-content>
+				<caps-tabs-content value="dashboard" class="mt-0">
+					<ng-template capsTabsContentLazy>
 						<spartan-dashboard-example />
 					</ng-template>
-				</div>
-				<div hlmTabsContent="tasks" class="mt-0">
-					<ng-template hlmTabsContentLazy>
+				</caps-tabs-content>
+				<caps-tabs-content value="tasks" class="mt-0">
+					<ng-template capsTabsContentLazy>
 						<spartan-tasks-example />
 					</ng-template>
-				</div>
-				<div hlmTabsContent="playground" class="mt-0">
-					<ng-template hlmTabsContentLazy>
+				</caps-tabs-content>
+				<caps-tabs-content value="playground" class="mt-0">
+					<ng-template capsTabsContentLazy>
 						<spartan-playground-example />
 					</ng-template>
-				</div>
-				<div hlmTabsContent="authentication" class="mt-0">
-					<ng-template hlmTabsContentLazy>
+				</caps-tabs-content>
+				<caps-tabs-content value="authentication" class="mt-0">
+					<ng-template capsTabsContentLazy>
 						<spartan-authentication-example />
 					</ng-template>
-				</div>
-			</hlm-tabs>
+				</caps-tabs-content>
+			</caps-tabs>
 		</section>
 	`,
 })

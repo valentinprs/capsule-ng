@@ -2,41 +2,38 @@ import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsLabel } from '@capsule-ng/caps/label';
-import { BrnTabs, BrnTabsImports } from '@spartan-ng/brain/tabs';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { CapsSwitch } from '@capsule-ng/caps/switch';
+import { CapsTabs, CapsTabsImports } from '@capsule-ng/caps/tabs';
+import { BrnTabsImports } from '@spartan-ng/brain/tabs';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<BrnTabs & { disabled: boolean }> = {
+const meta: Meta<{ followFocus: boolean; disabled: boolean }> = {
 	title: 'Tabs',
-	component: BrnTabs,
+	component: CapsTabs,
 	tags: ['autodocs'],
+	args: { followFocus: true },
 	argTypes: {
-		activationMode: {
-			options: ['manual', 'automatic'],
-			control: {
-				type: 'select',
-			},
-		},
+		followFocus: { control: { type: 'boolean' } },
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [BrnTabsImports, HlmTabsImports, CapsCardImports, CapsLabel, CapsInput, CapsButton],
+			imports: [BrnTabsImports, CapsTabsImports, CapsCardImports, CapsLabel, CapsInput, CapsButton, CapsSwitch],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<BrnTabs & { disabled: boolean }>;
+type Story = StoryObj<{ followFocus: boolean; disabled: boolean }>;
 export const Default: Story = {
 	render: ({ disabled, ...args }) => ({
 		props: { disabled, ...args },
 		template: /* HTML */ `
-			<hlm-tabs tab="account" ${argsToTemplate(args)} class="mx-auto block max-w-3xl">
-				<hlm-tabs-list class="grid w-full grid-cols-2" aria-label="tabs example">
-					<button hlmTabsTrigger="account">Account</button>
-					<button hlmTabsTrigger="password">Password</button>
-				</hlm-tabs-list>
-				<div hlmTabsContent="account">
+			<caps-tabs value="account" ${argsToTemplate(args)} class="mx-auto block max-w-3xl">
+				<caps-tabs-list class="grid w-full grid-cols-2" aria-label="tabs example">
+					<button capsTabsTrigger value="account">Account</button>
+					<button capsTabsTrigger value="password">Password</button>
+				</caps-tabs-list>
+				<caps-tabs-content value="account">
 					<caps-card>
 						<caps-card-header>
 							<caps-card-title [level]="3">Account</caps-card-title>
@@ -58,8 +55,8 @@ export const Default: Story = {
 							<button capsButton>Save Changes</button>
 						</caps-card-footer>
 					</caps-card>
-				</div>
-				<div hlmTabsContent="password">
+				</caps-tabs-content>
+				<caps-tabs-content value="password">
 					<caps-card>
 						<caps-card-header>
 							<caps-card-title [level]="3">Password</caps-card-title>
@@ -81,23 +78,28 @@ export const Default: Story = {
 							<button capsButton>Save Password</button>
 						</caps-card-footer>
 					</caps-card>
-				</div>
-			</hlm-tabs>
+				</caps-tabs-content>
+			</caps-tabs>
 		`,
 	}),
 };
 
 export const Vertical: Story = {
-	render: ({ activationMode }) => ({
-		props: { activationMode },
+	render: ({ followFocus }) => ({
+		props: { followFocus },
 		template: /* HTML */ `
-			<hlm-tabs tab="account" class="mx-auto flex max-w-3xl flex-row space-x-2" orientation="vertical">
-				<hlm-tabs-list aria-label="tabs example">
-					<button class="w-full" hlmTabsTrigger="account">Account</button>
-					<button class="w-full" hlmTabsTrigger="password">Password</button>
-					<button class="w-full" hlmTabsTrigger="danger">Danger Zone</button>
-				</hlm-tabs-list>
-				<div hlmTabsContent="account">
+			<caps-tabs
+				value="account"
+				class="mx-auto flex max-w-3xl flex-row space-x-2"
+				orientation="vertical"
+				[followFocus]="followFocus"
+			>
+				<caps-tabs-list aria-label="tabs example">
+					<button class="w-full" capsTabsTrigger value="account">Account</button>
+					<button class="w-full" capsTabsTrigger value="password">Password</button>
+					<button class="w-full" capsTabsTrigger value="danger">Danger Zone</button>
+				</caps-tabs-list>
+				<caps-tabs-content value="account">
 					<caps-card>
 						<caps-card-header>
 							<caps-card-title [level]="3">Account</caps-card-title>
@@ -119,8 +121,8 @@ export const Vertical: Story = {
 							<button capsButton>Save Changes</button>
 						</caps-card-footer>
 					</caps-card>
-				</div>
-				<div hlmTabsContent="password">
+				</caps-tabs-content>
+				<caps-tabs-content value="password">
 					<caps-card>
 						<caps-card-header>
 							<caps-card-title [level]="3">Password</caps-card-title>
@@ -142,8 +144,8 @@ export const Vertical: Story = {
 							<button capsButton>Save Password</button>
 						</caps-card-footer>
 					</caps-card>
-				</div>
-				<div hlmTabsContent="danger">
+				</caps-tabs-content>
+				<caps-tabs-content value="danger">
 					<caps-card>
 						<caps-card-header>
 							<caps-card-title [level]="3">Delete Account</caps-card-title>
@@ -155,8 +157,8 @@ export const Vertical: Story = {
 							<button variant="destructive" capsButton>Delete Account</button>
 						</caps-card-footer>
 					</caps-card>
-				</div>
-			</hlm-tabs>
+				</caps-tabs-content>
+			</caps-tabs>
 		`,
 	}),
 };
@@ -164,50 +166,50 @@ export const Vertical: Story = {
 export const Paginated: Story = {
 	render: () => ({
 		template: /* HTML */ `
-			<hlm-tabs tab="1" class="mx-auto block max-w-3xl">
-				<hlm-paginated-tabs-list>
-					<button hlmTabsTrigger="1">Tab 1</button>
-					<button hlmTabsTrigger="2">Tab 2</button>
-					<button hlmTabsTrigger="3">Tab 3</button>
-					<button hlmTabsTrigger="4">Tab 4</button>
-					<button hlmTabsTrigger="5">Tab 5</button>
-					<button hlmTabsTrigger="6">Tab 6</button>
-					<button hlmTabsTrigger="7">Tab 7</button>
-					<button hlmTabsTrigger="8">Tab 8</button>
-					<button hlmTabsTrigger="9">Tab 9</button>
-					<button hlmTabsTrigger="10">Tab 10</button>
-					<button hlmTabsTrigger="11">Tab 11</button>
-					<button hlmTabsTrigger="12">Tab 12</button>
-					<button hlmTabsTrigger="13">Tab 13</button>
-					<button hlmTabsTrigger="14">Tab 14</button>
-					<button hlmTabsTrigger="15">Tab 15</button>
-					<button hlmTabsTrigger="16">Tab 16</button>
-					<button hlmTabsTrigger="17">Tab 17</button>
-					<button hlmTabsTrigger="18">Tab 18</button>
-					<button hlmTabsTrigger="19">Tab 19</button>
-					<button hlmTabsTrigger="20">Tab 20</button>
-				</hlm-paginated-tabs-list>
-				<div hlmTabsContent="1">Tab 1</div>
-				<div hlmTabsContent="2">Tab 2</div>
-				<div hlmTabsContent="3">Tab 3</div>
-				<div hlmTabsContent="4">Tab 4</div>
-				<div hlmTabsContent="5">Tab 5</div>
-				<div hlmTabsContent="6">Tab 6</div>
-				<div hlmTabsContent="7">Tab 7</div>
-				<div hlmTabsContent="8">Tab 8</div>
-				<div hlmTabsContent="9">Tab 9</div>
-				<div hlmTabsContent="10">Tab 10</div>
-				<div hlmTabsContent="11">Tab 11</div>
-				<div hlmTabsContent="12">Tab 12</div>
-				<div hlmTabsContent="13">Tab 13</div>
-				<div hlmTabsContent="14">Tab 14</div>
-				<div hlmTabsContent="15">Tab 15</div>
-				<div hlmTabsContent="16">Tab 16</div>
-				<div hlmTabsContent="17">Tab 17</div>
-				<div hlmTabsContent="18">Tab 18</div>
-				<div hlmTabsContent="19">Tab 19</div>
-				<div hlmTabsContent="20">Tab 20</div>
-			</hlm-tabs>
+			<caps-tabs value="1" class="mx-auto block max-w-3xl">
+				<caps-tabs-paginated-list>
+					<button capsTabsTrigger value="1">Tab 1</button>
+					<button capsTabsTrigger value="2">Tab 2</button>
+					<button capsTabsTrigger value="3">Tab 3</button>
+					<button capsTabsTrigger value="4">Tab 4</button>
+					<button capsTabsTrigger value="5">Tab 5</button>
+					<button capsTabsTrigger value="6">Tab 6</button>
+					<button capsTabsTrigger value="7">Tab 7</button>
+					<button capsTabsTrigger value="8">Tab 8</button>
+					<button capsTabsTrigger value="9">Tab 9</button>
+					<button capsTabsTrigger value="10">Tab 10</button>
+					<button capsTabsTrigger value="11">Tab 11</button>
+					<button capsTabsTrigger value="12">Tab 12</button>
+					<button capsTabsTrigger value="13">Tab 13</button>
+					<button capsTabsTrigger value="14">Tab 14</button>
+					<button capsTabsTrigger value="15">Tab 15</button>
+					<button capsTabsTrigger value="16">Tab 16</button>
+					<button capsTabsTrigger value="17">Tab 17</button>
+					<button capsTabsTrigger value="18">Tab 18</button>
+					<button capsTabsTrigger value="19">Tab 19</button>
+					<button capsTabsTrigger value="20">Tab 20</button>
+				</caps-tabs-paginated-list>
+				<caps-tabs-content value="1">Tab 1</caps-tabs-content>
+				<caps-tabs-content value="2">Tab 2</caps-tabs-content>
+				<caps-tabs-content value="3">Tab 3</caps-tabs-content>
+				<caps-tabs-content value="4">Tab 4</caps-tabs-content>
+				<caps-tabs-content value="5">Tab 5</caps-tabs-content>
+				<caps-tabs-content value="6">Tab 6</caps-tabs-content>
+				<caps-tabs-content value="7">Tab 7</caps-tabs-content>
+				<caps-tabs-content value="8">Tab 8</caps-tabs-content>
+				<caps-tabs-content value="9">Tab 9</caps-tabs-content>
+				<caps-tabs-content value="10">Tab 10</caps-tabs-content>
+				<caps-tabs-content value="11">Tab 11</caps-tabs-content>
+				<caps-tabs-content value="12">Tab 12</caps-tabs-content>
+				<caps-tabs-content value="13">Tab 13</caps-tabs-content>
+				<caps-tabs-content value="14">Tab 14</caps-tabs-content>
+				<caps-tabs-content value="15">Tab 15</caps-tabs-content>
+				<caps-tabs-content value="16">Tab 16</caps-tabs-content>
+				<caps-tabs-content value="17">Tab 17</caps-tabs-content>
+				<caps-tabs-content value="18">Tab 18</caps-tabs-content>
+				<caps-tabs-content value="19">Tab 19</caps-tabs-content>
+				<caps-tabs-content value="20">Tab 20</caps-tabs-content>
+			</caps-tabs>
 		`,
 	}),
 };
@@ -219,13 +221,13 @@ export const LazyLoading: Story = {
 			passwordLoadedAt: null as string | null,
 		},
 		template: /* HTML */ `
-			<hlm-tabs tab="account" class="mx-auto block max-w-3xl">
-				<hlm-tabs-list class="grid w-full grid-cols-2" aria-label="lazy loading tabs example">
-					<button hlmTabsTrigger="account">Account</button>
-					<button hlmTabsTrigger="password">Password</button>
-				</hlm-tabs-list>
-				<div hlmTabsContent="account">
-					<ng-template hlmTabsContentLazy>
+			<caps-tabs value="account" class="mx-auto block max-w-3xl">
+				<caps-tabs-list class="grid w-full grid-cols-2" aria-label="lazy loading tabs example">
+					<button capsTabsTrigger value="account">Account</button>
+					<button capsTabsTrigger value="password">Password</button>
+				</caps-tabs-list>
+				<caps-tabs-content value="account">
+					<ng-template capsTabsContentLazy>
 						<caps-card>
 							<caps-card-header>
 								<caps-card-title [level]="3">Account (Lazy)</caps-card-title>
@@ -248,9 +250,9 @@ export const LazyLoading: Story = {
 							</caps-card-footer>
 						</caps-card>
 					</ng-template>
-				</div>
-				<div hlmTabsContent="password">
-					<ng-template hlmTabsContentLazy>
+				</caps-tabs-content>
+				<caps-tabs-content value="password">
+					<ng-template capsTabsContentLazy>
 						<caps-card>
 							<caps-card-header>
 								<caps-card-title [level]="3">Password (Lazy)</caps-card-title>
@@ -274,8 +276,8 @@ export const LazyLoading: Story = {
 							</caps-card-footer>
 						</caps-card>
 					</ng-template>
-				</div>
-			</hlm-tabs>
+				</caps-tabs-content>
+			</caps-tabs>
 		`,
 	}),
 };
@@ -313,17 +315,17 @@ export const Disabled: Story = {
 			isDisabled: disabled,
 		},
 		template: /* HTML */ `
-			<hlm-tabs tab="account" class="mx-auto block max-w-3xl">
-				<hlm-tabs-list class="grid w-full grid-cols-2" aria-label="tabs example">
-					<button [disabled]="isDisabled" hlmTabsTrigger="account">Account</button>
-					<button [disabled]="isDisabled" hlmTabsTrigger="password">Password</button>
-				</hlm-tabs-list>
-			</hlm-tabs>
+			<caps-tabs value="account" class="mx-auto block max-w-3xl">
+				<caps-tabs-list class="grid w-full grid-cols-2" aria-label="tabs example">
+					<button [disabled]="isDisabled" capsTabsTrigger value="account">Account</button>
+					<button [disabled]="isDisabled" capsTabsTrigger value="password">Password</button>
+				</caps-tabs-list>
+				<caps-tabs-content value="account">Account content</caps-tabs-content>
+				<caps-tabs-content value="password">Password content</caps-tabs-content>
+			</caps-tabs>
 
 			<div class="mt-6 flex justify-center">
-				<button (click)="isDisabled = !isDisabled" name="disabled-toggle" capsButton role="switch">
-					Toggle disabled
-				</button>
+				<caps-switch [checked]="!isDisabled" (checkedChange)="isDisabled = !$event">Enable tabs</caps-switch>
 			</div>
 		`,
 	}),

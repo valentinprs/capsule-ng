@@ -4,24 +4,24 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsLabelImports } from '@capsule-ng/caps/label';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-tabs-rtl-preview',
-	imports: [HlmTabsImports, CapsCardImports, CapsLabelImports, CapsInputImports, CapsButtonImports],
+	imports: [CapsTabsImports, CapsCardImports, CapsLabelImports, CapsInputImports, CapsButtonImports],
 	providers: [Directionality],
 	host: {
 		class: 'block w-full max-w-lg',
 		'[dir]': '_dir()',
 	},
 	template: `
-		<hlm-tabs tab="account" class="w-full">
-			<hlm-tabs-list [attr.aria-label]="_t()['tabsLabel']">
-				<button hlmTabsTrigger="account">{{ _t()['accountTab'] }}</button>
-				<button hlmTabsTrigger="password">{{ _t()['passwordTab'] }}</button>
-			</hlm-tabs-list>
-			<div hlmTabsContent="account">
+		<caps-tabs value="account" class="w-full">
+			<caps-tabs-list [attr.aria-label]="_t()['tabsLabel']">
+				<button capsTabsTrigger value="account">{{ _t()['accountTab'] }}</button>
+				<button capsTabsTrigger value="password">{{ _t()['passwordTab'] }}</button>
+			</caps-tabs-list>
+			<caps-tabs-content value="account">
 				<caps-card>
 					<caps-card-header>
 						<caps-card-title [level]="3">{{ _t()['accountTab'] }}</caps-card-title>
@@ -41,8 +41,8 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 						<button capsButton>{{ _t()['saveChanges'] }}</button>
 					</caps-card-footer>
 				</caps-card>
-			</div>
-			<div hlmTabsContent="password">
+			</caps-tabs-content>
+			<caps-tabs-content value="password">
 				<caps-card>
 					<caps-card-header>
 						<caps-card-title [level]="3">{{ _t()['passwordTab'] }}</caps-card-title>
@@ -62,8 +62,8 @@ import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 						<button capsButton>{{ _t()['savePassword'] }}</button>
 					</caps-card-footer>
 				</caps-card>
-			</div>
-		</hlm-tabs>
+			</caps-tabs-content>
+		</caps-tabs>
 	`,
 })
 export class TabsRtlPreview {

@@ -4,15 +4,10 @@ import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerChevronLeft, tablerChevronRight, tablerChevronsLeft, tablerChevronsRight } from '@ng-icons/tabler-icons';
-import {
-	TableHeadSelection,
-	TableRowSelection,
-} from '@spartan-ng/app/app/pages/(components)/components/(data-table)/selection-column';
-import { TableHeadSortButton } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/sort-header-button';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import {
 	columnFilteringFeature,
 	ColumnFiltersState,
@@ -35,6 +30,11 @@ import {
 	type SortingState,
 	tableFeatures,
 } from '@tanstack/angular-table';
+import {
+	TableHeadSelection,
+	TableRowSelection,
+} from '../../../../(components)/components/(data-table)/selection-column';
+import { TableHeadSortButton } from '../../../../(components)/components/(data-table)/sort-header-button';
 import {
 	DashboardLocalStorageService,
 	DEFAULT_DASHBOARD_TABLE_COLUMNS,
@@ -117,7 +117,7 @@ const columns = columnHelper.columns([
 @Component({
 	selector: 'spartan-dashboard-table-section',
 	imports: [
-		HlmTabsImports,
+		CapsTabsImports,
 		HlmTableImports,
 		CapsSelectImports,
 		CapsButton,
@@ -137,26 +137,26 @@ const columns = columnHelper.columns([
 		class: 'px-6',
 	},
 	template: `
-		<hlm-tabs tab="account" class="w-full">
+		<caps-tabs value="account" class="w-full">
 			<div class="flex justify-between">
-				<hlm-tabs-list
+				<caps-tabs-list
 					aria-label="tabs example"
 					class="**:data-[slot=badge]:bg-muted-foreground/30 hidden h-9 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex"
 				>
-					<button hlmTabsTrigger="account">Outline</button>
-					<button hlmTabsTrigger="past-performance">
+					<button capsTabsTrigger value="account">Outline</button>
+					<button capsTabsTrigger value="past-performance">
 						Past Performance
 						<caps-badge variant="gray">3</caps-badge>
 					</button>
-					<button hlmTabsTrigger="key-personnel">
+					<button capsTabsTrigger value="key-personnel">
 						Key Personnel
 						<caps-badge variant="gray">2</caps-badge>
 					</button>
-					<button hlmTabsTrigger="focus-documents">Focus Documents</button>
-				</hlm-tabs-list>
+					<button capsTabsTrigger value="focus-documents">Focus Documents</button>
+				</caps-tabs-list>
 				<spartan-dashboard-table-actions table="table" />
 			</div>
-			<div hlmTabsContent="account">
+			<caps-tabs-content value="account">
 				<div class="max-h-[700px] w-full overflow-auto rounded-md border">
 					@defer {
 						<div hlmTableContainer>
@@ -264,17 +264,17 @@ const columns = columnHelper.columns([
 						</div>
 					</div>
 				</div>
-			</div>
-			<div hlmTabsContent="past-performance">
+			</caps-tabs-content>
+			<caps-tabs-content value="past-performance">
 				<div class="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-			</div>
-			<div hlmTabsContent="key-personnel">
+			</caps-tabs-content>
+			<caps-tabs-content value="key-personnel">
 				<div class="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-			</div>
-			<div hlmTabsContent="focus-documents">
+			</caps-tabs-content>
+			<caps-tabs-content value="focus-documents">
 				<div class="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-			</div>
-		</hlm-tabs>
+			</caps-tabs-content>
+		</caps-tabs>
 	`,
 })
 export class DashboardTableSection {

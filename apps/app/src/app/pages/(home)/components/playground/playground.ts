@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSeparator } from '@capsule-ng/caps/separator';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 import { CapsTextarea } from '@capsule-ng/caps/textarea';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerBrowserPlus, tablerEdit, tablerMessageCheck, tablerRotate } from '@ng-icons/tabler-icons';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import {
 	CodeViewer,
 	MaxLengthSelector,
@@ -30,7 +30,7 @@ import { PRESETS_DATA } from './data/presets';
 		PresetActions,
 		CodeViewer,
 		CapsSeparator,
-		HlmTabsImports,
+		CapsTabsImports,
 		NgIcon,
 		CapsTextarea,
 		CapsButton,
@@ -61,9 +61,9 @@ import { PRESETS_DATA } from './data/presets';
 				</div>
 			</div>
 			<caps-separator />
-			<hlm-tabs tab="complete" class="grid flex-1 items-stretch gap-6 p-6 md:grid-cols-[1fr_200px]">
+			<caps-tabs value="complete" class="grid flex-1 items-stretch gap-6 p-6 md:grid-cols-[1fr_200px]">
 				<div class="col-span-2 md:col-span-1">
-					<div hlmTabsContent="complete" class="mt-0">
+					<caps-tabs-content value="complete" class="mt-0">
 						<div class="flex h-full flex-col gap-4">
 							<textarea
 								capsTextarea
@@ -78,8 +78,8 @@ import { PRESETS_DATA } from './data/presets';
 								</button>
 							</div>
 						</div>
-					</div>
-					<div hlmTabsContent="insert" class="mt-0">
+					</caps-tabs-content>
+					<caps-tabs-content value="insert" class="mt-0">
 						<div class="flex h-full flex-col gap-4">
 							<div class="grid grid-cols-2 gap-4">
 								<textarea
@@ -98,8 +98,8 @@ import { PRESETS_DATA } from './data/presets';
 								</button>
 							</div>
 						</div>
-					</div>
-					<div hlmTabsContent="edit" class="mt-0">
+					</caps-tabs-content>
+					<caps-tabs-content value="edit" class="mt-0">
 						<div class="flex h-full flex-col gap-4">
 							<div class="grid grid-cols-2 gap-4">
 								<div class="flex flex-col gap-4">
@@ -128,29 +128,29 @@ import { PRESETS_DATA } from './data/presets';
 								</button>
 							</div>
 						</div>
-					</div>
+					</caps-tabs-content>
 				</div>
 				<div class="hidden flex-col gap-6 sm:flex md:order-2">
 					<div class="grid gap-3">
 						<span class="text-sm font-medium">Mode</span>
-						<hlm-tabs-list aria-label="tabs example" class="w-full">
-							<button hlmTabsTrigger="complete">
+						<caps-tabs-list aria-label="tabs example" class="w-full">
+							<button capsTabsTrigger value="complete">
 								<ng-icon name="tablerMessageCheck" />
 							</button>
-							<button hlmTabsTrigger="insert">
+							<button capsTabsTrigger value="insert">
 								<ng-icon name="tablerBrowserPlus" />
 							</button>
-							<button hlmTabsTrigger="edit">
+							<button capsTabsTrigger value="edit">
 								<ng-icon name="tablerEdit" />
 							</button>
-						</hlm-tabs-list>
+						</caps-tabs-list>
 					</div>
 					<spartan-model-selector [models]="_models" [types]="_types" />
 					<spartan-temperature-selector />
 					<spartan-max-length-selector />
 					<spartan-top-p-selector />
 				</div>
-			</hlm-tabs>
+			</caps-tabs>
 		</div>
 	`,
 })

@@ -1,23 +1,23 @@
 import { Component, input } from '@angular/core';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 
 @Component({
 	selector: 'spartan-tabs-paginated',
-	imports: [HlmTabsImports],
+	imports: [CapsTabsImports],
 	host: {
 		class: 'block w-full max-w-lg min-h-[150px]',
 	},
 	template: `
-		<hlm-tabs [tab]="activeTab()" class="w-full">
-			<hlm-paginated-tabs-list>
+		<caps-tabs [value]="activeTab()" class="w-full">
+			<caps-tabs-paginated-list>
 				@for (tab of lotsOfTabs; track tab) {
-					<button [hlmTabsTrigger]="tab">{{ tab }}</button>
+					<button capsTabsTrigger [value]="tab">{{ tab }}</button>
 				}
-			</hlm-paginated-tabs-list>
+			</caps-tabs-paginated-list>
 			@for (tab of lotsOfTabs; track tab) {
-				<div [hlmTabsContent]="tab">{{ tab }}</div>
+				<caps-tabs-content [value]="tab">{{ tab }}</caps-tabs-content>
 			}
-		</hlm-tabs>
+		</caps-tabs>
 	`,
 })
 export class TabsPaginatedPreview {

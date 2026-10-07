@@ -1,25 +1,30 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmSheetImports } from '@spartan-ng/helm/sheet';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSheetImports } from '@capsule-ng/caps/sheet';
 
 @Component({
 	selector: 'spartan-sheet-side-preview',
-	imports: [HlmSheetImports, HlmButtonImports],
+	imports: [CapsSheetImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-sheet>
+		<caps-sheet>
 			<div class="flex flex-wrap gap-2">
-				<button id="top" hlmSheetTrigger side="top" hlmBtn variant="outline">Top</button>
-				<button id="right" hlmSheetTrigger side="right" hlmBtn variant="outline">Right</button>
-				<button id="bottom" hlmSheetTrigger side="bottom" hlmBtn variant="outline">Bottom</button>
-				<button id="left" hlmSheetTrigger side="left" hlmBtn variant="outline">Left</button>
+				<button id="top" capsSheetTrigger side="top" capsButton variant="outline">Top</button>
+				<button id="right" capsSheetTrigger side="right" capsButton variant="outline">Right</button>
+				<button id="bottom" capsSheetTrigger side="bottom" capsButton variant="outline">Bottom</button>
+				<button id="left" capsSheetTrigger side="left" capsButton variant="outline">Left</button>
 			</div>
-			<hlm-sheet-content *hlmSheetPortal="let ctx" class="data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]">
-				<hlm-sheet-header>
-					<h3 hlmSheetTitle>Edit profile</h3>
-					<p hlmSheetDescription>Make changes to your profile here. Click save when you're done.</p>
-				</hlm-sheet-header>
-				<div class="no-scrollbar overflow-y-auto px-4">
+			<ng-template capsSheetContent [class]="'data-[side=bottom]:max-h-[50vh] data-[side=top]:max-h-[50vh]'">
+				<caps-sheet-header>
+					<caps-sheet-title>Edit profile</caps-sheet-title>
+					<caps-sheet-description>
+						Make changes to your profile here. Click save when you're done.
+					</caps-sheet-description>
+				</caps-sheet-header>
+				<div
+					class="no-scrollbar overflow-y-auto px-4 focus-visible:outline-2 focus-visible:outline-offset-2"
+					tabindex="0"
+				>
 					@for (item of _items; track item) {
 						<p class="mb-4 leading-normal">
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -30,12 +35,12 @@ import { HlmSheetImports } from '@spartan-ng/helm/sheet';
 						</p>
 					}
 				</div>
-				<hlm-sheet-footer>
-					<button hlmBtn>Save changes</button>
-					<button hlmBtn variant="outline" hlmSheetClose>Cancel</button>
-				</hlm-sheet-footer>
-			</hlm-sheet-content>
-		</hlm-sheet>
+				<caps-sheet-footer>
+					<button capsButton>Save changes</button>
+					<button capsButton variant="outline" capsSheetClose>Cancel</button>
+				</caps-sheet-footer>
+			</ng-template>
+		</caps-sheet>
 	`,
 })
 export class SheetSidePreview {

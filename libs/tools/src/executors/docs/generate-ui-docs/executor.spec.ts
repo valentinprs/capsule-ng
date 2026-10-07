@@ -43,6 +43,28 @@ describe('generate-ui-docs executor', () => {
 		expect(stripped).toMatchSnapshot();
 	});
 
+	it('documents the modal panel anatomy and controlled Capsule state', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		for (const [slug, name] of [
+			['sheet', 'Sheet'],
+			['drawer', 'Drawer'],
+		]) {
+			const family = generated[slug]['caps'];
+			expect(family['Caps' + name].selector).toBe('caps-' + slug);
+			expect(family['Caps' + name].models).toContainEqual(expect.objectContaining({ name: 'open', type: 'boolean' }));
+			expect(family['Caps' + name].inputs.map(({ name }) => name)).toEqual(
+				expect.arrayContaining(['disableClose', 'autoFocus', 'restoreFocus', 'aria-label']),
+			);
+			expect(family['Caps' + name + 'Content'].selector).toBe('ng-template[caps' + name + 'Content]');
+			expect(family['Caps' + name + 'Content'].inputs.map(({ name }) => name)).toEqual(
+				expect.arrayContaining(['class', 'side']),
+			);
+			expect(family['Caps' + name + 'Trigger'].selector).toContain('button[caps' + name + 'Trigger]');
+			expect(family['Caps' + name + 'Close'].selector).toBe('button[caps' + name + 'Close]');
+			expect(Object.keys(family)).not.toContain('Caps' + name + 'Panel');
+		}
+	});
+
 	it('documents the caps components of each caps entry point under the caps library', () => {
 		const generated = readGeneratedJson() as NestedStructure;
 

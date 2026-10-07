@@ -1,3 +1,5 @@
+@import './panels.css';
+
 /* Caps style preset: defines the `caps-*` hook classes set by the caps components.
    Import it after Tailwind is set up (it uses `@apply`), e.g. from the showcase site's styles.css:
    @import '../../../libs/caps/caps-preset.css' layer(caps); */

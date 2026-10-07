@@ -5,6 +5,7 @@
 		"entryFile": "src/index.ts"
 	},
 	"assets": [
+		"panels.css",
 		"caps-preset.css",
 		"table-pagination.css",
 		"menu.css",

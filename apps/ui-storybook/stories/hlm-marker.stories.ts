@@ -1,19 +1,22 @@
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGitBranch, lucideSearch } from '@ng-icons/lucide';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
 import type { Meta, StoryObj } from '@storybook/angular';
-import { applicationConfig, moduleMetadata } from '@storybook/angular';
+import { applicationConfig, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 
 const meta: Meta = {
 	title: 'Marker',
 	tags: ['autodocs'],
 	decorators: [
+		componentWrapperDecorator(
+			(story) => `<main><h1 class="mb-4 text-lg font-semibold">Marker examples</h1>${story}</main>`,
+		),
 		applicationConfig({
 			providers: [provideIcons({ lucideGitBranch, lucideSearch })],
 		}),
 		moduleMetadata({
-			imports: [HlmMarkerImports, HlmSpinner, NgIcon],
+			imports: [HlmMarkerImports, CapsSpinner, NgIcon],
 		}),
 	],
 };
@@ -30,7 +33,7 @@ export const Default: Story = {
 					<span hlmMarkerContent>Switched to a new branch</span>
 				</div>
 				<div hlmMarker role="status">
-					<span hlmMarkerIcon><hlm-spinner /></span>
+					<span hlmMarkerIcon><caps-spinner aria-hidden="true" /></span>
 					<span hlmMarkerContent class="shimmer">Thinking...</span>
 				</div>
 				<div hlmMarker variant="separator">

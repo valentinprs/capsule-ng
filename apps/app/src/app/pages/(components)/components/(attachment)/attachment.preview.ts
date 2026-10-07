@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFileCode, lucideX } from '@ng-icons/lucide';
 import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-attachment-preview',
-	imports: [HlmAttachmentImports, HlmSpinner, NgIcon],
+	imports: [HlmAttachmentImports, CapsSpinner, NgIcon],
 	providers: [provideIcons({ lucideFileCode, lucideX })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -29,7 +29,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 		<div hlmAttachment state="uploading" class="w-full">
 			<div hlmAttachmentMedia>
-				<hlm-spinner />
+				<caps-spinner aria-hidden="true" />
 			</div>
 			<div hlmAttachmentContent>
 				<span hlmAttachmentTitle>sales-dashboard.pdf</span>

@@ -444,3 +444,52 @@
 caps-questionnaire-item[hidden] {
 	display: none !important;
 }
+
+/* MARK: Loading */
+.caps-spinner {
+	@apply inline-flex shrink-0 text-base;
+}
+.caps-spinner > ng-icon {
+	animation: caps-spinner-spin 1s linear infinite;
+}
+.caps-skeleton {
+	@apply bg-muted block rounded-md;
+	animation: caps-skeleton-pulse 2s ease-in-out infinite;
+}
+.caps-progress {
+	@apply bg-primary/20 relative block h-2 w-full overflow-hidden rounded-full;
+}
+.caps-progress-indicator {
+	@apply bg-primary absolute inset-y-0 block rounded-full;
+	inset-inline-start: 0;
+	transition: width 200ms ease;
+}
+.caps-progress[data-state='indeterminate'] .caps-progress-indicator {
+	animation: caps-progress-indeterminate 1.5s ease-in-out infinite alternate;
+}
+@keyframes caps-spinner-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+@keyframes caps-skeleton-pulse {
+	50% {
+		opacity: 0.5;
+	}
+}
+@keyframes caps-progress-indeterminate {
+	from {
+		inset-inline-start: 0;
+	}
+	to {
+		inset-inline-start: 50%;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.caps-spinner > ng-icon,
+	.caps-skeleton,
+	.caps-progress-indicator {
+		animation: none !important;
+		transition: none !important;
+	}
+}

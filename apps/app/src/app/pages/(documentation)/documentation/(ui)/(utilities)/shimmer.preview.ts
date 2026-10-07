@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-shimmer-preview',
@@ -17,13 +17,13 @@ export const shimmerDemoCode = `<p class="text-muted-foreground shimmer text-sm"
 
 @Component({
 	selector: 'spartan-shimmer-marker-preview',
-	imports: [HlmMarkerImports, HlmSpinner],
+	imports: [HlmMarkerImports, CapsSpinner],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'flex w-full max-w-sm flex-col gap-4' },
 	template: `
 		<div hlmMarker role="status">
 			<span hlmMarkerIcon>
-				<hlm-spinner />
+				<caps-spinner aria-hidden="true" />
 			</span>
 			<span hlmMarkerContent class="shimmer">Thinking...</span>
 		</div>
@@ -36,7 +36,7 @@ export class ShimmerMarkerPreview {}
 
 export const shimmerMarkerCode = `<div hlmMarker role="status">
   <span hlmMarkerIcon>
-    <hlm-spinner />
+    <caps-spinner aria-hidden="true" />
   </span>
   <span hlmMarkerContent class="shimmer">Thinking...</span>
 </div>
@@ -123,7 +123,7 @@ export const shimmerAngleCode = `<p class="shimmer shimmer-angle-45">Generating 
 
 @Component({
 	selector: 'spartan-shimmer-once-preview',
-	imports: [HlmButton],
+	imports: [CapsButton],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'flex flex-col items-center gap-4' },
 	template: `
@@ -133,7 +133,7 @@ export const shimmerAngleCode = `<p class="shimmer shimmer-angle-45">Generating 
 				Generating response…
 			</p>
 		}
-		<button hlmBtn variant="outline" size="sm" type="button" (click)="replay()">Replay</button>
+		<button capsButton variant="outline" size="sm" type="button" (click)="replay()">Replay</button>
 	`,
 })
 export class ShimmerOncePreview {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, resource, signal } from '@angular/core';
+import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
 import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
-import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 interface DirectoryUser {
 	id: string;
@@ -12,7 +12,7 @@ interface DirectoryUser {
 
 @Component({
 	selector: 'spartan-combobox-async-preview',
-	imports: [HlmComboboxImports, HlmSpinnerImports],
+	imports: [HlmComboboxImports, CapsSpinnerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<hlm-combobox [(search)]="search" [itemToString]="itemToString">
@@ -23,7 +23,7 @@ interface DirectoryUser {
 						@if (users.error(); as error) {
 							{{ error }}
 						} @else if (users.isLoading()) {
-							<hlm-spinner />
+							<caps-spinner aria-hidden="true" />
 							Loading...
 						} @else if (search().length === 0) {
 							Type to search users.

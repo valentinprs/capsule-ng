@@ -1,29 +1,32 @@
-import { HlmSkeleton } from '@spartan-ng/helm/skeleton';
+import { CapsSkeleton } from '@capsule-ng/caps/skeleton';
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
+import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<HlmSkeleton> = {
+const meta: Meta<CapsSkeleton> = {
 	title: 'Skeleton',
-	component: HlmSkeleton,
+	component: CapsSkeleton,
 	tags: ['autodocs'],
 	decorators: [
+		componentWrapperDecorator(
+			(story) => `<main><h1 class="mb-4 text-lg font-semibold">Skeleton examples</h1>${story}</main>`,
+		),
 		moduleMetadata({
-			imports: [HlmSkeleton],
+			imports: [CapsSkeleton],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<HlmSkeleton>;
+type Story = StoryObj<CapsSkeleton>;
 
 export const Default: Story = {
 	render: () => ({
 		template: `
-   <div class='flex items-center p-4 m-4 border rounded-lg w-fit border-border space-x-4'>
-      <hlm-skeleton class='w-12 h-12 rounded-full' />
-      <div class='space-y-2'>
-        <hlm-skeleton class='h-4 w-[250px]' />
-        <hlm-skeleton class='h-4 w-[200px]' />
+   <div role='region' aria-label='Profile' aria-busy='true' class='flex items-center p-4 border rounded-lg w-full max-w-sm border-border gap-4'>
+      <caps-skeleton class='size-12 shrink-0 rounded-full' />
+      <div class='min-w-0 flex-1 space-y-2'>
+        <caps-skeleton class='h-4 w-full' />
+        <caps-skeleton class='h-4 w-4/5' />
       </div>
     </div>
     `,

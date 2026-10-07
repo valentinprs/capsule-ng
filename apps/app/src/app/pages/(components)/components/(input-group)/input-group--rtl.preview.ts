@@ -3,11 +3,11 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
 import { CapsTextareaImports } from '@capsule-ng/caps/textarea';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-input-group-rtl',
@@ -17,7 +17,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 		CapsInputImports,
 		CapsInputGroupImports,
 		NgIcon,
-		HlmSpinnerImports,
+		CapsSpinnerImports,
 		CapsFieldImports,
 	],
 	providers: [provideIcons({ lucideSearch })],
@@ -35,7 +35,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 		<caps-input-group [dir]="_dir()">
 			<input capsInput [placeholder]="_t()['searching']" [attr.aria-label]="_t()['searching']" />
 			<caps-input-group-addon align="inline-end">
-				<hlm-spinner />
+				<caps-spinner aria-hidden="true" />
 			</caps-input-group-addon>
 		</caps-input-group>
 
@@ -43,7 +43,7 @@ import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 			<input capsInput [placeholder]="_t()['savingChanges']" [attr.aria-label]="_t()['savingChanges']" />
 			<caps-input-group-addon align="inline-end">
 				<caps-input-group-text>{{ _t()['saving'] }}</caps-input-group-text>
-				<hlm-spinner />
+				<caps-spinner aria-hidden="true" />
 			</caps-input-group-addon>
 		</caps-input-group>
 

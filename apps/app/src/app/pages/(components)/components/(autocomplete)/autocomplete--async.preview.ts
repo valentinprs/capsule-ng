@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, resource, signal } from '@angular/core';
+import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
 import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
-import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 interface Movie {
 	id: string;
@@ -10,7 +10,7 @@ interface Movie {
 
 @Component({
 	selector: 'spartan-autocomplete-async-preview',
-	imports: [HlmAutocompleteImports, HlmSpinnerImports],
+	imports: [HlmAutocompleteImports, CapsSpinnerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<hlm-autocomplete [(search)]="search" [itemToString]="itemToString">
@@ -20,7 +20,7 @@ interface Movie {
 					@if (options.error(); as error) {
 						{{ error }}
 					} @else if (options.isLoading()) {
-						<hlm-spinner />
+						<caps-spinner aria-hidden="true" />
 						Loading...
 					} @else if (search().length === 0) {
 						Type to search movies.

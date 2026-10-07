@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGitBranch, lucideSearch } from '@ng-icons/lucide';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-marker-preview',
-	imports: [HlmMarkerImports, HlmSpinner, NgIcon],
+	imports: [HlmMarkerImports, CapsSpinner, NgIcon],
 	providers: [provideIcons({ lucideGitBranch, lucideSearch })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -21,7 +21,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 		</div>
 		<div hlmMarker role="status">
 			<span hlmMarkerIcon>
-				<hlm-spinner />
+				<caps-spinner aria-hidden="true" />
 			</span>
 			<span hlmMarkerContent class="shimmer">Thinking...</span>
 		</div>
@@ -40,13 +40,13 @@ export class MarkerPreview {}
 
 export const defaultImports = `
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 `;
 
 export const defaultSkeleton = `
 <div hlmMarker role="status">
   <span hlmMarkerIcon>
-    <hlm-spinner />
+    <caps-spinner aria-hidden="true" />
   </span>
   <span hlmMarkerContent class="shimmer">Checking the logs...</span>
 </div>

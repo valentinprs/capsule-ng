@@ -1,19 +1,22 @@
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload, lucideFileText } from '@ng-icons/lucide';
 import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
 import type { Meta, StoryObj } from '@storybook/angular';
-import { applicationConfig, moduleMetadata } from '@storybook/angular';
+import { applicationConfig, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 
 const meta: Meta = {
 	title: 'Attachment',
 	tags: ['autodocs'],
 	decorators: [
+		componentWrapperDecorator(
+			(story) => `<main><h1 class="mb-4 text-lg font-semibold">Attachment examples</h1>${story}</main>`,
+		),
 		applicationConfig({
 			providers: [provideIcons({ lucideFileText, lucideDownload })],
 		}),
 		moduleMetadata({
-			imports: [HlmAttachmentImports, HlmSpinner, NgIcon],
+			imports: [HlmAttachmentImports, CapsSpinner, NgIcon],
 		}),
 	],
 };
@@ -41,7 +44,7 @@ export const Default: Story = {
 				</div>
 				<div hlmAttachment state="uploading">
 					<div hlmAttachmentMedia>
-						<hlm-spinner />
+						<caps-spinner aria-hidden="true" />
 					</div>
 					<div hlmAttachmentContent>
 						<span hlmAttachmentTitle>uploading.pdf</span>

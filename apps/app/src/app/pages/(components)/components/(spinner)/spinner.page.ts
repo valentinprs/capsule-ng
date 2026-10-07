@@ -1,23 +1,23 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
-import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
-import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
-import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { link } from '@spartan-ng/app/app/shared/typography/link';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
+import { injectComponentDocs } from '../../../../core/services/component-docs';
+import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
+import { CodeRtlPreview } from '../../../../shared/code/code-rtl-preview';
+import { RtlHeader } from '../../../../shared/code/rtl-header';
 import { MainSection } from '../../../../shared/layout/main-section';
 import { PageBottomNav } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav';
 import { PageBottomNavLink } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav-link';
 import { PageNav } from '../../../../shared/layout/page-nav/page-nav';
 import { SectionIntro } from '../../../../shared/layout/section-intro';
 import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
+import { SectionSubSubHeading } from '../../../../shared/layout/section-sub-sub-heading';
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
+import { link } from '../../../../shared/typography/link';
 import { SpartanSpinnerBadgePreview } from './spinner--badge.preview';
 import { SpartanSpinnerButtonPreview } from './spinner--button.preview';
 import { SpartanSpinnerColorPreview } from './spinner--color.preview';
@@ -97,12 +97,17 @@ export const routeMeta: RouteMeta = {
 				<spartan-code [code]="_defaultSkeleton" />
 			</div>
 
+			<p class="${hlmP}">
+				Use title or aria-label for a standalone loading status. Inside a button, badge or a region that already
+				describes loading, use aria-hidden="true" to keep the icon decorative. Set isActive to false to stop loading;
+				reduced motion stops rotation.
+			</p>
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
 
 			<h3 id="examples__custom_icon" spartanH4>Custom Icon</h3>
 			<p class="${hlmP}">
-				You can replace the default spinner icon with any other icon by editing the
-				<code class="${hlmCode}">HlmSpinner</code>
+				Register the desired icon and pass its name to the
+				<code class="${hlmCode}">CapsSpinner</code>
 				component.
 			</p>
 			<p class="${hlmP}">
@@ -196,8 +201,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="switch" label="Switch" />

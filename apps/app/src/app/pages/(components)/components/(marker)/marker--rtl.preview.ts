@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGitBranch, lucideSearch } from '@ng-icons/lucide';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-marker-rtl-preview',
-	imports: [HlmMarkerImports, HlmSpinner, NgIcon],
+	imports: [HlmMarkerImports, CapsSpinner, NgIcon],
 	providers: [provideIcons({ lucideGitBranch, lucideSearch })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -23,7 +23,7 @@ import { HlmSpinner } from '@spartan-ng/helm/spinner';
 			</div>
 			<div hlmMarker role="status">
 				<span hlmMarkerIcon>
-					<hlm-spinner />
+					<caps-spinner aria-hidden="true" />
 				</span>
 				<span hlmMarkerContent class="shimmer">{{ _t()['thinking'] }}</span>
 			</div>

@@ -3,10 +3,10 @@ import { ChangeDetectionStrategy, Component, computed, inject, resource, signal 
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
 import { provideBrnAutocompleteConfig } from '@spartan-ng/brain/autocomplete';
 import { HlmAutocomplete, HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
-import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
-import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
+import { componentWrapperDecorator, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 @Component({
 	selector: 'autocomplete-reactive-form-story',
@@ -147,14 +147,14 @@ class AutocompleteSearchHintErrorStory {
 
 @Component({
 	selector: 'spartan-autocomplete-async',
-	imports: [HlmAutocompleteImports, HlmSpinnerImports],
+	imports: [HlmAutocompleteImports, CapsSpinnerImports],
 	template: `
 		<hlm-autocomplete [(search)]="search">
 			<hlm-autocomplete-input placeholder="Search" />
 			<hlm-autocomplete-content *hlmAutocompletePortal>
 				<hlm-autocomplete-status class="justify-start">
 					@if (options.isLoading()) {
-						<hlm-spinner />
+						<caps-spinner aria-hidden="true" />
 					}
 				</hlm-autocomplete-status>
 				<div hlmAutocompleteList>
@@ -337,6 +337,9 @@ export default {
 	component: HlmAutocomplete,
 	tags: ['autodocs'],
 	decorators: [
+		componentWrapperDecorator(
+			(story) => `<main><h1 class="mb-4 text-lg font-semibold">Autocomplete examples</h1>${story}</main>`,
+		),
 		moduleMetadata({
 			imports: [
 				AutocompleteAsync,

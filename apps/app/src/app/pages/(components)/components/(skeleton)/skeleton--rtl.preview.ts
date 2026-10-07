@@ -1,17 +1,17 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmSkeletonImports } from '@spartan-ng/helm/skeleton';
+import { CapsSkeletonImports } from '@capsule-ng/caps/skeleton';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-skeleton-rtl',
-	imports: [HlmSkeletonImports],
+	imports: [CapsSkeletonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div class="flex w-fit items-center gap-4" [dir]="_dir()">
-			<hlm-skeleton class="size-10 shrink-0 rounded-full" />
+		<div aria-busy="true" class="flex w-fit items-center gap-4" [dir]="_dir()">
+			<caps-skeleton class="size-10 shrink-0 rounded-full" />
 			<div class="grid gap-2">
-				<hlm-skeleton class="h-4 w-[150px]" />
-				<hlm-skeleton class="h-4 w-[100px]" />
+				<caps-skeleton class="h-4 w-[150px]" />
+				<caps-skeleton class="h-4 w-[100px]" />
 			</div>
 		</div>
 	`,

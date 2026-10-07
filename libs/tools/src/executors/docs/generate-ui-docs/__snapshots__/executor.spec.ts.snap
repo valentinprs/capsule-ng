@@ -9189,6 +9189,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "brn-progress-indicator",
       },
     },
+    "caps": {
+      "CapsProgress": {
+        "inputs": [
+          {
+            "name": "value",
+            "required": false,
+            "type": "number | null | undefined",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "getValueLabel",
+            "required": false,
+            "type": "BrnProgressLabelFn",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-progress",
+      },
+    },
     "helm": {
       "HlmProgress": {
         "inputs": [
@@ -12244,6 +12268,14 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "skeleton": {
+    "caps": {
+      "CapsSkeleton": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-skeleton",
+      },
+    },
     "helm": {
       "HlmSkeleton": {
         "inputs": [],
@@ -12789,6 +12821,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "spinner": {
+    "caps": {
+      "CapsSpinner": {
+        "inputs": [
+          {
+            "name": "icon",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-hidden",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-spinner",
+      },
+    },
     "helm": {
       "HlmSpinner": {
         "inputs": [

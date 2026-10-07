@@ -2889,6 +2889,20 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "chart": {
+    "caps": {
+      "CapsChart": {
+        "inputs": [
+          {
+            "name": "options",
+            "required": true,
+            "type": "ChartOptions<TDatum, TXValue, TYValue>",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-chart",
+      },
+    },
     "helm": {
       "HlmChart": {
         "inputs": [],

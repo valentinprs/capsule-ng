@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HLM_CHART_THEME, HlmChartImports, hlmChartTooltip } from '@spartan-ng/helm/chart';
+import { CAPS_CHART_THEME, CapsChartImports, capsChartTooltip } from '@capsule-ng/caps/chart';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { barY, ChartPoint, ChartTooltipContent, defineChart } from '@tanstack/charts';
 import { scaleBand } from '@tanstack/charts/scales/band';
 import { scaleLinear } from '@tanstack/charts/scales/linear';
@@ -61,22 +63,24 @@ const formatDate = (value: string, formatter: Intl.DateTimeFormat) => formatter.
 
 @Component({
 	selector: 'spartan-chart-preview',
-	imports: [CapsCardImports, HlmChartImports],
+	imports: [CapsButtonImports, CapsCardImports, CapsChartImports, CapsTableImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'block w-full max-w-3xl' },
 	template: `
 		<caps-card class="py-0 pb-4">
 			<caps-card-header class="flex flex-col items-stretch gap-0 border-b p-0! sm:flex-row">
 				<div class="flex flex-1 flex-col justify-center gap-1 px-6 pt-4 pb-3 sm:py-0!">
-					<caps-card-title [level]="3">Bar Chart - Interactive</caps-card-title>
+					<caps-card-title [level]="2">Bar Chart - Interactive</caps-card-title>
 					<caps-card-description>Showing total visitors for the last 30 days</caps-card-description>
 				</div>
 
 				<div class="flex">
 					@for (chart of _chartKeys; track chart) {
 						<button
+							capsButton
+							variant="ghost"
 							type="button"
-							class="data-[active=true]:bg-muted/50 relative z-(--caps-z-30) flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-t-0 sm:border-l sm:px-8 sm:py-6"
+							class="data-[active=true]:bg-muted/50 relative z-(--caps-z-30) flex h-auto flex-1 flex-col justify-center gap-1 rounded-none border-t px-6 py-4 text-start even:border-s sm:border-s sm:border-t-0 sm:px-8 sm:py-6"
 							[attr.data-active]="_activeChart() === chart"
 							[attr.aria-pressed]="_activeChart() === chart"
 							(click)="_activeChart.set(chart)"
@@ -89,12 +93,39 @@ const formatDate = (value: string, formatter: Intl.DateTimeFormat) => formatter.
 			</caps-card-header>
 
 			<caps-card-content class="px-2 sm:p-6">
-				<tanstack-chart hlmChart [options]="_chartOptions()" />
+				<caps-chart [options]="_chartOptions()" />
+				<details class="mt-4 text-sm">
+					<summary class="focus-visible:outline-ring cursor-pointer rounded-sm focus-visible:outline-2">
+						View daily visitor data
+					</summary>
+					<caps-table-container class="mt-2">
+						<table capsTable>
+							<caption>Visitors in April 2024</caption>
+							<thead>
+								<tr>
+									<th scope="col">Date</th>
+									<th scope="col">Desktop</th>
+									<th scope="col">Mobile</th>
+								</tr>
+							</thead>
+							<tbody>
+								@for (row of _data; track row.date) {
+									<tr>
+										<th scope="row">{{ row.date }}</th>
+										<td>{{ row.desktop }}</td>
+										<td>{{ row.mobile }}</td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</caps-table-container>
+				</details>
 			</caps-card-content>
 		</caps-card>
 	`,
 })
 export class ChartPreview {
+	protected readonly _data = chartData;
 	protected readonly _activeChart = signal<ChartKey>('desktop');
 	protected readonly _chartKeys = chartKeys;
 	protected readonly _chartConfig = chartConfig;
@@ -126,17 +157,17 @@ export class ChartPreview {
 						},
 						y: { scale: scaleLinear, grid: true, axis: false },
 					},
-					theme: HLM_CHART_THEME,
+					theme: CAPS_CHART_THEME,
 				},
 				{
 					focus: 'group-x',
-					tooltip: hlmChartTooltip<ChartDatum, string, number>({
+					tooltip: capsChartTooltip<ChartDatum, string, number>({
 						content: (points) => this.tooltipContent(points),
 					}),
 				},
 			),
 			ariaLabel: `${activeConfig.label} visitors by day`,
-			ariaDescription: `${activeConfig.label} visitor totals for April 2024.`,
+			ariaDescription: `${activeConfig.label} visitor totals for April 2024. Exact values for both series are in the adjacent table.`,
 			height: 250,
 		};
 	});
@@ -155,12 +186,13 @@ export class ChartPreview {
 }
 
 export const defaultImports = `
-import { HLM_CHART_THEME, HlmChartImports, hlmChartTooltip } from '@spartan-ng/helm/chart';
+import { CAPS_CHART_THEME, CapsChartImports, capsChartTooltip } from '@capsule-ng/caps/chart';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { barY, defineChart } from '@tanstack/charts';
 import { scaleBand } from '@tanstack/charts/scales/band';
 import { scaleLinear } from '@tanstack/charts/scales/linear';
 `;
 
 export const defaultSkeleton = `
-<tanstack-chart hlmChart [options]="_chartOptions" />
+<caps-chart [options]="_chartOptions" />
 `;

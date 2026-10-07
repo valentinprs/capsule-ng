@@ -197,4 +197,17 @@ describe('generate-ui-docs executor', () => {
 			'itemsPerPage',
 		]);
 	});
+	it('documents the Capsule chart engine contract as one required options input', () => {
+		const chart = (readGeneratedJson() as NestedStructure)['chart']['caps']['CapsChart'];
+		expect(chart.selector).toBe('caps-chart');
+		expect(chart.inputs).toContainEqual(
+			expect.objectContaining({
+				name: 'options',
+				type: 'ChartOptions<TDatum, TXValue, TYValue>',
+				required: true,
+			}),
+		);
+		expect(chart.outputs).toEqual([]);
+		expect(chart.models).toEqual([]);
+	});
 });

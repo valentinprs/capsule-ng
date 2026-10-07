@@ -333,11 +333,13 @@
 	}
 
 	/* MARK: Chart */
-	.spartan-chart {
+	.spartan-chart,
+	.caps-chart {
 		@apply block w-full text-xs;
 	}
 
-	.spartan-chart-tooltip {
+	.spartan-chart-tooltip,
+	.caps-chart-tooltip {
 		@apply [--ts-chart-tooltip-background:var(--popover)] [--ts-chart-tooltip-border-radius:var(--radius)] [--ts-chart-tooltip-border:var(--caps-border-width)_solid_var(--border)] [--ts-chart-tooltip-color:var(--popover-foreground)] [--ts-chart-tooltip-font:var(--font-weight-medium)_var(--text-xs)/var(--text-xs--line-height)_var(--font-sans)] [--ts-chart-tooltip-padding:--spacing(1.5)_--spacing(2.5)] [--ts-chart-tooltip-shadow:var(--shadow-xl)];
 	}
 

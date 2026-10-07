@@ -34,6 +34,7 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@capsule-ng/caps/chart": ["libs/caps/chart/src/index.ts"],
 			"@capsule-ng/caps/popover": ["libs/caps/popover/src/index.ts"],
 			"@capsule-ng/caps/tooltip": ["libs/caps/tooltip/src/index.ts"],
 			"@capsule-ng/caps/hover-card": ["libs/caps/hover-card/src/index.ts"],

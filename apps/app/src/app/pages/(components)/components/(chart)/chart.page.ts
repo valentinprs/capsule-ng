@@ -1,10 +1,10 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
-import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
-import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { link } from '@spartan-ng/app/app/shared/typography/link';
+import { CapsLink } from '@capsule-ng/caps/link';
 import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP, hlmUl } from '@spartan-ng/helm/typography';
+import { injectComponentDocs } from '../../../../core/services/component-docs';
+import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
 import { MainSection } from '../../../../shared/layout/main-section';
@@ -17,6 +17,7 @@ import { SectionSubSubHeading } from '../../../../shared/layout/section-sub-sub-
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
+import { ChartEmpty } from './chart--empty.example';
 import { ChartLegend } from './chart--legend.example';
 import { ChartLine } from './chart--line.example';
 import { ChartPreview, defaultImports, defaultSkeleton } from './chart.preview';
@@ -40,6 +41,8 @@ export const routeMeta: RouteMeta = {
 		PageNav,
 		PageBottomNav,
 		PageBottomNavLink,
+		CapsLink,
+		ChartEmpty,
 		ChartPreview,
 		ChartLine,
 		ChartLegend,
@@ -60,10 +63,8 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="about">About</spartan-section-sub-heading>
 			<p class="${hlmP}">
 				Chart integrates the official
-				<a href="https://tanstack.com/charts/latest" target="_blank" rel="noreferrer" class="${link}">
-					TanStack Charts
-				</a>
-				Angular adapter. TanStack owns the chart grammar, rendering, interaction, focus, and accessibility; Spartan
+				<a href="https://tanstack.com/charts/latest" target="_blank" rel="noreferrer" capsLink>TanStack Charts</a>
+				Angular adapter. TanStack owns the chart grammar, rendering, interaction, focus, and accessibility; Capsule
 				provides semantic colors, dark-mode integration, and tooltip styling.
 			</p>
 
@@ -73,11 +74,11 @@ export const routeMeta: RouteMeta = {
 					This integration (and TanStack Charts itself) is in alpha. Its API can change between releases, so breaking
 					changes may occur. Keep
 					<code class="${hlmCode}">&#64;tanstack/charts</code>
-					,
+					and
 					<code class="${hlmCode}">&#64;tanstack/angular-charts</code>
-					, and
-					<code class="${hlmCode}">spartan/ui</code>
-					chart on matching versions.
+					on matching versions supported by the
+					<code class="${hlmCode}">&#64;capsule-ng/caps</code>
+					peer dependencies.
 				</div>
 			</div>
 
@@ -88,20 +89,20 @@ export const routeMeta: RouteMeta = {
 			</div>
 
 			<p class="${hlmP}">
-				Apply
-				<code class="${hlmCode}">hlmChart</code>
-				to the official
-				<code class="${hlmCode}">tanstack-chart</code>
-				component. Add
-				<code class="${hlmCode}">HLM_CHART_THEME</code>
+				Use
+				<code class="${hlmCode}">caps-chart</code>
+				with the official TanStack
+				<code class="${hlmCode}">options</code>
+				contract. Add
+				<code class="${hlmCode}">CAPS_CHART_THEME</code>
 				to the definition and enable tooltips with
-				<code class="${hlmCode}">hlmChartTooltip()</code>
+				<code class="${hlmCode}">capsChartTooltip()</code>
 				as shown in the complete example above.
 			</p>
 
 			<spartan-section-sub-heading id="theme">Theme</spartan-section-sub-heading>
 			<p class="${hlmP}">
-				The integration maps TanStack's foreground, muted, grid, palette, and tooltip surfaces to Spartan's semantic
+				The integration maps TanStack's foreground, muted, grid, palette, and tooltip surfaces to Capsule's semantic
 				tokens. Override the categorical palette at any theme boundary:
 			</p>
 			<spartan-code
@@ -139,6 +140,16 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_legendCode()" />
 			</spartan-tabs>
 
+			<h3 id="examples__empty" spartanH4>No data</h3>
+			<p class="${hlmP}">
+				Choose a meaningful empty message before rendering the chart. Restore the data to see the same public options
+				contract.
+			</p>
+			<spartan-tabs firstTab="Preview" secondTab="Code">
+				<div spartanCodePreview firstTab><spartan-chart-empty /></div>
+				<spartan-code secondTab [code]="_emptyCode()" />
+			</spartan-tabs>
+
 			<spartan-section-sub-heading id="accessibility">Accessibility and SSR</spartan-section-sub-heading>
 			<ul class="${hlmUl}">
 				<li>
@@ -155,8 +166,8 @@ export const routeMeta: RouteMeta = {
 				<li>Do not use color as the only way to communicate meaning.</li>
 			</ul>
 			<p class="${hlmP}">
-				The chart component is SSR-compatible. It renders a static SVG on the server and hydrates to an interactive
-				chart on the client.
+				The chart component renders a static SVG on the server and mounts an interactive chart on the client. TanStack
+				does not yet guarantee Angular hydration in its documented public contract.
 			</p>
 
 			<p class="${hlmP}">
@@ -165,7 +176,7 @@ export const routeMeta: RouteMeta = {
 					href="https://tanstack.com/charts/latest/docs/concepts/grammar-of-graphics"
 					target="_blank"
 					rel="noreferrer"
-					class="${link}"
+					capsLink
 				>
 					grammar of graphics
 				</a>
@@ -174,15 +185,15 @@ export const routeMeta: RouteMeta = {
 					href="https://tanstack.com/charts/latest/docs/framework/angular/adapter"
 					target="_blank"
 					rel="noreferrer"
-					class="${link}"
+					capsLink
 				>
 					Angular adapter
 				</a>
 				documentation.
 			</p>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="checkbox" label="Checkbox" />
@@ -200,6 +211,7 @@ export default class ChartPage {
 	private readonly _snippets = inject(PrimitiveSnippetsService).getSnippets('chart');
 	protected readonly _defaultCode = computed(() => this._snippets()['default']);
 	protected readonly _lineCode = computed(() => this._snippets()['line']);
+	protected readonly _emptyCode = computed(() => this._snippets()['empty']);
 	protected readonly _legendCode = computed(() => this._snippets()['legend']);
 	protected readonly _defaultSkeleton = defaultSkeleton;
 	protected readonly _defaultImports = defaultImports;

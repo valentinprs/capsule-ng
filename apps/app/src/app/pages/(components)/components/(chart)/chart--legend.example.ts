@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HLM_CHART_THEME, HlmChartImports, hlmChartTooltip } from '@spartan-ng/helm/chart';
+import { CAPS_CHART_THEME, CapsChartImports, capsChartTooltip } from '@capsule-ng/caps/chart';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { colorLegend, defineChart, lineY } from '@tanstack/charts';
 import { scaleLinear } from '@tanstack/charts/scales/linear';
 import { scalePoint } from '@tanstack/charts/scales/point';
@@ -17,13 +18,40 @@ const visitors = [
 
 @Component({
 	selector: 'spartan-chart-legend',
-	imports: [HlmChartImports],
+	imports: [CapsChartImports, CapsTableImports],
 	host: { class: 'block w-full max-w-3xl' },
 	template: `
-		<tanstack-chart hlmChart [options]="_chartOptions" />
+		<caps-chart [options]="_chartOptions" />
+		<details class="mt-4 text-sm">
+			<summary class="focus-visible:outline-ring cursor-pointer rounded-sm focus-visible:outline-2">
+				View chart data
+			</summary>
+			<caps-table-container class="mt-2">
+				<table capsTable>
+					<caption>Visitors by device</caption>
+					<thead>
+						<tr>
+							<th scope="col">Month</th>
+							<th scope="col">Device</th>
+							<th scope="col">Visitors</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (row of _data; track row.month + row.channel) {
+							<tr>
+								<th scope="row">{{ row.month }}</th>
+								<td>{{ row.channel }}</td>
+								<td>{{ row.visitors }}</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</caps-table-container>
+		</details>
 	`,
 })
 export class ChartLegend {
+	protected readonly _data = visitors;
 	protected readonly _chartOptions = {
 		definition: defineChart(
 			{
@@ -36,12 +64,13 @@ export class ChartLegend {
 					domain: ['Desktop', 'Mobile'],
 					legend: colorLegend({ label: 'Device' }),
 				},
-				theme: HLM_CHART_THEME,
+				theme: CAPS_CHART_THEME,
 			},
-			{ focus: 'group-x', tooltip: hlmChartTooltip() },
+			{ focus: 'group-x', tooltip: capsChartTooltip() },
 		),
 		ariaLabel: 'Visitors by device',
-		ariaDescription: 'Line chart comparing desktop and mobile visitors from January through April.',
+		ariaDescription:
+			'Line chart comparing desktop and mobile visitors from January through April. Exact values are in the adjacent table.',
 		aspectRatio: 16 / 9,
 	};
 }

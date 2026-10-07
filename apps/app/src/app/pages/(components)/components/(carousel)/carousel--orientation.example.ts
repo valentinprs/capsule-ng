@@ -1,17 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
+import { CapsCarouselImports } from '@capsule-ng/caps/carousel';
 
 @Component({
 	selector: 'spartan-carousel-orientation',
-	imports: [HlmCarouselImports, CapsCardImports],
+	imports: [CapsCarouselImports, CapsCardImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'flex w-full items-center justify-center p-4' },
 	template: `
-		<hlm-carousel class="w-full max-w-xs" orientation="vertical">
-			<hlm-carousel-content class="-mt-1 h-[270px]">
+		<caps-carousel aria-label="Vertical resources" class="w-full max-w-xs" orientation="vertical">
+			<caps-carousel-content class="-mt-1 h-[270px]">
 				@for (item of items; track item) {
-					<hlm-carousel-item class="basis-1/2 pt-1">
+					<caps-carousel-item class="basis-1/2 pt-1">
 						<div class="p-1">
 							<caps-card>
 								<caps-card-content class="flex items-center justify-center p-6">
@@ -19,12 +20,14 @@ import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
 								</caps-card-content>
 							</caps-card>
 						</div>
-					</hlm-carousel-item>
+					</caps-carousel-item>
 				}
-			</hlm-carousel-content>
-			<button hlm-carousel-previous></button>
-			<button hlm-carousel-next></button>
-		</hlm-carousel>
+			</caps-carousel-content>
+			<div class="mt-3 flex justify-center gap-2">
+				<button capsButton capsCarouselPrevious variant="outline">Previous</button>
+				<button capsButton capsCarouselNext variant="outline">Next</button>
+			</div>
+		</caps-carousel>
 	`,
 })
 export class CarouselOrientation {

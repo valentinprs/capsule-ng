@@ -210,4 +210,21 @@ describe('generate-ui-docs executor', () => {
 		expect(chart.outputs).toEqual([]);
 		expect(chart.models).toEqual([]);
 	});
+	it('documents the projected Carousel and native navigation contracts', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const carousel = generated['carousel']['caps'];
+		expect(carousel['CapsCarousel'].selector).toBe('caps-carousel');
+		expect(carousel['CapsCarousel'].inputs.map(({ name }) => name)).toEqual([
+			'orientation',
+			'options',
+			'plugins',
+			'aria-label',
+		]);
+		expect(carousel['CapsCarouselContent'].selector).toBe('caps-carousel-content');
+		expect(carousel['CapsCarouselItem'].inputs.map(({ name }) => name)).toEqual(['aria-label', 'aria-labelledby']);
+		for (const name of ['Previous', 'Next', 'Autoplay']) {
+			expect(carousel[`CapsCarousel${name}`].selector).toBe(`button[capsCarousel${name}]`);
+		}
+		expect(carousel['CapsCarouselSlideDisplay'].inputs.map(({ name }) => name)).toEqual(['slideClass', 'label']);
+	});
 });

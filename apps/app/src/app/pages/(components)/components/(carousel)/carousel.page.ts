@@ -1,20 +1,20 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
-import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
-import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
-import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { link } from '@spartan-ng/app/app/shared/typography/link';
+import { CapsLinkImports } from '@capsule-ng/caps/link';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
+import { injectComponentDocs } from '../../../../core/services/component-docs';
+import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
+import { CodeRtlPreview } from '../../../../shared/code/code-rtl-preview';
+import { RtlHeader } from '../../../../shared/code/rtl-header';
 import { MainSection } from '../../../../shared/layout/main-section';
 import { PageBottomNav } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav';
 import { PageBottomNavLink } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav-link';
 import { PageNav } from '../../../../shared/layout/page-nav/page-nav';
 import { SectionIntro } from '../../../../shared/layout/section-intro';
 import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
+import { SectionSubSubHeading } from '../../../../shared/layout/section-sub-sub-heading';
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
@@ -36,6 +36,7 @@ export const routeMeta: RouteMeta = {
 	selector: 'spartan-carousel',
 	imports: [
 		UIApiDocs,
+		CapsLinkImports,
 		MainSection,
 		Code,
 		SectionIntro,
@@ -75,14 +76,9 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="about">About</spartan-section-sub-heading>
 			<p class="${hlmP}">
 				Carousel is built on top of
-				<a href="https://www.embla-carousel.com/" target="_blank" rel="noreferrer" class="${link}">Embla Carousel</a>
+				<a capsLink href="https://www.embla-carousel.com/" target="_blank" rel="noreferrer">Embla Carousel</a>
 				library and the
-				<a
-					href="https://github.com/donaldxdonald/embla-carousel-angular"
-					target="_blank"
-					rel="noreferrer"
-					class="${link}"
-				>
+				<a capsLink href="https://github.com/donaldxdonald/embla-carousel-angular" target="_blank" rel="noreferrer">
 					embla-carousel-angular
 				</a>
 				wrapper.
@@ -100,7 +96,7 @@ export const routeMeta: RouteMeta = {
 				The size of the items can be set by using the
 				<code class="${hlmCode}">basis</code>
 				utility class on the
-				<code class="${hlmCode}">hlm-carousel-item</code>
+				<code class="${hlmCode}">caps-carousel-item</code>
 				.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -113,13 +109,13 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__spacing" spartanH4>Spacing</h3>
 			<p class="py-2">
 				The spacing between the items can be set by using a
-				<code class="${hlmCode}">pl-[VALUE]</code>
+				<code class="${hlmCode}">ps-[VALUE]</code>
 				utility on the
-				<code class="${hlmCode}">hlm-carousel-item</code>
+				<code class="${hlmCode}">caps-carousel-item</code>
 				and a negative
-				<code class="${hlmCode}">-ml-[VALUE]</code>
+				<code class="${hlmCode}">-ms-[VALUE]</code>
 				on the
-				<code class="${hlmCode}">hlm-carousel-content</code>
+				<code class="${hlmCode}">caps-carousel-content</code>
 				.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -145,7 +141,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__slide_count" spartanH4>Slide Count</h3>
 			<p class="py-2">
 				Use
-				<code class="${hlmCode}">hlm-carousel-slide-display</code>
+				<code class="${hlmCode}">caps-carousel-slide-display</code>
 				to display the current and total slides.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -159,7 +155,8 @@ export const routeMeta: RouteMeta = {
 			<p class="py-2">
 				You can use the plugins
 				<code class="${hlmCode}">plugins</code>
-				prop to add plugins to the carousel.
+				prop to add plugins to the carousel. The autoplay example stops on focus or hover and provides explicit
+				pause/restart. Reduced motion disables automatic rotation.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -169,9 +166,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-tabs>
 			<p class="py-2">
 				See the
-				<a class="font-medium underline" href="https://www.embla-carousel.com/api/plugins/" target="_blank">
-					Embla Carousel docs
-				</a>
+				<a capsLink href="https://www.embla-carousel.com/api/plugins/" target="_blank">Embla Carousel docs</a>
 				for more information on using plugins.
 			</p>
 
@@ -183,8 +178,9 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<h3 class="mt-6 text-xl font-semibold tracking-tight">Components</h3>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="chart" label="Chart" />

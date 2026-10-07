@@ -1,168 +1,81 @@
+import { Dir } from '@angular/cdk/bidi';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsCarousel, CapsCarouselImports } from '@capsule-ng/caps/carousel';
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
-
-import { CapsCard, CapsCardContent } from '@capsule-ng/caps/card';
-import { HlmCarousel, HlmCarouselImports } from '@spartan-ng/helm/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 
-const meta: Meta<HlmCarousel> = {
+const meta: Meta<CapsCarousel> = {
 	title: 'Carousel',
-	component: HlmCarousel,
+	component: CapsCarousel,
 	tags: ['autodocs'],
-	decorators: [
-		moduleMetadata({
-			imports: [HlmCarouselImports, CapsCard, CapsCardContent],
-		}),
-	],
+	decorators: [moduleMetadata({ imports: [CapsCarouselImports, CapsCardImports, CapsButtonImports, Dir] })],
 };
-
 export default meta;
-type Story = StoryObj<HlmCarousel>;
+type Story = StoryObj<CapsCarousel>;
 
-export const Default: Story = {
-	render: () => ({
-		template: `
-    <div class="flex items-center justify-center w-full p-4">
-      <hlm-carousel class="w-full max-w-xs">
-        <hlm-carousel-content>
-        ${Array.from(
-					{ length: 5 },
-					(_, i) => `
-        <hlm-carousel-item>
-          <div class="p-1">
-            <caps-card>
-              <caps-card-content class="flex items-center justify-center p-6 aspect-square">
-                <span class="text-4xl font-semibold">${i + 1}</span>
-              </caps-card-content>
-            </caps-card>
-          </div>
-        </hlm-carousel-item>
-        `,
-				).join('\n')}
-        </hlm-carousel-content>
-        <button hlm-carousel-previous></button>
-        <button hlm-carousel-next></button>
-      </hlm-carousel>
-    </div>
-    `,
-	}),
-};
-
-export const Sizes: Story = {
-	render: () => ({
-		template: `
-    <div class="flex items-center justify-center w-full p-4">
-      <hlm-carousel class="w-full max-w-xs">
-        <hlm-carousel-content>
-					${Array.from(
-						{ length: 5 },
-						(_, i) => `
-					<hlm-carousel-item class="md:basis-1/2 lg:basis-1/3">
-						<div class="p-1">
-							<caps-card>
-								<caps-card-content class="flex items-center justify-center p-6 aspect-square">
-									<span class="text-4xl font-semibold">${i + 1}</span>
-								</caps-card-content>
-							</caps-card>
-						</div>
-					</hlm-carousel-item>
-					`,
-					).join('\n')}
-        </hlm-carousel-content>
-        <button hlm-carousel-previous></button>
-        <button hlm-carousel-next></button>
-      </hlm-carousel>
-    </div>
-    `,
-	}),
-};
-
+function slides(itemClass = '', vertical = false) {
+	return Array.from(
+		{ length: 5 },
+		(_, i) => `
+ <caps-carousel-item class="${itemClass}">
+  <div class="p-1"><caps-card><caps-card-content class="flex items-center justify-center p-6 ${vertical ? '' : 'aspect-square'}">
+   <span class="text-4xl font-semibold">${i + 1}</span>
+  </caps-card-content></caps-card></div>
+ </caps-carousel-item>`,
+	).join('');
+}
+function navigation(previous = 'Previous', next = 'Next') {
+	return `<div class="mt-3 flex justify-center gap-2">
+ <button capsButton capsCarouselPrevious variant="outline">${previous}</button>
+ <button capsButton capsCarouselNext variant="outline">${next}</button>
+ </div>`;
+}
+function example(content = slides(), trackClass = '', attributes = '', after = '', before = '') {
+	return `<div class="flex w-full items-center justify-center p-4">
+ <caps-carousel #carousel="capsCarousel" aria-label="Example slides" class="w-full max-w-48 sm:max-w-xs" ${attributes}>
+ ${before}<caps-carousel-content class="${trackClass}">${content}</caps-carousel-content>
+ ${navigation()}${after}
+ </caps-carousel></div>`;
+}
+export const Default: Story = { render: () => ({ template: example() }) };
+export const Sizes: Story = { render: () => ({ template: example(slides('md:basis-1/2 lg:basis-1/3')) }) };
 export const Spacing: Story = {
-	render: () => ({
-		template: `
-    <div class="flex items-center justify-center w-full p-4">
-      <hlm-carousel class="w-full max-w-xs">
-        <hlm-carousel-content class="-ml-1">
-					${Array.from(
-						{ length: 5 },
-						(_, i) => `
-					<hlm-carousel-item class="pl-1 md:basis-1/2 lg:basis-1/3">
-						<div class="p-1">
-							<caps-card>
-								<caps-card-content class="flex items-center justify-center p-6 aspect-square">
-									<span class="text-4xl font-semibold">${i + 1}</span>
-								</caps-card-content>
-							</caps-card>
-						</div>
-					</hlm-carousel-item>
-					`,
-					).join('\n')}
-        </hlm-carousel-content>
-        <button hlm-carousel-previous></button>
-        <button hlm-carousel-next></button>
-      </hlm-carousel>
-    </div>
-    `,
-	}),
+	render: () => ({ template: example(slides('ps-1 md:basis-1/2 lg:basis-1/3'), '-ms-1') }),
 };
-
 export const Orientation: Story = {
-	render: () => ({
-		template: `
-    <div class="flex items-center justify-center w-full p-4">
-      <hlm-carousel class="w-full max-w-xs" orientation="vertical">
-        <hlm-carousel-content class="-mt-1 h-[200px]">
-					${Array.from(
-						{ length: 5 },
-						(_, i) => `
-					<hlm-carousel-item class="pt-1 md:basis-1/2">
-						<div class="p-1">
-							<caps-card>
-								<caps-card-content class="flex items-center justify-center p-6">
-									<span class="text-4xl font-semibold">${i + 1}</span>
-								</caps-card-content>
-							</caps-card>
-						</div>
-					</hlm-carousel-item>
-					`,
-					).join('\n')}
-        </hlm-carousel-content>
-        <button hlm-carousel-previous></button>
-        <button hlm-carousel-next></button>
-      </hlm-carousel>
-    </div>
-    `,
-	}),
+	render: () => ({ template: example(slides('basis-1/2 pt-1', true), '-mt-1 h-[270px]', 'orientation="vertical"') }),
 };
-
 export const Plugins: Story = {
 	args: {
-		plugins: [Autoplay({ delay: 3000 })],
+		plugins: [
+			Autoplay({
+				delay: 3000,
+				stopOnFocusIn: true,
+				stopOnMouseEnter: true,
+				stopOnInteraction: true,
+				breakpoints: { '(prefers-reduced-motion: reduce)': { active: false } },
+			}),
+		],
 	},
-	render: ({ ...args }) => ({
+	render: (args) => ({
 		props: args,
-		template: `
-    <div class="flex items-center justify-center w-full p-4">
-      <hlm-carousel class="w-full max-w-xs" ${argsToTemplate(args)}>
-        <hlm-carousel-content>
-        ${Array.from(
-					{ length: 5 },
-					(_, i) => `
-        <hlm-carousel-item>
-          <div class="p-1">
-            <caps-card>
-              <caps-card-content class="flex items-center justify-center p-6 aspect-square">
-                <span class="text-4xl font-semibold">${i + 1}</span>
-              </caps-card-content>
-            </caps-card>
-          </div>
-        </hlm-carousel-item>
-        `,
-				).join('\n')}
-        </hlm-carousel-content>
-        <button hlm-carousel-previous></button>
-        <button hlm-carousel-next></button>
-      </hlm-carousel>
-    </div>
-    `,
+		template: example(
+			slides(),
+			'',
+			argsToTemplate(args),
+			'',
+			`<button capsButton capsCarouselAutoplay variant="outline" class="mb-3" [disabled]="carousel.reducedMotion()">{{ carousel.autoplayPlaying() ? 'Pause rotation' : 'Start rotation' }}</button>`,
+		),
+	}),
+};
+export const SlideCount: Story = {
+	render: () => ({
+		template: example(slides(), '', '', '<caps-carousel-slide-display class="mt-1 flex justify-end" />'),
+	}),
+};
+export const Rtl: Story = {
+	render: () => ({
+		template: `<div dir="rtl" data-lang="ar">${example().replace('Example slides', 'الموارد').replace('>Previous<', '>السابق<').replace('>Next<', '>التالي<')}</div>`,
 	}),
 };

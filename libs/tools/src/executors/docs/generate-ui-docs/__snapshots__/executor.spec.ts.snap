@@ -2800,6 +2800,106 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "carousel": {
+    "caps": {
+      "CapsCarousel": {
+        "exportAs": "capsCarousel",
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+          {
+            "name": "options",
+            "required": false,
+            "type": "Omit<EmblaOptionsType, 'axis'>",
+          },
+          {
+            "name": "plugins",
+            "required": false,
+            "type": "EmblaPluginType[]",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-carousel",
+      },
+      "CapsCarouselAutoplay": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsCarouselAutoplay]",
+      },
+      "CapsCarouselContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-carousel-content",
+      },
+      "CapsCarouselItem": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-carousel-item",
+      },
+      "CapsCarouselNext": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsCarouselNext]",
+      },
+      "CapsCarouselPrevious": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsCarouselPrevious]",
+      },
+      "CapsCarouselSlideDisplay": {
+        "inputs": [
+          {
+            "name": "slideClass",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "label",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-carousel-slide-display",
+      },
+    },
     "helm": {
       "HlmCarousel": {
         "inputs": [

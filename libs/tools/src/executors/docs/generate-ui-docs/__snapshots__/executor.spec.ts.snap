@@ -9020,6 +9020,310 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "legend[brnQuestionnaireTitle]",
       },
     },
+    "caps": {
+      "CapsQuestionnaire": {
+        "exportAs": "capsQuestionnaire",
+        "inputs": [
+          {
+            "name": "items",
+            "required": false,
+            "type": "readonly BrnQuestionnaireItemDefinition[] | undefined",
+          },
+          {
+            "name": "defaultItem",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "shortcuts",
+            "required": false,
+            "type": "BrnQuestionnaireShortcutMode | null",
+          },
+          {
+            "name": "noValidate",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [
+          {
+            "name": "item",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "outputs": [],
+        "selector": "form[capsQuestionnaire]",
+      },
+      "CapsQuestionnaireActions": {
+        "exportAs": "capsQuestionnaireActions",
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-actions",
+      },
+      "CapsQuestionnaireChoice": {
+        "exportAs": "capsQuestionnaireChoice",
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "defaultChecked",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "checked",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "checkedChange",
+            "type": "Event",
+          },
+        ],
+        "selector": "caps-questionnaire-choice",
+      },
+      "CapsQuestionnaireChoiceDescription": {
+        "exportAs": "capsQuestionnaireChoiceDescription",
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-choice-description",
+      },
+      "CapsQuestionnaireChoices": {
+        "exportAs": "capsQuestionnaireChoices",
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-choices",
+      },
+      "CapsQuestionnaireDescription": {
+        "exportAs": "capsQuestionnaireDescription",
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-description",
+      },
+      "CapsQuestionnaireError": {
+        "exportAs": "capsQuestionnaireError",
+        "inputs": [
+          {
+            "name": "message",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "requiredMessage",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "optionalMessage",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-error",
+      },
+      "CapsQuestionnaireInput": {
+        "exportAs": "capsQuestionnaireInput",
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "BrnQuestionnaireInputType",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "defaultValue",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsQuestionnaireInput]",
+      },
+      "CapsQuestionnaireItem": {
+        "exportAs": "capsQuestionnaireItem",
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "name",
+            "required": true,
+            "type": "string",
+          },
+          {
+            "name": "multiple",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "required",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "itemInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-keyshortcuts",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "statusChange",
+            "type": "BrnQuestionnaireItemStatus",
+          },
+        ],
+        "selector": "caps-questionnaire-item",
+      },
+      "CapsQuestionnaireNext": {
+        "exportAs": "capsQuestionnaireNext",
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsQuestionnaireNext]",
+      },
+      "CapsQuestionnairePrevious": {
+        "exportAs": "capsQuestionnairePrevious",
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsQuestionnairePrevious]",
+      },
+      "CapsQuestionnaireProgress": {
+        "exportAs": "capsQuestionnaireProgress",
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "valueText",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-progress",
+      },
+      "CapsQuestionnaireSkip": {
+        "exportAs": "capsQuestionnaireSkip",
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsQuestionnaireSkip]",
+      },
+      "CapsQuestionnaireSubmit": {
+        "exportAs": "capsQuestionnaireSubmit",
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsQuestionnaireSubmit]",
+      },
+      "CapsQuestionnaireTitle": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-title",
+      },
+    },
     "helm": {
       "HlmQuestionnaire": {
         "exportAs": "hlmQuestionnaire",

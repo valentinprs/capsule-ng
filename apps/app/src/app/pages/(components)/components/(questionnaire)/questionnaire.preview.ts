@@ -1,100 +1,81 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({
 	selector: 'spartan-questionnaire-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
-		<form
-			hlmQuestionnaire
-			class="mx-auto max-w-md"
-			[formRoot]="form"
-			[items]="items"
-			defaultItem="direction"
-			shortcuts="letters"
-		>
-			<div hlmQuestionnaireProgress></div>
+		<form capsQuestionnaire class="mx-auto max-w-md" [formRoot]="form" defaultItem="direction" shortcuts="letters">
+			<caps-questionnaire-progress></caps-questionnaire-progress>
 
-			<fieldset hlmQuestionnaireItem name="direction" required [formField]="form.direction">
-				<legend hlmQuestionnaireTitle>What should the agent build next?</legend>
-				<p hlmQuestionnaireDescription>Choose a direction or describe another task.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="tool-calls">
+			<caps-questionnaire-item name="direction" required [formField]="form.direction">
+				<caps-questionnaire-title>What should the agent build next?</caps-questionnaire-title>
+				<caps-questionnaire-description>Choose a direction or describe another task.</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="tool-calls">
 						<span class="font-medium">Tool call timeline</span>
-						<span hlmQuestionnaireChoiceDescription>Show what the agent ran and what came back.</span>
-					</label>
-					<label hlmQuestionnaireChoice value="approvals">
+						<caps-questionnaire-choice-description>
+							Show what the agent ran and what came back.
+						</caps-questionnaire-choice-description>
+					</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="approvals">
 						<span class="font-medium">Approval checkpoints</span>
-						<span hlmQuestionnaireChoiceDescription>Ask before sensitive or destructive actions.</span>
-					</label>
-					<label hlmQuestionnaireChoice value="handoffs">
+						<caps-questionnaire-choice-description>
+							Ask before sensitive or destructive actions.
+						</caps-questionnaire-choice-description>
+					</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="handoffs">
 						<span class="font-medium">Sub-agent handoffs</span>
-						<span hlmQuestionnaireChoiceDescription>Make delegated work and results easier to follow.</span>
-					</label>
-					<input hlmQuestionnaireInput aria-label="Another agent feature" placeholder="Describe another feature…" />
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+						<caps-questionnaire-choice-description>
+							Make delegated work and results easier to follow.
+						</caps-questionnaire-choice-description>
+					</caps-questionnaire-choice>
+					<input capsQuestionnaireInput aria-label="Another agent feature" placeholder="Describe another feature…" />
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<fieldset hlmQuestionnaireItem name="signals" multiple [formField]="form.signals">
-				<legend hlmQuestionnaireTitle>What should every progress update include?</legend>
-				<p hlmQuestionnaireDescription>Select all that apply, or skip this question.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="progress">Progress</label>
-					<label hlmQuestionnaireChoice value="decisions">Decisions</label>
-					<label hlmQuestionnaireChoice value="risks">Risks</label>
-					<label hlmQuestionnaireChoice value="next-step">Next step</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+			<caps-questionnaire-item name="signals" multiple [formField]="form.signals">
+				<caps-questionnaire-title>What should every progress update include?</caps-questionnaire-title>
+				<caps-questionnaire-description>Select all that apply, or skip this question.</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="progress">Progress</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="decisions">Decisions</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="risks">Risks</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="next-step">Next step</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<fieldset hlmQuestionnaireItem name="timing" required [formField]="form.timing">
-				<legend hlmQuestionnaireTitle>When should work begin?</legend>
-				<p hlmQuestionnaireDescription>Choose when the agent should begin the work.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="now">Start now</label>
-					<label hlmQuestionnaireChoice value="next-cycle">Next development cycle</label>
-					<label hlmQuestionnaireChoice value="backlog">Add it to the backlog</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+			<caps-questionnaire-item name="timing" required [formField]="form.timing">
+				<caps-questionnaire-title>When should work begin?</caps-questionnaire-title>
+				<caps-questionnaire-description>Choose when the agent should begin the work.</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="now">Start now</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="next-cycle">Next development cycle</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="backlog">Add it to the backlog</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<div hlmQuestionnaireActions>
-				<button hlmQuestionnairePrevious>Previous</button>
-				<button hlmQuestionnaireSkip>Skip</button>
-				<button hlmQuestionnaireNext>Next</button>
-				<button hlmQuestionnaireSubmit>Save plan</button>
-			</div>
+			<caps-questionnaire-actions>
+				<button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+				<button capsQuestionnaireSkip capsButton variant="outline">Skip</button>
+				<button capsQuestionnaireNext capsButton>Next</button>
+				<button capsQuestionnaireSubmit capsButton>Save plan</button>
+			</caps-questionnaire-actions>
 		</form>
 	`,
 })
 export class QuestionnairePreview {
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
-		{
-			name: 'direction',
-			required: true,
-			choices: [{ value: 'tool-calls' }, { value: 'approvals' }, { value: 'handoffs' }],
-		},
-		{
-			name: 'signals',
-			required: false,
-			choices: [{ value: 'progress' }, { value: 'decisions' }, { value: 'risks' }, { value: 'next-step' }],
-		},
-		{
-			name: 'timing',
-			required: true,
-			choices: [{ value: 'now' }, { value: 'next-cycle' }, { value: 'backlog' }],
-		},
-	];
-
 	protected readonly _model = signal({
 		direction: '',
 		signals: [] as string[],
@@ -121,30 +102,31 @@ export class QuestionnairePreview {
 }
 
 export const defaultImports = `
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 `;
 
 export const defaultSkeleton = `
-<form hlmQuestionnaire [formRoot]="form" class="mx-auto max-w-md" [items]="items" defaultItem="direction" shortcuts="letters">
-  <div hlmQuestionnaireProgress></div>
-  <fieldset hlmQuestionnaireItem name="direction" required [formField]="form.direction">
-    <legend hlmQuestionnaireTitle>What should the agent build next?</legend>
-    <p hlmQuestionnaireDescription>Choose a direction or describe another task.</p>
-    <div hlmQuestionnaireChoices>
-      <label hlmQuestionnaireChoice value="tool-calls">
+<form capsQuestionnaire [formRoot]="form" class="mx-auto max-w-md" defaultItem="direction" shortcuts="letters">
+  <caps-questionnaire-progress></caps-questionnaire-progress>
+  <caps-questionnaire-item name="direction" required [formField]="form.direction">
+    <caps-questionnaire-title>What should the agent build next?</caps-questionnaire-title>
+    <caps-questionnaire-description>Choose a direction or describe another task.</caps-questionnaire-description>
+    <caps-questionnaire-choices>
+      <caps-questionnaire-choice value="tool-calls">
         <span class="font-medium">Tool call timeline</span>
-        <span hlmQuestionnaireChoiceDescription>Show what the agent ran and what came back.</span>
-      </label>
-      <input hlmQuestionnaireInput aria-label="Another agent feature" placeholder="Describe another feature…" />
-    </div>
-    <p hlmQuestionnaireError></p>
-  </fieldset>
-  <div hlmQuestionnaireActions>
-    <button hlmQuestionnairePrevious>Previous</button>
-    <button hlmQuestionnaireSkip>Skip</button>
-    <button hlmQuestionnaireNext>Next</button>
-    <button hlmQuestionnaireSubmit>Save plan</button>
-  </div>
+        <caps-questionnaire-choice-description>Show what the agent ran and what came back.</caps-questionnaire-choice-description>
+      </caps-questionnaire-choice>
+      <input capsQuestionnaireInput aria-label="Another agent feature" placeholder="Describe another feature…" />
+    </caps-questionnaire-choices>
+    <caps-questionnaire-error></caps-questionnaire-error>
+  </caps-questionnaire-item>
+  <caps-questionnaire-actions>
+    <button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+    <button capsQuestionnaireSkip capsButton variant="outline">Skip</button>
+    <button capsQuestionnaireNext capsButton>Next</button>
+    <button capsQuestionnaireSubmit capsButton>Save plan</button>
+  </caps-questionnaire-actions>
 </form>
 `;

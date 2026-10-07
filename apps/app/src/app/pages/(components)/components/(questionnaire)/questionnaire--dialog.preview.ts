@@ -1,74 +1,72 @@
 import { ChangeDetectionStrategy, Component, signal, viewChild } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { BrnDialog } from '@spartan-ng/brain/dialog';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDialog, CapsDialogImports } from '@capsule-ng/caps/dialog';
+import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({
 	selector: 'spartan-questionnaire-dialog-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports, HlmDialogImports, HlmButtonImports],
+	imports: [FormRoot, FormField, CapsQuestionnaireImports, CapsDialogImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
-		<hlm-dialog>
-			<button hlmDialogTrigger hlmBtn variant="outline">Open clarification</button>
-			<hlm-dialog-content *hlmDialogPortal="let ctx">
-				<form hlmQuestionnaire [formRoot]="form" [items]="items" defaultItem="scope">
-					<fieldset hlmQuestionnaireItem name="scope" required [formField]="form.scope">
-						<hlm-dialog-header>
-							<div hlmQuestionnaireProgress></div>
-							<legend hlmQuestionnaireTitle hlmDialogTitle>Which files are in scope?</legend>
-							<p hlmQuestionnaireDescription hlmDialogDescription>
-								Choose how broadly the agent can update the workspace.
-							</p>
-						</hlm-dialog-header>
-						<div hlmQuestionnaireChoices>
-							<label hlmQuestionnaireChoice value="component">Component only</label>
-							<label hlmQuestionnaireChoice value="feature">Complete feature directory</label>
-							<label hlmQuestionnaireChoice value="workspace">Any related workspace file</label>
-						</div>
-						<p hlmQuestionnaireError></p>
-					</fieldset>
+		<caps-dialog aria-label="Clarification" aria-describedby="clarification-description">
+			<button capsDialogTrigger capsButton variant="outline">Open clarification</button>
+			<ng-template capsDialogContent>
+				<p id="clarification-description" class="sr-only">Answer two questions to clarify scope and verification.</p>
+				<form capsQuestionnaire [formRoot]="form" [items]="items" defaultItem="scope">
+					<caps-questionnaire-item name="scope" required [formField]="form.scope">
+						<caps-questionnaire-progress></caps-questionnaire-progress>
+						<caps-questionnaire-title>Which files are in scope?</caps-questionnaire-title>
+						<caps-questionnaire-description>
+							Choose how broadly the agent can update the workspace.
+						</caps-questionnaire-description>
 
-					<fieldset hlmQuestionnaireItem name="tests" required [formField]="form.tests">
-						<hlm-dialog-header>
-							<div hlmQuestionnaireProgress></div>
-							<legend hlmQuestionnaireTitle hlmDialogTitle>How much verification is needed?</legend>
-							<p hlmQuestionnaireDescription hlmDialogDescription>
-								Choose the checks the agent should run before handoff.
-							</p>
-						</hlm-dialog-header>
-						<div hlmQuestionnaireChoices>
-							<label hlmQuestionnaireChoice value="targeted">Targeted tests</label>
-							<label hlmQuestionnaireChoice value="package">Package tests</label>
-							<label hlmQuestionnaireChoice value="full">Full workspace verification</label>
-						</div>
-						<p hlmQuestionnaireError></p>
-					</fieldset>
+						<caps-questionnaire-choices>
+							<caps-questionnaire-choice value="component">Component only</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="feature">Complete feature directory</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="workspace">Any related workspace file</caps-questionnaire-choice>
+						</caps-questionnaire-choices>
+						<caps-questionnaire-error></caps-questionnaire-error>
+					</caps-questionnaire-item>
 
-					<hlm-dialog-footer>
-						<button hlmBtn type="button" variant="outline" hlmDialogClose>Cancel</button>
-						<div hlmQuestionnaireActions>
-							<button hlmQuestionnairePrevious>Previous</button>
-							<button hlmQuestionnaireNext>Next</button>
-							<button hlmQuestionnaireSubmit>Send answer</button>
-						</div>
-					</hlm-dialog-footer>
+					<caps-questionnaire-item name="tests" required [formField]="form.tests">
+						<caps-questionnaire-progress></caps-questionnaire-progress>
+						<caps-questionnaire-title>How much verification is needed?</caps-questionnaire-title>
+						<caps-questionnaire-description>
+							Choose the checks the agent should run before handoff.
+						</caps-questionnaire-description>
+
+						<caps-questionnaire-choices>
+							<caps-questionnaire-choice value="targeted">Targeted tests</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="package">Package tests</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="full">Full workspace verification</caps-questionnaire-choice>
+						</caps-questionnaire-choices>
+						<caps-questionnaire-error></caps-questionnaire-error>
+					</caps-questionnaire-item>
+
+					<caps-dialog-footer>
+						<button capsButton type="button" variant="outline" capsDialogClose>Cancel</button>
+						<caps-questionnaire-actions>
+							<button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+							<button capsQuestionnaireNext capsButton>Next</button>
+							<button capsQuestionnaireSubmit capsButton>Send answer</button>
+						</caps-questionnaire-actions>
+					</caps-dialog-footer>
 				</form>
-			</hlm-dialog-content>
-		</hlm-dialog>
+			</ng-template>
+		</caps-dialog>
 	`,
 })
 export class QuestionnaireDialogPreview {
-	private readonly _dialog = viewChild(BrnDialog);
+	private readonly _dialog = viewChild(CapsDialog);
 
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
+	public readonly items: readonly CapsQuestionnaireItemDefinition[] = [
 		{ name: 'scope', required: true },
 		{ name: 'tests', required: true },
 	];

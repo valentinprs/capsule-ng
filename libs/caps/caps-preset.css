@@ -372,3 +372,72 @@
 .caps-tabs-content[hidden] {
 	display: none !important;
 }
+
+/* MARK: Questionnaire */
+.caps-questionnaire {
+	@apply gap-4;
+}
+
+.caps-questionnaire-progress {
+	@apply text-xs;
+}
+
+.caps-questionnaire-item {
+	@apply focus-visible:outline-ring gap-4;
+}
+
+.caps-questionnaire-title {
+	@apply text-base leading-snug font-medium [&:not(:has(~[data-slot=questionnaire-description]))]:mb-4;
+}
+
+.caps-questionnaire-description {
+	@apply text-sm;
+}
+
+.caps-questionnaire-choices {
+	@apply gap-2;
+}
+
+.caps-questionnaire-choice {
+	@apply border-input hover:bg-muted/50 has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-ring/50 data-invalid:border-destructive dark:bg-input/20 data-checked:border-primary/40 data-checked:bg-muted dark:data-checked:bg-muted gap-2.5 rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-3 py-2.5 text-sm transition-colors has-[>input:focus-visible]:ring-[length:var(--caps-focus-ring-width)] data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-(--caps-opacity-disabled);
+}
+
+.caps-questionnaire-choice-indicator {
+	@apply border-input group-data-checked/questionnaire-choice:border-primary group-data-checked/questionnaire-choice:bg-primary group-data-checked/questionnaire-choice:text-primary-foreground dark:bg-input/30 dark:group-data-checked/questionnaire-choice:bg-primary pointer-events-none relative flex size-4 shrink-0 translate-y-[--spacing(0.45)] items-center justify-center rounded-[var(--caps-size-4px)] border-[length:var(--caps-border-width)] group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5 group-data-[type=radio]/questionnaire-choice:rounded-full;
+}
+
+.caps-questionnaire-choice-indicator-dot {
+	@apply bg-primary-foreground size-2 rounded-full;
+}
+
+.caps-questionnaire-choice-indicator-check {
+	@apply text-[length:--spacing(3.5)];
+}
+
+.caps-questionnaire-choice-content {
+	@apply gap-0.5;
+}
+
+.caps-questionnaire-choice-description {
+	@apply text-muted-foreground;
+}
+
+.caps-questionnaire-shortcut {
+	@apply border-input bg-background text-muted-foreground pointer-events-none ms-auto inline-flex size-5 shrink-0 translate-y-[--spacing(0.45)] items-center justify-center rounded-md border font-mono text-[length:var(--caps-size-0-625rem)] leading-none font-medium group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5;
+}
+
+.caps-questionnaire-input {
+	@apply dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] aria-invalid:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+}
+
+.caps-questionnaire-error {
+	@apply mt-2 text-sm;
+}
+
+.caps-questionnaire-actions {
+	@apply gap-2 sm:min-h-8;
+}
+
+caps-questionnaire-item[hidden] {
+	display: none !important;
+}

@@ -1,12 +1,12 @@
 import type {
-	BrnQuestionnaireItemDefinition,
-	BrnQuestionnaireItemStatus,
-	BrnQuestionnaireShortcutMode,
-} from '@spartan-ng/brain/questionnaire';
+	CapsQuestionnaireItemDefinition,
+	CapsQuestionnaireItemStatus,
+	CapsQuestionnaireShortcutMode,
+} from '@capsule-ng/caps/questionnaire';
 
-export type QuestionnaireShortcutMode = BrnQuestionnaireShortcutMode | null;
-export type QuestionnaireItemStatus = BrnQuestionnaireItemStatus;
-export type QuestionnaireItems = readonly BrnQuestionnaireItemDefinition[];
+export type QuestionnaireShortcutMode = CapsQuestionnaireShortcutMode | null;
+export type QuestionnaireItemStatus = CapsQuestionnaireItemStatus;
+export type QuestionnaireItems = readonly CapsQuestionnaireItemDefinition[];
 
 export function answerLabel(value: string | string[], emptyLabel = 'None'): string {
 	if (Array.isArray(value)) {

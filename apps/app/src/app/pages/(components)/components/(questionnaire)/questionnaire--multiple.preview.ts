@@ -1,39 +1,42 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({
 	selector: 'spartan-questionnaire-multiple-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
-		<form hlmQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" shortcuts="letters">
-			<fieldset hlmQuestionnaireItem name="context" multiple required [formField]="form.context">
-				<legend hlmQuestionnaireTitle>What context should the agent inspect?</legend>
-				<p hlmQuestionnaireDescription>Select every source that may affect the implementation.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="source">Relevant source files</label>
-					<label hlmQuestionnaireChoice value="tests">Existing tests</label>
-					<label hlmQuestionnaireChoice value="docs">Architecture documentation</label>
-					<label hlmQuestionnaireChoice value="history">Recent commit history</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+		<form capsQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" shortcuts="letters">
+			<caps-questionnaire-item name="context" multiple required [formField]="form.context">
+				<caps-questionnaire-title>What context should the agent inspect?</caps-questionnaire-title>
+				<caps-questionnaire-description>
+					Select every source that may affect the implementation.
+				</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="source">Relevant source files</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="tests">Existing tests</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="docs">Architecture documentation</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="history">Recent commit history</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<div hlmQuestionnaireActions>
-				<button hlmQuestionnaireSubmit>Share context</button>
-			</div>
+			<caps-questionnaire-actions>
+				<button capsQuestionnaireSubmit capsButton>Share context</button>
+			</caps-questionnaire-actions>
 		</form>
 	`,
 })
 export class QuestionnaireMultiplePreview {
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
+	public readonly items: readonly CapsQuestionnaireItemDefinition[] = [
 		{
 			name: 'context',
 			required: true,

@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel } from './questionnaire.shared';
 
 const itemLabels: Record<string, string> = {
@@ -13,7 +14,7 @@ const itemLabels: Record<string, string> = {
 
 @Component({
 	selector: 'spartan-questionnaire-controlled-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex w-full justify-center py-6',
@@ -24,51 +25,53 @@ const itemLabels: Record<string, string> = {
 				Current checkpoint: {{ currentLabel() }}
 			</p>
 
-			<form hlmQuestionnaire class="mt-auto" [formRoot]="form" [items]="items" [(item)]="item">
-				<div hlmQuestionnaireProgress></div>
+			<form capsQuestionnaire class="mt-auto" [formRoot]="form" [items]="items" [(item)]="item">
+				<caps-questionnaire-progress></caps-questionnaire-progress>
 
-				<fieldset hlmQuestionnaireItem name="scope" required [formField]="form.scope">
-					<legend hlmQuestionnaireTitle>What may the agent change?</legend>
-					<p hlmQuestionnaireDescription>The host stores the active checkpoint while Questionnaire navigates.</p>
-					<div hlmQuestionnaireChoices>
-						<label hlmQuestionnaireChoice value="component">Only the target component</label>
-						<label hlmQuestionnaireChoice value="tests">Component and related tests</label>
-						<label hlmQuestionnaireChoice value="feature">The complete feature area</label>
-					</div>
-					<p hlmQuestionnaireError></p>
-				</fieldset>
+				<caps-questionnaire-item name="scope" required [formField]="form.scope">
+					<caps-questionnaire-title>What may the agent change?</caps-questionnaire-title>
+					<caps-questionnaire-description>
+						The host stores the active checkpoint while Questionnaire navigates.
+					</caps-questionnaire-description>
+					<caps-questionnaire-choices>
+						<caps-questionnaire-choice value="component">Only the target component</caps-questionnaire-choice>
+						<caps-questionnaire-choice value="tests">Component and related tests</caps-questionnaire-choice>
+						<caps-questionnaire-choice value="feature">The complete feature area</caps-questionnaire-choice>
+					</caps-questionnaire-choices>
+					<caps-questionnaire-error></caps-questionnaire-error>
+				</caps-questionnaire-item>
 
-				<fieldset hlmQuestionnaireItem name="checks" required [formField]="form.checks">
-					<legend hlmQuestionnaireTitle>Which verification level should it use?</legend>
-					<div hlmQuestionnaireChoices>
-						<label hlmQuestionnaireChoice value="targeted">Targeted tests</label>
-						<label hlmQuestionnaireChoice value="package">Package tests and typecheck</label>
-						<label hlmQuestionnaireChoice value="full">Full workspace verification</label>
-					</div>
-					<p hlmQuestionnaireError></p>
-				</fieldset>
+				<caps-questionnaire-item name="checks" required [formField]="form.checks">
+					<caps-questionnaire-title>Which verification level should it use?</caps-questionnaire-title>
+					<caps-questionnaire-choices>
+						<caps-questionnaire-choice value="targeted">Targeted tests</caps-questionnaire-choice>
+						<caps-questionnaire-choice value="package">Package tests and typecheck</caps-questionnaire-choice>
+						<caps-questionnaire-choice value="full">Full workspace verification</caps-questionnaire-choice>
+					</caps-questionnaire-choices>
+					<caps-questionnaire-error></caps-questionnaire-error>
+				</caps-questionnaire-item>
 
-				<fieldset hlmQuestionnaireItem name="output" required [formField]="form.output">
-					<legend hlmQuestionnaireTitle>What should the agent return when finished?</legend>
-					<div hlmQuestionnaireChoices>
-						<label hlmQuestionnaireChoice value="summary">Concise summary</label>
-						<label hlmQuestionnaireChoice value="diff">Summary with changed files</label>
-						<label hlmQuestionnaireChoice value="handoff">Detailed implementation handoff</label>
-					</div>
-					<p hlmQuestionnaireError></p>
-				</fieldset>
+				<caps-questionnaire-item name="output" required [formField]="form.output">
+					<caps-questionnaire-title>What should the agent return when finished?</caps-questionnaire-title>
+					<caps-questionnaire-choices>
+						<caps-questionnaire-choice value="summary">Concise summary</caps-questionnaire-choice>
+						<caps-questionnaire-choice value="diff">Summary with changed files</caps-questionnaire-choice>
+						<caps-questionnaire-choice value="handoff">Detailed implementation handoff</caps-questionnaire-choice>
+					</caps-questionnaire-choices>
+					<caps-questionnaire-error></caps-questionnaire-error>
+				</caps-questionnaire-item>
 
-				<div hlmQuestionnaireActions>
-					<button hlmQuestionnairePrevious>Previous</button>
-					<button hlmQuestionnaireNext>Next</button>
-					<button hlmQuestionnaireSubmit>Save workflow</button>
-				</div>
+				<caps-questionnaire-actions>
+					<button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+					<button capsQuestionnaireNext capsButton>Next</button>
+					<button capsQuestionnaireSubmit capsButton>Save workflow</button>
+				</caps-questionnaire-actions>
 			</form>
 		</div>
 	`,
 })
 export class QuestionnaireControlledPreview {
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
+	public readonly items: readonly CapsQuestionnaireItemDefinition[] = [
 		{ name: 'scope', required: true },
 		{ name: 'checks', required: true },
 		{ name: 'output', required: true },

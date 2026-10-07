@@ -1,43 +1,46 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({
 	selector: 'spartan-questionnaire-freeform-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
-		<form hlmQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" shortcuts="letters">
-			<fieldset hlmQuestionnaireItem name="approach" required [formField]="form.approach">
-				<legend hlmQuestionnaireTitle>How should the agent approach this refactor?</legend>
-				<p hlmQuestionnaireDescription>Choose a strategy or write a more specific instruction.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="incremental">Make the smallest safe change</label>
-					<label hlmQuestionnaireChoice value="module">Refactor one module at a time</label>
-					<label hlmQuestionnaireChoice value="rewrite">Replace the implementation completely</label>
+		<form capsQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" shortcuts="letters">
+			<caps-questionnaire-item name="approach" required [formField]="form.approach">
+				<caps-questionnaire-title>How should the agent approach this refactor?</caps-questionnaire-title>
+				<caps-questionnaire-description>
+					Choose a strategy or write a more specific instruction.
+				</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="incremental">Make the smallest safe change</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="module">Refactor one module at a time</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="rewrite">Replace the implementation completely</caps-questionnaire-choice>
 					<input
-						hlmQuestionnaireInput
+						capsQuestionnaireInput
 						aria-label="Another refactoring approach"
 						placeholder="Describe another approach…"
 					/>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<div hlmQuestionnaireActions>
-				<button hlmQuestionnaireSubmit>Use this approach</button>
-			</div>
+			<caps-questionnaire-actions>
+				<button capsQuestionnaireSubmit capsButton>Use this approach</button>
+			</caps-questionnaire-actions>
 		</form>
 	`,
 })
 export class QuestionnaireFreeformPreview {
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
+	public readonly items: readonly CapsQuestionnaireItemDefinition[] = [
 		{
 			name: 'approach',
 			required: true,

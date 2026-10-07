@@ -1,61 +1,63 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({
 	selector: 'spartan-questionnaire-conditional-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
-		<form hlmQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items()" defaultItem="runtime">
-			<div hlmQuestionnaireProgress></div>
+		<form capsQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items()" defaultItem="runtime">
+			<caps-questionnaire-progress></caps-questionnaire-progress>
 
-			<fieldset hlmQuestionnaireItem name="runtime" required [formField]="form.runtime">
-				<legend hlmQuestionnaireTitle>Where should the agent run?</legend>
-				<p hlmQuestionnaireDescription>Cloud runs add an environment question to this flow.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="local">Local workspace</label>
-					<label hlmQuestionnaireChoice value="cloud">Cloud workspace</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+			<caps-questionnaire-item name="runtime" required [formField]="form.runtime">
+				<caps-questionnaire-title>Where should the agent run?</caps-questionnaire-title>
+				<caps-questionnaire-description>
+					Cloud runs add an environment question to this flow.
+				</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="local">Local workspace</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="cloud">Cloud workspace</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<fieldset
-				hlmQuestionnaireItem
+			<caps-questionnaire-item
 				name="environment"
 				required
 				[formField]="form.environment"
 				[disabled]="_model().runtime !== 'cloud'"
 			>
-				<legend hlmQuestionnaireTitle>Which cloud environment should it use?</legend>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="preview">Preview</label>
-					<label hlmQuestionnaireChoice value="staging">Staging</label>
-					<label hlmQuestionnaireChoice value="isolated">Isolated sandbox</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+				<caps-questionnaire-title>Which cloud environment should it use?</caps-questionnaire-title>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="preview">Preview</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="staging">Staging</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="isolated">Isolated sandbox</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<fieldset hlmQuestionnaireItem name="approval" required [formField]="form.approval">
-				<legend hlmQuestionnaireTitle>When should the agent request approval?</legend>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="writes">Before writing files</label>
-					<label hlmQuestionnaireChoice value="commands">Before running commands</label>
-					<label hlmQuestionnaireChoice value="sensitive">Only for sensitive actions</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+			<caps-questionnaire-item name="approval" required [formField]="form.approval">
+				<caps-questionnaire-title>When should the agent request approval?</caps-questionnaire-title>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="writes">Before writing files</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="commands">Before running commands</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="sensitive">Only for sensitive actions</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<div hlmQuestionnaireActions>
-				<button hlmQuestionnairePrevious>Previous</button>
-				<button hlmQuestionnaireNext>Next</button>
-				<button hlmQuestionnaireSubmit>Save execution plan</button>
-			</div>
+			<caps-questionnaire-actions>
+				<button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+				<button capsQuestionnaireNext capsButton>Next</button>
+				<button capsQuestionnaireSubmit capsButton>Save execution plan</button>
+			</caps-questionnaire-actions>
 		</form>
 	`,
 })

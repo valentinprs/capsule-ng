@@ -1,77 +1,60 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { form, FormField, FormRoot, required, validate } from '@angular/forms/signals';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { type BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
+import { CapsQuestionnaireImports, type CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 
-const items: readonly BrnQuestionnaireItemDefinition[] = [
+const items: readonly CapsQuestionnaireItemDefinition[] = [
 	{ name: 'detail', required: true },
 	{ name: 'audience', required: true },
 ];
 
 @Component({
 	selector: 'spartan-questionnaire-validation-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports, CapsCardImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
-		<form hlmQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" [(item)]="item">
+		<form capsQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" [(item)]="item">
 			<caps-card>
-				<fieldset
-					hlmQuestionnaireItem
-					name="detail"
-					required
-					[formField]="form.detail"
-					[itemInvalid]="_detailInvalid()"
-				>
-					<caps-card-header>
-						<legend hlmQuestionnaireTitle>How much detail should the answer include?</legend>
-						<p hlmQuestionnaireDescription>Choose the response depth.</p>
-						<caps-card-action>
-							<div hlmQuestionnaireProgress class="min-w-0" valueText="%current / %total"></div>
-						</caps-card-action>
-					</caps-card-header>
-					<caps-card-content>
-						<div hlmQuestionnaireChoices>
-							<label hlmQuestionnaireChoice value="summary">Concise summary</label>
-							<label hlmQuestionnaireChoice value="complete">Complete answer</label>
-						</div>
-						<p hlmQuestionnaireError [message]="_detailError()"></p>
-					</caps-card-content>
-				</fieldset>
+				<caps-card-header><caps-questionnaire-progress /></caps-card-header>
+				<caps-card-content>
+					<caps-questionnaire-item name="detail" required [formField]="form.detail" [itemInvalid]="_detailInvalid()">
+						<caps-questionnaire-title>How much detail should the answer include?</caps-questionnaire-title>
+						<caps-questionnaire-description>Choose the response depth.</caps-questionnaire-description>
 
-				<fieldset
-					hlmQuestionnaireItem
-					name="audience"
-					required
-					[formField]="form.audience"
-					[itemInvalid]="_audienceInvalid()"
-				>
-					<caps-card-header>
-						<legend hlmQuestionnaireTitle>Who will read the answer?</legend>
-						<p hlmQuestionnaireDescription>Public answers require complete context.</p>
-						<caps-card-action>
-							<div hlmQuestionnaireProgress class="min-w-0" valueText="%current / %total"></div>
-						</caps-card-action>
-					</caps-card-header>
-					<caps-card-content>
-						<div hlmQuestionnaireChoices>
-							<label hlmQuestionnaireChoice value="team">My team</label>
-							<label hlmQuestionnaireChoice value="public">Public audience</label>
-						</div>
-						<p hlmQuestionnaireError [message]="_audienceError()"></p>
-					</caps-card-content>
-				</fieldset>
+						<caps-questionnaire-choices>
+							<caps-questionnaire-choice value="summary">Concise summary</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="complete">Complete answer</caps-questionnaire-choice>
+						</caps-questionnaire-choices>
+						<caps-questionnaire-error [message]="_detailError()"></caps-questionnaire-error>
+					</caps-questionnaire-item>
 
+					<caps-questionnaire-item
+						name="audience"
+						required
+						[formField]="form.audience"
+						[itemInvalid]="_audienceInvalid()"
+					>
+						<caps-questionnaire-title>Who will read the answer?</caps-questionnaire-title>
+						<caps-questionnaire-description>Public answers require complete context.</caps-questionnaire-description>
+
+						<caps-questionnaire-choices>
+							<caps-questionnaire-choice value="team">My team</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="public">Public audience</caps-questionnaire-choice>
+						</caps-questionnaire-choices>
+						<caps-questionnaire-error [message]="_audienceError()"></caps-questionnaire-error>
+					</caps-questionnaire-item>
+				</caps-card-content>
 				<caps-card-footer>
-					<div hlmQuestionnaireActions>
-						<button hlmQuestionnairePrevious>Previous</button>
-						<button hlmQuestionnaireNext>Next</button>
-						<button hlmQuestionnaireSubmit>Validate answers</button>
-					</div>
+					<caps-questionnaire-actions>
+						<button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+						<button capsQuestionnaireNext capsButton>Next</button>
+						<button capsQuestionnaireSubmit capsButton>Validate answers</button>
+					</caps-questionnaire-actions>
 				</caps-card-footer>
 			</caps-card>
 		</form>

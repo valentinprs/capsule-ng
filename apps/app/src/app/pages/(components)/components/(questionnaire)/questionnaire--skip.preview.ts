@@ -1,74 +1,80 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel, type QuestionnaireItemStatus } from './questionnaire.shared';
 
 @Component({
 	selector: 'spartan-questionnaire-skip-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
-		<form hlmQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" defaultItem="task">
-			<div hlmQuestionnaireProgress></div>
+		<form capsQuestionnaire class="mx-auto max-w-md" [formRoot]="form" [items]="items" defaultItem="task">
+			<caps-questionnaire-progress></caps-questionnaire-progress>
 
-			<fieldset hlmQuestionnaireItem name="task" required [formField]="form.task">
-				<legend hlmQuestionnaireTitle>What kind of change is this?</legend>
-				<p hlmQuestionnaireDescription>Choose the category that best describes the work.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="feature">New feature</label>
-					<label hlmQuestionnaireChoice value="fix">Bug fix</label>
-					<label hlmQuestionnaireChoice value="refactor">Refactor</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+			<caps-questionnaire-item name="task" required [formField]="form.task">
+				<caps-questionnaire-title>What kind of change is this?</caps-questionnaire-title>
+				<caps-questionnaire-description>
+					Choose the category that best describes the work.
+				</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="feature">New feature</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="fix">Bug fix</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="refactor">Refactor</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<fieldset
-				hlmQuestionnaireItem
+			<caps-questionnaire-item
 				name="constraints"
 				[formField]="form.constraints"
 				(statusChange)="onConstraintStatus($event)"
 			>
-				<legend hlmQuestionnaireTitle>Are there any implementation constraints?</legend>
-				<p hlmQuestionnaireDescription>Answer if needed, or intentionally skip this question.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="no-dependencies">Do not add dependencies</label>
-					<label hlmQuestionnaireChoice value="no-migrations">Do not change the database</label>
-					<label hlmQuestionnaireChoice value="preserve-api">Preserve the public API</label>
+				<caps-questionnaire-title>Are there any implementation constraints?</caps-questionnaire-title>
+				<caps-questionnaire-description>
+					Answer if needed, or intentionally skip this question.
+				</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="no-dependencies">Do not add dependencies</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="no-migrations">Do not change the database</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="preserve-api">Preserve the public API</caps-questionnaire-choice>
 					<input
-						hlmQuestionnaireInput
+						capsQuestionnaireInput
 						aria-label="Another implementation constraint"
 						placeholder="Describe another constraint…"
 					/>
-				</div>
-			</fieldset>
+				</caps-questionnaire-choices>
+			</caps-questionnaire-item>
 
-			<fieldset hlmQuestionnaireItem name="review" required [formField]="form.review">
-				<legend hlmQuestionnaireTitle>How should the work be reviewed?</legend>
-				<p hlmQuestionnaireDescription>Choose the checks the agent should complete before handoff.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="tests">Run the test suite</label>
-					<label hlmQuestionnaireChoice value="diff">Review the final diff</label>
-					<label hlmQuestionnaireChoice value="both">Tests and diff review</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+			<caps-questionnaire-item name="review" required [formField]="form.review">
+				<caps-questionnaire-title>How should the work be reviewed?</caps-questionnaire-title>
+				<caps-questionnaire-description>
+					Choose the checks the agent should complete before handoff.
+				</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="tests">Run the test suite</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="diff">Review the final diff</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="both">Tests and diff review</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<div hlmQuestionnaireActions>
-				<button hlmQuestionnairePrevious>Previous</button>
-				<button hlmQuestionnaireSkip>Skip</button>
-				<button hlmQuestionnaireNext>Next</button>
-				<button hlmQuestionnaireSubmit>Submit brief</button>
-			</div>
+			<caps-questionnaire-actions>
+				<button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+				<button capsQuestionnaireSkip capsButton variant="outline">Skip</button>
+				<button capsQuestionnaireNext capsButton>Next</button>
+				<button capsQuestionnaireSubmit capsButton>Submit brief</button>
+			</caps-questionnaire-actions>
 		</form>
 	`,
 })
 export class QuestionnaireSkipPreview {
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
+	public readonly items: readonly CapsQuestionnaireItemDefinition[] = [
 		{ name: 'task', required: true },
 		{ name: 'constraints' },
 		{ name: 'review', required: true },

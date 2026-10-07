@@ -1,72 +1,78 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({
 	selector: 'spartan-questionnaire-resume-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports, HlmButtonImports],
+	imports: [FormRoot, FormField, CapsQuestionnaireImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
 		<form
-			hlmQuestionnaire
+			capsQuestionnaire
 			class="mx-auto max-w-md"
 			[formRoot]="form"
 			[items]="items"
 			defaultItem="verification"
 			(reset)="onReset()"
 		>
-			<div hlmQuestionnaireProgress></div>
+			<caps-questionnaire-progress></caps-questionnaire-progress>
 
-			<fieldset hlmQuestionnaireItem name="change" required [formField]="form.change">
-				<legend hlmQuestionnaireTitle>What kind of migration is this?</legend>
-				<p hlmQuestionnaireDescription>This answer was saved during the previous session.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="incremental" defaultChecked>Incremental migration</label>
-					<label hlmQuestionnaireChoice value="cutover">Single cutover</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+			<caps-questionnaire-item name="change" required [formField]="form.change">
+				<caps-questionnaire-title>What kind of migration is this?</caps-questionnaire-title>
+				<caps-questionnaire-description>
+					This answer was saved during the previous session.
+				</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="incremental" defaultChecked>
+						Incremental migration
+					</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="cutover">Single cutover</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<fieldset hlmQuestionnaireItem name="verification" multiple required [formField]="form.verification">
-				<legend hlmQuestionnaireTitle>How should the migration be verified?</legend>
-				<p hlmQuestionnaireDescription>These checks were selected during the previous session.</p>
-				<div hlmQuestionnaireChoices>
-					<label hlmQuestionnaireChoice value="tests" defaultChecked>Run migration tests</label>
-					<label hlmQuestionnaireChoice value="typecheck" defaultChecked>Run the typecheck</label>
-					<label hlmQuestionnaireChoice value="manual">Perform a manual smoke test</label>
-				</div>
-				<p hlmQuestionnaireError></p>
-			</fieldset>
+			<caps-questionnaire-item name="verification" multiple required [formField]="form.verification">
+				<caps-questionnaire-title>How should the migration be verified?</caps-questionnaire-title>
+				<caps-questionnaire-description>
+					These checks were selected during the previous session.
+				</caps-questionnaire-description>
+				<caps-questionnaire-choices>
+					<caps-questionnaire-choice value="tests" defaultChecked>Run migration tests</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="typecheck" defaultChecked>Run the typecheck</caps-questionnaire-choice>
+					<caps-questionnaire-choice value="manual">Perform a manual smoke test</caps-questionnaire-choice>
+				</caps-questionnaire-choices>
+				<caps-questionnaire-error></caps-questionnaire-error>
+			</caps-questionnaire-item>
 
-			<fieldset hlmQuestionnaireItem name="notes" [formField]="form.notes">
-				<legend hlmQuestionnaireTitle>Anything else the agent should remember?</legend>
-				<p hlmQuestionnaireDescription>This note was saved with the draft.</p>
+			<caps-questionnaire-item name="notes" [formField]="form.notes">
+				<caps-questionnaire-title>Anything else the agent should remember?</caps-questionnaire-title>
+				<caps-questionnaire-description>This note was saved with the draft.</caps-questionnaire-description>
 				<input
-					hlmQuestionnaireInput
+					capsQuestionnaireInput
 					aria-label="Saved migration note"
 					[defaultValue]="noteDefault"
 					[attr.defaultValue]="noteDefault"
 				/>
-			</fieldset>
+			</caps-questionnaire-item>
 
-			<div hlmQuestionnaireActions>
-				<button hlmBtn type="reset" variant="outline">Reset changes</button>
-				<button hlmQuestionnairePrevious>Previous</button>
-				<button hlmQuestionnaireNext>Next</button>
-				<button hlmQuestionnaireSubmit>Update draft</button>
-			</div>
+			<caps-questionnaire-actions>
+				<button capsButton type="reset" variant="outline">Reset changes</button>
+				<button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+				<button capsQuestionnaireNext capsButton>Next</button>
+				<button capsQuestionnaireSubmit capsButton>Update draft</button>
+			</caps-questionnaire-actions>
 		</form>
 	`,
 })
 export class QuestionnaireResumePreview {
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
+	public readonly items: readonly CapsQuestionnaireItemDefinition[] = [
 		{ name: 'change', required: true },
 		{ name: 'verification', required: true },
 		{ name: 'notes' },

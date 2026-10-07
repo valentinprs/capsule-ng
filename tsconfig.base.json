@@ -181,7 +181,8 @@
 			"@capsule-ng/caps/menu": ["libs/caps/menu/src/index.ts"],
 			"@capsule-ng/caps/dropdown-menu": ["libs/caps/dropdown-menu/src/index.ts"],
 			"@capsule-ng/caps/context-menu": ["libs/caps/context-menu/src/index.ts"],
-			"@capsule-ng/caps/menubar": ["libs/caps/menubar/src/index.ts"]
+			"@capsule-ng/caps/menubar": ["libs/caps/menubar/src/index.ts"],
+			"@capsule-ng/caps/questionnaire": ["libs/caps/questionnaire/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

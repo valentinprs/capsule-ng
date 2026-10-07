@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
+import { CapsTable, CapsTableImports } from '@capsule-ng/caps/table';
 import { faker } from '@faker-js/faker';
-import { HlmTable, HlmTableImports } from '@spartan-ng/helm/table';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
 const createUsers = (numUsers = 5) => {
@@ -14,31 +14,38 @@ const createUsers = (numUsers = 5) => {
 @Component({
 	selector: 'table-story',
 	standalone: true,
-	imports: [...HlmTableImports],
+	imports: [...CapsTableImports],
 	template: `
-		<table hlmTable>
-			<tr hlmTr>
-				<th hlmTh truncate>Name</th>
-				<th hlmTh class="justify-end">Age</th>
-				<th hlmTh class="justify-center">Height</th>
-			</tr>
-			@for (row of _data(); track row) {
-				<tr hlmTr>
-					<td hlmTd truncate>{{ row.name }}</td>
-					<td hlmTd class="justify-end">{{ row.age }}</td>
-					<td hlmTd class="justify-center">{{ row.height }}</td>
-				</tr>
-			}
-		</table>
+		<caps-table-container>
+			<table capsTable>
+				<caption>People and measurements</caption>
+				<thead>
+					<tr>
+						<th scope="col" truncate>Name</th>
+						<th scope="col" class="justify-end">Age</th>
+						<th scope="col" class="justify-center">Height</th>
+					</tr>
+				</thead>
+				<tbody>
+					@for (row of _data(); track row) {
+						<tr>
+							<td truncate>{{ row.name }}</td>
+							<td class="justify-end">{{ row.age }}</td>
+							<td class="justify-center">{{ row.height }}</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</caps-table-container>
 	`,
 })
 class TableStory {
 	protected readonly _data = signal(createUsers(20));
 }
 
-const meta: Meta<HlmTable> = {
+const meta: Meta<CapsTable> = {
 	title: 'Table',
-	component: HlmTable,
+	component: CapsTable,
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
@@ -48,7 +55,7 @@ const meta: Meta<HlmTable> = {
 };
 
 export default meta;
-type Story = StoryObj<HlmTable>;
+type Story = StoryObj<CapsTable>;
 
 export const Default: Story = {
 	render: () => ({
@@ -56,5 +63,13 @@ export const Default: Story = {
 			imports: [TableStory],
 		},
 		template: '<table-story/>',
+	}),
+};
+
+export const Striped: Story = {
+	render: () => ({
+		moduleMetadata: { imports: [CapsTableImports] },
+		template:
+			'<caps-table-container><table capsTable striped size="sm" [noBorder]="false"><caption>Compact striped table</caption><thead><tr><th scope="col">Item</th><th scope="col">Amount</th></tr></thead><tbody><tr><th scope="row">Invoice 1</th><td>€120</td></tr><tr><th scope="row">Invoice 2</th><td>€80</td></tr></tbody><tfoot><tr><th scope="row">Total</th><td>€200</td></tr></tfoot></table></caps-table-container>',
 	}),
 };

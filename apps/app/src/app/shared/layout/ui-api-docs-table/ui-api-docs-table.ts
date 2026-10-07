@@ -1,27 +1,27 @@
 import { Component, input } from '@angular/core';
-import { HlmTableImports } from '@spartan-ng/helm/table';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 
 type Column = { label: string; key: string; class?: string };
 
 @Component({
 	selector: 'spartan-ui-api-docs-table',
-	imports: [...HlmTableImports],
+	imports: [...CapsTableImports],
 	template: `
 		<h4 class="mt-6 mb-2">{{ title() }}</h4>
-		<div class="no-scrollbar my-6 w-full overflow-y-auto rounded-lg border">
-			<table hlmTable class="w-fit min-w-full">
-				<thead hlmTHead>
-					<tr hlmTr>
+		<caps-table-container class="no-scrollbar my-6 rounded-lg border">
+			<table capsTable class="w-fit min-w-full">
+				<thead>
+					<tr>
 						@for (col of columns(); track col.key) {
-							<th hlmTh [class]="col.class">{{ col.label }}</th>
+							<th scope="col" [class]="col.class">{{ col.label }}</th>
 						}
 					</tr>
 				</thead>
-				<tbody hlmTBody>
+				<tbody>
 					@for (row of rows(); track row.name + $index) {
-						<tr hlmTr>
+						<tr>
 							@for (col of columns(); track col.key) {
-								<td hlmTd [class]="col.class">
+								<td [class]="col.class">
 									@if (row[col.key]) {
 										@if (col.key === 'name') {
 											<span [innerHTML]="row[col.key]"></span>
@@ -37,7 +37,7 @@ type Column = { label: string; key: string; class?: string };
 					}
 				</tbody>
 			</table>
-		</div>
+		</caps-table-container>
 	`,
 })
 export class UIApiDocsTable {

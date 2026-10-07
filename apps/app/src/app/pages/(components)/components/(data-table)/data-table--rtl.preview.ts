@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, input, si
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUpDown, lucideChevronDown, lucideEllipsis } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
 	type Column,
@@ -235,7 +235,7 @@ export class RtlActionDropdown {
 
 @Component({
 	selector: 'spartan-data-table-rtl',
-	imports: [FlexRender, CapsButtonImports, CapsDropdownMenuImports, HlmInputImports, HlmTableImports, NgIcon],
+	imports: [FlexRender, CapsButtonImports, CapsDropdownMenuImports, HlmInputImports, CapsTableImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown }), Directionality],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -261,13 +261,13 @@ export class RtlActionDropdown {
 			</ng-template>
 		</div>
 		<div class="overflow-hidden rounded-md border">
-			<div hlmTableContainer>
-				<table hlmTable>
-					<thead hlmTHead>
+			<caps-table-container>
+				<table capsTable>
+					<thead>
 						@for (headerGroup of _table.getHeaderGroups(); track headerGroup.id) {
-							<tr hlmTr>
+							<tr>
 								@for (header of headerGroup.headers; track header.id) {
-									<th hlmTh [attr.colSpan]="header.colSpan">
+									<th scope="col" [attr.colSpan]="header.colSpan">
 										@if (!header.isPlaceholder) {
 											<ng-container
 												*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -280,11 +280,11 @@ export class RtlActionDropdown {
 							</tr>
 						}
 					</thead>
-					<tbody hlmTBody>
+					<tbody>
 						@for (row of _table.getRowModel().rows; track row.id) {
-							<tr hlmTr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+							<tr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
 								@for (cell of row.getVisibleCells(); track $index) {
-									<td hlmTd>
+									<td>
 										<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 											<div [innerHTML]="cell"></div>
 										</ng-container>
@@ -292,13 +292,13 @@ export class RtlActionDropdown {
 								}
 							</tr>
 						} @empty {
-							<tr hlmTr>
-								<td hlmTd class="h-24 text-center" [attr.colspan]="_columns.length">{{ _t()['noResults'] }}</td>
+							<tr>
+								<td class="h-24 text-center" [attr.colspan]="_columns.length">{{ _t()['noResults'] }}</td>
 							</tr>
 						}
 					</tbody>
 				</table>
-			</div>
+			</caps-table-container>
 		</div>
 
 		<div class="flex flex-col justify-between py-4 sm:flex-row sm:items-center">

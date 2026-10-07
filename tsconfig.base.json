@@ -182,7 +182,9 @@
 			"@capsule-ng/caps/dropdown-menu": ["libs/caps/dropdown-menu/src/index.ts"],
 			"@capsule-ng/caps/context-menu": ["libs/caps/context-menu/src/index.ts"],
 			"@capsule-ng/caps/menubar": ["libs/caps/menubar/src/index.ts"],
-			"@capsule-ng/caps/questionnaire": ["libs/caps/questionnaire/src/index.ts"]
+			"@capsule-ng/caps/questionnaire": ["libs/caps/questionnaire/src/index.ts"],
+			"@capsule-ng/caps/table": ["libs/caps/table/src/index.ts"],
+			"@capsule-ng/caps/pagination": ["libs/caps/pagination/src/index.ts"]
 		}
 	},
 	"exclude": ["node_modules", "tmp"]

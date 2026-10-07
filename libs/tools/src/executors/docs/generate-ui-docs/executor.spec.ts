@@ -159,4 +159,20 @@ describe('generate-ui-docs executor', () => {
 		expect(generated['menubar']['caps']['CapsMenubarTrigger'].selector).toBe('button[capsMenubarTrigger]');
 		expect(Object.keys(menu)).not.toEqual(expect.arrayContaining(['CapsMenuCdk', 'CapsMenuSelection']));
 	});
+	it('documents native Table and router-free Pagination public contracts', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const table = generated['table']['caps'];
+		expect(table['CapsTable'].selector).toBe('table[capsTable]');
+		expect(table['CapsTableContainer'].selector).toBe('caps-table-container');
+		expect(table['CapsTable'].inputs.map(({ name }) => name)).toEqual(['size', 'striped', 'noBorder']);
+		const pagination = generated['pagination']['caps'];
+		for (const name of ['CapsPaginationLink', 'CapsPaginationPrevious', 'CapsPaginationNext']) {
+			expect(pagination[name].inputs.map(({ name }) => name)).toEqual(expect.arrayContaining(['isActive', 'disabled']));
+			expect(pagination[name].inputs.map(({ name }) => name)).not.toContain('routerLink');
+		}
+		expect(pagination['CapsNumberedPagination'].models.map(({ name }) => name)).toEqual([
+			'currentPage',
+			'itemsPerPage',
+		]);
+	});
 });

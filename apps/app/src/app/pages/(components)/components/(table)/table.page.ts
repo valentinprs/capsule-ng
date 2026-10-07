@@ -74,7 +74,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__footer" spartanH4>Footer</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">&lt;tfoot hlmTableFooter&gt;</code>
+				<code class="${hlmCode}">&lt;tfoot&gt;</code>
 				to add a footer to the table.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -122,8 +122,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="tabs" label="Tabs" />

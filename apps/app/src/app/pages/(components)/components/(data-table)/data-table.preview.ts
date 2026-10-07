@@ -2,10 +2,10 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
 	columnFilteringFeature,
@@ -103,7 +103,7 @@ const columns = columnHelper.columns([
 		NgIcon,
 
 		HlmInputImports,
-		HlmTableImports,
+		CapsTableImports,
 	],
 	providers: [provideIcons({ lucideChevronDown })],
 	host: {
@@ -133,13 +133,13 @@ const columns = columnHelper.columns([
 			</ng-template>
 		</div>
 		<div class="overflow-hidden rounded-md border">
-			<div hlmTableContainer>
-				<table hlmTable>
-					<thead hlmTHead>
+			<caps-table-container>
+				<table capsTable>
+					<thead>
 						@for (headerGroup of _table.getHeaderGroups(); track headerGroup.id) {
-							<tr hlmTr>
+							<tr>
 								@for (header of headerGroup.headers; track header.id) {
-									<th hlmTh [attr.colSpan]="header.colSpan">
+									<th scope="col" [attr.colSpan]="header.colSpan">
 										@if (!header.isPlaceholder) {
 											<ng-container
 												*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -152,11 +152,11 @@ const columns = columnHelper.columns([
 							</tr>
 						}
 					</thead>
-					<tbody hlmTBody>
+					<tbody>
 						@for (row of _table.getRowModel().rows; track row.id) {
-							<tr hlmTr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+							<tr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
 								@for (cell of row.getVisibleCells(); track $index) {
-									<td hlmTd>
+									<td>
 										<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 											<div [innerHTML]="cell"></div>
 										</ng-container>
@@ -164,13 +164,13 @@ const columns = columnHelper.columns([
 								}
 							</tr>
 						} @empty {
-							<tr hlmTr>
-								<td hlmTd class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
+							<tr>
+								<td class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
 							</tr>
 						}
 					</tbody>
 				</table>
-			</div>
+			</caps-table-container>
 		</div>
 
 		<div class="flex flex-col justify-between py-4 sm:flex-row sm:items-center">

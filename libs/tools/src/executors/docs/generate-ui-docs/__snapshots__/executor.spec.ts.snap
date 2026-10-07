@@ -8083,6 +8083,115 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "pagination": {
+    "caps": {
+      "CapsNumberedPagination": {
+        "inputs": [
+          {
+            "name": "totalDataLength",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "numOfItemsToShow",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "showEdges",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "itemsPerPageOptions",
+            "required": false,
+            "type": "number[]",
+          },
+        ],
+        "models": [
+          {
+            "name": "currentPage",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "itemsPerPage",
+            "required": false,
+            "type": "number",
+          },
+        ],
+        "outputs": [],
+        "selector": "caps-numbered-pagination",
+      },
+      "CapsPagination": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-pagination",
+      },
+      "CapsPaginationEllipsis": {
+        "inputs": [
+          {
+            "name": "srOnlyText",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-pagination-ellipsis",
+      },
+      "CapsPaginationLink": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsPaginationLink],button[capsPaginationLink]",
+      },
+      "CapsPaginationNext": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsPaginationNext],button[capsPaginationNext]",
+      },
+      "CapsPaginationPrevious": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsPaginationPrevious],button[capsPaginationPrevious]",
+      },
+    },
     "helm": {
       "HlmNumberedPagination": {
         "inputs": [
@@ -12413,6 +12522,36 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "table": {
+    "caps": {
+      "CapsTable": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+          },
+          {
+            "name": "striped",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "noBorder",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "table[capsTable]",
+      },
+      "CapsTableContainer": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-table-container",
+      },
+    },
     "helm": {
       "HlmCaption": {
         "inputs": [],

@@ -3,6 +3,7 @@
    @import '../../../libs/caps/caps-preset.css' layer(caps); */
 
 @import './menu.css';
+@import './table-pagination.css';
 
 /* MARK: Breadcrumb */
 .caps-breadcrumb-list {

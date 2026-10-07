@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
 import {
 	CapsDialogDescription,
 	CapsDialogHeader,
@@ -8,7 +8,7 @@ import {
 	CapsDialogTitle,
 	injectCapsDialogContext,
 } from '@capsule-ng/caps/dialog';
-import { HlmTableImports } from '@spartan-ng/helm/table';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 
 type ExampleUser = {
 	name: string;
@@ -67,29 +67,35 @@ export class DialogDynamicPreview {
 
 @Component({
 	selector: 'spartan-dynamic-content',
-	imports: [CapsDialogHeader, CapsDialogTitle, CapsDialogDescription, ...HlmTableImports],
+	imports: [CapsDialogHeader, CapsDialogTitle, CapsDialogDescription, ...CapsTableImports, CapsButtonImports],
 	host: {
 		class: 'flex flex-col gap-4',
 	},
 	template: `
 		<caps-dialog-header>
 			<caps-dialog-title>Select user</caps-dialog-title>
-			<caps-dialog-description>Click a row to select a user.</caps-dialog-description>
+			<caps-dialog-description>Select a user by name.</caps-dialog-description>
 		</caps-dialog-header>
 
-		<table hlmTable class="w-full">
-			<tr hlmTr>
-				<th hlmTh>Name</th>
-				<th hlmTh>Email</th>
-				<th hlmTh>Phone</th>
-			</tr>
-			@for (user of _users; track user.name) {
-				<tr hlmTr (click)="selectUser(user)" class="cursor-pointer">
-					<td hlmTd truncate class="font-medium">{{ user.name }}</td>
-					<td hlmTd>{{ user.email }}</td>
-					<td hlmTd>{{ user.phone }}</td>
+		<table capsTable class="w-full">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone</th>
 				</tr>
-			}
+			</thead>
+			<tbody>
+				@for (user of _users; track user.name) {
+					<tr>
+						<th scope="row">
+							<button type="button" capsButton variant="ghost" (click)="selectUser(user)">{{ user.name }}</button>
+						</th>
+						<td>{{ user.email }}</td>
+						<td>{{ user.phone }}</td>
+					</tr>
+				}
+			</tbody>
 		</table>
 	`,
 })

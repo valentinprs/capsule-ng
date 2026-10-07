@@ -11,9 +11,9 @@ import {
 } from '@capsule-ng/caps/dialog';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsLabel } from '@capsule-ng/caps/label';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 const meta: Meta<CapsDialog> = {
@@ -228,27 +228,33 @@ class DialogDynamicStory {
 
 @Component({
 	selector: 'dynamic-content',
-	imports: [CapsDialogImports, HlmTableImports],
+	imports: [CapsDialogImports, CapsTableImports, CapsButtonImports],
 	providers: [provideIcons({ lucideCheck })],
 	template: `
 		<caps-dialog-header>
 			<caps-dialog-title>Select user</caps-dialog-title>
-			<caps-dialog-description>Click a row to select a user.</caps-dialog-description>
+			<caps-dialog-description>Select a user by name.</caps-dialog-description>
 		</caps-dialog-header>
 
-		<table hlmTable>
-			<tr hlmTr>
-				<th hlmTh>Name</th>
-				<th hlmTh>Email</th>
-				<th hlmTh>Phone</th>
-			</tr>
-			@for (user of users; track user.name) {
-				<tr hlmTr (click)="selectUser(user)" class="cursor-pointer">
-					<td hlmTd truncate class="font-medium">{{ user.name }}</td>
-					<td hlmTd>{{ user.email }}</td>
-					<td hlmTd>{{ user.phone }}</td>
+		<table capsTable>
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Email</th>
+					<th scope="col">Phone</th>
 				</tr>
-			}
+			</thead>
+			<tbody>
+				@for (user of users; track user.name) {
+					<tr>
+						<th scope="row">
+							<button type="button" capsButton variant="ghost" (click)="selectUser(user)">{{ user.name }}</button>
+						</th>
+						<td>{{ user.email }}</td>
+						<td>{{ user.phone }}</td>
+					</tr>
+				}
+			</tbody>
 		</table>
 	`,
 	host: {

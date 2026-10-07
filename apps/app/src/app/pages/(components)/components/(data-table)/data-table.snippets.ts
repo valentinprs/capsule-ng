@@ -82,21 +82,21 @@ export const columns = columnHelper.columns([
 
 export const basicTableCode = `
 import { Component, input } from '@angular/core';
-import { HlmTableImports } from '@spartan-ng/helm/table';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { type ColumnDef, FlexRender, injectTable, type RowData } from '@tanstack/angular-table';
 import { features, type DataTableFeatures } from './data-table-features';
 @Component({
 	selector: 'app-data-table',
-	imports: [FlexRender, HlmTableImports],
+	imports: [FlexRender, CapsTableImports],
 	template: \`
 		<div class="overflow-hidden rounded-md border">
-			<div hlmTableContainer>
-				<table hlmTable>
-					<thead hlmTHead>
+			<caps-table-container>
+				<table capsTable>
+					<thead>
 						@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
-							<tr hlmTr>
+							<tr>
 								@for (header of headerGroup.headers; track header.id) {
-									<th hlmTh [attr.colSpan]="header.colSpan">
+									<th scope="col" [attr.colSpan]="header.colSpan">
 										@if (!header.isPlaceholder) {
 											<ng-container
 												*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -109,11 +109,11 @@ import { features, type DataTableFeatures } from './data-table-features';
 							</tr>
 						}
 					</thead>
-					<tbody hlmTBody>
+					<tbody>
 						@for (row of table.getRowModel().rows; track row.id) {
-							<tr hlmTr [attr.data-state]="row.getIsSelected() && 'selected'">
+							<tr [attr.data-state]="row.getIsSelected() && 'selected'">
 								@for (cell of row.getVisibleCells(); track $index) {
-									<td hlmTd>
+									<td>
 										<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cellText">
 											<div [innerHTML]="cellText"></div>
 										</ng-container>
@@ -121,13 +121,13 @@ import { features, type DataTableFeatures } from './data-table-features';
 								}
 							</tr>
 						} @empty {
-							<tr hlmTr>
-								<td hlmTd class="h-24 text-center" [attr.colspan]="columns().length">No results.</td>
+							<tr>
+								<td class="h-24 text-center" [attr.colspan]="columns().length">No results.</td>
 							</tr>
 						}
 					</tbody>
 				</table>
-			</div>
+			</caps-table-container>
 		</div>
 	\`,
 })
@@ -246,7 +246,7 @@ export const paginationCode = `
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 @Component({
 	selector: 'app-data-table',
-	imports: [FlexRender, CapsButtonImports, HlmTableImports],
+	imports: [FlexRender, CapsButtonImports, CapsTableImports],
 	template: \`
 		<div class="overflow-hidden rounded-md border">
 			<!-- table -->
@@ -335,7 +335,7 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 import { type ColumnFiltersState, injectTable, isFunction } from '@tanstack/angular-table';
 @Component({
 	selector: 'app-data-table',
-	imports: [FlexRender, CapsButtonImports, CapsInputImports, HlmTableImports],
+	imports: [FlexRender, CapsButtonImports, CapsInputImports, CapsTableImports],
 	template: \`
 		<div class="flex items-center py-4">
 			<input capsInput class="w-full md:w-80" placeholder="Filter emails..." (input)="filterChanged($event)" />
@@ -373,7 +373,7 @@ import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { type ColumnVisibilityState, injectTable, isFunction } from '@tanstack/angular-table';
 @Component({
 	selector: 'app-data-table',
-	imports: [FlexRender, CapsButtonImports, CapsDropdownMenuImports, CapsInputImports, HlmTableImports, NgIcon],
+	imports: [FlexRender, CapsButtonImports, CapsDropdownMenuImports, CapsInputImports, CapsTableImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown })],
 	template: \`
 		<div class="flex items-center py-4">
@@ -674,7 +674,7 @@ import { TanStackTable } from '@tanstack/angular-table';
 import { DataTablePagination } from './data-table-pagination';
 @Component({
 	selector: 'app-data-table',
-	imports: [DataTablePagination, FlexRender, HlmTableImports, TanStackTable],
+	imports: [DataTablePagination, FlexRender, CapsTableImports, TanStackTable],
 	template: \`
 		<div class="overflow-hidden rounded-md border">
 			<!-- table -->

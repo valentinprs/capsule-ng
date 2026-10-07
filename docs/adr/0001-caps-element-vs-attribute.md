@@ -181,3 +181,14 @@ ARIA and keeps the native value synchronized with Brain without altering its val
 Input Group follows the ordinary rule: `<caps-input-group>` and its addon/text components project
 consumer-owned native `input capsInput`, `textarea capsTextarea` and `button capsButton` controls.
 It has no value accessor. This keeps fields and actions independently labeled and controlled.
+
+## Amendment 5: native table content model (2026-10-07)
+
+For issue #52, `caps-table-container` owns responsive overflow, while `table capsTable`
+retains native caption/thead/tbody/tfoot/tr/th/td descendants. This is a targeted
+exception for non-interactive structure: custom Angular hosts inside a table would
+violate HTML's content model and risk browser parser repairs during SSR hydration.
+One table directive styles its native descendants; consumers keep scope, spans,
+headers and interactive cell content. Pagination uses a navigation host and directly
+projected native links/buttons; Capsule remains router-free. See
+[the anatomy and Carbon Angular mappings](../specs/caps-tables.md).

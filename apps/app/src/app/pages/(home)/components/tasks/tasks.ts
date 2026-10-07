@@ -5,6 +5,7 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUpDown,
@@ -29,7 +30,6 @@ import {
 	lucideLogOut,
 	lucideUser,
 } from '@ng-icons/lucide';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 import {
 	columnFilteringFeature,
 	type ColumnFiltersState,
@@ -118,7 +118,7 @@ const columns = columnHelper.columns([
 	imports: [
 		FormsModule,
 		CapsDropdownMenuImports,
-		HlmTableImports,
+		CapsTableImports,
 		CapsButtonImports,
 		CapsSelectImports,
 		TableActions,
@@ -216,13 +216,13 @@ const columns = columnHelper.columns([
 			</div>
 			<spartan-table-actions table="table" />
 			<div class="max-h-[700px] w-full overflow-auto rounded-md border">
-				<div hlmTableContainer>
-					<table hlmTable>
-						<thead hlmTHead class="bg-background sticky top-0 z-(--caps-z-10)">
+				<caps-table-container>
+					<table capsTable>
+						<thead class="bg-background sticky top-0 z-(--caps-z-10)">
 							@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
-								<tr hlmTr>
+								<tr>
 									@for (header of headerGroup.headers; track header.id) {
-										<th hlmTh [attr.colSpan]="header.colSpan">
+										<th scope="col" [attr.colSpan]="header.colSpan">
 											@if (!header.isPlaceholder) {
 												<ng-container
 													*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -235,11 +235,11 @@ const columns = columnHelper.columns([
 								</tr>
 							}
 						</thead>
-						<tbody hlmTBody class="w-full">
+						<tbody class="w-full">
 							@for (row of table.getRowModel().rows; track row.id) {
-								<tr hlmTr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+								<tr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
 									@for (cell of row.getVisibleCells(); track $index) {
-										<td hlmTd>
+										<td>
 											<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 												<div [innerHTML]="cell"></div>
 											</ng-container>
@@ -247,13 +247,13 @@ const columns = columnHelper.columns([
 									}
 								</tr>
 							} @empty {
-								<tr hlmTr>
-									<td hlmTd class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
+								<tr>
+									<td class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
 								</tr>
 							}
 						</tbody>
 					</table>
-				</div>
+				</caps-table-container>
 			</div>
 			<div class="mt-4 flex flex-col justify-between sm:flex-row sm:items-center">
 				<span class="text-muted-foreground text-sm">

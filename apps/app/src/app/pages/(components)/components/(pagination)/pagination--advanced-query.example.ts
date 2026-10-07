@@ -1,22 +1,62 @@
 import { Component, computed, inject, numberAttribute, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
-import { HlmNumberedPaginationQueryParams } from '@spartan-ng/helm/pagination';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { CapsPaginationImports, createPageArray } from '@capsule-ng/caps/pagination';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { map } from 'rxjs/operators';
 
 @Component({
 	selector: 'spartan-pagination-advanced-query-params',
-	imports: [HlmNumberedPaginationQueryParams],
+	imports: [CapsPaginationImports, CapsSelectImports, RouterLink],
 	template: `
-		<hlm-numbered-pagination-query-params
-			[currentPage]="page()"
-			[(itemsPerPage)]="pageSize"
-			[totalItems]="totalProducts()"
-		/>
+		<div class="flex flex-wrap items-center gap-4">
+			<span class="text-sm">{{ totalProducts() }} total items</span>
+			<caps-pagination>
+				<a
+					capsPaginationPrevious
+					routerLink="."
+					[queryParams]="{ page: page() - 1 }"
+					queryParamsHandling="merge"
+					[disabled]="page() <= 1"
+				>
+					Previous
+				</a>
+				@for (number of pages(); track $index) {
+					@if (number === '...') {
+						<caps-pagination-ellipsis />
+					} @else {
+						<a
+							capsPaginationLink
+							routerLink="."
+							[queryParams]="{ page: number }"
+							queryParamsHandling="merge"
+							[isActive]="number === page()"
+						>
+							{{ number }}
+						</a>
+					}
+				}
+				<a
+					capsPaginationNext
+					routerLink="."
+					[queryParams]="{ page: page() + 1 }"
+					queryParamsHandling="merge"
+					[disabled]="page() >= lastPage()"
+				>
+					Next
+				</a>
+			</caps-pagination>
+			<caps-select [value]="pageSize()" (valueChange)="changeSize($event)" aria-label="Items per page">
+				@for (size of [10, 20, 50, 100]; track size) {
+					<caps-select-option [value]="size">{{ size }}</caps-select-option>
+				}
+			</caps-select>
+		</div>
 	`,
 })
 export class PaginationAdvancedQuery {
 	private readonly _route = inject(ActivatedRoute);
+	private readonly _router = inject(Router);
 
 	/**
 	 * Alternative would be to enable `withComponentInputBinding` in `provideRouter`.
@@ -39,7 +79,19 @@ export class PaginationAdvancedQuery {
 			}),
 		),
 	);
-	public readonly page = computed(() => this._pageQuery() ?? 1);
+	public readonly page = computed(() => Math.min(this.lastPage(), Math.max(1, this._pageQuery() ?? 1)));
 	public readonly pageSize = signal(10);
 	public readonly totalProducts = signal(100);
+	public readonly lastPage = computed(() => Math.max(1, Math.ceil(this.totalProducts() / this.pageSize())));
+	public readonly pages = computed(() => createPageArray(this.page(), this.pageSize(), this.totalProducts(), 7));
+	protected changeSize(value: unknown) {
+		if (typeof value === 'number') {
+			this.pageSize.set(value);
+			void this._router.navigate([], {
+				relativeTo: this._route,
+				queryParams: { page: 1 },
+				queryParamsHandling: 'merge',
+			});
+		}
+	}
 }

@@ -4,10 +4,10 @@ import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerChevronLeft, tablerChevronRight, tablerChevronsLeft, tablerChevronsRight } from '@ng-icons/tabler-icons';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 import {
 	columnFilteringFeature,
 	ColumnFiltersState,
@@ -110,6 +110,7 @@ const columns = columnHelper.columns([
 	}),
 	columnHelper.display({
 		id: 'actions',
+		header: 'Actions',
 		enableHiding: false,
 		cell: () => ActionDropdown,
 	}),
@@ -118,7 +119,7 @@ const columns = columnHelper.columns([
 	selector: 'spartan-dashboard-table-section',
 	imports: [
 		CapsTabsImports,
-		HlmTableImports,
+		CapsTableImports,
 		CapsSelectImports,
 		CapsButton,
 		FormsModule,
@@ -159,13 +160,13 @@ const columns = columnHelper.columns([
 			<caps-tabs-content value="account">
 				<div class="max-h-[700px] w-full overflow-auto rounded-md border">
 					@defer {
-						<div hlmTableContainer>
-							<table hlmTable>
-								<thead hlmTHead class="bg-muted sticky top-0 z-(--caps-z-10)">
+						<caps-table-container>
+							<table capsTable>
+								<thead class="bg-muted sticky top-0 z-(--caps-z-10)">
 									@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
-										<tr hlmTr>
+										<tr>
 											@for (header of headerGroup.headers; track header.id) {
-												<th hlmTh [attr.colSpan]="header.colSpan">
+												<th scope="col" [attr.colSpan]="header.colSpan">
 													@if (!header.isPlaceholder) {
 														<ng-container
 															*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -178,11 +179,11 @@ const columns = columnHelper.columns([
 										</tr>
 									}
 								</thead>
-								<tbody hlmTBody class="w-full">
+								<tbody class="w-full">
 									@for (row of table.getRowModel().rows; track row.id) {
-										<tr hlmTr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+										<tr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
 											@for (cell of row.getVisibleCells(); track $index) {
-												<td hlmTd>
+												<td>
 													<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 														<div [innerHTML]="cell"></div>
 													</ng-container>
@@ -190,13 +191,13 @@ const columns = columnHelper.columns([
 											}
 										</tr>
 									} @empty {
-										<tr hlmTr>
-											<td hlmTd class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
+										<tr>
+											<td class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
 										</tr>
 									}
 								</tbody>
 							</table>
-						</div>
+						</caps-table-container>
 					}
 				</div>
 				<div class="mt-4 flex flex-col justify-between sm:flex-row sm:items-center">
@@ -230,6 +231,7 @@ const columns = columnHelper.columns([
 								variant="outline"
 								capsButton
 								[disabled]="!table.getCanPreviousPage()"
+								aria-label="Go to first page"
 								(click)="table.firstPage()"
 							>
 								<ng-icon name="tablerChevronsLeft" />
@@ -239,6 +241,7 @@ const columns = columnHelper.columns([
 								variant="outline"
 								capsButton
 								[disabled]="!table.getCanPreviousPage()"
+								aria-label="Go to previous page"
 								(click)="table.previousPage()"
 							>
 								<ng-icon name="tablerChevronLeft" />
@@ -248,6 +251,7 @@ const columns = columnHelper.columns([
 								variant="outline"
 								capsButton
 								[disabled]="!table.getCanNextPage()"
+								aria-label="Go to next page"
 								(click)="table.nextPage()"
 							>
 								<ng-icon name="tablerChevronRight" />
@@ -257,6 +261,7 @@ const columns = columnHelper.columns([
 								variant="outline"
 								capsButton
 								[disabled]="!table.getCanNextPage()"
+								aria-label="Go to last page"
 								(click)="table.lastPage()"
 							>
 								<ng-icon name="tablerChevronsRight" />

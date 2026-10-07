@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 
 type Invoice = {
 	invoice: string;
@@ -11,41 +11,41 @@ type Invoice = {
 
 @Component({
 	selector: 'spartan-table-rtl',
-	imports: [HlmTableImports],
+	imports: [CapsTableImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full',
 	},
 	template: `
-		<div hlmTableContainer>
-			<table hlmTable [dir]="_dir()">
-				<caption hlmTableCaption>{{ _t()['caption'] }}</caption>
-				<thead hlmTableHeader>
-					<tr hlmTableRow>
-						<th hlmTableHead class="w-[100px]">{{ _t()['invoice'] }}</th>
-						<th hlmTableHead>{{ _t()['status'] }}</th>
-						<th hlmTableHead>{{ _t()['method'] }}</th>
-						<th hlmTableHead class="text-end">{{ _t()['amount'] }}</th>
+		<caps-table-container>
+			<table capsTable [dir]="_dir()">
+				<caption>{{ _t()['caption'] }}</caption>
+				<thead>
+					<tr>
+						<th scope="col" class="w-[100px]">{{ _t()['invoice'] }}</th>
+						<th scope="col">{{ _t()['status'] }}</th>
+						<th scope="col">{{ _t()['method'] }}</th>
+						<th scope="col" class="text-end">{{ _t()['amount'] }}</th>
 					</tr>
 				</thead>
-				<tbody hlmTableBody>
+				<tbody>
 					@for (invoice of _invoices; track invoice.invoice) {
-						<tr hlmTableRow>
-							<td hlmTableCell class="font-medium">{{ invoice.invoice }}</td>
-							<td hlmTableCell>{{ _t()[invoice.paymentStatus] }}</td>
-							<td hlmTableCell>{{ _t()[invoice.paymentMethod] }}</td>
-							<td hlmTableCell class="text-end">{{ invoice.totalAmount }}</td>
+						<tr>
+							<th scope="row" class="font-medium">{{ invoice.invoice }}</th>
+							<td>{{ _t()[invoice.paymentStatus] }}</td>
+							<td>{{ _t()[invoice.paymentMethod] }}</td>
+							<td class="text-end">{{ invoice.totalAmount }}</td>
 						</tr>
 					}
 				</tbody>
-				<tfoot hlmTableFooter>
-					<tr hlmTableRow>
-						<td hlmTableCell [attr.colSpan]="3">{{ _t()['total'] }}</td>
-						<td hlmTableCell class="text-end">$2,500.00</td>
+				<tfoot>
+					<tr>
+						<td [attr.colSpan]="3">{{ _t()['total'] }}</td>
+						<td class="text-end">$2,500.00</td>
 					</tr>
 				</tfoot>
 			</table>
-		</div>
+		</caps-table-container>
 	`,
 })
 export class TableRtl {

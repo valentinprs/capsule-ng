@@ -773,6 +773,111 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "attachment": {
+    "caps": {
+      "CapsAttachment": {
+        "inputs": [
+          {
+            "name": "state",
+            "required": false,
+            "type": "CapsAttachmentState",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsAttachmentVariants['size']",
+          },
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "CapsAttachmentVariants['orientation']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment",
+      },
+      "CapsAttachmentAction": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant | null | undefined",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsButtonSize | null | undefined",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsAttachmentAction]",
+      },
+      "CapsAttachmentActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-actions",
+      },
+      "CapsAttachmentContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-content",
+      },
+      "CapsAttachmentDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-description",
+      },
+      "CapsAttachmentGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-group",
+      },
+      "CapsAttachmentMedia": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsAttachmentMediaVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-media",
+      },
+      "CapsAttachmentTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-title",
+      },
+      "CapsAttachmentTrigger": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsAttachmentTrigger],a[capsAttachmentTrigger]",
+      },
+    },
     "helm": {
       "HlmAttachment": {
         "inputs": [
@@ -1688,6 +1793,60 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "bubble": {
+    "caps": {
+      "CapsBubble": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsBubbleVariants['variant']",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "CapsBubbleAlign",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-bubble",
+      },
+      "CapsBubbleContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-bubble-content",
+      },
+      "CapsBubbleContentDirective": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsBubbleContent], a[capsBubbleContent]",
+      },
+      "CapsBubbleGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-bubble-group",
+      },
+      "CapsBubbleReactions": {
+        "inputs": [
+          {
+            "name": "side",
+            "required": false,
+            "type": "CapsBubbleReactionsVariants['side']",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "CapsBubbleReactionsVariants['align']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-bubble-reactions",
+      },
+    },
     "helm": {
       "HlmBubble": {
         "inputs": [
@@ -7848,6 +8007,50 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "message": {
+    "caps": {
+      "CapsMessage": {
+        "inputs": [
+          {
+            "name": "align",
+            "required": false,
+            "type": "CapsMessageAlign",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message",
+      },
+      "CapsMessageAvatar": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-avatar",
+      },
+      "CapsMessageContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-content",
+      },
+      "CapsMessageFooter": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-footer",
+      },
+      "CapsMessageGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-group",
+      },
+      "CapsMessageHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-header",
+      },
+    },
     "helm": {
       "HlmMessage": {
         "inputs": [

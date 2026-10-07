@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAttachmentImports } from '@capsule-ng/caps/attachment';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideX } from '@ng-icons/lucide';
-import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 
 @Component({
 	selector: 'spartan-attachment-image-preview',
-	imports: [HlmAttachmentImports, NgIcon],
+	imports: [CapsAttachmentImports, NgIcon],
 	providers: [provideIcons({ lucideX })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -13,32 +13,32 @@ import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 	},
 	template: `
 		<div class="mx-auto w-full max-w-sm py-12">
-			<div hlmAttachmentGroup class="w-full">
+			<caps-attachment-group class="w-full">
 				@for (image of _images; track image.name) {
-					<div hlmAttachment orientation="vertical">
-						<div hlmAttachmentMedia variant="image">
+					<caps-attachment orientation="vertical">
+						<caps-attachment-media variant="image">
 							<img [src]="image.src" [alt]="image.alt" />
-						</div>
-						<div hlmAttachmentContent>
-							<span hlmAttachmentTitle>{{ image.name }}</span>
-							<span hlmAttachmentDescription>{{ image.meta }}</span>
-						</div>
-						<div hlmAttachmentActions>
-							<button hlmAttachmentAction [attr.aria-label]="'Remove ' + image.name">
+						</caps-attachment-media>
+						<caps-attachment-content>
+							<caps-attachment-title>{{ image.name }}</caps-attachment-title>
+							<caps-attachment-description>{{ image.meta }}</caps-attachment-description>
+						</caps-attachment-content>
+						<caps-attachment-actions>
+							<button capsAttachmentAction [attr.aria-label]="'Remove ' + image.name">
 								<ng-icon name="lucideX" />
 							</button>
-						</div>
+						</caps-attachment-actions>
 						<a
-							hlmAttachmentTrigger
+							capsAttachmentTrigger
 							[type]="null"
 							[href]="image.src"
 							target="_blank"
 							rel="noreferrer"
 							[attr.aria-label]="'Open ' + image.name"
 						></a>
-					</div>
+					</caps-attachment>
 				}
-			</div>
+			</caps-attachment-group>
 		</div>
 	`,
 })

@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsAttachmentImports } from '@capsule-ng/caps/attachment';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFileCode, lucideX } from '@ng-icons/lucide';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-attachment-rtl-preview',
-	imports: [HlmAttachmentImports, NgIcon],
+	imports: [CapsAttachmentImports, NgIcon],
 	providers: [provideIcons({ lucideFileCode, lucideX })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -14,38 +14,38 @@ import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 	},
 	template: `
 		<div class="flex w-full flex-col gap-3" [dir]="_dir()">
-			<div hlmAttachment class="w-full">
-				<div hlmAttachmentMedia>
+			<caps-attachment class="w-full">
+				<caps-attachment-media>
 					<ng-icon name="lucideFileCode" />
-				</div>
-				<div hlmAttachmentContent>
-					<span hlmAttachmentTitle>{{ _t()['title'] }}</span>
-					<span hlmAttachmentDescription>{{ _t()['description'] }}</span>
-				</div>
-				<div hlmAttachmentActions>
-					<button hlmAttachmentAction [attr.aria-label]="_t()['remove']">
+				</caps-attachment-media>
+				<caps-attachment-content>
+					<caps-attachment-title>{{ _t()['title'] }}</caps-attachment-title>
+					<caps-attachment-description>{{ _t()['description'] }}</caps-attachment-description>
+				</caps-attachment-content>
+				<caps-attachment-actions>
+					<button capsAttachmentAction [attr.aria-label]="_t()['remove']">
 						<ng-icon name="lucideX" />
 					</button>
-				</div>
-			</div>
+				</caps-attachment-actions>
+			</caps-attachment>
 
-			<div hlmAttachment orientation="vertical">
-				<div hlmAttachmentMedia variant="image">
+			<caps-attachment orientation="vertical">
+				<caps-attachment-media variant="image">
 					<img
 						src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&auto=format&fit=crop&q=80"
 						[alt]="_t()['imageAlt']"
 					/>
-				</div>
-				<div hlmAttachmentContent>
-					<span hlmAttachmentTitle>{{ _t()['imageTitle'] }}</span>
-					<span hlmAttachmentDescription>{{ _t()['imageMeta'] }}</span>
-				</div>
-				<div hlmAttachmentActions>
-					<button hlmAttachmentAction [attr.aria-label]="_t()['remove']">
+				</caps-attachment-media>
+				<caps-attachment-content>
+					<caps-attachment-title>{{ _t()['imageTitle'] }}</caps-attachment-title>
+					<caps-attachment-description>{{ _t()['imageMeta'] }}</caps-attachment-description>
+				</caps-attachment-content>
+				<caps-attachment-actions>
+					<button capsAttachmentAction [attr.aria-label]="_t()['remove']">
 						<ng-icon name="lucideX" />
 					</button>
-				</div>
-			</div>
+				</caps-attachment-actions>
+			</caps-attachment>
 		</div>
 	`,
 })

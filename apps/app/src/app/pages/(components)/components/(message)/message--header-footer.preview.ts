@@ -1,37 +1,37 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmMessageImports } from '@spartan-ng/helm/message';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsMessageImports } from '@capsule-ng/caps/message';
 
 @Component({
 	selector: 'spartan-message-header-footer-preview',
-	imports: [HlmMessageImports, HlmBubbleImports],
+	imports: [CapsMessageImports, CapsBubbleImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-8 py-12',
 	},
 	template: `
-		<div hlmMessage>
-			<div hlmMessageContent>
-				<div hlmMessageHeader>Olivia</div>
-				<div hlmBubble variant="muted">
-					<div hlmBubbleContent>I already checked the logs.</div>
-				</div>
-			</div>
-		</div>
+		<caps-message>
+			<caps-message-content>
+				<caps-message-header>Olivia</caps-message-header>
+				<caps-bubble variant="muted">
+					<caps-bubble-content>I already checked the logs.</caps-bubble-content>
+				</caps-bubble>
+			</caps-message-content>
+		</caps-message>
 
-		<div hlmMessage align="end">
-			<div hlmMessageContent>
-				<div hlmBubble>
-					<div hlmBubbleContent>Send the report to the team. Ping &#64;spartan if you need help.</div>
-				</div>
-				<div hlmMessageFooter>
+		<caps-message align="end">
+			<caps-message-content>
+				<caps-bubble>
+					<caps-bubble-content>Send the report to the team. Ping &#64;spartan if you need help.</caps-bubble-content>
+				</caps-bubble>
+				<caps-message-footer>
 					<div>
 						Read
-						<span class="font-normal">Yesterday</span>
+						<time datetime="2026-10-06" class="font-normal">Yesterday</time>
 					</div>
-				</div>
-			</div>
-		</div>
+				</caps-message-footer>
+			</caps-message-content>
+		</caps-message>
 	`,
 })
 export class MessageHeaderFooterPreview {}

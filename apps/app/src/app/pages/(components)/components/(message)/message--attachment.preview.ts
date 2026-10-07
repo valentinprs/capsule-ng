@@ -1,71 +1,75 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAttachmentImports } from '@capsule-ng/caps/attachment';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsMessageImports } from '@capsule-ng/caps/message';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload, lucideFileText } from '@ng-icons/lucide';
-import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmMessageImports } from '@spartan-ng/helm/message';
 
 @Component({
 	selector: 'spartan-message-attachment-preview',
-	imports: [HlmMessageImports, HlmBubbleImports, HlmAttachmentImports, NgIcon],
+	imports: [CapsMessageImports, CapsBubbleImports, CapsAttachmentImports, CapsButton, NgIcon],
 	providers: [provideIcons({ lucideFileText, lucideDownload })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-8 py-12',
 	},
 	template: `
-		<div hlmMessage align="end">
-			<div hlmMessageContent>
-				<div hlmAttachment orientation="vertical">
-					<div hlmAttachmentMedia variant="image">
+		<caps-message align="end">
+			<caps-message-content>
+				<caps-attachment orientation="vertical">
+					<caps-attachment-media variant="image">
 						<img
 							src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&auto=format&fit=crop&q=80"
 							alt="Workspace"
 						/>
-					</div>
-				</div>
-				<div hlmBubble>
-					<div hlmBubbleContent>Here's the image. Can you add it to the PDF? Use it for the cover page.</div>
-				</div>
-			</div>
-		</div>
+					</caps-attachment-media>
+				</caps-attachment>
+				<caps-bubble>
+					<caps-bubble-content>
+						Here's the image. Can you add it to the PDF? Use it for the cover page.
+					</caps-bubble-content>
+				</caps-bubble>
+			</caps-message-content>
+		</caps-message>
 
-		<div hlmMessage>
-			<div hlmMessageContent>
-				<div hlmBubble variant="muted">
-					<div hlmBubbleContent>Done. Here's the PDF with the image added as the cover page.</div>
-				</div>
-				<div hlmAttachment>
-					<div hlmAttachmentMedia>
+		<caps-message>
+			<caps-message-content>
+				<caps-bubble variant="muted">
+					<caps-bubble-content>Done. Here's the PDF with the image added as the cover page.</caps-bubble-content>
+				</caps-bubble>
+				<caps-attachment>
+					<caps-attachment-media>
 						<ng-icon name="lucideFileText" />
-					</div>
-					<div hlmAttachmentContent>
-						<span hlmAttachmentTitle>sales-dashboard.pdf</span>
-						<span hlmAttachmentDescription>PDF · 2.4 MB</span>
-					</div>
-					<div hlmAttachmentActions>
-						<button
-							hlmAttachmentAction
-							type="button"
+					</caps-attachment-media>
+					<caps-attachment-content>
+						<caps-attachment-title>capsule.svg</caps-attachment-title>
+						<caps-attachment-description>SVG · Capsule logo</caps-attachment-description>
+					</caps-attachment-content>
+					<caps-attachment-actions>
+						<a
+							capsButton
+							href="/assets/capsule.svg"
+							download="capsule.svg"
 							title="Download"
 							aria-label="Download"
 							size="icon-sm"
 							variant="secondary"
 						>
 							<ng-icon name="lucideDownload" />
-						</button>
-					</div>
-				</div>
-			</div>
-		</div>
+						</a>
+					</caps-attachment-actions>
+				</caps-attachment>
+			</caps-message-content>
+		</caps-message>
 
-		<div hlmMessage align="end">
-			<div hlmMessageContent>
-				<div hlmBubble>
-					<div hlmBubbleContent>Thanks. Looks good.</div>
-				</div>
-			</div>
-		</div>
+		<caps-message align="end">
+			<caps-message-content>
+				<caps-bubble>
+					<caps-bubble-content>Thanks. Looks good.</caps-bubble-content>
+				</caps-bubble>
+			</caps-message-content>
+		</caps-message>
 	`,
 })
 export class MessageAttachmentPreview {}

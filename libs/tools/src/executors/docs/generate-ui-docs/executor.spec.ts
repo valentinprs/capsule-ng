@@ -228,3 +228,28 @@ describe('generate-ui-docs executor', () => {
 		expect(carousel['CapsCarouselSlideDisplay'].inputs.map(({ name }) => name)).toEqual(['slideClass', 'label']);
 	});
 });
+
+describe('Capsule conversation API metadata', () => {
+	it('documents public structural and native forms, states and independent action inputs', () => {
+		const docs = readGeneratedJson() as NestedStructure;
+		expect(docs['bubble']['caps']['CapsBubble'].inputs).toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({ name: 'variant', defaultValue: "'default'" }),
+				expect.objectContaining({ name: 'align', defaultValue: "'start'" }),
+			]),
+		);
+		expect(docs['bubble']['caps']['CapsBubbleContent'].selector).toBe('caps-bubble-content');
+		expect(docs['bubble']['caps']['CapsBubbleContentDirective'].selector).toBe(
+			'button[capsBubbleContent], a[capsBubbleContent]',
+		);
+		expect(docs['message']['caps']['CapsMessage'].selector).toBe('caps-message');
+		expect(docs['attachment']['caps']['CapsAttachment'].inputs.map((item) => item.name)).toEqual(
+			expect.arrayContaining(['state', 'size', 'orientation']),
+		);
+		expect(docs['attachment']['caps']['CapsAttachmentAction'].inputs.map((item) => item.name)).toEqual(
+			expect.arrayContaining(['type', 'variant', 'size', 'disabled']),
+		);
+		for (const family of ['bubble', 'message', 'attachment'])
+			for (const component of Object.values(docs[family]['caps'])) expect(component.outputs).toHaveLength(0);
+	});
+});

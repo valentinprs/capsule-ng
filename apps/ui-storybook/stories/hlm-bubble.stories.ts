@@ -1,13 +1,18 @@
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
+import { signal } from '@angular/core';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsButton } from '@capsule-ng/caps/button';
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
+import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 
 const meta: Meta = {
 	title: 'Bubble',
 	tags: ['autodocs'],
 	decorators: [
+		componentWrapperDecorator(
+			(story) => `<main><h1 class="mb-4 text-lg font-semibold">Bubble examples</h1>${story}</main>`,
+		),
 		moduleMetadata({
-			imports: [HlmBubbleImports],
+			imports: [CapsBubbleImports, CapsButton],
 		}),
 	],
 };
@@ -19,23 +24,23 @@ export const Demo: Story = {
 	render: () => ({
 		template: `
 			<div class="flex w-full max-w-sm flex-col gap-8 p-4">
-				<div hlmBubble align="end">
-					<div hlmBubbleContent>Hey there! what's up?</div>
-				</div>
-				<div hlmBubbleGroup>
-					<div hlmBubble variant="muted">
-						<div hlmBubbleContent>Hey! Want to see chat bubbles?</div>
-					</div>
-					<div hlmBubble variant="muted">
-						<div hlmBubbleContent>I can group messages, switch sides, and keep the whole thread easy to scan.</div>
-						<div hlmBubbleReactions role="img" aria-label="Reaction: thumbs up">
+				<caps-bubble align="end">
+					<caps-bubble-content>Hey there! what's up?</caps-bubble-content>
+				</caps-bubble>
+				<caps-bubble-group>
+					<caps-bubble variant="muted">
+						<caps-bubble-content>Hey! Want to see chat bubbles?</caps-bubble-content>
+					</caps-bubble>
+					<caps-bubble variant="muted">
+						<caps-bubble-content>I can group messages, switch sides, and keep the whole thread easy to scan.</caps-bubble-content>
+						<caps-bubble-reactions role="img" aria-label="Reaction: thumbs up">
 							<span>👍</span>
-						</div>
-					</div>
-				</div>
-				<div hlmBubble align="end">
-					<div hlmBubbleContent>Sure. Hit me with your best demo.</div>
-				</div>
+						</caps-bubble-reactions>
+					</caps-bubble>
+				</caps-bubble-group>
+				<caps-bubble align="end">
+					<caps-bubble-content>Sure. Hit me with your best demo.</caps-bubble-content>
+				</caps-bubble>
 			</div>
 		`,
 	}),
@@ -45,14 +50,24 @@ export const Variants: Story = {
 	render: () => ({
 		template: `
 			<div class="flex w-full max-w-sm flex-col gap-6 p-4">
-				<div hlmBubble><div hlmBubbleContent>default</div></div>
-				<div hlmBubble variant="secondary"><div hlmBubbleContent>secondary</div></div>
-				<div hlmBubble variant="muted"><div hlmBubbleContent>muted</div></div>
-				<div hlmBubble variant="tinted"><div hlmBubbleContent>tinted</div></div>
-				<div hlmBubble variant="outline"><div hlmBubbleContent>outline</div></div>
-				<div hlmBubble variant="ghost"><div hlmBubbleContent>ghost</div></div>
-				<div hlmBubble variant="destructive"><div hlmBubbleContent>destructive</div></div>
+				<caps-bubble><caps-bubble-content>default</caps-bubble-content></caps-bubble>
+				<caps-bubble variant="secondary"><caps-bubble-content>secondary</caps-bubble-content></caps-bubble>
+				<caps-bubble variant="muted"><caps-bubble-content>muted</caps-bubble-content></caps-bubble>
+				<caps-bubble variant="tinted"><caps-bubble-content>tinted</caps-bubble-content></caps-bubble>
+				<caps-bubble variant="outline"><caps-bubble-content>outline</caps-bubble-content></caps-bubble>
+				<caps-bubble variant="ghost"><caps-bubble-content>ghost</caps-bubble-content></caps-bubble>
+				<caps-bubble variant="destructive"><caps-bubble-content>destructive</caps-bubble-content></caps-bubble>
 			</div>
 		`,
 	}),
+};
+
+export const Interactive: Story = {
+	render: () => {
+		const liked = signal(false);
+		return {
+			props: { liked },
+			template: `<caps-bubble variant="muted"><caps-bubble-content>Ready for review.</caps-bubble-content><caps-bubble-reactions><button capsButton type="button" size="xs" variant="outline" [attr.aria-pressed]="liked()" (click)="liked.set(!liked())">Useful {{ liked() ? '1' : '0' }}</button></caps-bubble-reactions></caps-bubble>`,
+		};
+	},
 };

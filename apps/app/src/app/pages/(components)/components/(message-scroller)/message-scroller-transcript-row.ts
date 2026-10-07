@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsMessageImports } from '@capsule-ng/caps/message';
 import { BrnMessageScrollerItem } from '@spartan-ng/brain/message-scroller';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmMessageImports } from '@spartan-ng/helm/message';
 import { classes } from '@spartan-ng/helm/utils';
 import { splitParagraphs } from './message-scroller.shared';
 
 @Component({
 	selector: 'spartan-message-scroller-transcript-row',
-	imports: [HlmMessageImports, HlmBubbleImports],
+	imports: [CapsMessageImports, CapsBubbleImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	hostDirectives: [
 		{
@@ -19,17 +19,17 @@ import { splitParagraphs } from './message-scroller.shared';
 		'data-slot': 'message-scroller-item',
 	},
 	template: `
-		<div hlmMessage [align]="_isUser() ? 'end' : 'start'">
-			<div hlmMessageContent>
-				<div hlmBubble [variant]="_bubbleVariant()">
-					<div hlmBubbleContent [class]="contentClass()">
+		<caps-message [align]="_isUser() ? 'end' : 'start'">
+			<caps-message-content>
+				<caps-bubble [variant]="_bubbleVariant()">
+					<caps-bubble-content [class]="contentClass()">
 						@for (paragraph of _paragraphs(); track $index) {
 							<p class="whitespace-pre-wrap">{{ paragraph }}</p>
 						}
-					</div>
-				</div>
-			</div>
-		</div>
+					</caps-bubble-content>
+				</caps-bubble>
+			</caps-message-content>
+		</caps-message>
 	`,
 })
 export class MessageScrollerTranscriptRow {

@@ -1,6 +1,6 @@
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmMessageImports } from '@spartan-ng/helm/message';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsMessageImports } from '@capsule-ng/caps/message';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
@@ -10,7 +10,7 @@ const meta: Meta = {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [HlmMessageScrollerImports, HlmMessageImports, HlmBubbleImports, CapsAvatarImports],
+			imports: [HlmMessageScrollerImports, CapsMessageImports, CapsBubbleImports, CapsAvatarImports],
 		}),
 	],
 };
@@ -33,18 +33,18 @@ function turn(id: string, who: 'me' | 'ai', text: string, anchor = false) {
 	const scrollAnchor = anchor ? ' scrollAnchor' : '';
 	return `
 								<div hlmMessageScrollerItem messageId="${id}"${scrollAnchor}>
-									<div hlmMessage${align}>
-										<div hlmMessageAvatar>
+									<caps-message${align}>
+										<caps-message-avatar>
 											<caps-avatar>
 												<caps-avatar-fallback>${fallback}</caps-avatar-fallback>
 											</caps-avatar>
-										</div>
-										<div hlmMessageContent>
-											<div hlmBubble${variant}>
-												<div hlmBubbleContent>${text}</div>
-											</div>
-										</div>
-									</div>
+										</caps-message-avatar>
+										<caps-message-content>
+											<caps-bubble${variant}>
+												<caps-bubble-content>${text}</caps-bubble-content>
+											</caps-bubble>
+										</caps-message-content>
+									</caps-message>
 								</div>`;
 }
 

@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsMessageImports } from '@capsule-ng/caps/message';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRotateCw } from '@ng-icons/lucide';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmMessageImports } from '@spartan-ng/helm/message';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 
 type GroupChatItem =
@@ -73,8 +73,8 @@ const rockyMessage: GroupChatItem = {
 		HlmMessageScrollerImports,
 		CapsCardImports,
 		CapsButtonImports,
-		HlmMessageImports,
-		HlmBubbleImports,
+		CapsMessageImports,
+		CapsBubbleImports,
 		HlmMarkerImports,
 		CapsTooltipImports,
 		NgIcon,
@@ -117,13 +117,12 @@ const rockyMessage: GroupChatItem = {
 										@for (item of _items(); track item.id) {
 											@if (item.type === 'message') {
 												<div hlmMessageScrollerItem [messageId]="item.id" [scrollAnchor]="item.scrollAnchor ?? false">
-													<div hlmMessage [align]="item.sender === _currentUser ? 'end' : 'start'">
-														<div hlmMessageContent>
+													<caps-message [align]="item.sender === _currentUser ? 'end' : 'start'">
+														<caps-message-content>
 															@if (item.sender !== _currentUser) {
-																<div hlmMessageHeader>{{ item.sender }}</div>
+																<caps-message-header>{{ item.sender }}</caps-message-header>
 															}
-															<div
-																hlmBubble
+															<caps-bubble
 																[variant]="
 																	item.sender === _currentUser
 																		? 'muted'
@@ -132,10 +131,10 @@ const rockyMessage: GroupChatItem = {
 																			: 'tinted'
 																"
 															>
-																<div hlmBubbleContent>{{ item.text }}</div>
-															</div>
-														</div>
-													</div>
+																<caps-bubble-content>{{ item.text }}</caps-bubble-content>
+															</caps-bubble>
+														</caps-message-content>
+													</caps-message>
 												</div>
 											} @else {
 												<div hlmMessageScrollerItem [messageId]="item.id" [scrollAnchor]="item.scrollAnchor ?? false">

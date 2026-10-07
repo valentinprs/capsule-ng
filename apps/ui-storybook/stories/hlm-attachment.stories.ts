@@ -1,7 +1,8 @@
+import { CapsAttachmentImports } from '@capsule-ng/caps/attachment';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideDownload, lucideFileText } from '@ng-icons/lucide';
-import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { applicationConfig, componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 
@@ -16,7 +17,7 @@ const meta: Meta = {
 			providers: [provideIcons({ lucideFileText, lucideDownload })],
 		}),
 		moduleMetadata({
-			imports: [HlmAttachmentImports, CapsSpinner, NgIcon],
+			imports: [CapsAttachmentImports, CapsButton, CapsSpinner, NgIcon],
 		}),
 	],
 };
@@ -28,29 +29,29 @@ export const Default: Story = {
 	render: () => ({
 		template: `
 			<div class="flex flex-col gap-3 p-4">
-				<div hlmAttachment>
-					<div hlmAttachmentMedia>
+				<caps-attachment>
+					<caps-attachment-media>
 						<ng-icon name="lucideFileText" />
-					</div>
-					<div hlmAttachmentContent>
-						<span hlmAttachmentTitle>sales-dashboard.pdf</span>
-						<span hlmAttachmentDescription>PDF · 2.4 MB</span>
-					</div>
-					<div hlmAttachmentActions>
-						<button hlmAttachmentAction aria-label="Download">
+					</caps-attachment-media>
+					<caps-attachment-content>
+						<caps-attachment-title>capsule.svg</caps-attachment-title>
+						<caps-attachment-description>SVG · Capsule logo</caps-attachment-description>
+					</caps-attachment-content>
+					<caps-attachment-actions>
+						<a capsButton href="/assets/capsule.svg" download="capsule.svg" aria-label="Download">
 							<ng-icon name="lucideDownload" />
-						</button>
-					</div>
-				</div>
-				<div hlmAttachment state="uploading">
-					<div hlmAttachmentMedia>
+						</a>
+					</caps-attachment-actions>
+				</caps-attachment>
+				<caps-attachment state="uploading">
+					<caps-attachment-media>
 						<caps-spinner aria-hidden="true" />
-					</div>
-					<div hlmAttachmentContent>
-						<span hlmAttachmentTitle>uploading.pdf</span>
-						<span hlmAttachmentDescription>Uploading...</span>
-					</div>
-				</div>
+					</caps-attachment-media>
+					<caps-attachment-content>
+						<caps-attachment-title>uploading.pdf</caps-attachment-title>
+						<caps-attachment-description>Uploading...</caps-attachment-description>
+					</caps-attachment-content>
+				</caps-attachment>
 			</div>
 		`,
 	}),

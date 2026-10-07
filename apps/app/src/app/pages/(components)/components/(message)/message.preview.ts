@@ -1,81 +1,81 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsMessageImports } from '@capsule-ng/caps/message';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmMessageImports } from '@spartan-ng/helm/message';
 
 @Component({
 	selector: 'spartan-message-preview',
-	imports: [HlmMessageImports, HlmBubbleImports, CapsAvatarImports, HlmMarkerImports],
+	imports: [CapsMessageImports, CapsBubbleImports, CapsAvatarImports, HlmMarkerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-6 py-12',
 	},
 	template: `
-		<div hlmMessage align="end">
-			<div hlmMessageAvatar>
+		<caps-message align="end">
+			<caps-message-avatar>
 				<caps-avatar>
 					<img capsAvatarImage src="/assets/avatar.png" alt="@me" class="grayscale" />
 					<caps-avatar-fallback>ME</caps-avatar-fallback>
 				</caps-avatar>
-			</div>
-			<div hlmMessageContent>
-				<div hlmBubble>
-					<div hlmBubbleContent>Deploying to prod real quick.</div>
-				</div>
-			</div>
-		</div>
+			</caps-message-avatar>
+			<caps-message-content>
+				<caps-bubble>
+					<caps-bubble-content>Deploying to prod real quick.</caps-bubble-content>
+				</caps-bubble>
+			</caps-message-content>
+		</caps-message>
 
-		<div hlmMessage>
-			<div hlmMessageAvatar>
+		<caps-message>
+			<caps-message-avatar>
 				<caps-avatar>
 					<img capsAvatarImage src="/assets/capsule.svg" alt="Capsule" class="grayscale" />
 					<caps-avatar-fallback>R</caps-avatar-fallback>
 				</caps-avatar>
-			</div>
-			<div hlmMessageContent>
-				<div hlmBubble variant="muted">
-					<div hlmBubbleContent>It's 4:55 PM. On a Friday.</div>
-				</div>
-			</div>
-		</div>
+			</caps-message-avatar>
+			<caps-message-content>
+				<caps-bubble variant="muted">
+					<caps-bubble-content>It's 4:55 PM. On a Friday.</caps-bubble-content>
+				</caps-bubble>
+			</caps-message-content>
+		</caps-message>
 
-		<div hlmMessage align="end">
-			<div hlmMessageAvatar>
+		<caps-message align="end">
+			<caps-message-avatar>
 				<caps-avatar>
 					<img capsAvatarImage src="/assets/avatar.png" alt="@me" class="grayscale" />
 					<caps-avatar-fallback>ME</caps-avatar-fallback>
 				</caps-avatar>
-			</div>
-			<div hlmMessageContent>
-				<div hlmBubble>
-					<div hlmBubbleContent>It's a one-line change.</div>
-				</div>
-				<div hlmMessageFooter>Delivered</div>
-			</div>
-		</div>
+			</caps-message-avatar>
+			<caps-message-content>
+				<caps-bubble>
+					<caps-bubble-content>It's a one-line change.</caps-bubble-content>
+				</caps-bubble>
+				<caps-message-footer>Delivered</caps-message-footer>
+			</caps-message-content>
+		</caps-message>
 
-		<div hlmMessage>
-			<div hlmMessageAvatar>
+		<caps-message>
+			<caps-message-avatar>
 				<caps-avatar>
 					<img capsAvatarImage src="/assets/capsule.svg" alt="Capsule" class="grayscale" />
 					<caps-avatar-fallback>R</caps-avatar-fallback>
 				</caps-avatar>
-			</div>
-			<div hlmMessageContent>
-				<div hlmBubbleGroup>
-					<div hlmBubble variant="muted">
-						<div hlmBubbleContent>It's always a one-line change 😭.</div>
-					</div>
-					<div hlmBubble variant="muted">
-						<div hlmBubbleContent>Alright, let me take a look.</div>
-						<div hlmBubbleReactions aria-label="Reactions: thumbs up">
+			</caps-message-avatar>
+			<caps-message-content>
+				<caps-bubble-group>
+					<caps-bubble variant="muted">
+						<caps-bubble-content>It's always a one-line change 😭.</caps-bubble-content>
+					</caps-bubble>
+					<caps-bubble variant="muted">
+						<caps-bubble-content>Alright, let me take a look.</caps-bubble-content>
+						<caps-bubble-reactions aria-label="Reactions: thumbs up">
 							<span>👍</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+						</caps-bubble-reactions>
+					</caps-bubble>
+				</caps-bubble-group>
+			</caps-message-content>
+		</caps-message>
 
 		<div hlmMarker role="status">
 			<span hlmMarkerContent class="shimmer">
@@ -89,23 +89,23 @@ export class MessagePreview {}
 
 export const defaultImports = `
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
 import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmMessageImports } from '@spartan-ng/helm/message';
+import { CapsMessageImports } from '@capsule-ng/caps/message';
 `;
 
 export const defaultSkeleton = `
-<div hlmMessage>
-  <div hlmMessageAvatar>
+<caps-message>
+  <caps-message-avatar>
     <caps-avatar>
       <img capsAvatarImage src="/assets/avatar.png" alt="@spartan" />
       <caps-avatar-fallback>SP</caps-avatar-fallback>
     </caps-avatar>
-  </div>
-  <div hlmMessageContent>
-    <div hlmBubble>
-      <div hlmBubbleContent>How can I help you today?</div>
-    </div>
-  </div>
-</div>
+  </caps-message-avatar>
+  <caps-message-content>
+    <caps-bubble>
+      <caps-bubble-content>How can I help you today?</caps-bubble-content>
+    </caps-bubble>
+  </caps-message-content>
+</caps-message>
 `;

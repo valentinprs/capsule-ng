@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-bubble-rtl-preview',
-	imports: [HlmBubbleImports],
+	imports: [CapsBubbleImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'theme-blue flex w-full max-w-sm flex-col gap-8',
 	},
 	template: `
 		<div class="flex w-full flex-col gap-8" [dir]="_dir()">
-			<div hlmBubble variant="muted">
-				<div hlmBubbleContent>{{ _t()['start'] }}</div>
-			</div>
-			<div hlmBubble align="end">
-				<div hlmBubbleContent>{{ _t()['end'] }}</div>
-				<div hlmBubbleReactions role="img" [attr.aria-label]="_t()['reactionLabel']">
+			<caps-bubble variant="muted">
+				<caps-bubble-content>{{ _t()['start'] }}</caps-bubble-content>
+			</caps-bubble>
+			<caps-bubble align="end">
+				<caps-bubble-content>{{ _t()['end'] }}</caps-bubble-content>
+				<caps-bubble-reactions role="img" [attr.aria-label]="_t()['reactionLabel']">
 					<span>👍</span>
-				</div>
-			</div>
+				</caps-bubble-reactions>
+			</caps-bubble>
 		</div>
 	`,
 })

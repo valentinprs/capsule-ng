@@ -1,19 +1,19 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
-import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
-import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
-import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
+import { injectComponentDocs } from '../../../../core/services/component-docs';
+import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
+import { CodeRtlPreview } from '../../../../shared/code/code-rtl-preview';
+import { RtlHeader } from '../../../../shared/code/rtl-header';
 import { MainSection } from '../../../../shared/layout/main-section';
 import { PageBottomNav } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav';
 import { PageBottomNavLink } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav-link';
 import { PageNav } from '../../../../shared/layout/page-nav/page-nav';
 import { SectionIntro } from '../../../../shared/layout/section-intro';
 import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
+import { SectionSubSubHeading } from '../../../../shared/layout/section-sub-sub-heading';
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
@@ -110,7 +110,7 @@ export const routeMeta: RouteMeta = {
 				Use
 				<code class="${hlmCode}">align</code>
 				on
-				<code class="${hlmCode}">hlmBubble</code>
+				<code class="${hlmCode}">caps-bubble</code>
 				to align the bubble. For chat UIs, prefer alignment on
 				<code class="${hlmCode}">Message</code>
 				.
@@ -125,11 +125,11 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__group" spartanH4>Bubble Group</h3>
 			<p class="${hlmP} mb-2">
 				Use
-				<code class="${hlmCode}">hlmBubbleGroup</code>
+				<code class="${hlmCode}">caps-bubble-group</code>
 				to group consecutive bubbles from the same sender. Set
 				<code class="${hlmCode}">align</code>
 				on each
-				<code class="${hlmCode}">hlmBubble</code>
+				<code class="${hlmCode}">caps-bubble</code>
 				, not the group.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -142,7 +142,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__links_and_buttons" spartanH4>Links and Buttons</h3>
 			<p class="${hlmP} mb-2">
 				Put
-				<code class="${hlmCode}">hlmBubbleContent</code>
+				<code class="${hlmCode}">caps-bubble-content</code>
 				on a
 				<code class="${hlmCode}">button</code>
 				or
@@ -159,7 +159,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__reactions" spartanH4>Reactions</h3>
 			<p class="${hlmP} mb-2">
 				Use
-				<code class="${hlmCode}">hlmBubbleReactions</code>
+				<code class="${hlmCode}">caps-bubble-reactions</code>
 				for emoji reactions or quick actions. Reactions overlap the bubble edge, so leave vertical space between rows.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -201,8 +201,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="button" label="Button" />

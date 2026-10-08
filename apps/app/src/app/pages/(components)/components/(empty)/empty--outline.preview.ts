@@ -1,26 +1,25 @@
 import { Component } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsEmptyImports } from '@capsule-ng/caps/empty';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCloud } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 
 @Component({
 	selector: 'spartan-empty-outline',
-	imports: [NgIcon, HlmButton, HlmEmptyImports],
+	imports: [NgIcon, CapsButton, CapsEmptyImports],
 	providers: [provideIcons({ lucideCloud })],
 	template: `
-		<div hlmEmpty class="border border-dashed">
-			<div hlmEmptyHeader>
-				<div hlmEmptyMedia variant="icon">
-					<ng-icon name="lucideCloud" />
-				</div>
-				<div hlmEmptyTitle>Cloud Storage Empty</div>
-				<div hlmEmptyDescription>Upload files to your cloud storage to access them anywhere.</div>
-			</div>
-			<div hlmEmptyContent>
-				<button hlmBtn variant="outline">Upload Files</button>
-			</div>
-		</div>
+		<caps-empty class="border border-dashed">
+			<caps-empty-media variant="icon">
+				<ng-icon aria-hidden="true" name="lucideCloud" />
+			</caps-empty-media>
+			<caps-empty-title>Cloud Storage Empty</caps-empty-title>
+			<caps-empty-description>Upload files to your cloud storage to access them anywhere.</caps-empty-description>
+
+			<caps-empty-actions>
+				<button type="button" capsButton variant="outline">Upload Files</button>
+			</caps-empty-actions>
+		</caps-empty>
 	`,
 })
 export class EmptyOutline {}

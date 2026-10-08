@@ -1,8 +1,8 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
+import { CapsAlert, CapsAlertDescription, CapsAlertMedia } from '@capsule-ng/caps/alert';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert } from '@ng-icons/lucide';
-import { HlmAlert, HlmAlertDescription } from '@spartan-ng/helm/alert';
 import { hlmCode } from '@spartan-ng/helm/typography';
 import { injectComponentDocs } from '../../../../core/services/component-docs';
 import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
@@ -62,8 +62,9 @@ export const routeMeta: RouteMeta = {
 		TabsIconsOnlyPreview,
 		TabsInputButtonPreview,
 		TabsLazyPreview,
-		HlmAlertDescription,
-		HlmAlert,
+		CapsAlertDescription,
+		CapsAlertMedia,
+		CapsAlert,
 		NgIcon,
 		SectionSubSubHeading,
 		RtlHeader,
@@ -180,13 +181,13 @@ export const routeMeta: RouteMeta = {
 				. Hides the pagination buttons and active tab is not scrolled into view.
 			</p>
 
-			<div hlmAlert class="my-2">
-				<ng-icon name="lucideCircleAlert" />
-				<div hlmAlertDescription>
+			<caps-alert class="my-2">
+				<caps-alert-media><ng-icon name="lucideCircleAlert" aria-hidden="true" /></caps-alert-media>
+				<caps-alert-description>
 					<p>
 						<strong>Padding</strong>
 						styles, applied to the tab list (
-						<code class="${hlmCode}">CapsTabsList</code>
+						<code class="${hlmCode} text-foreground">CapsTabsList</code>
 						), are
 						<strong>not</strong>
 						taken into account during
@@ -194,8 +195,8 @@ export const routeMeta: RouteMeta = {
 						. This affects the active tab's scrolling position and next/previous button remain enabled even when the
 						active tab is at the start or end of the tab list.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

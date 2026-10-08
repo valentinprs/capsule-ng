@@ -65,6 +65,10 @@ export const routeMeta: RouteMeta = {
 			</spartan-tabs>
 
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
+			<p class="text-muted-foreground mt-4 text-sm">
+				Alert defaults to role="alert", as in Spartan; native role and live attributes can be overridden. Titles are
+				styled text; project a native heading only when the callout starts a section.
+			</p>
 			<div class="mt-6 space-y-4">
 				<spartan-code [code]="_defaultImports" />
 				<spartan-code [code]="_defaultSkeleton" />
@@ -76,7 +80,8 @@ export const routeMeta: RouteMeta = {
 			<p class="${hlmP}">
 				Use
 				<code class="${hlmCode}">variant="destructive"</code>
-				to create a destructive alert.
+				for an error callout. Alert keeps its default role="alert"; the button below demonstrates an urgent message
+				inserted dynamically.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -88,8 +93,8 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__action" spartanH4>Action</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlmAlertAction</code>
-				to add a button or other action element to the alert.
+				<code class="${hlmCode}">caps-alert-actions</code>
+				to project native Capsule buttons or links. Actions wrap on smaller screens.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -103,7 +108,7 @@ export const routeMeta: RouteMeta = {
 				You can customize the alert colors by adding custom classes such as
 				<code class="${hlmCode}">bg-amber-50 dark:bg-amber-950</code>
 				to the
-				<code class="${hlmCode}">hlm-alert</code>
+				<code class="${hlmCode}">caps-alert</code>
 				component.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -121,8 +126,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="alert-dialog" label="Alert Dialog" />

@@ -176,6 +176,8 @@
 			"@capsule-ng/caps/dialog": ["libs/caps/dialog/src/index.ts"],
 			"@capsule-ng/caps/accordion": ["libs/caps/accordion/src/index.ts"],
 			"@capsule-ng/caps/collapsible": ["libs/caps/collapsible/src/index.ts"],
+			"@capsule-ng/caps/alert": ["libs/caps/alert/src/index.ts"],
+			"@capsule-ng/caps/empty": ["libs/caps/empty/src/index.ts"],
 			"@capsule-ng/caps/alert-dialog": ["libs/caps/alert-dialog/src/index.ts"],
 			"@capsule-ng/caps/avatar": ["libs/caps/avatar/src/index.ts"],
 			"@capsule-ng/caps/badge": ["libs/caps/badge/src/index.ts"],

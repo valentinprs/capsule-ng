@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsEmptyImports } from '@capsule-ng/caps/empty';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -15,7 +16,6 @@ import {
 	lucideRotateCw,
 	lucideTelescope,
 } from '@ng-icons/lucide';
-import { HlmEmptyImports } from '@spartan-ng/helm/empty';
 import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared';
@@ -26,7 +26,7 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 		HlmMessageScrollerImports,
 		CapsCardImports,
 		CapsButtonImports,
-		HlmEmptyImports,
+		CapsEmptyImports,
 		CapsInputGroupImports,
 		CapsDropdownMenuImports,
 		CapsTooltipImports,
@@ -74,15 +74,15 @@ import { MAIN_CHAT_SCRIPT, ScriptedChatRunner } from './message-scroller.shared'
 
 					<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
 						@if (_chat.messages().length === 0) {
-							<hlm-empty class="h-full">
-								<hlm-empty-header>
-									<hlm-empty-media variant="icon">
-										<ng-icon name="lucideMessageCircleDashed" />
-									</hlm-empty-media>
-									<div hlmEmptyTitle>Morning, shadcn!</div>
-									<div hlmEmptyDescription>What are we working on today? Press send to start a new conversation</div>
-								</hlm-empty-header>
-							</hlm-empty>
+							<caps-empty class="h-full">
+								<caps-empty-media variant="icon">
+									<ng-icon aria-hidden="true" name="lucideMessageCircleDashed" />
+								</caps-empty-media>
+								<caps-empty-title>Morning, shadcn!</caps-empty-title>
+								<caps-empty-description>
+									What are we working on today? Press send to start a new conversation
+								</caps-empty-description>
+							</caps-empty>
 						} @else {
 							<div hlmMessageScroller>
 								<div hlmMessageScrollerViewport>

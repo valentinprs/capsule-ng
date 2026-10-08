@@ -18,6 +18,7 @@
 		},
 		"messages.css",
 		"command.css",
-		"kbd.css"
+		"kbd.css",
+		"messages-states.css"
 	]
 }

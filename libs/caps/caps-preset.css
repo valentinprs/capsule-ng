@@ -5,6 +5,7 @@
    @import '../../../libs/caps/caps-preset.css' layer(caps); */
 
 @import './choices.css';
+@import './messages-states.css';
 
 @import './menu.css';
 @import './messages.css';

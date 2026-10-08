@@ -1,0 +1,70 @@
+/* Informative callouts and empty states use the shared Capsule foundation tokens. */
+.caps-alert {
+	@apply bg-card text-card-foreground grid w-full min-w-0 gap-x-2 gap-y-1 rounded-lg border px-3 py-2.5 text-start text-sm;
+}
+.caps-alert:has(> .caps-alert-media) {
+	grid-template-columns: auto minmax(0, 1fr);
+}
+.caps-alert-media {
+	@apply col-start-1 row-span-2 row-start-1 flex shrink-0 items-start pt-0.5 text-current [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+}
+.caps-alert-title,
+.caps-alert-description,
+.caps-alert-actions {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+.caps-alert:has(> .caps-alert-media) > :is(.caps-alert-title, .caps-alert-description, .caps-alert-actions) {
+	grid-column: 2;
+}
+.caps-alert-title {
+	@apply block font-medium;
+}
+.caps-alert-description {
+	@apply text-muted-foreground block text-sm [&_p:not(:last-child)]:mb-4;
+}
+.caps-alert-variant-destructive {
+	@apply border-destructive/40 text-destructive;
+}
+.caps-alert-variant-destructive > .caps-alert-description {
+	@apply text-destructive;
+}
+.caps-alert-actions {
+	@apply mt-2 flex flex-wrap items-center gap-2;
+}
+.caps-empty {
+	@apply flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-xl border-dashed p-6 text-center text-balance;
+}
+.caps-empty-header {
+	@apply flex w-full max-w-sm min-w-0 flex-col items-center gap-2;
+}
+.caps-empty-media {
+	@apply mb-2 flex shrink-0 items-center justify-center [&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0;
+}
+.caps-empty-media-icon {
+	@apply bg-muted text-foreground size-8 rounded-md [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+}
+.caps-empty-title {
+	@apply block text-base font-medium tracking-tight;
+}
+.caps-empty-description {
+	@apply text-muted-foreground block w-full max-w-sm text-sm/relaxed;
+}
+.caps-empty-content {
+	@apply flex w-full max-w-sm min-w-0 flex-col items-center gap-2.5 text-sm;
+}
+.caps-empty-actions {
+	@apply flex max-w-full flex-wrap items-center justify-center gap-2;
+}
+.caps-empty-title {
+	max-width: 100%;
+	overflow-wrap: anywhere;
+}
+.caps-empty-description {
+	overflow-wrap: anywhere;
+}
+.caps-alert-title > :is(h1, h2, h3, h4, h5, h6),
+.caps-empty-title > :is(h1, h2, h3, h4, h5, h6) {
+	font: inherit;
+	margin: 0;
+}

@@ -36,11 +36,13 @@
 		@apply text-destructive bg-card *:data-[slot=alert-description]:text-destructive/90 *:[ng-icon]:text-current;
 	}
 
-	.spartan-alert-title {
+	.spartan-alert-title,
+	.caps-alert-title {
 		@apply font-medium group-has-[>ng-icon]/alert:col-start-2;
 	}
 
-	.spartan-alert-description {
+	.spartan-alert-description,
+	.caps-alert-description {
 		@apply text-muted-foreground text-xs/relaxed text-balance md:text-pretty [&_p:not(:last-child)]:mb-2;
 	}
 
@@ -528,35 +530,43 @@
 	}
 
 	/* MARK: Empty */
-	.spartan-empty {
+	.spartan-empty,
+	.caps-empty {
 		@apply gap-4 rounded-none border-dashed p-6;
 	}
 
-	.spartan-empty-header {
+	.spartan-empty-header,
+	.caps-empty-header {
 		@apply gap-2;
 	}
 
-	.spartan-empty-media {
+	.spartan-empty-media,
+	.caps-empty-media {
 		@apply mb-2;
 	}
 
-	.spartan-empty-media-default {
+	.spartan-empty-media-default,
+	.caps-empty-media-default {
 		@apply bg-transparent;
 	}
 
-	.spartan-empty-media-icon {
+	.spartan-empty-media-icon,
+	.caps-empty-media-icon {
 		@apply bg-muted text-foreground flex size-8 shrink-0 items-center justify-center rounded-none [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
 	}
 
-	.spartan-empty-title {
+	.spartan-empty-title,
+	.caps-empty-title {
 		@apply text-sm font-medium;
 	}
 
-	.spartan-empty-description {
+	.spartan-empty-description,
+	.caps-empty-description {
 		@apply text-xs/relaxed;
 	}
 
-	.spartan-empty-content {
+	.spartan-empty-content,
+	.caps-empty-content {
 		@apply gap-2.5 text-xs;
 	}
 

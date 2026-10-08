@@ -1,5 +1,7 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
+import { CapsAlertImports } from '@capsule-ng/caps/alert';
+import { CapsLink } from '@capsule-ng/caps/link';
 import { Code } from '@spartan-ng/app/app/shared/code/code';
 import { MainSection } from '@spartan-ng/app/app/shared/layout/main-section';
 import { PageBottomNav } from '@spartan-ng/app/app/shared/layout/page-bottom-nav/page-bottom-nav';
@@ -9,7 +11,6 @@ import { SectionIntro } from '@spartan-ng/app/app/shared/layout/section-intro';
 import { SectionSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-heading';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { CAPS_TOKENS_CSS } from '@spartan-ng/styles';
 
@@ -22,6 +23,7 @@ export const routeMeta: RouteMeta = {
 @Component({
 	selector: 'spartan-theming',
 	imports: [
+		CapsLink,
 		MainSection,
 		SectionIntro,
 		PageBottomNav,
@@ -29,7 +31,7 @@ export const routeMeta: RouteMeta = {
 		PageNav,
 		SectionSubHeading,
 		Code,
-		HlmAlertImports,
+		CapsAlertImports,
 		SectionSubSubHeading,
 	],
 	template: `
@@ -105,19 +107,19 @@ export const routeMeta: RouteMeta = {
 				</div>
 			</div>
 
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						The
-						<code class="${hlmCode}">-background</code>
+						<code class="${hlmCode} text-foreground">-background</code>
 						suffix is omitted from CSS variable names. The variable
-						<code class="${hlmCode}">--primary</code>
+						<code class="${hlmCode} text-foreground">--primary</code>
 						maps to the class
-						<code class="${hlmCode}">bg-primary</code>
+						<code class="${hlmCode} text-foreground">bg-primary</code>
 						.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-section-sub-heading id="available-variables">Available variables</spartan-section-sub-heading>
 
@@ -136,16 +138,17 @@ export const routeMeta: RouteMeta = {
 
 			<spartan-code class="mt-6" fileName="caps-tokens.css" [code]="_capsTokensCss" />
 
-			<div class="mt-6 text-sm" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6 text-sm">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Use OKLCH without the color space function.</span>
 						Define variables as
-						<code class="${hlmCode}">oklch(0.5 0.2 180)</code>
+						<code class="${hlmCode} text-foreground">oklch(0.5 0.2 180)</code>
 						, not
-						<code class="${hlmCode}">oklch(0.5, 0.2, 180)</code>
+						<code class="${hlmCode} text-foreground">oklch(0.5, 0.2, 180)</code>
 						. See the
 						<a
+							capsLink
 							class="font-medium underline"
 							href="https://tailwindcss.com/docs/customizing-colors#using-css-variables"
 							target="_blank"
@@ -154,8 +157,8 @@ export const routeMeta: RouteMeta = {
 						</a>
 						for details.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-section-sub-heading id="adding-colors">Adding custom colors</spartan-section-sub-heading>
 

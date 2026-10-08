@@ -1,6 +1,7 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsAlertImports } from '@capsule-ng/caps/alert';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { DataTableRtl } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/data-table--rtl.preview';
@@ -8,7 +9,6 @@ import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { link } from '@spartan-ng/app/app/shared/typography/link';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
@@ -59,7 +59,7 @@ export const routeMeta: RouteMeta = {
 	imports: [
 		MainSection,
 		Code,
-		HlmAlertImports,
+		CapsAlertImports,
 		SectionIntro,
 		SectionSubHeading,
 		SectionSubSubHeading,
@@ -115,15 +115,15 @@ export const routeMeta: RouteMeta = {
 				<a href="https://tanstack.com/table" target="_blank" rel="noreferrer" class="${link}">TanStack Table</a>
 				.
 			</p>
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Tip:</span>
 						If you find yourself using the same table in multiple places in your app, you can always extract it into a
 						reusable component.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-section-sub-heading id="installation">Installation</spartan-section-sub-heading>
 			<p class="${hlmP} mb-6">
@@ -162,19 +162,19 @@ export const routeMeta: RouteMeta = {
 				).
 			</p>
 			<spartan-code fileName="data-table-features.ts" [code]="_featuresCode" />
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Note:</span>
 						The core row model is always included, so you never register it yourself. Row models for optional features
 						are created with
-						<code class="${hlmCode}">create*RowModel()</code>
+						<code class="${hlmCode} text-foreground">create*RowModel()</code>
 						and registered on the features object — there are no more
-						<code class="${hlmCode}">get*RowModel</code>
+						<code class="${hlmCode} text-foreground">get*RowModel</code>
 						table options.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-section-sub-heading id="basic-table">Basic Table</spartan-section-sub-heading>
 			<p class="${hlmP}">Let's start by building a basic table.</p>
@@ -182,15 +182,15 @@ export const routeMeta: RouteMeta = {
 			<h3 id="column-definitions" spartanH4>Column definitions</h3>
 			<p class="${hlmP} mb-6">First, we'll define our columns.</p>
 			<spartan-code fileName="columns.ts" [code]="_columnsCode" />
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Note:</span>
 						Columns are where you define the core of what your table will look like. They define the data that will be
 						displayed, how it will be formatted, sorted and filtered.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<h3 id="data-table-component" spartanH4>Data table component</h3>
 			<p class="${hlmP} mb-6">
@@ -207,21 +207,21 @@ export const routeMeta: RouteMeta = {
 				directive.
 			</p>
 			<spartan-code fileName="data-table.ts" [code]="_basicTableCode" />
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Rendering with FlexRender:</span>
 						A column's
-						<code class="${hlmCode}">header</code>
+						<code class="${hlmCode} text-foreground">header</code>
 						and
-						<code class="${hlmCode}">cell</code>
+						<code class="${hlmCode} text-foreground">cell</code>
 						definitions can return a plain string, an HTML string (rendered above via
-						<code class="${hlmCode}">[innerHTML]</code>
+						<code class="${hlmCode} text-foreground">[innerHTML]</code>
 						) or an Angular component class — we'll use components for the sorting button, the selection checkboxes and
 						the actions dropdown later in this guide.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<h3 id="render-the-table" spartanH4>Render the table</h3>
 			<p class="${hlmP} mb-6">Finally, we'll render our table in our page component.</p>

@@ -148,3 +148,11 @@ control height, border and opacity tokens. Input, InputGroup and Button compose 
 foundations at the shared default control height; no second
 theme source is introduced. Direction is forwarded to floating content and logical padding/end
 positions keep chips and indicators correct in RTL.
+
+## Alert and Empty (issue43)
+
+`messages-states.css` is included in the shared preset and distributed package. Alert uses shared
+surface, text, border and destructive tokens; its responsive media/text/actions grid keeps native
+actions on a separate row. Empty uses shared spacing, muted text and media surfaces. Six style
+choices reuse their existing Empty and Alert text rules through Capsule hooks. No additional theme source is introduced. Alert retains the documented Spartan alert role;
+Empty has no default role. See `docs/specs/caps-alert-empty.md`.

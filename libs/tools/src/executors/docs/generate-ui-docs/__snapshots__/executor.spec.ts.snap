@@ -217,6 +217,44 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "alert": {
+    "caps": {
+      "CapsAlert": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsAlertVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert",
+      },
+      "CapsAlertActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert-actions",
+      },
+      "CapsAlertDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert-description",
+      },
+      "CapsAlertMedia": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert-media",
+      },
+      "CapsAlertTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert-title",
+      },
+    },
     "helm": {
       "HlmAlert": {
         "inputs": [
@@ -7509,6 +7547,56 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "empty": {
+    "caps": {
+      "CapsEmpty": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty",
+      },
+      "CapsEmptyActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-actions",
+      },
+      "CapsEmptyContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-content",
+      },
+      "CapsEmptyDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-description",
+      },
+      "CapsEmptyHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-header",
+      },
+      "CapsEmptyMedia": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsEmptyMediaVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-media",
+      },
+      "CapsEmptyTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-title",
+      },
+    },
     "helm": {
       "HlmEmpty": {
         "inputs": [],

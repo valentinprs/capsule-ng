@@ -1,18 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { CapsAlertImports } from '@capsule-ng/caps/alert';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideAlertCircle } from '@ng-icons/lucide';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
 
 @Component({
 	selector: 'spartan-alert-destructive',
-	imports: [HlmAlertImports, NgIcon],
+	imports: [CapsAlertImports, CapsButton, NgIcon],
 	providers: [provideIcons({ lucideAlertCircle })],
 	template: `
-		<hlm-alert variant="destructive" class="max-w-md">
-			<ng-icon name="lucideAlertCircle" />
-			<h4 hlmAlertTitle>Payment failed</h4>
-			<p hlmAlertDescription>Your payment could not be processed. Please check your payment method and try again.</p>
-		</hlm-alert>
+		<div class="grid w-full max-w-md gap-3">
+			<button capsButton type="button" variant="outline" (click)="_failed.set(true)">Simulate payment failure</button>
+			@if (_failed()) {
+				<caps-alert variant="destructive" role="alert">
+					<caps-alert-media><ng-icon name="lucideAlertCircle" aria-hidden="true" /></caps-alert-media>
+					<caps-alert-title>Payment failed</caps-alert-title>
+					<caps-alert-description>
+						Your payment could not be processed. Please check your payment method and try again.
+					</caps-alert-description>
+					<caps-alert-actions>
+						<button capsButton type="button" variant="outline" size="sm" (click)="_failed.set(false)">Try again</button>
+					</caps-alert-actions>
+				</caps-alert>
+			}
+		</div>
 	`,
 })
-export class AlertDestructive {}
+export class AlertDestructive {
+	protected readonly _failed = signal(false);
+}

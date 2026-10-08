@@ -1,7 +1,7 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
+import { CapsAlertImports } from '@capsule-ng/caps/alert';
 import { CapsLink } from '@capsule-ng/caps/link';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP, hlmUl } from '@spartan-ng/helm/typography';
 import { injectComponentDocs } from '../../../../core/services/component-docs';
 import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
@@ -46,7 +46,7 @@ export const routeMeta: RouteMeta = {
 		ChartPreview,
 		ChartLine,
 		ChartLegend,
-		HlmAlertImports,
+		CapsAlertImports,
 		UIApiDocs,
 	],
 	template: `
@@ -68,19 +68,19 @@ export const routeMeta: RouteMeta = {
 				provides semantic colors, dark-mode integration, and tooltip styling.
 			</p>
 
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<span class="font-semibold">Alpha.</span>
 					This integration (and TanStack Charts itself) is in alpha. Its API can change between releases, so breaking
 					changes may occur. Keep
-					<code class="${hlmCode}">&#64;tanstack/charts</code>
+					<code class="${hlmCode} text-foreground">&#64;tanstack/charts</code>
 					and
-					<code class="${hlmCode}">&#64;tanstack/angular-charts</code>
+					<code class="${hlmCode} text-foreground">&#64;tanstack/angular-charts</code>
 					on matching versions supported by the
-					<code class="${hlmCode}">&#64;capsule-ng/caps</code>
+					<code class="${hlmCode} text-foreground">&#64;capsule-ng/caps</code>
 					peer dependencies.
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<div class="mt-6 space-y-4">

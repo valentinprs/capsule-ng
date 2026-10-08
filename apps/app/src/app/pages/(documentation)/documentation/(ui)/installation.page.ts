@@ -1,9 +1,9 @@
 import { type RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsAlert, CapsAlertDescription, CapsAlertTitle } from '@capsule-ng/caps/alert';
 import { PackageInstallerTabs } from '@spartan-ng/app/app/shared/layout/package-installer-tabs';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { HlmAlert, HlmAlertDescription, HlmAlertTitle } from '@spartan-ng/helm/alert';
 
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
@@ -41,9 +41,9 @@ export const routeMeta: RouteMeta = {
 
 		RouterLink,
 		SectionSubSubHeading,
-		HlmAlert,
-		HlmAlertDescription,
-		HlmAlertTitle,
+		CapsAlert,
+		CapsAlertDescription,
+		CapsAlertTitle,
 		PackageInstallerTabs,
 	],
 	template: `
@@ -116,12 +116,12 @@ export const routeMeta: RouteMeta = {
 			</p>
 			<spartan-code class="mt-4" [code]="_spartanPresetImport" fileName="src/styles.css" />
 
-			<div hlmAlert class="mt-6">
-				<h4 hlmAlertTitle>spartan/ui preset</h4>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-title>spartan/ui preset</caps-alert-title>
+				<caps-alert-description>
 					<p class="${hlmP}">Our preset already includes tw-animate-css and &#64;angular/cdk/overlay-prebuilt.css</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<h4 spartanH4 id="add-theme-variables" class="mt-8">2.3 Optional theme overrides</h4>
 			<p class="${hlmP}">

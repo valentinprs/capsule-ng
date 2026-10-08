@@ -13683,6 +13683,312 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "sidebar": {
+    "caps": {
+      "CapsSidebar": {
+        "inputs": [
+          {
+            "name": "side",
+            "required": false,
+            "type": "'left' | 'right'",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "SidebarVariant",
+          },
+          {
+            "name": "collapsible",
+            "required": false,
+            "type": "'offcanvas' | 'icon' | 'none'",
+          },
+          {
+            "name": "sidebarWidthMobile",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "srOnlySheetTitle",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "srOnlySheetDescription",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "sidebarContainerClass",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar",
+      },
+      "CapsSidebarContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-content",
+      },
+      "CapsSidebarFooter": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-footer",
+      },
+      "CapsSidebarGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-group",
+      },
+      "CapsSidebarGroupAction": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarGroupAction]",
+      },
+      "CapsSidebarGroupContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-group-content",
+      },
+      "CapsSidebarGroupLabel": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-group-label",
+      },
+      "CapsSidebarGroupLabelButton": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarGroupLabel]",
+      },
+      "CapsSidebarHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-header",
+      },
+      "CapsSidebarInput": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsSidebarInput]",
+      },
+      "CapsSidebarInset": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-inset",
+      },
+      "CapsSidebarMenu": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu",
+      },
+      "CapsSidebarMenuAction": {
+        "inputs": [
+          {
+            "name": "showOnHover",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarMenuAction]",
+      },
+      "CapsSidebarMenuBadge": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-badge",
+      },
+      "CapsSidebarMenuButton": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "'default' | 'outline'",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "'default' | 'sm' | 'lg'",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "closeMobileSidebarOnClick",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "tooltip",
+            "required": false,
+            "type": "BrnTooltipType",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsSidebarMenuButton],button[capsSidebarMenuButton]",
+      },
+      "CapsSidebarMenuItem": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-item",
+      },
+      "CapsSidebarMenuSkeleton": {
+        "inputs": [
+          {
+            "name": "showIcon",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-skeleton",
+      },
+      "CapsSidebarMenuSub": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-sub",
+      },
+      "CapsSidebarMenuSubButton": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "'sm' | 'md'",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "closeMobileSidebarOnClick",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsSidebarMenuSubButton],button[capsSidebarMenuSubButton]",
+      },
+      "CapsSidebarMenuSubItem": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-sub-item",
+      },
+      "CapsSidebarRail": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarRail]",
+      },
+      "CapsSidebarSeparator": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-separator",
+      },
+      "CapsSidebarTrigger": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsButtonSize",
+          },
+          {
+            "name": "srOnlyText",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarTrigger]",
+      },
+      "CapsSidebarWrapper": {
+        "inputs": [
+          {
+            "name": "sidebarWidth",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "sidebarWidthIcon",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-wrapper",
+      },
+    },
     "helm": {
       "HlmSidebar": {
         "inputs": [

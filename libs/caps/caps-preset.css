@@ -1,3 +1,4 @@
+@import './sidebar.css';
 @import './panels.css';
 
 /* Caps style preset: defines the `caps-*` hook classes set by the caps components.

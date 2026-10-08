@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCalendar,
@@ -10,26 +11,25 @@ import {
 	lucideSearch,
 	lucideSettings,
 } from '@ng-icons/lucide';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-const meta: Meta<{}> = {
+const meta: Meta<object> = {
 	title: 'Sidebar',
 	tags: ['autodocs'],
 
 	decorators: [
 		moduleMetadata({
-			imports: [FormsModule, ReactiveFormsModule, HlmSidebarImports],
+			imports: [FormsModule, ReactiveFormsModule, CapsSidebarImports],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<{}>;
+type Story = StoryObj<object>;
 
 @Component({
 	selector: 'sidebar',
-	imports: [HlmSidebarImports, NgIcon],
+	imports: [CapsSidebarImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideHouse,
@@ -41,163 +41,167 @@ type Story = StoryObj<{}>;
 			lucideEllipsis,
 		}),
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar side="left">
-				<div hlmSidebarHeader>
+		<caps-sidebar-wrapper>
+			<caps-sidebar side="left">
+				<caps-sidebar-header>
 					<h1 class="text-2xl font-bold">My app</h1>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupContent class="relative">
-							<input hlmSidebarInput placeholder="Search" class="pl-8" />
+					<caps-sidebar-group>
+						<caps-sidebar-group-content class="relative">
+							<input capsSidebarInput aria-label="Search navigation" placeholder="Search" class="pl-8" />
 							<ng-icon
+								aria-hidden="true"
 								name="lucideSearch"
 								class="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-(--caps-opacity-50) select-none"
 							></ng-icon>
-						</div>
-					</div>
-				</div>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupLabel>Application</div>
-						<button hlmSidebarGroupAction>
-							<ng-icon name="lucideEllipsis" />
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-header>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Application</caps-sidebar-group-label>
+						<button capsSidebarGroupAction aria-label="Application actions">
+							<ng-icon aria-hidden="true" name="lucideEllipsis" />
 						</button>
 
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton aria-describedby="Home" [isActive]="true">
-										<ng-icon name="lucideHouse" />
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton [isActive]="true">
+										<ng-icon aria-hidden="true" name="lucideHouse" />
 										<span>Home</span>
 									</button>
-									<ul hlmSidebarMenuSub>
-										<li>
-											<a hlmSidebarMenuSubButton>
-												<ng-icon name="lucideHouse" />
+									<caps-sidebar-menu-sub>
+										<caps-sidebar-menu-sub-item>
+											<a capsSidebarMenuSubButton href="#home">
+												<ng-icon aria-hidden="true" name="lucideHouse" />
 												<span>Home</span>
 											</a>
-										</li>
-										<li>
-											<a hlmSidebarMenuSubButton>
-												<ng-icon name="lucideHouse" />
+										</caps-sidebar-menu-sub-item>
+										<caps-sidebar-menu-sub-item>
+											<a capsSidebarMenuSubButton href="#home">
+												<ng-icon aria-hidden="true" name="lucideHouse" />
 												<span>Home</span>
 											</a>
-										</li>
-									</ul>
-								</li>
+										</caps-sidebar-menu-sub-item>
+									</caps-sidebar-menu-sub>
+								</caps-sidebar-menu-item>
 
 								<!-- Home -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton aria-describedby="Home">
-										<ng-icon name="lucideHouse" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton>
+										<ng-icon aria-hidden="true" name="lucideHouse" />
 										<span>Home</span>
 									</button>
-									<button hlmSidebarMenuAction aria-describedby="Home">
-										<ng-icon name="lucideEllipsis" />
+									<button capsSidebarMenuAction aria-label="Home actions">
+										<ng-icon aria-hidden="true" name="lucideEllipsis" />
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Inbox -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Inbox" aria-describedby="Inbox">
-										<ng-icon name="lucideInbox" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Inbox">
+										<ng-icon aria-hidden="true" name="lucideInbox" />
 										<span>Inbox</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Calendar -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Calendar" aria-describedby="Calendar">
-										<ng-icon name="lucideCalendar" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Calendar">
+										<ng-icon aria-hidden="true" name="lucideCalendar" />
 										<span>Calendar</span>
 									</button>
-								</li>
-								<hlm-sidebar-separator />
+								</caps-sidebar-menu-item>
+								<caps-sidebar-menu-item><caps-sidebar-separator /></caps-sidebar-menu-item>
 
 								<!-- Search -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Search" aria-describedby="Search">
-										<ng-icon name="lucideSearch" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Search">
+										<ng-icon aria-hidden="true" name="lucideSearch" />
 										<span>Search</span>
-										<div hlmSidebarMenuBadge>10</div>
+										<caps-sidebar-menu-badge>10</caps-sidebar-menu-badge>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Settings -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Settings" aria-describedby="Settings">
-										<ng-icon name="lucideSettings" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Settings">
+										<ng-icon aria-hidden="true" name="lucideSettings" />
 										<span>Settings</span>
 									</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div hlmSidebarGroup collapsible="icon">
-						<div hlmSidebarGroupLabel>Application1</div>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
+								</caps-sidebar-menu-item>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Application1</caps-sidebar-group-label>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
 								<!-- Home -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Home" aria-describedby="Home">
-										<ng-icon name="lucideHouse" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Home">
+										<ng-icon aria-hidden="true" name="lucideHouse" />
 										<span>Home</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Inbox -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Inbox" aria-describedby="Inbox">
-										<ng-icon name="lucideInbox" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Inbox">
+										<ng-icon aria-hidden="true" name="lucideInbox" />
 										<span>Inbox</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Calendar -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Calendar" aria-describedby="Calendar">
-										<ng-icon name="lucideCalendar" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Calendar">
+										<ng-icon aria-hidden="true" name="lucideCalendar" />
 										<span>Calendar</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Search -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Search" aria-describedby="Search">
-										<ng-icon name="lucideSearch" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Search">
+										<ng-icon aria-hidden="true" name="lucideSearch" />
 										<span>Search</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Settings -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Settings" aria-describedby="Settings">
-										<ng-icon name="lucideSettings" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Settings">
+										<ng-icon aria-hidden="true" name="lucideSettings" />
 										<span>Settings</span>
 									</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+								</caps-sidebar-menu-item>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
 
-				<div hlmSidebarFooter>
-					<button hlmSidebarMenuButton tooltip="Settings" aria-describedby="Settings">
-						<ng-icon name="lucideSettings" />
+				<caps-sidebar-footer>
+					<button capsSidebarMenuButton tooltip="Settings">
+						<ng-icon aria-hidden="true" name="lucideSettings" />
 						<span>Settings</span>
 					</button>
-				</div>
+				</caps-sidebar-footer>
 
 				<!-- Rail for resizing -->
-				<button hlmSidebarRail></button>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<div class="flex h-screen w-full flex-col items-center justify-center">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-					<h1 class="text-2xl font-bold">Hello World</h1>
-				</div>
-			</main>
-		</div>
+				<button capsSidebarRail></button>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<main class="flex min-w-0 flex-1 flex-col">
+					<div class="flex h-screen w-full flex-col items-center justify-center">
+						<button capsSidebarTrigger></button>
+						<h1 class="text-2xl font-bold">Hello World</h1>
+					</div>
+				</main>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 class Sidebar {}
@@ -215,7 +219,7 @@ export const Default: Story = {
 
 @Component({
 	selector: 'sidebar',
-	imports: [HlmSidebarImports, NgIcon],
+	imports: [CapsSidebarImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideHouse,
@@ -227,163 +231,167 @@ export const Default: Story = {
 			lucideEllipsis,
 		}),
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div hlmSidebarWrapper>
-			<main hlmSidebarInset>
-				<div class="flex h-screen w-full flex-col items-center justify-center">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-					<h1 class="text-2xl font-bold">Hello World</h1>
-				</div>
-			</main>
-			<hlm-sidebar side="right">
-				<div hlmSidebarHeader>
+		<caps-sidebar-wrapper>
+			<caps-sidebar-inset>
+				<main class="flex min-w-0 flex-1 flex-col">
+					<div class="flex h-screen w-full flex-col items-center justify-center">
+						<button capsSidebarTrigger></button>
+						<h1 class="text-2xl font-bold">Hello World</h1>
+					</div>
+				</main>
+			</caps-sidebar-inset>
+			<caps-sidebar side="right">
+				<caps-sidebar-header>
 					<h1 class="text-2xl font-bold">My app</h1>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupContent class="relative">
-							<input hlmSidebarInput placeholder="Search" class="pl-8" />
+					<caps-sidebar-group>
+						<caps-sidebar-group-content class="relative">
+							<input capsSidebarInput aria-label="Search navigation" placeholder="Search" class="pl-8" />
 							<ng-icon
+								aria-hidden="true"
 								name="lucideSearch"
 								class="pointer-events-none absolute top-1/2 left-2 size-4 -translate-y-1/2 opacity-(--caps-opacity-50) select-none"
 							></ng-icon>
-						</div>
-					</div>
-				</div>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupLabel>Application</div>
-						<button hlmSidebarGroupAction>
-							<ng-icon name="lucideEllipsis" />
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-header>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Application</caps-sidebar-group-label>
+						<button capsSidebarGroupAction aria-label="Application actions">
+							<ng-icon aria-hidden="true" name="lucideEllipsis" />
 						</button>
 
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton aria-describedby="Home" [isActive]="true">
-										<ng-icon name="lucideHouse" />
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton [isActive]="true">
+										<ng-icon aria-hidden="true" name="lucideHouse" />
 										<span>Home</span>
 									</button>
-									<ul hlmSidebarMenuSub>
-										<li>
-											<a hlmSidebarMenuSubButton>
-												<ng-icon name="lucideHouse" />
+									<caps-sidebar-menu-sub>
+										<caps-sidebar-menu-sub-item>
+											<a capsSidebarMenuSubButton href="#home">
+												<ng-icon aria-hidden="true" name="lucideHouse" />
 												<span>Home</span>
 											</a>
-										</li>
-										<li>
-											<a hlmSidebarMenuSubButton>
-												<ng-icon name="lucideHouse" />
+										</caps-sidebar-menu-sub-item>
+										<caps-sidebar-menu-sub-item>
+											<a capsSidebarMenuSubButton href="#home">
+												<ng-icon aria-hidden="true" name="lucideHouse" />
 												<span>Home</span>
 											</a>
-										</li>
-									</ul>
-								</li>
+										</caps-sidebar-menu-sub-item>
+									</caps-sidebar-menu-sub>
+								</caps-sidebar-menu-item>
 
 								<!-- Home -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton aria-describedby="Home">
-										<ng-icon name="lucideHouse" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton>
+										<ng-icon aria-hidden="true" name="lucideHouse" />
 										<span>Home</span>
 									</button>
-									<button hlmSidebarMenuAction aria-describedby="Home">
-										<ng-icon name="lucideEllipsis" />
+									<button capsSidebarMenuAction aria-label="Home actions">
+										<ng-icon aria-hidden="true" name="lucideEllipsis" />
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Inbox -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Inbox" aria-describedby="Inbox">
-										<ng-icon name="lucideInbox" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Inbox">
+										<ng-icon aria-hidden="true" name="lucideInbox" />
 										<span>Inbox</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Calendar -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Calendar" aria-describedby="Calendar">
-										<ng-icon name="lucideCalendar" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Calendar">
+										<ng-icon aria-hidden="true" name="lucideCalendar" />
 										<span>Calendar</span>
 									</button>
-								</li>
-								<hlm-sidebar-separator />
+								</caps-sidebar-menu-item>
+								<caps-sidebar-menu-item><caps-sidebar-separator /></caps-sidebar-menu-item>
 
 								<!-- Search -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Search" aria-describedby="Search">
-										<ng-icon name="lucideSearch" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Search">
+										<ng-icon aria-hidden="true" name="lucideSearch" />
 										<span>Search</span>
-										<div hlmSidebarMenuBadge>10</div>
+										<caps-sidebar-menu-badge>10</caps-sidebar-menu-badge>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Settings -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Settings" aria-describedby="Settings">
-										<ng-icon name="lucideSettings" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Settings">
+										<ng-icon aria-hidden="true" name="lucideSettings" />
 										<span>Settings</span>
 									</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div hlmSidebarGroup collapsible="icon">
-						<div hlmSidebarGroupLabel>Application1</div>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
+								</caps-sidebar-menu-item>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Application1</caps-sidebar-group-label>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
 								<!-- Home -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Home" aria-describedby="Home">
-										<ng-icon name="lucideHouse" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Home">
+										<ng-icon aria-hidden="true" name="lucideHouse" />
 										<span>Home</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Inbox -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Inbox" aria-describedby="Inbox">
-										<ng-icon name="lucideInbox" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Inbox">
+										<ng-icon aria-hidden="true" name="lucideInbox" />
 										<span>Inbox</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Calendar -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Calendar" aria-describedby="Calendar">
-										<ng-icon name="lucideCalendar" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Calendar">
+										<ng-icon aria-hidden="true" name="lucideCalendar" />
 										<span>Calendar</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Search -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Search" aria-describedby="Search">
-										<ng-icon name="lucideSearch" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Search">
+										<ng-icon aria-hidden="true" name="lucideSearch" />
 										<span>Search</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 
 								<!-- Settings -->
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton tooltip="Settings" aria-describedby="Settings">
-										<ng-icon name="lucideSettings" />
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton tooltip="Settings">
+										<ng-icon aria-hidden="true" name="lucideSettings" />
 										<span>Settings</span>
 									</button>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
+								</caps-sidebar-menu-item>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
 
-				<div hlmSidebarFooter>
-					<button hlmSidebarMenuButton tooltip="Settings" aria-describedby="Settings">
-						<ng-icon name="lucideSettings" />
+				<caps-sidebar-footer>
+					<button capsSidebarMenuButton tooltip="Settings">
+						<ng-icon aria-hidden="true" name="lucideSettings" />
 						<span>Settings</span>
 					</button>
-				</div>
+				</caps-sidebar-footer>
 
 				<!-- Rail for resizing -->
-				<button hlmSidebarRail></button>
-			</hlm-sidebar>
-		</div>
+				<button capsSidebarRail></button>
+			</caps-sidebar>
+		</caps-sidebar-wrapper>
 	`,
 })
 class SidebarRight {}
@@ -397,4 +405,38 @@ export const RightSide: Story = {
 	render: () => ({
 		template: '<sidebar/>',
 	}),
+};
+
+@Component({
+	selector: 'sidebar-configured-widths',
+	imports: [CapsSidebarImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	template: `
+		<caps-sidebar-wrapper sidebarWidth="17rem" sidebarWidthIcon="4rem">
+			<caps-sidebar side="right" collapsible="icon" sidebarWidthMobile="32rem" aria-label="Workspace">
+				<caps-sidebar-header>Workspace</caps-sidebar-header>
+				<caps-sidebar-content>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
+							<a capsSidebarMenuButton href="#projects" tooltip="Projects">
+								<span aria-hidden="true">▣</span>
+								<span>Projects</span>
+							</a>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
+				</caps-sidebar-content>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<main>
+					<button capsSidebarTrigger></button>
+					<h1>Projects</h1>
+				</main>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
+	`,
+})
+class SidebarConfiguredWidths {}
+export const ConfiguredWidths: Story = {
+	decorators: [moduleMetadata({ imports: [SidebarConfiguredWidths] })],
+	render: () => ({ template: '<sidebar-configured-widths />' }),
 };

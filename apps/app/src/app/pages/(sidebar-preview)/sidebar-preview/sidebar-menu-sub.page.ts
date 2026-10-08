@@ -1,45 +1,47 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-menu-sub',
-	imports: [HlmSidebarImports],
+	imports: [CapsSidebarImports],
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
 								@for (item of _items; track item.title) {
-									<li hlmSidebarMenuItem>
-										<button hlmSidebarMenuButton>
+									<caps-sidebar-menu-item>
+										<button capsSidebarMenuButton>
 											<span>{{ item.title }}</span>
 										</button>
-										<ul hlmSidebarMenuSub>
+										<caps-sidebar-menu-sub>
 											@for (subItem of item.items; track subItem.title) {
-												<li hlmSidebarMenuSubItem>
-													<button hlmSidebarMenuSubButton class="w-full">
+												<caps-sidebar-menu-sub-item>
+													<button capsSidebarMenuSubButton class="w-full">
 														<span>{{ subItem.title }}</span>
 													</button>
-												</li>
+												</caps-sidebar-menu-sub-item>
 											}
-										</ul>
-									</li>
+										</caps-sidebar-menu-sub>
+									</caps-sidebar-menu-item>
 								}
-							</ul>
-						</div>
-					</div>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
 				</div>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarMenuSubPage {

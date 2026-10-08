@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCalendar, lucideHouse, lucideInbox, lucideSearch, lucideSettings } from '@ng-icons/lucide';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar',
-	imports: [HlmSidebarImports, NgIcon],
+	imports: [CapsSidebarImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideHouse,
@@ -16,28 +16,28 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 		}),
 	],
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupLabel>Application</div>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Application</caps-sidebar-group-label>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
 								@for (item of _items; track item.title) {
-									<li hlmSidebarMenuItem>
-										<a hlmSidebarMenuButton>
-											<ng-icon [name]="item.icon" />
+									<caps-sidebar-menu-item>
+										<a capsSidebarMenuButton href="#">
+											<ng-icon aria-hidden="true" [name]="item.icon" />
 											<span>{{ item.title }}</span>
 										</a>
-									</li>
+									</caps-sidebar-menu-item>
 								}
-							</ul>
-						</div>
-					</div>
-				</div>
-			</hlm-sidebar>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
+			</caps-sidebar>
 			<ng-content />
-		</div>
+		</caps-sidebar-wrapper>
 	`,
 })
 export class SidebarComponent {
@@ -72,66 +72,46 @@ export class SidebarComponent {
 
 @Component({
 	selector: 'spartan-sidebar-preview',
-	imports: [SidebarComponent, HlmSidebarImports],
+	imports: [SidebarComponent, CapsSidebarImports],
 	template: `
 		<spartan-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
+			<caps-sidebar-inset>
+				<main class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
+				</main>
+			</caps-sidebar-inset>
 		</spartan-sidebar>
 	`,
 })
 export class SidebarPreviewComponent {}
 
 export const cssCode = `
-@layer base {
-  :root {
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
-  }
-
-  .dark {
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.985 0 0);
-    --sidebar-primary-foreground: oklch(0.205 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.439 0 0);
-  }
-}
+@import '@capsule-ng/caps/foundations.css';
 `;
 
 export const usageLayout = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
   selector: 'app-sidebar',
   imports: [
-    HlmSidebarImports,
+    CapsSidebarImports,
   ],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarHeader></div>
-        <div hlmSidebarContent>
-          <div hlmSidebarGroup></div>
-          <div hlmSidebarGroup></div>
-        </div>
-        <div hlmSidebarFooter></div>
-      </hlm-sidebar>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-header></caps-sidebar-header>
+        <caps-sidebar-content>
+          <caps-sidebar-group></caps-sidebar-group>
+          <caps-sidebar-group></caps-sidebar-group>
+        </caps-sidebar-content>
+        <caps-sidebar-footer></caps-sidebar-footer>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
 })
 export class AppSidebar {}
@@ -140,14 +120,14 @@ export class AppSidebar {}
 export const usageApp = `
 import { Component } from '@angular/core';
 import { AppSidebar } from './app-sidebar';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
-  imports: [AppSidebar, HlmSidebarImports],
+  imports: [AppSidebar, CapsSidebarImports],
   selector: 'app-root',
   template: \`<app-sidebar>
     <main>
-      <button hlmSidebarTrigger><span class="sr-only"></span></button>
+      <button capsSidebarTrigger></button>
     </main>
   </app-sidebar>\`,
 })
@@ -158,19 +138,19 @@ export class App {}
 export const firstSidebarApp = `
 import { Component } from '@angular/core';
 import { AppSidebar } from './app-sidebar';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
-  imports: [AppSidebar, HlmSidebarImports, RouterOutlet],
+  imports: [AppSidebar, CapsSidebarImports, RouterOutlet],
   selector: 'app-root',
   template: \`<app-sidebar>
-    <main hlmSidebarInset>
+    <caps-sidebar-inset><main class="flex min-w-0 flex-1 flex-col">
       <header class="flex h-12 items-center justify-between px-4">
-        <button hlmSidebarTrigger><span class="sr-only"></span></button>
+        <button capsSidebarTrigger></button>
         <router-outlet/>
       </header>
-    </main>
+    </main></caps-sidebar-inset>
   </app-sidebar>\`,
 })
 export class App {}
@@ -178,18 +158,18 @@ export class App {}
 
 export const firstSidebarInitial = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [HlmSidebarImports],
+  imports: [CapsSidebarImports],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarContent></div>
-      </hlm-sidebar>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-content></caps-sidebar-content>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
 })
 export class AppSidebar {}
@@ -197,7 +177,7 @@ export class AppSidebar {}
 
 export const firstSidebar = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { lucideCalendar, lucideHouse, lucideInbox, lucideSearch, lucideSettings } from '@ng-icons/lucide';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
@@ -205,33 +185,33 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 @Component({
   selector: 'app-sidebar',
   imports: [
-    HlmSidebarImports,
+    CapsSidebarImports,
     NgIcon,
 
   ],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarContent>
-          <div hlmSidebarGroup>
-            <div hlmSidebarGroupLabel>Application</div>
-            <div hlmSidebarGroupContent>
-              <ul hlmSidebarMenu>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-content>
+          <caps-sidebar-group>
+            <caps-sidebar-group-label>Application</caps-sidebar-group-label>
+            <caps-sidebar-group-content>
+              <caps-sidebar-menu>
                 @for(item of _items; track item.title){
-                <li hlmSidebarMenuItem>
-                  <a hlmSidebarMenuButton>
-                    <ng-icon  [name]="item.icon" />
+                <caps-sidebar-menu-item>
+                  <a capsSidebarMenuButton href="#">
+                    <ng-icon aria-hidden="true"  [name]="item.icon" />
                     <span>{{ item.title }}</span>
                   </a>
-                </li>
+                </caps-sidebar-menu-item>
                 }
-              </ul>
-            </div>
-          </div>
-        </div>
-      </hlm-sidebar>
+              </caps-sidebar-menu>
+            </caps-sidebar-group-content>
+          </caps-sidebar-group>
+        </caps-sidebar-content>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
   providers: [
     provideIcons({
@@ -276,12 +256,11 @@ export class AppSidebar {
 
 export const provider = `
 import { ApplicationConfig } from '@angular/core';
-import { provideHlmSidebarConfig } from '@spartan-ng/helm/sidebar';
+import { provideCapsSidebarConfig } from '@capsule-ng/caps/sidebar';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideHlmSidebarConfig({
-            ...
+        provideCapsSidebarConfig({
             defaultOpen: true,
             sidebarWidth: '16rem',
             sidebarWidthMobile: '18rem',
@@ -297,7 +276,7 @@ export const appConfig: ApplicationConfig = {
 
 export const header = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
@@ -306,20 +285,20 @@ import { lucideChevronDown } from '@ng-icons/lucide';
 @Component({
   selector: 'app-sidebar',
   imports: [
-    HlmSidebarImports,
+    CapsSidebarImports,
     CapsDropdownMenuImports,
     NgIcon,
 
   ],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarHeader>
-          <ul hlmSidebarMenu>
-            <li hlmSidebarMenuItem>
-              <button hlmSidebarMenuButton [capsDropdownMenuTrigger]="menu" placement="right-start">
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-header>
+          <caps-sidebar-menu>
+            <caps-sidebar-menu-item>
+              <button capsSidebarMenuButton [capsDropdownMenuTrigger]="menu" placement="right-start">
                 Select Workspace
-                <ng-icon  name="lucideChevronDown" class="ml-auto" />
+                <ng-icon aria-hidden="true"  name="lucideChevronDown" class="ml-auto" />
               </button>
               <ng-template #menu>
                 <caps-menu class="w-60">
@@ -327,12 +306,12 @@ import { lucideChevronDown } from '@ng-icons/lucide';
                   <caps-menu-label>Acme Corp.</caps-menu-label>
                 </caps-menu>
               </ng-template>
-            </li>
-          </ul>
-        </div>
-      </hlm-sidebar>
+            </caps-sidebar-menu-item>
+          </caps-sidebar-menu>
+        </caps-sidebar-header>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
   providers: [
     provideIcons({
@@ -350,22 +329,22 @@ import { lucideChevronUp } from '@ng-icons/lucide';
 
 
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
     selector: 'app-sidebar',
-    imports: [HlmSidebarImports, BrnMenuImports, NgIcon, ],
+    imports: [CapsSidebarImports, CapsDropdownMenuImports, NgIcon],
     template: \`
-        <div hlmSidebarWrapper>
-            <hlm-sidebar>
-                <div hlmSidebarHeader></div>
-                <div hlmSidebarContent></div>
-                <div hlmSidebarFooter>
-                    <ul hlmSidebarMenu>
-                        <li hlmSidebarMenuItem>
-                            <button hlmSidebarMenuButton [capsDropdownMenuTrigger]="menu">
+        <caps-sidebar-wrapper>
+            <caps-sidebar>
+                <caps-sidebar-header></caps-sidebar-header>
+                <caps-sidebar-content></caps-sidebar-content>
+                <caps-sidebar-footer>
+                    <caps-sidebar-menu>
+                        <caps-sidebar-menu-item>
+                            <button capsSidebarMenuButton [capsDropdownMenuTrigger]="menu">
                                 Select Workspace
-                                <ng-icon  name="lucideChevronUp" class="ml-auto" />
+                                <ng-icon aria-hidden="true"  name="lucideChevronUp" class="ml-auto" />
                             </button>
                             <ng-template #menu>
                                 <caps-menu class="w-60">
@@ -374,12 +353,12 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
                                     <button capsMenuItem>Sign out</button>
                                 </caps-menu>
                             </ng-template>
-                        </li>
-                    </ul>
-                </div>
-            </hlm-sidebar>
+                        </caps-sidebar-menu-item>
+                    </caps-sidebar-menu>
+                </caps-sidebar-footer>
+            </caps-sidebar>
             <ng-content />
-        </div>
+        </caps-sidebar-wrapper>
     \`,
     providers: [
         provideIcons({
@@ -393,21 +372,21 @@ export class AppSidebar {}
 
 export const content = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [HlmSidebarImports],
+  imports: [CapsSidebarImports],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarContent>
-          <div hlmSidebarGroup></div>
-          <div hlmSidebarGroup></div>
-        </div>
-      </hlm-sidebar>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-content>
+          <caps-sidebar-group></caps-sidebar-group>
+          <caps-sidebar-group></caps-sidebar-group>
+        </caps-sidebar-content>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
 })
 export class AppSidebar {}`;
@@ -417,38 +396,38 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLifeBuoy, lucideSend } from '@ng-icons/lucide';
 
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
     selector: 'app-sidebar',
-    imports: [HlmSidebarImports, NgIcon, ],
+    imports: [CapsSidebarImports, NgIcon, ],
     template: \`
-        <div hlmSidebarWrapper>
-            <hlm-sidebar>
-                <div hlmSidebarContent>
-                    <div hlmSidebarGroup>
-                        <div hlmSidebarGroupLabel>Help</div>
-                        <div hlmSidebarGroupContent>
-                            <ul hlmSidebarMenu>
-                                <li hlmSidebarMenuItem>
-                                    <a hlmSidebarMenuButton>
-                                        <ng-icon  name="lucideLifeBuoy" />
+        <caps-sidebar-wrapper>
+            <caps-sidebar>
+                <caps-sidebar-content>
+                    <caps-sidebar-group>
+                        <caps-sidebar-group-label>Help</caps-sidebar-group-label>
+                        <caps-sidebar-group-content>
+                            <caps-sidebar-menu>
+                                <caps-sidebar-menu-item>
+                                    <a capsSidebarMenuButton href="#">
+                                        <ng-icon aria-hidden="true"  name="lucideLifeBuoy" />
                                         <span>Support</span>
                                     </a>
-                                </li>
-                                <li hlmSidebarMenuItem>
-                                    <a hlmSidebarMenuButton>
-                                        <ng-icon  name="lucideSend" />
+                                </caps-sidebar-menu-item>
+                                <caps-sidebar-menu-item>
+                                    <a capsSidebarMenuButton href="#">
+                                        <ng-icon aria-hidden="true"  name="lucideSend" />
                                         <span>Feedback</span>
                                     </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </hlm-sidebar>
+                                </caps-sidebar-menu-item>
+                            </caps-sidebar-menu>
+                        </caps-sidebar-group-content>
+                    </caps-sidebar-group>
+                </caps-sidebar-content>
+            </caps-sidebar>
             <ng-content />
-        </div>
+        </caps-sidebar-wrapper>
     \`,
     providers: [
         provideIcons({
@@ -463,7 +442,7 @@ export class AppSidebar {}
 
 export const collapsable = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import {
@@ -475,49 +454,49 @@ import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [ NgIcon, CapsCollapsibleImports, HlmSidebarImports],
+  imports: [ NgIcon, CapsCollapsibleImports, CapsSidebarImports],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarContent>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-content>
           <caps-collapsible [expanded]="true" class="group/collapsible">
-            <div hlmSidebarGroup>
+            <caps-sidebar-group>
               <button
                 capsCollapsibleTrigger
-                hlmSidebarGroupLabel
+                capsSidebarGroupLabel
                 class="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
               >
                 Help
-                <ng-icon
-                  hlm
+                <ng-icon aria-hidden="true"
+
                   name="lucideChevronDown"
                   class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
                 />
               </button>
               <caps-collapsible-content>
-                <div hlmSidebarGroupContent>
-                  <ul hlmSidebarMenu>
-                    <li hlmSidebarMenuItem>
-                      <a hlmSidebarMenuButton>
-                        <ng-icon  name="lucideLifeBuoy" />
+                <caps-sidebar-group-content>
+                  <caps-sidebar-menu>
+                    <caps-sidebar-menu-item>
+                      <a capsSidebarMenuButton href="#">
+                        <ng-icon aria-hidden="true"  name="lucideLifeBuoy" />
                         <span>Support</span>
                       </a>
-                    </li>
-                    <li hlmSidebarMenuItem>
-                      <a hlmSidebarMenuButton>
-                        <ng-icon  name="lucideSend" />
+                    </caps-sidebar-menu-item>
+                    <caps-sidebar-menu-item>
+                      <a capsSidebarMenuButton href="#">
+                        <ng-icon aria-hidden="true"  name="lucideSend" />
                         <span>Feedback</span>
                       </a>
-                    </li>
-                  </ul>
-                </div>
+                    </caps-sidebar-menu-item>
+                  </caps-sidebar-menu>
+                </caps-sidebar-group-content>
               </caps-collapsible-content>
-            </div>
+            </caps-sidebar-group>
           </caps-collapsible>
-        </div>
-      </hlm-sidebar>
+        </caps-sidebar-content>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
   providers: [
     provideIcons({
@@ -532,7 +511,7 @@ export class AppSidebar {}
 
 export const groupAction = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import {
@@ -546,49 +525,49 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [HlmSidebarImports, NgIcon,  HlmToasterImports],
+  imports: [CapsSidebarImports, NgIcon,  HlmToasterImports],
   template: \`
     <hlm-toaster />
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarContent>
-          <div hlmSidebarGroup>
-            <div hlmSidebarGroupLabel>Projects</div>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-content>
+          <caps-sidebar-group>
+            <caps-sidebar-group-label>Projects</caps-sidebar-group-label>
             <button
-              hlmSidebarGroupAction
+              capsSidebarGroupAction
               title="Add Project"
               (click)="_onAddProject()"
             >
-              <ng-icon  name="lucidePlus" />
+              <ng-icon aria-hidden="true"  name="lucidePlus" />
               <span class="sr-only">Add Project</span>
             </button>
-            <div hlmSidebarGroupContent>
-              <ul hlmSidebarMenu>
-                <li hlmSidebarMenuItem>
-                  <a hlmSidebarMenuButton href="#">
-                    <ng-icon  name="lucideFrame" />
+            <caps-sidebar-group-content>
+              <caps-sidebar-menu>
+                <caps-sidebar-menu-item>
+                  <a capsSidebarMenuButton href="#">
+                    <ng-icon aria-hidden="true"  name="lucideFrame" />
                     <span>Design Engineering</span>
                   </a>
-                </li>
-                <li hlmSidebarMenuItem>
-                  <a hlmSidebarMenuButton href="#">
-                    <ng-icon  name="lucideChartPie" />
+                </caps-sidebar-menu-item>
+                <caps-sidebar-menu-item>
+                  <a capsSidebarMenuButton href="#">
+                    <ng-icon aria-hidden="true"  name="lucideChartPie" />
                     <span>Sales & Marketing</span>
                   </a>
-                </li>
-                <li hlmSidebarMenuItem>
-                  <a hlmSidebarMenuButton href="#">
-                    <ng-icon  name="lucideMap" />
+                </caps-sidebar-menu-item>
+                <caps-sidebar-menu-item>
+                  <a capsSidebarMenuButton href="#">
+                    <ng-icon aria-hidden="true"  name="lucideMap" />
                     <span>Travel</span>
                   </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </hlm-sidebar>
+                </caps-sidebar-menu-item>
+              </caps-sidebar-menu>
+            </caps-sidebar-group-content>
+          </caps-sidebar-group>
+        </caps-sidebar-content>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
   providers: [
     provideIcons({
@@ -608,7 +587,7 @@ export class AppSidebar {
 
 export const menu = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
 import {
@@ -621,30 +600,30 @@ import {
 
 @Component({
   selector: 'app-sidebar',
-  imports: [HlmSidebarImports, NgIcon, ],
+  imports: [CapsSidebarImports, NgIcon, ],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarContent>
-          <div hlmSidebarGroup>
-            <div hlmSidebarGroupLabel>Projects</div>
-            <div hlmSidebarGroupContent>
-              <ul hlmSidebarMenu>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-content>
+          <caps-sidebar-group>
+            <caps-sidebar-group-label>Projects</caps-sidebar-group-label>
+            <caps-sidebar-group-content>
+              <caps-sidebar-menu>
                 @for (project of _projects; track project){
-                    <li hlmSidebarMenuItem>
-                      <a hlmSidebarMenuButton [href]="project.url">
-                        <ng-icon  [name]="project.icon" />
+                    <caps-sidebar-menu-item>
+                      <a capsSidebarMenuButton [href]="project.url">
+                        <ng-icon aria-hidden="true"  [name]="project.icon" />
                         <span>{{ project.name }}</span>
                       </a>
-                    </li>
+                    </caps-sidebar-menu-item>
                 }
-              </ul>
-            </div>
-          </div>
-        </div>
-      </hlm-sidebar>
+              </caps-sidebar-menu>
+            </caps-sidebar-group-content>
+          </caps-sidebar-group>
+        </caps-sidebar-content>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
   providers: [
     provideIcons({
@@ -668,52 +647,52 @@ export class AppSidebar {
 `;
 
 export const link = `
-<li hlmSidebarMenuItem>
-  <a hlmSidebarMenuButton href="#">
+<caps-sidebar-menu-item>
+  <a capsSidebarMenuButton href="#">
     Home
   </a>
-</li>
+</caps-sidebar-menu-item>
 `;
 export const linkWithIcon = `
-<li hlmSidebarMenuItem>
-  <a hlmSidebarMenuButton href="#">
-    <ng-icon  name="lucideHouse" />
+<caps-sidebar-menu-item>
+  <a capsSidebarMenuButton href="#">
+    <ng-icon aria-hidden="true"  name="lucideHouse" />
     <span>Home</span>
   </a>
-</li>
+</caps-sidebar-menu-item>
 `;
 export const linkActive = `
-<li hlmSidebarMenuItem>
-  <a hlmSidebarMenuButton href="#" isActive>
+<caps-sidebar-menu-item>
+  <a capsSidebarMenuButton href="#" isActive>
     Home
   </a>
-</li>
+</caps-sidebar-menu-item>
 `;
 
 export const button = `
-<li hlmSidebarMenuItem>
-  <button hlmSidebarMenuButton>
+<caps-sidebar-menu-item>
+  <button capsSidebarMenuButton>
     Send
   </button>
-</li>
+</caps-sidebar-menu-item>
 `;
 
 export const menuAction = `
-<li hlmSidebarMenuItem>
-  <a hlmSidebarMenuButton href="#">
-    <ng-icon  name="lucideHouse" />
+<caps-sidebar-menu-item>
+  <a capsSidebarMenuButton href="#">
+    <ng-icon aria-hidden="true"  name="lucideHouse" />
     <span>Home</span>
   </a>
-  <button hlmSidebarMenuAction>
-    <ng-icon  name="lucidePlus" />
+  <button capsSidebarMenuAction>
+    <ng-icon aria-hidden="true"  name="lucidePlus" />
     <span class="sr-only">Add Project</span>
   </button>
-</li>
+</caps-sidebar-menu-item>
 `;
 
 export const menuActionExample = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 import { NgIcon, provideIcons } from '@ng-icons/core';
 
@@ -729,23 +708,23 @@ import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [HlmSidebarImports, NgIcon,  CapsDropdownMenuImports],
+  imports: [CapsSidebarImports, NgIcon,  CapsDropdownMenuImports],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarContent>
-          <div hlmSidebarGroup>
-            <div hlmSidebarGroupLabel>Projects</div>
-            <div hlmSidebarGroupContent>
-              <ul hlmSidebarMenu>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-content>
+          <caps-sidebar-group>
+            <caps-sidebar-group-label>Projects</caps-sidebar-group-label>
+            <caps-sidebar-group-content>
+              <caps-sidebar-menu>
                 @for (project of projects; track project){
-                <li hlmSidebarMenuItem>
-                  <a hlmSidebarMenuButton [href]="project.url">
-                    <ng-icon  [name]="project.icon" />
+                <caps-sidebar-menu-item>
+                  <a capsSidebarMenuButton [href]="project.url">
+                    <ng-icon aria-hidden="true"  [name]="project.icon" />
                     <span>{{ project.name }}</span>
                   </a>
-                  <button hlmSidebarMenuAction [capsDropdownMenuTrigger]="menu">
-                    <ng-icon  name="lucideEllipsis" />
+                  <button capsSidebarMenuAction [capsDropdownMenuTrigger]="menu">
+                    <ng-icon aria-hidden="true"  name="lucideEllipsis" />
                     <span class="sr-only">More</span>
                   </button>
 
@@ -755,15 +734,15 @@ import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
                       <button capsMenuItem>Delete Project</button>
                     </caps-menu>
                   </ng-template>
-                </li>
+                </caps-sidebar-menu-item>
                 }
-              </ul>
-            </div>
-          </div>
-        </div>
-      </hlm-sidebar>
+              </caps-sidebar-menu>
+            </caps-sidebar-group-content>
+          </caps-sidebar-group>
+        </caps-sidebar-content>
+      </caps-sidebar>
       <ng-content />
-    </div>
+    </caps-sidebar-wrapper>
   \`,
   providers: [
     provideIcons({
@@ -788,45 +767,45 @@ export class AppSidebar {
 `;
 export const menuSubExample = `
 import { Component } from '@angular/core';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [HlmSidebarImports],
+  imports: [CapsSidebarImports],
   template: \`
-    <div hlmSidebarWrapper>
-      <hlm-sidebar>
-        <div hlmSidebarContent>
-          <div hlmSidebarGroup>
-            <div hlmSidebarGroupContent>
-              <ul hlmSidebarMenu>
+    <caps-sidebar-wrapper>
+      <caps-sidebar>
+        <caps-sidebar-content>
+          <caps-sidebar-group>
+            <caps-sidebar-group-content>
+              <caps-sidebar-menu>
                 @for (item of _items; track item.title) {
-                  <li hlmSidebarMenuItem>
-                    <button hlmSidebarMenuButton>
+                  <caps-sidebar-menu-item>
+                    <button capsSidebarMenuButton>
                       <span>{{ item.title }}</span>
                     </button>
-                    <ul hlmSidebarMenuSub>
+                    <caps-sidebar-menu-sub>
                       @for (subItem of item.items; track subItem.title) {
-                        <li hlmSidebarMenuSubItem>
-                          <button hlmSidebarMenuSubButton class="w-full">
+                        <caps-sidebar-menu-sub-item>
+                          <button capsSidebarMenuSubButton class="w-full">
                             <span>{{ subItem.title }}</span>
                           </button>
-                        </li>
+                        </caps-sidebar-menu-sub-item>
                       }
-                    </ul>
-                  </li>
+                    </caps-sidebar-menu-sub>
+                  </caps-sidebar-menu-item>
                 }
-              </ul>
-            </div>
-          </div>
-        </div>
-      </hlm-sidebar>
-      <main hlmSidebarInset>
+              </caps-sidebar-menu>
+            </caps-sidebar-group-content>
+          </caps-sidebar-group>
+        </caps-sidebar-content>
+      </caps-sidebar>
+      <caps-sidebar-inset><main class="flex min-w-0 flex-1 flex-col">
         <header class="flex h-12 items-center justify-between px-4">
-          <button hlmSidebarTrigger><span class="sr-only"></span></button>
+          <button capsSidebarTrigger></button>
         </header>
-      </main>
-    </div>
+      </main></caps-sidebar-inset>
+    </caps-sidebar-wrapper>
   \`,
 })
 export default class AppSidebar {
@@ -884,58 +863,58 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
 import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
   selector: 'app-sidebar',
-    imports: [HlmSidebarImports, CapsCollapsibleImports, NgIcon, ],
+    imports: [CapsSidebarImports, CapsCollapsibleImports, NgIcon, ],
   template: \`
-    <div hlmSidebarWrapper>
-            <hlm-sidebar>
-                <div hlmSidebarContent>
-                    <div hlmSidebarGroup>
-                        <div hlmSidebarGroupContent>
-                            <ul hlmSidebarMenu>
+    <caps-sidebar-wrapper>
+            <caps-sidebar>
+                <caps-sidebar-content>
+                    <caps-sidebar-group>
+                        <caps-sidebar-group-content>
+                            <caps-sidebar-menu>
                                 @for (item of _items; track item.title) {
-                                    <li hlmSidebarMenuItem>
+                                    <caps-sidebar-menu-item>
                                         <caps-collapsible [expanded]="item.defaultOpen" class="group/collapsible">
                                             <button
                                                 capsCollapsibleTrigger
-                                                hlmSidebarMenuButton
+                                                capsSidebarMenuButton
                                                 class="flex w-full items-center justify-between"
                                             >
                                                 <span>{{ item.title }}</span>
-                                                <ng-icon
+                                                <ng-icon aria-hidden="true"
                                                     name="lucideChevronRight"
                                                     class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
-                                                    hlm
+
                                                 />
                                             </button>
                                             <caps-collapsible-content>
-                                                <ul hlmSidebarMenuSub>
+                                                <caps-sidebar-menu-sub>
                                                     @for (subItem of item.items; track subItem.title) {
-                                                        <li hlmSidebarMenuSubItem>
-                                                            <button hlmSidebarMenuSubButton class="w-full">
+                                                        <caps-sidebar-menu-sub-item>
+                                                            <button capsSidebarMenuSubButton class="w-full">
                                                                 <span>{{ subItem.title }}</span>
                                                             </button>
-                                                        </li>
+                                                        </caps-sidebar-menu-sub-item>
                                                     }
-                                                </ul>
+                                                </caps-sidebar-menu-sub>
                                             </caps-collapsible-content>
                                         </caps-collapsible>
-                                    </li>
+                                    </caps-sidebar-menu-item>
                                 }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </hlm-sidebar>
-      <main hlmSidebarInset>
+                            </caps-sidebar-menu>
+                        </caps-sidebar-group-content>
+                    </caps-sidebar-group>
+                </caps-sidebar-content>
+            </caps-sidebar>
+      <caps-sidebar-inset><main class="flex min-w-0 flex-1 flex-col">
         <header class="flex h-12 items-center justify-between px-4">
-          <button hlmSidebarTrigger><span class="sr-only"></span></button>
+          <button capsSidebarTrigger></button>
         </header>
-      </main>
-    </div>
+      </main></caps-sidebar-inset>
+    </caps-sidebar-wrapper>
   \`,
   providers: [provideIcons({ lucideChevronRight })],
 })
@@ -996,35 +975,35 @@ import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChartPie, lucideFrame, lucideLifeBuoy, lucideMap, lucideSend } from '@ng-icons/lucide';
 
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
     selector: 'app-sidebar',
-    imports: [HlmSidebarImports, NgIcon, ],
+    imports: [CapsSidebarImports, NgIcon, ],
     template: \`
-        <div hlmSidebarWrapper>
-            <hlm-sidebar>
-                <div hlmSidebarContent>
-                    <div hlmSidebarGroup>
-                        <div hlmSidebarGroupLabel>Projects</div>
-                        <div hlmSidebarGroupContent>
-                            <ul hlmSidebarMenu>
+        <caps-sidebar-wrapper>
+            <caps-sidebar>
+                <caps-sidebar-content>
+                    <caps-sidebar-group>
+                        <caps-sidebar-group-label>Projects</caps-sidebar-group-label>
+                        <caps-sidebar-group-content>
+                            <caps-sidebar-menu>
                                 @for (project of _projects; track project) {
-                                    <li hlmSidebarMenuItem>
-                                        <button hlmSidebarMenuButton>
-                                            <ng-icon  [name]="project.icon" />
+                                    <caps-sidebar-menu-item>
+                                        <button capsSidebarMenuButton>
+                                            <ng-icon aria-hidden="true"  [name]="project.icon" />
                                             <span>{{ project.name }}</span>
                                         </button>
-                                        <div hlmSidebarMenuBadge>{{ project.info }}</div>
-                                    </li>
+                                        <caps-sidebar-menu-badge>{{ project.info }}</caps-sidebar-menu-badge>
+                                    </caps-sidebar-menu-item>
                                 }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </hlm-sidebar>
+                            </caps-sidebar-menu>
+                        </caps-sidebar-group-content>
+                    </caps-sidebar-group>
+                </caps-sidebar-content>
+            </caps-sidebar>
             <ng-content />
-        </div>
+        </caps-sidebar-wrapper>
     \`,
     providers: [
         provideIcons({
@@ -1049,21 +1028,21 @@ export class AppSidebar {
 `;
 
 export const skeleton = `
-<ul hlmSidebarMenu>
+<caps-sidebar-menu>
     @for (project of _projects; track project) {
-        <li hlmSidebarMenuItem>
-            <div hlmSidebarMenuSkeleton></div>
-        </li>
+        <caps-sidebar-menu-item>
+            <caps-sidebar-menu-skeleton></caps-sidebar-menu-skeleton>
+        </caps-sidebar-menu-item>
     }
-</ul>
+</caps-sidebar-menu>
 `;
 
 export const separator = `
-<hlm-sidebar>
-  <div hlmSidebarContent>
-    <div hlmSidebarGroup></div>
-        <div hlmSidebarSeparator></div>
-    <div hlmSidebarGroup></div>
-  </div>
-</hlm-sidebar>
+<caps-sidebar>
+  <caps-sidebar-content>
+    <caps-sidebar-group></caps-sidebar-group>
+        <caps-sidebar-separator></caps-sidebar-separator>
+    <caps-sidebar-group></caps-sidebar-group>
+  </caps-sidebar-content>
+</caps-sidebar>
 `;

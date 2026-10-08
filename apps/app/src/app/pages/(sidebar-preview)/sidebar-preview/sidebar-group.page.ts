@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLifeBuoy, lucideSend } from '@ng-icons/lucide';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-group',
-	imports: [HlmSidebarImports, NgIcon],
+	imports: [CapsSidebarImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideLifeBuoy,
@@ -15,36 +15,38 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupLabel>Help</div>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
-								<li hlmSidebarMenuItem>
-									<a hlmSidebarMenuButton>
-										<ng-icon name="lucideLifeBuoy" />
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Help</caps-sidebar-group-label>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
+								<caps-sidebar-menu-item>
+									<a capsSidebarMenuButton href="#">
+										<ng-icon aria-hidden="true" name="lucideLifeBuoy" />
 										<span>Support</span>
 									</a>
-								</li>
-								<li hlmSidebarMenuItem>
-									<a hlmSidebarMenuButton>
-										<ng-icon name="lucideSend" />
+								</caps-sidebar-menu-item>
+								<caps-sidebar-menu-item>
+									<a capsSidebarMenuButton href="#">
+										<ng-icon aria-hidden="true" name="lucideSend" />
 										<span>Feedback</span>
 									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
+								</caps-sidebar-menu-item>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
 				</div>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarGroupPage {}

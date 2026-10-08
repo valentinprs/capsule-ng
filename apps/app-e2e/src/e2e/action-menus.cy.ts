@@ -54,13 +54,13 @@ describe('Capsule native action menus', () => {
 	it('closes a mobile Sidebar menu with Escape while preserving its parent Sheet and focus', () => {
 		cy.viewport(390, 900);
 		cy.visit('/sidebar-preview/sidebar-dropdown-menu');
-		cy.get('hlm-sidebar').should('not.have.attr', 'ngh');
+		cy.get('caps-sidebar').should('not.have.attr', 'ngh');
 		cy.realPress(['Control', 'b']);
 		cy.get('button[aria-haspopup="menu"]').first().click();
 		cy.get('caps-menu').should('be.visible');
 		cy.realPress('Escape');
 		cy.get('caps-menu').should('not.exist');
-		cy.get('hlm-sheet-content').should('be.visible');
+		cy.get('[role="dialog"] [data-slot="sheet-content"]').should('be.visible');
 		cy.get('button[aria-haspopup="menu"]').first().should('be.focused');
 	});
 });

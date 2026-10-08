@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChartPie, lucideFrame, lucideMap, lucidePlus } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 
 @Component({
 	selector: 'spartan-sidebar-group-action',
-	imports: [HlmSidebarImports, NgIcon, HlmToasterImports],
+	imports: [CapsSidebarImports, NgIcon, HlmToasterImports],
 	providers: [
 		provideIcons({
 			lucideFrame,
@@ -20,46 +20,48 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 	styleUrl: 'sidebar-default.css',
 	template: `
 		<hlm-toaster />
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupLabel>Projects</div>
-						<button hlmSidebarGroupAction title="Add Project" (click)="_onAddProject()">
-							<ng-icon name="lucidePlus" />
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Projects</caps-sidebar-group-label>
+						<button capsSidebarGroupAction title="Add Project" (click)="_onAddProject()">
+							<ng-icon aria-hidden="true" name="lucidePlus" />
 							<span class="sr-only">Add Project</span>
 						</button>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton>
-										<ng-icon name="lucideFrame" />
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton>
+										<ng-icon aria-hidden="true" name="lucideFrame" />
 										<span>Design Engineering</span>
 									</button>
-								</li>
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton>
-										<ng-icon name="lucideChartPie" />
+								</caps-sidebar-menu-item>
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton>
+										<ng-icon aria-hidden="true" name="lucideChartPie" />
 										<span>Sales & Marketing</span>
 									</button>
-								</li>
-								<li hlmSidebarMenuItem>
-									<button hlmSidebarMenuButton>
-										<ng-icon name="lucideMap" />
+								</caps-sidebar-menu-item>
+								<caps-sidebar-menu-item>
+									<button capsSidebarMenuButton>
+										<ng-icon aria-hidden="true" name="lucideMap" />
 										<span>Travel</span>
 									</button>
-								</li>
-							</ul>
-						</div>
-					</div>
+								</caps-sidebar-menu-item>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
 				</div>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarGroupActionPage {

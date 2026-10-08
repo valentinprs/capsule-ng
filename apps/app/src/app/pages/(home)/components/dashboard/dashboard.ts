@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-dashboard-example',
-	imports: [HlmSidebarImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="md:hidden">

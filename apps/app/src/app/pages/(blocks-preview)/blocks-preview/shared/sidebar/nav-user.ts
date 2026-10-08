@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsDropdownMenuImports, type CapsMenuPlacement } from '@capsule-ng/caps/dropdown-menu';
+import { CapsSidebarImports, CapsSidebarService } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideBadgeCheck,
@@ -10,11 +11,10 @@ import {
 	lucideLogOut,
 	lucideSparkles,
 } from '@ng-icons/lucide';
-import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-nav-user',
-	imports: [HlmSidebarImports, CapsAvatarImports, NgIcon, CapsDropdownMenuImports],
+	imports: [CapsSidebarImports, CapsAvatarImports, NgIcon, CapsDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideChevronsUpDown,
@@ -28,9 +28,9 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		@let u = user();
-		<ul hlmSidebarMenu>
-			<li hlmSidebarMenuItem>
-				<button hlmSidebarMenuButton size="lg" [capsDropdownMenuTrigger]="menu" [placement]="_avatarPlacement()">
+		<caps-sidebar-menu>
+			<caps-sidebar-menu-item>
+				<button capsSidebarMenuButton size="lg" [capsDropdownMenuTrigger]="menu" [placement]="_avatarPlacement()">
 					<caps-avatar class="rounded-lg">
 						<img [src]="u.avatar" [alt]="u.name" capsAvatarImage />
 						<caps-avatar-fallback class="rounded-lg bg-[#D6004C] text-white">RG</caps-avatar-fallback>
@@ -39,10 +39,10 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 						<span class="truncate font-medium">{{ u.name }}</span>
 						<span class="truncate text-xs">{{ u.email }}</span>
 					</div>
-					<ng-icon name="lucideChevronsUpDown" class="ml-auto text-base" />
+					<ng-icon aria-hidden="true" name="lucideChevronsUpDown" class="ml-auto text-base" />
 				</button>
-			</li>
-		</ul>
+			</caps-sidebar-menu-item>
+		</caps-sidebar-menu>
 
 		<ng-template #menu>
 			<caps-menu class="min-w-56 rounded-lg">
@@ -60,27 +60,27 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 				</caps-menu-label>
 				<caps-menu-separator />
 				<button capsMenuItem>
-					<ng-icon name="lucideSparkles" />
+					<ng-icon aria-hidden="true" name="lucideSparkles" />
 					Upgrade to Pro
 				</button>
 				<caps-menu-separator />
 				<caps-menu-group>
 					<button capsMenuItem>
-						<ng-icon name="lucideBadgeCheck" />
+						<ng-icon aria-hidden="true" name="lucideBadgeCheck" />
 						Account
 					</button>
 					<button capsMenuItem>
-						<ng-icon name="lucideCreditCard" />
+						<ng-icon aria-hidden="true" name="lucideCreditCard" />
 						Billing
 					</button>
 					<button capsMenuItem>
-						<ng-icon name="lucideBell" />
+						<ng-icon aria-hidden="true" name="lucideBell" />
 						Notifications
 					</button>
 				</caps-menu-group>
 				<caps-menu-separator />
 				<button capsMenuItem>
-					<ng-icon name="lucideLogOut" />
+					<ng-icon aria-hidden="true" name="lucideLogOut" />
 					Log out
 				</button>
 			</caps-menu>
@@ -89,7 +89,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 })
 export class NavUser {
 	protected readonly _avatarPlacement = computed<CapsMenuPlacement>(() => `${this._menuSide()}-end`);
-	private readonly _sidebarService = inject(HlmSidebarService);
+	private readonly _sidebarService = inject(CapsSidebarService);
 	protected readonly _menuSide = computed(() => (this._sidebarService.isMobile() ? 'top' : 'right'));
 
 	public readonly user = input.required<{

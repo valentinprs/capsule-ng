@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCommand } from '@ng-icons/lucide';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { data } from '../../shared/sidebar/data';
 import { NavMain } from '../../shared/sidebar/nav-main';
 import { NavProjects } from '../../shared/sidebar/nav-projects';
@@ -10,41 +10,41 @@ import { NavUser } from '../../shared/sidebar/nav-user';
 
 @Component({
 	selector: 'spartan-app-sidebar-inset',
-	imports: [HlmSidebarImports, NgIcon, NavMain, NavProjects, NavUser, NavSecondary],
+	imports: [CapsSidebarImports, NgIcon, NavMain, NavProjects, NavUser, NavSecondary],
 	providers: [provideIcons({ lucideCommand })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar variant="inset">
-				<hlm-sidebar-header>
-					<ul hlmSidebarMenu>
-						<li hlmSidebarMenuItem>
-							<a hlmSidebarMenuButton size="lg" href="#">
+		<caps-sidebar-wrapper>
+			<caps-sidebar variant="inset">
+				<caps-sidebar-header>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
+							<a capsSidebarMenuButton size="lg" href="#">
 								<div
 									class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 								>
-									<ng-icon name="lucideCommand" class="text-base" />
+									<ng-icon aria-hidden="true" name="lucideCommand" class="text-base" />
 								</div>
 								<div class="grid flex-1 text-left text-sm leading-tight">
 									<span class="truncate font-medium">Acme Inc</span>
 									<span class="truncate text-xs">Enterprise</span>
 								</div>
 							</a>
-						</li>
-					</ul>
-				</hlm-sidebar-header>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
+				</caps-sidebar-header>
 
-				<hlm-sidebar-content>
+				<caps-sidebar-content>
 					<spartan-nav-main [items]="data.navMain" />
 					<spartan-nav-projects [projects]="data.projects" />
 					<spartan-nav-secondary class="mt-auto" [items]="data.navSecondary" />
-				</hlm-sidebar-content>
-				<hlm-sidebar-footer>
+				</caps-sidebar-content>
+				<caps-sidebar-footer>
 					<spartan-nav-user [user]="data.user" />
-				</hlm-sidebar-footer>
-			</hlm-sidebar>
+				</caps-sidebar-footer>
+			</caps-sidebar>
 			<ng-content />
-		</div>
+		</caps-sidebar-wrapper>
 	`,
 })
 export class AppSidebarInset {

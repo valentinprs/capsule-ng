@@ -1,9 +1,9 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideExternalLink } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmCode, HlmP } from '@spartan-ng/helm/typography';
 import { injectComponentDocs } from '../../../../core/services/component-docs';
 import { Code } from '../../../../shared/code/code';
@@ -16,6 +16,7 @@ import { SectionIntro } from '../../../../shared/layout/section-intro';
 import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
 import { SectionSubSubHeading } from '../../../../shared/layout/section-sub-sub-heading';
 import { Tabs } from '../../../../shared/layout/tabs';
+import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
 import { SidebarPreview } from '../../../../shared/sidebar-preview/sidebar-preview';
 import { link } from '../../../../shared/typography/link';
@@ -47,7 +48,7 @@ import {
 } from './sidebar.preview';
 
 export const routeMeta: RouteMeta = {
-	data: { breadcrumb: 'sidebar' },
+	data: { breadcrumb: 'sidebar', api: 'sidebar' },
 	meta: metaWith('Capsule — sidebar', 'A composable, themeable and customizable sidebar component.'),
 	title: 'Capsule — Sidebar',
 };
@@ -66,12 +67,13 @@ export const routeMeta: RouteMeta = {
 		HlmP,
 		HlmCode,
 
-		Tabs,
+		UIApiDocs,
 		RouterLink,
 		SectionSubSubHeading,
 		SidebarPreview,
+		Tabs,
 		RtlHeader,
-		HlmButton,
+		CapsButton,
 		NgIcon,
 	],
 	providers: [provideIcons({ lucideExternalLink })],
@@ -86,11 +88,9 @@ export const routeMeta: RouteMeta = {
 			<spartan-sidebar-preview name="sidebar-collapsable-icons" caption="A sidebar that collapses to icons." />
 
 			<div>
-				<spartan-section-sub-heading id="add-colors">
-					Add the following colors to your CSS file
-				</spartan-section-sub-heading>
+				<spartan-section-sub-heading id="add-colors">Use the shared Capsule preset</spartan-section-sub-heading>
 				<p hlmP class="mb-6">
-					The command above should install the colors for you. If not, copy and paste the following in your CSS file.
+					Import the shared Capsule foundations and component preset after your Tailwind setup.
 					<br />
 					We'll go over the colors later in the
 					<a class="${link}" routerLink="." fragment="theming">theming section</a>
@@ -108,48 +108,57 @@ export const routeMeta: RouteMeta = {
 			</div>
 			<ul class="list-inside list-disc pl-4 text-sm">
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarService</span>
+					<span hlmCode>CapsSidebarService</span>
 					- Handles collapsible state.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebar</span>
+					<span hlmCode>CapsSidebar</span>
 					- The sidebar container.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarHeader</span>
+					<span hlmCode>CapsSidebarHeader</span>
 					and
-					<span hlmCode>HlmSidebarFooter</span>
+					<span hlmCode>CapsSidebarFooter</span>
 					- Sticky at the top and bottom of the sidebar.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarContent</span>
+					<span hlmCode>CapsSidebarContent</span>
 					- Scrollable content.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarGroup</span>
+					<span hlmCode>CapsSidebarGroup</span>
 					- Section within the
-					<span hlmCode>HlmSidebarContent</span>
+					<span hlmCode>CapsSidebarContent</span>
 					.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarTrigger</span>
+					<span hlmCode>CapsSidebarTrigger</span>
 					- Trigger for the
-					<span hlmCode>HlmSidebar</span>
+					<span hlmCode>CapsSidebar</span>
 					.
 				</li>
 			</ul>
 
-			<img
-				src="/assets/sidebar-page/sidebar-structure.png"
-				alt="Sidebar structure"
-				class="border-border rounded border dark:hidden"
-			/>
-
-			<img
-				src="/assets/sidebar-page/sidebar-structure-dark.png"
-				alt="Sidebar structure"
-				class="border-border rounded border not-dark:hidden"
-			/>
+			<figure class="border-border rounded-lg border p-4">
+				<figcaption class="mb-3 text-sm font-medium">Sidebar anatomy</figcaption>
+				<div class="bg-sidebar text-sidebar-foreground flex max-w-sm flex-col gap-2 rounded-md p-2 text-sm">
+					<code>&lt;caps-sidebar&gt;</code>
+					<div class="border-sidebar-border rounded border p-3">
+						<code>caps-sidebar-header</code>
+						— fixed at the top
+					</div>
+					<div class="border-sidebar-border space-y-2 rounded border p-3">
+						<code>caps-sidebar-content</code>
+						— scrollable
+						<div class="border-sidebar-border rounded border p-2"><code>caps-sidebar-group</code></div>
+						<div class="border-sidebar-border rounded border p-2"><code>caps-sidebar-group</code></div>
+					</div>
+					<div class="border-sidebar-border rounded border p-3">
+						<code>caps-sidebar-footer</code>
+						— fixed at the bottom
+					</div>
+				</div>
+			</figure>
 
 			<div class="mt-6 space-y-4">
 				<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
@@ -164,7 +173,7 @@ export const routeMeta: RouteMeta = {
 
 				<h3 spartanH4>
 					Add a
-					<span hlmCode>HlmSidebarTrigger</span>
+					<span hlmCode>CapsSidebarTrigger</span>
 					at the root of your application.
 				</h3>
 				<spartan-code fileName="src/app/app.ts" [code]="_firstSidebarApp" />
@@ -177,14 +186,14 @@ export const routeMeta: RouteMeta = {
 
 				<h3 spartanH4>
 					Now, let's add a
-					<span hlmCode>HlmSidebarMenu</span>
+					<span hlmCode>CapsSidebarMenu</span>
 					to the sidebar.
 				</h3>
 				<p hlmP>
 					We'll use the
-					<span hlmCode>HlmSidebarMenu</span>
+					<span hlmCode>CapsSidebarMenu</span>
 					component in a
-					<span hlmCode>HlmSidebarGroup</span>
+					<span hlmCode>CapsSidebarGroup</span>
 					.
 				</p>
 				<spartan-code fileName="src/app/app-sidebar.ts" [code]="_firstSidebar" />
@@ -197,7 +206,7 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="sidebar-service">SidebarService</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarService</span>
+				<span hlmCode>CapsSidebarService</span>
 				manages the state, persistence, and responsive behavior of the sidebar. It ensures the sidebar works
 				consistently across devices, remembers user preferences, and provides developer APIs for customization.
 			</p>
@@ -295,8 +304,8 @@ export const routeMeta: RouteMeta = {
 			<h3 spartanH4 id="keyboard_shortcut">Keyboard Shortcut</h3>
 			<p hlmP>
 				The
-				<span hlmCode>SIDEBAR_KEYBOARD_SHORTCUT</span>
-				variable defines the keyboard shortcut used to open and close the sidebar.
+				<span hlmCode>sidebarKeyboardShortcut</span>
+				configuration property defines the keyboard shortcut used to open and close the sidebar.
 			</p>
 			<ul class="list-inside list-disc pl-4 text-sm">
 				<li class="mt-2">
@@ -311,10 +320,10 @@ export const routeMeta: RouteMeta = {
 				</li>
 			</ul>
 			<p hlmP>
-				To change the shortcut, update the value of
-				<span hlmCode>SIDEBAR_KEYBOARD_SHORTCUT</span>
+				To change the shortcut, configure the value of
+				<span hlmCode>sidebarKeyboardShortcut</span>
 				in the
-				<span hlmCode>HlmSidebarService</span>
+				<span hlmCode>CapsSidebarService</span>
 				source. By default it is set to
 				<span hlmCode>'b'</span>
 				.
@@ -323,7 +332,7 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="sidebar-width">Width</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarWrapper</span>
+				<span hlmCode>CapsSidebarWrapper</span>
 				directive controls the
 				<strong>width</strong>
 				of the sidebar and its
@@ -398,16 +407,16 @@ export const routeMeta: RouteMeta = {
 			<h3 spartanH4 id="config">Config</h3>
 			<p hlmP>
 				To override defaults, provide a custom configuration in your application config using
-				<span hlmCode>provideHlmSidebarConfig</span>
+				<span hlmCode>provideCapsSidebarConfig</span>
 				.
 			</p>
 
 			<spartan-code fileName="src/app/app.config.ts" [code]="_provider" />
 
-			<spartan-section-sub-heading id="sidebar-header">HlmSidebarHeader</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-header">CapsSidebarHeader</spartan-section-sub-heading>
 			<p hlmP>
 				Use the
-				<span hlmCode>HlmSidebarHeader</span>
+				<span hlmCode>CapsSidebarHeader</span>
 				component to add a
 				<strong>sticky header</strong>
 				at the top of your sidebar. This is useful for branding, application titles, or quick-access navigation.
@@ -421,10 +430,10 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_header" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-footer">HlmSidebarFooter</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-footer">CapsSidebarFooter</spartan-section-sub-heading>
 			<p hlmP>
 				Use the
-				<span hlmCode>HlmSidebarFooter</span>
+				<span hlmCode>CapsSidebarFooter</span>
 				component to add a
 				<strong>sticky footer</strong>
 				at the bottom of your sidebar. This is useful for secondary actions, user profile information, or app settings.
@@ -438,24 +447,24 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_footer" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-content">HlmSidebarContent</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-content">CapsSidebarContent</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarContent</span>
+				<span hlmCode>CapsSidebarContent</span>
 				component is used to wrap the
 				<strong>main content</strong>
 				of the sidebar. This is where you add your
-				<span hlmCode>HlmSidebarGroup</span>
+				<span hlmCode>CapsSidebarGroup</span>
 				components, navigation links, or menus. The content inside is
 				<strong>scrollable</strong>
 				, while the header and footer remain sticky.
 			</p>
 			<spartan-code fileName="src/app/app-sidebar.ts" [code]="_content" />
 
-			<spartan-section-sub-heading id="sidebar-group">HlmSidebarGroup</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-group">CapsSidebarGroup</spartan-section-sub-heading>
 			<p hlmP>
 				Use the
-				<span hlmCode>HlmSidebarGroup</span>
+				<span hlmCode>CapsSidebarGroup</span>
 				component to create a
 				<strong>section</strong>
 				within the sidebar. A
@@ -465,15 +474,15 @@ export const routeMeta: RouteMeta = {
 
 			<ul class="list-inside list-disc pl-4 text-sm">
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarGroupLabel</span>
+					<span hlmCode>CapsSidebarGroupLabel</span>
 					– the section label or title.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarGroupContent</span>
+					<span hlmCode>CapsSidebarGroupContent</span>
 					– the main body of the group, usually containing links or menu items.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarGroupAction</span>
+					<span hlmCode>CapsSidebarGroupAction</span>
 					(optional) – a button or action element associated with the group, e.g. "Add" or "Settings".
 				</li>
 			</ul>
@@ -486,10 +495,10 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_group" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-collapsable">Collapsable HlmSidebarGroup</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-collapsable">Collapsable CapsSidebarGroup</spartan-section-sub-heading>
 			<p hlmP>
 				To make a
-				<span hlmCode>HlmSidebarGroup</span>
+				<span hlmCode>CapsSidebarGroup</span>
 				collapsible, wrap it in a
 				<span hlmCode>CapsCollapsible</span>
 			</p>
@@ -502,12 +511,12 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_collapsable" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-group-action">HlmSidebarGroupAction</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-group-action">CapsSidebarGroupAction</spartan-section-sub-heading>
 			<p hlmP>
 				Use the
-				<span hlmCode>HlmSidebarGroupAction</span>
+				<span hlmCode>CapsSidebarGroupAction</span>
 				component to add an action button to the
-				<span hlmCode>HlmSidebarGroup</span>
+				<span hlmCode>CapsSidebarGroup</span>
 				.
 			</p>
 
@@ -519,30 +528,30 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_groupAction" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-menu">HlmSidebarMenu</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-menu">CapsSidebarMenu</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarMenu</span>
+				<span hlmCode>CapsSidebarMenu</span>
 				component is used for building a menu inside a
-				<span hlmCode>HlmSidebarGroup</span>
+				<span hlmCode>CapsSidebarGroup</span>
 				. It is composed of the following parts:
 			</p>
 
 			<ul class="list-inside list-disc pl-4 text-sm">
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarMenuItem</span>
+					<span hlmCode>CapsSidebarMenuItem</span>
 					– A single menu entry within the menu.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarMenuButton</span>
+					<span hlmCode>CapsSidebarMenuButton</span>
 					– A clickable button or link inside a menu item.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarMenuAction</span>
+					<span hlmCode>CapsSidebarMenuAction</span>
 					– An optional action (e.g., context menu, settings) for the menu item.
 				</li>
 				<li class="mt-2">
-					<span hlmCode>HlmSidebarMenuSub</span>
+					<span hlmCode>CapsSidebarMenuSub</span>
 					– A nested submenu within a menu item.
 				</li>
 			</ul>
@@ -561,7 +570,7 @@ export const routeMeta: RouteMeta = {
 
 			<p hlmP>
 				Here's an example of a
-				<span hlmCode>HlmSidebarMenu</span>
+				<span hlmCode>CapsSidebarMenu</span>
 				component rendering a list of projects.
 			</p>
 
@@ -572,12 +581,12 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_menu" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-menu-button">HlmSidebarMenuButton</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-menu-button">CapsSidebarMenuButton</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarMenuButton</span>
+				<span hlmCode>CapsSidebarMenuButton</span>
 				component is used to render a menu button within a
-				<span hlmCode>HlmSidebarMenuItem</span>
+				<span hlmCode>CapsSidebarMenuItem</span>
 				.
 			</p>
 
@@ -601,18 +610,18 @@ export const routeMeta: RouteMeta = {
 			</p>
 			<spartan-code [code]="_linkActive" />
 
-			<spartan-section-sub-heading id="sidebar-menu-action">HlmSidebarMenuAction</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-menu-action">CapsSidebarMenuAction</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarMenuAction</span>
+				<span hlmCode>CapsSidebarMenuAction</span>
 				component is used to render a menu action within a
-				<span hlmCode>HlmSidebarMenuItem</span>
+				<span hlmCode>CapsSidebarMenuItem</span>
 				.
 			</p>
 
 			<p hlmP>
 				This button works independently of the
-				<span hlmCode>HlmSidebarMenuButton</span>
+				<span hlmCode>CapsSidebarMenuButton</span>
 				. For example, you can have a
 				<span hlmCode>SidebarMenuButton</span>
 				as a clickable link, while the
@@ -625,9 +634,9 @@ export const routeMeta: RouteMeta = {
 			<h3 spartanH4 id="dropdown-menu">DropdownMenu</h3>
 			<p hlmP>
 				Here's an example of a
-				<span hlmCode>HlmSidebarMenuAction</span>
+				<span hlmCode>CapsSidebarMenuAction</span>
 				component rendering a
-				<span hlmCode>HlmMenu</span>
+				<span hlmCode>CapsMenu</span>
 				.
 			</p>
 
@@ -638,21 +647,21 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_menuActionExample" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-menu-sub">HlmMenuSub</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-menu-sub">CapsSidebarMenuSub</spartan-section-sub-heading>
 
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarMenuSub</span>
+				<span hlmCode>CapsSidebarMenuSub</span>
 				component is used to render a submenu within a
-				<span hlmCode>HlmSidebarMenu</span>
+				<span hlmCode>CapsSidebarMenu</span>
 				.
 			</p>
 
 			<p hlmP>
 				Use
-				<span hlmCode>HlmSidebarMenuSubItem</span>
+				<span hlmCode>CapsSidebarMenuSubItem</span>
 				and
-				<span hlmCode>HlmSidebarMenuSubButton</span>
+				<span hlmCode>CapsSidebarMenuSubButton</span>
 				to render a submenu item.
 			</p>
 
@@ -664,13 +673,13 @@ export const routeMeta: RouteMeta = {
 			</spartan-tabs>
 
 			<spartan-section-sub-heading id="sidebar-menu-sub-collapsable">
-				Collapsable HlmSidebarSubMenu
+				Collapsable CapsSidebarSubMenu
 			</spartan-section-sub-heading>
 			<p hlmP>
 				To make a
-				<span hlmCode>HlmSidebarMenu</span>
+				<span hlmCode>CapsSidebarMenu</span>
 				component collapsible, wrap it and the
-				<span>HlmSidebarMenuSub</span>
+				<span>CapsSidebarMenuSub</span>
 				components in a
 				<span hlmCode>CapsCollapsible</span>
 				.
@@ -683,12 +692,12 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_menuSubCollapsableExample" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-menu-badge">HlmSidebarMenuBadge</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-menu-badge">CapsSidebarMenuBadge</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarMenuBadge</span>
+				<span hlmCode>CapsSidebarMenuBadge</span>
 				component is used to render a badge within a
-				<span hlmCode>HlmSidebarMenuItem</span>
+				<span hlmCode>CapsSidebarMenuItem</span>
 				.
 			</p>
 
@@ -699,19 +708,19 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab fileName="src/app/app-sidebar.ts" [code]="_menuBadge" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="sidebar-menu-skeleton">HlmSidebarMenuSkeleton</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-menu-skeleton">CapsSidebarMenuSkeleton</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarMenuSkeleton</span>
+				<span hlmCode>CapsSidebarMenuSkeleton</span>
 				component is used to render a skeleton for a SidebarMenu. You can use this to show a loading state while
 				fetching data.
 			</p>
 			<spartan-code [code]="_skeleton" />
 
-			<spartan-section-sub-heading id="sidebar-menu-separator">HlmSidebarMenuSeparator</spartan-section-sub-heading>
+			<spartan-section-sub-heading id="sidebar-menu-separator">CapsSidebarSeparator</spartan-section-sub-heading>
 			<p hlmP>
 				The
-				<span hlmCode>HlmSidebarMenuSeparator</span>
+				<span hlmCode>CapsSidebarSeparator</span>
 				component is used to render a separator within a
 				<span hlmCode>Sidebar</span>
 				.
@@ -720,7 +729,7 @@ export const routeMeta: RouteMeta = {
 
 			<div>
 				<spartan-section-sub-heading id="theming">Theming</spartan-section-sub-heading>
-				<p hlmP>We use dedicated CSS variables for theming the sidebar, separate from the rest of the application.</p>
+				<p hlmP>Sidebar uses the shared Capsule foundation tokens and component preset.</p>
 				<spartan-code [code]="_cssCode" />
 				<p hlmP>
 					<strong class="font-medium">
@@ -733,7 +742,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-section-sub-heading id="responsive-behavior">Responsive behavior</spartan-section-sub-heading>
 				<p hlmP>
 					The sidebar is responsive by default. It collapses to a minimal state on smaller screens and expands on larger
-					screens. This behavior can be customized by overriding the default CSS variables or wrapping in media queries.
+					screens. Configure mobileBreakpoint through provideCapsSidebarConfig. Desktop reduction and the mobile Sheet
+					have separate service state.
 				</p>
 
 				<spartan-section-sub-heading id="accessibility">Accessibility</spartan-section-sub-heading>
@@ -742,10 +752,13 @@ export const routeMeta: RouteMeta = {
 					buttons and landmarks to improve screen reader support.
 				</p>
 
+				<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+				<spartan-ui-api-docs docType="caps" />
+
 				<spartan-header-rtl />
-				<a hlmBtn routerLink="/sidebar-preview/sidebar-rtl">
+				<a capsButton routerLink="/sidebar-preview/sidebar-rtl">
 					View RTL sidebar
-					<ng-icon name="lucideExternalLink" />
+					<ng-icon aria-hidden="true" name="lucideExternalLink" />
 				</a>
 
 				<spartan-page-bottom-nav>

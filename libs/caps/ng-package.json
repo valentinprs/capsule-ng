@@ -5,6 +5,7 @@
 		"entryFile": "src/index.ts"
 	},
 	"assets": [
+		"sidebar.css",
 		"panels.css",
 		"choices.css",
 		"caps-preset.css",

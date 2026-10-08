@@ -28,11 +28,11 @@ import {
 	lucideTrash2,
 } from '@ng-icons/lucide';
 
-import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports, CapsSidebarService } from '@capsule-ng/caps/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-collapsable-icons',
-	imports: [HlmSidebarImports, CapsCollapsibleImports, RouterLink, CapsAvatarImports, CapsDropdownMenuImports, NgIcon],
+	imports: [CapsSidebarImports, CapsCollapsibleImports, RouterLink, CapsAvatarImports, CapsDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideFrame,
@@ -61,111 +61,112 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar collapsible="icon">
-				<hlm-sidebar-header>
-					<ul hlmSidebarMenu>
-						<li hlmSidebarMenuItem>
-							<button hlmSidebarMenuButton size="lg">
+		<caps-sidebar-wrapper>
+			<caps-sidebar collapsible="icon">
+				<caps-sidebar-header>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
+							<button capsSidebarMenuButton size="lg">
 								<div
 									class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 								>
-									<ng-icon name="lucideGalleryVerticalEnd" />
+									<ng-icon aria-hidden="true" name="lucideGalleryVerticalEnd" />
 								</div>
 								<div class="grid flex-1 text-left text-sm leading-tight">
 									<span class="truncate font-medium">Acme Inc</span>
 									<span class="truncate text-xs">Enterprise</span>
 								</div>
-								<ng-icon name="lucideChevronsUpDown" class="ml-auto" />
+								<ng-icon aria-hidden="true" name="lucideChevronsUpDown" class="ml-auto" />
 							</button>
-						</li>
-					</ul>
-				</hlm-sidebar-header>
-				<hlm-sidebar-content>
-					<hlm-sidebar-group>
-						<div hlmSidebarGroupLabel>Platform</div>
-						<ul hlmSidebarMenu>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
+				</caps-sidebar-header>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Platform</caps-sidebar-group-label>
+						<caps-sidebar-menu>
 							@for (item of _platforms; track $index) {
-								<li hlmSidebarMenuItem>
+								<caps-sidebar-menu-item>
 									<caps-collapsible [expanded]="item.isActive ?? false" class="group/collapsible">
-										<button hlmSidebarMenuButton capsCollapsibleTrigger>
-											<ng-icon [name]="item.icon" />
+										<button capsSidebarMenuButton capsCollapsibleTrigger>
+											<ng-icon aria-hidden="true" [name]="item.icon" />
 											{{ item.title }}
 											<ng-icon
+												aria-hidden="true"
 												name="lucideChevronRight"
 												class="ml-auto transition-transform duration-(--caps-duration-200) group-data-[state=open]/collapsible:rotate-90"
 											/>
 										</button>
 
 										<caps-collapsible-content>
-											<ul hlmSidebarMenuSub>
+											<caps-sidebar-menu-sub>
 												@for (subItem of item.items; track $index) {
-													<li hlmSidebarMenuSubItem>
-														<a hlmSidebarMenuSubButton [routerLink]="subItem.url">{{ subItem.title }}</a>
-													</li>
+													<caps-sidebar-menu-sub-item>
+														<a capsSidebarMenuSubButton [routerLink]="subItem.url">{{ subItem.title }}</a>
+													</caps-sidebar-menu-sub-item>
 												}
-											</ul>
+											</caps-sidebar-menu-sub>
 										</caps-collapsible-content>
 									</caps-collapsible>
-								</li>
+								</caps-sidebar-menu-item>
 							}
-						</ul>
-					</hlm-sidebar-group>
-					<hlm-sidebar-group class="group-data-[collapsible=icon]:hidden">
-						<div hlmSidebarGroupLabel>Projects</div>
-						<ul hlmSidebarMenu>
+						</caps-sidebar-menu>
+					</caps-sidebar-group>
+					<caps-sidebar-group class="group-data-[collapsible=icon]:hidden">
+						<caps-sidebar-group-label>Projects</caps-sidebar-group-label>
+						<caps-sidebar-menu>
 							@for (project of _projects; track $index) {
-								<li hlmSidebarMenuItem>
-									<a hlmSidebarMenuButton [routerLink]="project.url">
-										<ng-icon [name]="project.icon" />
+								<caps-sidebar-menu-item>
+									<a capsSidebarMenuButton [routerLink]="project.url">
+										<ng-icon aria-hidden="true" [name]="project.icon" />
 										{{ project.name }}
 									</a>
 									<button
-										hlmSidebarMenuAction
+										capsSidebarMenuAction
 										showOnHover
 										[capsDropdownMenuTrigger]="projectMenu"
 										[capsDropdownMenuTriggerData]="{ $implicit: { project } }"
 										[placement]="_menuPlacement()"
 									>
-										<ng-icon name="lucideEllipsis" />
+										<ng-icon aria-hidden="true" name="lucideEllipsis" />
 										<span class="sr-only">More</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 							}
-							<li hlmSidebarMenuItem>
-								<button hlmSidebarMenuButton>
-									<ng-icon name="lucideEllipsis" />
+							<caps-sidebar-menu-item>
+								<button capsSidebarMenuButton>
+									<ng-icon aria-hidden="true" name="lucideEllipsis" />
 									More
 								</button>
-							</li>
-						</ul>
-					</hlm-sidebar-group>
+							</caps-sidebar-menu-item>
+						</caps-sidebar-menu>
+					</caps-sidebar-group>
 
 					<ng-template #projectMenu let-ctx>
 						<caps-menu class="w-48">
 							<caps-menu-label>{{ ctx.project.name }}</caps-menu-label>
 							<caps-menu-separator />
 							<button capsMenuItem>
-								<ng-icon name="lucideFolder" />
+								<ng-icon aria-hidden="true" name="lucideFolder" />
 								View Project
 							</button>
 							<button capsMenuItem>
-								<ng-icon name="lucideShare" />
+								<ng-icon aria-hidden="true" name="lucideShare" />
 								Share Project
 							</button>
 							<caps-menu-separator />
 							<button capsMenuItem>
-								<ng-icon name="lucideTrash2" />
+								<ng-icon aria-hidden="true" name="lucideTrash2" />
 								Delete Project
 							</button>
 						</caps-menu>
 					</ng-template>
-				</hlm-sidebar-content>
-				<hlm-sidebar-footer>
-					<ul hlmSidebarMenu>
-						<li hlmSidebarMenuItem>
+				</caps-sidebar-content>
+				<caps-sidebar-footer>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
 							<button
-								hlmSidebarMenuButton
+								capsSidebarMenuButton
 								size="lg"
 								[capsDropdownMenuTrigger]="avatarMenu"
 								[placement]="_avatarPlacement()"
@@ -178,10 +179,10 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 									<span class="truncate font-medium">spartan</span>
 									<span class="truncate text-xs">hello@spartan.com</span>
 								</div>
-								<ng-icon name="lucideChevronsUpDown" class="ml-auto text-base" />
+								<ng-icon aria-hidden="true" name="lucideChevronsUpDown" class="ml-auto text-base" />
 							</button>
-						</li>
-					</ul>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
 
 					<ng-template #avatarMenu>
 						<caps-menu class="min-w-56 rounded-lg">
@@ -199,53 +200,55 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 							</caps-menu-label>
 							<caps-menu-separator />
 							<button capsMenuItem>
-								<ng-icon name="lucideSparkles" />
+								<ng-icon aria-hidden="true" name="lucideSparkles" />
 								Upgrade to Pro
 							</button>
 							<caps-menu-separator />
 							<caps-menu-group>
 								<button capsMenuItem>
-									<ng-icon name="lucideBadgeCheck" />
+									<ng-icon aria-hidden="true" name="lucideBadgeCheck" />
 									Account
 								</button>
 								<button capsMenuItem>
-									<ng-icon name="lucideCreditCard" />
+									<ng-icon aria-hidden="true" name="lucideCreditCard" />
 									Billing
 								</button>
 								<button capsMenuItem>
-									<ng-icon name="lucideBell" />
+									<ng-icon aria-hidden="true" name="lucideBell" />
 									Notifications
 								</button>
 							</caps-menu-group>
 							<caps-menu-separator />
 							<button capsMenuItem>
-								<ng-icon name="lucideLogOut" />
+								<ng-icon aria-hidden="true" name="lucideLogOut" />
 								Log out
 							</button>
 						</caps-menu>
 					</ng-template>
-				</hlm-sidebar-footer>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-				<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
-					<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-						<div class="bg-muted/50 aspect-video rounded-xl"></div>
-						<div class="bg-muted/50 aspect-video rounded-xl"></div>
-						<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				</caps-sidebar-footer>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
+					<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+						<div class="grid auto-rows-min gap-4 md:grid-cols-3">
+							<div class="bg-muted/50 aspect-video rounded-xl"></div>
+							<div class="bg-muted/50 aspect-video rounded-xl"></div>
+							<div class="bg-muted/50 aspect-video rounded-xl"></div>
+						</div>
+						<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
 					</div>
-					<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
 				</div>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarCollapsableIconsPage {
 	protected readonly _avatarPlacement = computed<CapsMenuPlacement>(() => `${this._menuSide()}-end`);
 	protected readonly _menuPlacement = computed<CapsMenuPlacement>(() => `${this._menuSide()}-${this._menuAlign()}`);
-	private readonly _sidebarService = inject(HlmSidebarService);
+	private readonly _sidebarService = inject(CapsSidebarService);
 	protected readonly _menuSide = computed(() => (this._sidebarService.isMobile() ? 'top' : 'right'));
 	protected readonly _menuAlign = computed(() => (this._sidebarService.isMobile() ? 'end' : 'start'));
 	protected readonly _platforms = [

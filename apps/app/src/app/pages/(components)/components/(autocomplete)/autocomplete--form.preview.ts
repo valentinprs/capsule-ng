@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 interface SpartanComponent {
 	id: string;
@@ -11,34 +11,33 @@ interface SpartanComponent {
 
 @Component({
 	selector: 'spartan-autocomplete-form-preview',
-	imports: [HlmAutocompleteImports, FormRoot, FormField, HlmButton, HlmFieldImports],
+	imports: [CapsAutocompleteImports, FormRoot, FormField, CapsButton, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-xs',
 	},
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="component">Select a component</label>
-					<hlm-autocomplete [formField]="form.component" [(search)]="search">
-						<hlm-autocomplete-input inputId="component" placeholder="e.g. Accordion" />
-						<hlm-autocomplete-content *hlmAutocompletePortal>
-							<hlm-autocomplete-empty>No components found.</hlm-autocomplete-empty>
-							<div hlmAutocompleteList>
-								@for (component of filteredOptions(); track $index) {
-									<hlm-autocomplete-item [value]="component">
-										{{ component.value }}
-									</hlm-autocomplete-item>
-								}
-							</div>
-						</hlm-autocomplete-content>
-					</hlm-autocomplete>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn [disabled]="form().submitting()">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Select a component</caps-field-label>
+					<caps-autocomplete [formField]="form.component" [(search)]="search">
+						<caps-autocomplete-input placeholder="e.g. Accordion" />
+						<caps-autocomplete-content>
+							<caps-autocomplete-empty>No components found.</caps-autocomplete-empty>
+
+							@for (component of filteredOptions(); track $index) {
+								<caps-autocomplete-option [value]="component">
+									{{ component.value }}
+								</caps-autocomplete-option>
+							}
+						</caps-autocomplete-content>
+					</caps-autocomplete>
+				</caps-field>
+				<div class="flex flex-wrap gap-2">
+					<button type="submit" capsButton [disabled]="form().submitting()">Submit</button>
+				</div>
+			</caps-field-group>
 		</form>
 	`,
 })

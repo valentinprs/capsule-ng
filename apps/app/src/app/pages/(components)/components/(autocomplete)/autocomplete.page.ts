@@ -1,12 +1,12 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { UIApiDocs } from '@spartan-ng/app/app/shared/layout/ui-docs-section/ui-docs-section';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
@@ -62,7 +62,7 @@ export const routeMeta: RouteMeta = {
 		PageBottomNavLink,
 		UIApiDocs,
 		AutocompletePreview,
-		HlmButtonImports,
+		CapsButtonImports,
 		SectionSubSubHeading,
 		AutocompleteAsyncPreview,
 		AutocompleteFormPreview,
@@ -104,7 +104,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP}">
 				The autocomplete can be configured via
-				<code class="${hlmCode}">provideBrnAutocompleteConfig</code>
+				<code class="${hlmCode}">provideCapsAutocompleteConfig</code>
 				or by passing the individual config as input. This is the default autocomplete config:
 			</p>
 
@@ -223,7 +223,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__search" spartanH4>Free-form text</h3>
 			<p class="${hlmP}">
 				Use
-				<code class="${hlmCode}">hlm-autocomplete-search</code>
+				<code class="${hlmCode}">caps-autocomplete-search</code>
 				to allow free-form text input along with option selection. The selected option is transformed to string via
 				<code class="${hlmCode}">itemToString</code>
 				.
@@ -268,11 +268,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="avatar" label="Avatar" />

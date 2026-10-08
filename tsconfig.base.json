@@ -38,6 +38,8 @@
 			"@capsule-ng/caps/spinner": ["libs/caps/spinner/src/index.ts"],
 			"@capsule-ng/caps/skeleton": ["libs/caps/skeleton/src/index.ts"],
 			"@capsule-ng/caps/progress": ["libs/caps/progress/src/index.ts"],
+			"@capsule-ng/caps/autocomplete": ["libs/caps/autocomplete/src/index.ts"],
+			"@capsule-ng/caps/combobox": ["libs/caps/combobox/src/index.ts"],
 			"@capsule-ng/caps/popover": ["libs/caps/popover/src/index.ts"],
 			"@capsule-ng/caps/tooltip": ["libs/caps/tooltip/src/index.ts"],
 			"@capsule-ng/caps/hover-card": ["libs/caps/hover-card/src/index.ts"],

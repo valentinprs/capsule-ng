@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, resource, signal } from '@angular/core';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
 import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
 
 interface Movie {
 	id: string;
@@ -10,13 +10,13 @@ interface Movie {
 
 @Component({
 	selector: 'spartan-autocomplete-async-preview',
-	imports: [HlmAutocompleteImports, CapsSpinnerImports],
+	imports: [CapsAutocompleteImports, CapsSpinnerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-autocomplete [(search)]="search" [itemToString]="itemToString">
-			<hlm-autocomplete-input placeholder="Search movies" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-status class="justify-start">
+		<caps-autocomplete [(search)]="search" [itemToString]="itemToString">
+			<caps-autocomplete-input placeholder="Search movies" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-status class="justify-start">
 					@if (options.error(); as error) {
 						{{ error }}
 					} @else if (options.isLoading()) {
@@ -29,22 +29,20 @@ interface Movie {
 					} @else if (options.hasValue()) {
 						{{ options.value().length }} results found
 					}
-				</hlm-autocomplete-status>
+				</caps-autocomplete-status>
 
-				<div hlmAutocompleteList>
-					@if (options.hasValue()) {
-						@for (option of options.value(); track $index) {
-							<hlm-autocomplete-item [value]="option">
-								<div class="flex flex-col gap-1">
-									<p>{{ option.title }}</p>
-									<p class="text-muted-foreground text-xs">{{ option.year }}</p>
-								</div>
-							</hlm-autocomplete-item>
-						}
+				@if (options.hasValue()) {
+					@for (option of options.value(); track $index) {
+						<caps-autocomplete-option [value]="option">
+							<div class="flex flex-col gap-1">
+								<p>{{ option.title }}</p>
+								<p class="text-muted-foreground text-xs">{{ option.year }}</p>
+							</div>
+						</caps-autocomplete-option>
 					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 })
 export class AutocompleteAsyncPreview {

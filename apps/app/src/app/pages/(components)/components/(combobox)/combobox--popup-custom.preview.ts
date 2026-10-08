@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEarth } from '@ng-icons/lucide';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
 
 type Country = {
 	code: string;
@@ -13,30 +13,29 @@ type Country = {
 
 @Component({
 	selector: 'spartan-combobox-popup-custom-preview',
-	imports: [HlmComboboxImports, NgIcon],
+	imports: [CapsComboboxImports, NgIcon],
 	providers: [provideIcons({ lucideEarth })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-combobox>
-			<hlm-combobox-trigger class="w-64 justify-between font-normal">
-				<hlm-combobox-placeholder>
+		<caps-combobox>
+			<caps-combobox-trigger aria-label="Select a country" class="w-64 justify-between font-normal">
+				<caps-combobox-placeholder>
 					<ng-icon name="lucideEarth" />
 					Select a country
-				</hlm-combobox-placeholder>
-				<ng-template hlmComboboxValueTemplate let-value>
+				</caps-combobox-placeholder>
+				<ng-template capsComboboxValueTemplate let-value>
 					<span>{{ value.flag }} {{ value.label }}</span>
 				</ng-template>
-			</hlm-combobox-trigger>
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-input showTrigger="false" placeholder="Search" showClear />
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
-					@for (country of countries; track country.code) {
-						<hlm-combobox-item [value]="country">{{ country.flag }} {{ country.label }}</hlm-combobox-item>
-					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox>
+			</caps-combobox-trigger>
+			<caps-combobox-content>
+				<caps-combobox-input showTrigger="false" placeholder="Search" showClear />
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+				@for (country of countries; track country.code) {
+					<caps-combobox-option [value]="country">{{ country.flag }} {{ country.label }}</caps-combobox-option>
+				}
+			</caps-combobox-content>
+		</caps-combobox>
 	`,
 })
 export class ComboboxPopupCustomPreview {

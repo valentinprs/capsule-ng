@@ -1,34 +1,36 @@
 import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, resource, signal } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+	CapsAutocomplete,
+	CapsAutocompleteImports,
+	provideCapsAutocompleteConfig,
+} from '@capsule-ng/caps/autocomplete';
 import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
-import { provideBrnAutocompleteConfig } from '@spartan-ng/brain/autocomplete';
-import { HlmAutocomplete, HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
 import { componentWrapperDecorator, Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 
 @Component({
 	selector: 'autocomplete-reactive-form-story',
 
-	imports: [JsonPipe, HlmAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
+	imports: [JsonPipe, CapsAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm">
 			<caps-field-group>
 				<caps-field>
 					<caps-field-label for="framework">Framework *</caps-field-label>
-					<hlm-autocomplete formControlName="framework" [(search)]="search">
-						<hlm-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
-						<hlm-autocomplete-content *hlmAutocompletePortal>
-							<hlm-autocomplete-empty>No frameworks found.</hlm-autocomplete-empty>
-							<div hlmAutocompleteList>
-								@for (fw of filteredOptions(); track fw) {
-									<hlm-autocomplete-item [value]="fw">{{ fw }}</hlm-autocomplete-item>
-								}
-							</div>
-						</hlm-autocomplete-content>
-					</hlm-autocomplete>
+					<caps-autocomplete formControlName="framework" [(search)]="search">
+						<caps-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
+						<caps-autocomplete-content>
+							<caps-autocomplete-empty>No frameworks found.</caps-autocomplete-empty>
+
+							@for (fw of filteredOptions(); track fw) {
+								<caps-autocomplete-option [value]="fw">{{ fw }}</caps-autocomplete-option>
+							}
+						</caps-autocomplete-content>
+					</caps-autocomplete>
 					<caps-field-description>Start typing to find a framework.</caps-field-description>
 				</caps-field>
 
@@ -60,24 +62,23 @@ class AutocompleteReactiveFormStory {
 @Component({
 	selector: 'autocomplete-hint-error-story',
 
-	imports: [HlmAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
+	imports: [CapsAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm">
 			<caps-field-group>
 				<caps-field>
 					<caps-field-label>Framework *</caps-field-label>
-					<hlm-autocomplete formControlName="framework" [(search)]="search">
-						<hlm-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
-						<hlm-autocomplete-content *hlmAutocompletePortal>
-							<hlm-autocomplete-empty>No frameworks found.</hlm-autocomplete-empty>
-							<div hlmAutocompleteList>
-								@for (fw of filteredOptions(); track fw) {
-									<hlm-autocomplete-item [value]="fw">{{ fw }}</hlm-autocomplete-item>
-								}
-							</div>
-						</hlm-autocomplete-content>
-					</hlm-autocomplete>
+					<caps-autocomplete formControlName="framework" [(search)]="search">
+						<caps-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
+						<caps-autocomplete-content>
+							<caps-autocomplete-empty>No frameworks found.</caps-autocomplete-empty>
+
+							@for (fw of filteredOptions(); track fw) {
+								<caps-autocomplete-option [value]="fw">{{ fw }}</caps-autocomplete-option>
+							}
+						</caps-autocomplete-content>
+					</caps-autocomplete>
 
 					<caps-field-description>Pick your primary framework so we can tailor docs.</caps-field-description>
 
@@ -104,24 +105,23 @@ class AutocompleteHintErrorStory {
 @Component({
 	selector: 'autocomplete-search-hint-error-story',
 
-	imports: [HlmAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
+	imports: [CapsAutocompleteImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm">
 			<caps-field-group>
 				<caps-field>
 					<caps-field-label>Framework *</caps-field-label>
-					<hlm-autocomplete-search formControlName="framework" [(search)]="search">
-						<hlm-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
-						<hlm-autocomplete-content *hlmAutocompletePortal>
-							<hlm-autocomplete-empty>No frameworks found.</hlm-autocomplete-empty>
-							<div hlmAutocompleteList>
-								@for (fw of filteredOptions(); track fw) {
-									<hlm-autocomplete-item [value]="fw">{{ fw }}</hlm-autocomplete-item>
-								}
-							</div>
-						</hlm-autocomplete-content>
-					</hlm-autocomplete-search>
+					<caps-autocomplete-search formControlName="framework" [(search)]="search">
+						<caps-autocomplete-input inputId="framework" placeholder="Search frameworks..." />
+						<caps-autocomplete-content>
+							<caps-autocomplete-empty>No frameworks found.</caps-autocomplete-empty>
+
+							@for (fw of filteredOptions(); track fw) {
+								<caps-autocomplete-option [value]="fw">{{ fw }}</caps-autocomplete-option>
+							}
+						</caps-autocomplete-content>
+					</caps-autocomplete-search>
 
 					<caps-field-description>Pick your primary framework so we can tailor docs.</caps-field-description>
 
@@ -147,25 +147,24 @@ class AutocompleteSearchHintErrorStory {
 
 @Component({
 	selector: 'spartan-autocomplete-async',
-	imports: [HlmAutocompleteImports, CapsSpinnerImports],
+	imports: [CapsAutocompleteImports, CapsSpinnerImports],
 	template: `
-		<hlm-autocomplete [(search)]="search">
-			<hlm-autocomplete-input placeholder="Search" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-status class="justify-start">
+		<caps-autocomplete [(search)]="search">
+			<caps-autocomplete-input placeholder="Search" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-status class="justify-start">
 					@if (options.isLoading()) {
 						<caps-spinner aria-hidden="true" />
 					}
-				</hlm-autocomplete-status>
-				<div hlmAutocompleteList>
-					@if (options.hasValue()) {
-						@for (option of options.value(); track $index) {
-							<hlm-autocomplete-item [value]="option">{{ option }}</hlm-autocomplete-item>
-						}
+				</caps-autocomplete-status>
+
+				@if (options.hasValue()) {
+					@for (option of options.value(); track $index) {
+						<caps-autocomplete-option [value]="option">{{ option }}</caps-autocomplete-option>
 					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 })
 class AutocompleteAsync {
@@ -206,23 +205,22 @@ type Country = {
 
 @Component({
 	selector: 'spartan-autocomplete-form',
-	imports: [ReactiveFormsModule, HlmAutocompleteImports, CapsButtonImports, CapsFieldImports],
+	imports: [ReactiveFormsModule, CapsAutocompleteImports, CapsButtonImports, CapsFieldImports],
 	template: `
 		<form [formGroup]="form" (ngSubmit)="submit()">
 			<caps-field-group>
 				<caps-field>
 					<caps-field-label for="character">Choose your favorite character</caps-field-label>
-					<hlm-autocomplete formControlName="option" [(search)]="search">
-						<hlm-autocomplete-input inputId="character" placeholder="Search characters" />
-						<hlm-autocomplete-content *hlmAutocompletePortal>
-							<hlm-autocomplete-empty>No characters found.</hlm-autocomplete-empty>
-							<div hlmAutocompleteList>
-								@for (option of filteredOptions(); track $index) {
-									<hlm-autocomplete-item [value]="option">{{ option }}</hlm-autocomplete-item>
-								}
-							</div>
-						</hlm-autocomplete-content>
-					</hlm-autocomplete>
+					<caps-autocomplete formControlName="option" [(search)]="search">
+						<caps-autocomplete-input inputId="character" placeholder="Search characters" />
+						<caps-autocomplete-content>
+							<caps-autocomplete-empty>No characters found.</caps-autocomplete-empty>
+
+							@for (option of filteredOptions(); track $index) {
+								<caps-autocomplete-option [value]="option">{{ option }}</caps-autocomplete-option>
+							}
+						</caps-autocomplete-content>
+					</caps-autocomplete>
 				</caps-field>
 				<caps-field orientation="horizontal">
 					<button type="submit" capsButton>Submit</button>
@@ -271,23 +269,22 @@ type Item = {
 
 @Component({
 	selector: 'spartan-autocomplete-transform-option-value',
-	imports: [ReactiveFormsModule, HlmAutocompleteImports, CapsButtonImports, CapsFieldImports],
+	imports: [ReactiveFormsModule, CapsAutocompleteImports, CapsButtonImports, CapsFieldImports],
 	template: `
 		<form [formGroup]="form" (ngSubmit)="submit()">
 			<caps-field-group>
 				<caps-field>
 					<caps-field-label for="character">Choose your favorite character</caps-field-label>
-					<hlm-autocomplete formControlName="option" [(search)]="search" [itemToString]="itemToString">
-						<hlm-autocomplete-input inputId="character" placeholder="Search characters" showClear />
-						<hlm-autocomplete-content *hlmAutocompletePortal>
-							<hlm-autocomplete-empty>No characters found.</hlm-autocomplete-empty>
-							<div hlmAutocompleteList>
-								@for (option of filteredOptions(); track $index) {
-									<hlm-autocomplete-item [value]="option.id">{{ option.label }}</hlm-autocomplete-item>
-								}
-							</div>
-						</hlm-autocomplete-content>
-					</hlm-autocomplete>
+					<caps-autocomplete formControlName="option" [(search)]="search" [itemToString]="itemToString">
+						<caps-autocomplete-input inputId="character" placeholder="Search characters" showClear />
+						<caps-autocomplete-content>
+							<caps-autocomplete-empty>No characters found.</caps-autocomplete-empty>
+
+							@for (option of filteredOptions(); track $index) {
+								<caps-autocomplete-option [value]="option.id">{{ option.label }}</caps-autocomplete-option>
+							}
+						</caps-autocomplete-content>
+					</caps-autocomplete>
 				</caps-field>
 
 				<caps-field orientation="horizontal">
@@ -334,7 +331,7 @@ class AutocompleteTransformOptionValue {
 
 export default {
 	title: 'Autocomplete',
-	component: HlmAutocomplete,
+	component: CapsAutocomplete,
 	tags: ['autodocs'],
 	decorators: [
 		componentWrapperDecorator(
@@ -345,16 +342,16 @@ export default {
 				AutocompleteAsync,
 				AutocompleteForm,
 				AutocompleteTransformOptionValue,
-				HlmAutocompleteImports,
+				CapsAutocompleteImports,
 				AutocompleteReactiveFormStory,
 				AutocompleteHintErrorStory,
 				AutocompleteSearchHintErrorStory,
 			],
 		}),
 	],
-} as Meta<HlmAutocomplete>;
+} as Meta<CapsAutocomplete>;
 
-type Story = StoryObj<HlmAutocomplete>;
+type Story = StoryObj<CapsAutocomplete>;
 
 export const Default: Story = {
 	render: () => {
@@ -383,17 +380,17 @@ export const Default: Story = {
 				filteredOptions,
 			},
 			template: `
-		<hlm-autocomplete [(search)]="search">
-			<hlm-autocomplete-input placeholder="Search characters" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No characters found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
+		<caps-autocomplete [(search)]="search">
+			<caps-autocomplete-input placeholder="Search characters" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No characters found.</caps-autocomplete-empty>
+
 					@for (option of filteredOptions(); track $index) {
-						<hlm-autocomplete-item [value]="option">{{ option }}</hlm-autocomplete-item>
+						<caps-autocomplete-option [value]="option">{{ option }}</caps-autocomplete-option>
 					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 		};
 	},
@@ -409,7 +406,7 @@ export const Config: Story = {
 	decorators: [
 		moduleMetadata({
 			providers: [
-				provideBrnAutocompleteConfig({
+				provideCapsAutocompleteConfig({
 					itemToString: (option: Country) => `${option.flag} ${option.name}`,
 				}),
 			],
@@ -454,17 +451,17 @@ export const Config: Story = {
 				filteredCountries,
 			},
 			template: `
-		<hlm-autocomplete [(search)]="search">
-			<hlm-autocomplete-input placeholder="Search countries" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No countries found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
+		<caps-autocomplete [(search)]="search">
+			<caps-autocomplete-input placeholder="Search countries" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No countries found.</caps-autocomplete-empty>
+
 					@for (country of filteredCountries(); track $index) {
-						<hlm-autocomplete-item [value]="country">{{ country.flag }} {{ country.name }}</hlm-autocomplete-item>
+						<caps-autocomplete-option [value]="country">{{ country.flag }} {{ country.name }}</caps-autocomplete-option>
 					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 		};
 	},
@@ -512,17 +509,17 @@ export const Countries: Story = {
 				itemToString,
 			},
 			template: `
-		<hlm-autocomplete [(search)]="search" [itemToString]="itemToString">
-			<hlm-autocomplete-input placeholder="Search countries" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No countries found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
+		<caps-autocomplete [(search)]="search" [itemToString]="itemToString">
+			<caps-autocomplete-input placeholder="Search countries" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No countries found.</caps-autocomplete-empty>
+
 					@for (country of filteredCountries(); track $index) {
-						<hlm-autocomplete-item [value]="country">{{ country.flag }} {{ country.name }}</hlm-autocomplete-item>
+						<caps-autocomplete-option [value]="country">{{ country.flag }} {{ country.name }}</caps-autocomplete-option>
 					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 		};
 	},

@@ -1185,6 +1185,314 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "[brnAutocompleteStatus]",
       },
     },
+    "caps": {
+      "CapsAutocomplete": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "'ltr' | 'rtl' | 'auto'",
+          },
+          {
+            "name": "autoHighlight",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "T | undefined | null",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "itemToString",
+            "required": false,
+            "type": "AutocompleteItemToString<T> | undefined",
+          },
+          {
+            "name": "isItemEqualToValue",
+            "required": false,
+            "type": "AutocompleteItemEqualToValue<T>",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "BrnOverlayState | null",
+          },
+          {
+            "name": "offsetX",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollStrategy",
+            "required": false,
+            "type": "BrnOverlayOptions['scrollStrategy'] | 'close' | 'reposition' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "T | undefined | null",
+          },
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+          {
+            "name": "stateChanged",
+            "type": "BrnOverlayState",
+          },
+          {
+            "name": "closed",
+            "type": "TResult",
+          },
+        ],
+        "selector": "caps-autocomplete",
+      },
+      "CapsAutocompleteContent": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-content",
+      },
+      "CapsAutocompleteEmpty": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-empty",
+      },
+      "CapsAutocompleteGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-group",
+      },
+      "CapsAutocompleteInput": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "autocomplete",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showSearch",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "showClear",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-invalid",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-input",
+      },
+      "CapsAutocompleteLabel": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-label",
+      },
+      "CapsAutocompleteOption": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-option",
+      },
+      "CapsAutocompleteSearch": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "'ltr' | 'rtl' | 'auto'",
+          },
+          {
+            "name": "autoHighlight",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string | undefined | null",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "itemToString",
+            "required": false,
+            "type": "AutocompleteItemToString<T> | undefined",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "BrnOverlayState | null",
+          },
+          {
+            "name": "offsetX",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollStrategy",
+            "required": false,
+            "type": "BrnOverlayOptions['scrollStrategy'] | 'close' | 'reposition' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "string | undefined | null",
+          },
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+          {
+            "name": "stateChanged",
+            "type": "BrnOverlayState",
+          },
+          {
+            "name": "closed",
+            "type": "TResult",
+          },
+        ],
+        "selector": "caps-autocomplete-search",
+      },
+      "CapsAutocompleteSeparator": {
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-separator",
+      },
+      "CapsAutocompleteStatus": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-status",
+      },
+    },
     "helm": {
       "HlmAutocomplete": {
         "inputs": [
@@ -3870,6 +4178,483 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnComboboxValues]",
+      },
+    },
+    "caps": {
+      "CapsCombobox": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "'ltr' | 'rtl' | 'auto'",
+          },
+          {
+            "name": "autoHighlight",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "closeOnSelect",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "type": "ComboboxFilter<T>",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "T | undefined | null",
+          },
+          {
+            "name": "itemToString",
+            "required": false,
+            "type": "ComboboxItemToString<T> | undefined",
+          },
+          {
+            "name": "filterOptions",
+            "required": false,
+            "type": "ComboboxFilterOptions",
+          },
+          {
+            "name": "isItemEqualToValue",
+            "required": false,
+            "type": "ComboboxItemEqualToValue<T>",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "BrnOverlayState | null",
+          },
+          {
+            "name": "offsetX",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollStrategy",
+            "required": false,
+            "type": "BrnOverlayOptions['scrollStrategy'] | 'close' | 'reposition' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+          {
+            "name": "valueChange",
+            "type": "T | undefined | null",
+          },
+          {
+            "name": "stateChanged",
+            "type": "BrnOverlayState",
+          },
+          {
+            "name": "closed",
+            "type": "TResult",
+          },
+        ],
+        "selector": "caps-combobox",
+      },
+      "CapsComboboxChip": {
+        "inputs": [
+          {
+            "name": "showRemove",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-chip",
+      },
+      "CapsComboboxChipInput": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-invalid",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsComboboxChipInput]",
+      },
+      "CapsComboboxChipRemove": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsComboboxChipRemove]",
+      },
+      "CapsComboboxChips": {
+        "inputs": [
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-chips",
+      },
+      "CapsComboboxContent": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-content",
+      },
+      "CapsComboboxEmpty": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-empty",
+      },
+      "CapsComboboxGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-group",
+      },
+      "CapsComboboxInput": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showTrigger",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "showClear",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "triggerAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "clearAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-invalid",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-input",
+      },
+      "CapsComboboxLabel": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-label",
+      },
+      "CapsComboboxMultiple": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "'ltr' | 'rtl' | 'auto'",
+          },
+          {
+            "name": "autoHighlight",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "closeOnSelect",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "type": "ComboboxFilter<T>",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "T[] | undefined | null",
+          },
+          {
+            "name": "itemToString",
+            "required": false,
+            "type": "ComboboxItemToString<T> | undefined",
+          },
+          {
+            "name": "filterOptions",
+            "required": false,
+            "type": "ComboboxFilterOptions",
+          },
+          {
+            "name": "isItemEqualToValue",
+            "required": false,
+            "type": "ComboboxItemEqualToValue<T>",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "BrnOverlayState | null",
+          },
+          {
+            "name": "offsetX",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollStrategy",
+            "required": false,
+            "type": "BrnOverlayOptions['scrollStrategy'] | 'close' | 'reposition' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+          {
+            "name": "valueChange",
+            "type": "T[] | undefined | null",
+          },
+          {
+            "name": "stateChanged",
+            "type": "BrnOverlayState",
+          },
+          {
+            "name": "closed",
+            "type": "TResult",
+          },
+        ],
+        "selector": "caps-combobox-multiple",
+      },
+      "CapsComboboxOption": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-option",
+      },
+      "CapsComboboxPlaceholder": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-placeholder",
+      },
+      "CapsComboboxSeparator": {
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-separator",
+      },
+      "CapsComboboxStatus": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-status",
+      },
+      "CapsComboboxTrigger": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "buttonId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-trigger",
+      },
+      "CapsComboboxValue": {
+        "inputs": [
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-value",
+      },
+      "CapsComboboxValueTemplate": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsComboboxValueTemplate]",
+      },
+      "CapsComboboxValues": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsComboboxValues]",
       },
     },
     "helm": {

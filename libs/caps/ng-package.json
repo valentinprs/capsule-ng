@@ -6,6 +6,7 @@
 	},
 	"assets": [
 		"panels.css",
+		"choices.css",
 		"caps-preset.css",
 		"table-pagination.css",
 		"menu.css",

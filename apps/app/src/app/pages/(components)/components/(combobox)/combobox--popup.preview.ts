@@ -1,29 +1,28 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-combobox-popup-preview',
-	imports: [HlmComboboxImports, HlmFieldImports],
+	imports: [CapsComboboxImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel for="countries">Countries</label>
-			<hlm-combobox>
-				<hlm-combobox-trigger buttonId="countries" class="w-64 justify-between font-normal">
-					<hlm-combobox-value placeholder="Select a country" />
-				</hlm-combobox-trigger>
-				<hlm-combobox-content *hlmComboboxPortal>
-					<hlm-combobox-input showTrigger="false" placeholder="Search" showClear />
-					<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-					<div hlmComboboxList>
-						@for (country of countries; track country.code) {
-							<hlm-combobox-item [value]="country">{{ country.label }}</hlm-combobox-item>
-						}
-					</div>
-				</hlm-combobox-content>
-			</hlm-combobox>
-		</hlm-field>
+		<caps-field>
+			<caps-field-label for="countries">Countries</caps-field-label>
+			<caps-combobox>
+				<caps-combobox-trigger buttonId="countries" class="w-64 justify-between font-normal">
+					<caps-combobox-value placeholder="Select a country" />
+				</caps-combobox-trigger>
+				<caps-combobox-content>
+					<caps-combobox-input showTrigger="false" placeholder="Search" showClear />
+					<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+					@for (country of countries; track country.code) {
+						<caps-combobox-option [value]="country">{{ country.label }}</caps-combobox-option>
+					}
+				</caps-combobox-content>
+			</caps-combobox>
+		</caps-field>
 	`,
 })
 export class ComboboxPopupPreview {

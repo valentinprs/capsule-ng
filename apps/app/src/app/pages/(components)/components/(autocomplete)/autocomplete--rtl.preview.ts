@@ -1,29 +1,28 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
 
 @Component({
 	selector: 'spartan-autocomplete-rtl-preview',
-	imports: [HlmAutocompleteImports],
+	imports: [CapsAutocompleteImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-autocomplete [(search)]="search" [attr.dir]="_dir()" [itemToString]="_itemToString">
-			<hlm-autocomplete-input [placeholder]="_t()['placeholder']" />
-			<hlm-autocomplete-content *hlmAutocompletePortal [attr.dir]="_dir()">
-				<hlm-autocomplete-empty>{{ _t()['empty'] }}</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
-					@for (option of filteredOptions(); track option) {
-						<hlm-autocomplete-item [value]="option">
-							{{ _t()[option] }}
-						</hlm-autocomplete-item>
-					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+		<caps-autocomplete [(search)]="search" [dir]="_dir()" [itemToString]="_itemToString">
+			<caps-autocomplete-input [placeholder]="_t()['placeholder']" />
+			<caps-autocomplete-content [attr.lang]="_language()" [attr.data-lang]="_language()">
+				<caps-autocomplete-empty>{{ _t()['empty'] }}</caps-autocomplete-empty>
+
+				@for (option of filteredOptions(); track option) {
+					<caps-autocomplete-option [value]="option">
+						{{ _t()[option] }}
+					</caps-autocomplete-option>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 })
 export class AutocompleteRtlPreview {
-	private readonly _language = inject(TranslateService).language;
+	protected readonly _language = inject(TranslateService).language;
 
 	private readonly _keys = [
 		'apple',

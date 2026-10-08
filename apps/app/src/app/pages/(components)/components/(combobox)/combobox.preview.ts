@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 
 @Component({
 	selector: 'spartan-combobox-preview',
-	imports: [HlmComboboxImports],
+	imports: [CapsComboboxImports],
 	template: `
-		<hlm-combobox>
-			<hlm-combobox-input placeholder="Select a framework" />
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
-					@for (framework of frameworks; track $index) {
-						<hlm-combobox-item [value]="framework">{{ framework.label }}</hlm-combobox-item>
-					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox>
+		<caps-combobox>
+			<caps-combobox-input placeholder="Select a framework" />
+			<caps-combobox-content>
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+				@for (framework of frameworks; track $index) {
+					<caps-combobox-option [value]="framework">{{ framework.label }}</caps-combobox-option>
+				}
+			</caps-combobox-content>
+		</caps-combobox>
 	`,
 })
 export class ComboboxPreview {
@@ -48,27 +47,25 @@ export class ComboboxPreview {
 }
 
 export const defaultImports = `
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 `;
 
 export const defaultSkeleton = `
-<hlm-combobox>
-  <hlm-combobox-input placeholder="Select a framework" />
-  <hlm-combobox-content *hlmComboboxPortal>
-    <hlm-combobox-empty>No items found.</hlm-combobox-empty>
-    <div hlmComboboxList>
-      @for (framework of frameworks; track $index) {
-      	<hlm-combobox-item [value]="framework">{{ framework.label }}</hlm-combobox-item>
-      }
-    </div>
-  </hlm-combobox-content>
-</hlm-combobox>
+<caps-combobox>
+	<caps-combobox-input placeholder="Select a framework" />
+	<caps-combobox-content>
+		<caps-combobox-empty>No items found.</caps-combobox-empty>
+		@for (framework of frameworks; track $index) {
+			<caps-combobox-option [value]="framework">{{ framework.label }}</caps-combobox-option>
+		}
+	</caps-combobox-content>
+</caps-combobox>
 `;
 
 export const comboboxDefaultConfig = `
-import { comboboxContainsFilter, provideBrnComboboxConfig } from '@spartan-ng/brain/combobox';
+import { comboboxContainsFilter, provideCapsComboboxConfig } from '@capsule-ng/caps/combobox';
 
-provideBrnComboboxConfig({
+provideCapsComboboxConfig({
 	filterOptions: {
 		usage: 'search',
 		sensitivity: 'base',

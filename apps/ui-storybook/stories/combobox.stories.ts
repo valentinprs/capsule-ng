@@ -2,8 +2,8 @@ import { JsonPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -26,21 +26,19 @@ const frameworks: Framework[] = [
 
 @Component({
 	selector: 'combobox-default-story',
-	standalone: true,
-	imports: [HlmComboboxImports],
+	imports: [CapsComboboxImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-combobox class="w-full max-w-sm">
-			<hlm-combobox-input placeholder="Select framework..." />
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
-					@for (fw of frameworks; track fw.value) {
-						<hlm-combobox-item [value]="fw">{{ fw.label }}</hlm-combobox-item>
-					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox>
+		<caps-combobox class="w-full max-w-sm">
+			<caps-combobox-input placeholder="Select framework..." />
+			<caps-combobox-content>
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+				@for (fw of frameworks; track fw.value) {
+					<caps-combobox-option [value]="fw">{{ fw.label }}</caps-combobox-option>
+				}
+			</caps-combobox-content>
+		</caps-combobox>
 	`,
 })
 class ComboboxDefaultStory {
@@ -49,25 +47,24 @@ class ComboboxDefaultStory {
 
 @Component({
 	selector: 'combobox-popup-story',
-	imports: [HlmComboboxImports, CapsFieldImports],
+	imports: [CapsComboboxImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<caps-field>
 			<caps-field-label for="countries">Countries</caps-field-label>
-			<hlm-combobox>
-				<hlm-combobox-trigger buttonId="countries" class="w-64 justify-between font-normal">
-					<hlm-combobox-value placeholder="Select a country" />
-				</hlm-combobox-trigger>
-				<hlm-combobox-content *hlmComboboxPortal>
-					<hlm-combobox-input showTrigger="false" placeholder="Search" showClear />
-					<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-					<div hlmComboboxList>
-						@for (fw of frameworks; track fw.value) {
-							<hlm-combobox-item [value]="fw">{{ fw.label }}</hlm-combobox-item>
-						}
-					</div>
-				</hlm-combobox-content>
-			</hlm-combobox>
+			<caps-combobox>
+				<caps-combobox-trigger buttonId="countries" class="w-64 justify-between font-normal">
+					<caps-combobox-value placeholder="Select a country" />
+				</caps-combobox-trigger>
+				<caps-combobox-content>
+					<caps-combobox-input showTrigger="false" placeholder="Search" showClear />
+					<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+					@for (fw of frameworks; track fw.value) {
+						<caps-combobox-option [value]="fw">{{ fw.label }}</caps-combobox-option>
+					}
+				</caps-combobox-content>
+			</caps-combobox>
 		</caps-field>
 	`,
 })
@@ -79,24 +76,22 @@ class ComboboxPopupStory {
 
 @Component({
 	selector: 'combobox-reactive-form-story',
-	standalone: true,
-	imports: [JsonPipe, HlmComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
+	imports: [JsonPipe, CapsComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm space-y-3">
 			<caps-field>
 				<caps-field-label>Framework *</caps-field-label>
-				<hlm-combobox formControlName="framework">
-					<hlm-combobox-input placeholder="Select framework..." />
-					<hlm-combobox-content *hlmComboboxPortal>
-						<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-						<div hlmComboboxList>
-							@for (fw of frameworks; track fw.value) {
-								<hlm-combobox-item [value]="fw">{{ fw.label }}</hlm-combobox-item>
-							}
-						</div>
-					</hlm-combobox-content>
-				</hlm-combobox>
+				<caps-combobox formControlName="framework">
+					<caps-combobox-input placeholder="Select framework..." />
+					<caps-combobox-content>
+						<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+						@for (fw of frameworks; track fw.value) {
+							<caps-combobox-option [value]="fw">{{ fw.label }}</caps-combobox-option>
+						}
+					</caps-combobox-content>
+				</caps-combobox>
 				<caps-field-description>Choose a framework from the list.</caps-field-description>
 			</caps-field>
 
@@ -123,24 +118,22 @@ class ComboboxReactiveFormStory {
 
 @Component({
 	selector: 'combobox-hint-error-story',
-	standalone: true,
-	imports: [HlmComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
+	imports: [CapsComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm space-y-3">
 			<caps-field>
 				<caps-field-label>Framework *</caps-field-label>
-				<hlm-combobox formControlName="framework">
-					<hlm-combobox-input placeholder="Select framework..." />
-					<hlm-combobox-content *hlmComboboxPortal>
-						<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-						<div hlmComboboxList>
-							@for (fw of frameworks; track fw.value) {
-								<hlm-combobox-item [value]="fw">{{ fw.label }}</hlm-combobox-item>
-							}
-						</div>
-					</hlm-combobox-content>
-				</hlm-combobox>
+				<caps-combobox formControlName="framework">
+					<caps-combobox-input placeholder="Select framework..." />
+					<caps-combobox-content>
+						<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+						@for (fw of frameworks; track fw.value) {
+							<caps-combobox-option [value]="fw">{{ fw.label }}</caps-combobox-option>
+						}
+					</caps-combobox-content>
+				</caps-combobox>
 
 				<caps-field-description>Pick a framework to get started.</caps-field-description>
 
@@ -164,32 +157,30 @@ class ComboboxHintErrorStory {
 
 @Component({
 	selector: 'combobox-multiple-hint-error-story',
-	standalone: true,
-	imports: [HlmComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
+	imports: [CapsComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm space-y-3">
 			<caps-field>
 				<caps-field-label>Framework *</caps-field-label>
-				<hlm-combobox-multiple formControlName="framework">
-					<hlm-combobox-chips class="max-w-xs">
-						<ng-template hlmComboboxValues let-values>
+				<caps-combobox-multiple formControlName="framework">
+					<caps-combobox-chips class="max-w-xs">
+						<ng-template capsComboboxValues let-values>
 							@for (value of values; track $index) {
-								<hlm-combobox-chip [value]="value">{{ value.label }}</hlm-combobox-chip>
+								<caps-combobox-chip [value]="value">{{ value.label }}</caps-combobox-chip>
 							}
 						</ng-template>
 
-						<input hlmComboboxChipInput />
-					</hlm-combobox-chips>
-					<hlm-combobox-content *hlmComboboxPortal>
-						<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-						<div hlmComboboxList>
-							@for (framework of frameworks; track $index) {
-								<hlm-combobox-item [value]="framework">{{ framework.label }}</hlm-combobox-item>
-							}
-						</div>
-					</hlm-combobox-content>
-				</hlm-combobox-multiple>
+						<input capsComboboxChipInput aria-label="Search frameworks" />
+					</caps-combobox-chips>
+					<caps-combobox-content>
+						<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+						@for (framework of frameworks; track $index) {
+							<caps-combobox-option [value]="framework">{{ framework.label }}</caps-combobox-option>
+						}
+					</caps-combobox-content>
+				</caps-combobox-multiple>
 
 				<caps-field-description>Pick a framework to get started.</caps-field-description>
 
@@ -221,26 +212,25 @@ class ComboboxMultipleHintErrorStory {
 
 @Component({
 	selector: 'combobox-popup-hint-error-story',
-	imports: [HlmComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
+	imports: [CapsComboboxImports, CapsFieldImports, CapsButton, ReactiveFormsModule],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<form [formGroup]="form" class="w-full max-w-sm space-y-3">
 			<caps-field>
 				<caps-field-label for="countries">Countries</caps-field-label>
-				<hlm-combobox formControlName="framework">
-					<hlm-combobox-trigger buttonId="countries" class="w-64 justify-between font-normal">
-						<hlm-combobox-value placeholder="Select a country" />
-					</hlm-combobox-trigger>
-					<hlm-combobox-content *hlmComboboxPortal>
-						<hlm-combobox-input showTrigger="false" placeholder="Search" showClear />
-						<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-						<div hlmComboboxList>
-							@for (fw of frameworks; track fw.value) {
-								<hlm-combobox-item [value]="fw">{{ fw.label }}</hlm-combobox-item>
-							}
-						</div>
-					</hlm-combobox-content>
-				</hlm-combobox>
+				<caps-combobox formControlName="framework">
+					<caps-combobox-trigger buttonId="countries" class="w-64 justify-between font-normal">
+						<caps-combobox-value placeholder="Select a country" />
+					</caps-combobox-trigger>
+					<caps-combobox-content>
+						<caps-combobox-input showTrigger="false" placeholder="Search" showClear />
+						<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+						@for (fw of frameworks; track fw.value) {
+							<caps-combobox-option [value]="fw">{{ fw.label }}</caps-combobox-option>
+						}
+					</caps-combobox-content>
+				</caps-combobox>
 
 				<caps-field-description>Pick a framework to get started.</caps-field-description>
 

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, resource, signal } from '@angular/core';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
 
 interface DirectoryUser {
 	id: string;
@@ -12,22 +12,22 @@ interface DirectoryUser {
 
 @Component({
 	selector: 'spartan-combobox-async-multiple-preview',
-	imports: [HlmComboboxImports, CapsSpinnerImports],
+	imports: [CapsComboboxImports, CapsSpinnerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-combobox-multiple [(search)]="search" [itemToString]="itemToString">
-			<hlm-combobox-chips class="max-w-xs">
-				<ng-template hlmComboboxValues let-values>
+		<caps-combobox-multiple [(search)]="search" [itemToString]="itemToString" [filter]="filter">
+			<caps-combobox-chips class="max-w-xs">
+				<ng-template capsComboboxValues let-values>
 					@for (value of values; track $index) {
-						<hlm-combobox-chip [value]="value">{{ value.name }}</hlm-combobox-chip>
+						<caps-combobox-chip [value]="value">{{ value.name }}</caps-combobox-chip>
 					}
 				</ng-template>
 
-				<input hlmComboboxChipInput />
-			</hlm-combobox-chips>
-			<hlm-combobox-content *hlmComboboxPortal>
+				<input capsComboboxChipInput aria-label="Search frameworks" />
+			</caps-combobox-chips>
+			<caps-combobox-content>
 				@if (showStatus()) {
-					<hlm-combobox-status>
+					<caps-combobox-status>
 						@if (users.error(); as error) {
 							{{ error }}
 						} @else if (users.isLoading()) {
@@ -38,23 +38,25 @@ interface DirectoryUser {
 						} @else {
 							No matches for "{{ search() }}".
 						}
-					</hlm-combobox-status>
+					</caps-combobox-status>
 				}
-				<div hlmComboboxList>
-					@if (users.hasValue()) {
-						@for (user of users.value(); track user.id) {
-							<hlm-combobox-item [value]="user">{{ user.name }}</hlm-combobox-item>
-						}
+
+				@if (users.hasValue()) {
+					@for (user of users.value(); track user.id) {
+						<caps-combobox-option [value]="user">{{ user.name }}</caps-combobox-option>
 					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox-multiple>
+				}
+			</caps-combobox-content>
+		</caps-combobox-multiple>
 	`,
 })
 export class ComboboxAsyncMultiplePreview {
 	public search = signal('');
 
 	public itemToString = (user: DirectoryUser) => user.name;
+
+	/** The loader already filters by name, username, email and job title. */
+	public readonly filter = () => true;
 
 	public users = resource({
 		defaultValue: [],

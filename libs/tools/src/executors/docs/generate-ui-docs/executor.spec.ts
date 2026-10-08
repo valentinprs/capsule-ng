@@ -289,3 +289,56 @@ describe('Capsule conversation API metadata', () => {
 		expect(slider.inputs.map(({ name }) => name)).not.toContain('mode');
 	});
 });
+
+describe('Capsule search choices metadata', () => {
+	it('documents typed roots, value/search models, native controls and owned structures', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		for (const [slug, roots] of [
+			['autocomplete', ['CapsAutocomplete', 'CapsAutocompleteSearch']],
+			['combobox', ['CapsCombobox', 'CapsComboboxMultiple']],
+		] as const) {
+			const family = generated[slug]['caps'];
+			for (const name of roots) {
+				expect(family[name].selector).toMatch(/^caps-/);
+				// hostDirectives expose model() as its input/output pair (extract-inputs-outputs.spec.ts).
+				const valueType =
+					name === 'CapsAutocompleteSearch'
+						? 'string | undefined | null'
+						: name === 'CapsComboboxMultiple'
+							? 'T[] | undefined | null'
+							: 'T | undefined | null';
+				expect(family[name].inputs).toEqual(
+					expect.arrayContaining([
+						expect.objectContaining({ name: 'value', type: valueType, defaultValue: 'null' }),
+						expect.objectContaining({ name: 'search', type: 'string', defaultValue: "''" }),
+					]),
+				);
+				expect(family[name].outputs).toEqual(
+					expect.arrayContaining([
+						expect.objectContaining({ name: 'valueChange', type: valueType }),
+						expect.objectContaining({ name: 'searchChange', type: 'string' }),
+					]),
+				);
+				expect(family[name].models).toEqual([]);
+				expect(family[name].inputs.map((input) => input.name)).toEqual(
+					expect.arrayContaining(['disabled', 'itemToString']),
+				);
+			}
+			expect(family[slug === 'autocomplete' ? 'CapsAutocompleteOption' : 'CapsComboboxOption'].selector).toBe(
+				`caps-${slug}-option`,
+			);
+			expect(Object.keys(family).some((name) => /(?:Behavior|Portal|List)$/.test(name))).toBe(false);
+		}
+		const comboboxInputs = generated['combobox']['caps']['CapsCombobox'].inputs.map((input) => input.name);
+		expect(comboboxInputs).toEqual(
+			expect.arrayContaining(['autoHighlight', 'closeOnSelect', 'filter', 'filterOptions', 'isItemEqualToValue']),
+		);
+		expect(comboboxInputs).not.toContain('size');
+		expect(comboboxInputs).not.toContain('type');
+		expect(comboboxInputs).not.toContain('invalid');
+		expect(generated['combobox']['caps']['CapsComboboxChipInput'].selector).toBe('input[capsComboboxChipInput]');
+		expect(generated['combobox']['caps']['CapsComboboxTrigger'].inputs.map((input) => input.name)).toEqual(
+			expect.arrayContaining(['buttonId', 'aria-label', 'aria-describedby']),
+		);
+	});
+});

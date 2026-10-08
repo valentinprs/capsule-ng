@@ -1,27 +1,26 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 
 @Component({
 	selector: 'spartan-combobox-group-preview',
-	imports: [HlmComboboxImports],
+	imports: [CapsComboboxImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-combobox>
-			<hlm-combobox-input placeholder="Select a timezone" />
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
-					@for (timezoneGroup of timezones; track $index) {
-						<div hlmComboboxGroup>
-							<div hlmComboboxLabel>{{ timezoneGroup.value }}</div>
-							@for (timezone of timezoneGroup.items; track $index) {
-								<hlm-combobox-item [value]="timezone">{{ timezone }}</hlm-combobox-item>
-							}
-						</div>
-					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox>
+		<caps-combobox>
+			<caps-combobox-input placeholder="Select a timezone" />
+			<caps-combobox-content>
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+				@for (timezoneGroup of timezones; track $index) {
+					<caps-combobox-group>
+						<caps-combobox-label>{{ timezoneGroup.value }}</caps-combobox-label>
+						@for (timezone of timezoneGroup.items; track $index) {
+							<caps-combobox-option [value]="timezone">{{ timezone }}</caps-combobox-option>
+						}
+					</caps-combobox-group>
+				}
+			</caps-combobox-content>
+		</caps-combobox>
 	`,
 })
 export class ComboboxGroupPreview {

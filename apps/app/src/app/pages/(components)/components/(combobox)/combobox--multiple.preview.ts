@@ -1,30 +1,29 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 
 @Component({
 	selector: 'spartan-combobox-multiple-preview',
-	imports: [HlmComboboxImports],
+	imports: [CapsComboboxImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-combobox-multiple [(value)]="values">
-			<hlm-combobox-chips class="max-w-xs">
-				<ng-template hlmComboboxValues let-values>
+		<caps-combobox-multiple [(value)]="values">
+			<caps-combobox-chips class="max-w-xs">
+				<ng-template capsComboboxValues let-values>
 					@for (value of values; track $index) {
-						<hlm-combobox-chip [value]="value">{{ value }}</hlm-combobox-chip>
+						<caps-combobox-chip [value]="value">{{ value }}</caps-combobox-chip>
 					}
 				</ng-template>
 
-				<input hlmComboboxChipInput />
-			</hlm-combobox-chips>
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
-					@for (framework of frameworks; track $index) {
-						<hlm-combobox-item [value]="framework">{{ framework }}</hlm-combobox-item>
-					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox-multiple>
+				<input capsComboboxChipInput aria-label="Search frameworks" />
+			</caps-combobox-chips>
+			<caps-combobox-content>
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+				@for (framework of frameworks; track $index) {
+					<caps-combobox-option [value]="framework">{{ framework }}</caps-combobox-option>
+				}
+			</caps-combobox-content>
+		</caps-combobox-multiple>
 	`,
 })
 export class ComboboxMultiplePreview {

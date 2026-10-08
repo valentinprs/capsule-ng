@@ -139,3 +139,12 @@ Command and Kbd reuse their six theme rules through Capsule selectors. Compact s
 native input and decorative icon; logical padding, shared focus ring, disabled opacity and bounded
 dialog widths come from the Capsule preset. `command.css`/`kbd.css` are packaged assets imported by
 that preset. No independent theme or global shortcut behavior is introduced.
+
+## Search and selection
+
+Autocomplete/Combobox use `choices.css` in the existing Capsule preset. Floating content, options,
+labels, separators, empty/status messages and chips use existing theme colors and shared duration,
+control height, border and opacity tokens. Input, InputGroup and Button compose their public Capsule
+foundations at the shared default control height; no second
+theme source is introduced. Direction is forwarded to floating content and logical padding/end
+positions keep chips and indicators correct in RTL.

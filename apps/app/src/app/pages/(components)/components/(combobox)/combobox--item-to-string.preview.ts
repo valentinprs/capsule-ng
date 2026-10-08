@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 type Assignee = {
 	id: string;
@@ -11,30 +11,29 @@ type Assignee = {
 
 @Component({
 	selector: 'spartan-combobox-item-to-string-preview',
-	imports: [HlmComboboxImports, FormRoot, FormField, HlmButton, HlmFieldImports],
+	imports: [CapsComboboxImports, FormRoot, FormField, CapsButton, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full max-w-xs' },
 	template: `
 		<form [formRoot]="form">
-			<div hlmFieldGroup>
-				<div hlmField>
-					<label hlmFieldLabel>Assign reviewer</label>
-					<hlm-combobox [(search)]="search" [formField]="form.assignee" [itemToString]="itemToString">
-						<hlm-combobox-input placeholder="e.g. Einstein" />
-						<hlm-combobox-content *hlmComboboxPortal>
-							<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-							<div hlmComboboxList>
-								@for (assignee of filteredOptions(); track $index) {
-									<hlm-combobox-item [value]="assignee.id">{{ assignee.name }}</hlm-combobox-item>
-								}
-							</div>
-						</hlm-combobox-content>
-					</hlm-combobox>
-				</div>
-				<div hlmField orientation="horizontal">
-					<button type="submit" hlmBtn [disabled]="form().submitting()">Submit</button>
-				</div>
-			</div>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Assign reviewer</caps-field-label>
+					<caps-combobox [(search)]="search" [formField]="form.assignee" [itemToString]="itemToString">
+						<caps-combobox-input placeholder="e.g. Einstein" />
+						<caps-combobox-content>
+							<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+							@for (assignee of filteredOptions(); track $index) {
+								<caps-combobox-option [value]="assignee.id">{{ assignee.name }}</caps-combobox-option>
+							}
+						</caps-combobox-content>
+					</caps-combobox>
+				</caps-field>
+				<caps-field orientation="horizontal">
+					<button type="submit" capsButton [disabled]="form().submitting()">Submit</button>
+				</caps-field>
+			</caps-field-group>
 		</form>
 	`,
 })

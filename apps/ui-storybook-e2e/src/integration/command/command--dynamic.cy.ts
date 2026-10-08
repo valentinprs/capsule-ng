@@ -13,21 +13,21 @@ describe('command', () => {
 			});
 
 			/**       TEST initially it should only show Profiles   */
-			cy.get('button[hlm-command-item]:not([data-hidden])').should('have.length', 1);
+			cy.get('button[capsCommandItem]:not([data-hidden])').should('have.length', 1);
 
 			/**       TEST after deleting search input it should show all items    */
 			cy.findByText('Profile').should('have.length', 1);
 			cy.get('input').type('{backspace}');
-			cy.get('button[hlm-command-item]:not([data-hidden])').should('have.length', 4);
-			cy.get('button[hlm-command-item][data-selected]').should('include.text', 'Profile');
+			cy.get('button[capsCommandItem]:not([data-hidden])').should('have.length', 4);
+			cy.get('button[capsCommandItem][data-selected]').should('include.text', 'Profile');
 
 			/**       TEST Focusing first if selected item is not visible          */
 			cy.get('input').type('s');
-			cy.get('button[hlm-command-item][data-selected]').should('include.text', 'Search Emoji');
+			cy.get('button[capsCommandItem][data-selected]').should('include.text', 'Search Emoji');
 			cy.get('input').type('e');
 			cy.get('input').type('t');
-			cy.get('button[hlm-command-item][data-selected]').should('have.length', 1);
-			cy.get('button[hlm-command-item][data-selected]').should('include.text', 'Settings');
+			cy.get('button[capsCommandItem][data-selected]').should('have.length', 1);
+			cy.get('button[capsCommandItem][data-selected]').should('include.text', 'Settings');
 		});
 	});
 
@@ -45,7 +45,7 @@ describe('command', () => {
 			});
 
 			/**       TEST initially it should only show Profile and Search Emoji    */
-			cy.get('button[hlm-command-item]:not([data-hidden])').should('have.length', 2);
+			cy.get('button[capsCommandItem]:not([data-hidden])').should('have.length', 2);
 
 			cy.findByText('Profile').should('have.length', 1);
 			cy.findByText('Search Emoji').should('have.length', 1);
@@ -66,7 +66,7 @@ describe('command', () => {
 			});
 
 			/**       TEST initially it should only show Search and Settings   */
-			cy.get('button[hlm-command-item]:not([data-hidden])').should('have.length', 2);
+			cy.get('button[capsCommandItem]:not([data-hidden])').should('have.length', 2);
 			cy.findByText('Search Emoji').should('have.length', 1);
 			cy.findByText('Settings').should('have.length', 1);
 		});

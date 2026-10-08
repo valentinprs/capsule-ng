@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
-import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 
 @Component({
 	selector: 'spartan-input-group-kbd',
-	imports: [CapsInputImports, CapsInputGroupImports, NgIcon, HlmKbdImports],
+	imports: [CapsInputImports, CapsInputGroupImports, NgIcon, CapsKbdImports],
 	providers: [provideIcons({ lucideSearch })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'max-w-sm' },
@@ -18,7 +18,7 @@ import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 				<ng-icon name="lucideSearch" />
 			</caps-input-group-addon>
 			<caps-input-group-addon align="inline-end">
-				<kbd hlmKbd>⌘K</kbd>
+				<kbd capsKbd>⌘K</kbd>
 			</caps-input-group-addon>
 		</caps-input-group>
 	`,

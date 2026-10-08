@@ -390,51 +390,63 @@
 	}
 
 	/* MARK: Command */
-	.spartan-command {
+	.spartan-command,
+	.caps-command {
 		@apply bg-popover text-popover-foreground rounded-xl! p-1;
 	}
 
-	.spartan-command-dialog {
+	.spartan-command-dialog,
+	.caps-command-dialog {
 		@apply rounded-xl!;
 	}
 
-	.spartan-command-input-wrapper {
+	.spartan-command-input-wrapper,
+	.caps-command-input-wrapper {
 		@apply p-1 pb-0;
 	}
 
-	.spartan-command-input-group {
+	.spartan-command-input-group,
+	.caps-command-input-group {
 		@apply bg-input/30 border-input/30 h-8! rounded-lg! shadow-none! *:data-[slot=input-group-addon]:pl-2!;
 	}
 
-	.spartan-command-input-icon {
+	.spartan-command-input-icon,
+	.caps-command-input-icon {
 		@apply shrink-0 text-[length:--spacing(4)] opacity-(--caps-opacity-50);
 	}
 
-	.spartan-command-input {
+	.spartan-command-input,
+	.caps-command-input {
 		@apply w-full text-sm;
 	}
 
-	.spartan-command-list {
+	.spartan-command-list,
+	.caps-command-list {
 		@apply no-scrollbar max-h-72 scroll-py-1 outline-none;
 	}
 
-	.spartan-command-empty {
+	.spartan-command-empty,
+	.caps-command-empty {
 		@apply py-6 text-center text-sm;
 	}
 
-	.spartan-command-group {
+	.spartan-command-group,
+	.caps-command-group {
 		@apply text-foreground **:data-[slot=command-group-label]:text-muted-foreground overflow-hidden p-1 **:data-[slot=command-group-label]:px-2 **:data-[slot=command-group-label]:py-1.5 **:data-[slot=command-group-label]:text-xs **:data-[slot=command-group-label]:font-medium;
 	}
 
-	.spartan-command-separator {
+	.spartan-command-separator,
+	.caps-command-separator {
 		@apply bg-border -mx-1 h-px w-auto;
 	}
 
-	.spartan-command-item {
+	.spartan-command-item,
+	.caps-command-item {
 		@apply data-selected:bg-muted data-selected:text-foreground relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none in-data-[slot=dialog-content]:rounded-lg! [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
 	}
 
-	.spartan-command-shortcut {
+	.spartan-command-shortcut,
+	.caps-command-shortcut {
 		@apply text-muted-foreground group-data-[selected]/command-item:text-foreground ms-auto text-xs tracking-widest;
 	}
 
@@ -940,11 +952,13 @@
 	}
 
 	/* MARK: Kbd */
-	.spartan-kbd {
+	.spartan-kbd,
+	.caps-kbd {
 		@apply bg-muted text-muted-foreground in-data-[slot=tooltip-content]:bg-background/20 in-data-[slot=tooltip-content]:text-background dark:in-data-[slot=tooltip-content]:bg-background/10 h-5 w-fit min-w-5 gap-1 rounded-sm px-1 font-sans text-xs font-medium [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
 	}
 
-	.spartan-kbd-group {
+	.spartan-kbd-group,
+	.caps-kbd-group {
 		@apply gap-1;
 	}
 

@@ -1,40 +1,39 @@
 import { Component, signal } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCommandImports } from '@spartan-ng/helm/command';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCommandImports } from '@capsule-ng/caps/command';
 
 @Component({
 	selector: 'spartan-command-basic',
-	imports: [HlmCommandImports, HlmButtonImports],
+	imports: [CapsCommandImports, CapsButtonImports],
 	template: `
 		<div class="mx-auto flex max-w-screen-sm items-center justify-center space-x-4 py-20 text-sm">
-			<button hlmBtn variant="outline" (click)="stateChanged('open')">Open Menu</button>
+			<button capsButton variant="outline" (click)="stateChanged(true)">Open Menu</button>
 		</div>
-		<hlm-command-dialog [state]="state()" (stateChange)="stateChanged($event)">
-			<hlm-command>
-				<hlm-command-input placeholder="Type a command or search..." />
-				<hlm-command-list>
-					<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-					<hlm-command-group>
-						<hlm-command-group-label>Suggestions</hlm-command-group-label>
-						<button hlm-command-item value="calendar" (selected)="commandSelected('calendar')">Calendar</button>
-						<button hlm-command-item value="emoji" (selected)="commandSelected('emoji')">Search Emoji</button>
-						<button hlm-command-item value="calculator" (selected)="commandSelected('calculator')">Calculator</button>
-					</hlm-command-group>
-				</hlm-command-list>
-			</hlm-command>
-		</hlm-command-dialog>
+		<caps-command-dialog [(open)]="state">
+			<caps-command>
+				<caps-command-input placeholder="Type a command or search..." />
+				<caps-command-list>
+					<caps-command-empty>No results found.</caps-command-empty>
+					<caps-command-group label="Suggestions">
+						<button capsCommandItem value="calendar" (selected)="commandSelected('calendar')">Calendar</button>
+						<button capsCommandItem value="emoji" (selected)="commandSelected('emoji')">Search Emoji</button>
+						<button capsCommandItem value="calculator" (selected)="commandSelected('calculator')">Calculator</button>
+					</caps-command-group>
+				</caps-command-list>
+			</caps-command>
+		</caps-command-dialog>
 	`,
 })
 export class CommandBasic {
 	public readonly command = signal('');
-	public readonly state = signal<'closed' | 'open'>('closed');
+	public readonly state = signal(false);
 
-	stateChanged(state: 'open' | 'closed') {
+	stateChanged(state: boolean) {
 		this.state.set(state);
 	}
 
 	commandSelected(selected: string) {
-		this.state.set('closed');
+		this.state.set(false);
 		this.command.set(selected);
 	}
 }

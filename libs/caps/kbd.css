@@ -1,0 +1,9 @@
+/* Native keyboard hints keep the existing theme foundations, without handlers. */
+.caps-kbd-group {
+	@apply gap-1;
+}
+
+/* A key hint must remain readable on muted surfaces; tooltip colors keep their existing inverse treatment. */
+.caps-kbd:not([data-slot='tooltip-content'] *) {
+	@apply text-foreground;
+}

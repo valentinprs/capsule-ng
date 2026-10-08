@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsCommandImports } from '@capsule-ng/caps/command';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideChevronsUpDown, lucideSearch } from '@ng-icons/lucide';
-import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { Model, ModelType } from '../data/models';
 
 @Component({
 	selector: 'spartan-model-selector',
-	imports: [CapsPopoverImports, HlmCommandImports, NgIcon, CapsButton],
+	imports: [CapsPopoverImports, CapsCommandImports, NgIcon, CapsButton],
 	providers: [provideIcons({ lucideChevronsUpDown, lucideSearch, lucideCheck })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -22,14 +22,13 @@ import { Model, ModelType } from '../data/models';
 				<ng-icon name="lucideChevronsUpDown" />
 			</button>
 			<ng-template capsPopoverContent let-ctx [class]="'w-full p-0'">
-				<hlm-command>
-					<hlm-command-input placeholder="Search Models" />
-					<hlm-command-list>
+				<caps-command>
+					<caps-command-input placeholder="Search Models" />
+					<caps-command-list>
 						@for (type of types(); track type) {
-							<hlm-command-group>
-								<hlm-command-group-label>{{ type }}</hlm-command-group-label>
+							<caps-command-group label="{{ type }}">
 								@for (model of getModelsByType(type); track model.id) {
-									<button hlm-command-item [value]="model.id" (click)="selectedModel.set(model); ctx.close()">
+									<button capsCommandItem [value]="model.name" (selected)="selectedModel.set(model); ctx.close()">
 										{{ model.name }}
 										<ng-icon
 											name="lucideCheck"
@@ -41,12 +40,12 @@ import { Model, ModelType } from '../data/models';
 										/>
 									</button>
 								}
-							</hlm-command-group>
+							</caps-command-group>
 						}
-					</hlm-command-list>
+					</caps-command-list>
 					<!-- Empty state -->
-					<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-				</hlm-command>
+					<caps-command-empty>No results found.</caps-command-empty>
+				</caps-command>
 			</ng-template>
 		</caps-popover>
 	`,

@@ -390,47 +390,58 @@
 	}
 
 	/* MARK: Command */
-	.spartan-command {
+	.spartan-command,
+	.caps-command {
 		@apply bg-popover text-popover-foreground rounded-xl p-1;
 	}
 
-	.spartan-command-input-wrapper {
+	.spartan-command-input-wrapper,
+	.caps-command-input-wrapper {
 		@apply p-1 pb-0;
 	}
 
-	.spartan-command-input-group {
+	.spartan-command-input-group,
+	.caps-command-input-group {
 		@apply bg-input/20 dark:bg-input/30 h-8!;
 	}
 
-	.spartan-command-input-icon {
+	.spartan-command-input-icon,
+	.caps-command-input-icon {
 		@apply shrink-0 text-[length:--spacing(3.5)] opacity-(--caps-opacity-50);
 	}
 
-	.spartan-command-input {
+	.spartan-command-input,
+	.caps-command-input {
 		@apply w-full text-xs/relaxed;
 	}
 
-	.spartan-command-list {
+	.spartan-command-list,
+	.caps-command-list {
 		@apply no-scrollbar max-h-72 scroll-py-1 outline-none;
 	}
 
-	.spartan-command-empty {
+	.spartan-command-empty,
+	.caps-command-empty {
 		@apply py-6 text-center text-xs/relaxed;
 	}
 
-	.spartan-command-group {
+	.spartan-command-group,
+	.caps-command-group {
 		@apply text-foreground **:data-[slot=command-group-label]:text-muted-foreground overflow-hidden p-1 **:data-[slot=command-group-label]:px-2.5 **:data-[slot=command-group-label]:py-1.5 **:data-[slot=command-group-label]:text-xs **:data-[slot=command-group-label]:font-medium;
 	}
 
-	.spartan-command-separator {
+	.spartan-command-separator,
+	.caps-command-separator {
 		@apply bg-border/50 -mx-1 my-1 h-px;
 	}
 
-	.spartan-command-item {
+	.spartan-command-item,
+	.caps-command-item {
 		@apply data-selected:bg-muted data-selected:text-foreground relative flex min-h-7 cursor-default items-center gap-2 rounded-md px-2.5 py-1.5 text-xs/relaxed outline-hidden select-none in-data-[slot=dialog-content]:rounded-md [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
 	}
 
-	.spartan-command-shortcut {
+	.spartan-command-shortcut,
+	.caps-command-shortcut {
 		@apply text-muted-foreground group-data-[selected]/command-item:text-foreground ms-auto text-[length:var(--caps-size-0-625rem)] tracking-widest;
 	}
 
@@ -882,11 +893,13 @@
 	}
 
 	/* MARK: Kbd */
-	.spartan-kbd {
+	.spartan-kbd,
+	.caps-kbd {
 		@apply bg-muted text-muted-foreground in-data-[slot=tooltip-content]:bg-background/20 in-data-[slot=tooltip-content]:text-background dark:in-data-[slot=tooltip-content]:bg-background/10 h-5 w-fit min-w-5 gap-1 rounded-xs px-1 font-sans text-[length:var(--caps-size-0-625rem)] font-medium [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
 	}
 
-	.spartan-kbd-group {
+	.spartan-kbd-group,
+	.caps-kbd-group {
 		@apply gap-1;
 	}
 

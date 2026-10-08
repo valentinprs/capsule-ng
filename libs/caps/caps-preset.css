@@ -7,6 +7,8 @@
 @import './menu.css';
 @import './messages.css';
 @import './table-pagination.css';
+@import './command.css';
+@import './kbd.css';
 
 /* MARK: Breadcrumb */
 .caps-breadcrumb-list {

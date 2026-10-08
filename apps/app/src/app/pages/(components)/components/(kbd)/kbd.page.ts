@@ -77,7 +77,7 @@ export const routeMeta: RouteMeta = {
 
 			<p hlmP>
 				Use the
-				<span hlmCode>HlmKbdGroup</span>
+				<span hlmCode>CapsKbdGroup</span>
 				component to group keyboard keys together.
 			</p>
 
@@ -92,9 +92,9 @@ export const routeMeta: RouteMeta = {
 
 			<p hlmP>
 				Use the
-				<span hlmCode>HlmKbd</span>
+				<span hlmCode>CapsKbd</span>
 				component inside a
-				<span hlmCode>HlmBtn</span>
+				<span hlmCode>CapsButton</span>
 				to display a keyboard key inside a button.
 			</p>
 
@@ -109,7 +109,7 @@ export const routeMeta: RouteMeta = {
 
 			<p hlmP>
 				Use the
-				<span hlmCode>HlmKbd</span>
+				<span hlmCode>CapsKbd</span>
 				component inside a
 				<span hlmCode>CapsInputGroupAddon</span>
 				to display a keyboard key inside an input group.
@@ -130,8 +130,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="label" label="Label" />

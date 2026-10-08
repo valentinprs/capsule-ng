@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 
 @Component({
 	selector: 'spartan-kbd-rtl-preview',
-	imports: [HlmKbdImports, HlmButtonImports],
+	imports: [CapsKbdImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-col items-center gap-4" [dir]="_dir()">
-			<kbd hlmKbdGroup>
-				<kbd hlmKbd>⌘</kbd>
-				<kbd hlmKbd>⇧</kbd>
-				<kbd hlmKbd>⌥</kbd>
-				<kbd hlmKbd>⌃</kbd>
-			</kbd>
-			<kbd hlmKbdGroup>
-				<kbd hlmKbd>Ctrl</kbd>
+			<caps-kbd-group>
+				<kbd capsKbd>⌘</kbd>
+				<kbd capsKbd>⇧</kbd>
+				<kbd capsKbd>⌥</kbd>
+				<kbd capsKbd>⌃</kbd>
+			</caps-kbd-group>
+			<caps-kbd-group>
+				<kbd capsKbd>Ctrl</kbd>
 				<span>+</span>
-				<kbd hlmKbd>B</kbd>
-			</kbd>
+				<kbd capsKbd>B</kbd>
+			</caps-kbd-group>
 		</div>
 	`,
 })

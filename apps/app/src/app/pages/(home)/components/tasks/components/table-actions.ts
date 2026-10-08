@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsCommandImports } from '@capsule-ng/caps/command';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
@@ -24,7 +25,6 @@ import {
 	lucideSettings2,
 	lucideX,
 } from '@ng-icons/lucide';
-import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { PriorityIconPipe } from '../pipes/priority-icon.pipe';
 import { StatusIconPipe } from '../pipes/status-icon.pipe';
 import type { TaskPriority, TaskStatus } from '../services/tasks.models';
@@ -38,7 +38,7 @@ import { TasksExample } from '../tasks';
 		CapsInput,
 		NgIcon,
 		CapsDropdownMenuImports,
-		HlmCommandImports,
+		CapsCommandImports,
 		CapsPopoverImports,
 		PriorityIconPipe,
 		StatusIconPipe,
@@ -91,13 +91,13 @@ import { TasksExample } from '../tasks';
 						}
 					</button>
 					<ng-template capsPopoverContent [class]="'w-[200px] p-0'">
-						<hlm-command>
-							<hlm-command-input placeholder="Search Status" />
-							<hlm-command-list>
-								<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-								<hlm-command-group>
+						<caps-command>
+							<caps-command-input placeholder="Search Status" />
+							<caps-command-list>
+								<caps-command-empty>No results found.</caps-command-empty>
+								<caps-command-group>
 									@for (status of _statuses(); track status) {
-										<button hlm-command-item [value]="status" (selected)="statusSelected(status)">
+										<button capsCommandItem [value]="status" (selected)="statusSelected(status)">
 											<ng-icon
 												name="lucideCheck"
 												aria-hidden="true"
@@ -112,9 +112,9 @@ import { TasksExample } from '../tasks';
 											{{ status }}
 										</button>
 									}
-								</hlm-command-group>
-							</hlm-command-list>
-						</hlm-command>
+								</caps-command-group>
+							</caps-command-list>
+						</caps-command>
 					</ng-template>
 				</caps-popover>
 
@@ -136,13 +136,13 @@ import { TasksExample } from '../tasks';
 						}
 					</button>
 					<ng-template capsPopoverContent [class]="'w-[200px] p-0'">
-						<hlm-command>
-							<hlm-command-input placeholder="Search Priority" />
-							<hlm-command-list>
-								<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-								<hlm-command-group>
+						<caps-command>
+							<caps-command-input placeholder="Search Priority" />
+							<caps-command-list>
+								<caps-command-empty>No results found.</caps-command-empty>
+								<caps-command-group>
 									@for (priority of _priorities(); track priority) {
-										<button hlm-command-item [value]="priority" (selected)="prioritySelected(priority)">
+										<button capsCommandItem [value]="priority" (selected)="prioritySelected(priority)">
 											<ng-icon
 												name="lucideCheck"
 												aria-hidden="true"
@@ -157,9 +157,9 @@ import { TasksExample } from '../tasks';
 											{{ priority }}
 										</button>
 									}
-								</hlm-command-group>
-							</hlm-command-list>
-						</hlm-command>
+								</caps-command-group>
+							</caps-command-list>
+						</caps-command>
 					</ng-template>
 				</caps-popover>
 

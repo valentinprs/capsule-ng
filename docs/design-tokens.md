@@ -132,3 +132,10 @@ Capsule's public rendered structure. Build both applications after token changes
 
 Calendar (`caps-calendar`) shares each existing skin’s cell spacing and radius declarations;
 selection, today, disabled and focus styles consume the existing semantic colors and focus tokens.
+
+## Command and Kbd — issue 45
+
+Command and Kbd reuse their six theme rules through Capsule selectors. Compact search owns the
+native input and decorative icon; logical padding, shared focus ring, disabled opacity and bounded
+dialog widths come from the Capsule preset. `command.css`/`kbd.css` are packaged assets imported by
+that preset. No independent theme or global shortcut behavior is introduced.

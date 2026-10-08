@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCommandImports } from '@capsule-ng/caps/command';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
@@ -19,7 +20,6 @@ import {
 	lucideX,
 } from '@ng-icons/lucide';
 import { tablerCircleDashedPlus } from '@ng-icons/tabler-icons';
-import { HlmCommandImports } from '@spartan-ng/helm/command';
 import { MentionableItem } from './mentionable-item';
 
 export type MentionItem = {
@@ -45,7 +45,7 @@ type GroupedItems = {
 		CapsTextareaImports,
 		CapsInputGroupImports,
 		CapsPopoverImports,
-		HlmCommandImports,
+		CapsCommandImports,
 		CapsDropdownMenuImports,
 		NgIcon,
 		MentionableItem,
@@ -89,26 +89,25 @@ type GroupedItems = {
 					</button>
 
 					<ng-template capsPopoverContent let-ctx [class]="'p-0 [--radius:1.2rem]'">
-						<hlm-command>
-							<hlm-command-input placeholder="Type a command or search..." />
+						<caps-command>
+							<caps-command-input placeholder="Type a command or search..." />
 
-							<hlm-command-list>
+							<caps-command-list>
 								@for (groupType of _groupTypes(); track groupType) {
-									<hlm-command-group [id]="groupType">
-										<hlm-command-group-label>{{ groupType === 'page' ? 'Pages' : 'Users' }}</hlm-command-group-label>
+									<caps-command-group [id]="groupType" label="{{ groupType === 'page' ? 'Pages' : 'Users' }}">
 										@for (item of _grouped()[groupType]; track item.title) {
-											<button hlm-command-item [value]="item.title" (click)="addMention(item); ctx.close()">
+											<button capsCommandItem [value]="item.title" (selected)="addMention(item); ctx.close()">
 												<spartan-mentionable-item [item]="item" />
 												{{ item.title }}
 											</button>
 										}
-									</hlm-command-group>
+									</caps-command-group>
 								}
-							</hlm-command-list>
+							</caps-command-list>
 
 							<!-- Empty state -->
-							<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-						</hlm-command>
+							<caps-command-empty>No results found.</caps-command-empty>
+						</caps-command>
 					</ng-template>
 				</caps-popover>
 				<div class="no-scrollbar -m-1.5 flex gap-1 overflow-y-auto p-1.5">

@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 
 @Component({
 	selector: 'spartan-kbd-button-preview',
-	imports: [HlmKbdImports, HlmButtonImports],
+	imports: [CapsKbdImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-wrap items-center gap-4">
-			<button hlmBtn variant="outline" size="sm" class="pr-2">
+			<button capsButton variant="outline" size="sm" class="pr-2">
 				Accept
-				<kbd hlmKbd>⏎</kbd>
+				<kbd capsKbd>⏎</kbd>
 			</button>
-			<button hlmBtn variant="outline" size="sm" class="pr-2">
+			<button capsButton variant="outline" size="sm" class="pr-2">
 				Cancel
-				<kbd hlmKbd>Esc</kbd>
+				<kbd capsKbd>Esc</kbd>
 			</button>
 		</div>
 	`,

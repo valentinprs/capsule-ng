@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
 import { HlmEmptyImports } from '@spartan-ng/helm/empty';
-import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 
 @Component({
 	selector: 'spartan-empty-input-group',
-	imports: [CapsInputImports, NgIcon, HlmEmptyImports, CapsInputGroupImports, HlmKbdImports],
+	imports: [CapsInputImports, NgIcon, HlmEmptyImports, CapsInputGroupImports, CapsKbdImports],
 	providers: [provideIcons({ lucideSearch })],
 	template: `
 		<hlm-empty>
@@ -23,7 +23,7 @@ import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 						<ng-icon name="lucideSearch" />
 					</caps-input-group-addon>
 					<caps-input-group-addon align="inline-end">
-						<kbd hlmKbd>/</kbd>
+						<kbd capsKbd>/</kbd>
 					</caps-input-group-addon>
 				</caps-input-group>
 				<div hlmEmptyDescription>

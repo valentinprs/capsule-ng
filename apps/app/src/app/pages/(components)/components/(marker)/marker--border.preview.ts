@@ -1,35 +1,35 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFileText, lucideGitBranch, lucideSearch } from '@ng-icons/lucide';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 
 @Component({
 	selector: 'spartan-marker-border-preview',
-	imports: [HlmMarkerImports, NgIcon],
+	imports: [CapsMarkerImports, NgIcon],
 	providers: [provideIcons({ lucideGitBranch, lucideSearch, lucideFileText })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-3 py-12',
 	},
 	template: `
-		<div hlmMarker variant="border">
-			<span hlmMarkerIcon>
+		<caps-marker variant="border">
+			<caps-marker-icon>
 				<ng-icon name="lucideGitBranch" />
-			</span>
-			<span hlmMarkerContent>Switched to release-candidate</span>
-		</div>
-		<div hlmMarker variant="border">
-			<span hlmMarkerIcon>
+			</caps-marker-icon>
+			<caps-marker-content>Switched to release-candidate</caps-marker-content>
+		</caps-marker>
+		<caps-marker variant="border">
+			<caps-marker-icon>
 				<ng-icon name="lucideSearch" />
-			</span>
-			<span hlmMarkerContent>Reviewed 8 related files</span>
-		</div>
-		<div hlmMarker variant="border">
-			<span hlmMarkerIcon>
+			</caps-marker-icon>
+			<caps-marker-content>Reviewed 8 related files</caps-marker-content>
+		</caps-marker>
+		<caps-marker variant="border">
+			<caps-marker-icon>
 				<ng-icon name="lucideFileText" />
-			</span>
-			<span hlmMarkerContent>Opened implementation notes</span>
-		</div>
+			</caps-marker-icon>
+			<caps-marker-content>Opened implementation notes</caps-marker-content>
+		</caps-marker>
 	`,
 })
 export class MarkerBorderPreview {}

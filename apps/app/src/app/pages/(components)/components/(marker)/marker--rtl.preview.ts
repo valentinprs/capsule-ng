@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGitBranch, lucideSearch } from '@ng-icons/lucide';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-marker-rtl-preview',
-	imports: [HlmMarkerImports, CapsSpinner, NgIcon],
+	imports: [CapsMarkerImports, CapsSpinner, NgIcon],
 	providers: [provideIcons({ lucideGitBranch, lucideSearch })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -15,27 +15,27 @@ import { TranslateService, Translations } from '../../../../shared/translate.ser
 	},
 	template: `
 		<div class="flex w-full flex-col gap-8" [dir]="_dir()">
-			<div hlmMarker>
-				<span hlmMarkerIcon>
+			<caps-marker>
+				<caps-marker-icon>
 					<ng-icon name="lucideGitBranch" />
-				</span>
-				<span hlmMarkerContent>{{ _t()['branch'] }}</span>
-			</div>
-			<div hlmMarker role="status">
-				<span hlmMarkerIcon>
+				</caps-marker-icon>
+				<caps-marker-content>{{ _t()['branch'] }}</caps-marker-content>
+			</caps-marker>
+			<caps-marker role="status">
+				<caps-marker-icon>
 					<caps-spinner aria-hidden="true" />
-				</span>
-				<span hlmMarkerContent class="shimmer">{{ _t()['thinking'] }}</span>
-			</div>
-			<div hlmMarker variant="separator">
-				<span hlmMarkerContent>{{ _t()['separator'] }}</span>
-			</div>
-			<div hlmMarker>
-				<span hlmMarkerIcon>
+				</caps-marker-icon>
+				<caps-marker-content class="shimmer">{{ _t()['thinking'] }}</caps-marker-content>
+			</caps-marker>
+			<caps-marker variant="separator">
+				<caps-marker-content>{{ _t()['separator'] }}</caps-marker-content>
+			</caps-marker>
+			<caps-marker>
+				<caps-marker-icon>
 					<ng-icon name="lucideSearch" />
-				</span>
-				<span hlmMarkerContent>{{ _t()['explored'] }}</span>
-			</div>
+				</caps-marker-icon>
+				<caps-marker-content>{{ _t()['explored'] }}</caps-marker-content>
+			</caps-marker>
 		</div>
 	`,
 })

@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsMessageImports } from '@capsule-ng/caps/message';
+import { CapsMessageScrollerImports } from '@capsule-ng/caps/message-scroller';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRotateCw } from '@ng-icons/lucide';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 
 type GroupChatItem =
 	| {
@@ -70,12 +70,12 @@ const rockyMessage: GroupChatItem = {
 @Component({
 	selector: 'spartan-message-scroller-group-chat-preview',
 	imports: [
-		HlmMessageScrollerImports,
+		CapsMessageScrollerImports,
 		CapsCardImports,
 		CapsButtonImports,
 		CapsMessageImports,
 		CapsBubbleImports,
-		HlmMarkerImports,
+		CapsMarkerImports,
 		CapsTooltipImports,
 		NgIcon,
 	],
@@ -85,96 +85,87 @@ const rockyMessage: GroupChatItem = {
 		class: 'relative flex w-full max-w-sm flex-col gap-4',
 	},
 	template: `
-		<div hlmMessageScrollerProvider>
-			<div class="relative flex flex-col gap-4">
-				<caps-card maxWidth="sm" class="mx-auto h-[35rem] gap-0">
-					<caps-card-header class="gap-1 border-b">
-						<caps-card-title [level]="3">Group Chat</caps-card-title>
-						<caps-card-description>
-							A group chat with several participants and an assistant. The Marker is marked as a turn.
-						</caps-card-description>
-						<caps-card-action>
-							<button
-								capsButton
-								type="button"
-								variant="outline"
-								size="icon"
-								capsTooltip="Reset"
-								aria-label="Reset conversation"
-								[disabled]="_rockyTurn() === 'idle'"
-								(click)="reset()"
-							>
-								<ng-icon name="lucideRotateCw" />
-							</button>
-						</caps-card-action>
-					</caps-card-header>
-
-					<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
-						@for (key of [_demoKey()]; track key) {
-							<div hlmMessageScroller>
-								<div hlmMessageScrollerViewport>
-									<div hlmMessageScrollerContent class="p-(--card-spacing)">
-										@for (item of _items(); track item.id) {
-											@if (item.type === 'message') {
-												<div hlmMessageScrollerItem [messageId]="item.id" [scrollAnchor]="item.scrollAnchor ?? false">
-													<caps-message [align]="item.sender === _currentUser ? 'end' : 'start'">
-														<caps-message-content>
-															@if (item.sender !== _currentUser) {
-																<caps-message-header>{{ item.sender }}</caps-message-header>
-															}
-															<caps-bubble
-																[variant]="
-																	item.sender === _currentUser
-																		? 'muted'
-																		: item.role === 'assistant'
-																			? 'ghost'
-																			: 'tinted'
-																"
-															>
-																<caps-bubble-content>{{ item.text }}</caps-bubble-content>
-															</caps-bubble>
-														</caps-message-content>
-													</caps-message>
-												</div>
-											} @else {
-												<div hlmMessageScrollerItem [messageId]="item.id" [scrollAnchor]="item.scrollAnchor ?? false">
-													<div hlmMarker variant="separator">
-														<span hlmMarkerContent>{{ item.text }}</span>
-													</div>
-												</div>
-											}
-										}
-									</div>
-								</div>
-								<button hlmMessageScrollerButton></button>
-							</div>
-						}
-					</caps-card-content>
-
-					<caps-card-footer class="flex flex-col items-center gap-2 border-t">
+		<div class="relative flex flex-col gap-4">
+			<caps-card maxWidth="sm" class="mx-auto h-[35rem] gap-0">
+				<caps-card-header class="gap-1 border-b">
+					<caps-card-title [level]="3">Group Chat</caps-card-title>
+					<caps-card-description>
+						A group chat with several participants and an assistant. The Marker is marked as a turn.
+					</caps-card-description>
+					<caps-card-action>
 						<button
 							capsButton
 							type="button"
-							class="w-full"
-							variant="secondary"
-							[disabled]="_isComplete()"
-							(click)="advanceRocky()"
+							variant="outline"
+							size="icon"
+							capsTooltip="Reset"
+							aria-label="Reset conversation"
+							[disabled]="_rockyTurn() === 'idle'"
+							(click)="reset()"
 						>
-							{{ _buttonLabel() }}
+							<ng-icon name="lucideRotateCw" />
 						</button>
-						<p class="text-muted-foreground text-xs">
-							@if (_rockyTurn() === 'idle') {
-								This will create a marker and make it the anchor
-							} @else {
-								Now send Rocky's reply into the conversation
-							}
-						</p>
-					</caps-card-footer>
-				</caps-card>
+					</caps-card-action>
+				</caps-card-header>
 
-				<div class="text-muted-foreground mx-auto max-w-sm px-0.5 text-center text-xs text-balance">
-					When a user joins, a marker is created. scrollAnchor on the marker marks it as the next turn
-				</div>
+				<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
+					@for (key of [_demoKey()]; track key) {
+						<caps-message-scroller aria-label="Group chat messages" contentClass="p-(--card-spacing)">
+							@for (item of _items(); track item.id) {
+								@if (item.type === 'message') {
+									<caps-message-scroller-item [messageId]="item.id" [scrollAnchor]="item.scrollAnchor ?? false">
+										<caps-message [align]="item.sender === _currentUser ? 'end' : 'start'">
+											<caps-message-content>
+												@if (item.sender !== _currentUser) {
+													<caps-message-header>{{ item.sender }}</caps-message-header>
+												}
+												<caps-bubble
+													[variant]="
+														item.sender === _currentUser ? 'muted' : item.role === 'assistant' ? 'ghost' : 'tinted'
+													"
+												>
+													<caps-bubble-content>{{ item.text }}</caps-bubble-content>
+												</caps-bubble>
+											</caps-message-content>
+										</caps-message>
+									</caps-message-scroller-item>
+								} @else {
+									<caps-message-scroller-item [messageId]="item.id" [scrollAnchor]="item.scrollAnchor ?? false">
+										<caps-marker variant="separator">
+											<caps-marker-content>{{ item.text }}</caps-marker-content>
+										</caps-marker>
+									</caps-message-scroller-item>
+								}
+							}
+
+							<button caps-message-scroller-button></button>
+						</caps-message-scroller>
+					}
+				</caps-card-content>
+
+				<caps-card-footer class="flex flex-col items-center gap-2 border-t">
+					<button
+						capsButton
+						type="button"
+						class="w-full"
+						variant="secondary"
+						[disabled]="_isComplete()"
+						(click)="advanceRocky()"
+					>
+						{{ _buttonLabel() }}
+					</button>
+					<p class="text-muted-foreground text-xs">
+						@if (_rockyTurn() === 'idle') {
+							This will create a marker and make it the anchor
+						} @else {
+							Now send Rocky's reply into the conversation
+						}
+					</p>
+				</caps-card-footer>
+			</caps-card>
+
+			<div class="text-muted-foreground mx-auto max-w-sm px-0.5 text-center text-xs text-balance">
+				When a user joins, a marker is created. scrollAnchor on the marker marks it as the next turn
 			</div>
 		</div>
 	`,

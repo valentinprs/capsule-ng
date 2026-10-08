@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsMessageImports } from '@capsule-ng/caps/message';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-message-rtl-preview',
-	imports: [CapsMessageImports, CapsBubbleImports, CapsAvatarImports, HlmMarkerImports],
+	imports: [CapsMessageImports, CapsBubbleImports, CapsAvatarImports, CapsMarkerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'theme-blue flex w-full max-w-sm flex-col gap-6',
@@ -43,9 +43,9 @@ import { TranslateService, Translations } from '../../../../shared/translate.ser
 				</caps-message-content>
 			</caps-message>
 
-			<div hlmMarker role="status">
-				<span hlmMarkerContent class="shimmer">{{ _t()['typing'] }}</span>
-			</div>
+			<caps-marker role="status">
+				<caps-marker-content class="shimmer">{{ _t()['typing'] }}</caps-marker-content>
+			</caps-marker>
 		</div>
 	`,
 })

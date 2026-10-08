@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
 import { CapsMessageImports } from '@capsule-ng/caps/message';
-import { BrnMessageScrollerItem } from '@spartan-ng/brain/message-scroller';
+import { CapsMessageScrollerItemDirective } from '@capsule-ng/caps/message-scroller';
 import { classes } from '@spartan-ng/helm/utils';
 import { splitParagraphs } from './message-scroller.shared';
 
@@ -11,7 +11,7 @@ import { splitParagraphs } from './message-scroller.shared';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	hostDirectives: [
 		{
-			directive: BrnMessageScrollerItem,
+			directive: CapsMessageScrollerItemDirective,
 			inputs: ['messageId', 'scrollAnchor'],
 		},
 	],

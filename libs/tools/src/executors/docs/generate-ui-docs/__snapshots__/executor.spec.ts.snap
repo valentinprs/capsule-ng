@@ -9506,6 +9506,44 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "marker": {
+    "caps": {
+      "CapsMarker": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsMarkerVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-marker",
+      },
+      "CapsMarkerContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-marker-content",
+      },
+      "CapsMarkerDirective": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsMarkerVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsMarker], a[capsMarker]",
+      },
+      "CapsMarkerIcon": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-marker-icon",
+      },
+    },
     "helm": {
       "HlmMarker": {
         "inputs": [
@@ -10033,6 +10071,162 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnMessageScrollerViewport],brn-message-scroller-viewport",
+      },
+    },
+    "caps": {
+      "CapsMessageScroller": {
+        "exportAs": "capsMessageScroller",
+        "inputs": [
+          {
+            "name": "autoScroll",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "defaultScrollPosition",
+            "required": false,
+            "type": "CapsMessageScrollerDefaultScrollPosition",
+          },
+          {
+            "name": "scrollEdgeThreshold",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollPreviousItemPeek",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollMargin",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "preserveScrollOnPrepend",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "contentClass",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "spacerClassName",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "tabindex",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "aria-relevant",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "aria-live",
+            "required": false,
+            "type": "'off' | 'polite' | 'assertive'",
+          },
+          {
+            "name": "aria-busy",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "announcement",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-scroller",
+      },
+      "CapsMessageScrollerButton": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant | undefined",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsButtonSize | undefined",
+          },
+          {
+            "name": "direction",
+            "required": false,
+            "type": "CapsMessageScrollerButtonDirection",
+          },
+          {
+            "name": "behavior",
+            "required": false,
+            "type": "ScrollBehavior",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[caps-message-scroller-button]",
+      },
+      "CapsMessageScrollerItem": {
+        "inputs": [
+          {
+            "name": "messageId",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "scrollAnchor",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-scroller-item",
+      },
+      "CapsMessageScrollerItemDirective": {
+        "inputs": [
+          {
+            "name": "messageId",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "scrollAnchor",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsMessageScrollerItem]",
       },
     },
     "helm": {

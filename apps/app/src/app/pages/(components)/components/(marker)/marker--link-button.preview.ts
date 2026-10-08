@@ -1,29 +1,29 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGitBranch, lucideRotateCcw } from '@ng-icons/lucide';
 import { toast } from '@spartan-ng/brain/sonner';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 
 @Component({
 	selector: 'spartan-marker-link-button-preview',
-	imports: [HlmMarkerImports, NgIcon],
+	imports: [CapsMarkerImports, NgIcon],
 	providers: [provideIcons({ lucideGitBranch, lucideRotateCcw })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-8 py-12',
 	},
 	template: `
-		<a hlmMarker href="#examples__links_and_buttons">
-			<span hlmMarkerIcon>
+		<a capsMarker href="#examples__links_and_buttons">
+			<caps-marker-icon>
 				<ng-icon name="lucideGitBranch" />
-			</span>
-			<span hlmMarkerContent>View the pull request</span>
+			</caps-marker-icon>
+			<caps-marker-content>View the pull request</caps-marker-content>
 		</a>
-		<button hlmMarker type="button" class="hover:text-foreground transition-colors" (click)="onRevert()">
-			<span hlmMarkerIcon>
+		<button capsMarker type="button" class="hover:text-foreground transition-colors" (click)="onRevert()">
+			<caps-marker-icon>
 				<ng-icon name="lucideRotateCcw" />
-			</span>
-			<span hlmMarkerContent>Revert this change</span>
+			</caps-marker-icon>
+			<caps-marker-content>Revert this change</caps-marker-content>
 		</button>
 	`,
 })

@@ -169,7 +169,7 @@ export const MAIN_CHAT_SCRIPT: DemoMessage[] = [
 	{
 		id: 'chat-8',
 		role: 'assistant',
-		text: '`MessageScrollerContent` sets `role="log"` and `aria-relevant="additions"` by default, so screen readers announce new messages as they stream in.\n\nThe scroll button is a real `<button>` with an sr-only label, and it\'s removed from the tab order when you\'re already at the bottom — no ghost focus stops.',
+		text: "`CapsMessageScroller` owns the log and keeps historical content quiet. Its separate announcement input can describe a completed reply without replaying history or every streaming token.\n\nThe scroll button is a real `<button>` with an sr-only label, and it's removed from the tab order when you're already at the bottom — no ghost focus stops.",
 	},
 ];
 

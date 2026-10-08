@@ -733,3 +733,48 @@ a.caps-navigation-menu-link:focus-visible {
 		@apply rounded-none [--scrollbar-thumb-shape:0px];
 	}
 }
+
+/* MARK: Conversation markers and scrolling */
+.caps-marker {
+	@apply text-muted-foreground gap-2 text-sm;
+}
+.caps-marker-variant-separator {
+	@apply before:bg-border after:bg-border before:me-1 before:h-px before:min-w-0 before:flex-1 after:ms-1 after:h-px after:min-w-0 after:flex-1;
+}
+.caps-marker-variant-border {
+	@apply border-border border-b pb-2;
+}
+.caps-marker-icon {
+	@apply size-4 shrink-0;
+}
+.caps-marker-content {
+	@apply min-w-0;
+}
+a.caps-marker,
+button.caps-marker {
+	@apply focus-visible:outline-ring hover:text-foreground rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+a.caps-marker {
+	@apply underline underline-offset-3;
+}
+button.caps-marker:disabled {
+	@apply pointer-events-none opacity-(--caps-opacity-disabled);
+}
+.caps-message-scroller-content {
+	@apply gap-6;
+}
+.caps-message-scroller-viewport {
+	@apply contain-content;
+}
+.caps-message-scroller-viewport:focus-visible {
+	outline: 2px solid var(--ring);
+	outline-offset: -2px;
+}
+@media (prefers-reduced-motion: reduce) {
+	.caps-message-scroller-viewport {
+		scroll-behavior: auto;
+	}
+	.caps-message-scroller-button {
+		transition: none;
+	}
+}

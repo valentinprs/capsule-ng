@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsMessageImports } from '@capsule-ng/caps/message';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 
 @Component({
 	selector: 'spartan-message-preview',
-	imports: [CapsMessageImports, CapsBubbleImports, CapsAvatarImports, HlmMarkerImports],
+	imports: [CapsMessageImports, CapsBubbleImports, CapsAvatarImports, CapsMarkerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-6 py-12',
@@ -77,12 +77,12 @@ import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 			</caps-message-content>
 		</caps-message>
 
-		<div hlmMarker role="status">
-			<span hlmMarkerContent class="shimmer">
+		<caps-marker role="status">
+			<caps-marker-content class="shimmer">
 				<span class="font-medium">Spartan</span>
 				is typing...
-			</span>
-		</div>
+			</caps-marker-content>
+		</caps-marker>
 	`,
 })
 export class MessagePreview {}
@@ -90,7 +90,7 @@ export class MessagePreview {}
 export const defaultImports = `
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsMessageImports } from '@capsule-ng/caps/message';
 `;
 

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsSpinner } from '@capsule-ng/caps/spinner';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 
 @Component({
 	selector: 'spartan-shimmer-preview',
@@ -17,32 +17,32 @@ export const shimmerDemoCode = `<p class="text-muted-foreground shimmer text-sm"
 
 @Component({
 	selector: 'spartan-shimmer-marker-preview',
-	imports: [HlmMarkerImports, CapsSpinner],
+	imports: [CapsMarkerImports, CapsSpinner],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'flex w-full max-w-sm flex-col gap-4' },
 	template: `
-		<div hlmMarker role="status">
-			<span hlmMarkerIcon>
+		<caps-marker role="status">
+			<caps-marker-icon>
 				<caps-spinner aria-hidden="true" />
-			</span>
-			<span hlmMarkerContent class="shimmer">Thinking...</span>
-		</div>
-		<div hlmMarker variant="separator" role="status">
-			<span hlmMarkerContent class="shimmer">Reading 4 files</span>
-		</div>
+			</caps-marker-icon>
+			<caps-marker-content class="shimmer">Thinking...</caps-marker-content>
+		</caps-marker>
+		<caps-marker variant="separator" role="status">
+			<caps-marker-content class="shimmer">Reading 4 files</caps-marker-content>
+		</caps-marker>
 	`,
 })
 export class ShimmerMarkerPreview {}
 
-export const shimmerMarkerCode = `<div hlmMarker role="status">
-  <span hlmMarkerIcon>
+export const shimmerMarkerCode = `<caps-marker role="status">
+  <caps-marker-icon>
     <caps-spinner aria-hidden="true" />
-  </span>
-  <span hlmMarkerContent class="shimmer">Thinking...</span>
-</div>
-<div hlmMarker variant="separator" role="status">
-  <span hlmMarkerContent class="shimmer">Reading 4 files</span>
-</div>`;
+  </caps-marker-icon>
+  <caps-marker-content class="shimmer">Thinking...</caps-marker-content>
+</caps-marker>
+<caps-marker variant="separator" role="status">
+  <caps-marker-content class="shimmer">Reading 4 files</caps-marker-content>
+</caps-marker>`;
 
 @Component({
 	selector: 'spartan-shimmer-color-preview',

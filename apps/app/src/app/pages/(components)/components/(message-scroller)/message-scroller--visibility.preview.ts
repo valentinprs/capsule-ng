@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, input, viewChild } from '@angular/core';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsHoverCardImports } from '@capsule-ng/caps/hover-card';
-import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
-import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
+import { CapsMessageScroller, CapsMessageScrollerImports } from '@capsule-ng/caps/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { VISIBILITY_SCRIPT, trimMessageText } from './message-scroller.shared';
 
@@ -43,20 +42,22 @@ import { VISIBILITY_SCRIPT, trimMessageText } from './message-scroller.shared';
 	`,
 })
 export class MessageScrollerTranscriptOutline {
-	private readonly _scroller = injectBrnMessageScroller();
-	private readonly _destroyRef = inject(DestroyRef);
+	public readonly scroller = input<CapsMessageScroller>();
 
 	protected readonly _userMessages = computed(() => VISIBILITY_SCRIPT.filter((message) => message.role === 'user'));
-	protected readonly _currentAnchorId = computed(() => this._scroller.visibility().currentAnchorId);
+	protected readonly _currentAnchorId = computed(() => this.scroller()?.visibility().currentAnchorId ?? null);
 	protected readonly _trimMessageText = trimMessageText;
 
 	constructor() {
-		this._scroller.observeVisibility();
-		this._destroyRef.onDestroy(() => this._scroller.unobserveVisibility());
+		effect((onCleanup) => {
+			const scroller = this.scroller();
+			scroller?.observeVisibility();
+			onCleanup(() => scroller?.unobserveVisibility());
+		});
 	}
 
 	protected jumpTo(messageId: string): void {
-		this._scroller.scrollToMessage(messageId, {
+		this.scroller()?.scrollToMessage(messageId, {
 			align: 'start',
 			behavior: 'smooth',
 		});
@@ -65,44 +66,44 @@ export class MessageScrollerTranscriptOutline {
 
 @Component({
 	selector: 'spartan-message-scroller-visibility-preview',
-	imports: [HlmMessageScrollerImports, CapsCardImports, MessageScrollerTranscriptRow, MessageScrollerTranscriptOutline],
+	imports: [
+		CapsMessageScrollerImports,
+		CapsCardImports,
+		MessageScrollerTranscriptRow,
+		MessageScrollerTranscriptOutline,
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex w-full flex-col gap-4 pe-12',
 	},
 	template: `
-		<div hlmMessageScrollerProvider [scrollMargin]="12">
-			<div class="relative mx-auto w-full max-w-sm">
-				<caps-card class="h-[35rem] gap-0">
-					<caps-card-header class="gap-1 border-b">
-						<caps-card-title [level]="3">Transcript Outline</caps-card-title>
-						<caps-card-description>Track the current anchored turn.</caps-card-description>
-					</caps-card-header>
+		<div class="relative mx-auto w-full max-w-sm">
+			<caps-card class="h-[35rem] gap-0">
+				<caps-card-header class="gap-1 border-b">
+					<caps-card-title [level]="3">Transcript Outline</caps-card-title>
+					<caps-card-description>Track the current anchored turn.</caps-card-description>
+				</caps-card-header>
 
-					<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
-						<div hlmMessageScroller>
-							<div hlmMessageScrollerViewport>
-								<div hlmMessageScrollerContent class="p-(--card-spacing)">
-									@for (message of _messages; track message.id) {
-										<spartan-message-scroller-transcript-row
-											[messageId]="message.id"
-											[role]="message.role"
-											[text]="message.text"
-											[scrollAnchor]="message.role === 'user'"
-											userVariant="muted"
-											assistantVariant="ghost"
-										/>
-									}
-								</div>
-							</div>
-							<button hlmMessageScrollerButton></button>
-						</div>
-					</caps-card-content>
-				</caps-card>
+				<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
+					<caps-message-scroller aria-label="Visibility messages" [scrollMargin]="12" contentClass="p-(--card-spacing)">
+						@for (message of _messages; track message.id) {
+							<spartan-message-scroller-transcript-row
+								[messageId]="message.id"
+								[role]="message.role"
+								[text]="message.text"
+								[scrollAnchor]="message.role === 'user'"
+								userVariant="muted"
+								assistantVariant="ghost"
+							/>
+						}
 
-				<div class="absolute -end-12 top-1/2 -translate-y-1/2">
-					<spartan-message-scroller-transcript-outline />
-				</div>
+						<button caps-message-scroller-button></button>
+					</caps-message-scroller>
+				</caps-card-content>
+			</caps-card>
+
+			<div class="absolute -end-12 top-1/2 -translate-y-1/2">
+				<spartan-message-scroller-transcript-outline [scroller]="_scroller()" />
 			</div>
 		</div>
 
@@ -112,5 +113,6 @@ export class MessageScrollerTranscriptOutline {
 	`,
 })
 export class MessageScrollerVisibilityPreview {
+	protected readonly _scroller = viewChild(CapsMessageScroller);
 	protected readonly _messages = VISIBILITY_SCRIPT;
 }

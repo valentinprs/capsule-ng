@@ -1,0 +1,7 @@
+export type {
+	BrnMessageScrollerButtonDirection as CapsMessageScrollerButtonDirection,
+	BrnMessageScrollerDefaultScrollPosition as CapsMessageScrollerDefaultScrollPosition,
+	BrnMessageScrollerScrollOptions as CapsMessageScrollerScrollOptions,
+	BrnMessageScrollerScrollable as CapsMessageScrollerScrollable,
+	BrnMessageScrollerVisibilityState as CapsMessageScrollerVisibilityState,
+} from '@spartan-ng/brain/message-scroller';

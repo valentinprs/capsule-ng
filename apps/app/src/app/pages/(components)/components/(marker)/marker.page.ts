@@ -5,6 +5,7 @@ import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/prim
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
+import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
@@ -39,6 +40,7 @@ export const routeMeta: RouteMeta = {
 @Component({
 	selector: 'spartan-marker',
 	imports: [
+		HlmToasterImports,
 		UIApiDocs,
 		MainSection,
 		Code,
@@ -144,7 +146,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__links_and_buttons" spartanH4>Links and Buttons</h3>
 			<p class="${hlmP} mb-2">
 				Put
-				<code class="${hlmCode}">hlmMarker</code>
+				<code class="${hlmCode}">capsMarker</code>
 				on an
 				<code class="${hlmCode}">a</code>
 				or
@@ -166,8 +168,9 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<h3 id="caps-api-components" class="mt-6 text-xl font-semibold tracking-tight">Components</h3>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="menubar" label="Menubar" />
@@ -175,6 +178,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-page-bottom-nav>
 		</section>
 		<spartan-page-nav />
+		<hlm-toaster />
 	`,
 })
 export default class MarkerPage {

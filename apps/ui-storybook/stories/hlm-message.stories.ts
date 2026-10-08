@@ -1,7 +1,7 @@
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsMessageImports } from '@capsule-ng/caps/message';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 
@@ -13,7 +13,7 @@ const meta: Meta = {
 			(story) => `<main><h1 class="mb-4 text-lg font-semibold">Message examples</h1>${story}</main>`,
 		),
 		moduleMetadata({
-			imports: [CapsMessageImports, CapsBubbleImports, CapsAvatarImports, HlmMarkerImports],
+			imports: [CapsMessageImports, CapsBubbleImports, CapsAvatarImports, CapsMarkerImports],
 		}),
 	],
 };
@@ -82,11 +82,11 @@ export const Conversation: Story = {
 						</caps-bubble-group>
 					</caps-message-content>
 				</caps-message>
-				<div hlmMarker role="status">
-					<span hlmMarkerContent class="shimmer">
+				<caps-marker role="status">
+					<caps-marker-content class="shimmer">
 						<span class="font-medium">Oliver</span> is typing...
-					</span>
-				</div>
+					</caps-marker-content>
+				</caps-marker>
 			</div>
 		`,
 	}),

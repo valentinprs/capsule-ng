@@ -34,6 +34,8 @@
 		"skipDefaultLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
+			"@capsule-ng/caps/marker": ["libs/caps/marker/src/index.ts"],
+			"@capsule-ng/caps/message-scroller": ["libs/caps/message-scroller/src/index.ts"],
 			"@capsule-ng/caps/chart": ["libs/caps/chart/src/index.ts"],
 			"@capsule-ng/caps/spinner": ["libs/caps/spinner/src/index.ts"],
 			"@capsule-ng/caps/skeleton": ["libs/caps/skeleton/src/index.ts"],

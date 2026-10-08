@@ -1,25 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
 
 @Component({
 	selector: 'spartan-field-date-picker-preview',
-	imports: [HlmDatePickerImports, CapsFieldImports],
+	imports: [CapsDatePickerImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-xs',
 	},
 	template: `
-		<caps-field-set>
-			<caps-field-group>
-				<caps-field>
-					<caps-field-label for="date-range">Date of birth</caps-field-label>
-					<hlm-date-picker buttonId="date-range" captionLayout="dropdown">
-						<span>Enter your date of birth</span>
-					</hlm-date-picker>
-				</caps-field>
-			</caps-field-group>
-		</caps-field-set>
+		<caps-field>
+			<caps-field-label>Date of birth</caps-field-label>
+			<caps-date-picker captionLayout="dropdown">
+				<caps-date-picker-trigger buttonId="date-range">Enter your date of birth</caps-date-picker-trigger>
+			</caps-date-picker>
+		</caps-field>
 	`,
 })
 export class FieldDatePickerPreview {}

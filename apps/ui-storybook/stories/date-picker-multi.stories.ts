@@ -1,12 +1,13 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { provideCapsCalendarI18n } from '@capsule-ng/caps/calendar';
+import { CapsDatePickerImports, CapsDatePickerMulti } from '@capsule-ng/caps/date-picker';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmDatePickerImports, HlmDatePickerMulti } from '@spartan-ng/helm/date-picker';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<HlmDatePickerMulti<Date>> = {
+const meta: Meta<CapsDatePickerMulti<Date>> = {
 	title: 'Date Picker Multi',
-	component: HlmDatePickerMulti,
+	component: CapsDatePickerMulti,
 	tags: ['autodocs'],
 	args: {
 		captionLayout: 'label',
@@ -23,16 +24,22 @@ const meta: Meta<HlmDatePickerMulti<Date>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
+			providers: [
+				provideCapsCalendarI18n({
+					months: () => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					formatHeader: (m, y) => new Date(y, m).toLocaleDateString('en', { month: 'long', year: 'numeric' }),
+				}),
+			],
+			imports: [CapsDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 		}),
 	],
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-date-picker-multi [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout">
-                <hlm-date-picker-trigger buttonId="date">Pick a date</hlm-date-picker-trigger>
-            </hlm-date-picker-multi>
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-date-picker-multi [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout">
+                <caps-date-picker-trigger buttonId="date">Pick a date</caps-date-picker-trigger>
+            </caps-date-picker-multi>
 		</div>
 		`,
 	}),
@@ -40,7 +47,7 @@ const meta: Meta<HlmDatePickerMulti<Date>> = {
 
 export default meta;
 
-type Story = StoryObj<HlmDatePickerMulti<Date>>;
+type Story = StoryObj<CapsDatePickerMulti<Date>>;
 
 export const Default: Story = {
 	args: { minDate: new Date(2020, 4, 1), maxDate: new Date(2030, 6, 1), captionLayout: 'label' },
@@ -50,11 +57,11 @@ export const Input: Story = {
 	render: () => ({
 		props: {},
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-date-picker-multi>
-				<hlm-date-multi-input inputId="date-input" placeholder="dd/MM/yyyy, dd/MM/yyyy" />
-				<hlm-date-picker-trigger buttonId="date-trigger" [showTrigger]="false">unset</hlm-date-picker-trigger>
-			</hlm-date-picker-multi>
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-date-picker-multi #picker>
+				<caps-date-multi-input inputId="date-input" aria-label="Days" placeholder="dd/MM/yyyy, dd/MM/yyyy" />
+				</caps-date-picker-multi>
+			<output id="date-trigger" [attr.data-placeholder]="picker.hasDate() ? null : ''">{{ picker.formattedDate() ?? 'unset' }}</output>
 		</div>
 		`,
 	}),
@@ -69,16 +76,16 @@ export const WithHintAndError: Story = {
 			}),
 		},
 		template: `
-		<form [formGroup]="form" class="space-y-3 w-full max-w-sm">
+		<h1 class="sr-only">Date Picker form</h1><form [formGroup]="form" class="space-y-3 w-full max-w-sm">
 			<caps-field>
 				<caps-field-label>Dates *</caps-field-label>
-				<hlm-date-picker-multi
+				<caps-date-picker-multi
 					formControlName="dates"
 					[captionLayout]="captionLayout"
 					[minDate]="minDate"
 					[maxDate]="maxDate">
-					<hlm-date-picker-trigger buttonId="date">Select dates</hlm-date-picker-trigger>
-				</hlm-date-picker-multi>
+					<caps-date-picker-trigger buttonId="date">Select dates</caps-date-picker-trigger>
+				</caps-date-picker-multi>
 
 				<caps-field-description>Select multiple dates for your availability.</caps-field-description>
 

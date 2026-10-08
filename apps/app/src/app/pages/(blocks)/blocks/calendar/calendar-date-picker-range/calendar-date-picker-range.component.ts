@@ -1,34 +1,32 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-calendar-date-picker-range',
-	imports: [FormRoot, FormField, HlmDatePickerImports, HlmFieldImports, HlmButtonImports],
+	imports: [FormRoot, FormField, CapsDatePickerImports, CapsFieldImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex justify-center p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg overflow-auto',
 	},
 	template: `
 		<form [formRoot]="form" class="w-full max-w-xs">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="dateRange">Enter a date range</label>
-					<hlm-date-range-picker
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Enter a date range</caps-field-label>
+					<caps-date-range-picker
 						[minDate]="minDate"
 						[maxDate]="maxDate"
 						[formField]="form.range"
 						[autoCloseOnEndSelection]="true"
 					>
-						<hlm-date-picker-trigger buttonId="dateRange">Enter a date range</hlm-date-picker-trigger>
-					</hlm-date-range-picker>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn [disabled]="form().submitting()">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+						<caps-date-picker-trigger buttonId="dateRange">Enter a date range</caps-date-picker-trigger>
+					</caps-date-range-picker>
+				</caps-field>
+				<button type="submit" capsButton [disabled]="form().submitting()">Submit</button>
+			</caps-field-group>
 		</form>
 	`,
 })

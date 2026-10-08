@@ -1,16 +1,16 @@
-import { Component, computed, effect, inject, untracked } from '@angular/core';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, untracked } from '@angular/core';
 import {
-	type BrnCalendarI18n,
-	injectBrnCalendarI18n,
+	type CapsCalendarI18n,
+	injectCapsCalendarI18n,
 	type MonthLabels,
-	provideBrnCalendarI18n,
-} from '@spartan-ng/brain/calendar';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+	provideCapsCalendarI18n,
+} from '@capsule-ng/caps/calendar';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 import { DateTime } from 'luxon';
 
-export const CALENDAR_I18N: Record<'en' | 'ar' | 'he', BrnCalendarI18n> = {
+export const CALENDAR_I18N: Record<'en' | 'ar' | 'he', CapsCalendarI18n> = {
 	en: {
 		formatWeekdayName: (i) => ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][i],
 		months: () => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] as MonthLabels,
@@ -82,14 +82,15 @@ export const CALENDAR_I18N: Record<'en' | 'ar' | 'he', BrnCalendarI18n> = {
 
 @Component({
 	selector: 'spartan-date-picker-rtl',
-	imports: [HlmDatePickerImports, HlmFieldImports],
-	providers: [provideBrnCalendarI18n()],
+	imports: [CapsDatePickerImports, CapsFieldImports],
+	providers: [provideCapsCalendarI18n()],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field [dir]="_dir()">
-			<hlm-date-picker [minDate]="minDate" [maxDate]="maxDate" [formatDate]="_formatDate()">
-				<hlm-date-picker-trigger buttonId="date">{{ _t()['placeholder'] }}</hlm-date-picker-trigger>
-			</hlm-date-picker>
-		</hlm-field>
+		<caps-field [dir]="_dir()">
+			<caps-date-picker [minDate]="minDate" [maxDate]="maxDate" [formatDate]="_formatDate()">
+				<caps-date-picker-trigger buttonId="date">{{ _t()['placeholder'] }}</caps-date-picker-trigger>
+			</caps-date-picker>
+		</caps-field>
 	`,
 })
 export class DatePickerRtl {
@@ -100,7 +101,7 @@ export class DatePickerRtl {
 	public maxDate = new Date(2030, 11, 31);
 
 	private readonly _language = inject(TranslateService).language;
-	private readonly _calendarI18n = injectBrnCalendarI18n();
+	private readonly _calendarI18n = injectCapsCalendarI18n();
 
 	constructor() {
 		effect(() => {

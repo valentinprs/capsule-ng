@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-date-picker-multiple',
-	imports: [HlmDatePickerImports, HlmFieldImports],
+	imports: [CapsDatePickerImports, CapsFieldImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel for="date-multi">Date Picker Multiple</label>
-			<hlm-date-picker-multi
+		<caps-field>
+			<caps-field-label>Date Picker Multiple</caps-field-label>
+			<caps-date-picker-multi
 				[minDate]="minDate"
 				[maxDate]="maxDate"
 				[autoCloseOnMaxSelection]="true"
 				[minSelection]="2"
 				[maxSelection]="6"
 			>
-				<hlm-date-picker-trigger buttonId="date-multi">Pick dates</hlm-date-picker-trigger>
-			</hlm-date-picker-multi>
-		</hlm-field>
+				<caps-date-picker-trigger buttonId="date-multi">Pick dates</caps-date-picker-trigger>
+			</caps-date-picker-multi>
+		</caps-field>
 	`,
 })
 export class DatePickerMultipleExample {

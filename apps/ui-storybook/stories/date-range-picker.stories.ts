@@ -1,12 +1,13 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { provideCapsCalendarI18n } from '@capsule-ng/caps/calendar';
+import { CapsDatePickerImports, CapsDateRangePicker } from '@capsule-ng/caps/date-picker';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmDatePickerImports, HlmDateRangePicker } from '@spartan-ng/helm/date-picker';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<HlmDateRangePicker<Date>> = {
+const meta: Meta<CapsDateRangePicker<Date>> = {
 	title: 'Date Range Picker',
-	component: HlmDateRangePicker,
+	component: CapsDateRangePicker,
 	tags: ['autodocs'],
 	args: {
 		captionLayout: 'label',
@@ -23,16 +24,22 @@ const meta: Meta<HlmDateRangePicker<Date>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
+			providers: [
+				provideCapsCalendarI18n({
+					months: () => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					formatHeader: (m, y) => new Date(y, m).toLocaleDateString('en', { month: 'long', year: 'numeric' }),
+				}),
+			],
+			imports: [CapsDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 		}),
 	],
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-date-range-picker [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout">
-                <hlm-date-picker-trigger buttonId="date">Pick a date</hlm-date-picker-trigger>
-            </hlm-date-range-picker>
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-date-range-picker [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout">
+                <caps-date-picker-trigger buttonId="date">Pick a date</caps-date-picker-trigger>
+            </caps-date-range-picker>
 		</div>
 		`,
 	}),
@@ -40,7 +47,7 @@ const meta: Meta<HlmDateRangePicker<Date>> = {
 
 export default meta;
 
-type Story = StoryObj<HlmDateRangePicker<Date>>;
+type Story = StoryObj<CapsDateRangePicker<Date>>;
 
 const pad = (value: number): string => String(value).padStart(2, '0');
 const toInput = (date: Date): string => `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()}`;
@@ -83,16 +90,16 @@ export const Input: Story = {
 	render: () => ({
 		props: { formatDates, formatInputDates, parseDate },
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-date-range-picker [formatDates]="formatDates">
-				<hlm-date-range-input
-					inputId="date-input"
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-date-range-picker #picker [formatDates]="formatDates">
+				<caps-date-range-input
+					inputId="date-input" aria-label="Range"
 					placeholder="dd/MM/yyyy - dd/MM/yyyy"
 					[parseDate]="parseDate"
 					[formatInputDates]="formatInputDates"
 				/>
-				<hlm-date-picker-trigger buttonId="date-trigger" [showTrigger]="false">unset</hlm-date-picker-trigger>
-			</hlm-date-range-picker>
+				</caps-date-range-picker>
+			<output id="date-trigger" [attr.data-placeholder]="picker.hasDate() ? null : ''">{{ picker.formattedDate() ?? 'unset' }}</output>
 		</div>
 		`,
 	}),
@@ -107,16 +114,16 @@ export const WithHintAndError: Story = {
 			}),
 		},
 		template: `
-		<form [formGroup]="form" class="space-y-3 w-full max-w-sm">
+		<h1 class="sr-only">Date Picker form</h1><form [formGroup]="form" class="space-y-3 w-full max-w-sm">
 			<caps-field>
 				<caps-field-label>Date Range *</caps-field-label>
-				<hlm-date-range-picker
+				<caps-date-range-picker
 					formControlName="dateRange"
 					[captionLayout]="captionLayout"
 					[minDate]="minDate"
 					[maxDate]="maxDate">
-					<hlm-date-picker-trigger buttonId="date">Select a date range</hlm-date-picker-trigger>
-				</hlm-date-range-picker>
+					<caps-date-picker-trigger buttonId="date">Select a date range</caps-date-picker-trigger>
+				</caps-date-range-picker>
 
 				<caps-field-description>Pick a start and end date for your booking.</caps-field-description>
 

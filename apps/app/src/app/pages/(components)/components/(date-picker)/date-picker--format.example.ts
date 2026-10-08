@@ -1,22 +1,23 @@
-import { Component } from '@angular/core';
-import { HlmDatePickerImports, provideHlmDatePickerConfig } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsDatePickerImports, provideCapsDatePickerConfig } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { DateTime } from 'luxon';
 
 @Component({
 	selector: 'spartan-date-picker-format',
-	imports: [HlmDatePickerImports, HlmFieldImports],
+	imports: [CapsDatePickerImports, CapsFieldImports],
 	providers: [
 		// Global formatDate config
-		provideHlmDatePickerConfig({ formatDate: (date: Date) => DateTime.fromJSDate(date).toFormat('dd.MM.yyyy') }),
+		provideCapsDatePickerConfig({ formatDate: (date: Date) => DateTime.fromJSDate(date).toFormat('dd.MM.yyyy') }),
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel for="date-format">Date Picker with Custom Format</label>
-			<hlm-date-picker [minDate]="minDate" [maxDate]="maxDate" [formatDate]="formatDate">
-				<hlm-date-picker-trigger buttonId="date-format">Pick a date</hlm-date-picker-trigger>
-			</hlm-date-picker>
-		</hlm-field>
+		<caps-field>
+			<caps-field-label>Date Picker with Custom Format</caps-field-label>
+			<caps-date-picker [minDate]="minDate" [maxDate]="maxDate" [formatDate]="formatDate">
+				<caps-date-picker-trigger buttonId="date-format">Pick a date</caps-date-picker-trigger>
+			</caps-date-picker>
+		</caps-field>
 	`,
 })
 export class DatePickerFormatExample {

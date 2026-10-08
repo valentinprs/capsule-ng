@@ -1,27 +1,27 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { DateTime } from 'luxon';
 
 @Component({
 	selector: 'spartan-calendar-date-picker-with-button',
-	imports: [HlmFieldImports, HlmDatePickerImports, HlmButtonImports],
+	imports: [CapsFieldImports, CapsDatePickerImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex justify-center p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg overflow-auto',
 	},
 	template: `
-		<hlm-field class="max-w-xs">
-			<label hlmFieldLabel for="datePickerWithButton">Date Picker with Button</label>
-			<hlm-date-picker #datePicker [minDate]="minDate" [maxDate]="maxDate" [formatDate]="formatDate">
-				<hlm-date-picker-trigger buttonId="datePickerWithButton">Pick a date</hlm-date-picker-trigger>
-				<div hlmDatePickerFooter class="flex justify-end gap-2 p-2">
-					<button hlmBtn (click)="datePicker.close()">Submit</button>
-					<button hlmBtn (click)="datePicker.reset()">Clear</button>
+		<caps-field class="max-w-xs">
+			<caps-field-label>Date Picker with Button</caps-field-label>
+			<caps-date-picker #datePicker [minDate]="minDate" [maxDate]="maxDate" [formatDate]="formatDate">
+				<caps-date-picker-trigger buttonId="datePickerWithButton">Pick a date</caps-date-picker-trigger>
+				<div capsDatePickerFooter class="flex justify-end gap-2 p-2">
+					<button capsButton (click)="datePicker.close()">Submit</button>
+					<button capsButton (click)="datePicker.reset()">Clear</button>
 				</div>
-			</hlm-date-picker>
-		</hlm-field>
+			</caps-date-picker>
+		</caps-field>
 	`,
 })
 export class CalendarDatePickerWithButtonComponent {

@@ -451,7 +451,8 @@
 	/* uses dropdown menu styles */
 
 	/* MARK: Date Picker */
-	.spartan-date-picker-trigger {
+	.spartan-date-picker-trigger,
+	.caps-date-picker-trigger {
 		@apply data-placeholder:text-muted-foreground;
 	}
 

@@ -1,40 +1,37 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { DateTime } from 'luxon';
 
 @Component({
 	selector: 'spartan-date-picker-form-input',
-	imports: [FormRoot, FormField, HlmDatePickerImports, HlmButtonImports, HlmFieldImports],
+	imports: [FormRoot, FormField, CapsDatePickerImports, CapsButtonImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full max-w-xs' },
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label for="date-birthday-input" hlmFieldLabel>Date of birth</label>
-					<hlm-date-picker
-						captionLayout="dropdown"
-						[formField]="form.birthday"
-						[maxDate]="maxDate"
-						[defaultFocusedDate]="defaultFocusedDate"
-						[formatDate]="formatDate"
-					>
-						<hlm-date-picker-input
-							inputId="date-birthday-input"
-							placeholder="dd.MM.yyyy"
-							showClear
-							[parseDate]="parseDate"
-						/>
-					</hlm-date-picker>
-					<hlm-field-description>Type a date (dd.MM.yyyy) or pick one from the calendar.</hlm-field-description>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn [disabled]="form().submitting()">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+			<caps-field>
+				<caps-field-label>Date of birth</caps-field-label>
+				<caps-date-picker
+					captionLayout="dropdown"
+					[formField]="form.birthday"
+					[maxDate]="maxDate"
+					[defaultFocusedDate]="defaultFocusedDate"
+					[formatDate]="formatDate"
+				>
+					<caps-date-picker-input
+						inputId="date-birthday-input"
+						placeholder="dd.MM.yyyy"
+						showClear
+						[parseDate]="parseDate"
+						[formatInputDate]="formatDate"
+					/>
+				</caps-date-picker>
+				<caps-field-description>Type a date (dd.MM.yyyy) or pick one from the calendar.</caps-field-description>
+			</caps-field>
+			<button type="submit" capsButton [disabled]="form().submitting()">Submit</button>
 		</form>
 	`,
 })

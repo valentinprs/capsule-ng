@@ -1,12 +1,13 @@
 import { ReactiveFormsModule } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { provideCapsCalendarI18n } from '@capsule-ng/caps/calendar';
+import { CapsDatePickerImports, CapsMonthYearPicker } from '@capsule-ng/caps/date-picker';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmDatePickerImports, HlmMonthYearPicker } from '@spartan-ng/helm/date-picker';
 import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-const meta: Meta<HlmMonthYearPicker<Date>> = {
+const meta: Meta<CapsMonthYearPicker<Date>> = {
 	title: 'Month Year Picker',
-	component: HlmMonthYearPicker,
+	component: CapsMonthYearPicker,
 	tags: ['autodocs'],
 	args: {
 		minDate: new Date(2020, 4, 1),
@@ -14,16 +15,22 @@ const meta: Meta<HlmMonthYearPicker<Date>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
+			providers: [
+				provideCapsCalendarI18n({
+					months: () => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					formatHeader: (m, y) => new Date(y, m).toLocaleDateString('en', { month: 'long', year: 'numeric' }),
+				}),
+			],
+			imports: [CapsDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 		}),
 	],
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-month-year-picker [minDate]="minDate" [maxDate]="maxDate">
-				<hlm-date-picker-trigger buttonId="date">Pick a year and month</hlm-date-picker-trigger>
-			</hlm-month-year-picker>
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-month-year-picker [minDate]="minDate" [maxDate]="maxDate">
+				<caps-date-picker-trigger buttonId="date">Pick a year and month</caps-date-picker-trigger>
+			</caps-month-year-picker>
 		</div>
 		`,
 	}),
@@ -31,7 +38,7 @@ const meta: Meta<HlmMonthYearPicker<Date>> = {
 
 export default meta;
 
-type Story = StoryObj<HlmMonthYearPicker<Date>>;
+type Story = StoryObj<CapsMonthYearPicker<Date>>;
 
 const pad = (value: number): string => String(value).padStart(2, '0');
 
@@ -58,16 +65,16 @@ export const Input: Story = {
 	render: () => ({
 		props: { formatDate, formatInputDate, parseDate },
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-month-year-picker [formatDate]="formatDate">
-				<hlm-month-year-input
-					inputId="date-input"
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-month-year-picker #picker [formatDate]="formatDate">
+				<caps-month-year-input
+					inputId="date-input" aria-label="Month and year"
 					placeholder="MM/yyyy"
 					[parseDate]="parseDate"
 					[formatInputDate]="formatInputDate"
 				/>
-				<hlm-date-picker-trigger buttonId="date-trigger" [showTrigger]="false">unset</hlm-date-picker-trigger>
-			</hlm-month-year-picker>
+				</caps-month-year-picker>
+			<output id="date-trigger" [attr.data-placeholder]="picker.hasDate() ? null : ''">{{ picker.formattedDate() ?? 'unset' }}</output>
 		</div>
 		`,
 	}),

@@ -1,28 +1,29 @@
-import { Component } from '@angular/core';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { DateTime } from 'luxon';
 
 @Component({
 	selector: 'spartan-date-picker-input-example',
-	imports: [HlmDatePickerImports, HlmFieldImports],
+	imports: [CapsDatePickerImports, CapsFieldImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel for="date-input">Date of birth</label>
-			<hlm-date-picker
+		<caps-field>
+			<caps-field-label>Date of birth</caps-field-label>
+			<caps-date-picker
 				captionLayout="dropdown"
 				[maxDate]="maxDate"
 				[defaultFocusedDate]="defaultFocusedDate"
 				[formatDate]="formatDate"
 			>
-				<hlm-date-picker-input
+				<caps-date-picker-input
 					inputId="date-input"
 					placeholder="dd.MM.yyyy"
 					[parseDate]="parseDate"
 					[formatInputDate]="formatInputDate"
 				/>
-			</hlm-date-picker>
-		</hlm-field>
+			</caps-date-picker>
+		</caps-field>
 	`,
 })
 export class DatePickerInputExample {

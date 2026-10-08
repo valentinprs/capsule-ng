@@ -71,7 +71,13 @@ import { TasksExample } from '../tasks';
 		<div class="wip-table-search flex flex-col justify-between gap-4 sm:flex-row">
 			<div class="flex flex-col justify-between gap-4 sm:flex-row">
 				<!-- TASK TITLE FILTER -->
-				<input capsInput class="h-8 w-full md:w-80" placeholder="Filter tasks..." (input)="taskFilterChange($event)" />
+				<input
+					capsInput
+					class="h-8 w-full md:w-80"
+					aria-label="Filter tasks"
+					placeholder="Filter tasks..."
+					(input)="taskFilterChange($event)"
+				/>
 
 				<!-- STATUS FILTER -->
 				<caps-popover [(open)]="_statusState" placement="bottom-start">

@@ -17,9 +17,9 @@ import { type DashboardFeatures } from './table-section';
 			capsButton
 			variant="ghost"
 			size="icon-sm"
+			[attr.aria-label]="'Open menu for row ' + row().id"
 			[capsDropdownMenuTrigger]="menu"
 			placement="bottom-end"
-			[attr.aria-label]="'Actions for ' + _data().header"
 		>
 			<ng-icon name="lucideEllipsis" />
 		</button>

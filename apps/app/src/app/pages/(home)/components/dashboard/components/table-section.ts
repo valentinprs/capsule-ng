@@ -24,6 +24,7 @@ import {
 	type PaginationState,
 	rowPaginationFeature,
 	rowSelectionFeature,
+	type RowSelectionState,
 	rowSortingFeature,
 	sortFn_alphanumeric,
 	sortFn_text,
@@ -110,7 +111,7 @@ const columns = columnHelper.columns([
 	}),
 	columnHelper.display({
 		id: 'actions',
-		header: 'Actions',
+		header: '<span class="sr-only">Actions</span>',
 		enableHiding: false,
 		cell: () => ActionDropdown,
 	}),
@@ -161,12 +162,23 @@ const columns = columnHelper.columns([
 				<div class="max-h-[700px] w-full overflow-auto rounded-md border">
 					@defer {
 						<caps-table-container>
-							<table capsTable>
+							<table capsTable aria-label="Dashboard items">
+								<caption class="sr-only">Dashboard items</caption>
 								<thead class="bg-muted sticky top-0 z-(--caps-z-10)">
 									@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
 										<tr>
 											@for (header of headerGroup.headers; track header.id) {
-												<th scope="col" [attr.colSpan]="header.colSpan">
+												<th
+													scope="col"
+													[attr.colSpan]="header.colSpan"
+													[attr.aria-sort]="
+														header.column.getIsSorted() === 'asc'
+															? 'ascending'
+															: header.column.getIsSorted() === 'desc'
+																? 'descending'
+																: null
+													"
+												>
 													@if (!header.isPlaceholder) {
 														<ng-container
 															*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -181,8 +193,8 @@ const columns = columnHelper.columns([
 								</thead>
 								<tbody class="w-full">
 									@for (row of table.getRowModel().rows; track row.id) {
-										<tr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
-											@for (cell of row.getVisibleCells(); track $index) {
+										<tr [attr.data-row-id]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+											@for (cell of row.getVisibleCells(); track cell.id) {
 												<td>
 													<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 														<div [innerHTML]="cell"></div>
@@ -192,7 +204,9 @@ const columns = columnHelper.columns([
 										</tr>
 									} @empty {
 										<tr>
-											<td class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
+											<td class="h-24 text-center" [attr.colspan]="table.getVisibleLeafColumns().length">
+												No results.
+											</td>
 										</tr>
 									}
 								</tbody>
@@ -201,8 +215,9 @@ const columns = columnHelper.columns([
 					}
 				</div>
 				<div class="mt-4 flex flex-col justify-between sm:flex-row sm:items-center">
-					<span class="text-muted-foreground text-sm">
-						{{ table.getSelectedRowModel().rows.length }} of {{ table.getRowCount() }} row(s) selected
+					<span class="text-muted-foreground text-sm" role="status">
+						{{ table.getSelectedRowModel().rows.length }} of {{ table.getPreFilteredRowModel().rows.length }} row(s)
+						selected; {{ table.getRowCount() }} results
 					</span>
 					<div class="mt-2 flex gap-8 sm:mt-0">
 						<div class="flex gap-2">
@@ -288,6 +303,7 @@ export class DashboardTableSection {
 	private readonly _localStorageService = inject(DashboardLocalStorageService);
 	private readonly _visibility = signal<ColumnVisibilityState>(DEFAULT_DASHBOARD_TABLE_COLUMNS);
 	private readonly _columnFilters = signal<ColumnFiltersState>([]);
+	private readonly _rowSelection = signal<RowSelectionState>({});
 	private readonly _sorting = signal<SortingState>([]);
 	private readonly _pagination = signal<PaginationState>({
 		pageSize: 10,
@@ -304,11 +320,16 @@ export class DashboardTableSection {
 		features,
 		columns,
 		data: DASHBOARD_DATA,
+		getRowId: (row) => String(row.id),
 		state: {
 			columnFilters: this._columnFilters(),
+			rowSelection: this._rowSelection(),
 			sorting: this._sorting(),
 			pagination: this._pagination(),
 			columnVisibility: this._visibility(),
+		},
+		onRowSelectionChange: (updater) => {
+			updater instanceof Function ? this._rowSelection.update(updater) : this._rowSelection.set(updater);
 		},
 		onColumnVisibilityChange: (updater) => {
 			updater instanceof Function ? this._visibility.update(updater) : this._visibility.set(updater);
@@ -316,6 +337,7 @@ export class DashboardTableSection {
 		},
 		onColumnFiltersChange: (updater) => {
 			updater instanceof Function ? this._columnFilters.update(updater) : this._columnFilters.set(updater);
+			this._pagination.update((state) => ({ ...state, pageIndex: 0 }));
 		},
 		onSortingChange: (updater) => {
 			updater instanceof Function ? this._sorting.update(updater) : this._sorting.set(updater);

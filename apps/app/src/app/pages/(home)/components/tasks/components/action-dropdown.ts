@@ -12,7 +12,14 @@ import { type TaskFeatures } from '../tasks';
 	imports: [CapsButton, NgIcon, CapsDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: `
-		<button capsButton size="icon-sm" variant="ghost" [capsDropdownMenuTrigger]="menu" placement="bottom-end">
+		<button
+			capsButton
+			size="icon-sm"
+			variant="ghost"
+			[attr.aria-label]="'Open menu for row ' + row().id"
+			[capsDropdownMenuTrigger]="menu"
+			placement="bottom-end"
+		>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 		<ng-template #menu>

@@ -2,10 +2,10 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsTableImports } from '@capsule-ng/caps/table';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import { HlmInputImports } from '@spartan-ng/helm/input';
 import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
 	columnFilteringFeature,
@@ -19,6 +19,7 @@ import {
 	filterFn_includesString,
 	FlexRender,
 	injectTable,
+	type PaginationState,
 	rowPaginationFeature,
 	rowSelectionFeature,
 	type RowSelectionState,
@@ -88,6 +89,7 @@ const columns = columnHelper.columns([
 	}),
 	columnHelper.display({
 		id: 'actions',
+		header: '<span class="sr-only">Actions</span>',
 		cell: () => ActionDropdown,
 		enableHiding: false,
 	}),
@@ -102,7 +104,7 @@ const columns = columnHelper.columns([
 		CapsButtonImports,
 		NgIcon,
 
-		HlmInputImports,
+		CapsInputImports,
 		CapsTableImports,
 	],
 	providers: [provideIcons({ lucideChevronDown })],
@@ -111,7 +113,13 @@ const columns = columnHelper.columns([
 	},
 	template: `
 		<div class="flex flex-col justify-between gap-4 py-4 sm:flex-row sm:items-center">
-			<input hlmInput class="w-full md:w-80" placeholder="Filter emails..." (input)="_filterChanged($event)" />
+			<input
+				capsInput
+				class="w-full md:w-80"
+				aria-label="Filter emails"
+				placeholder="Filter emails..."
+				(input)="_filterChanged($event)"
+			/>
 
 			<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom-end">
 				Columns
@@ -134,12 +142,23 @@ const columns = columnHelper.columns([
 		</div>
 		<div class="overflow-hidden rounded-md border">
 			<caps-table-container>
-				<table capsTable>
+				<table capsTable aria-label="Recent payments">
+					<caption class="sr-only">Recent payments</caption>
 					<thead>
 						@for (headerGroup of _table.getHeaderGroups(); track headerGroup.id) {
 							<tr>
 								@for (header of headerGroup.headers; track header.id) {
-									<th scope="col" [attr.colSpan]="header.colSpan">
+									<th
+										scope="col"
+										[attr.colSpan]="header.colSpan"
+										[attr.aria-sort]="
+											header.column.getIsSorted() === 'asc'
+												? 'ascending'
+												: header.column.getIsSorted() === 'desc'
+													? 'descending'
+													: null
+										"
+									>
 										@if (!header.isPlaceholder) {
 											<ng-container
 												*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -154,8 +173,8 @@ const columns = columnHelper.columns([
 					</thead>
 					<tbody>
 						@for (row of _table.getRowModel().rows; track row.id) {
-							<tr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
-								@for (cell of row.getVisibleCells(); track $index) {
+							<tr [attr.data-row-id]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+								@for (cell of row.getVisibleCells(); track cell.id) {
 									<td>
 										<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 											<div [innerHTML]="cell"></div>
@@ -165,7 +184,7 @@ const columns = columnHelper.columns([
 							</tr>
 						} @empty {
 							<tr>
-								<td class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
+								<td class="h-24 text-center" [attr.colspan]="_table.getVisibleLeafColumns().length">No results.</td>
 							</tr>
 						}
 					</tbody>
@@ -174,40 +193,37 @@ const columns = columnHelper.columns([
 		</div>
 
 		<div class="flex flex-col justify-between py-4 sm:flex-row sm:items-center">
-			@if (_table.getRowCount() > 0) {
-				<div class="${hlmMuted}">
-					{{ _table.getSelectedRowModel().rows.length }} of {{ _table.getRowCount() }} row(s) selected
-				</div>
-				<div class="mt-2 flex space-x-2 sm:mt-0">
-					<button
-						size="sm"
-						variant="outline"
-						capsButton
-						[disabled]="!_table.getCanPreviousPage()"
-						(click)="_table.previousPage()"
-					>
-						Previous
-					</button>
-					<button
-						size="sm"
-						variant="outline"
-						capsButton
-						[disabled]="!_table.getCanNextPage()"
-						(click)="_table.nextPage()"
-					>
-						Next
-					</button>
-				</div>
-			} @else {
-				<div class="flex h-full w-full items-center justify-center">
-					<div class="text-muted-foreground text-sm">No Data</div>
-				</div>
-			}
+			<div class="${hlmMuted}" role="status">
+				{{ _table.getSelectedRowModel().rows.length }} of {{ _table.getPreFilteredRowModel().rows.length }} row(s)
+				selected; {{ _table.getRowCount() }} results
+			</div>
+			<div class="mt-2 flex space-x-2 sm:mt-0">
+				<button
+					size="sm"
+					variant="outline"
+					capsButton
+					[disabled]="!_table.getCanPreviousPage()"
+					(click)="_table.previousPage()"
+				>
+					Previous
+				</button>
+				<button
+					size="sm"
+					variant="outline"
+					capsButton
+					[disabled]="!_table.getCanNextPage()"
+					(click)="_table.nextPage()"
+				>
+					Next
+				</button>
+			</div>
 		</div>
 	`,
 })
 export class DataTablePreview {
 	protected readonly _columns = columns;
+
+	private readonly _pagination = signal<PaginationState>({ pageIndex: 0, pageSize: 10 });
 
 	private readonly _columnFilters = signal<ColumnFiltersState>([]);
 	private readonly _sorting = signal<SortingState>([]);
@@ -218,11 +234,16 @@ export class DataTablePreview {
 		features,
 		columns,
 		data: PAYMENT_DATA,
+		getRowId: (row) => row.id,
+		onPaginationChange: (updater) => {
+			updater instanceof Function ? this._pagination.update(updater) : this._pagination.set(updater);
+		},
 		onSortingChange: (updater) => {
 			updater instanceof Function ? this._sorting.update(updater) : this._sorting.set(updater);
 		},
 		onColumnFiltersChange: (updater) => {
 			updater instanceof Function ? this._columnFilters.update(updater) : this._columnFilters.set(updater);
+			this._pagination.update((state) => ({ ...state, pageIndex: 0 }));
 		},
 		onColumnVisibilityChange: (updater) => {
 			updater instanceof Function ? this._columnVisibility.update(updater) : this._columnVisibility.set(updater);
@@ -231,6 +252,7 @@ export class DataTablePreview {
 			updater instanceof Function ? this._rowSelection.update(updater) : this._rowSelection.set(updater);
 		},
 		state: {
+			pagination: this._pagination(),
 			sorting: this._sorting(),
 			columnFilters: this._columnFilters(),
 			columnVisibility: this._columnVisibility(),

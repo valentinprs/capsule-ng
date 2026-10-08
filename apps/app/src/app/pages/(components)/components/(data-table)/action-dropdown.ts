@@ -12,7 +12,7 @@ import type { DataTableFeatures, Payment } from './data-table.preview';
 	providers: [provideIcons({ lucideEllipsis })],
 	template: `
 		<button capsButton size="icon-sm" variant="ghost" [capsDropdownMenuTrigger]="ActionDropDownMenu">
-			<span class="sr-only">Open menu</span>
+			<span class="sr-only">Open menu for payment {{ row().id }}</span>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 

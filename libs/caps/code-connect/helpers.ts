@@ -131,3 +131,24 @@ export function lines(parts: Part[], indent: string): TemplateStringResult {
 export function slotContent(owner: InstanceHandle, slot: string): Part[] {
 	return (owner.getSlot(slot)?.connectedInstances ?? []).map((item) => item.executeTemplate().example);
 }
+
+/** A template reference variable derived from a label, e.g. `File` → `fileMenu`. */
+export function templateRef(label: string, suffix = 'Menu'): string {
+	const words = label
+		.trim()
+		.split(/[^a-zA-Z0-9]+/)
+		.filter(Boolean);
+	const camel = words.map((word, i) => (i === 0 ? word.toLowerCase() : word[0].toUpperCase() + word.slice(1))).join('');
+	return `${camel || 'item'}${suffix}`;
+}
+
+/** The label of a Capsule Button instance, or a fallback. */
+export function buttonLabel(button: InstanceHandle | undefined, fallback: string): string {
+	return button?.type === 'INSTANCE' && button.hasCodeConnect() ? button.getString('Label') : fallback;
+}
+
+/** The connected content of an overlay slot, or a placeholder comment. */
+export function overlayBody(owner: InstanceHandle, slot: string, indent: string): Part {
+	const content = slotContent(owner, slot);
+	return content.length === 0 ? `\n${indent}<!-- content -->` : lines(content, indent);
+}

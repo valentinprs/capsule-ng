@@ -1,3 +1,5 @@
+import 'cypress-real-events';
+
 describe('Empty', () => {
 	beforeEach(() => {
 		cy.visit('/iframe.html?id=empty--default');
@@ -5,22 +7,22 @@ describe('Empty', () => {
 
 	describe('Default Story', () => {
 		it('should display the empty state with icon and content', () => {
-			cy.get('[hlmEmpty]').should('be.visible');
-			cy.get('[hlmEmptyMedia]').should('be.visible');
+			cy.get('caps-empty').should('be.visible');
+			cy.get('caps-empty-media').should('be.visible');
 			cy.get('ng-icon[name="lucideInbox"]').should('be.visible');
-			cy.get('[hlmEmptyContent]').should('be.visible');
-			cy.get('[hlmEmptyTitle]').should('contain.text', 'No items found');
-			cy.get('[hlmEmptyDescription]').should(
+			cy.get('caps-empty > caps-empty-title').should('be.visible');
+			cy.get('caps-empty-title').should('contain.text', 'No items found');
+			cy.get('caps-empty-description').should(
 				'contain.text',
 				"You don't have any items yet. Create your first item to get started.",
 			);
 		});
 
 		it('should have proper structure', () => {
-			cy.get('[hlmEmpty]').within(() => {
-				cy.get('[hlmEmptyMedia]').should('exist');
-				cy.get('[hlmEmptyContent]').should('exist');
-				cy.get('[hlmEmptyHeader]').should('exist');
+			cy.get('caps-empty').within(() => {
+				cy.get('caps-empty-media').should('exist');
+				cy.root().children('caps-empty-title').should('exist');
+				cy.root().children('caps-empty-description').should('exist');
 			});
 		});
 	});
@@ -31,13 +33,15 @@ describe('Empty', () => {
 		});
 
 		it('should display empty state with action button', () => {
-			cy.get('[hlmEmpty]').should('be.visible');
-			cy.get('[hlmEmptyTitle]').should('contain.text', 'No items found');
+			cy.get('caps-empty').should('be.visible');
+			cy.get('caps-empty-title').should('contain.text', 'No items found');
 			cy.get('button[capsButton]').should('be.visible').and('contain.text', 'Add Item');
 		});
 
 		it('should have clickable action button', () => {
-			cy.get('button[capsButton]').should('not.be.disabled').click();
+			cy.get('button[capsButton]').should('not.be.disabled').focus();
+			cy.realPress('Enter');
+			cy.get('[role=status]').should('have.text', 'Items created: 1');
 		});
 	});
 
@@ -47,10 +51,10 @@ describe('Empty', () => {
 		});
 
 		it('should display search results empty state', () => {
-			cy.get('[hlmEmpty]').should('be.visible');
+			cy.get('caps-empty').should('be.visible');
 			cy.get('ng-icon[name="lucideSearch"]').should('be.visible');
-			cy.get('[hlmEmptyTitle]').should('contain.text', 'No search results');
-			cy.get('[hlmEmptyDescription]').should('contain.text', "We couldn't find any results for your search");
+			cy.get('caps-empty-title').should('contain.text', 'No search results');
+			cy.get('caps-empty-description').should('contain.text', "We couldn't find any results for your search");
 		});
 
 		it('should display multiple action buttons', () => {
@@ -71,10 +75,10 @@ describe('Empty', () => {
 		});
 
 		it('should display no connection empty state', () => {
-			cy.get('[hlmEmpty]').should('be.visible');
+			cy.get('caps-empty').should('be.visible');
 			cy.get('ng-icon[name="lucideWifi"]').should('be.visible');
-			cy.get('[hlmEmptyTitle]').should('contain.text', 'No internet connection');
-			cy.get('[hlmEmptyDescription]').should('contain.text', 'Please check your internet connection');
+			cy.get('caps-empty-title').should('contain.text', 'No internet connection');
+			cy.get('caps-empty-description').should('contain.text', 'Please check your internet connection');
 		});
 
 		it('should display retry button', () => {
@@ -88,10 +92,10 @@ describe('Empty', () => {
 		});
 
 		it('should display file not found empty state', () => {
-			cy.get('[hlmEmpty]').should('be.visible');
+			cy.get('caps-empty').should('be.visible');
 			cy.get('ng-icon[name="lucideFileX"]').should('be.visible');
-			cy.get('[hlmEmptyTitle]').should('contain.text', 'File not found');
-			cy.get('[hlmEmptyDescription]').should('contain.text', "The file you're looking for doesn't exist");
+			cy.get('caps-empty-title').should('contain.text', 'File not found');
+			cy.get('caps-empty-description').should('contain.text', "The file you're looking for doesn't exist");
 		});
 
 		it('should display navigation buttons', () => {
@@ -107,11 +111,11 @@ describe('Empty', () => {
 		});
 
 		it('should display minimal empty state without icon', () => {
-			cy.get('[hlmEmpty]').should('be.visible');
-			cy.get('[hlmEmptyMedia]').should('not.exist');
+			cy.get('caps-empty').should('be.visible');
+			cy.get('caps-empty-media').should('not.exist');
 			cy.get('ng-icon').should('not.exist');
-			cy.get('[hlmEmptyTitle]').should('contain.text', 'Nothing here yet');
-			cy.get('[hlmEmptyDescription]').should('not.exist');
+			cy.get('caps-empty-title').should('contain.text', 'Nothing here yet');
+			cy.get('caps-empty-description').should('not.exist');
 		});
 	});
 
@@ -121,9 +125,12 @@ describe('Empty', () => {
 		});
 
 		it('should display custom layout empty state', () => {
-			cy.get('[hlmEmpty]').should('be.visible');
-			cy.get('[hlmEmptyTitle]').should('contain.text', 'Welcome to your dashboard');
-			cy.get('[hlmEmptyDescription]').should('contain.text', "This is where you'll see all your important information");
+			cy.get('caps-empty').should('be.visible');
+			cy.get('caps-empty-title').should('contain.text', 'Welcome to your dashboard');
+			cy.get('caps-empty-description').should(
+				'contain.text',
+				"This is where you'll see all your important information",
+			);
 		});
 
 		it('should display grid layout buttons', () => {
@@ -142,11 +149,13 @@ describe('Empty', () => {
 	describe('Accessibility', () => {
 		it('should be accessible with proper ARIA attributes', () => {
 			cy.visit('/iframe.html?id=empty--default');
-			cy.get('[hlmEmpty]').should('be.visible');
+			cy.get('caps-empty').should('be.visible');
+			cy.get('caps-empty').should('not.have.attr', 'role');
+			cy.get('caps-empty').should('not.have.attr', 'aria-live');
 
 			// Check that content is readable by screen readers
-			cy.get('[hlmEmptyTitle]').should('not.be.empty').and('contain.text', 'No items found');
-			cy.get('[hlmEmptyDescription]').should('not.be.empty').and('contain.text', "You don't have any items yet");
+			cy.get('caps-empty-title').should('not.be.empty').and('contain.text', 'No items found');
+			cy.get('caps-empty-description').should('not.be.empty').and('contain.text', "You don't have any items yet");
 		});
 
 		it('should support keyboard navigation for interactive elements', () => {
@@ -170,7 +179,7 @@ describe('Empty', () => {
 		stories.forEach((story) => {
 			it(`should match visual snapshot for ${story}`, () => {
 				cy.visit(`/iframe.html?id=empty--${story}`);
-				cy.get('[hlmEmpty]').should('be.visible');
+				cy.get('caps-empty').should('be.visible');
 				// Add visual regression testing if supported
 				// cy.matchImageSnapshot(`empty-${story}`);
 			});

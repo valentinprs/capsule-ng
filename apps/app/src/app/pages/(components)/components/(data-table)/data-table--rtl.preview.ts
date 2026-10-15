@@ -1,13 +1,13 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCheckboxImports } from '@capsule-ng/caps/checkbox';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUpDown, lucideChevronDown, lucideEllipsis } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
 	type Column,
@@ -23,6 +23,7 @@ import {
 	FlexRender,
 	injectTable,
 	isFunction,
+	type PaginationState,
 	type Row,
 	rowPaginationFeature,
 	rowSelectionFeature,
@@ -62,10 +63,11 @@ const TRANSLATIONS: Translations = {
 			viewCustomer: 'View customer',
 			viewPayment: 'View payment details',
 			noResults: 'No results.',
-			selected: '{selected} of {total} row(s) selected',
+			selected: '{selected} of {total} row(s) selected; {results} results',
+			payments: 'Recent payments',
 			previous: 'Previous',
 			next: 'Next',
-			selectAll: 'Select all',
+			selectAll: 'Select all rows on this page',
 			selectRow: 'Select row',
 		},
 	},
@@ -88,10 +90,11 @@ const TRANSLATIONS: Translations = {
 			viewCustomer: 'عرض العميل',
 			viewPayment: 'عرض تفاصيل الدفعة',
 			noResults: 'لا توجد نتائج.',
-			selected: 'تم تحديد {selected} من أصل {total} صفوف',
+			selected: 'تم تحديد {selected} من أصل {total} صفوف؛ {results} نتائج',
+			payments: 'الدفعات الأخيرة',
 			previous: 'السابق',
 			next: 'التالي',
-			selectAll: 'تحديد الكل',
+			selectAll: 'تحديد جميع الصفوف في هذه الصفحة',
 			selectRow: 'تحديد الصف',
 		},
 	},
@@ -114,10 +117,11 @@ const TRANSLATIONS: Translations = {
 			viewCustomer: 'הצג לקוח',
 			viewPayment: 'הצג פרטי תשלום',
 			noResults: 'אין תוצאות.',
-			selected: 'נבחרו {selected} מתוך {total} שורות',
+			selected: 'נבחרו {selected} מתוך {total} שורות; {results} תוצאות',
+			payments: 'תשלומים אחרונים',
 			previous: 'הקודם',
 			next: 'הבא',
-			selectAll: 'בחר הכל',
+			selectAll: 'בחר את כל השורות בעמוד זה',
 			selectRow: 'בחר שורה',
 		},
 	},
@@ -148,8 +152,9 @@ const columnHelper = createColumnHelper<RtlDataTableFeatures, Payment>();
 	template: `
 		<caps-checkbox
 			[aria-label]="_t()['selectAll']"
-			[checked]="table().getIsAllRowsSelected()"
-			[indeterminate]="table().getIsSomeRowsSelected() && !table().getIsAllPageRowsSelected()"
+			[checked]="table().getIsAllPageRowsSelected()"
+			[indeterminate]="table().getIsSomePageRowsSelected() && !table().getIsAllPageRowsSelected()"
+			[disabled]="table().getRowModel().rows.length === 0"
 			(checkedChange)="table().toggleAllPageRowsSelected($event)"
 		/>
 	`,
@@ -157,7 +162,7 @@ const columnHelper = createColumnHelper<RtlDataTableFeatures, Payment>();
 export class RtlTableHeadSelection {
 	public readonly table = input.required<Table<RtlDataTableFeatures, Payment>>();
 
-	private readonly _language = inject(TranslateService).language;
+	protected readonly _language = inject(TranslateService).language;
 	protected readonly _t = computed(() => TRANSLATIONS[this._language()].values);
 }
 
@@ -168,7 +173,7 @@ export class RtlTableHeadSelection {
 	},
 	template: `
 		<caps-checkbox
-			[aria-label]="_t()['selectRow']"
+			[aria-label]="_t()['selectRow'] + ' ' + row().id"
 			[checked]="row().getIsSelected()"
 			(checkedChange)="row().toggleSelected($event)"
 		/>
@@ -177,12 +182,12 @@ export class RtlTableHeadSelection {
 export class RtlTableRowSelection {
 	public readonly row = input.required<Row<RtlDataTableFeatures, Payment>>();
 
-	private readonly _language = inject(TranslateService).language;
+	protected readonly _language = inject(TranslateService).language;
 	protected readonly _t = computed(() => TRANSLATIONS[this._language()].values);
 }
 
 @Component({
-	imports: [HlmButtonImports, NgIcon],
+	imports: [CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideArrowUpDown })],
 	template: `
 		<button capsButton size="sm" variant="ghost" (click)="sortClick()">
@@ -194,7 +199,7 @@ export class RtlTableRowSelection {
 export class RtlTableHeadSortButton {
 	public readonly column = input.required<Column<RtlDataTableFeatures, Payment, unknown>>();
 
-	private readonly _language = inject(TranslateService).language;
+	protected readonly _language = inject(TranslateService).language;
 	protected readonly _t = computed(() => TRANSLATIONS[this._language()].values);
 
 	protected sortClick() {
@@ -203,29 +208,33 @@ export class RtlTableHeadSortButton {
 }
 
 @Component({
-	imports: [HlmButtonImports, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsButtonImports, NgIcon, CapsDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: `
-		<button capsButton size="icon-sm" variant="ghost" [hlmDropdownMenuTrigger]="menu">
-			<span class="sr-only">{{ _t()['openMenu'] }}</span>
+		<button capsButton size="icon-sm" variant="ghost" [capsDropdownMenuTrigger]="menu">
+			<span class="sr-only">{{ _t()['openMenu'] }} {{ row().id }}</span>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-label>{{ _t()['actions'] }}</hlm-dropdown-menu-label>
-				<button hlmDropdownMenuItem (click)="copyPaymentId()">{{ _t()['copyId'] }}</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>{{ _t()['viewCustomer'] }}</button>
-				<button hlmDropdownMenuItem>{{ _t()['viewPayment'] }}</button>
-			</hlm-dropdown-menu>
+			<caps-menu
+				[attr.lang]="_language()"
+				[attr.data-lang]="_language()"
+				[attr.dir]="_language() === 'en' ? 'ltr' : 'rtl'"
+			>
+				<caps-menu-label>{{ _t()['actions'] }}</caps-menu-label>
+				<button capsMenuItem (itemClick)="copyPaymentId()">{{ _t()['copyId'] }}</button>
+				<caps-menu-separator />
+				<button capsMenuItem>{{ _t()['viewCustomer'] }}</button>
+				<button capsMenuItem>{{ _t()['viewPayment'] }}</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })
 export class RtlActionDropdown {
 	public readonly row = input.required<Row<RtlDataTableFeatures, Payment>>();
 
-	private readonly _language = inject(TranslateService).language;
+	protected readonly _language = inject(TranslateService).language;
 	protected readonly _t = computed(() => TRANSLATIONS[this._language()].values);
 
 	copyPaymentId() {
@@ -235,7 +244,7 @@ export class RtlActionDropdown {
 
 @Component({
 	selector: 'spartan-data-table-rtl',
-	imports: [FlexRender, HlmButtonImports, HlmDropdownMenuImports, HlmInputImports, HlmTableImports, NgIcon],
+	imports: [FlexRender, CapsButtonImports, CapsDropdownMenuImports, CapsInputImports, CapsTableImports, NgIcon],
 	providers: [provideIcons({ lucideChevronDown }), Directionality],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -244,31 +253,52 @@ export class RtlActionDropdown {
 	},
 	template: `
 		<div class="flex flex-col justify-between gap-4 py-4 sm:flex-row sm:items-center">
-			<input hlmInput class="w-full md:w-80" [placeholder]="_t()['filter']" (input)="_filterChanged($event)" />
+			<input
+				capsInput
+				class="w-full md:w-80"
+				[aria-label]="_t()['filter']"
+				[placeholder]="_t()['filter']"
+				(input)="_filterChanged($event)"
+			/>
 
-			<button capsButton variant="outline" align="end" [hlmDropdownMenuTrigger]="menu">
+			<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom-end">
 				{{ _t()['columns'] }}
 				<ng-icon name="lucideChevronDown" class="ms-2" />
 			</button>
 			<ng-template #menu>
-				<hlm-dropdown-menu class="w-32">
+				<caps-menu
+					class="w-32"
+					[attr.lang]="_language()"
+					[attr.data-lang]="_language()"
+					[attr.dir]="_language() === 'en' ? 'ltr' : 'rtl'"
+				>
 					@for (column of _hidableColumns; track column.id) {
-						<button hlmDropdownMenuCheckbox [checked]="column.getIsVisible()" (triggered)="column.toggleVisibility()">
-							<hlm-dropdown-menu-checkbox-indicator />
+						<button capsMenuCheckboxItem [checked]="column.getIsVisible()" (itemClick)="column.toggleVisibility()">
 							{{ _t()[column.id] }}
 						</button>
 					}
-				</hlm-dropdown-menu>
+				</caps-menu>
 			</ng-template>
 		</div>
 		<div class="overflow-hidden rounded-md border">
-			<div hlmTableContainer>
-				<table hlmTable>
-					<thead hlmTHead>
+			<caps-table-container>
+				<table capsTable [attr.aria-label]="_t()['payments']">
+					<caption class="sr-only">{{ _t()['payments'] }}</caption>
+					<thead>
 						@for (headerGroup of _table.getHeaderGroups(); track headerGroup.id) {
-							<tr hlmTr>
+							<tr>
 								@for (header of headerGroup.headers; track header.id) {
-									<th hlmTh [attr.colSpan]="header.colSpan">
+									<th
+										scope="col"
+										[attr.colSpan]="header.colSpan"
+										[attr.aria-sort]="
+											header.column.getIsSorted() === 'asc'
+												? 'ascending'
+												: header.column.getIsSorted() === 'desc'
+													? 'descending'
+													: null
+										"
+									>
 										@if (!header.isPlaceholder) {
 											<ng-container
 												*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -281,11 +311,11 @@ export class RtlActionDropdown {
 							</tr>
 						}
 					</thead>
-					<tbody hlmTBody>
+					<tbody>
 						@for (row of _table.getRowModel().rows; track row.id) {
-							<tr hlmTr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
-								@for (cell of row.getVisibleCells(); track $index) {
-									<td hlmTd>
+							<tr [attr.data-row-id]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+								@for (cell of row.getVisibleCells(); track cell.id) {
+									<td>
 										<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 											<div [innerHTML]="cell"></div>
 										</ng-container>
@@ -293,18 +323,26 @@ export class RtlActionDropdown {
 								}
 							</tr>
 						} @empty {
-							<tr hlmTr>
-								<td hlmTd class="h-24 text-center" [attr.colspan]="_columns.length">{{ _t()['noResults'] }}</td>
+							<tr>
+								<td class="h-24 text-center" [attr.colspan]="_table.getVisibleLeafColumns().length">
+									{{ _t()['noResults'] }}
+								</td>
 							</tr>
 						}
 					</tbody>
 				</table>
-			</div>
+			</caps-table-container>
 		</div>
 
 		<div class="flex flex-col justify-between py-4 sm:flex-row sm:items-center">
-			<div class="${hlmMuted}">
-				{{ _selectedLabel(_table.getSelectedRowModel().rows.length, _table.getRowCount()) }}
+			<div class="${hlmMuted}" role="status">
+				{{
+					_selectedLabel(
+						_table.getSelectedRowModel().rows.length,
+						_table.getPreFilteredRowModel().rows.length,
+						_table.getRowCount()
+					)
+				}}
 			</div>
 			<div class="mt-2 flex gap-2 sm:mt-0">
 				<button
@@ -330,7 +368,7 @@ export class RtlActionDropdown {
 	`,
 })
 export class DataTableRtl {
-	private readonly _language = inject(TranslateService).language;
+	protected readonly _language = inject(TranslateService).language;
 	private readonly _translation = computed(() => TRANSLATIONS[this._language()]);
 	protected readonly _t = computed(() => this._translation().values);
 	protected readonly _dir = computed(() => this._translation().dir);
@@ -368,10 +406,13 @@ export class DataTableRtl {
 		}),
 		columnHelper.display({
 			id: 'actions',
+			header: () => this._t()['actions'],
 			cell: () => RtlActionDropdown,
 			enableHiding: false,
 		}),
 	]);
+
+	private readonly _pagination = signal<PaginationState>({ pageIndex: 0, pageSize: 10 });
 
 	private readonly _columnFilters = signal<ColumnFiltersState>([]);
 	private readonly _sorting = signal<SortingState>([]);
@@ -382,11 +423,16 @@ export class DataTableRtl {
 		features,
 		columns: this._columns,
 		data: PAYMENT_DATA,
+		getRowId: (row) => row.id,
+		onPaginationChange: (updater) => {
+			updater instanceof Function ? this._pagination.update(updater) : this._pagination.set(updater);
+		},
 		onSortingChange: (updater) => {
 			isFunction(updater) ? this._sorting.update(updater) : this._sorting.set(updater);
 		},
 		onColumnFiltersChange: (updater) => {
 			isFunction(updater) ? this._columnFilters.update(updater) : this._columnFilters.set(updater);
+			this._pagination.update((state) => ({ ...state, pageIndex: 0 }));
 		},
 		onColumnVisibilityChange: (updater) => {
 			isFunction(updater) ? this._columnVisibility.update(updater) : this._columnVisibility.set(updater);
@@ -395,6 +441,7 @@ export class DataTableRtl {
 			isFunction(updater) ? this._rowSelection.update(updater) : this._rowSelection.set(updater);
 		},
 		state: {
+			pagination: this._pagination(),
 			sorting: this._sorting(),
 			columnFilters: this._columnFilters(),
 			columnVisibility: this._columnVisibility(),
@@ -417,9 +464,12 @@ export class DataTableRtl {
 		this._table.getColumn('email')?.setFilterValue((event.target as HTMLInputElement).value);
 	}
 
-	protected _selectedLabel(selected: number, total: number) {
+	protected _selectedLabel(selected: number, total: number, results: number) {
 		const template = this._t()['selected'];
-		return template.replace('{selected}', `${selected}`).replace('{total}', `${total}`);
+		return template
+			.replace('{selected}', `${selected}`)
+			.replace('{total}', `${total}`)
+			.replace('{results}', `${results}`);
 	}
 }
 

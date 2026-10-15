@@ -1,63 +1,63 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmResizableImports } from '@spartan-ng/helm/resizable';
+import { CapsResizableImports } from '@capsule-ng/caps/resizable';
 
 @Component({
 	selector: 'spartan-resizable-example',
-	imports: [HlmResizableImports],
+	imports: [CapsResizableImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	host: { class: 'min-w-xs' },
+	host: { class: 'w-full min-w-0' },
 	template: `
-		<hlm-resizable-group class="max-w-md rounded-lg border">
-			<hlm-resizable-panel defaultSize="50">
+		<caps-resizable-group class="h-[200px] max-w-md rounded-lg border">
+			<caps-resizable-panel defaultSize="50">
 				<div class="flex h-[200px] items-center justify-center p-6">
 					<span class="font-semibold">One</span>
 				</div>
-			</hlm-resizable-panel>
-			<hlm-resizable-handle withHandle />
-			<hlm-resizable-panel defaultSize="50">
-				<hlm-resizable-group direction="vertical">
-					<hlm-resizable-panel defaultSize="25">
+			</caps-resizable-panel>
+			<caps-resizable-handle aria-label="One width" withHandle />
+			<caps-resizable-panel defaultSize="50">
+				<caps-resizable-group direction="vertical">
+					<caps-resizable-panel defaultSize="25">
 						<div class="flex h-full items-center justify-center p-6">
 							<span class="font-semibold">Two</span>
 						</div>
-					</hlm-resizable-panel>
-					<hlm-resizable-handle withHandle />
-					<hlm-resizable-panel defaultSize="75">
+					</caps-resizable-panel>
+					<caps-resizable-handle aria-label="Two height" withHandle />
+					<caps-resizable-panel defaultSize="75">
 						<div class="flex h-full items-center justify-center p-6">
 							<span class="font-semibold">Three</span>
 						</div>
-					</hlm-resizable-panel>
-				</hlm-resizable-group>
-			</hlm-resizable-panel>
-		</hlm-resizable-group>
+					</caps-resizable-panel>
+				</caps-resizable-group>
+			</caps-resizable-panel>
+		</caps-resizable-group>
 	`,
 })
 export class ResizablePreviewComponent {}
 
 export const defaultImports = `
-import { HlmResizableImports } from '@spartan-ng/helm/resizable';
+import { CapsResizableImports } from '@capsule-ng/caps/resizable';
 `;
 
 export const defaultSkeleton = `
-<hlm-resizable-group class="h-[200px] w-[500px] max-w-md rounded-lg border">
-  <hlm-resizable-panel>
+<caps-resizable-group class="h-[200px] w-full max-w-md rounded-lg border">
+  <caps-resizable-panel>
     <div class="flex h-full items-center justify-center p-6">One</div>
-  </hlm-resizable-panel>
-  <hlm-resizable-handle />
-  <hlm-resizable-panel>
-    <hlm-resizable-group direction="vertical">
-      <hlm-resizable-panel>
+  </caps-resizable-panel>
+  <caps-resizable-handle aria-label="One width" />
+  <caps-resizable-panel>
+    <caps-resizable-group direction="vertical">
+      <caps-resizable-panel>
         <div class="flex h-full items-center justify-center p-6">
           <span class="font-semibold">Two</span>
         </div>
-      </hlm-resizable-panel>
-      <hlm-resizable-handle />
-      <hlm-resizable-panel>
+      </caps-resizable-panel>
+      <caps-resizable-handle aria-label="Two height" />
+      <caps-resizable-panel>
         <div class="flex h-full items-center justify-center p-6">
           <span class="font-semibold">Three</span>
         </div>
-      </hlm-resizable-panel>
-    </hlm-resizable-group>
-  </hlm-resizable-panel>
-</hlm-resizable-group>
+      </caps-resizable-panel>
+    </caps-resizable-group>
+  </caps-resizable-panel>
+</caps-resizable-group>
 `;

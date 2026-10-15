@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, viewChild } from '@angular/core';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
-import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
+import { CapsMessageScroller, CapsMessageScrollerImports } from '@capsule-ng/caps/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { createScrollableScript } from './message-scroller.shared';
 
@@ -29,14 +28,16 @@ function getScrollStatus({ start, end }: { start: boolean; end: boolean }): stri
 	`,
 })
 export class MessageScrollerScrollableFooter {
-	private readonly _scroller = injectBrnMessageScroller();
+	public readonly scroller = input<CapsMessageScroller>();
 
-	protected readonly _status = computed(() => getScrollStatus(this._scroller.scrollable()));
+	protected readonly _status = computed(() =>
+		getScrollStatus(this.scroller()?.scrollable() ?? { start: false, end: false }),
+	);
 }
 
 @Component({
 	selector: 'spartan-message-scroller-scrollable-preview',
-	imports: [HlmMessageScrollerImports, CapsCardImports, MessageScrollerTranscriptRow, MessageScrollerScrollableFooter],
+	imports: [CapsMessageScrollerImports, CapsCardImports, MessageScrollerTranscriptRow, MessageScrollerScrollableFooter],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'mx-auto flex w-full max-w-sm flex-col gap-4',
@@ -50,36 +51,36 @@ export class MessageScrollerScrollableFooter {
 				</caps-card-description>
 			</caps-card-header>
 
-			<div hlmMessageScrollerProvider defaultScrollPosition="start">
-				<caps-card-content class="flex-1 overflow-hidden p-0">
-					<div hlmMessageScroller>
-						<div hlmMessageScrollerViewport>
-							<div hlmMessageScrollerContent class="gap-4 p-(--card-spacing)">
-								@for (message of _messages; track message.id) {
-									<spartan-message-scroller-transcript-row
-										[messageId]="message.id"
-										[role]="message.role"
-										[text]="message.text"
-										[scrollAnchor]="message.role === 'user'"
-										userVariant="muted"
-										assistantVariant="ghost"
-									/>
-								}
-							</div>
-						</div>
-						<button hlmMessageScrollerButton></button>
-					</div>
-				</caps-card-content>
+			<caps-card-content class="flex-1 overflow-hidden p-0">
+				<caps-message-scroller
+					aria-label="Scrollable messages"
+					defaultScrollPosition="start"
+					contentClass="gap-4 p-(--card-spacing)"
+				>
+					@for (message of _messages; track message.id) {
+						<spartan-message-scroller-transcript-row
+							[messageId]="message.id"
+							[role]="message.role"
+							[text]="message.text"
+							[scrollAnchor]="message.role === 'user'"
+							userVariant="muted"
+							assistantVariant="ghost"
+						/>
+					}
 
-				<caps-card-footer class="text-muted-foreground justify-center border-t text-center text-sm">
-					<spartan-message-scroller-scrollable-footer />
-				</caps-card-footer>
-			</div>
+					<button caps-message-scroller-button></button>
+				</caps-message-scroller>
+			</caps-card-content>
+
+			<caps-card-footer class="text-muted-foreground justify-center border-t text-center text-sm">
+				<spartan-message-scroller-scrollable-footer [scroller]="_scroller()" />
+			</caps-card-footer>
 		</caps-card>
 
 		<div class="text-muted-foreground px-0.5 text-center text-xs">Scroll the transcript to see the footer update.</div>
 	`,
 })
 export class MessageScrollerScrollablePreview {
+	protected readonly _scroller = viewChild(CapsMessageScroller);
 	protected readonly _messages = createScrollableScript();
 }

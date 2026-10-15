@@ -1,35 +1,34 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
 
 @Component({
 	selector: 'spartan-combobox-rtl',
-	imports: [HlmComboboxImports, HlmFieldImports],
+	imports: [CapsComboboxImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field [attr.dir]="_dir()">
-			<hlm-field-label>{{ _t()['label'] }}</hlm-field-label>
-			<hlm-combobox-multiple autoHighlight [(value)]="values">
-				<hlm-combobox-chips class="max-w-xs">
-					<ng-template hlmComboboxValues let-values>
+		<caps-field [attr.dir]="_dir()">
+			<caps-field-label>{{ _t()['label'] }}</caps-field-label>
+			<caps-combobox-multiple autoHighlight [(value)]="values" [dir]="_dir()" [itemToString]="_itemToString">
+				<caps-combobox-chips class="max-w-xs">
+					<ng-template capsComboboxValues let-values>
 						@for (value of values; track $index) {
-							<hlm-combobox-chip [value]="value">{{ _t()[value] }}</hlm-combobox-chip>
+							<caps-combobox-chip [value]="value">{{ _t()[value] }}</caps-combobox-chip>
 						}
 					</ng-template>
 
-					<input hlmComboboxChipInput [placeholder]="_t()['placeholder']" />
-				</hlm-combobox-chips>
-				<hlm-combobox-content *hlmComboboxPortal [attr.dir]="_dir()">
-					<hlm-combobox-empty>{{ _t()['empty'] }}</hlm-combobox-empty>
-					<div hlmComboboxList>
-						@for (category of categories(); track category.value) {
-							<hlm-combobox-item [value]="category.value">{{ category.label }}</hlm-combobox-item>
-						}
-					</div>
-				</hlm-combobox-content>
-			</hlm-combobox-multiple>
-		</hlm-field>
+					<input capsComboboxChipInput [placeholder]="_t()['placeholder']" aria-label="Search frameworks" />
+				</caps-combobox-chips>
+				<caps-combobox-content [attr.lang]="_language()" [attr.data-lang]="_language()">
+					<caps-combobox-empty>{{ _t()['empty'] }}</caps-combobox-empty>
+
+					@for (category of categories(); track category.value) {
+						<caps-combobox-option [value]="category.value">{{ category.label }}</caps-combobox-option>
+					}
+				</caps-combobox-content>
+			</caps-combobox-multiple>
+		</caps-field>
 	`,
 })
 export class ComboboxRtlPreview {
@@ -39,7 +38,7 @@ export class ComboboxRtlPreview {
 
 	public readonly categories = computed(() => this._keys.map((key) => ({ value: key, label: this._t()[key] })));
 
-	private readonly _language = inject(TranslateService).language;
+	protected readonly _language = inject(TranslateService).language;
 
 	private readonly _translations: Translations = {
 		en: {
@@ -88,5 +87,6 @@ export class ComboboxRtlPreview {
 
 	private readonly _translation = computed(() => this._translations[this._language()]);
 	protected readonly _t = computed(() => this._translation().values);
+	protected readonly _itemToString = (key: string) => this._t()[key] ?? key;
 	protected readonly _dir = computed(() => this._translation().dir);
 }

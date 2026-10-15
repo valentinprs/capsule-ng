@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 
 @Component({
 	selector: 'spartan-slider-vertical',
-	imports: [HlmSliderImports],
+	imports: [CapsSliderImports],
 	styles: `
 		:host {
 			display: flex;
@@ -11,8 +11,8 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 		}
 	`,
 	template: `
-		<hlm-slider [(value)]="value" orientation="vertical" />
-		<hlm-slider [(value)]="value2" orientation="vertical" />
+		<caps-slider aria-label="Volume" [(value)]="value" orientation="vertical" />
+		<caps-slider aria-label="Balance" [(value)]="value2" orientation="vertical" />
 	`,
 })
 export class SliderVertical {

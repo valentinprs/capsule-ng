@@ -1,22 +1,22 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, minLength, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-calendar-date-picker-multi',
-	imports: [FormRoot, FormField, HlmDatePickerImports, HlmButtonImports, HlmFieldImports],
+	imports: [FormRoot, FormField, CapsDatePickerImports, CapsButtonImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex justify-center p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg overflow-auto',
 	},
 	template: `
 		<form [formRoot]="form" class="w-full max-w-xs">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="availableDates">Available dates</label>
-					<hlm-date-picker-multi
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Available dates</caps-field-label>
+					<caps-date-picker-multi
 						[minDate]="minDate"
 						[maxDate]="maxDate"
 						[formField]="form.availableDates"
@@ -24,13 +24,11 @@ import { HlmFieldImports } from '@spartan-ng/helm/field';
 						[minSelection]="2"
 						[maxSelection]="4"
 					>
-						<hlm-date-picker-trigger buttonId="availableDates">Pick dates</hlm-date-picker-trigger>
-					</hlm-date-picker-multi>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn [disabled]="form().submitting()">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+						<caps-date-picker-trigger buttonId="availableDates">Pick dates</caps-date-picker-trigger>
+					</caps-date-picker-multi>
+				</caps-field>
+				<button type="submit" capsButton [disabled]="form().submitting()">Submit</button>
+			</caps-field-group>
 		</form>
 	`,
 })

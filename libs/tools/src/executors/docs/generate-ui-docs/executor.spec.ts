@@ -43,6 +43,28 @@ describe('generate-ui-docs executor', () => {
 		expect(stripped).toMatchSnapshot();
 	});
 
+	it('documents the modal panel anatomy and controlled Capsule state', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		for (const [slug, name] of [
+			['sheet', 'Sheet'],
+			['drawer', 'Drawer'],
+		]) {
+			const family = generated[slug]['caps'];
+			expect(family['Caps' + name].selector).toBe('caps-' + slug);
+			expect(family['Caps' + name].models).toContainEqual(expect.objectContaining({ name: 'open', type: 'boolean' }));
+			expect(family['Caps' + name].inputs.map(({ name }) => name)).toEqual(
+				expect.arrayContaining(['disableClose', 'autoFocus', 'restoreFocus', 'aria-label']),
+			);
+			expect(family['Caps' + name + 'Content'].selector).toBe('ng-template[caps' + name + 'Content]');
+			expect(family['Caps' + name + 'Content'].inputs.map(({ name }) => name)).toEqual(
+				expect.arrayContaining(['class', 'side']),
+			);
+			expect(family['Caps' + name + 'Trigger'].selector).toContain('button[caps' + name + 'Trigger]');
+			expect(family['Caps' + name + 'Close'].selector).toBe('button[caps' + name + 'Close]');
+			expect(Object.keys(family)).not.toContain('Caps' + name + 'Panel');
+		}
+	});
+
 	it('documents the caps components of each caps entry point under the caps library', () => {
 		const generated = readGeneratedJson() as NestedStructure;
 
@@ -130,5 +152,193 @@ describe('generate-ui-docs executor', () => {
 		);
 		expect(otp['CapsInputOtp'].inputs.map(({ name }) => name)).not.toContain('inputStyles');
 		expect(otp['CapsInputOtp'].outputs.map(({ name }) => name)).toEqual(['valueChange', 'completed']);
+	});
+	it('documents native action menus and their controlled selection contracts', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const menu = generated['menu']['caps'];
+		expect(menu['CapsMenu'].inputs).toContainEqual(
+			expect.objectContaining({ name: 'size', type: "'xs' | 'sm' | 'md' | 'lg'", defaultValue: "'lg'" }),
+		);
+		expect(menu['CapsMenuItem'].selector).toBe('button[capsMenuItem],a[capsMenuItem]');
+		expect(menu['CapsMenuItem'].outputs.map(({ name }) => name)).toEqual(['itemClick']);
+		for (const name of ['CapsMenuCheckboxItem', 'CapsMenuRadioItem']) {
+			expect(menu[name].selector).toMatch(/^button\[capsMenu/);
+			expect(menu[name].models).toContainEqual(expect.objectContaining({ name: 'checked', type: 'boolean' }));
+		}
+		expect(menu['CapsMenuGroup'].models).toContainEqual(
+			expect.objectContaining({ name: 'value', type: 'string | string[]' }),
+		);
+		const dropdown = generated['dropdown-menu']['caps']['CapsDropdownMenuTrigger'];
+		expect(dropdown.selector).toBe('button[capsDropdownMenuTrigger]');
+		expect(dropdown.models).toContainEqual(expect.objectContaining({ name: 'open', type: 'boolean' }));
+		expect(dropdown.inputs).toContainEqual(
+			expect.objectContaining({ name: 'capsDropdownMenuTrigger', required: true }),
+		);
+		expect(dropdown.outputs.map(({ name }) => name)).toEqual(['opened', 'closed']);
+		expect(generated['context-menu']['caps']['CapsContextMenuTrigger'].inputs.map(({ name }) => name)).toContain(
+			'disabled',
+		);
+		expect(generated['menubar']['caps']['CapsMenubarTrigger'].selector).toBe('button[capsMenubarTrigger]');
+		expect(Object.keys(menu)).not.toEqual(expect.arrayContaining(['CapsMenuCdk', 'CapsMenuSelection']));
+	});
+	it('documents native Table and router-free Pagination public contracts', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const table = generated['table']['caps'];
+		expect(table['CapsTable'].selector).toBe('table[capsTable]');
+		expect(table['CapsTableContainer'].selector).toBe('caps-table-container');
+		expect(table['CapsTable'].inputs.map(({ name }) => name)).toEqual(['size', 'striped', 'noBorder']);
+		const pagination = generated['pagination']['caps'];
+		for (const name of ['CapsPaginationLink', 'CapsPaginationPrevious', 'CapsPaginationNext']) {
+			expect(pagination[name].inputs.map(({ name }) => name)).toEqual(expect.arrayContaining(['isActive', 'disabled']));
+			expect(pagination[name].inputs.map(({ name }) => name)).not.toContain('routerLink');
+		}
+		expect(pagination['CapsNumberedPagination'].models.map(({ name }) => name)).toEqual([
+			'currentPage',
+			'itemsPerPage',
+		]);
+	});
+	it('documents the Capsule chart engine contract as one required options input', () => {
+		const chart = (readGeneratedJson() as NestedStructure)['chart']['caps']['CapsChart'];
+		expect(chart.selector).toBe('caps-chart');
+		expect(chart.inputs).toContainEqual(
+			expect.objectContaining({
+				name: 'options',
+				type: 'ChartOptions<TDatum, TXValue, TYValue>',
+				required: true,
+			}),
+		);
+		expect(chart.outputs).toEqual([]);
+		expect(chart.models).toEqual([]);
+	});
+	it('documents the projected Carousel and native navigation contracts', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const carousel = generated['carousel']['caps'];
+		expect(carousel['CapsCarousel'].selector).toBe('caps-carousel');
+		expect(carousel['CapsCarousel'].inputs.map(({ name }) => name)).toEqual([
+			'orientation',
+			'options',
+			'plugins',
+			'aria-label',
+		]);
+		expect(carousel['CapsCarouselContent'].selector).toBe('caps-carousel-content');
+		expect(carousel['CapsCarouselItem'].inputs.map(({ name }) => name)).toEqual(['aria-label', 'aria-labelledby']);
+		for (const name of ['Previous', 'Next', 'Autoplay']) {
+			expect(carousel[`CapsCarousel${name}`].selector).toBe(`button[capsCarousel${name}]`);
+		}
+		expect(carousel['CapsCarouselSlideDisplay'].inputs.map(({ name }) => name)).toEqual(['slideClass', 'label']);
+	});
+});
+
+describe('Capsule conversation API metadata', () => {
+	it('documents public structural and native forms, states and independent action inputs', () => {
+		const docs = readGeneratedJson() as NestedStructure;
+		expect(docs['bubble']['caps']['CapsBubble'].inputs).toEqual(
+			expect.arrayContaining([
+				expect.objectContaining({ name: 'variant', defaultValue: "'default'" }),
+				expect.objectContaining({ name: 'align', defaultValue: "'start'" }),
+			]),
+		);
+		expect(docs['bubble']['caps']['CapsBubbleContent'].selector).toBe('caps-bubble-content');
+		expect(docs['bubble']['caps']['CapsBubbleContentDirective'].selector).toBe(
+			'button[capsBubbleContent], a[capsBubbleContent]',
+		);
+		expect(docs['message']['caps']['CapsMessage'].selector).toBe('caps-message');
+		expect(docs['attachment']['caps']['CapsAttachment'].inputs.map((item) => item.name)).toEqual(
+			expect.arrayContaining(['state', 'size', 'orientation']),
+		);
+		expect(docs['attachment']['caps']['CapsAttachmentAction'].inputs.map((item) => item.name)).toEqual(
+			expect.arrayContaining(['type', 'variant', 'size', 'disabled']),
+		);
+		for (const family of ['bubble', 'message', 'attachment'])
+			for (const component of Object.values(docs[family]['caps'])) expect(component.outputs).toHaveLength(0);
+	});
+	it('documents the Capsule slider value, accessibility and retained range contracts', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		const slider = generated['slider']['caps']['CapsSlider'];
+		expect(slider.selector).toBe('caps-slider');
+		expect(slider.inputs.map(({ name }) => name)).toEqual(
+			expect.arrayContaining([
+				'value',
+				'min',
+				'max',
+				'step',
+				'disabled',
+				'orientation',
+				'inverted',
+				'thumbLabels',
+				'valueText',
+				'minStepsBetweenThumbs',
+				'maxStepsBetweenThumbs',
+				'preventStepOverThumb',
+				'showTicks',
+				'maxTicks',
+				'tickLabelInterval',
+				'formatTick',
+				'draggableRange',
+				'draggableRangeOnly',
+				'aria-label',
+				'aria-labelledby',
+				'aria-describedby',
+			]),
+		);
+		expect(slider.inputs).toContainEqual(
+			expect.objectContaining({ name: 'value', type: 'number[]', defaultValue: '[]' }),
+		);
+		expect(slider.outputs).toContainEqual(expect.objectContaining({ name: 'valueChange', type: 'number[]' }));
+		expect(slider.outputs.map(({ name }) => name)).toEqual(['valueChange']);
+		expect(slider.inputs.map(({ name }) => name)).not.toContain('mode');
+	});
+});
+
+describe('Capsule search choices metadata', () => {
+	it('documents typed roots, value/search models, native controls and owned structures', () => {
+		const generated = readGeneratedJson() as NestedStructure;
+		for (const [slug, roots] of [
+			['autocomplete', ['CapsAutocomplete', 'CapsAutocompleteSearch']],
+			['combobox', ['CapsCombobox', 'CapsComboboxMultiple']],
+		] as const) {
+			const family = generated[slug]['caps'];
+			for (const name of roots) {
+				expect(family[name].selector).toMatch(/^caps-/);
+				// hostDirectives expose model() as its input/output pair (extract-inputs-outputs.spec.ts).
+				const valueType =
+					name === 'CapsAutocompleteSearch'
+						? 'string | undefined | null'
+						: name === 'CapsComboboxMultiple'
+							? 'T[] | undefined | null'
+							: 'T | undefined | null';
+				expect(family[name].inputs).toEqual(
+					expect.arrayContaining([
+						expect.objectContaining({ name: 'value', type: valueType, defaultValue: 'null' }),
+						expect.objectContaining({ name: 'search', type: 'string', defaultValue: "''" }),
+					]),
+				);
+				expect(family[name].outputs).toEqual(
+					expect.arrayContaining([
+						expect.objectContaining({ name: 'valueChange', type: valueType }),
+						expect.objectContaining({ name: 'searchChange', type: 'string' }),
+					]),
+				);
+				expect(family[name].models).toEqual([]);
+				expect(family[name].inputs.map((input) => input.name)).toEqual(
+					expect.arrayContaining(['disabled', 'itemToString']),
+				);
+			}
+			expect(family[slug === 'autocomplete' ? 'CapsAutocompleteOption' : 'CapsComboboxOption'].selector).toBe(
+				`caps-${slug}-option`,
+			);
+			expect(Object.keys(family).some((name) => /(?:Behavior|Portal|List)$/.test(name))).toBe(false);
+		}
+		const comboboxInputs = generated['combobox']['caps']['CapsCombobox'].inputs.map((input) => input.name);
+		expect(comboboxInputs).toEqual(
+			expect.arrayContaining(['autoHighlight', 'closeOnSelect', 'filter', 'filterOptions', 'isItemEqualToValue']),
+		);
+		expect(comboboxInputs).not.toContain('size');
+		expect(comboboxInputs).not.toContain('type');
+		expect(comboboxInputs).not.toContain('invalid');
+		expect(generated['combobox']['caps']['CapsComboboxChipInput'].selector).toBe('input[capsComboboxChipInput]');
+		expect(generated['combobox']['caps']['CapsComboboxTrigger'].inputs.map((input) => input.name)).toEqual(
+			expect.arrayContaining(['buttonId', 'aria-label', 'aria-describedby']),
+		);
 	});
 });

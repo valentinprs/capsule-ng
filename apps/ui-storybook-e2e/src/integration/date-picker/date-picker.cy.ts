@@ -1,11 +1,11 @@
 /**
  * e2e coverage for the date picker family:
  * - trigger + calendar selection for single / multi / range / month-year pickers
- * - the text-input variants (`hlm-date-picker-input`, `hlm-date-multi-input`,
- *   `hlm-date-range-input`, `hlm-month-year-input`), including the enter-then-blur
+ * - the text-input variants (`caps-date-picker-input`, `caps-date-multi-input`,
+ *   `caps-date-range-input`, `caps-month-year-input`), including the enter-then-blur
  *   regression where committing with Enter and then blurring must NOT clear the value.
  *
- * The Input stories render a hidden `hlm-date-picker-trigger` next to the input. Its
+ * The Input stories render a passive `output` next to the input. Its
  * `data-placeholder` attribute mirrors the picker's model: present == empty, absent == a
  * date is committed. That makes the underlying model observable from the DOM.
  */
@@ -26,7 +26,7 @@ describe('date picker', () => {
 		it('opens the calendar and selects a date', () => {
 			cy.get('#date').should('have.attr', 'data-placeholder');
 			cy.get('#date').click();
-			cy.get('hlm-calendar').should('exist');
+			cy.get('caps-calendar').should('exist');
 
 			cy.get('[brnCalendarCellButton]')
 				.filter((_, el) => el.textContent.trim() === '15' && !el.hasAttribute('data-outside'))
@@ -39,7 +39,6 @@ describe('date picker', () => {
 		it('passes accessibility checks', () => {
 			cy.checkA11y(undefined, {
 				rules: {
-					'page-has-heading-one': { enabled: false },
 					'landmark-one-main': { enabled: false },
 				},
 			});
@@ -55,22 +54,22 @@ describe('date picker', () => {
 			// The picker is preseeded with the 31st of August.
 			cy.get('#date').should('not.have.attr', 'data-placeholder');
 			cy.get('#date').click();
-			cy.get('hlm-calendar').should('exist');
+			cy.get('caps-calendar').should('exist');
 
-			const monthTrigger = () => cy.get('hlm-calendar [brnCalendarMonthSelect] [data-slot="select-trigger"]');
+			const monthTrigger = () => cy.get('caps-calendar [capsCalendarMonthSelect] [data-slot="select-trigger"]');
 
 			monthTrigger().should('contain.text', 'Aug');
-			cy.get('hlm-calendar [brnCalendarCellButton]:not([data-outside])').should('have.length', 31);
+			cy.get('caps-calendar [brnCalendarCellButton]:not([data-outside])').should('have.length', 31);
 
 			// Navigate to November, which only has 30 days. Regression for
 			// https://github.com/spartan-ng/spartan/issues/1720 - the 31st must be clamped to
 			// the last day of the target month, not rolled over into December.
 			monthTrigger().click();
-			cy.get('hlm-select-content').find('hlm-select-item').contains('Nov').click();
+			cy.get('.caps-select-content').find('caps-select-option').contains('Nov').click();
 
 			monthTrigger().should('contain.text', 'Nov');
-			cy.get('hlm-calendar [brnCalendarCellButton]:not([data-outside])').should('have.length', 30);
-			cy.get('hlm-calendar [brnCalendarCellButton]:not([data-outside])')
+			cy.get('caps-calendar [brnCalendarCellButton]:not([data-outside])').should('have.length', 30);
+			cy.get('caps-calendar [brnCalendarCellButton]:not([data-outside])')
 				.filter((_, element) => element.textContent.trim() === '30')
 				.should('exist');
 		});
@@ -105,9 +104,9 @@ describe('date picker', () => {
 		it('commits on Enter and keeps focus, then blur shows the display format', () => {
 			cy.get('#date-input').focus();
 			cy.get('#date-input').type('{downArrow}');
-			cy.get('hlm-calendar').should('exist');
+			cy.get('caps-calendar').should('exist');
 			type('15/06/2024{enter}');
-			cy.get('hlm-calendar').should('not.exist');
+			cy.get('caps-calendar').should('not.exist');
 			// Still focused after Enter: the edit format is kept so a later blur re-parses correctly.
 			cy.get('#date-input').should('have.value', '15/06/2024');
 			modelIsSet();
@@ -149,7 +148,7 @@ describe('date picker', () => {
 
 		it('opens the calendar and selects a date', () => {
 			cy.get('#date').click();
-			cy.get('hlm-calendar-multi').should('exist');
+			cy.get('caps-calendar-multi').should('exist');
 			cy.get('[brnCalendarCellButton]')
 				.filter((_, el) => el.textContent.trim() === '15' && !el.hasAttribute('data-outside'))
 				.first()
@@ -207,7 +206,7 @@ describe('date picker', () => {
 
 		it('opens the calendar and selects a range', () => {
 			cy.get('#date').click();
-			cy.get('hlm-calendar-range').should('exist');
+			cy.get('caps-calendar-range').should('exist');
 
 			cy.get('[brnCalendarCellButton]')
 				.filter((_, el) => el.textContent.trim() === '15' && !el.hasAttribute('data-outside'))
@@ -271,7 +270,7 @@ describe('date picker', () => {
 
 		it('opens the month-year calendar', () => {
 			cy.get('#date').click();
-			cy.get('hlm-month-year-calendar').should('exist');
+			cy.get('caps-month-year-calendar').should('exist');
 		});
 	});
 

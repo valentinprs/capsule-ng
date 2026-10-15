@@ -1,6 +1,6 @@
 import { KeyValuePipe } from '@angular/common';
 import { Component, computed, input, signal } from '@angular/core';
-import { BrnTabs, BrnTabsContent, BrnTabsList, BrnTabsTrigger } from '@spartan-ng/brain/tabs';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 import { Code } from '../code/code';
 
 const brnPackageInstallationCommands = {
@@ -19,8 +19,6 @@ const angularCdkPackageInstallationCommands = {
 	bun: 'bun add @angular/cdk',
 } as const;
 
-const tabBtn =
-	'inline-flex items-center justify-center whitespace-nowrap py-1 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-(--caps-opacity-50) data-[state=active]:bg-background relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none';
 const tabContent =
 	'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md border border-border';
 
@@ -28,24 +26,27 @@ const globalValue = signal<PackageKey>('pnpm');
 
 @Component({
 	selector: 'spartan-package-installer-tab',
-	imports: [BrnTabs, BrnTabsList, BrnTabsTrigger, BrnTabsContent, Code, KeyValuePipe],
+	imports: [CapsTabsImports, Code, KeyValuePipe],
 	host: {
 		class: 'block',
 	},
 	template: `
-		<div [brnTabs]="value()" class="block" (tabActivated)="onTabActivated($event)">
-			<div
-				brnTabsList
+		<caps-tabs [value]="value()" class="block" (tabActivated)="onTabActivated($event)">
+			<caps-tabs-list
+				type="line"
+				aria-label="Package manager"
 				class="border-border text-muted-foreground mb-4 inline-flex h-9 w-full items-center justify-start rounded-none border-b bg-transparent p-0"
 			>
 				@for (item of installationCommands() | keyvalue: collationComparator; track item.key) {
-					<button class="${tabBtn}" [brnTabsTrigger]="item.key">{{ item.key }}</button>
+					<button capsTabsTrigger [value]="item.key">{{ item.key }}</button>
 				}
-			</div>
-			<div class="${tabContent}" [brnTabsContent]="value()">
-				<spartan-code [language]="language()" [code]="installCommand()" />
-			</div>
-		</div>
+			</caps-tabs-list>
+			@for (item of installationCommands() | keyvalue: collationComparator; track item.key) {
+				<caps-tabs-content class="${tabContent}" [value]="item.key">
+					<spartan-code [language]="language()" [code]="item.value" />
+				</caps-tabs-content>
+			}
+		</caps-tabs>
 	`,
 })
 export class PackageInstallerTabs {

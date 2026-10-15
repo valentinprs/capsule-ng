@@ -1,61 +1,33 @@
 import { Component } from '@angular/core';
-import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
+import { CapsPaginationImports } from '@capsule-ng/caps/pagination';
 
 @Component({
 	selector: 'spartan-pagination-preview',
-	imports: [HlmPaginationImports],
+	imports: [CapsPaginationImports],
 	template: `
-		<nav hlmPagination>
-			<ul hlmPaginationContent>
-				<li hlmPaginationItem>
-					<hlm-pagination-previous link="/components/menubar" />
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#">1</a>
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#" isActive>2</a>
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#">3</a>
-				</li>
-				<li hlmPaginationItem>
-					<hlm-pagination-ellipsis />
-				</li>
-				<li hlmPaginationItem>
-					<hlm-pagination-next link="/components/popover" />
-				</li>
-			</ul>
-		</nav>
+		<caps-pagination>
+			<a capsPaginationPrevious href="/components/menubar"><span>Previous</span></a>
+			<a capsPaginationLink href="#">1</a>
+			<a capsPaginationLink href="#" isActive>2</a>
+			<a capsPaginationLink href="#">3</a>
+			<caps-pagination-ellipsis />
+			<a capsPaginationNext href="/components/popover"><span>Next</span></a>
+		</caps-pagination>
 	`,
 })
 export class PaginationPreview {}
 
 export const defaultImports = `
-import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
+import { CapsPaginationImports } from '@capsule-ng/caps/pagination';
 `;
 
 export const defaultSkeleton = `
-<nav hlmPagination>
-  <ul hlmPaginationContent>
-    <li hlmPaginationItem>
-      <hlm-pagination-previous link="/components/menubar" />
-    </li>
-    <li hlmPaginationItem>
-      <a hlmPaginationLink link="#">1</a>
-    </li>
-    <li hlmPaginationItem>
-      <a hlmPaginationLink link="#" isActive>2</a>
-    </li>
-    <li hlmPaginationItem>
-      <a hlmPaginationLink link="#">3</a>
-    </li>
-    <li hlmPaginationItem>
-      <hlm-pagination-ellipsis />
-    </li>
-    <li hlmPaginationItem>
-      <hlm-pagination-next link="/components/popover" />
-    </li>
-  </ul>
-</nav>
+<caps-pagination>
+  <a capsPaginationPrevious href="/components/menubar"><span>Previous</span></a>
+    <a capsPaginationLink href="#">1</a>
+    <a capsPaginationLink href="#" isActive>2</a>
+    <a capsPaginationLink href="#">3</a>
+    <caps-pagination-ellipsis />
+    <a capsPaginationNext href="/components/popover"><span>Next</span></a>
+</caps-pagination>
 `;

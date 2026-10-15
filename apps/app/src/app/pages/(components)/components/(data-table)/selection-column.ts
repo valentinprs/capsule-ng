@@ -10,9 +10,10 @@ import type { DataTableFeatures, Payment } from './data-table.preview';
 	},
 	template: `
 		<caps-checkbox
-			aria-label="Select all"
-			[checked]="table().getIsAllRowsSelected()"
-			[indeterminate]="table().getIsSomeRowsSelected() && !table().getIsAllPageRowsSelected()"
+			aria-label="Select all rows on this page"
+			[checked]="table().getIsAllPageRowsSelected()"
+			[indeterminate]="table().getIsSomePageRowsSelected() && !table().getIsAllPageRowsSelected()"
+			[disabled]="table().getRowModel().rows.length === 0"
 			(checkedChange)="table().toggleAllPageRowsSelected($event)"
 		/>
 	`,
@@ -28,7 +29,7 @@ export class TableHeadSelection {
 	},
 	template: `
 		<caps-checkbox
-			aria-label="Select row"
+			[aria-label]="'Select row ' + row().id"
 			[checked]="row().getIsSelected()"
 			(checkedChange)="row().toggleSelected($event)"
 		/>

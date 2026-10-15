@@ -1,36 +1,36 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
 
 @Component({
 	selector: 'spartan-date-and-time-picker',
-	imports: [HlmDatePickerImports, HlmFieldImports, HlmInputImports],
+	imports: [CapsDatePickerImports, CapsFieldImports, CapsInputImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-xs',
 	},
 	template: `
-		<hlm-field-group class="mx-auto max-w-xs flex-row">
-			<hlm-field>
-				<label hlmFieldLabel for="date-picker">Date</label>
-				<hlm-date-picker [minDate]="minDate" [maxDate]="maxDate">
-					<hlm-date-picker-trigger buttonId="date-picker">Select date</hlm-date-picker-trigger>
-				</hlm-date-picker>
-			</hlm-field>
+		<caps-field-group class="mx-auto max-w-xs flex-row">
+			<caps-field>
+				<caps-field-label>Date</caps-field-label>
+				<caps-date-picker [minDate]="minDate" [maxDate]="maxDate">
+					<caps-date-picker-trigger buttonId="date-picker">Select date</caps-date-picker-trigger>
+				</caps-date-picker>
+			</caps-field>
 
-			<hlm-field>
-				<label hlmFieldLabel for="time-picker">Time</label>
+			<caps-field>
+				<caps-field-label>Time</caps-field-label>
 				<input
-					hlmInput
+					capsInput
 					id="time-picker"
 					type="time"
 					step="1"
 					[defaultValue]="'10:30:00'"
 					class="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 				/>
-			</hlm-field>
-		</hlm-field-group>
+			</caps-field>
+		</caps-field-group>
 	`,
 })
 export class DateAndTimePickerExample {

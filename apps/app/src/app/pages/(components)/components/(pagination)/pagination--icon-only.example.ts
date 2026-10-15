@@ -1,32 +1,18 @@
 import { Component } from '@angular/core';
-import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
+import { CapsPaginationImports } from '@capsule-ng/caps/pagination';
 
 @Component({
 	selector: 'spartan-pagination-icon-only',
-	imports: [HlmPaginationImports],
+	imports: [CapsPaginationImports],
 	template: `
-		<nav hlmPagination>
-			<ul hlmPaginationContent>
-				<li hlmPaginationItem>
-					<hlm-pagination-previous iconOnly="true" link="/components/menubar" />
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#">1</a>
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#" isActive>2</a>
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#">3</a>
-				</li>
-				<li hlmPaginationItem>
-					<hlm-pagination-ellipsis />
-				</li>
-				<li hlmPaginationItem>
-					<hlm-pagination-next iconOnly="true" link="/components/popover" />
-				</li>
-			</ul>
-		</nav>
+		<caps-pagination>
+			<a capsPaginationPrevious href="/components/menubar"><span class="sr-only">Previous</span></a>
+			<a capsPaginationLink href="#">1</a>
+			<a capsPaginationLink href="#" isActive>2</a>
+			<a capsPaginationLink href="#">3</a>
+			<caps-pagination-ellipsis />
+			<a capsPaginationNext href="/components/popover"><span class="sr-only">Next</span></a>
+		</caps-pagination>
 	`,
 })
 export class PaginationIconOnly {}

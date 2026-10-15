@@ -1,36 +1,38 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmSheetImports } from '@spartan-ng/helm/sheet';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsSheetImports } from '@capsule-ng/caps/sheet';
 
 @Component({
 	selector: 'spartan-sheet-from-dropdown-preview',
-	imports: [HlmSheetImports, HlmDropdownMenuImports, HlmButtonImports],
+	imports: [CapsSheetImports, CapsDropdownMenuImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="menu">Options</button>
+		<button #options capsButton variant="outline" [capsDropdownMenuTrigger]="menu">Options</button>
 
 		<!-- Keep the sheet outside the dropdown's ng-template so closing the menu does not destroy it. -->
-		<hlm-sheet #sheet="hlmSheet" side="right">
-			<hlm-sheet-content *hlmSheetPortal="let ctx">
-				<hlm-sheet-header>
-					<h3 hlmSheetTitle>Edit Profile</h3>
-					<p hlmSheetDescription>Make changes to your profile here. Click save when you're done.</p>
-				</hlm-sheet-header>
-				<hlm-sheet-footer>
-					<button hlmBtn type="submit">Save Changes</button>
-					<button hlmSheetClose hlmBtn variant="outline">Close</button>
-				</hlm-sheet-footer>
-			</hlm-sheet-content>
-		</hlm-sheet>
+		<caps-sheet #sheet="capsSheet" [restoreFocus]="options">
+			<ng-template capsSheetContent side="right">
+				<caps-sheet-header>
+					<caps-sheet-title>Edit Profile</caps-sheet-title>
+					<caps-sheet-description>
+						Make changes to your profile here. Click save when you're done.
+					</caps-sheet-description>
+				</caps-sheet-header>
+				<caps-sheet-footer>
+					<button capsButton type="submit">Save Changes</button>
+					<button capsSheetClose capsButton variant="outline">Close</button>
+				</caps-sheet-footer>
+			</ng-template>
+		</caps-sheet>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-40">
-				<button hlmDropdownMenuItem (click)="sheet.open()">Edit Profile</button>
-				<button hlmDropdownMenuItem>Duplicate</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>Delete</button>
-			</hlm-dropdown-menu>
+			<caps-menu class="w-40">
+				<button capsMenuItem (itemClick)="sheet.show()">Edit Profile</button>
+				<button capsMenuItem>Duplicate</button>
+				<caps-menu-separator />
+				<button capsMenuItem>Delete</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

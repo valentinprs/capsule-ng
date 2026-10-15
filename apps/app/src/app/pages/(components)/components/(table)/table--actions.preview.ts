@@ -1,52 +1,59 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMoreHorizontal } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 
 @Component({
 	selector: 'spartan-table-actions',
-	imports: [HlmTableImports, HlmButtonImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsTableImports, CapsButtonImports, CapsDropdownMenuImports, NgIcon],
 	providers: [provideIcons({ lucideMoreHorizontal })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full',
 	},
 	template: `
-		<div hlmTableContainer>
-			<table hlmTable>
-				<thead hlmTableHeader>
-					<tr hlmTableRow>
-						<th hlmTableHead>Product</th>
-						<th hlmTableHead>Price</th>
-						<th hlmTableHead class="text-right">Actions</th>
+		<caps-table-container>
+			<table capsTable>
+				<caption>Products and row actions</caption>
+				<thead>
+					<tr>
+						<th scope="col">Product</th>
+						<th scope="col">Price</th>
+						<th scope="col" class="text-right">Actions</th>
 					</tr>
 				</thead>
-				<tbody hlmTableBody>
+				<tbody>
 					@for (product of _products; track product.name) {
-						<tr hlmTableRow>
-							<td hlmTableCell class="font-medium">{{ product.name }}</td>
-							<td hlmTableCell>{{ product.price }}</td>
-							<td hlmTableCell class="text-right">
-								<button hlmBtn variant="ghost" size="icon-sm" [hlmDropdownMenuTrigger]="menu" align="end">
+						<tr>
+							<th scope="row" class="font-medium">{{ product.name }}</th>
+							<td>{{ product.price }}</td>
+							<td class="text-right">
+								<button
+									capsButton
+									variant="ghost"
+									size="icon-sm"
+									[capsDropdownMenuTrigger]="menu"
+									placement="bottom-end"
+								>
 									<ng-icon name="lucideMoreHorizontal" />
-									<span class="sr-only">Open menu</span>
+									<span class="sr-only">Actions for {{ product.name }}</span>
 								</button>
 							</td>
 						</tr>
 					}
 				</tbody>
 			</table>
-		</div>
+		</caps-table-container>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<button hlmDropdownMenuItem>Edit</button>
-				<button hlmDropdownMenuItem>Duplicate</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem variant="destructive">Delete</button>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<button capsMenuItem>Edit</button>
+				<button capsMenuItem>Duplicate</button>
+				<caps-menu-separator />
+				<button capsMenuItem danger>Delete</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

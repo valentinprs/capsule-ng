@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsEmptyImports } from '@capsule-ng/caps/empty';
+import { CapsMessageScrollerImports } from '@capsule-ng/caps/message-scroller';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideMessageCircleDashed, lucideRotateCw } from '@ng-icons/lucide';
-import { HlmEmptyImports } from '@spartan-ng/helm/empty';
-import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { ANIMATION_SCRIPT, ScriptedChatRunner } from './message-scroller.shared';
 
@@ -59,10 +59,10 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 @Component({
 	selector: 'spartan-message-scroller-animation-preview',
 	imports: [
-		HlmMessageScrollerImports,
+		CapsMessageScrollerImports,
 		CapsCardImports,
 		CapsButtonImports,
-		HlmEmptyImports,
+		CapsEmptyImports,
 		CapsSelectImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
@@ -97,40 +97,34 @@ const ANIMATION_PRESETS: AnimationPreset[] = [
 
 				<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
 					@if (_chat.messages().length === 0) {
-						<hlm-empty class="h-full">
-							<hlm-empty-header>
-								<hlm-empty-media variant="icon">
-									<ng-icon name="lucideMessageCircleDashed" />
-								</hlm-empty-media>
-								<div hlmEmptyTitle>No Messages Yet</div>
-								<div hlmEmptyDescription>Click the button below to send the first message.</div>
-							</hlm-empty-header>
-						</hlm-empty>
+						<caps-empty class="h-full">
+							<caps-empty-media variant="icon">
+								<ng-icon aria-hidden="true" name="lucideMessageCircleDashed" />
+							</caps-empty-media>
+							<caps-empty-title>No Messages Yet</caps-empty-title>
+							<caps-empty-description>Click the button below to send the first message.</caps-empty-description>
+						</caps-empty>
 					} @else {
-						<div hlmMessageScrollerProvider>
-							<div hlmMessageScroller>
-								<div hlmMessageScrollerViewport>
-									<div
-										hlmMessageScrollerContent
-										class="p-(--card-spacing)"
-										[attr.aria-busy]="_chat.isBusy() ? 'true' : null"
-									>
-										@for (message of _chat.messages(); track message.id) {
-											<spartan-message-scroller-transcript-row
-												[messageId]="message.id"
-												[role]="message.role"
-												[text]="message.text"
-												[scrollAnchor]="message.role === 'user'"
-												userVariant="muted"
-												assistantVariant="ghost"
-												[animationClass]="message.role === 'user' ? _selectedPreset().className : ''"
-											/>
-										}
-									</div>
-								</div>
-								<button hlmMessageScrollerButton></button>
-							</div>
-						</div>
+						<caps-message-scroller
+							aria-label="Animated messages"
+							contentClass="p-(--card-spacing)"
+							[aria-busy]="_chat.isBusy()"
+							[announcement]="_chat.status() === 'ready' && _chat.messages().length ? 'Reply complete' : ''"
+						>
+							@for (message of _chat.messages(); track message.id) {
+								<spartan-message-scroller-transcript-row
+									[messageId]="message.id"
+									[role]="message.role"
+									[text]="message.text"
+									[scrollAnchor]="message.role === 'user'"
+									userVariant="muted"
+									assistantVariant="ghost"
+									[animationClass]="message.role === 'user' ? _selectedPreset().className : ''"
+								/>
+							}
+
+							<button caps-message-scroller-button></button>
+						</caps-message-scroller>
 					}
 				</caps-card-content>
 

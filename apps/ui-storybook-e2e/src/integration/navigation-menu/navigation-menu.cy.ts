@@ -18,6 +18,18 @@ describe('navigation-menu', () => {
 			},
 		});
 
+	const readyNavigation = () => {
+		cy.get('#storybook-root caps-navigation-menu').should('exist');
+		cy.get('#storybook-root').should(($root) => {
+			expect($root[0].closest('[ngh]')).to.equal(null);
+			expect($root[0].querySelector('[ngh]')).to.equal(null);
+		});
+		cy.document().then((doc) => doc.fonts.ready);
+		cy.window().then(
+			(win) => new Promise((resolve) => win.requestAnimationFrame(() => win.requestAnimationFrame(resolve))),
+		);
+	};
+
 	const openHome = () => {
 		cy.findByRole('button', { name: /home/i }).realHover();
 		cy.findByRole('button', { name: /home/i }).should('have.attr', 'aria-expanded', 'true');
@@ -28,6 +40,7 @@ describe('navigation-menu', () => {
 			cy.visit('/iframe.html?id=navigation-menu--default');
 			cy.injectAxe();
 			cy.viewport(1000, 1000);
+			readyNavigation();
 		});
 
 		it('has no a11y violations and wires aria-expanded/controls only while open', () => {
@@ -40,6 +53,43 @@ describe('navigation-menu', () => {
 			openHome();
 			cy.findByRole('link', { name: /introduction/i }).should('be.visible');
 			cy.findByRole('button', { name: /home/i }).should('have.attr', 'aria-controls');
+		});
+
+		it('marks only the explicit current destination and checks the opened Capsule panel', () => {
+			cy.findByRole('link', { name: /^docs$/i })
+				.should('have.attr', 'href', '/docs')
+				.and('have.attr', 'aria-current', 'page');
+			openHome();
+			cy.findByRole('link', { name: /introduction/i }).should('not.have.attr', 'aria-current');
+			cy.get('.caps-navigation-menu-content').should('have.attr', 'role', 'group');
+			cy.checkA11y('.caps-navigation-menu-content', {
+				rules: { 'page-has-heading-one': { enabled: false }, 'landmark-one-main': { enabled: false } },
+			});
+		});
+
+		it('keeps opened navigation inside a mobile viewport in light and dark themes', () => {
+			cy.viewport(390, 844);
+			for (const theme of ['light', 'dark']) {
+				cy.document().then((doc) => {
+					for (const el of doc.querySelectorAll('.light,.dark')) el.classList.remove('light', 'dark');
+					doc.documentElement.classList.add(theme);
+					doc.body.classList.add(theme);
+				});
+				// Escape closes the panel while the pointer remains over Home; produce a new hover entry.
+				cy.get('body').realHover({ position: 'bottomRight' });
+				openHome();
+				cy.get('.caps-navigation-menu-content')
+					.should('be.visible')
+					.then((panel) => {
+						const rect = panel[0].getBoundingClientRect();
+						expect(rect.left).to.be.at.least(0);
+						expect(rect.right).to.be.at.most(390);
+					});
+				cy.checkA11y('.caps-navigation-menu-content');
+				cy.findByRole('link', { name: /introduction/i }).focus();
+				pressKey({ key: 'Escape' });
+				cy.findByRole('button', { name: /home/i }).should('have.attr', 'aria-expanded', 'false');
+			}
 		});
 
 		it('renders a single chevron per trigger', () => {
@@ -107,6 +157,7 @@ describe('navigation-menu', () => {
 			cy.visit('/iframe.html?id=navigation-menu--click-to-open');
 			cy.injectAxe();
 			cy.viewport(1000, 1000);
+			readyNavigation();
 		});
 
 		it('opens on click and toggles closed on a second click', () => {

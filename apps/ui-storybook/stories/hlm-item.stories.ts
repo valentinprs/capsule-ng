@@ -1,5 +1,6 @@
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsItem, CapsItemImports } from '@capsule-ng/caps/item';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
@@ -10,7 +11,6 @@ import {
 	lucidePlus,
 	lucideShieldAlert,
 } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { moduleMetadata } from '@storybook/angular';
 
@@ -20,7 +20,7 @@ export default {
 	tags: ['autodocs'],
 	decorators: [
 		moduleMetadata({
-			imports: [CapsItemImports, CapsButtonImports, NgIcon, CapsAvatarImports, HlmDropdownMenuImports],
+			imports: [CapsItemImports, CapsButtonImports, NgIcon, CapsAvatarImports, CapsDropdownMenuImports],
 			providers: [
 				provideIcons({
 					lucideBadgeCheck,
@@ -145,15 +145,15 @@ export const Dropdown: Story = {
 		},
 		template: `
 		<div class="flex min-h-64 w-full max-w-md flex-col items-center gap-6 p-4">
-			<button capsButton variant="outline" size="sm" [hlmDropdownMenuTrigger]="peopleTemplate" class="w-fit" align="end">
+			<button capsButton variant="outline" size="sm" [capsDropdownMenuTrigger]="peopleTemplate" class="w-fit" placement="bottom-end">
 				Select
 				<ng-icon name="lucideChevronDown" />
 			</button>
 
 			<ng-template #peopleTemplate>
-				<hlm-dropdown-menu class="w-48">
+				<caps-menu class="w-48">
 					@for (person of people; track person.email) {
-						<button hlmDropdownMenuItem class="p-0 w-full">
+						<button capsMenuItem class="p-0 w-full">
 							<caps-item class="w-full p-2">
 								<caps-item-media>
 									<caps-avatar class="size-8">
@@ -170,7 +170,7 @@ export const Dropdown: Story = {
 							</caps-item>
 						</button>
 					}
-				</hlm-dropdown-menu>
+				</caps-menu>
 			</ng-template>
 		</div>
 		`,

@@ -120,6 +120,36 @@ describe('calendar', () => {
 				.should('have.focus');
 		});
 
+		it('preserves PageUp/PageDown focus and selects with Space', () => {
+			cy.get('[brnCalendarCellButton][aria-selected="true"]').focus();
+			for (let step = 0; step < 4; step++) {
+				cy.realPress('ArrowRight');
+				cy.get('[brnCalendarCellButton][tabindex="0"]').should('have.focus');
+			}
+			cy.get('[brnCalendarCellButton][aria-label="Wednesday, 5 Jun 2024"]').should('have.focus');
+			cy.realPress('PageUp');
+			cy.get('[brnCalendarCellButton][aria-label="Sunday, 5 May 2024"]').should('have.focus');
+			cy.realPress('PageDown');
+			cy.get('[brnCalendarCellButton][aria-label="Wednesday, 5 Jun 2024"]').should('have.focus');
+			cy.realPress('Space');
+			cy.get('[brnCalendarCellButton][aria-label="Wednesday, 5 Jun 2024"]').should(
+				'have.attr',
+				'aria-selected',
+				'true',
+			);
+		});
+
+		it('disables navigation and native dates beyond min/max', () => {
+			cy.get('[brnCalendarPreviousButton]').click();
+			cy.get('[brnCalendarPreviousButton]').should('be.disabled');
+			cy.get('[brnCalendarHeader]').should('contain.text', 'May 2024');
+			cy.get('[brnCalendarNextButton]').click();
+			cy.get('[brnCalendarNextButton]').click();
+			cy.get('[brnCalendarHeader]').should('contain.text', 'July 2024');
+			cy.get('[brnCalendarNextButton]').should('be.disabled');
+			cy.get('[brnCalendarCellButton][aria-label="Tuesday, 2 Jul 2024"]').should('be.disabled');
+		});
+
 		it('should allow keyboard navigation on home and end', () => {
 			cy.get('[brnCalendarCellButton]')
 				.filter((_, element) => {
@@ -144,4 +174,18 @@ describe('calendar', () => {
 				.should('have.focus');
 		});
 	});
+});
+
+describe('Capsule Calendar variants', () => {
+	for (const story of ['multiple', 'range', 'dropdown', 'month-year', 'rtl', 'disabled']) {
+		it(`owns accessible grids and native controls in ${story}`, () => {
+			cy.visit(`/iframe.html?id=calendar--${story}`);
+			cy.injectAxe();
+			cy.get('[role=grid]').should('have.attr', 'aria-label');
+			cy.get('button[role=gridcell]').should('have.length.greaterThan', 7);
+			if (story === 'disabled')
+				cy.get('button[role=gridcell]').each(($button) => expect($button.prop('disabled')).to.equal(true));
+			cy.checkA11y();
+		});
+	}
 });

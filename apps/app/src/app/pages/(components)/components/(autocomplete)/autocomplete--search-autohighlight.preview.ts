@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
 
 interface Tag {
 	id: string;
@@ -8,7 +8,7 @@ interface Tag {
 
 @Component({
 	selector: 'spartan-autocomplete-search-autohighlight-preview',
-	imports: [HlmAutocompleteImports],
+	imports: [CapsAutocompleteImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<p class="mb-4">
@@ -16,19 +16,18 @@ interface Tag {
 			{{ value() }}
 		</p>
 
-		<hlm-autocomplete-search [(value)]="value" [(search)]="search" autoHighlight>
-			<hlm-autocomplete-input placeholder="Search tags" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No tags found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
-					@for (tag of filteredOptions(); track $index) {
-						<hlm-autocomplete-item [value]="tag">
-							{{ tag.value }}
-						</hlm-autocomplete-item>
-					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete-search>
+		<caps-autocomplete-search [(value)]="value" [(search)]="search" autoHighlight>
+			<caps-autocomplete-input placeholder="Search tags" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No tags found.</caps-autocomplete-empty>
+
+				@for (tag of filteredOptions(); track $index) {
+					<caps-autocomplete-option [value]="tag">
+						{{ tag.value }}
+					</caps-autocomplete-option>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete-search>
 	`,
 })
 export class AutocompleteSearchAutohighlightPreview {

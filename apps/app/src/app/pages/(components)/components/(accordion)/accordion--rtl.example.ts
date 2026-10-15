@@ -1,30 +1,33 @@
 import { Directionality } from '@angular/cdk/bidi';
-import { Component, computed, effect, inject, untracked } from '@angular/core';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
+import { Component, computed, effect, inject, signal, untracked } from '@angular/core';
+import { CapsAccordionImports } from '@capsule-ng/caps/accordion';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-accordion-rtl',
-	imports: [HlmAccordionImports],
+	imports: [CapsAccordionImports],
 	providers: [Directionality],
 	host: {
-		class: 'max-w-sm h-[250px]',
+		class: 'block max-w-sm',
 		'[dir]': '_dir()',
 	},
 	template: `
-		<hlm-accordion>
+		<caps-accordion>
 			@for (item of _items; track item.value) {
-				<hlm-accordion-item>
-					<hlm-accordion-trigger>{{ _t()[item.questionKey] }}</hlm-accordion-trigger>
-					<hlm-accordion-content>
-						{{ _t()[item.answerKey] }}
-					</hlm-accordion-content>
-				</hlm-accordion-item>
+				<caps-accordion-item
+					[title]="_t()[item.questionKey]"
+					[id]="'accordion--rtl-example-' + item.value"
+					[expanded]="_activeItem() === 'accordion--rtl-example-' + item.value"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					{{ _t()[item.answerKey] }}
+				</caps-accordion-item>
 			}
-		</hlm-accordion>
+		</caps-accordion>
 	`,
 })
 export class AccordionRtl {
+	protected readonly _activeItem = signal<string | null>(null);
 	private readonly _directionality = inject(Directionality);
 	private readonly _language = inject(TranslateService).language;
 	private readonly _translations: Translations = {

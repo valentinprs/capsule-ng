@@ -1,15 +1,15 @@
 import { Component, input } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUpDown } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { type Column } from '@tanstack/angular-table';
 import type { DataTableFeatures, Payment } from './data-table.preview';
 
 @Component({
-	imports: [HlmButtonImports, NgIcon],
+	imports: [CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideArrowUpDown })],
 	template: `
-		<button hlmBtn size="sm" variant="ghost" class="capitalize" (click)="filterClick()">
+		<button type="button" capsButton size="sm" variant="ghost" class="capitalize" (click)="filterClick()">
 			{{ column().id }}
 			<ng-icon name="lucideArrowUpDown" />
 		</button>

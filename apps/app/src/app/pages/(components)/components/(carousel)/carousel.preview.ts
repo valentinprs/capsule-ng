@@ -1,17 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
+import { CapsCarouselImports } from '@capsule-ng/caps/carousel';
 
 @Component({
 	selector: 'spartan-carousel-preview',
-	imports: [HlmCarouselImports, CapsCardImports],
+	imports: [CapsCarouselImports, CapsCardImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'flex w-full items-center justify-center p-4' },
 	template: `
-		<hlm-carousel class="w-full max-w-48 sm:max-w-xs">
-			<hlm-carousel-content>
+		<caps-carousel aria-label="Resource overview" class="w-full max-w-48 sm:max-w-xs">
+			<caps-carousel-content>
 				@for (item of items; track item) {
-					<hlm-carousel-item>
+					<caps-carousel-item>
 						<div class="p-1">
 							<caps-card>
 								<caps-card-content class="flex aspect-square items-center justify-center p-6">
@@ -19,12 +20,14 @@ import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
 								</caps-card-content>
 							</caps-card>
 						</div>
-					</hlm-carousel-item>
+					</caps-carousel-item>
 				}
-			</hlm-carousel-content>
-			<button hlm-carousel-previous></button>
-			<button hlm-carousel-next></button>
-		</hlm-carousel>
+			</caps-carousel-content>
+			<div class="mt-3 flex justify-center gap-2">
+				<button capsButton capsCarouselPrevious variant="outline">Previous</button>
+				<button capsButton capsCarouselNext variant="outline">Next</button>
+			</div>
+		</caps-carousel>
 	`,
 })
 export class CarouselPreview {
@@ -32,17 +35,18 @@ export class CarouselPreview {
 }
 
 export const defaultImports = `
-import { HlmCarouselImports } from '@spartan-ng/helm/carousel';
+import { CapsCarouselImports } from '@capsule-ng/caps/carousel';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 `;
 
 export const defaultSkeleton = `
-<hlm-carousel>
-  <hlm-carousel-content>
-    <hlm-carousel-item>
+<caps-carousel aria-label="Resources">
+  <caps-carousel-content>
+    <caps-carousel-item>
       Item Content
-    </hlm-carousel-item>
-  </hlm-carousel-content>
-  <button hlm-carousel-previous></button>
-  <button hlm-carousel-next></button>
-</hlm-carousel>
+    </caps-carousel-item>
+  </caps-carousel-content>
+  <button capsButton capsCarouselPrevious variant="outline">Previous</button>
+  <button capsButton capsCarouselNext variant="outline">Next</button>
+</caps-carousel>
 `;

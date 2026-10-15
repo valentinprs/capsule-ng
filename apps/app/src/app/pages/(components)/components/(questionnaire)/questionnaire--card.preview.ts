@@ -1,21 +1,22 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
-import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
+import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
+import { toast } from '@capsule-ng/caps/sonner';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({
 	selector: 'spartan-questionnaire-card-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports, CapsCardImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full justify-center py-6',
 	},
 	template: `
 		<form
-			hlmQuestionnaire
+			capsQuestionnaire
 			class="mx-auto max-w-md"
 			[formRoot]="form"
 			[items]="items"
@@ -23,61 +24,47 @@ import { answerLabel } from './questionnaire.shared';
 			shortcuts="numbers"
 		>
 			<caps-card>
-				<fieldset hlmQuestionnaireItem name="task" required aria-labelledby="task-title" [formField]="form.task">
-					<caps-card-header>
-						<caps-card-title hlmQuestionnaireTitle id="task-title">What should the agent work on?</caps-card-title>
-						<caps-card-description hlmQuestionnaireDescription>
+				<caps-card-header><caps-questionnaire-progress /></caps-card-header>
+				<caps-card-content>
+					<caps-questionnaire-item name="task" required [formField]="form.task">
+						<caps-questionnaire-title>What should the agent work on?</caps-questionnaire-title>
+						<caps-questionnaire-description>
 							Choose the task that should be handled next.
-						</caps-card-description>
-						<caps-card-action>
-							<div hlmQuestionnaireProgress></div>
-						</caps-card-action>
-					</caps-card-header>
-					<caps-card-content>
-						<div hlmQuestionnaireChoices>
-							<label hlmQuestionnaireChoice value="fix">Fix the failing tests</label>
-							<label hlmQuestionnaireChoice value="refactor">Refactor the data layer</label>
-							<label hlmQuestionnaireChoice value="docs">Update the integration guide</label>
-						</div>
-						<p hlmQuestionnaireError></p>
-					</caps-card-content>
-				</fieldset>
+						</caps-questionnaire-description>
 
-				<fieldset hlmQuestionnaireItem name="output" required aria-labelledby="output-title" [formField]="form.output">
-					<caps-card-header>
-						<caps-card-title hlmQuestionnaireTitle id="output-title">
-							What should the final handoff include?
-						</caps-card-title>
-						<caps-card-description hlmQuestionnaireDescription>
-							Pick the level of detail needed for review.
-						</caps-card-description>
-						<caps-card-action>
-							<div hlmQuestionnaireProgress></div>
-						</caps-card-action>
-					</caps-card-header>
-					<caps-card-content>
-						<div hlmQuestionnaireChoices>
-							<label hlmQuestionnaireChoice value="summary">Summary only</label>
-							<label hlmQuestionnaireChoice value="files">Summary and changed files</label>
-							<label hlmQuestionnaireChoice value="review">Full review handoff</label>
-						</div>
-						<p hlmQuestionnaireError></p>
-					</caps-card-content>
-				</fieldset>
+						<caps-questionnaire-choices>
+							<caps-questionnaire-choice value="fix">Fix the failing tests</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="refactor">Refactor the data layer</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="docs">Update the integration guide</caps-questionnaire-choice>
+						</caps-questionnaire-choices>
+						<caps-questionnaire-error></caps-questionnaire-error>
+					</caps-questionnaire-item>
 
+					<caps-questionnaire-item name="output" required [formField]="form.output">
+						<caps-questionnaire-title>What should the final handoff include?</caps-questionnaire-title>
+						<caps-questionnaire-description>Pick the level of detail needed for review.</caps-questionnaire-description>
+
+						<caps-questionnaire-choices>
+							<caps-questionnaire-choice value="summary">Summary only</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="files">Summary and changed files</caps-questionnaire-choice>
+							<caps-questionnaire-choice value="review">Full review handoff</caps-questionnaire-choice>
+						</caps-questionnaire-choices>
+						<caps-questionnaire-error></caps-questionnaire-error>
+					</caps-questionnaire-item>
+				</caps-card-content>
 				<caps-card-footer>
-					<div hlmQuestionnaireActions class="w-full">
-						<button hlmQuestionnairePrevious>Previous</button>
-						<button hlmQuestionnaireNext>Next</button>
-						<button hlmQuestionnaireSubmit>Create task</button>
-					</div>
+					<caps-questionnaire-actions class="w-full">
+						<button capsQuestionnairePrevious capsButton variant="outline">Previous</button>
+						<button capsQuestionnaireNext capsButton>Next</button>
+						<button capsQuestionnaireSubmit capsButton>Create task</button>
+					</caps-questionnaire-actions>
 				</caps-card-footer>
 			</caps-card>
 		</form>
 	`,
 })
 export class QuestionnaireCardPreview {
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
+	public readonly items: readonly CapsQuestionnaireItemDefinition[] = [
 		{
 			name: 'task',
 			required: true,

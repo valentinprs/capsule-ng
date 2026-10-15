@@ -1,5 +1,7 @@
-import { type Tree, readJson } from '@nx/devkit';
+import { type Tree, readJson, workspaceRoot } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 import { extractPrimitiveCodeGenerator } from './generator';
 
@@ -75,6 +77,26 @@ describe('extractPrimitiveCodeGenerator', () => {
 
 		expect(toggle['toggle']['default']).toContain('spartan-toggle-preview');
 		expect(toggle['toggle']['disabled']).toContain('spartan-toggle-disabled');
+	});
+
+	it('generates all Capsule chart compositions with exact-value alternatives', async () => {
+		for (const filename of [
+			'chart.preview.ts',
+			'chart--line.example.ts',
+			'chart--legend.example.ts',
+			'chart--empty.example.ts',
+		]) {
+			const path = `${componentsBasePath}/(chart)/${filename}`;
+			tree.write(path, readFileSync(join(workspaceRoot, path), 'utf8'));
+		}
+		await extractPrimitiveCodeGenerator(tree);
+		const snippets = readJson(tree, 'apps/app/src/public/data/primitives-snippets/chart.json')['chart'];
+		for (const key of ['default', 'line', 'legend', 'empty']) {
+			expect(snippets[key]).toContain('@capsule-ng/caps/chart');
+			expect(snippets[key]).toContain('<caps-chart');
+			expect(snippets[key]).not.toMatch(/hlmChart|HlmChart|HLM_CHART|@spartan-ng\/helm\/chart/);
+			expect(snippets[key]).toContain('<table');
+		}
 	});
 
 	describe('preview (default) snippet', () => {

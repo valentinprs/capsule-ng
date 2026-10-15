@@ -1,6 +1,7 @@
 import type { RouteMeta } from '@analogjs/router';
-import { Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { DatePickerFormRangeExample } from '@spartan-ng/app/app/pages/(components)/components/(date-picker)/date-picker--form-range.example';
@@ -11,7 +12,6 @@ import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { MainSection } from '@spartan-ng/app/app/shared/layout/main-section';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { HlmButton } from '@spartan-ng/helm/button';
 import { hlmCode, hlmP, hlmUl } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { PageBottomNav } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav';
@@ -56,7 +56,7 @@ export const routeMeta: RouteMeta = {
 		MainSection,
 		PageNav,
 		RouterLink,
-		HlmButton,
+		CapsButton,
 		RtlHeader,
 		CodeRtlPreview,
 		SectionSubSubHeading,
@@ -73,6 +73,7 @@ export const routeMeta: RouteMeta = {
 		DatePickerRtl,
 		DatePickerMonthYearExample,
 	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<section spartanMainSection>
 			<spartan-section-intro name="Date Picker" lead="A date picker component." showThemeToggle />
@@ -87,9 +88,9 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="usage">Usage</spartan-section-sub-heading>
 			<p class="${hlmP}">
 				The Date Picker component is built with the
-				<a routerLink="/components/popover" hlmBtn variant="link" class="${link}">Popover</a>
+				<a routerLink="/components/popover" capsButton variant="link" class="${link}">Popover</a>
 				and the
-				<a routerLink="/components/calendar" hlmBtn variant="link" class="${link}">Calendar</a>
+				<a routerLink="/components/calendar" capsButton variant="link" class="${link}">Calendar</a>
 				components.
 			</p>
 			<div class="mt-6 space-y-4">
@@ -102,7 +103,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP} mb-6">
 				Use
-				<code class="${hlmCode}">provideHlmDatePickerConfig</code>
+				<code class="${hlmCode}">provideCapsDatePickerConfig</code>
 				to provide custom configs for the date picker component throughout the application.
 			</p>
 			<ul class="${hlmUl}">
@@ -133,7 +134,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP} mb-6">
 				Use
-				<code class="${hlmCode}">hlm-date-picker-multi</code>
+				<code class="${hlmCode}">caps-date-picker-multi</code>
 				for multiple date selection. Limit the selectable dates using
 				<code class="${hlmCode}">minSelection</code>
 				and
@@ -152,12 +153,10 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP} mb-6">
 				Use
-				<code class="${hlmCode}">hlm-date-range-picker</code>
-				for range date selection. Set the range by using
-				<code class="${hlmCode}">startDate</code>
-				and
-				<code class="${hlmCode}">endDate</code>
-				inputs.
+				<code class="${hlmCode}">caps-date-range-picker</code>
+				for range date selection. Set the complete interval using
+				<code class="${hlmCode}">date: [T, T]</code>
+				input.
 			</p>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -184,13 +183,13 @@ export const routeMeta: RouteMeta = {
 			<h3 id="input-picker" spartanH4>Input Picker</h3>
 			<p class="${hlmP} mb-6">
 				Use
-				<code class="${hlmCode}">hlm-date-picker-input</code>
+				<code class="${hlmCode}">caps-date-picker-input</code>
 				instead of
-				<code class="${hlmCode}">hlm-date-picker-trigger</code>
+				<code class="${hlmCode}">caps-date-picker-trigger</code>
 				to let users type a date directly. Provide a
 				<code class="${hlmCode}">parseDate</code>
 				input (or set it globally via
-				<code class="${hlmCode}">provideHlmDatePickerConfig</code>
+				<code class="${hlmCode}">provideCapsDatePickerConfig</code>
 				) to control how typed strings are parsed into dates - typically pair it with a matching
 				<code class="${hlmCode}">formatDate</code>
 				.
@@ -221,9 +220,9 @@ export const routeMeta: RouteMeta = {
 			<h3 id="form" spartanH4>Form</h3>
 			<p class="${hlmP} mb-6">
 				Sync the date to a form by adding
-				<code class="${hlmCode}">formControlName</code>
+				<code class="${hlmCode}">formField</code>
 				to
-				<code class="${hlmCode}">hlm-date-picker</code>
+				<code class="${hlmCode}">caps-date-picker</code>
 				.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -236,9 +235,9 @@ export const routeMeta: RouteMeta = {
 			<h3 id="form-input" spartanH4>Form with Input Picker</h3>
 			<p class="${hlmP} mb-6">
 				Combine
-				<code class="${hlmCode}">formControlName</code>
+				<code class="${hlmCode}">formField</code>
 				with
-				<code class="${hlmCode}">hlm-date-picker-input</code>
+				<code class="${hlmCode}">caps-date-picker-input</code>
 				to let users type a date or pick one from the calendar while syncing the value to a reactive form.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -251,9 +250,9 @@ export const routeMeta: RouteMeta = {
 			<h3 id="form-multiple-selection" spartanH4>Form Multiple Selection</h3>
 			<p class="${hlmP} mb-6">
 				Sync the dates to a form by adding
-				<code class="${hlmCode}">formControlName</code>
+				<code class="${hlmCode}">formField</code>
 				to
-				<code class="${hlmCode}">hlm-date-picker-multi</code>
+				<code class="${hlmCode}">caps-date-picker-multi</code>
 				.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -266,9 +265,9 @@ export const routeMeta: RouteMeta = {
 			<h3 id="form-range" spartanH4>Form Range Picker</h3>
 			<p class="${hlmP} mb-6">
 				Sync the dates to a form by adding
-				<code class="${hlmCode}">formControlName</code>
+				<code class="${hlmCode}">formField</code>
 				to
-				<code class="${hlmCode}">hlm-date-range-picker</code>
+				<code class="${hlmCode}">caps-date-range-picker</code>
 				.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
@@ -286,8 +285,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="dialog" label="Dialog" />

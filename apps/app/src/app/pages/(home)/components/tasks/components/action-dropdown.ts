@@ -1,62 +1,59 @@
 import { Component, computed, input } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { type Row } from '@tanstack/angular-table';
 import type { Task } from '../services/tasks.models';
 import { type TaskFeatures } from '../tasks';
 
 @Component({
 	selector: 'spartan-action-dropdown-tasks',
-	imports: [HlmButton, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsButton, NgIcon, CapsDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: `
-		<button hlmBtn size="icon-sm" variant="ghost" align="end" [hlmDropdownMenuTrigger]="menu">
+		<button
+			capsButton
+			size="icon-sm"
+			variant="ghost"
+			[attr.aria-label]="'Open menu for row ' + row().id"
+			[capsDropdownMenuTrigger]="menu"
+			placement="bottom-end"
+		>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-label>Actions</hlm-dropdown-menu-label>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>Edit</button>
-					<button hlmDropdownMenuItem>Make a copy</button>
-					<button hlmDropdownMenuItem>Favorite</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem [hlmDropdownMenuTrigger]="labels" side="left" align="end">
-						Labels
-						<ng-icon name="lucideChevronRight" class="ml-auto" />
-					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
-						Delete
-						<span class="ml-auto text-xs tracking-widest opacity-(--caps-opacity-60)">⌘⌫</span>
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<caps-menu-label>Actions</caps-menu-label>
+				<caps-menu-separator />
+				<caps-menu-group>
+					<button capsMenuItem>Edit</button>
+					<button capsMenuItem>Make a copy</button>
+					<button capsMenuItem>Favorite</button>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button [capsMenuSubTrigger]="labels" side="left" align="end">Labels</button>
+				<caps-menu-separator />
+				<button capsMenuItem>
+					Delete
+					<span class="ml-auto text-xs tracking-widest opacity-(--caps-opacity-60)">⌘⌫</span>
+				</button>
+			</caps-menu>
 		</ng-template>
 		<ng-template #labels>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuCheckbox [checked]="_data().type === 'Bug'">
-						<hlm-dropdown-menu-radio-indicator />
+			<caps-menu>
+				<caps-menu-group>
+					<button capsMenuCheckboxItem [checked]="_data().type === 'Bug'">
 						<span>Bug</span>
 					</button>
-					<button hlmDropdownMenuCheckbox [checked]="_data().type === 'Feature'">
-						<hlm-dropdown-menu-radio-indicator />
+					<button capsMenuCheckboxItem [checked]="_data().type === 'Feature'">
 						<span>Feature</span>
 					</button>
-					<button hlmDropdownMenuCheckbox [checked]="_data().type === 'Documentation'">
-						<hlm-dropdown-menu-radio-indicator />
+					<button capsMenuCheckboxItem [checked]="_data().type === 'Documentation'">
 						<span>Documentation</span>
 					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 	`,
 })

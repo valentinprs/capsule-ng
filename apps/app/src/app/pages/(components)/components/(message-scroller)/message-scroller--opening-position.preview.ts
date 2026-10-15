@@ -1,37 +1,33 @@
-import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, signal, viewChild } from '@angular/core';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { injectBrnMessageScroller } from '@spartan-ng/brain/message-scroller';
-import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { CapsMessageScroller, CapsMessageScrollerImports } from '@capsule-ng/caps/message-scroller';
+import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { OPENING_POSITION_SCRIPT } from './message-scroller.shared';
 
 @Component({
 	selector: 'spartan-message-scroller-opening-position-scroller',
-	imports: [HlmMessageScrollerImports, MessageScrollerTranscriptRow],
+	imports: [CapsMessageScrollerImports, MessageScrollerTranscriptRow],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div hlmMessageScroller>
-			<div hlmMessageScrollerViewport>
-				<div hlmMessageScrollerContent class="p-(--card-spacing)">
-					@for (message of _messages; track message.id) {
-						<spartan-message-scroller-transcript-row
-							[messageId]="message.id"
-							[role]="message.role"
-							[text]="message.text"
-							[scrollAnchor]="message.role === 'user'"
-							userVariant="muted"
-							assistantVariant="ghost"
-						/>
-					}
-				</div>
-			</div>
-			<button hlmMessageScrollerButton></button>
-		</div>
+		<caps-message-scroller aria-label="Opening position messages" contentClass="p-(--card-spacing)">
+			@for (message of _messages; track message.id) {
+				<spartan-message-scroller-transcript-row
+					[messageId]="message.id"
+					[role]="message.role"
+					[text]="message.text"
+					[scrollAnchor]="message.role === 'user'"
+					userVariant="muted"
+					assistantVariant="ghost"
+				/>
+			}
+
+			<button caps-message-scroller-button></button>
+		</caps-message-scroller>
 	`,
 })
 export class MessageScrollerOpeningPositionScroller {
-	private readonly _scroller = injectBrnMessageScroller();
+	private readonly _scroller = viewChild(CapsMessageScroller);
 
 	protected readonly _messages = OPENING_POSITION_SCRIPT;
 
@@ -41,9 +37,10 @@ export class MessageScrollerOpeningPositionScroller {
 	constructor() {
 		effect((onCleanup) => {
 			const position = this.position();
+			const scroller = this._scroller();
 			void this.positionKey();
 
-			if (typeof window === 'undefined') {
+			if (!scroller || typeof window === 'undefined') {
 				return;
 			}
 
@@ -52,16 +49,16 @@ export class MessageScrollerOpeningPositionScroller {
 			// end when it thinks the last turn fits).
 			const frame = requestAnimationFrame(() => {
 				if (position === 'start') {
-					this._scroller.scrollToStart({ behavior: 'auto' });
+					scroller.scrollToStart({ behavior: 'auto' });
 					return;
 				}
 
 				if (position === 'end') {
-					this._scroller.scrollToEnd({ behavior: 'auto' });
+					scroller.scrollToEnd({ behavior: 'auto' });
 					return;
 				}
 
-				this._scroller.scrollToMessage('open-3', {
+				scroller.scrollToMessage('open-3', {
 					align: 'start',
 					behavior: 'auto',
 					scrollMargin: 64,
@@ -75,7 +72,12 @@ export class MessageScrollerOpeningPositionScroller {
 
 @Component({
 	selector: 'spartan-message-scroller-opening-position-preview',
-	imports: [CapsCardImports, HlmTabsImports, HlmMessageScrollerImports, MessageScrollerOpeningPositionScroller],
+	imports: [
+		CapsCardImports,
+		CapsToggleGroupImports,
+		CapsMessageScrollerImports,
+		MessageScrollerOpeningPositionScroller,
+	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex w-full max-w-sm flex-col gap-4',
@@ -88,19 +90,21 @@ export class MessageScrollerOpeningPositionScroller {
 			</caps-card-header>
 
 			<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
-				<div hlmMessageScrollerProvider>
-					<spartan-message-scroller-opening-position-scroller [position]="_position()" [positionKey]="_positionKey()" />
-				</div>
+				<spartan-message-scroller-opening-position-scroller [position]="_position()" [positionKey]="_positionKey()" />
 			</caps-card-content>
 
 			<caps-card-footer class="flex items-center justify-center border-t">
-				<hlm-tabs [tab]="_position()" class="w-full" (tabActivated)="onPositionChange($event)">
-					<hlm-tabs-list class="w-full">
-						<button hlmTabsTrigger="start">start</button>
-						<button hlmTabsTrigger="end">end</button>
-						<button hlmTabsTrigger="last-anchor">last-anchor</button>
-					</hlm-tabs-list>
-				</hlm-tabs>
+				<caps-toggle-group
+					type="single"
+					[nullable]="false"
+					aria-label="Transcript opening position"
+					[value]="_position()"
+					(valueChange)="onPositionChange($event)"
+				>
+					<button capsToggleItem value="start">start</button>
+					<button capsToggleItem value="end">end</button>
+					<button capsToggleItem value="last-anchor">last-anchor</button>
+				</caps-toggle-group>
 			</caps-card-footer>
 		</caps-card>
 
@@ -113,7 +117,7 @@ export class MessageScrollerOpeningPositionPreview {
 	protected readonly _position = signal<'start' | 'end' | 'last-anchor'>('last-anchor');
 	protected readonly _positionKey = signal(0);
 
-	protected onPositionChange(value: string): void {
+	protected onPositionChange(value: string | string[] | null | undefined): void {
 		if (value === 'start' || value === 'end' || value === 'last-anchor') {
 			this._position.set(value);
 			this._positionKey.update((key) => key + 1);

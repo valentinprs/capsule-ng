@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsCommandImports } from '@capsule-ng/caps/command';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCalculator,
@@ -12,11 +13,10 @@ import {
 	lucideWallet,
 } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmCommandImports } from '@spartan-ng/helm/command';
 
 @Component({
 	selector: 'spartan-command-rtl',
-	imports: [HlmCommandImports, CapsCardImports, NgIcon],
+	imports: [CapsCommandImports, CapsCardImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideSearch,
@@ -36,49 +36,46 @@ import { HlmCommandImports } from '@spartan-ng/helm/command';
 	template: `
 		<caps-card class="py-0">
 			<caps-card-content class="p-0">
-				<hlm-command>
-					<hlm-command-input [placeholder]="_t()['placeholder']" />
-					<hlm-command-list>
-						<div *hlmCommandEmptyState hlmCommandEmpty>{{ _t()['empty'] }}</div>
-						<hlm-command-group>
-							<hlm-command-group-label>{{ _t()['suggestions'] }}</hlm-command-group-label>
-							<button hlm-command-item value="Calendar">
+				<caps-command>
+					<caps-command-input [placeholder]="_t()['placeholder']" />
+					<caps-command-list>
+						<caps-command-empty>{{ _t()['empty'] }}</caps-command-empty>
+						<caps-command-group label="{{ _t()['suggestions'] }}">
+							<button capsCommandItem value="Calendar">
 								<ng-icon name="lucideCalendar" />
 								{{ _t()['calendar'] }}
 							</button>
-							<button hlm-command-item value="Search Emoji">
+							<button capsCommandItem value="Search Emoji">
 								<ng-icon name="lucideSmile" />
 								{{ _t()['searchEmoji'] }}
 							</button>
-							<button hlm-command-item value="Calculator" disabled>
+							<button capsCommandItem value="Calculator" disabled>
 								<ng-icon name="lucideCalculator" />
 								{{ _t()['calculator'] }}
 							</button>
-						</hlm-command-group>
+						</caps-command-group>
 
-						<hlm-command-separator />
+						<caps-command-separator />
 
-						<hlm-command-group>
-							<hlm-command-group-label>{{ _t()['settings'] }}</hlm-command-group-label>
-
-							<button hlm-command-item value="Profile">
+						<caps-command-group label="{{ _t()['settings'] }}">
+							<button capsCommandItem value="Profile">
 								<ng-icon name="lucideUser" />
 								{{ _t()['profile'] }}
-								<hlm-command-shortcut>⌘P</hlm-command-shortcut>
+								<caps-command-shortcut>⌘P</caps-command-shortcut>
 							</button>
-							<button hlm-command-item value="Billing">
+							<button capsCommandItem value="Billing">
 								<ng-icon name="lucideWallet" />
 								{{ _t()['billing'] }}
-								<hlm-command-shortcut>⌘B</hlm-command-shortcut>
+								<caps-command-shortcut>⌘B</caps-command-shortcut>
 							</button>
-							<button hlm-command-item value="Settings">
+							<button capsCommandItem value="Settings">
 								<ng-icon name="lucideCog" />
 								{{ _t()['settings'] }}
-								<hlm-command-shortcut>⌘S</hlm-command-shortcut>
+								<caps-command-shortcut>⌘S</caps-command-shortcut>
 							</button>
-						</hlm-command-group>
-					</hlm-command-list>
-				</hlm-command>
+						</caps-command-group>
+					</caps-command-list>
+				</caps-command>
 			</caps-card-content>
 		</caps-card>
 	`,

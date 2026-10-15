@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-date-month-year-picker',
-	imports: [HlmDatePickerImports, HlmFieldImports],
+	imports: [CapsDatePickerImports, CapsFieldImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-field>
-			<label hlmFieldLabel>Month Year Picker</label>
-			<hlm-month-year-picker [minDate]="minDate" [maxDate]="maxDate" autoCloseOnSelect>
-				<hlm-date-picker-trigger>Pick a year and month</hlm-date-picker-trigger>
-			</hlm-month-year-picker>
-		</hlm-field>
+		<caps-field>
+			<caps-field-label>Month Year Picker</caps-field-label>
+			<caps-month-year-picker [minDate]="minDate" [maxDate]="maxDate" autoCloseOnSelect>
+				<caps-date-picker-trigger>Pick a year and month</caps-date-picker-trigger>
+			</caps-month-year-picker>
+		</caps-field>
 	`,
 })
 export class DatePickerMonthYearExample {

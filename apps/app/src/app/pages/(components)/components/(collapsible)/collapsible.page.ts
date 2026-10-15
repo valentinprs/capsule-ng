@@ -1,23 +1,23 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
-import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
-import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { CollapsibleAnimatedExample } from '@spartan-ng/app/app/pages/(components)/components/(collapsible)/collapsible--animated.example';
-import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
-import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
 import { hlmCode } from '@spartan-ng/helm/typography';
+import { injectComponentDocs } from '../../../../core/services/component-docs';
+import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
+import { CodeRtlPreview } from '../../../../shared/code/code-rtl-preview';
+import { RtlHeader } from '../../../../shared/code/rtl-header';
 import { MainSection } from '../../../../shared/layout/main-section';
 import { PageBottomNav } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav';
 import { PageBottomNavLink } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav-link';
 import { PageNav } from '../../../../shared/layout/page-nav/page-nav';
 import { SectionIntro } from '../../../../shared/layout/section-intro';
 import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
+import { SectionSubSubHeading } from '../../../../shared/layout/section-sub-sub-heading';
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
+import { CollapsibleAnimatedExample } from './collapsible--animated.example';
 import { CollapsibleDynamic } from './collapsible--dynamic.example';
 import { CollapsibleFileTree } from './collapsible--file-tree.example';
 import { CollapsibleRtl } from './collapsible--rtl.preview';
@@ -131,8 +131,8 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
 			<spartan-ui-api-docs docType="brain" />
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="combobox" label="Combobox" />

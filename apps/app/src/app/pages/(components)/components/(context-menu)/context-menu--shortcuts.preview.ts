@@ -1,50 +1,50 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
 
 @Component({
 	selector: 'spartan-context-menu-shortcuts',
-	imports: [HlmDropdownMenuImports, HlmContextMenuImports],
+	imports: [CapsContextMenuImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div
-			[hlmContextMenuTrigger]="menu"
+			[capsContextMenuTrigger]="menu"
 			align="start"
 			side="right"
 			class="flex aspect-video w-full min-w-xs items-center justify-center rounded-xl border border-dashed text-sm"
+			tabindex="0"
 		>
 			<span class="hidden pointer-fine:inline-block">Right click here</span>
 			<span class="hidden pointer-coarse:inline-block">Long press here</span>
 		</div>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu>
+				<caps-menu-group>
+					<button capsMenuItem>
 						Back
-						<hlm-dropdown-menu-shortcut>⌘[</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘[</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem disabled>
+					<button capsMenuItem disabled>
 						Forward
-						<hlm-dropdown-menu-shortcut>⌘]</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘]</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						Reload
-						<hlm-dropdown-menu-shortcut>⌘R</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘R</caps-menu-shortcut>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group>
+					<button capsMenuItem>
 						Save
-						<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘S</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						Save As...
-						<hlm-dropdown-menu-shortcut>⇧⌘S</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⇧⌘S</caps-menu-shortcut>
 					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 	`,
 })

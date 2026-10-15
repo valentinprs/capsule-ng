@@ -1,18 +1,22 @@
-import { Component } from '@angular/core';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { Component, signal } from '@angular/core';
+import { CapsAlertImports } from '@capsule-ng/caps/alert';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 
 @Component({
 	selector: 'spartan-alert-action',
-	imports: [HlmAlertImports, HlmButtonImports],
+	imports: [CapsAlertImports, CapsButtonImports],
 	template: `
-		<hlm-alert class="max-w-md">
-			<h4 hlmAlertTitle>Dark mode is now available</h4>
-			<p hlmAlertDescription>Enable it under your profile settings to get started.</p>
-			<div hlmAlertAction>
-				<button hlmBtn size="xs">Enable</button>
-			</div>
-		</hlm-alert>
+		<caps-alert class="max-w-md">
+			<caps-alert-title>{{ _enabled() ? 'Dark mode enabled' : 'Dark mode is now available' }}</caps-alert-title>
+			<caps-alert-description>Enable it under your profile settings to get started.</caps-alert-description>
+			<caps-alert-actions>
+				<button type="button" capsButton size="xs" [disabled]="_enabled()" (click)="_enabled.set(true)">
+					{{ _enabled() ? 'Enabled' : 'Enable' }}
+				</button>
+			</caps-alert-actions>
+		</caps-alert>
 	`,
 })
-export class AlertAction {}
+export class AlertAction {
+	protected readonly _enabled = signal(false);
+}

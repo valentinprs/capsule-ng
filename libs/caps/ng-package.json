@@ -5,12 +5,21 @@
 		"entryFile": "src/index.ts"
 	},
 	"assets": [
+		"sidebar.css",
+		"panels.css",
+		"choices.css",
 		"caps-preset.css",
+		"table-pagination.css",
+		"menu.css",
 		"foundations.css",
 		{
 			"input": ".generated/styles",
 			"glob": "*.css",
 			"output": "styles"
-		}
+		},
+		"messages.css",
+		"command.css",
+		"kbd.css",
+		"messages-states.css"
 	]
 }

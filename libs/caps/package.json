@@ -28,7 +28,13 @@
 		"@ng-icons/lucide": ">=32.0.0 <34.0.0",
 		"@spartan-ng/brain": "1.5.0",
 		"@spartan-ng/helm": "0.0.0",
+		"@tanstack/angular-charts": "0.16.0",
+		"@tanstack/charts": "0.16.0",
 		"class-variance-authority": "^0.7.0",
-		"clsx": "^2.1.1"
+		"clsx": "^2.1.1",
+		"embla-carousel": ">=8.6.0 <9.0.0",
+		"embla-carousel-angular": ">=21.0.0 <23.0.0",
+		"ngx-scrollbar": "^19.1.5",
+		"rxjs": ">=6.6.0"
 	}
 }

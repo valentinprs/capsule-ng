@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component, computed, ElementRef, signal, viewChild } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
+import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
-import type { BrnQuestionnaireItemDefinition } from '@spartan-ng/brain/questionnaire';
-import { toast } from '@spartan-ng/brain/sonner';
-import { HlmQuestionnaireImports } from '@spartan-ng/helm/questionnaire';
+import { toast } from '@capsule-ng/caps/sonner';
 import { answerLabel, type QuestionnaireShortcutMode } from './questionnaire.shared';
 
 type ShortcutSelectValue = 'none' | 'letters' | 'numbers';
 @Component({
 	selector: 'spartan-questionnaire-shortcuts-preview',
-	imports: [FormRoot, FormField, HlmQuestionnaireImports, CapsSelectImports],
+	imports: [CapsButtonImports, FormRoot, FormField, CapsQuestionnaireImports, CapsSelectImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'relative flex min-h-[350px] w-full flex-1 self-stretch justify-center py-6',
@@ -33,26 +34,28 @@ type ShortcutSelectValue = 'none' | 'letters' | 'numbers';
 			</caps-select>
 			<form
 				#questionnaireForm
-				hlmQuestionnaire
+				capsQuestionnaire
 				class="mt-auto"
 				[formRoot]="form"
 				[items]="items"
 				defaultItem="action"
 				[shortcuts]="shortcuts()"
 			>
-				<fieldset hlmQuestionnaireItem name="action" required [formField]="form.action">
-					<legend hlmQuestionnaireTitle>What should the agent do next?</legend>
-					<p hlmQuestionnaireDescription>Use the displayed shortcut or navigate with the keyboard.</p>
-					<div hlmQuestionnaireChoices>
-						<label hlmQuestionnaireChoice value="inspect">Inspect the implementation</label>
-						<label hlmQuestionnaireChoice value="tests">Run the relevant tests</label>
-						<label hlmQuestionnaireChoice value="patch">Prepare the patch</label>
-					</div>
-					<p hlmQuestionnaireError></p>
-				</fieldset>
-				<div hlmQuestionnaireActions>
-					<button hlmQuestionnaireSubmit>Confirm action</button>
-				</div>
+				<caps-questionnaire-item name="action" required [formField]="form.action">
+					<caps-questionnaire-title>What should the agent do next?</caps-questionnaire-title>
+					<caps-questionnaire-description>
+						Use the displayed shortcut or navigate with the keyboard.
+					</caps-questionnaire-description>
+					<caps-questionnaire-choices>
+						<caps-questionnaire-choice value="inspect">Inspect the implementation</caps-questionnaire-choice>
+						<caps-questionnaire-choice value="tests">Run the relevant tests</caps-questionnaire-choice>
+						<caps-questionnaire-choice value="patch">Prepare the patch</caps-questionnaire-choice>
+					</caps-questionnaire-choices>
+					<caps-questionnaire-error></caps-questionnaire-error>
+				</caps-questionnaire-item>
+				<caps-questionnaire-actions>
+					<button capsQuestionnaireSubmit capsButton>Confirm action</button>
+				</caps-questionnaire-actions>
 			</form>
 		</div>
 	`,
@@ -60,7 +63,7 @@ type ShortcutSelectValue = 'none' | 'letters' | 'numbers';
 export class QuestionnaireShortcutsPreview {
 	private readonly _questionnaireEl = viewChild<ElementRef<HTMLFormElement>>('questionnaireForm');
 
-	public readonly items: readonly BrnQuestionnaireItemDefinition[] = [
+	public readonly items: readonly CapsQuestionnaireItemDefinition[] = [
 		{
 			name: 'action',
 			required: true,

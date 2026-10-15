@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsInputImports } from '@capsule-ng/caps/input';
 import { CapsInputGroupImports } from '@capsule-ng/caps/input-group';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideSearch } from '@ng-icons/lucide';
-import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 
 @Component({
 	selector: 'spartan-kbd-input-group-preview',
-	imports: [CapsInputImports, HlmKbdImports, CapsInputGroupImports, NgIcon],
+	imports: [CapsInputImports, CapsKbdImports, CapsInputGroupImports, NgIcon],
 	providers: [provideIcons({ lucideSearch })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
@@ -18,8 +18,8 @@ import { HlmKbdImports } from '@spartan-ng/helm/kbd';
 					<ng-icon name="lucideSearch" />
 				</caps-input-group-addon>
 				<caps-input-group-addon align="inline-end">
-					<kbd hlmKbd>⌘</kbd>
-					<kbd hlmKbd>K</kbd>
+					<kbd capsKbd>⌘</kbd>
+					<kbd capsKbd>K</kbd>
 				</caps-input-group-addon>
 			</caps-input-group>
 		</div>

@@ -1,38 +1,38 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmSheetImports } from '@spartan-ng/helm/sheet';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { CapsSheetImports } from '@capsule-ng/caps/sheet';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-sheet-rtl',
-	imports: [HlmSheetImports, HlmFieldImports, HlmButtonImports, HlmInputImports],
+	imports: [CapsSheetImports, CapsFieldImports, CapsButtonImports, CapsInputImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-sheet [side]="_dir() === 'rtl' ? 'left' : 'right'" [dir]="_dir()">
-			<button hlmSheetTrigger hlmBtn variant="outline">{{ _t()['open'] }}</button>
-			<hlm-sheet-content *hlmSheetPortal="let ctx" [dir]="_dir()">
-				<hlm-sheet-header>
-					<h3 hlmSheetTitle>{{ _t()['editProfile'] }}</h3>
-					<p hlmSheetDescription>{{ _t()['description'] }}</p>
-				</hlm-sheet-header>
-				<hlm-field-group class="px-4">
-					<hlm-field>
-						<label hlmFieldLabel for="name-rtl">{{ _t()['name'] }}</label>
-						<input hlmInput id="name-rtl" value="Pedro Duarte" />
-					</hlm-field>
-					<hlm-field>
-						<label hlmFieldLabel for="username-rtl">{{ _t()['username'] }}</label>
-						<input hlmInput id="username-rtl" value="peduarte" />
-					</hlm-field>
-				</hlm-field-group>
-				<hlm-sheet-footer>
-					<button hlmBtn type="submit">{{ _t()['save'] }}</button>
-					<button hlmSheetClose hlmBtn variant="outline">{{ _t()['close'] }}</button>
-				</hlm-sheet-footer>
-			</hlm-sheet-content>
-		</hlm-sheet>
+		<caps-sheet [dir]="_dir()">
+			<button capsSheetTrigger capsButton variant="outline">{{ _t()['open'] }}</button>
+			<ng-template capsSheetContent [class]="_font()" [side]="_dir() === 'rtl' ? 'left' : 'right'">
+				<caps-sheet-header>
+					<caps-sheet-title>{{ _t()['editProfile'] }}</caps-sheet-title>
+					<caps-sheet-description>{{ _t()['description'] }}</caps-sheet-description>
+				</caps-sheet-header>
+				<caps-field-group class="px-4">
+					<caps-field>
+						<caps-field-label>{{ _t()['name'] }}</caps-field-label>
+						<input capsInput value="Pedro Duarte" />
+					</caps-field>
+					<caps-field>
+						<caps-field-label>{{ _t()['username'] }}</caps-field-label>
+						<input capsInput value="peduarte" />
+					</caps-field>
+				</caps-field-group>
+				<caps-sheet-footer>
+					<button capsButton type="submit">{{ _t()['save'] }}</button>
+					<button capsSheetClose capsButton variant="outline">{{ _t()['close'] }}</button>
+				</caps-sheet-footer>
+			</ng-template>
+		</caps-sheet>
 	`,
 })
 export class SheetRtl {
@@ -80,4 +80,7 @@ export class SheetRtl {
 	private readonly _translation = computed(() => this._translations[this._language()]);
 	protected readonly _t = computed(() => this._translation().values);
 	protected readonly _dir = computed(() => this._translation().dir);
+	protected readonly _font = computed(() =>
+		this._language() === 'ar' ? 'font-ar' : this._language() === 'he' ? 'font-he' : '',
+	);
 }

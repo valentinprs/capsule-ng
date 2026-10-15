@@ -1,34 +1,36 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
 
 @Component({
 	selector: 'spartan-bubble-group-preview',
-	imports: [HlmBubbleImports],
+	imports: [CapsBubbleImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-8 py-12',
 	},
 	template: `
-		<div hlmBubble variant="muted">
-			<div hlmBubbleContent>Can you tell me what's the issue?</div>
-		</div>
-		<div hlmBubbleGroup>
-			<div hlmBubble align="end">
-				<div hlmBubbleContent>You tell me!</div>
-			</div>
-			<div hlmBubble align="end">
-				<div hlmBubbleContent>It worked yesterday. You broke it!</div>
-			</div>
-			<div hlmBubble align="end">
-				<div hlmBubbleContent>Find the bug and fix it.</div>
-				<div hlmBubbleReactions role="img" aria-label="Reactions: eyes" align="start">
+		<caps-bubble variant="muted">
+			<caps-bubble-content>Can you tell me what's the issue?</caps-bubble-content>
+		</caps-bubble>
+		<caps-bubble-group>
+			<caps-bubble align="end">
+				<caps-bubble-content>You tell me!</caps-bubble-content>
+			</caps-bubble>
+			<caps-bubble align="end">
+				<caps-bubble-content>It worked yesterday. You broke it!</caps-bubble-content>
+			</caps-bubble>
+			<caps-bubble align="end">
+				<caps-bubble-content>Find the bug and fix it.</caps-bubble-content>
+				<caps-bubble-reactions role="img" aria-label="Reactions: eyes" align="start">
 					<span>👀</span>
-				</div>
-			</div>
-		</div>
-		<div hlmBubble variant="muted">
-			<div hlmBubbleContent>Want me to diff yesterday's you against today's you? It's a bit embarrassing.</div>
-		</div>
+				</caps-bubble-reactions>
+			</caps-bubble>
+		</caps-bubble-group>
+		<caps-bubble variant="muted">
+			<caps-bubble-content>
+				Want me to diff yesterday's you against today's you? It's a bit embarrassing.
+			</caps-bubble-content>
+		</caps-bubble>
 	`,
 })
 export class BubbleGroupPreview {}

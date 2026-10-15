@@ -4,15 +4,10 @@ import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { CapsTableImports } from '@capsule-ng/caps/table';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerChevronLeft, tablerChevronRight, tablerChevronsLeft, tablerChevronsRight } from '@ng-icons/tabler-icons';
-import {
-	TableHeadSelection,
-	TableRowSelection,
-} from '@spartan-ng/app/app/pages/(components)/components/(data-table)/selection-column';
-import { TableHeadSortButton } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/sort-header-button';
-import { HlmTableImports } from '@spartan-ng/helm/table';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import {
 	columnFilteringFeature,
 	ColumnFiltersState,
@@ -29,12 +24,18 @@ import {
 	type PaginationState,
 	rowPaginationFeature,
 	rowSelectionFeature,
+	type RowSelectionState,
 	rowSortingFeature,
 	sortFn_alphanumeric,
 	sortFn_text,
 	type SortingState,
 	tableFeatures,
 } from '@tanstack/angular-table';
+import {
+	TableHeadSelection,
+	TableRowSelection,
+} from '../../../../(components)/components/(data-table)/selection-column';
+import { TableHeadSortButton } from '../../../../(components)/components/(data-table)/sort-header-button';
 import {
 	DashboardLocalStorageService,
 	DEFAULT_DASHBOARD_TABLE_COLUMNS,
@@ -110,6 +111,7 @@ const columns = columnHelper.columns([
 	}),
 	columnHelper.display({
 		id: 'actions',
+		header: '<span class="sr-only">Actions</span>',
 		enableHiding: false,
 		cell: () => ActionDropdown,
 	}),
@@ -117,8 +119,8 @@ const columns = columnHelper.columns([
 @Component({
 	selector: 'spartan-dashboard-table-section',
 	imports: [
-		HlmTabsImports,
-		HlmTableImports,
+		CapsTabsImports,
+		CapsTableImports,
 		CapsSelectImports,
 		CapsButton,
 		FormsModule,
@@ -137,35 +139,46 @@ const columns = columnHelper.columns([
 		class: 'px-6',
 	},
 	template: `
-		<hlm-tabs tab="account" class="w-full">
+		<caps-tabs value="account" class="w-full">
 			<div class="flex justify-between">
-				<hlm-tabs-list
+				<caps-tabs-list
 					aria-label="tabs example"
 					class="**:data-[slot=badge]:bg-muted-foreground/30 hidden h-9 **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex"
 				>
-					<button hlmTabsTrigger="account">Outline</button>
-					<button hlmTabsTrigger="past-performance">
+					<button capsTabsTrigger value="account">Outline</button>
+					<button capsTabsTrigger value="past-performance">
 						Past Performance
 						<caps-badge variant="gray">3</caps-badge>
 					</button>
-					<button hlmTabsTrigger="key-personnel">
+					<button capsTabsTrigger value="key-personnel">
 						Key Personnel
 						<caps-badge variant="gray">2</caps-badge>
 					</button>
-					<button hlmTabsTrigger="focus-documents">Focus Documents</button>
-				</hlm-tabs-list>
+					<button capsTabsTrigger value="focus-documents">Focus Documents</button>
+				</caps-tabs-list>
 				<spartan-dashboard-table-actions table="table" />
 			</div>
-			<div hlmTabsContent="account">
+			<caps-tabs-content value="account">
 				<div class="max-h-[700px] w-full overflow-auto rounded-md border">
 					@defer {
-						<div hlmTableContainer>
-							<table hlmTable>
-								<thead hlmTHead class="bg-muted sticky top-0 z-(--caps-z-10)">
+						<caps-table-container>
+							<table capsTable aria-label="Dashboard items">
+								<caption class="sr-only">Dashboard items</caption>
+								<thead class="bg-muted sticky top-0 z-(--caps-z-10)">
 									@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
-										<tr hlmTr>
+										<tr>
 											@for (header of headerGroup.headers; track header.id) {
-												<th hlmTh [attr.colSpan]="header.colSpan">
+												<th
+													scope="col"
+													[attr.colSpan]="header.colSpan"
+													[attr.aria-sort]="
+														header.column.getIsSorted() === 'asc'
+															? 'ascending'
+															: header.column.getIsSorted() === 'desc'
+																? 'descending'
+																: null
+													"
+												>
 													@if (!header.isPlaceholder) {
 														<ng-container
 															*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -178,11 +191,11 @@ const columns = columnHelper.columns([
 										</tr>
 									}
 								</thead>
-								<tbody hlmTBody class="w-full">
+								<tbody class="w-full">
 									@for (row of table.getRowModel().rows; track row.id) {
-										<tr hlmTr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
-											@for (cell of row.getVisibleCells(); track $index) {
-												<td hlmTd>
+										<tr [attr.data-row-id]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+											@for (cell of row.getVisibleCells(); track cell.id) {
+												<td>
 													<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 														<div [innerHTML]="cell"></div>
 													</ng-container>
@@ -190,18 +203,21 @@ const columns = columnHelper.columns([
 											}
 										</tr>
 									} @empty {
-										<tr hlmTr>
-											<td hlmTd class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
+										<tr>
+											<td class="h-24 text-center" [attr.colspan]="table.getVisibleLeafColumns().length">
+												No results.
+											</td>
 										</tr>
 									}
 								</tbody>
 							</table>
-						</div>
+						</caps-table-container>
 					}
 				</div>
 				<div class="mt-4 flex flex-col justify-between sm:flex-row sm:items-center">
-					<span class="text-muted-foreground text-sm">
-						{{ table.getSelectedRowModel().rows.length }} of {{ table.getRowCount() }} row(s) selected
+					<span class="text-muted-foreground text-sm" role="status">
+						{{ table.getSelectedRowModel().rows.length }} of {{ table.getPreFilteredRowModel().rows.length }} row(s)
+						selected; {{ table.getRowCount() }} results
 					</span>
 					<div class="mt-2 flex gap-8 sm:mt-0">
 						<div class="flex gap-2">
@@ -230,6 +246,7 @@ const columns = columnHelper.columns([
 								variant="outline"
 								capsButton
 								[disabled]="!table.getCanPreviousPage()"
+								aria-label="Go to first page"
 								(click)="table.firstPage()"
 							>
 								<ng-icon name="tablerChevronsLeft" />
@@ -239,6 +256,7 @@ const columns = columnHelper.columns([
 								variant="outline"
 								capsButton
 								[disabled]="!table.getCanPreviousPage()"
+								aria-label="Go to previous page"
 								(click)="table.previousPage()"
 							>
 								<ng-icon name="tablerChevronLeft" />
@@ -248,6 +266,7 @@ const columns = columnHelper.columns([
 								variant="outline"
 								capsButton
 								[disabled]="!table.getCanNextPage()"
+								aria-label="Go to next page"
 								(click)="table.nextPage()"
 							>
 								<ng-icon name="tablerChevronRight" />
@@ -257,6 +276,7 @@ const columns = columnHelper.columns([
 								variant="outline"
 								capsButton
 								[disabled]="!table.getCanNextPage()"
+								aria-label="Go to last page"
 								(click)="table.lastPage()"
 							>
 								<ng-icon name="tablerChevronsRight" />
@@ -264,17 +284,17 @@ const columns = columnHelper.columns([
 						</div>
 					</div>
 				</div>
-			</div>
-			<div hlmTabsContent="past-performance">
+			</caps-tabs-content>
+			<caps-tabs-content value="past-performance">
 				<div class="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-			</div>
-			<div hlmTabsContent="key-personnel">
+			</caps-tabs-content>
+			<caps-tabs-content value="key-personnel">
 				<div class="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-			</div>
-			<div hlmTabsContent="focus-documents">
+			</caps-tabs-content>
+			<caps-tabs-content value="focus-documents">
 				<div class="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-			</div>
-		</hlm-tabs>
+			</caps-tabs-content>
+		</caps-tabs>
 	`,
 })
 export class DashboardTableSection {
@@ -283,6 +303,7 @@ export class DashboardTableSection {
 	private readonly _localStorageService = inject(DashboardLocalStorageService);
 	private readonly _visibility = signal<ColumnVisibilityState>(DEFAULT_DASHBOARD_TABLE_COLUMNS);
 	private readonly _columnFilters = signal<ColumnFiltersState>([]);
+	private readonly _rowSelection = signal<RowSelectionState>({});
 	private readonly _sorting = signal<SortingState>([]);
 	private readonly _pagination = signal<PaginationState>({
 		pageSize: 10,
@@ -299,11 +320,16 @@ export class DashboardTableSection {
 		features,
 		columns,
 		data: DASHBOARD_DATA,
+		getRowId: (row) => String(row.id),
 		state: {
 			columnFilters: this._columnFilters(),
+			rowSelection: this._rowSelection(),
 			sorting: this._sorting(),
 			pagination: this._pagination(),
 			columnVisibility: this._visibility(),
+		},
+		onRowSelectionChange: (updater) => {
+			updater instanceof Function ? this._rowSelection.update(updater) : this._rowSelection.set(updater);
 		},
 		onColumnVisibilityChange: (updater) => {
 			updater instanceof Function ? this._visibility.update(updater) : this._visibility.set(updater);
@@ -311,6 +337,7 @@ export class DashboardTableSection {
 		},
 		onColumnFiltersChange: (updater) => {
 			updater instanceof Function ? this._columnFilters.update(updater) : this._columnFilters.set(updater);
+			this._pagination.update((state) => ({ ...state, pageIndex: 0 }));
 		},
 		onSortingChange: (updater) => {
 			updater instanceof Function ? this._sorting.update(updater) : this._sorting.set(updater);

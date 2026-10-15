@@ -1,24 +1,24 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmResizableImports } from '@spartan-ng/helm/resizable';
+import { CapsResizableImports } from '@capsule-ng/caps/resizable';
 
 @Component({
 	selector: 'spartan-resizable-handle-preview',
-	imports: [HlmResizableImports],
+	imports: [CapsResizableImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-resizable-group class="min-h-[200px] max-w-md rounded-lg border md:min-w-[450px]">
-			<hlm-resizable-panel defaultSize="25">
+		<caps-resizable-group class="h-[200px] w-full max-w-md rounded-lg border">
+			<caps-resizable-panel defaultSize="25" minSize="20" maxSize="50">
 				<div class="flex h-full items-center justify-center p-6">
 					<span class="font-semibold">Sidebar</span>
 				</div>
-			</hlm-resizable-panel>
-			<hlm-resizable-handle withHandle />
-			<hlm-resizable-panel defaultSize="75">
+			</caps-resizable-panel>
+			<caps-resizable-handle aria-label="Sidebar width" withHandle />
+			<caps-resizable-panel defaultSize="75" minSize="50" maxSize="80">
 				<div class="flex h-full items-center justify-center p-6">
 					<span class="font-semibold">Content</span>
 				</div>
-			</hlm-resizable-panel>
-		</hlm-resizable-group>
+			</caps-resizable-panel>
+		</caps-resizable-group>
 	`,
 })
 export class ResizableHandlePreview {}

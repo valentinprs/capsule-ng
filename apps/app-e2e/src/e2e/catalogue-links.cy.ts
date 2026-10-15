@@ -15,7 +15,7 @@ describe('Capsule navigation and local search', () => {
 		});
 		cy.get('spartan-header spartan-docs-dialog button').first().click();
 		cy.get('input[placeholder="Type a command or search..."]').type('Breadcrumb');
-		cy.get('[hlm-command-item]:visible').should('have.length', 1).and('contain.text', 'Breadcrumb').click();
+		cy.get('[capsCommandItem]:visible').should('have.length', 1).and('contain.text', 'Breadcrumb').click();
 		cy.location('pathname').should('equal', '/components/breadcrumb');
 		cy.location('origin').should('equal', new URL(Cypress.config('baseUrl')!).origin);
 		cy.then(() => expect(requests).to.deep.equal([]));

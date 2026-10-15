@@ -1,6 +1,18 @@
+@import './sidebar.css';
+@import './panels.css';
+
 /* Caps style preset: defines the `caps-*` hook classes set by the caps components.
    Import it after Tailwind is set up (it uses `@apply`), e.g. from the showcase site's styles.css:
    @import '../../../libs/caps/caps-preset.css' layer(caps); */
+
+@import './choices.css';
+@import './messages-states.css';
+
+@import './menu.css';
+@import './messages.css';
+@import './table-pagination.css';
+@import './command.css';
+@import './kbd.css';
 
 /* MARK: Breadcrumb */
 .caps-breadcrumb-list {
@@ -343,4 +355,426 @@
 .caps-native-select[multiple],
 .caps-native-select[size]:not([size='1']) {
 	height: auto;
+}
+
+/* MARK: Tabs */
+.caps-tabs-list {
+	@apply text-muted-foreground gap-1 rounded-lg p-[var(--caps-size-3px)] data-[orientation=horizontal]:h-(--caps-control-height);
+}
+.caps-tabs-list[data-type='contained'] {
+	@apply bg-muted;
+}
+.caps-tabs-list[data-type='line'] {
+	@apply rounded-none bg-transparent;
+}
+.caps-tabs-trigger {
+	@apply text-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:bg-background data-[state=active]:text-foreground h-full gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+}
+.caps-tabs-list[data-type='line'] .caps-tabs-trigger[data-state='active'] {
+	@apply border-b-primary rounded-none bg-transparent shadow-none;
+}
+.caps-tabs-list[data-type='line'][data-orientation='vertical'] .caps-tabs-trigger[data-state='active'] {
+	@apply border-e-primary border-b-transparent;
+}
+.caps-tabs-content {
+	@apply focus-visible:outline-ring;
+}
+.caps-tabs-content[hidden] {
+	display: none !important;
+}
+
+/* MARK: Questionnaire */
+.caps-questionnaire {
+	@apply gap-4;
+}
+
+.caps-questionnaire-progress {
+	@apply text-xs;
+}
+
+.caps-questionnaire-item {
+	@apply focus-visible:outline-ring gap-4;
+}
+
+.caps-questionnaire-title {
+	@apply text-base leading-snug font-medium [&:not(:has(~[data-slot=questionnaire-description]))]:mb-4;
+}
+
+.caps-questionnaire-description {
+	@apply text-sm;
+}
+
+.caps-questionnaire-choices {
+	@apply gap-2;
+}
+
+.caps-questionnaire-choice {
+	@apply border-input hover:bg-muted/50 has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-ring/50 data-invalid:border-destructive dark:bg-input/20 data-checked:border-primary/40 data-checked:bg-muted dark:data-checked:bg-muted gap-2.5 rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-3 py-2.5 text-sm transition-colors has-[>input:focus-visible]:ring-[length:var(--caps-focus-ring-width)] data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-(--caps-opacity-disabled);
+}
+
+.caps-questionnaire-choice-indicator {
+	@apply border-input group-data-checked/questionnaire-choice:border-primary group-data-checked/questionnaire-choice:bg-primary group-data-checked/questionnaire-choice:text-primary-foreground dark:bg-input/30 dark:group-data-checked/questionnaire-choice:bg-primary pointer-events-none relative flex size-4 shrink-0 translate-y-[--spacing(0.45)] items-center justify-center rounded-[var(--caps-size-4px)] border-[length:var(--caps-border-width)] group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5 group-data-[type=radio]/questionnaire-choice:rounded-full;
+}
+
+.caps-questionnaire-choice-indicator-dot {
+	@apply bg-primary-foreground size-2 rounded-full;
+}
+
+.caps-questionnaire-choice-indicator-check {
+	@apply text-[length:--spacing(3.5)];
+}
+
+.caps-questionnaire-choice-content {
+	@apply gap-0.5;
+}
+
+.caps-questionnaire-choice-description {
+	@apply text-muted-foreground;
+}
+
+.caps-questionnaire-shortcut {
+	@apply border-input bg-background text-muted-foreground pointer-events-none ms-auto inline-flex size-5 shrink-0 translate-y-[--spacing(0.45)] items-center justify-center rounded-md border font-mono text-[length:var(--caps-size-0-625rem)] leading-none font-medium group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5;
+}
+
+.caps-questionnaire-input {
+	@apply dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] aria-invalid:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+}
+
+.caps-questionnaire-error {
+	@apply mt-2 text-sm;
+}
+
+.caps-questionnaire-actions {
+	@apply gap-2 sm:min-h-8;
+}
+
+caps-questionnaire-item[hidden] {
+	display: none !important;
+}
+
+/* MARK: Loading */
+.caps-spinner {
+	@apply inline-flex shrink-0 text-base;
+}
+.caps-spinner > ng-icon {
+	animation: caps-spinner-spin 1s linear infinite;
+}
+.caps-skeleton {
+	@apply bg-muted block rounded-md;
+	animation: caps-skeleton-pulse 2s ease-in-out infinite;
+}
+.caps-progress {
+	@apply bg-primary/20 relative block h-2 w-full overflow-hidden rounded-full;
+}
+.caps-progress-indicator {
+	@apply bg-primary absolute inset-y-0 block rounded-full;
+	inset-inline-start: 0;
+	transition: width 200ms ease;
+}
+.caps-progress[data-state='indeterminate'] .caps-progress-indicator {
+	animation: caps-progress-indeterminate 1.5s ease-in-out infinite alternate;
+}
+@keyframes caps-spinner-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+@keyframes caps-skeleton-pulse {
+	50% {
+		opacity: 0.5;
+	}
+}
+@keyframes caps-progress-indeterminate {
+	from {
+		inset-inline-start: 0;
+	}
+	to {
+		inset-inline-start: 50%;
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.caps-spinner > ng-icon,
+	.caps-skeleton,
+	.caps-progress-indicator {
+		animation: none !important;
+		transition: none !important;
+	}
+}
+
+/* Site navigation: native destinations, disclosure buttons, no action-menu roles. */
+.caps-navigation-menu-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem;
+}
+.caps-navigation-menu[data-orientation='vertical'] > .caps-navigation-menu-list {
+	flex-direction: column;
+	align-items: stretch;
+}
+.caps-navigation-menu-trigger,
+a.caps-navigation-menu-link {
+	min-height: calc(var(--caps-spacing) * 10);
+	padding: calc(var(--caps-spacing) * 2) calc(var(--caps-spacing) * 3);
+	border-radius: var(--radius-md);
+	color: var(--foreground);
+	background: transparent;
+	font-size: 0.875rem;
+	text-decoration: none;
+	outline: none;
+	transition:
+		background-color var(--caps-duration-150),
+		box-shadow var(--caps-duration-150);
+}
+.caps-navigation-menu-trigger {
+	font-weight: 500;
+	cursor: pointer;
+}
+.caps-navigation-menu-trigger:hover,
+a.caps-navigation-menu-link:hover,
+.caps-navigation-menu-trigger[data-state='open'],
+a.caps-navigation-menu-link[aria-current='page'] {
+	background: var(--muted);
+}
+.caps-navigation-menu-trigger:focus-visible,
+a.caps-navigation-menu-link:focus-visible {
+	box-shadow: 0 0 0 var(--caps-focus-ring-width) color-mix(in oklab, var(--ring) 50%, transparent);
+}
+.caps-navigation-menu-trigger:disabled {
+	pointer-events: none;
+	opacity: var(--caps-opacity-disabled);
+}
+.caps-navigation-menu-chevron {
+	font-size: 0.75rem;
+	transition: transform var(--caps-duration-150);
+}
+.caps-navigation-menu-trigger[data-state='open'] .caps-navigation-menu-chevron {
+	transform: rotate(180deg);
+}
+.caps-navigation-menu-content {
+	@apply data-[motion^=from-]:animate-in data-[motion^=from-]:fade-in data-[motion^=to-]:animate-out data-[motion^=to-]:fade-out;
+	animation-duration: var(--caps-duration-normal);
+	display: block;
+	max-width: calc(100vw - 2rem);
+	max-height: calc(100dvh - 2rem);
+	overflow: auto;
+	margin-top: calc(var(--caps-navigation-menu-offset, 1.5) * var(--caps-spacing));
+	padding: 0.5rem;
+	border-radius: calc(var(--radius-md) + var(--caps-spacing) * 2);
+	background: var(--popover);
+	color: var(--popover-foreground);
+	box-shadow:
+		0 4px 16px color-mix(in oklab, var(--foreground) 10%, transparent),
+		0 0 0 1px color-mix(in oklab, var(--foreground) 10%, transparent);
+	outline: none;
+}
+.caps-navigation-menu-content[data-orientation='vertical'] {
+	margin-top: 0;
+	margin-inline: calc(var(--caps-navigation-menu-offset, 1.5) * var(--caps-spacing));
+}
+@media (prefers-reduced-motion: reduce) {
+	.caps-navigation-menu-content {
+		animation: none;
+	}
+	.caps-navigation-menu-trigger,
+	a.caps-navigation-menu-link,
+	.caps-navigation-menu-chevron {
+		transition: none;
+	}
+}
+
+/* MARK: Slider */
+.caps-slider {
+	@apply flex w-full touch-none flex-col select-none data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-row data-[disabled]:pointer-events-none data-[disabled]:opacity-(--caps-opacity-disabled);
+}
+.caps-slider-control {
+	@apply relative flex w-full items-center group-data-vertical:w-auto group-data-vertical:flex-col;
+}
+.caps-slider-track {
+	@apply bg-muted relative grow rounded-full data-horizontal:h-1.5 data-horizontal:w-full data-vertical:h-full data-vertical:w-1.5;
+}
+.caps-slider-range {
+	@apply bg-primary absolute rounded-full select-none data-draggable-range:cursor-move data-horizontal:h-full data-vertical:w-full;
+}
+.caps-slider-thumb {
+	@apply border-primary bg-background ring-ring/50 absolute block size-4 shrink-0 rounded-full border shadow-sm transition-shadow select-none after:absolute after:-inset-2 hover:ring-4 focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none active:ring-4;
+}
+.caps-slider-host[data-matches-spartan-invalid='true'] .caps-slider-thumb {
+	@apply border-destructive ring-destructive/20;
+}
+.caps-slider-ticks {
+	@apply text-muted-foreground mt-3 flex w-full items-start justify-between gap-1 px-2 text-xs font-medium group-data-horizontal:group-data-inverted:flex-row-reverse group-data-vertical:ms-3 group-data-vertical:mt-0 group-data-vertical:w-auto group-data-vertical:flex-col-reverse group-data-vertical:px-0 group-data-vertical:py-2 group-data-vertical:group-data-inverted:flex-col;
+}
+.caps-slider-tick {
+	@apply flex w-0 flex-col items-center justify-center gap-2 group-data-vertical:h-0 group-data-vertical:w-auto group-data-vertical:flex-row;
+}
+.caps-slider-tick-mark {
+	@apply bg-muted-foreground/70 h-1 w-px group-data-vertical:h-px group-data-vertical:w-1;
+}
+.caps-slider-tick[data-skip] .caps-slider-tick-label {
+	visibility: hidden;
+}
+.caps-slider-tick-label {
+	@apply text-center;
+}
+
+/* MARK: Space containers */
+
+@layer caps {
+	.caps-scroll-area {
+		display: flex;
+		min-width: 0;
+		min-height: 0;
+		overflow: hidden;
+	}
+	.caps-scroll-area > ng-scrollbar {
+		display: flex;
+		min-width: 0;
+		min-height: 0;
+		flex: 1;
+		width: 100%;
+		--scrollbar-thumb-color: var(--border);
+		--scrollbar-thumb-hover-color: var(--border);
+		--scrollbar-track-color: transparent;
+		--scrollbar-track-thickness: 0.625rem;
+		--scrollbar-track-offset: 1.5px;
+	}
+	.caps-scroll-area-viewport {
+		flex: 1;
+		min-width: 0;
+		min-height: 0;
+		max-width: 100%;
+		overflow: auto;
+	}
+	.caps-scroll-area-viewport:focus-visible {
+		outline: 2px solid var(--ring);
+		outline-offset: -2px;
+	}
+	.caps-scroll-area-content {
+		min-width: 100%;
+		width: max-content;
+	}
+	.caps-resizable-group {
+		display: flex;
+		height: 100%;
+		width: 100%;
+		min-width: 0;
+		min-height: 0;
+	}
+	.caps-resizable-group[data-panel-group-direction='vertical'] {
+		flex-direction: column;
+	}
+	.caps-resizable-panel {
+		min-width: 0;
+		min-height: 0;
+	}
+	.caps-resizable-handle {
+		position: relative;
+		display: flex;
+		flex: 0 0 auto;
+		width: 1px;
+		align-items: center;
+		justify-content: center;
+		background: var(--border);
+		touch-action: none;
+		cursor: ew-resize;
+	}
+	.caps-resizable-handle::after {
+		content: '';
+		position: absolute;
+		inset-block: 0;
+		inset-inline-start: 50%;
+		width: 2.5rem;
+		transform: translateX(-50%);
+	}
+	.caps-resizable-handle:dir(rtl)::after {
+		transform: translateX(50%);
+	}
+	.caps-resizable-handle[data-panel-group-direction='vertical'] {
+		width: 100%;
+		height: 1px;
+		cursor: ns-resize;
+	}
+	.caps-resizable-handle[data-panel-group-direction='vertical']::after {
+		inset-inline: 0;
+		inset-block-start: 50%;
+		inset-block-end: auto;
+		width: 100%;
+		height: 2.5rem;
+		transform: translateY(-50%);
+	}
+	.caps-resizable-handle:focus-visible {
+		outline: 2px solid var(--ring);
+		outline-offset: 2px;
+		z-index: 1;
+	}
+	.caps-resizable-handle[aria-disabled='true'] {
+		cursor: default;
+	}
+	.caps-resizable-handle-icon {
+		@apply bg-border h-6 w-1 rounded-lg;
+		z-index: 1;
+		display: block;
+	}
+	.caps-resizable-handle[data-panel-group-direction='vertical'] > .caps-resizable-handle-icon {
+		transform: rotate(90deg);
+	}
+}
+
+@layer caps {
+	.caps-scroll-area {
+		@apply rounded-md [--scrollbar-thumb-shape:var(--caps-size-9999px)];
+	}
+	.style-maia .caps-scroll-area,
+	.style-luma .caps-scroll-area {
+		@apply rounded-2xl;
+	}
+	.style-lyra .caps-scroll-area {
+		@apply rounded-none [--scrollbar-thumb-shape:0px];
+	}
+}
+
+/* MARK: Conversation markers and scrolling */
+.caps-marker {
+	@apply text-muted-foreground gap-2 text-sm;
+}
+.caps-marker-variant-separator {
+	@apply before:bg-border after:bg-border before:me-1 before:h-px before:min-w-0 before:flex-1 after:ms-1 after:h-px after:min-w-0 after:flex-1;
+}
+.caps-marker-variant-border {
+	@apply border-border border-b pb-2;
+}
+.caps-marker-icon {
+	@apply size-4 shrink-0;
+}
+.caps-marker-content {
+	@apply min-w-0;
+}
+a.caps-marker,
+button.caps-marker {
+	@apply focus-visible:outline-ring hover:text-foreground rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2;
+}
+a.caps-marker {
+	@apply underline underline-offset-3;
+}
+button.caps-marker:disabled {
+	@apply pointer-events-none opacity-(--caps-opacity-disabled);
+}
+.caps-message-scroller-content {
+	@apply gap-6;
+}
+.caps-message-scroller-viewport {
+	@apply contain-content;
+}
+.caps-message-scroller-viewport:focus-visible {
+	outline: 2px solid var(--ring);
+	outline-offset: -2px;
+}
+@media (prefers-reduced-motion: reduce) {
+	.caps-message-scroller-viewport {
+		scroll-behavior: auto;
+	}
+	.caps-message-scroller-button {
+		transition: none;
+	}
 }

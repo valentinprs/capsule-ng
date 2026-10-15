@@ -1,41 +1,36 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideBell, lucideMail, lucideMessageSquare } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-dropdown-checkboxes-icons',
-	imports: [HlmDropdownMenuImports, HlmButtonImports, NgIcon],
+	imports: [CapsDropdownMenuImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideMail, lucideBell, lucideMessageSquare })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="menu">Open</button>
+		<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu">Open</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-52">
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>Notification Preferences</hlm-dropdown-menu-label>
-
-					<button hlmDropdownMenuCheckbox [checked]="email()" (triggered)="email.set(!email())">
+			<caps-menu class="w-52">
+				<caps-menu-group label="Notification Preferences">
+					<button capsMenuCheckboxItem [(checked)]="email">
 						<ng-icon name="lucideMail" />
 						Email notifications
-						<hlm-dropdown-menu-checkbox-indicator />
 					</button>
 
-					<button hlmDropdownMenuCheckbox [checked]="sms()" (triggered)="sms.set(!sms())">
+					<button capsMenuCheckboxItem [(checked)]="sms">
 						<ng-icon name="lucideMessageSquare" />
 						SMS notifications
-						<hlm-dropdown-menu-checkbox-indicator />
 					</button>
 
-					<button hlmDropdownMenuCheckbox [checked]="push()" (triggered)="push.set(!push())">
+					<button capsMenuCheckboxItem [(checked)]="push">
 						<ng-icon name="lucideBell" />
 						Push notifications
-						<hlm-dropdown-menu-checkbox-indicator />
 					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 	`,
 })

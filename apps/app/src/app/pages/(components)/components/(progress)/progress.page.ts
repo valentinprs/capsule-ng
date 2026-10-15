@@ -1,19 +1,19 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
-import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
-import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
-import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
-import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
+import { hlmP } from '@spartan-ng/helm/typography';
+import { injectComponentDocs } from '../../../../core/services/component-docs';
+import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
+import { CodeRtlPreview } from '../../../../shared/code/code-rtl-preview';
+import { RtlHeader } from '../../../../shared/code/rtl-header';
 import { MainSection } from '../../../../shared/layout/main-section';
 import { PageBottomNav } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav';
 import { PageBottomNavLink } from '../../../../shared/layout/page-bottom-nav/page-bottom-nav-link';
 import { PageNav } from '../../../../shared/layout/page-nav/page-nav';
 import { SectionIntro } from '../../../../shared/layout/section-intro';
 import { SectionSubHeading } from '../../../../shared/layout/section-sub-heading';
+import { SectionSubSubHeading } from '../../../../shared/layout/section-sub-sub-heading';
 import { Tabs } from '../../../../shared/layout/tabs';
 import { UIApiDocs } from '../../../../shared/layout/ui-docs-section/ui-docs-section';
 import { metaWith } from '../../../../shared/meta/meta.util';
@@ -71,55 +71,14 @@ export const routeMeta: RouteMeta = {
 				<spartan-code [code]="_defaultSkeleton" />
 			</div>
 
-			<spartan-section-sub-heading id="animation">Animation</spartan-section-sub-heading>
-
+			<spartan-section-sub-heading id="accessibility">Accessibility and motion</spartan-section-sub-heading>
 			<p class="${hlmP}">
-				The indeterminate animation
-				<code class="${hlmCode}">animate-indeterminate</code>
-				is provided by
-				<code class="${hlmCode}">&#64;spartan-ng/brain/hlm-tailwind-preset.css</code>
-				. Here are two options for adding the animation to your project.
+				Provide native aria-label or associate an external label with aria-labelledby and helper text with
+				aria-describedby. The component owns the indicator and exposes the Spartan value, max and getValueLabel
+				properties. Null or undefined is indeterminate: no current value is announced. Progress is not a live region.
+				Import the Capsule preset; animation and transitions stop when reduced motion is requested.
 			</p>
-
-			<spartan-code
-				class="mt-4"
-				code="/* 1. default import */
-@import '@spartan-ng/brain/hlm-tailwind-preset.css';
-
-/* 2. add animate-indeterminate animation */
-@theme inline {
-	--animate-indeterminate: indeterminate 4s ease-in-out infinite;
-	@keyframes indeterminate {
-		0% {
-			transform: translateX(-100%) scaleX(0.5);
-		}
-		100% {
-			transform: translateX(100%) scaleX(0.5);
-		}
-	}
-}"
-				fileName="src/styles.css"
-			/>
-
-			<p class="${hlmP}">
-				Adjust the animation to your needs by changing duration, easing function or keyframes by overriding the CSS
-				variable
-				<code class="${hlmCode}">--animate-indeterminate</code>
-				or the
-				<code class="${hlmCode}">&#64;keyframes indeterminate</code>
-				in your global styles.
-			</p>
-			<spartan-code
-				class="mt-4"
-				code="@import '@spartan-ng/brain/hlm-tailwind-preset.css';
-
-/* adjust animation duration  */
-@theme inline {
--	--animate-indeterminate: indeterminate 4s ease-in-out infinite;
-+	--animate-indeterminate: indeterminate 3s ease-in-out infinite;
-}"
-				fileName="src/styles.css"
-			/>
+			<spartan-code code="@import '@capsule-ng/caps/caps-preset.css';" fileName="src/styles.css" />
 
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
 
@@ -139,11 +98,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="questionnaire" label="Questionnaire" />

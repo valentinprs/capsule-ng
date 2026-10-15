@@ -1,78 +1,75 @@
 import { Component, signal } from '@angular/core';
-import { HlmResizableImports } from '@spartan-ng/helm/resizable';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsResizableImports } from '@capsule-ng/caps/resizable';
 import type { Meta, StoryObj } from '@storybook/angular';
-import { moduleMetadata } from '@storybook/angular';
+import { componentWrapperDecorator, moduleMetadata } from '@storybook/angular';
 
 @Component({
 	selector: 'resizable-example',
-	imports: [HlmResizableImports],
+	imports: [CapsResizableImports, CapsButtonImports],
 	template: `
-		<hlm-resizable-group class="h-[200px] w-[500px] max-w-md rounded-lg border">
-			<hlm-resizable-panel>
+		<caps-resizable-group class="h-[200px] w-full max-w-md rounded-lg border">
+			<caps-resizable-panel>
 				<div class="flex h-full items-center justify-center p-6">One</div>
-			</hlm-resizable-panel>
-			<hlm-resizable-handle />
-			<hlm-resizable-panel>
-				<hlm-resizable-group direction="vertical">
-					<hlm-resizable-panel>
+			</caps-resizable-panel>
+			<caps-resizable-handle aria-label="One width" />
+			<caps-resizable-panel>
+				<caps-resizable-group direction="vertical">
+					<caps-resizable-panel>
 						<div class="flex h-full items-center justify-center p-6">
 							<span class="font-semibold">Two</span>
 						</div>
-					</hlm-resizable-panel>
-					<hlm-resizable-handle />
-					<hlm-resizable-panel>
+					</caps-resizable-panel>
+					<caps-resizable-handle aria-label="Two height" />
+					<caps-resizable-panel>
 						<div class="flex h-full items-center justify-center p-6">
 							<span class="font-semibold">Three</span>
 						</div>
-					</hlm-resizable-panel>
-				</hlm-resizable-group>
-			</hlm-resizable-panel>
-		</hlm-resizable-group>
+					</caps-resizable-panel>
+				</caps-resizable-group>
+			</caps-resizable-panel>
+		</caps-resizable-group>
 	`,
 })
 class ResizableExample {}
 
 @Component({
 	selector: 'resizable-dynamic-panels-example',
-	imports: [HlmResizableImports],
+	imports: [CapsResizableImports, CapsButtonImports],
 	template: `
 		<div class="flex flex-col gap-4">
 			<div class="flex items-center gap-4">
-				<button
-					type="button"
-					class="rounded-md border px-3 py-2 text-sm font-medium"
-					(click)="showExtra.update((value) => !value)"
-				>
-					{{ showExtra() ? 'Remove' : 'Add' }} extra panel
+				<button type="button" capsButton variant="outline" (click)="_showExtra.update((value) => !value)">
+					{{ _showExtra() ? 'Remove' : 'Add' }} extra panel
 				</button>
-				<span class="text-muted-foreground text-sm">Layout: {{ layout().join(', ') }}</span>
+				<span class="text-muted-foreground text-sm tabular-nums">Layout: {{ _layout().join(', ') }}</span>
 			</div>
 
-			<hlm-resizable-group
+			<caps-resizable-group
 				direction="vertical"
-				class="h-[360px] w-[500px] max-w-md rounded-lg border"
-				[(layout)]="layout"
+				class="h-[360px] w-full max-w-md rounded-lg border"
+				[(layout)]="_layout"
 			>
-				<hlm-resizable-panel [defaultSize]="25">
+				<caps-resizable-panel [defaultSize]="25">
 					<div class="flex h-full items-center justify-center p-6 font-semibold">Header</div>
-				</hlm-resizable-panel>
-				<hlm-resizable-handle withHandle />
-				<hlm-resizable-panel [defaultSize]="75">
+				</caps-resizable-panel>
+				<caps-resizable-handle aria-label="Header height" withHandle />
+				<caps-resizable-panel [defaultSize]="75">
 					<div class="flex h-full items-center justify-center p-6 font-semibold">Content</div>
-				</hlm-resizable-panel>
-				@if (showExtra()) {
-					<hlm-resizable-handle withHandle />
-					<hlm-resizable-panel [defaultSize]="25">
+				</caps-resizable-panel>
+				@if (_showExtra()) {
+					<caps-resizable-handle aria-label="Content height" withHandle />
+					<caps-resizable-panel [defaultSize]="25">
 						<div class="flex h-full items-center justify-center p-6 font-semibold">Extra Dynamic Panel</div>
-					</hlm-resizable-panel>
+					</caps-resizable-panel>
 				}
-			</hlm-resizable-group>
+			</caps-resizable-group>
 		</div>
 	`,
 })
 class ResizableDynamicPanelsExample {
-	protected readonly showExtra = signal(false);
-	protected readonly layout = signal<number[]>([]);
+	protected readonly _showExtra = signal(false);
+	protected readonly _layout = signal<number[]>([]);
 }
 
 export default {
@@ -80,8 +77,9 @@ export default {
 	component: ResizableExample,
 	tags: ['autodocs'],
 	decorators: [
+		componentWrapperDecorator((story) => `<main><h1 class="sr-only">Resizable example</h1>${story}</main>`),
 		moduleMetadata({
-			imports: [HlmResizableImports, ResizableDynamicPanelsExample],
+			imports: [CapsResizableImports, ResizableDynamicPanelsExample],
 		}),
 	],
 } as Meta<ResizableExample>;
@@ -101,5 +99,24 @@ export const DynamicPanels: Story = {
 		template: `
 <resizable-dynamic-panels-example></resizable-dynamic-panels-example>
 		`,
+	}),
+};
+
+export const Bounded: Story = {
+	render: () => ({
+		template: `<caps-resizable-group class="h-48 w-full max-w-md border" aria-label="Bounded panels">
+ <caps-resizable-panel defaultSize="30" minSize="20" maxSize="50" [collapsible]="false">Navigation</caps-resizable-panel>
+ <caps-resizable-handle aria-label="Navigation width" withHandle />
+ <caps-resizable-panel defaultSize="70" minSize="50" maxSize="80" [collapsible]="false">Content</caps-resizable-panel>
+ </caps-resizable-group>`,
+	}),
+};
+export const Disabled: Story = {
+	render: () => ({
+		template: `<caps-resizable-group class="h-48 w-full max-w-md border" aria-label="Fixed panels">
+ <caps-resizable-panel defaultSize="30">Navigation</caps-resizable-panel>
+ <caps-resizable-handle aria-label="Navigation width" disabled withHandle />
+ <caps-resizable-panel defaultSize="70">Content</caps-resizable-panel>
+ </caps-resizable-group>`,
 	}),
 };

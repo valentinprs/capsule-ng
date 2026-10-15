@@ -1,12 +1,13 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { provideCapsCalendarI18n } from '@capsule-ng/caps/calendar';
+import { CapsDatePicker, CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { HlmDatePicker, HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<HlmDatePicker<Date>> = {
+const meta: Meta<CapsDatePicker<Date>> = {
 	title: 'Date Picker',
-	component: HlmDatePicker,
+	component: CapsDatePicker,
 	tags: ['autodocs'],
 	args: {
 		captionLayout: 'label',
@@ -23,16 +24,22 @@ const meta: Meta<HlmDatePicker<Date>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
+			providers: [
+				provideCapsCalendarI18n({
+					months: () => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+					formatHeader: (m, y) => new Date(y, m).toLocaleDateString('en', { month: 'long', year: 'numeric' }),
+				}),
+			],
+			imports: [CapsDatePickerImports, ReactiveFormsModule, CapsFieldImports, CapsButton],
 		}),
 	],
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-date-picker [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout">
-                <hlm-date-picker-trigger buttonId="date">Pick a date</hlm-date-picker-trigger>
-            </hlm-date-picker>
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-date-picker [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout">
+                <caps-date-picker-trigger buttonId="date">Pick a date</caps-date-picker-trigger>
+            </caps-date-picker>
 		</div>
 		`,
 	}),
@@ -40,7 +47,7 @@ const meta: Meta<HlmDatePicker<Date>> = {
 
 export default meta;
 
-type Story = StoryObj<HlmDatePicker<Date>>;
+type Story = StoryObj<CapsDatePicker<Date>>;
 
 const pad = (value: number): string => String(value).padStart(2, '0');
 
@@ -67,16 +74,16 @@ export const Input: Story = {
 	render: () => ({
 		props: { formatDate, formatInputDate, parseDate },
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-date-picker [formatDate]="formatDate">
-				<hlm-date-picker-input
-					inputId="date-input"
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-date-picker #picker [formatDate]="formatDate">
+				<caps-date-picker-input
+					inputId="date-input" aria-label="Date"
 					placeholder="dd/MM/yyyy"
 					[parseDate]="parseDate"
 					[formatInputDate]="formatInputDate"
 				/>
-				<hlm-date-picker-trigger buttonId="date-trigger" [showTrigger]="false">unset</hlm-date-picker-trigger>
-			</hlm-date-picker>
+				</caps-date-picker>
+			<output id="date-trigger" [attr.data-placeholder]="picker.hasDate() ? null : ''">{{ picker.formattedDate() ?? 'unset' }}</output>
 		</div>
 		`,
 	}),
@@ -93,10 +100,10 @@ export const PreselectedEndOfMonth: Story = {
 	render: (args) => ({
 		props: { ...args, date: new Date(2024, 7, 31) },
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
-			<hlm-date-picker [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout" [date]="date">
-                <hlm-date-picker-trigger buttonId="date">Pick a date</hlm-date-picker-trigger>
-            </hlm-date-picker>
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
+			<caps-date-picker [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout" [date]="date">
+                <caps-date-picker-trigger buttonId="date">Pick a date</caps-date-picker-trigger>
+            </caps-date-picker>
 		</div>
 		`,
 	}),
@@ -111,17 +118,17 @@ export const WithHintAndError: Story = {
 			}),
 		},
 		template: `
-		<form [formGroup]="form" class="space-y-3 w-full max-w-sm">
+		<h1 class="sr-only">Date Picker form</h1><form [formGroup]="form" class="space-y-3 w-full max-w-sm">
 
 			<caps-field>
 				<caps-field-label>Date *</caps-field-label>
-				<hlm-date-picker
+				<caps-date-picker
 					formControlName="date"
 					[captionLayout]="captionLayout"
 					[minDate]="minDate"
 					[maxDate]="maxDate">
-					<hlm-date-picker-trigger buttonId="date">Select a date</hlm-date-picker-trigger>
-				</hlm-date-picker>
+					<caps-date-picker-trigger buttonId="date">Select a date</caps-date-picker-trigger>
+				</caps-date-picker>
 
 				<caps-field-description>Pick a date for the event so we can reserve the room.</caps-field-description>
 

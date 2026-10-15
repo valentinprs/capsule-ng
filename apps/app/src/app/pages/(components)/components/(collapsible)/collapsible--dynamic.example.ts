@@ -1,21 +1,22 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronsUpDown, lucidePlus, lucideTrash2 } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 
 const NAMES = ['Olivia Martin', 'Jackson Lee', 'Isabella Nguyen', 'William Kim', 'Sofia Davis', 'Liam Johnson'];
 
 @Component({
 	selector: 'spartan-collapsible-dynamic',
-	imports: [HlmCollapsibleImports, HlmButtonImports, NgIcon],
+	imports: [CapsCollapsibleImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideChevronsUpDown, lucidePlus, lucideTrash2 })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
+	host: { class: 'block w-[320px] max-w-full' },
 	template: `
-		<hlm-collapsible class="flex w-[320px] flex-col gap-2">
+		<caps-collapsible class="flex w-full max-w-[320px] flex-col gap-2">
 			<div class="flex items-center justify-between gap-4">
 				<h4 class="text-sm font-semibold">Team · {{ members().length }} members</h4>
-				<button hlmCollapsibleTrigger hlmBtn variant="ghost" size="icon" class="size-8">
+				<button capsCollapsibleTrigger capsButton variant="ghost" size="icon" class="size-8">
 					<ng-icon name="lucideChevronsUpDown" />
 					<span class="sr-only">Toggle</span>
 				</button>
@@ -23,7 +24,7 @@ const NAMES = ['Olivia Martin', 'Jackson Lee', 'Isabella Nguyen', 'William Kim',
 
 			<!-- The host's scrollHeight covers all content - the leading line and every row - so the
 			height animates to fit even with this text sitting outside the rows wrapper. -->
-			<hlm-collapsible-content
+			<caps-collapsible-content
 				class="block overflow-hidden transition-all data-[state=closed]:block data-[state=closed]:h-0 data-[state=open]:h-(--brn-collapsible-content-height)"
 			>
 				Everyone listed here can view and edit this project.
@@ -31,7 +32,7 @@ const NAMES = ['Olivia Martin', 'Jackson Lee', 'Isabella Nguyen', 'William Kim',
 					@for (member of members(); track $index) {
 						<div class="rounded-md border px-4 py-2 text-sm">{{ member }}</div>
 					}
-					<button hlmBtn variant="outline" size="sm" (click)="isFull() ? clear() : addMember()">
+					<button capsButton variant="outline" size="sm" (click)="isFull() ? clear() : addMember()">
 						@if (isFull()) {
 							<ng-icon name="lucideTrash2" />
 							Clear
@@ -41,8 +42,8 @@ const NAMES = ['Olivia Martin', 'Jackson Lee', 'Isabella Nguyen', 'William Kim',
 						}
 					</button>
 				</div>
-			</hlm-collapsible-content>
-		</hlm-collapsible>
+			</caps-collapsible-content>
+		</caps-collapsible>
 	`,
 })
 export class CollapsibleDynamic {

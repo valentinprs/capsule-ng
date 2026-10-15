@@ -1,44 +1,44 @@
 import { SlicePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmTableImports } from '@spartan-ng/helm/table';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 
 @Component({
 	selector: 'spartan-table-footer',
-	imports: [HlmTableImports, SlicePipe],
+	imports: [CapsTableImports, SlicePipe],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full',
 	},
 	template: `
-		<div hlmTableContainer>
-			<table hlmTable>
-				<caption hlmTableCaption>A list of your recent invoices.</caption>
-				<thead hlmTableHeader>
-					<tr hlmTableRow>
-						<th hlmTableHead class="w-[100px]">Invoice</th>
-						<th hlmTableHead>Status</th>
-						<th hlmTableHead>Method</th>
-						<th hlmTableHead class="text-right">Amount</th>
+		<caps-table-container>
+			<table capsTable>
+				<caption>A list of your recent invoices.</caption>
+				<thead>
+					<tr>
+						<th scope="col" class="w-[100px]">Invoice</th>
+						<th scope="col">Status</th>
+						<th scope="col">Method</th>
+						<th scope="col" class="text-right">Amount</th>
 					</tr>
 				</thead>
-				<tbody hlmTableBody>
+				<tbody>
 					@for (invoice of _invoices | slice: 0 : 3; track invoice.invoice) {
-						<tr hlmTableRow>
-							<td hlmTableCell class="font-medium">{{ invoice.invoice }}</td>
-							<td hlmTableCell>{{ invoice.paymentStatus }}</td>
-							<td hlmTableCell>{{ invoice.paymentMethod }}</td>
-							<td hlmTableCell class="text-right">{{ invoice.totalAmount }}</td>
+						<tr>
+							<th scope="row" class="font-medium">{{ invoice.invoice }}</th>
+							<td>{{ invoice.paymentStatus }}</td>
+							<td>{{ invoice.paymentMethod }}</td>
+							<td class="text-right">{{ invoice.totalAmount }}</td>
 						</tr>
 					}
 				</tbody>
-				<tfoot hlmTableFooter>
-					<tr hlmTableRow>
-						<td hlmTableCell [attr.colSpan]="3">Total</td>
-						<td hlmTableCell class="text-right">$2,500.00</td>
+				<tfoot>
+					<tr>
+						<td [attr.colSpan]="3">Total</td>
+						<td class="text-right">$2,500.00</td>
 					</tr>
 				</tfoot>
 			</table>
-		</div>
+		</caps-table-container>
 	`,
 })
 export class TableFooter {

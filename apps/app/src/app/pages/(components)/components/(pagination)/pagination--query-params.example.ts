@@ -1,41 +1,42 @@
 import { Component, computed, inject, numberAttribute } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute } from '@angular/router';
-import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CapsPaginationImports } from '@capsule-ng/caps/pagination';
 import { map } from 'rxjs/operators';
 
 @Component({
 	selector: 'spartan-pagination-query-params',
-	imports: [HlmPaginationImports],
+	imports: [CapsPaginationImports, RouterLink],
 	template: `
-		<nav hlmPagination>
-			<ul hlmPaginationContent>
-				@if (currentPage() > 1) {
-					<li hlmPaginationItem>
-						<hlm-pagination-previous link="." [queryParams]="{ page: currentPage() - 1 }" queryParamsHandling="merge" />
-					</li>
-				}
-				@for (page of pages; track 'page_' + page) {
-					<li hlmPaginationItem>
-						<a
-							hlmPaginationLink
-							[link]="currentPage() !== page ? '.' : undefined"
-							[queryParams]="{ page }"
-							queryParamsHandling="merge"
-							[isActive]="currentPage() === page"
-						>
-							{{ page }}
-						</a>
-					</li>
-				}
+		<caps-pagination>
+			@if (currentPage() > 1) {
+				<a
+					capsPaginationPrevious
+					routerLink="."
+					[queryParams]="{ page: currentPage() - 1 }"
+					queryParamsHandling="merge"
+				>
+					<span>Previous</span>
+				</a>
+			}
+			@for (page of pages; track 'page_' + page) {
+				<a
+					capsPaginationLink
+					routerLink="."
+					[queryParams]="{ page }"
+					queryParamsHandling="merge"
+					[isActive]="currentPage() === page"
+				>
+					{{ page }}
+				</a>
+			}
 
-				@if (currentPage() < pages[pages.length - 1]) {
-					<li hlmPaginationItem>
-						<hlm-pagination-next link="." [queryParams]="{ page: currentPage() + 1 }" queryParamsHandling="merge" />
-					</li>
-				}
-			</ul>
-		</nav>
+			@if (currentPage() < pages[pages.length - 1]) {
+				<a capsPaginationNext routerLink="." [queryParams]="{ page: currentPage() + 1 }" queryParamsHandling="merge">
+					<span>Next</span>
+				</a>
+			}
+		</caps-pagination>
 	`,
 })
 export class PaginationQueryParams {

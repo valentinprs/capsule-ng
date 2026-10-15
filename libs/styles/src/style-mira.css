@@ -62,11 +62,13 @@
 		@apply text-destructive bg-card *:data-[slot=alert-description]:text-destructive/90 *:[ng-icon]:text-current;
 	}
 
-	.spartan-alert-title {
+	.spartan-alert-title,
+	.caps-alert-title {
 		@apply font-medium group-has-[>ng-icon]/alert:col-start-2;
 	}
 
-	.spartan-alert-description {
+	.spartan-alert-description,
+	.caps-alert-description {
 		@apply text-muted-foreground text-xs/relaxed text-balance md:text-pretty [&_p:not(:last-child)]:mb-4;
 	}
 
@@ -265,7 +267,8 @@
 	}
 
 	/* MARK: Calendar */
-	.spartan-calendar {
+	.spartan-calendar,
+	.caps-calendar {
 		@apply p-3 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(6)];
 	}
 
@@ -308,11 +311,13 @@
 	}
 
 	/* MARK: Chart */
-	.spartan-chart {
+	.spartan-chart,
+	.caps-chart {
 		@apply block w-full text-xs;
 	}
 
-	.spartan-chart-tooltip {
+	.spartan-chart-tooltip,
+	.caps-chart-tooltip {
 		@apply [--ts-chart-tooltip-background:var(--popover)] [--ts-chart-tooltip-border-radius:var(--radius)] [--ts-chart-tooltip-border:var(--caps-border-width)_solid_var(--border)] [--ts-chart-tooltip-color:var(--popover-foreground)] [--ts-chart-tooltip-font:var(--font-weight-medium)_var(--text-xs)/var(--leading-relaxed)_var(--font-sans)] [--ts-chart-tooltip-padding:--spacing(1.5)_--spacing(2.5)] [--ts-chart-tooltip-shadow:var(--shadow-xl)];
 	}
 
@@ -387,47 +392,58 @@
 	}
 
 	/* MARK: Command */
-	.spartan-command {
+	.spartan-command,
+	.caps-command {
 		@apply bg-popover text-popover-foreground rounded-xl p-1;
 	}
 
-	.spartan-command-input-wrapper {
+	.spartan-command-input-wrapper,
+	.caps-command-input-wrapper {
 		@apply p-1 pb-0;
 	}
 
-	.spartan-command-input-group {
+	.spartan-command-input-group,
+	.caps-command-input-group {
 		@apply bg-input/20 dark:bg-input/30 h-8!;
 	}
 
-	.spartan-command-input-icon {
+	.spartan-command-input-icon,
+	.caps-command-input-icon {
 		@apply shrink-0 text-[length:--spacing(3.5)] opacity-(--caps-opacity-50);
 	}
 
-	.spartan-command-input {
+	.spartan-command-input,
+	.caps-command-input {
 		@apply w-full text-xs/relaxed;
 	}
 
-	.spartan-command-list {
+	.spartan-command-list,
+	.caps-command-list {
 		@apply no-scrollbar max-h-72 scroll-py-1 outline-none;
 	}
 
-	.spartan-command-empty {
+	.spartan-command-empty,
+	.caps-command-empty {
 		@apply py-6 text-center text-xs/relaxed;
 	}
 
-	.spartan-command-group {
+	.spartan-command-group,
+	.caps-command-group {
 		@apply text-foreground **:data-[slot=command-group-label]:text-muted-foreground overflow-hidden p-1 **:data-[slot=command-group-label]:px-2.5 **:data-[slot=command-group-label]:py-1.5 **:data-[slot=command-group-label]:text-xs **:data-[slot=command-group-label]:font-medium;
 	}
 
-	.spartan-command-separator {
+	.spartan-command-separator,
+	.caps-command-separator {
 		@apply bg-border/50 -mx-1 my-1 h-px;
 	}
 
-	.spartan-command-item {
+	.spartan-command-item,
+	.caps-command-item {
 		@apply data-selected:bg-muted data-selected:text-foreground relative flex min-h-7 cursor-default items-center gap-2 rounded-md px-2.5 py-1.5 text-xs/relaxed outline-hidden select-none in-data-[slot=dialog-content]:rounded-md [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
 	}
 
-	.spartan-command-shortcut {
+	.spartan-command-shortcut,
+	.caps-command-shortcut {
 		@apply text-muted-foreground group-data-[selected]/command-item:text-foreground ms-auto text-[length:var(--caps-size-0-625rem)] tracking-widest;
 	}
 
@@ -435,7 +451,8 @@
 	/* uses dropdown menu styles */
 
 	/* MARK: Date Picker */
-	.spartan-date-picker-trigger {
+	.spartan-date-picker-trigger,
+	.caps-date-picker-trigger {
 		@apply data-placeholder:text-muted-foreground;
 	}
 
@@ -536,35 +553,43 @@
 	}
 
 	/* MARK: Empty */
-	.spartan-empty {
+	.spartan-empty,
+	.caps-empty {
 		@apply gap-4 rounded-xl border-dashed p-6;
 	}
 
-	.spartan-empty-header {
+	.spartan-empty-header,
+	.caps-empty-header {
 		@apply gap-1;
 	}
 
-	.spartan-empty-media {
+	.spartan-empty-media,
+	.caps-empty-media {
 		@apply mb-2;
 	}
 
-	.spartan-empty-media-default {
+	.spartan-empty-media-default,
+	.caps-empty-media-default {
 		@apply bg-transparent;
 	}
 
-	.spartan-empty-media-icon {
+	.spartan-empty-media-icon,
+	.caps-empty-media-icon {
 		@apply bg-muted text-foreground flex size-8 shrink-0 items-center justify-center rounded-md [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
 	}
 
-	.spartan-empty-title {
+	.spartan-empty-title,
+	.caps-empty-title {
 		@apply text-sm font-medium tracking-tight;
 	}
 
-	.spartan-empty-description {
+	.spartan-empty-description,
+	.caps-empty-description {
 		@apply text-xs/relaxed;
 	}
 
-	.spartan-empty-content {
+	.spartan-empty-content,
+	.caps-empty-content {
 		@apply gap-2 text-xs/relaxed;
 	}
 
@@ -879,11 +904,13 @@
 	}
 
 	/* MARK: Kbd */
-	.spartan-kbd {
+	.spartan-kbd,
+	.caps-kbd {
 		@apply bg-muted text-muted-foreground in-data-[slot=tooltip-content]:bg-background/20 in-data-[slot=tooltip-content]:text-background dark:in-data-[slot=tooltip-content]:bg-background/10 h-5 w-fit min-w-5 gap-1 rounded-xs px-1 font-sans text-[length:var(--caps-size-0-625rem)] font-medium [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
 	}
 
-	.spartan-kbd-group {
+	.spartan-kbd-group,
+	.caps-kbd-group {
 		@apply gap-1;
 	}
 

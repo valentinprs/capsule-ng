@@ -1,35 +1,34 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-combobox-form-preview',
-	imports: [HlmComboboxImports, FormRoot, FormField, HlmButton, HlmFieldImports],
+	imports: [CapsComboboxImports, FormRoot, FormField, CapsButton, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full max-w-xs' },
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="framework">Select a framework</label>
-					<hlm-combobox [formField]="form.framework">
-						<hlm-combobox-input inputId="framework" placeholder="e.g. Analog" />
-						<hlm-combobox-content *hlmComboboxPortal>
-							<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-							<div hlmComboboxList>
-								@for (framework of frameworks; track $index) {
-									<hlm-combobox-item [value]="framework">{{ framework }}</hlm-combobox-item>
-								}
-							</div>
-						</hlm-combobox-content>
-					</hlm-combobox>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn [disabled]="form().submitting()">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Select a framework</caps-field-label>
+					<caps-combobox [formField]="form.framework">
+						<caps-combobox-input placeholder="e.g. Analog" />
+						<caps-combobox-content>
+							<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+							@for (framework of frameworks; track $index) {
+								<caps-combobox-option [value]="framework">{{ framework }}</caps-combobox-option>
+							}
+						</caps-combobox-content>
+					</caps-combobox>
+				</caps-field>
+				<div class="flex flex-wrap gap-2">
+					<button type="submit" capsButton [disabled]="form().submitting()">Submit</button>
+				</div>
+			</caps-field-group>
 		</form>
 	`,
 })

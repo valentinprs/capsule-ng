@@ -1,105 +1,84 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
 
 @Component({
 	selector: 'spartan-context-menu-preview',
-	imports: [HlmDropdownMenuImports, HlmContextMenuImports],
+	imports: [CapsContextMenuImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div
-			[hlmContextMenuTrigger]="menu"
+			[capsContextMenuTrigger]="menu"
 			align="start"
 			side="right"
 			class="flex aspect-video w-full min-w-xs items-center justify-center rounded-xl border border-dashed text-sm"
+			tabindex="0"
 		>
 			<span class="hidden pointer-fine:inline-block">Right click here</span>
 			<span class="hidden pointer-coarse:inline-block">Long press here</span>
 		</div>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-64">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu class="w-64">
+				<caps-menu-group>
+					<button capsMenuItem>
 						Back
-						<hlm-dropdown-menu-shortcut>⌘[</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘[</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem disabled>
+					<button capsMenuItem disabled>
 						Forward
-						<hlm-dropdown-menu-shortcut>⌘]</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘]</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						Reload
-						<hlm-dropdown-menu-shortcut>⌘R</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘R</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]="moreTools" align="start" side="right">
-						More Tools
-						<hlm-dropdown-menu-item-sub-indicator />
-					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuCheckbox checked>
-						Show Bookmarks Bar
-						<hlm-dropdown-menu-checkbox-indicator />
-					</button>
-					<button hlmDropdownMenuCheckbox>
-						Show full URLs
-						<hlm-dropdown-menu-checkbox-indicator />
-					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>People</hlm-dropdown-menu-label>
-					<button hlmDropdownMenuRadio checked>
-						<hlm-dropdown-menu-radio-indicator />
-						Pedro Duarte
-					</button>
-					<button hlmDropdownMenuRadio>
-						<hlm-dropdown-menu-radio-indicator />
-						Colm Tuite
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+					<button [capsMenuSubTrigger]="moreTools" align="start" side="right">More Tools</button>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group>
+					<button capsMenuCheckboxItem [checked]="true">Show Bookmarks Bar</button>
+					<button capsMenuCheckboxItem>Show full URLs</button>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group label="People">
+					<button capsMenuRadioItem [checked]="true">Pedro Duarte</button>
+					<button capsMenuRadioItem>Colm Tuite</button>
+				</caps-menu-group>
+			</caps-menu>
 		</ng-template>
 
 		<ng-template #moreTools>
-			<hlm-dropdown-menu-sub class="w-44">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>Save Page...</button>
-					<button hlmDropdownMenuItem>Create Shortcut...</button>
-					<button hlmDropdownMenuItem>Name Window...</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>Developer Tools</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem variant="destructive">Delete</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu-sub>
+			<caps-menu class="w-44">
+				<caps-menu-group>
+					<button capsMenuItem>Save Page...</button>
+					<button capsMenuItem>Create Shortcut...</button>
+					<button capsMenuItem>Name Window...</button>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem>Developer Tools</button>
+				<caps-menu-separator />
+				<button capsMenuItem danger>Delete</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })
 export class ContextMenuPreview {}
 
 export const defaultImports = `
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
 `;
 
 export const defaultSkeleton = `
-<div [hlmContextMenuTrigger]="menu">Right click here</div>
+<div [capsContextMenuTrigger]="menu" tabindex="0">Right click here</div>
 
 <ng-template #menu>
-  <hlm-dropdown-menu>
-    <hlm-dropdown-menu-group>
-      <button hlmDropdownMenuItem>Profile</button>
-      <button hlmDropdownMenuItem>Billing</button>
-      <button hlmDropdownMenuItem>Team</button>
-      <button hlmDropdownMenuItem>Subscription</button>
-    </hlm-dropdown-menu-group>
-  </hlm-dropdown-menu>
+  <caps-menu>
+    <caps-menu-group>
+      <button capsMenuItem>Profile</button>
+      <button capsMenuItem>Billing</button>
+      <button capsMenuItem>Team</button>
+      <button capsMenuItem>Subscription</button>
+    </caps-menu-group>
+  </caps-menu>
 </ng-template>
 `;

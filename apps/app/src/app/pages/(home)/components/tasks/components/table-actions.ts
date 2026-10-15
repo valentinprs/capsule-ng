@@ -1,6 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsCommandImports } from '@capsule-ng/caps/command';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsInput } from '@capsule-ng/caps/input';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -23,8 +25,6 @@ import {
 	lucideSettings2,
 	lucideX,
 } from '@ng-icons/lucide';
-import { HlmCommandImports } from '@spartan-ng/helm/command';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { PriorityIconPipe } from '../pipes/priority-icon.pipe';
 import { StatusIconPipe } from '../pipes/status-icon.pipe';
 import type { TaskPriority, TaskStatus } from '../services/tasks.models';
@@ -37,8 +37,8 @@ import { TasksExample } from '../tasks';
 		FormsModule,
 		CapsInput,
 		NgIcon,
-		HlmDropdownMenuImports,
-		HlmCommandImports,
+		CapsDropdownMenuImports,
+		CapsCommandImports,
 		CapsPopoverImports,
 		PriorityIconPipe,
 		StatusIconPipe,
@@ -71,7 +71,13 @@ import { TasksExample } from '../tasks';
 		<div class="wip-table-search flex flex-col justify-between gap-4 sm:flex-row">
 			<div class="flex flex-col justify-between gap-4 sm:flex-row">
 				<!-- TASK TITLE FILTER -->
-				<input capsInput class="h-8 w-full md:w-80" placeholder="Filter tasks..." (input)="taskFilterChange($event)" />
+				<input
+					capsInput
+					class="h-8 w-full md:w-80"
+					aria-label="Filter tasks"
+					placeholder="Filter tasks..."
+					(input)="taskFilterChange($event)"
+				/>
 
 				<!-- STATUS FILTER -->
 				<caps-popover [(open)]="_statusState" placement="bottom-start">
@@ -91,13 +97,13 @@ import { TasksExample } from '../tasks';
 						}
 					</button>
 					<ng-template capsPopoverContent [class]="'w-[200px] p-0'">
-						<hlm-command>
-							<hlm-command-input placeholder="Search Status" />
-							<hlm-command-list>
-								<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-								<hlm-command-group>
+						<caps-command>
+							<caps-command-input placeholder="Search Status" />
+							<caps-command-list>
+								<caps-command-empty>No results found.</caps-command-empty>
+								<caps-command-group>
 									@for (status of _statuses(); track status) {
-										<button hlm-command-item [value]="status" (selected)="statusSelected(status)">
+										<button capsCommandItem [value]="status" (selected)="statusSelected(status)">
 											<ng-icon
 												name="lucideCheck"
 												aria-hidden="true"
@@ -112,9 +118,9 @@ import { TasksExample } from '../tasks';
 											{{ status }}
 										</button>
 									}
-								</hlm-command-group>
-							</hlm-command-list>
-						</hlm-command>
+								</caps-command-group>
+							</caps-command-list>
+						</caps-command>
 					</ng-template>
 				</caps-popover>
 
@@ -136,13 +142,13 @@ import { TasksExample } from '../tasks';
 						}
 					</button>
 					<ng-template capsPopoverContent [class]="'w-[200px] p-0'">
-						<hlm-command>
-							<hlm-command-input placeholder="Search Priority" />
-							<hlm-command-list>
-								<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-								<hlm-command-group>
+						<caps-command>
+							<caps-command-input placeholder="Search Priority" />
+							<caps-command-list>
+								<caps-command-empty>No results found.</caps-command-empty>
+								<caps-command-group>
 									@for (priority of _priorities(); track priority) {
-										<button hlm-command-item [value]="priority" (selected)="prioritySelected(priority)">
+										<button capsCommandItem [value]="priority" (selected)="prioritySelected(priority)">
 											<ng-icon
 												name="lucideCheck"
 												aria-hidden="true"
@@ -157,9 +163,9 @@ import { TasksExample } from '../tasks';
 											{{ priority }}
 										</button>
 									}
-								</hlm-command-group>
-							</hlm-command-list>
-						</hlm-command>
+								</caps-command-group>
+							</caps-command-list>
+						</caps-command>
 					</ng-template>
 				</caps-popover>
 
@@ -172,24 +178,23 @@ import { TasksExample } from '../tasks';
 			</div>
 
 			<!-- Column visibility -->
-			<button capsButton variant="outline" align="end" [hlmDropdownMenuTrigger]="menu">
+			<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom-end">
 				Columns
 				<ng-icon name="lucideChevronDown" class="ml-2" />
 			</button>
 			<ng-template #menu>
-				<hlm-dropdown-menu class="w-32">
+				<caps-menu class="w-32">
 					@for (column of _hidableColumns; track column.id) {
 						<button
-							hlmDropdownMenuCheckbox
+							capsMenuCheckboxItem
 							class="capitalize"
 							[checked]="column.getIsVisible()"
-							(triggered)="column.toggleVisibility()"
+							(itemClick)="column.toggleVisibility()"
 						>
-							<hlm-dropdown-menu-checkbox-indicator />
 							{{ column.columnDef.id }}
 						</button>
 					}
-				</hlm-dropdown-menu>
+				</caps-menu>
 			</ng-template>
 		</div>
 	`,

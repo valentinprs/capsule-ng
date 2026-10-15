@@ -1,41 +1,41 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsResizableImports } from '@capsule-ng/caps/resizable';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmResizableImports } from '@spartan-ng/helm/resizable';
 
 @Component({
 	selector: 'spartan-resizable-rtl-preview',
-	imports: [HlmResizableImports],
+	imports: [CapsResizableImports],
 	providers: [Directionality],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
-		class: 'min-w-xs',
+		class: 'w-full min-w-0',
 		'[dir]': '_dir()',
 	},
 	template: `
-		<hlm-resizable-group class="max-w-md rounded-lg border">
-			<hlm-resizable-panel defaultSize="50">
+		<caps-resizable-group class="h-[200px] max-w-md rounded-lg border">
+			<caps-resizable-panel defaultSize="50">
 				<div class="flex h-[200px] items-center justify-center p-6">
 					<span class="font-semibold">{{ _t()['one'] }}</span>
 				</div>
-			</hlm-resizable-panel>
-			<hlm-resizable-handle withHandle />
-			<hlm-resizable-panel defaultSize="50">
-				<hlm-resizable-group direction="vertical">
-					<hlm-resizable-panel defaultSize="25">
+			</caps-resizable-panel>
+			<caps-resizable-handle [attr.aria-label]="_t()['one'] + ' — ' + _t()['width']" withHandle />
+			<caps-resizable-panel defaultSize="50">
+				<caps-resizable-group direction="vertical">
+					<caps-resizable-panel defaultSize="25">
 						<div class="flex h-full items-center justify-center p-6">
 							<span class="font-semibold">{{ _t()['two'] }}</span>
 						</div>
-					</hlm-resizable-panel>
-					<hlm-resizable-handle withHandle />
-					<hlm-resizable-panel defaultSize="75">
+					</caps-resizable-panel>
+					<caps-resizable-handle [attr.aria-label]="_t()['two'] + ' — ' + _t()['height']" withHandle />
+					<caps-resizable-panel defaultSize="75">
 						<div class="flex h-full items-center justify-center p-6">
 							<span class="font-semibold">{{ _t()['three'] }}</span>
 						</div>
-					</hlm-resizable-panel>
-				</hlm-resizable-group>
-			</hlm-resizable-panel>
-		</hlm-resizable-group>
+					</caps-resizable-panel>
+				</caps-resizable-group>
+			</caps-resizable-panel>
+		</caps-resizable-group>
 	`,
 })
 export class ResizableRtlPreview {
@@ -46,6 +46,8 @@ export class ResizableRtlPreview {
 			dir: 'ltr',
 			values: {
 				one: 'One',
+				width: 'width',
+				height: 'height',
 				two: 'Two',
 				three: 'Three',
 			},
@@ -54,6 +56,8 @@ export class ResizableRtlPreview {
 			dir: 'rtl',
 			values: {
 				one: 'واحد',
+				width: 'عرض',
+				height: 'ارتفاع',
 				two: 'اثنان',
 				three: 'ثلاثة',
 			},
@@ -62,6 +66,8 @@ export class ResizableRtlPreview {
 			dir: 'rtl',
 			values: {
 				one: 'אחד',
+				width: 'רוחב',
+				height: 'גובה',
 				two: 'שניים',
 				three: 'שלושה',
 			},

@@ -5,7 +5,6 @@ import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/prim
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { hlmCode } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
 import { MainSection } from '../../../../shared/layout/main-section';
@@ -98,13 +97,7 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_advancedCode()" />
 			</spartan-tabs>
 			<h3 id="examples__advanced_query_params" spartanH4>Advanced Pagination - Query Params</h3>
-			<p class="py-2">
-				Use
-				<code class="${hlmCode}">hlm-numbered-pagination-query-params</code>
-				instead of
-				<code class="${hlmCode}">hlm-numbered-pagination</code>
-				to synchronize pagination state with query params.
-			</p>
+			<p class="py-2">Project native links with routerLink and queryParams to synchronize pagination with the URL.</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
 					<spartan-pagination-advanced-query-params />
@@ -120,8 +113,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="popover" label="Popover" />

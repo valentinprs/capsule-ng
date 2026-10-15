@@ -3,20 +3,20 @@ import { NgIcon, provideIcons } from '@ng-icons/core';
 import * as lucide from '@ng-icons/lucide';
 
 import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmDropdownMenu, HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports, CapsMenu } from '@capsule-ng/caps/dropdown-menu';
 
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-const meta: Meta<HlmDropdownMenu> = {
+const meta: Meta<CapsMenu> = {
 	title: 'Dropdown Menu',
-	component: HlmDropdownMenu,
+	component: CapsMenu,
 	tags: ['autodocs'],
 	args: {
-		sideOffset: '1',
+		size: 'lg',
 	},
 	argTypes: {
-		sideOffset: {
-			options: ['1', '1.5', '2'],
+		size: {
+			options: ['xs', 'sm', 'md', 'lg'],
 			control: {
 				type: 'select',
 			},
@@ -25,120 +25,119 @@ const meta: Meta<HlmDropdownMenu> = {
 	decorators: [
 		moduleMetadata({
 			providers: [provideIcons(lucide)],
-			imports: [HlmDropdownMenuImports, CapsButton, NgIcon],
+			imports: [CapsDropdownMenuImports, CapsButton, NgIcon],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<HlmDropdownMenu>;
+type Story = StoryObj<CapsMenu>;
 
 export const Default: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
     <div class='w-full flex justify-center items-center'>
-      <button capsButton variant='outline' align='end' [hlmDropdownMenuTrigger]='menu'>Open</button>
+      <button capsButton variant='outline' [capsDropdownMenuTrigger]='menu' placement="bottom-end">Open</button>
     </div>
     <ng-template #menu>
-      <hlm-dropdown-menu ${argsToTemplate(args)} class='w-56'>
-        <hlm-dropdown-menu-label>My Account</hlm-dropdown-menu-label>
-        <hlm-dropdown-menu-separator />
-        <hlm-dropdown-menu-group>
-          <button hlmDropdownMenuItem>
+      <caps-menu ${argsToTemplate(args)} class='w-56'>
+        <caps-menu-label>My Account</caps-menu-label>
+        <caps-menu-separator />
+        <caps-menu-group>
+          <button capsMenuItem>
             <ng-icon name='lucideUser' />
             <span>Profile</span>
-            <hlm-dropdown-menu-shortcut>⇧⌘P</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⇧⌘P</caps-menu-shortcut>
           </button>
 
-          <button hlmDropdownMenuItem>
+          <button capsMenuItem>
             <ng-icon name='lucideCreditCard' />
             <span>Billing</span>
-            <hlm-dropdown-menu-shortcut>⌘B</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘B</caps-menu-shortcut>
           </button>
 
-          <button hlmDropdownMenuItem>
+          <button capsMenuItem>
             <ng-icon name='lucideSettings' />
             <span>Settings</span>
-            <hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘S</caps-menu-shortcut>
           </button>
 
-          <button hlmDropdownMenuItem>
+          <button capsMenuItem>
             <ng-icon name='lucideKeyboard' />
             <span>Keyboard Shortcuts</span>
-            <hlm-dropdown-menu-shortcut>⌘K</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘K</caps-menu-shortcut>
           </button>
-        </hlm-dropdown-menu-group>
+        </caps-menu-group>
 
-        <hlm-dropdown-menu-separator />
+        <caps-menu-separator />
 
-        <hlm-dropdown-menu-group>
-          <button hlmDropdownMenuItem>
+        <caps-menu-group>
+          <button capsMenuItem>
             <ng-icon name='lucideUsers' />
             <span>Team</span>
-            <hlm-dropdown-menu-shortcut>⌘B</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘B</caps-menu-shortcut>
           </button>
 
-          <button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]='invite' side="right" align="start">
+          <button [capsMenuSubTrigger]='invite' side="right" align="start">
             <ng-icon name='lucideUserPlus' />
             <span>Invite Users</span>
-            <hlm-dropdown-menu-item-sub-indicator />
           </button>
 
-          <button hlmDropdownMenuItem>
+          <button capsMenuItem>
             <ng-icon name='lucidePlus' />
             <span>New Team</span>
-            <hlm-dropdown-menu-shortcut>⌘+T</hlm-dropdown-menu-shortcut>
+            <caps-menu-shortcut>⌘+T</caps-menu-shortcut>
           </button>
-        </hlm-dropdown-menu-group>
+        </caps-menu-group>
 
-        <hlm-dropdown-menu-separator />
+        <caps-menu-separator />
 
-        <hlm-dropdown-menu-group>
-          <button hlmDropdownMenuItem [disabled]='false'>
+        <caps-menu-group>
+          <button capsMenuItem [disabled]='false'>
             <ng-icon name='lucideGithub' />
             <span>Github</span>
           </button>
 
-          <button hlmDropdownMenuItem [disabled]='true'>
+          <button capsMenuItem [disabled]='true'>
             <ng-icon name='lucideLifeBuoy' />
             <span>Support</span>
           </button>
 
-          <button hlmDropdownMenuItem disabled>
+          <button capsMenuItem disabled>
             <ng-icon name='lucideCloud' />
             <span>API</span>
           </button>
-        </hlm-dropdown-menu-group>
+        </caps-menu-group>
 
-        <hlm-dropdown-menu-separator />
+        <caps-menu-separator />
 
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           <ng-icon name='lucideLogOut' />
           <span>Logout</span>
-          <hlm-dropdown-menu-shortcut>⇧⌘Q</hlm-dropdown-menu-shortcut>
+          <caps-menu-shortcut>⇧⌘Q</caps-menu-shortcut>
         </button>
 
-      </hlm-dropdown-menu>
+      </caps-menu>
     </ng-template>
 
     <ng-template #invite>
-      <hlm-dropdown-menu-sub>
-        <button hlmDropdownMenuItem>
+      <caps-menu>
+        <button capsMenuItem>
           <ng-icon name='lucideMail' />
           Email
         </button>
 
-        <button hlmDropdownMenuItem>
+        <button capsMenuItem>
           <ng-icon name='lucideMessageSquare' />
           Message
         </button>
-        <hlm-dropdown-menu-separator />
-        <button hlmDropdownMenuItem>
+        <caps-menu-separator />
+        <button capsMenuItem>
           <ng-icon name='lucideCirclePlus' />
           <span>More</span>
         </button>
-      </hlm-dropdown-menu-sub>
+      </caps-menu>
     </ng-template>
     `,
 	}),
@@ -146,57 +145,46 @@ export const Default: Story = {
 
 @Component({
 	selector: 'stateful-dropdown-story',
-	imports: [HlmDropdownMenuImports, CapsButtonImports],
+	imports: [CapsDropdownMenuImports, CapsButtonImports, NgIcon],
 	template: `
 		<div class="flex w-full items-center justify-center pt-[20%]">
-			<button capsButton variant="outline" align="center" [hlmDropdownMenuTrigger]="menu">Open</button>
+			<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom">Open</button>
 		</div>
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-56">
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>Appearance</hlm-dropdown-menu-label>
-
-					<button hlmDropdownMenuCheckbox [checked]="isPanel" (triggered)="isPanel = !isPanel">
-						<hlm-dropdown-menu-checkbox-indicator />
+			<caps-menu class="w-56">
+				<caps-menu-group label="Appearance">
+					<button capsMenuCheckboxItem [(checked)]="isPanel">
 						<span>Panel</span>
 					</button>
 
-					<button
-						hlmDropdownMenuCheckbox
-						disabled
-						[checked]="isActivityBar"
-						(triggered)="isActivityBar = !isActivityBar"
-					>
-						<hlm-dropdown-menu-checkbox-indicator />
+					<button capsMenuCheckboxItem disabled [(checked)]="isActivityBar">
 						<span>Activity Bar</span>
 					</button>
 
-					<button hlmDropdownMenuCheckbox [checked]="isStatusBar" (triggered)="isStatusBar = !isStatusBar">
-						<hlm-dropdown-menu-checkbox-indicator />
+					<button capsMenuCheckboxItem [(checked)]="isStatusBar">
 						<span>Status Bar</span>
 					</button>
-				</hlm-dropdown-menu-group>
+				</caps-menu-group>
 
-				<hlm-dropdown-menu-separator />
+				<caps-menu-separator />
 
-				<hlm-dropdown-menu-label>Panel Position</hlm-dropdown-menu-label>
+				<caps-menu-label>Panel Position</caps-menu-label>
 
-				<hlm-dropdown-menu-group>
+				<caps-menu-group type="radio" [(value)]="selectedPosition">
 					@for (size of panelPositions; track size) {
-						<button hlmDropdownMenuRadio [checked]="size === selectedPosition" (triggered)="selectedPosition = size">
-							<hlm-dropdown-menu-radio-indicator />
+						<button capsMenuRadioItem [value]="size">
 							<span>{{ size }}</span>
 						</button>
 					}
-				</hlm-dropdown-menu-group>
+				</caps-menu-group>
 
-				<hlm-dropdown-menu-separator />
+				<caps-menu-separator />
 
-				<button hlmDropdownMenuItem (triggered)="reset()">
+				<button capsMenuItem (itemClick)="reset()">
 					<ng-icon name="lucideUndo2" />
 					Reset
 				</button>
-			</hlm-dropdown-menu>
+			</caps-menu>
 		</ng-template>
 	`,
 })
@@ -206,7 +194,7 @@ class StatefulStory {
 	isActivityBar = false;
 
 	panelPositions = ['Top', 'Bottom', 'Right', 'Left'] as const;
-	selectedPosition: (typeof this.panelPositions)[number] | undefined = 'Bottom';
+	selectedPosition: string | string[] = 'Bottom';
 
 	reset() {
 		this.isStatusBar = false;
@@ -231,28 +219,27 @@ export const Stateful: Story = {
 export const Submenu: Story = {
 	render: () => ({
 		moduleMetadata: {
-			imports: [HlmDropdownMenuImports, CapsButton, NgIcon],
+			imports: [CapsDropdownMenuImports, CapsButton, NgIcon],
 			providers: [provideIcons(lucide)],
 		},
 		template: `
     <div class='flex w-full justify-center pt-[20%]'>
-      <button capsButton variant='outline' [hlmDropdownMenuTrigger]='menu'>Open</button>
+      <button capsButton variant='outline' [capsDropdownMenuTrigger]='menu'>Open</button>
     </div>
     <ng-template #menu>
-      <hlm-dropdown-menu class='w-56'>
-        <button hlmDropdownMenuItem>Top Item</button>
-        <button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]='sub' side='right' align='start'>
+      <caps-menu class='w-56'>
+        <button capsMenuItem>Top Item</button>
+        <button [capsMenuSubTrigger]='sub' side='right' align='start'>
           <span>Submenu Trigger</span>
-          <hlm-dropdown-menu-item-sub-indicator />
         </button>
-        <button hlmDropdownMenuItem>Bottom Item</button>
-      </hlm-dropdown-menu>
+        <button capsMenuItem>Bottom Item</button>
+      </caps-menu>
     </ng-template>
     <ng-template #sub>
-      <hlm-dropdown-menu-sub>
-        <button hlmDropdownMenuItem>Sub Item One</button>
-        <button hlmDropdownMenuItem>Sub Item Two</button>
-      </hlm-dropdown-menu-sub>
+      <caps-menu>
+        <button capsMenuItem>Sub Item One</button>
+        <button capsMenuItem>Sub Item Two</button>
+      </caps-menu>
     </ng-template>
     `,
 	}),

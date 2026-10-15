@@ -1,12 +1,11 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, untracked } from '@angular/core';
+import { CapsScrollAreaImports } from '@capsule-ng/caps/scroll-area';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmScrollAreaImports } from '@spartan-ng/helm/scroll-area';
-import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @Component({
 	selector: 'spartan-scroll-area-rtl-preview',
-	imports: [HlmScrollAreaImports, NgScrollbarModule],
+	imports: [CapsScrollAreaImports],
 	providers: [Directionality],
 	host: {
 		class: 'flex w-full justify-center',
@@ -14,8 +13,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 	},
 	template: `
 		<div class="w-96 max-w-full space-y-3">
-			<h4 class="text-sm leading-none font-medium">{{ _t()['title'] }}</h4>
-			<ng-scrollbar hlm class="w-full border whitespace-nowrap">
+			<h3 class="text-sm leading-none font-medium">{{ _t()['title'] }}</h3>
+			<caps-scroll-area orientation="horizontal" [aria-label]="_t()['title']" class="w-full border whitespace-nowrap">
 				<div class="flex w-max gap-3 p-4">
 					@for (item of _items; track item) {
 						<div class="bg-muted flex size-20 shrink-0 items-center justify-center rounded-md text-lg font-semibold">
@@ -23,7 +22,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 						</div>
 					}
 				</div>
-			</ng-scrollbar>
+			</caps-scroll-area>
 		</div>
 	`,
 })

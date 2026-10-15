@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsEmptyImports } from '@capsule-ng/caps/empty';
+import { CapsMessageScrollerImports } from '@capsule-ng/caps/message-scroller';
 import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideArrowUp, lucideMessageCircleDashed, lucideRotateCw } from '@ng-icons/lucide';
-import { HlmEmptyImports } from '@spartan-ng/helm/empty';
-import { HlmMessageScrollerImports } from '@spartan-ng/helm/message-scroller';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 
 @Component({
 	selector: 'spartan-message-scroller-anchoring-preview',
 	imports: [
-		HlmMessageScrollerImports,
+		CapsMessageScrollerImports,
 		CapsCardImports,
 		CapsButtonImports,
-		HlmEmptyImports,
+		CapsEmptyImports,
 		CapsToggleGroupImports,
 		MessageScrollerTranscriptRow,
 		NgIcon,
@@ -47,40 +47,33 @@ import { ANCHORING_SCRIPT, type DemoMessage } from './message-scroller.shared';
 
 			<caps-card-content class="min-h-0 flex-1 overflow-hidden p-0">
 				@if (_messages().length === 0) {
-					<hlm-empty class="h-full">
-						<hlm-empty-header>
-							<hlm-empty-media variant="icon">
-								<ng-icon name="lucideMessageCircleDashed" />
-							</hlm-empty-media>
-							<div hlmEmptyTitle>No anchored messages yet</div>
-							<div hlmEmptyDescription>Send the first message to see the selected role anchor.</div>
-						</hlm-empty-header>
-					</hlm-empty>
+					<caps-empty class="h-full">
+						<caps-empty-media variant="icon">
+							<ng-icon aria-hidden="true" name="lucideMessageCircleDashed" />
+						</caps-empty-media>
+						<caps-empty-title>No anchored messages yet</caps-empty-title>
+						<caps-empty-description>Send the first message to see the selected role anchor.</caps-empty-description>
+					</caps-empty>
 				} @else {
-					<div hlmMessageScrollerProvider>
-						<div hlmMessageScroller>
-							<div hlmMessageScrollerViewport>
-								<div hlmMessageScrollerContent class="p-(--card-spacing)">
-									@for (message of _messages(); track message.id) {
-										<spartan-message-scroller-transcript-row
-											[messageId]="message.id"
-											[role]="message.role"
-											[text]="message.text"
-											[scrollAnchor]="message.role === _anchorRole()"
-											userVariant="muted"
-											assistantVariant="ghost"
-											[animationClass]="
-												message.role === 'user'
-													? 'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-(--caps-duration-300)'
-													: ''
-											"
-										/>
-									}
-								</div>
-							</div>
-							<button hlmMessageScrollerButton></button>
-						</div>
-					</div>
+					<caps-message-scroller aria-label="Anchoring messages" contentClass="p-(--card-spacing)">
+						@for (message of _messages(); track message.id) {
+							<spartan-message-scroller-transcript-row
+								[messageId]="message.id"
+								[role]="message.role"
+								[text]="message.text"
+								[scrollAnchor]="message.role === _anchorRole()"
+								userVariant="muted"
+								assistantVariant="ghost"
+								[animationClass]="
+									message.role === 'user'
+										? 'motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-2 duration-(--caps-duration-300)'
+										: ''
+								"
+							/>
+						}
+
+						<button caps-message-scroller-button></button>
+					</caps-message-scroller>
 				}
 			</caps-card-content>
 

@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChartPie, lucideEllipsis, lucideFrame, lucideLifeBuoy, lucideMap, lucideSend } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-dropdown-menu',
-	imports: [HlmSidebarImports, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsSidebarImports, NgIcon, CapsDropdownMenuImports],
 	providers: [
 		provideIcons({
 			lucideFrame,
@@ -20,43 +20,45 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupLabel>Projects</div>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Projects</caps-sidebar-group-label>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
 								@for (project of _projects; track project) {
-									<li hlmSidebarMenuItem>
-										<button hlmSidebarMenuButton>
-											<ng-icon [name]="project.icon" />
+									<caps-sidebar-menu-item>
+										<button capsSidebarMenuButton>
+											<ng-icon aria-hidden="true" [name]="project.icon" />
 											<span>{{ project.name }}</span>
 										</button>
-										<button hlmSidebarMenuAction [hlmDropdownMenuTrigger]="menu" side="right" align="start">
-											<ng-icon name="lucideEllipsis" />
+										<button capsSidebarMenuAction [capsDropdownMenuTrigger]="menu" placement="right-start">
+											<ng-icon aria-hidden="true" name="lucideEllipsis" />
 											<span class="sr-only">More</span>
 										</button>
 
 										<ng-template #menu>
-											<hlm-dropdown-menu>
-												<button hlmDropdownMenuItem>Edit Project</button>
-												<button hlmDropdownMenuItem>Delete Project</button>
-											</hlm-dropdown-menu>
+											<caps-menu>
+												<button capsMenuItem>Edit Project</button>
+												<button capsMenuItem>Delete Project</button>
+											</caps-menu>
 										</ng-template>
-									</li>
+									</caps-sidebar-menu-item>
 								}
-							</ul>
-						</div>
-					</div>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
 				</div>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarDropdownMenuPage {

@@ -1,11 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChartPie, lucideFrame, lucideLifeBuoy, lucideMap, lucideSend } from '@ng-icons/lucide';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-menu',
-	imports: [HlmSidebarImports, NgIcon],
+	imports: [CapsSidebarImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideFrame,
@@ -18,33 +18,35 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupLabel>Projects</div>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Projects</caps-sidebar-group-label>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
 								@for (project of _projects; track project) {
-									<li hlmSidebarMenuItem>
-										<button hlmSidebarMenuButton>
-											<ng-icon [name]="project.icon" />
+									<caps-sidebar-menu-item>
+										<button capsSidebarMenuButton>
+											<ng-icon aria-hidden="true" [name]="project.icon" />
 											<span>{{ project.name }}</span>
 										</button>
-										<div hlmSidebarMenuBadge>{{ project.info }}</div>
-									</li>
+										<caps-sidebar-menu-badge>{{ project.info }}</caps-sidebar-menu-badge>
+									</caps-sidebar-menu-item>
 								}
-							</ul>
-						</div>
-					</div>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
 				</div>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarMenuPage {

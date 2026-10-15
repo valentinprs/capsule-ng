@@ -1,76 +1,72 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, computed, effect, inject, untracked } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsNavigationMenuImports } from '@capsule-ng/caps/navigation-menu';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
 
 @Component({
 	selector: 'spartan-navigation-menu-rtl',
-	imports: [HlmNavigationMenuImports, RouterLink],
+	imports: [CapsNavigationMenuImports, RouterLink],
 	providers: [Directionality],
 	host: {
 		'[dir]': '_dir()',
 	},
 	template: `
-		<nav hlmNavigationMenu>
-			<ul hlmNavigationMenuList class="flex-wrap">
-				<li hlmNavigationMenuItem>
-					<button hlmNavigationMenuTrigger>{{ _t()['gettingStarted'] }}</button>
-					<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-						<ul class="w-96">
-							<li>
-								<a hlmNavigationMenuLink routerLink="/documentation/introduction">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">{{ _t()['introduction'] }}</div>
-										<div class="text-muted-foreground line-clamp-2">{{ _t()['introductionDesc'] }}</div>
-									</div>
-								</a>
-							</li>
+		<caps-navigation-menu aria-label="Translated navigation">
+			<li capsNavigationMenuItem>
+				<button caps-navigation-menu-trigger>{{ _t()['gettingStarted'] }}</button>
+				<ng-template capsNavigationMenuContent>
+					<ul class="w-96 max-w-[calc(100vw-2rem)]">
+						<li>
+							<a capsNavigationMenuLink routerLink="/documentation/introduction">
+								<div class="flex flex-col gap-1 text-sm">
+									<div class="leading-none font-medium">{{ _t()['introduction'] }}</div>
+									<div class="text-muted-foreground line-clamp-2">{{ _t()['introductionDesc'] }}</div>
+								</div>
+							</a>
+						</li>
 
-							<li>
-								<a hlmNavigationMenuLink routerLink="/documentation/installation">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">{{ _t()['installation'] }}</div>
-										<div class="text-muted-foreground line-clamp-2">{{ _t()['installationDesc'] }}</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a hlmNavigationMenuLink routerLink="/documentation/typography">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">{{ _t()['typography'] }}</div>
-										<div class="text-muted-foreground line-clamp-2">{{ _t()['typographyDesc'] }}</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</hlm-navigation-menu-content>
-				</li>
+						<li>
+							<a capsNavigationMenuLink routerLink="/documentation/installation">
+								<div class="flex flex-col gap-1 text-sm">
+									<div class="leading-none font-medium">{{ _t()['installation'] }}</div>
+									<div class="text-muted-foreground line-clamp-2">{{ _t()['installationDesc'] }}</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a capsNavigationMenuLink routerLink="/documentation/typography">
+								<div class="flex flex-col gap-1 text-sm">
+									<div class="leading-none font-medium">{{ _t()['typography'] }}</div>
+									<div class="text-muted-foreground line-clamp-2">{{ _t()['typographyDesc'] }}</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</ng-template>
+			</li>
 
-				<!-- Components Menu -->
-				<li hlmNavigationMenuItem class="hidden md:flex">
-					<button hlmNavigationMenuTrigger>{{ _t()['components'] }}</button>
-					<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-						<ul class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-							@for (component of _components; track $index) {
-								<li>
-									<a hlmNavigationMenuLink [href]="component.href">
-										<div class="flex flex-col gap-1 text-sm">
-											<div class="leading-none font-medium">{{ _t()[component.titleKey] }}</div>
-											<div class="text-muted-foreground line-clamp-2">{{ _t()[component.descriptionKey] }}</div>
-										</div>
-									</a>
-								</li>
-							}
-						</ul>
-					</hlm-navigation-menu-content>
-				</li>
+			<!-- Components Menu -->
+			<li capsNavigationMenuItem class="hidden md:flex">
+				<button caps-navigation-menu-trigger>{{ _t()['components'] }}</button>
+				<ng-template capsNavigationMenuContent>
+					<div class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+						@for (component of _components; track $index) {
+							<a capsNavigationMenuLink [href]="component.href">
+								<div class="flex flex-col gap-1 text-sm">
+									<div class="leading-none font-medium">{{ _t()[component.titleKey] }}</div>
+									<div class="text-muted-foreground line-clamp-2">{{ _t()[component.descriptionKey] }}</div>
+								</div>
+							</a>
+						}
+					</div>
+				</ng-template>
+			</li>
 
-				<li hlmNavigationMenuItem>
-					<a hlmNavigationMenuLink href="/documentation/introduction">{{ _t()['docs'] }}</a>
-				</li>
-			</ul>
-		</nav>
+			<li capsNavigationMenuItem>
+				<a capsNavigationMenuLink href="/documentation/introduction">{{ _t()['docs'] }}</a>
+			</li>
+		</caps-navigation-menu>
 	`,
 })
 export class NavigationMenuRtl {

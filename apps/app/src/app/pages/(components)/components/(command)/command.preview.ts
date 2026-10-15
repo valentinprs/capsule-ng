@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CapsCardImports } from '@capsule-ng/caps/card';
+import { CapsCommandImports } from '@capsule-ng/caps/command';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCalculator,
@@ -11,11 +12,10 @@ import {
 	lucideUser,
 	lucideWallet,
 } from '@ng-icons/lucide';
-import { HlmCommandImports } from '@spartan-ng/helm/command';
 
 @Component({
 	selector: 'spartan-command-preview',
-	imports: [HlmCommandImports, CapsCardImports, NgIcon],
+	imports: [CapsCommandImports, CapsCardImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideSearch,
@@ -34,49 +34,46 @@ import { HlmCommandImports } from '@spartan-ng/helm/command';
 	template: `
 		<caps-card class="py-0">
 			<caps-card-content class="p-0">
-				<hlm-command>
-					<hlm-command-input placeholder="Type a command or search..." />
-					<hlm-command-list>
-						<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-						<hlm-command-group>
-							<hlm-command-group-label>Suggestions</hlm-command-group-label>
-							<button hlm-command-item value="Calendar">
+				<caps-command>
+					<caps-command-input placeholder="Type a command or search..." />
+					<caps-command-list>
+						<caps-command-empty>No results found.</caps-command-empty>
+						<caps-command-group label="Suggestions">
+							<button capsCommandItem value="Calendar">
 								<ng-icon name="lucideCalendar" />
 								Calendar
 							</button>
-							<button hlm-command-item value="Search Emoji">
+							<button capsCommandItem value="Search Emoji">
 								<ng-icon name="lucideSmile" />
 								Search Emoji
 							</button>
-							<button hlm-command-item value="Calculator" disabled>
+							<button capsCommandItem value="Calculator" disabled>
 								<ng-icon name="lucideCalculator" />
 								Calculator
 							</button>
-						</hlm-command-group>
+						</caps-command-group>
 
-						<hlm-command-separator />
+						<caps-command-separator />
 
-						<hlm-command-group>
-							<hlm-command-group-label>Settings</hlm-command-group-label>
-
-							<button hlm-command-item value="Profile">
+						<caps-command-group label="Settings">
+							<button capsCommandItem value="Profile">
 								<ng-icon name="lucideUser" />
 								Profile
-								<hlm-command-shortcut>⌘P</hlm-command-shortcut>
+								<caps-command-shortcut>⌘P</caps-command-shortcut>
 							</button>
-							<button hlm-command-item value="Billing">
+							<button capsCommandItem value="Billing">
 								<ng-icon name="lucideWallet" />
 								Billing
-								<hlm-command-shortcut>⌘B</hlm-command-shortcut>
+								<caps-command-shortcut>⌘B</caps-command-shortcut>
 							</button>
-							<button hlm-command-item value="Settings">
+							<button capsCommandItem value="Settings">
 								<ng-icon name="lucideCog" />
 								Settings
-								<hlm-command-shortcut>⌘S</hlm-command-shortcut>
+								<caps-command-shortcut>⌘S</caps-command-shortcut>
 							</button>
-						</hlm-command-group>
-					</hlm-command-list>
-				</hlm-command>
+						</caps-command-group>
+					</caps-command-list>
+				</caps-command>
 			</caps-card-content>
 		</caps-card>
 	`,
@@ -84,30 +81,28 @@ import { HlmCommandImports } from '@spartan-ng/helm/command';
 export class CommandPreview {}
 
 export const defaultImports = `
-import { HlmCommandImports } from '@spartan-ng/helm/command';
+import { CapsCommandImports } from '@capsule-ng/caps/command';
 `;
 
 export const defaultSkeleton = `
-<hlm-command>
-  <hlm-command-input placeholder="Type a command or search..." />
-  <hlm-command-list>
-  	<div *hlmCommandEmptyState hlmCommandEmpty>No results found.</div>
-    <hlm-command-group>
-      <hlm-command-group-label>Suggestions</hlm-command-group-label>
-      <button hlm-command-item value="Calendar">
+<caps-command>
+  <caps-command-input placeholder="Type a command or search..." />
+  <caps-command-list>
+    <caps-command-empty>No results found.</caps-command-empty>
+    <caps-command-group label="Suggestions">
+      <button capsCommandItem value="Calendar">
         <ng-icon name="lucideCalendar" />
         Calendar
       </button>
-    </hlm-command-group>
-    <hlm-command-separator />
-    <hlm-command-group>
-      <hlm-command-group-label>Settings</hlm-command-group-label>
-      <button hlm-command-item value="Profile">
+    </caps-command-group>
+    <caps-command-separator />
+    <caps-command-group label="Settings">
+      <button capsCommandItem value="Profile">
         <ng-icon name="lucideUser" />
         Profile
-        <hlm-command-shortcut>⌘P</hlm-command-shortcut>
+        <caps-command-shortcut>⌘P</caps-command-shortcut>
       </button>
-    </hlm-command-group>
-  </hlm-command-list>
-</hlm-command>
+    </caps-command-group>
+  </caps-command-list>
+</caps-command>
 `;

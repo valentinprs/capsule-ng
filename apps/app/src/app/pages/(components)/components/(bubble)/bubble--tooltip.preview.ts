@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 
 @Component({
 	selector: 'spartan-bubble-tooltip-preview',
-	imports: [HlmBubbleImports, CapsTooltipImports, CapsButton, NgIcon],
+	imports: [CapsBubbleImports, CapsTooltipImports, CapsButton, NgIcon],
 	providers: [provideIcons({ lucideCheck })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-4 py-12',
 	},
 	template: `
-		<div hlmBubble variant="secondary">
-			<div hlmBubbleContent>Did you remove the stale route?</div>
-		</div>
-		<div hlmBubble align="end">
-			<div hlmBubbleContent>Yes, removed it from the registry.</div>
-			<div hlmBubbleReactions>
+		<caps-bubble variant="secondary">
+			<caps-bubble-content>Did you remove the stale route?</caps-bubble-content>
+		</caps-bubble>
+		<caps-bubble align="end">
+			<caps-bubble-content>Yes, removed it from the registry.</caps-bubble-content>
+			<caps-bubble-reactions>
 				<button
 					aria-label="Read status"
 					capsTooltip="Read on Jan 5, 2026 at 4:32 PM"
@@ -29,8 +29,8 @@ import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 				>
 					<ng-icon name="lucideCheck" />
 				</button>
-			</div>
-		</div>
+			</caps-bubble-reactions>
+		</caps-bubble>
 	`,
 })
 export class BubbleTooltipPreview {}

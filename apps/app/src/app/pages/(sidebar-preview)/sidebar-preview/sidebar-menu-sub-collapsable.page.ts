@@ -1,63 +1,66 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-menu-sub-collapsable',
-	imports: [HlmSidebarImports, HlmCollapsibleImports, NgIcon],
+	imports: [CapsSidebarImports, CapsCollapsibleImports, NgIcon],
 	providers: [provideIcons({ lucideChevronRight })],
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarContent>
-					<div hlmSidebarGroup>
-						<div hlmSidebarGroupContent>
-							<ul hlmSidebarMenu>
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
 								@for (item of _items; track item.title) {
-									<hlm-collapsible [expanded]="item.defaultOpen" class="group/collapsible">
-										<li hlmSidebarMenuItem>
+									<caps-sidebar-menu-item>
+										<caps-collapsible [expanded]="item.defaultOpen" class="group/collapsible">
 											<button
-												hlmCollapsibleTrigger
-												hlmSidebarMenuButton
+												capsCollapsibleTrigger
+												capsSidebarMenuButton
 												class="flex w-full items-center justify-between"
 											>
 												<span>{{ item.title }}</span>
 												<ng-icon
+													aria-hidden="true"
 													name="lucideChevronRight"
 													class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
 													hlm
 												/>
 											</button>
-											<hlm-collapsible-content>
-												<ul hlmSidebarMenuSub>
+											<caps-collapsible-content>
+												<caps-sidebar-menu-sub>
 													@for (subItem of item.items; track subItem.title) {
-														<li hlmSidebarMenuSubItem>
-															<button hlmSidebarMenuSubButton class="w-full">
+														<caps-sidebar-menu-sub-item>
+															<button capsSidebarMenuSubButton class="w-full">
 																<span>{{ subItem.title }}</span>
 															</button>
-														</li>
+														</caps-sidebar-menu-sub-item>
 													}
-												</ul>
-											</hlm-collapsible-content>
-										</li>
-									</hlm-collapsible>
+												</caps-sidebar-menu-sub>
+											</caps-collapsible-content>
+										</caps-collapsible>
+									</caps-sidebar-menu-item>
 								}
-							</ul>
-						</div>
-					</div>
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
 				</div>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarMenuSubPageCollapsable {

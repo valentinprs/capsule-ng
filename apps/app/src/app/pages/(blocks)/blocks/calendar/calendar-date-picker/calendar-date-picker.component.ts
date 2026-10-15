@@ -1,21 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-calendar-date-picker',
-	imports: [HlmDatePickerImports, HlmFieldImports],
+	imports: [CapsDatePickerImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex justify-center p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg overflow-auto',
 	},
 	template: `
-		<hlm-field class="max-w-xs">
-			<label hlmFieldLabel for="datePicker">Date Picker</label>
-			<hlm-date-picker [(date)]="selectedDates" [minDate]="minDate" [maxDate]="maxDate">
-				<hlm-date-picker-trigger buttonId="datePicker">Pick dates</hlm-date-picker-trigger>
-			</hlm-date-picker>
-		</hlm-field>
+		<caps-field class="max-w-xs">
+			<caps-field-label>Date Picker</caps-field-label>
+			<caps-date-picker [(date)]="selectedDates" [minDate]="minDate" [maxDate]="maxDate">
+				<caps-date-picker-trigger buttonId="datePicker">Pick dates</caps-date-picker-trigger>
+			</caps-date-picker>
+		</caps-field>
 	`,
 })
 export class CalendarDatePickerComponent {

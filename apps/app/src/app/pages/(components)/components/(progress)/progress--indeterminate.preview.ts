@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
-import { HlmProgressImports } from '@spartan-ng/helm/progress';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsProgressImports } from '@capsule-ng/caps/progress';
 
 @Component({
 	selector: 'spartan-progress-indeterminate',
-	imports: [HlmProgressImports],
+	imports: [CapsProgressImports],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	host: { class: 'block w-full max-w-sm' },
 	template: `
-		<hlm-progress class="w-80">
-			<hlm-progress-indicator />
-		</hlm-progress>
+		<caps-progress id="preparing-progress" class="w-full max-w-sm" aria-label="Preparing document" />
 	`,
 })
 export class ProgressIndeterminatePreview {}

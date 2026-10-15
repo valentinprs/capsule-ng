@@ -77,6 +77,17 @@ export const routeMeta: RouteMeta = {
 				<spartan-code [code]="_defaultSkeleton" />
 			</div>
 
+			<p class="mt-6">
+				Capsule owns the list, chevron and deferred panel. Keep destinations on native anchors with
+				<code class="${hlmCode}">href</code>
+				or your application's
+				<code class="${hlmCode}">routerLink</code>
+				. Set
+				<code class="${hlmCode}">active</code>
+				to true or false on a destination to control the current page independently of the open panel's
+				<code class="${hlmCode}">value</code>
+				. When active is omitted, direct item links follow Spartan's active-item fallback; panel links stay unmarked.
+			</p>
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>
 
 			<h3 id="vertical" spartanH4>Vertical</h3>
@@ -144,11 +155,8 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_rtlCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="api">Capsule API</spartan-section-sub-heading>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="pagination" label="Pagination" />

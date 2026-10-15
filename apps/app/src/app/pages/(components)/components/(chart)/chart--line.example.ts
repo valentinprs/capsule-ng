@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { HLM_CHART_THEME, HlmChartImports, hlmChartTooltip } from '@spartan-ng/helm/chart';
+import { CAPS_CHART_THEME, CapsChartImports, capsChartTooltip } from '@capsule-ng/caps/chart';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { defineChart, lineY } from '@tanstack/charts';
 import { scaleLinear } from '@tanstack/charts/scales/linear';
 import { scalePoint } from '@tanstack/charts/scales/point';
@@ -15,13 +16,38 @@ const downloads = [
 
 @Component({
 	selector: 'spartan-chart-line',
-	imports: [HlmChartImports],
+	imports: [CapsChartImports, CapsTableImports],
 	host: { class: 'block w-full max-w-3xl' },
 	template: `
-		<tanstack-chart hlmChart [options]="_chartOptions" />
+		<caps-chart [options]="_chartOptions" />
+		<details class="mt-4 text-sm">
+			<summary class="focus-visible:outline-ring cursor-pointer rounded-sm focus-visible:outline-2">
+				View chart data
+			</summary>
+			<caps-table-container class="mt-2">
+				<table capsTable>
+					<caption>Monthly downloads (thousands)</caption>
+					<thead>
+						<tr>
+							<th scope="col">Month</th>
+							<th scope="col">Downloads (thousands)</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (row of _data; track row.month) {
+							<tr>
+								<th scope="row">{{ row.month }}</th>
+								<td>{{ row.downloads }}</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</caps-table-container>
+		</details>
 	`,
 })
 export class ChartLine {
+	protected readonly _data = downloads;
 	protected readonly _chartOptions = {
 		definition: defineChart(
 			{
@@ -38,12 +64,12 @@ export class ChartLine {
 					x: { scale: () => scalePoint<string>().padding(0.2) },
 					y: { scale: scaleLinear, nice: true, grid: true, axis: { label: 'Downloads (thousands)' } },
 				},
-				theme: HLM_CHART_THEME,
+				theme: CAPS_CHART_THEME,
 			},
-			{ focus: 'nearest-x', tooltip: hlmChartTooltip() },
+			{ focus: 'nearest-x', tooltip: capsChartTooltip() },
 		),
 		ariaLabel: 'Monthly downloads',
-		ariaDescription: 'Line chart showing downloads from January through June.',
+		ariaDescription: 'Line chart showing downloads from January through June. Exact values are in the adjacent table.',
 		aspectRatio: 16 / 9,
 	};
 }

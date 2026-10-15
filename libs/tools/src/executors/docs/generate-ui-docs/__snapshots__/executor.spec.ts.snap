@@ -74,6 +74,82 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "button[brnAccordionTrigger]",
       },
     },
+    "caps": {
+      "CapsAccordion": {
+        "inputs": [
+          {
+            "name": "align",
+            "required": false,
+            "type": "'start' | 'end'",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "'sm' | 'md' | 'lg'",
+          },
+          {
+            "name": "isFlush",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "skeleton",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-accordion",
+      },
+      "CapsAccordionItem": {
+        "inputs": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string | TemplateRef<unknown>",
+          },
+          {
+            "name": "context",
+            "required": false,
+            "type": "Record<string, unknown> | null",
+          },
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "expanded",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "skeleton",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "selected",
+            "type": "CapsAccordionSelection",
+          },
+        ],
+        "selector": "caps-accordion-item",
+      },
+    },
     "helm": {
       "HlmAccordion": {
         "inputs": [
@@ -141,6 +217,44 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "alert": {
+    "caps": {
+      "CapsAlert": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsAlertVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert",
+      },
+      "CapsAlertActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert-actions",
+      },
+      "CapsAlertDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert-description",
+      },
+      "CapsAlertMedia": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert-media",
+      },
+      "CapsAlertTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-alert-title",
+      },
+    },
     "helm": {
       "HlmAlert": {
         "inputs": [
@@ -697,6 +811,111 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "attachment": {
+    "caps": {
+      "CapsAttachment": {
+        "inputs": [
+          {
+            "name": "state",
+            "required": false,
+            "type": "CapsAttachmentState",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsAttachmentVariants['size']",
+          },
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "CapsAttachmentVariants['orientation']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment",
+      },
+      "CapsAttachmentAction": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant | null | undefined",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsButtonSize | null | undefined",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsAttachmentAction]",
+      },
+      "CapsAttachmentActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-actions",
+      },
+      "CapsAttachmentContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-content",
+      },
+      "CapsAttachmentDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-description",
+      },
+      "CapsAttachmentGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-group",
+      },
+      "CapsAttachmentMedia": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsAttachmentMediaVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-media",
+      },
+      "CapsAttachmentTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-attachment-title",
+      },
+      "CapsAttachmentTrigger": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsAttachmentTrigger],a[capsAttachmentTrigger]",
+      },
+    },
     "helm": {
       "HlmAttachment": {
         "inputs": [
@@ -1002,6 +1221,314 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnAutocompleteStatus]",
+      },
+    },
+    "caps": {
+      "CapsAutocomplete": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "'ltr' | 'rtl' | 'auto'",
+          },
+          {
+            "name": "autoHighlight",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "T | undefined | null",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "itemToString",
+            "required": false,
+            "type": "AutocompleteItemToString<T> | undefined",
+          },
+          {
+            "name": "isItemEqualToValue",
+            "required": false,
+            "type": "AutocompleteItemEqualToValue<T>",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "BrnOverlayState | null",
+          },
+          {
+            "name": "offsetX",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollStrategy",
+            "required": false,
+            "type": "BrnOverlayOptions['scrollStrategy'] | 'close' | 'reposition' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "T | undefined | null",
+          },
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+          {
+            "name": "stateChanged",
+            "type": "BrnOverlayState",
+          },
+          {
+            "name": "closed",
+            "type": "TResult",
+          },
+        ],
+        "selector": "caps-autocomplete",
+      },
+      "CapsAutocompleteContent": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-content",
+      },
+      "CapsAutocompleteEmpty": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-empty",
+      },
+      "CapsAutocompleteGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-group",
+      },
+      "CapsAutocompleteInput": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "autocomplete",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showSearch",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "showClear",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-invalid",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-input",
+      },
+      "CapsAutocompleteLabel": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-label",
+      },
+      "CapsAutocompleteOption": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-option",
+      },
+      "CapsAutocompleteSearch": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "'ltr' | 'rtl' | 'auto'",
+          },
+          {
+            "name": "autoHighlight",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string | undefined | null",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "itemToString",
+            "required": false,
+            "type": "AutocompleteItemToString<T> | undefined",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "BrnOverlayState | null",
+          },
+          {
+            "name": "offsetX",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollStrategy",
+            "required": false,
+            "type": "BrnOverlayOptions['scrollStrategy'] | 'close' | 'reposition' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "string | undefined | null",
+          },
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+          {
+            "name": "stateChanged",
+            "type": "BrnOverlayState",
+          },
+          {
+            "name": "closed",
+            "type": "TResult",
+          },
+        ],
+        "selector": "caps-autocomplete-search",
+      },
+      "CapsAutocompleteSeparator": {
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-separator",
+      },
+      "CapsAutocompleteStatus": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-autocomplete-status",
       },
     },
     "helm": {
@@ -1612,6 +2139,60 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "bubble": {
+    "caps": {
+      "CapsBubble": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsBubbleVariants['variant']",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "CapsBubbleAlign",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-bubble",
+      },
+      "CapsBubbleContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-bubble-content",
+      },
+      "CapsBubbleContentDirective": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsBubbleContent], a[capsBubbleContent]",
+      },
+      "CapsBubbleGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-bubble-group",
+      },
+      "CapsBubbleReactions": {
+        "inputs": [
+          {
+            "name": "side",
+            "required": false,
+            "type": "CapsBubbleReactionsVariants['side']",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "CapsBubbleReactionsVariants['align']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-bubble-reactions",
+      },
+    },
     "helm": {
       "HlmBubble": {
         "inputs": [
@@ -2136,6 +2717,240 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "button[brnMonthYearCalendarYearButton]",
       },
     },
+    "caps": {
+      "CapsCalendar": {
+        "inputs": [
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "min",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T",
+          },
+        ],
+        "selector": "caps-calendar",
+      },
+      "CapsCalendarMulti": {
+        "inputs": [
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "min",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "minSelection",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "maxSelection",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T[]",
+          },
+        ],
+        "selector": "caps-calendar-multi",
+      },
+      "CapsCalendarRange": {
+        "inputs": [
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "min",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "startDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "endDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "endDateChange",
+            "type": "T",
+          },
+          {
+            "name": "startDateChange",
+            "type": "T",
+          },
+        ],
+        "selector": "caps-calendar-range",
+      },
+      "CapsMonthYearCalendar": {
+        "inputs": [
+          {
+            "name": "min",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "view",
+            "required": false,
+            "type": "BrnMonthYearCalendarView",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T",
+          },
+        ],
+        "selector": "caps-month-year-calendar",
+      },
+    },
     "helm": {
       "HlmCalendar": {
         "inputs": [
@@ -2490,6 +3305,106 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "carousel": {
+    "caps": {
+      "CapsCarousel": {
+        "exportAs": "capsCarousel",
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+          {
+            "name": "options",
+            "required": false,
+            "type": "Omit<EmblaOptionsType, 'axis'>",
+          },
+          {
+            "name": "plugins",
+            "required": false,
+            "type": "EmblaPluginType[]",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-carousel",
+      },
+      "CapsCarouselAutoplay": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsCarouselAutoplay]",
+      },
+      "CapsCarouselContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-carousel-content",
+      },
+      "CapsCarouselItem": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-carousel-item",
+      },
+      "CapsCarouselNext": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsCarouselNext]",
+      },
+      "CapsCarouselPrevious": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsCarouselPrevious]",
+      },
+      "CapsCarouselSlideDisplay": {
+        "inputs": [
+          {
+            "name": "slideClass",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "label",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-carousel-slide-display",
+      },
+    },
     "helm": {
       "HlmCarousel": {
         "inputs": [
@@ -2579,6 +3494,20 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "chart": {
+    "caps": {
+      "CapsChart": {
+        "inputs": [
+          {
+            "name": "options",
+            "required": true,
+            "type": "ChartOptions<TDatum, TXValue, TYValue>",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-chart",
+      },
+    },
     "helm": {
       "HlmChart": {
         "inputs": [],
@@ -2853,6 +3782,55 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "button[brnCollapsibleTrigger]",
+      },
+    },
+    "caps": {
+      "CapsCollapsible": {
+        "exportAs": "capsCollapsible",
+        "inputs": [
+          {
+            "name": "expanded",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "expandedChange",
+            "type": "boolean",
+          },
+        ],
+        "selector": "caps-collapsible",
+      },
+      "CapsCollapsibleContent": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | null | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-collapsible-content",
+      },
+      "CapsCollapsibleTrigger": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsCollapsibleTrigger]",
       },
     },
     "helm": {
@@ -3238,6 +4216,483 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnComboboxValues]",
+      },
+    },
+    "caps": {
+      "CapsCombobox": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "'ltr' | 'rtl' | 'auto'",
+          },
+          {
+            "name": "autoHighlight",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "closeOnSelect",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "type": "ComboboxFilter<T>",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "T | undefined | null",
+          },
+          {
+            "name": "itemToString",
+            "required": false,
+            "type": "ComboboxItemToString<T> | undefined",
+          },
+          {
+            "name": "filterOptions",
+            "required": false,
+            "type": "ComboboxFilterOptions",
+          },
+          {
+            "name": "isItemEqualToValue",
+            "required": false,
+            "type": "ComboboxItemEqualToValue<T>",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "BrnOverlayState | null",
+          },
+          {
+            "name": "offsetX",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollStrategy",
+            "required": false,
+            "type": "BrnOverlayOptions['scrollStrategy'] | 'close' | 'reposition' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+          {
+            "name": "valueChange",
+            "type": "T | undefined | null",
+          },
+          {
+            "name": "stateChanged",
+            "type": "BrnOverlayState",
+          },
+          {
+            "name": "closed",
+            "type": "TResult",
+          },
+        ],
+        "selector": "caps-combobox",
+      },
+      "CapsComboboxChip": {
+        "inputs": [
+          {
+            "name": "showRemove",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-chip",
+      },
+      "CapsComboboxChipInput": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-invalid",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsComboboxChipInput]",
+      },
+      "CapsComboboxChipRemove": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsComboboxChipRemove]",
+      },
+      "CapsComboboxChips": {
+        "inputs": [
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-chips",
+      },
+      "CapsComboboxContent": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-content",
+      },
+      "CapsComboboxEmpty": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-empty",
+      },
+      "CapsComboboxGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-group",
+      },
+      "CapsComboboxInput": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showTrigger",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "showClear",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "triggerAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "clearAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-invalid",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-input",
+      },
+      "CapsComboboxLabel": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-label",
+      },
+      "CapsComboboxMultiple": {
+        "inputs": [
+          {
+            "name": "dir",
+            "required": false,
+            "type": "'ltr' | 'rtl' | 'auto'",
+          },
+          {
+            "name": "autoHighlight",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "closeOnSelect",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "type": "ComboboxFilter<T>",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "T[] | undefined | null",
+          },
+          {
+            "name": "itemToString",
+            "required": false,
+            "type": "ComboboxItemToString<T> | undefined",
+          },
+          {
+            "name": "filterOptions",
+            "required": false,
+            "type": "ComboboxFilterOptions",
+          },
+          {
+            "name": "isItemEqualToValue",
+            "required": false,
+            "type": "ComboboxItemEqualToValue<T>",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sideOffset",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "state",
+            "required": false,
+            "type": "BrnOverlayState | null",
+          },
+          {
+            "name": "offsetX",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollStrategy",
+            "required": false,
+            "type": "BrnOverlayOptions['scrollStrategy'] | 'close' | 'reposition' | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+          {
+            "name": "valueChange",
+            "type": "T[] | undefined | null",
+          },
+          {
+            "name": "stateChanged",
+            "type": "BrnOverlayState",
+          },
+          {
+            "name": "closed",
+            "type": "TResult",
+          },
+        ],
+        "selector": "caps-combobox-multiple",
+      },
+      "CapsComboboxOption": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "T",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-option",
+      },
+      "CapsComboboxPlaceholder": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-placeholder",
+      },
+      "CapsComboboxSeparator": {
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-separator",
+      },
+      "CapsComboboxStatus": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-status",
+      },
+      "CapsComboboxTrigger": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "buttonId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-trigger",
+      },
+      "CapsComboboxValue": {
+        "inputs": [
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-combobox-value",
+      },
+      "CapsComboboxValueTemplate": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsComboboxValueTemplate]",
+      },
+      "CapsComboboxValues": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsComboboxValues]",
       },
     },
     "helm": {
@@ -3818,6 +5273,196 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "[brnCommandSeparator]",
       },
     },
+    "caps": {
+      "CapsCommand": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "filter",
+            "required": false,
+            "type": "CommandFilter",
+          },
+          {
+            "name": "search",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "string",
+          },
+          {
+            "name": "searchChange",
+            "type": "string",
+          },
+        ],
+        "selector": "caps-command",
+      },
+      "CapsCommandDialog": {
+        "inputs": [
+          {
+            "name": "title",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "description",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showCloseButton",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "dialogContentClass",
+            "required": false,
+            "type": "ClassValue",
+          },
+        ],
+        "models": [
+          {
+            "name": "open",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [],
+        "selector": "caps-command-dialog",
+      },
+      "CapsCommandEmpty": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-command-empty",
+      },
+      "CapsCommandGroup": {
+        "inputs": [
+          {
+            "name": "label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-command-group",
+      },
+      "CapsCommandGroupLabel": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-command-group-label",
+      },
+      "CapsCommandInput": {
+        "inputs": [
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-command-input",
+      },
+      "CapsCommandInputControl": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsCommandInput]",
+      },
+      "CapsCommandItem": {
+        "inputs": [
+          {
+            "name": "value",
+            "required": true,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "selected",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsCommandItem]",
+      },
+      "CapsCommandList": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-command-list",
+      },
+      "CapsCommandSeparator": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-command-separator",
+      },
+      "CapsCommandShortcut": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-command-shortcut",
+      },
+    },
     "helm": {
       "HlmCommand": {
         "inputs": [
@@ -3993,6 +5638,49 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "context-menu": {
+    "caps": {
+      "CapsContextMenuTrigger": {
+        "inputs": [
+          {
+            "name": "capsContextMenuTrigger",
+            "required": true,
+            "type": "TemplateRef<unknown>",
+          },
+          {
+            "name": "capsContextMenuTriggerData",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "MenuAlign",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "MenuSide",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "opened",
+            "type": "void",
+          },
+          {
+            "name": "closed",
+            "type": "void",
+          },
+        ],
+        "selector": "[capsContextMenuTrigger]",
+      },
+    },
     "helm": {
       "HlmContextMenuTrigger": {
         "inputs": [
@@ -4067,6 +5755,743 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": null,
+      },
+    },
+    "caps": {
+      "CapsDateMultiInput": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "parseDate",
+            "required": false,
+            "type": "(value: string) => T[] | null",
+          },
+          {
+            "name": "formatInputDates",
+            "required": false,
+            "type": "(dates: T[]) => string",
+          },
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "inputValue",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showClear",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "openOnClick",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "clearAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "calendarAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-date-multi-input",
+      },
+      "CapsDatePicker": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "minDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "maxDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "autoCloseOnSelect",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "formatDate",
+            "required": false,
+            "type": "(date: T) => string",
+          },
+          {
+            "name": "transformDate",
+            "required": false,
+            "type": "(date: T) => T",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T | null",
+          },
+        ],
+        "selector": "caps-date-picker",
+      },
+      "CapsDatePickerAnchor": {
+        "inputs": [
+          {
+            "name": "capsDatePickerAnchorFor",
+            "required": false,
+            "type": "BrnPopover | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsDatePickerAnchor]",
+      },
+      "CapsDatePickerInput": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "parseDate",
+            "required": false,
+            "type": "(value: string) => T | null",
+          },
+          {
+            "name": "formatInputDate",
+            "required": false,
+            "type": "(date: T) => string",
+          },
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "inputValue",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showClear",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "openOnClick",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "clearAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "calendarAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-date-picker-input",
+      },
+      "CapsDatePickerMulti": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "minDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "maxDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "minSelection",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "maxSelection",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "autoCloseOnMaxSelection",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "formatDates",
+            "required": false,
+            "type": "(date: T[]) => string",
+          },
+          {
+            "name": "transformDates",
+            "required": false,
+            "type": "(date: T[]) => T[]",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T[]",
+          },
+        ],
+        "selector": "caps-date-picker-multi",
+      },
+      "CapsDatePickerTrigger": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "buttonId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant",
+          },
+          {
+            "name": "showTrigger",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-date-picker-trigger",
+      },
+      "CapsDateRangeInput": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "parseDate",
+            "required": false,
+            "type": "(value: string) => [T, T] | null",
+          },
+          {
+            "name": "formatInputDates",
+            "required": false,
+            "type": "(dates: [T | null, T | null]) => string",
+          },
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "inputValue",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showClear",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "openOnClick",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "clearAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "calendarAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-date-range-input",
+      },
+      "CapsDateRangePicker": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "captionLayout",
+            "required": false,
+            "type": "'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'",
+          },
+          {
+            "name": "dateDisabled",
+            "required": false,
+            "type": "(date: T) => boolean",
+          },
+          {
+            "name": "weekStartsOn",
+            "required": false,
+            "type": "Weekday",
+          },
+          {
+            "name": "highlightDays",
+            "required": false,
+            "type": "T[]",
+          },
+          {
+            "name": "minDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "maxDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "[T, T]",
+          },
+          {
+            "name": "autoCloseOnEndSelection",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "formatDates",
+            "required": false,
+            "type": "(dates: [T | null, T | null]) => string",
+          },
+          {
+            "name": "transformDates",
+            "required": false,
+            "type": "(date: [T, T]) => [T, T]",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "[T, T] | null",
+          },
+        ],
+        "selector": "caps-date-range-picker",
+      },
+      "CapsMonthYearInput": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "parseDate",
+            "required": false,
+            "type": "(value: string) => T | null",
+          },
+          {
+            "name": "formatInputDate",
+            "required": false,
+            "type": "(date: T) => string",
+          },
+          {
+            "name": "inputId",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "inputValue",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "showClear",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "openOnClick",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "forceInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "clearAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "calendarAriaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-month-year-input",
+      },
+      "CapsMonthYearPicker": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "placeholder",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "BrnPopoverAlign",
+          },
+          {
+            "name": "minDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "maxDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "date",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "defaultFocusedDate",
+            "required": false,
+            "type": "T",
+          },
+          {
+            "name": "autoCloseOnSelect",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "formatDate",
+            "required": false,
+            "type": "(date: T) => string",
+          },
+          {
+            "name": "transformDate",
+            "required": false,
+            "type": "(date: T) => T",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "dateChange",
+            "type": "T | null",
+          },
+        ],
+        "selector": "caps-month-year-picker",
       },
     },
     "helm": {
@@ -5331,6 +7756,136 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "button[brnDrawerTrigger]",
       },
     },
+    "caps": {
+      "CapsDrawer": {
+        "exportAs": "capsDrawer",
+        "inputs": [
+          {
+            "name": "disableClose",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "autoFocus",
+            "required": false,
+            "type": "BrnDialogOptions['autoFocus']",
+          },
+          {
+            "name": "restoreFocus",
+            "required": false,
+            "type": "BrnDialogOptions['restoreFocus']",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "BrnDialogOptions['ariaLabel']",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "BrnDialogOptions['ariaLabelledBy']",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "BrnDialogOptions['ariaDescribedBy']",
+          },
+          {
+            "name": "hasBackdrop",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [
+          {
+            "name": "open",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "closed",
+            "type": "unknown",
+          },
+        ],
+        "selector": "caps-drawer",
+      },
+      "CapsDrawerClose": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsDrawerClose]",
+      },
+      "CapsDrawerContent": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "'top' | 'bottom' | 'left' | 'right'",
+          },
+          {
+            "name": "closeThreshold",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "ng-template[capsDrawerContent]",
+      },
+      "CapsDrawerDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-drawer-description",
+      },
+      "CapsDrawerFooter": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-drawer-footer",
+      },
+      "CapsDrawerHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-drawer-header",
+      },
+      "CapsDrawerTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-drawer-title",
+      },
+      "CapsDrawerTrigger": {
+        "inputs": [
+          {
+            "name": "capsDrawerTriggerFor",
+            "required": false,
+            "type": "CapsDrawer",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "'top' | 'bottom' | 'left' | 'right'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsDrawerTrigger],button[capsDrawerTriggerFor]",
+      },
+    },
     "helm": {
       "HlmDrawer": {
         "exportAs": "hlmDrawer",
@@ -5530,6 +8085,50 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "dropdown-menu": {
+    "caps": {
+      "CapsDropdownMenuTrigger": {
+        "inputs": [
+          {
+            "name": "capsDropdownMenuTrigger",
+            "required": true,
+            "type": "TemplateRef<unknown>",
+          },
+          {
+            "name": "capsDropdownMenuTriggerData",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "placement",
+            "required": false,
+            "type": "CapsMenuPlacement",
+          },
+        ],
+        "models": [
+          {
+            "name": "open",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "opened",
+            "type": "void",
+          },
+          {
+            "name": "closed",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsDropdownMenuTrigger]",
+      },
+    },
     "helm": {
       "HlmDropdownMenu": {
         "inputs": [
@@ -5685,6 +8284,56 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "empty": {
+    "caps": {
+      "CapsEmpty": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty",
+      },
+      "CapsEmptyActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-actions",
+      },
+      "CapsEmptyContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-content",
+      },
+      "CapsEmptyDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-description",
+      },
+      "CapsEmptyHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-header",
+      },
+      "CapsEmptyMedia": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsEmptyMediaVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-media",
+      },
+      "CapsEmptyTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-empty-title",
+      },
+    },
     "helm": {
       "HlmEmpty": {
         "inputs": [],
@@ -6758,6 +9407,20 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "kbd": {
+    "caps": {
+      "CapsKbd": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "kbd[capsKbd]",
+      },
+      "CapsKbdGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-kbd-group",
+      },
+    },
     "helm": {
       "HlmKbd": {
         "inputs": [],
@@ -6843,6 +9506,44 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "marker": {
+    "caps": {
+      "CapsMarker": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsMarkerVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-marker",
+      },
+      "CapsMarkerContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-marker-content",
+      },
+      "CapsMarkerDirective": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsMarkerVariants['variant']",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsMarker], a[capsMarker]",
+      },
+      "CapsMarkerIcon": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-marker-icon",
+      },
+    },
     "helm": {
       "HlmMarker": {
         "inputs": [
@@ -6870,7 +9571,262 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
       },
     },
   },
+  "menu": {
+    "caps": {
+      "CapsMenu": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "'xs' | 'sm' | 'md' | 'lg'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menu",
+      },
+      "CapsMenuCheckboxItem": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [
+          {
+            "name": "checked",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "itemClick",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenuCheckboxItem]",
+      },
+      "CapsMenuGroup": {
+        "inputs": [
+          {
+            "name": "label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "type",
+            "required": false,
+            "type": "'radio' | 'checkbox' | null",
+          },
+        ],
+        "models": [
+          {
+            "name": "value",
+            "required": false,
+            "type": "string | string[]",
+          },
+        ],
+        "outputs": [],
+        "selector": "caps-menu-group",
+      },
+      "CapsMenuItem": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "danger",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "dangerDescription",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "info",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "itemClick",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenuItem],a[capsMenuItem]",
+      },
+      "CapsMenuLabel": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menu-label",
+      },
+      "CapsMenuRadioItem": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [
+          {
+            "name": "checked",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "itemClick",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenuRadioItem]",
+      },
+      "CapsMenuSeparator": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menu-separator",
+      },
+      "CapsMenuShortcut": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menu-shortcut",
+      },
+      "CapsMenuSubTrigger": {
+        "inputs": [
+          {
+            "name": "capsMenuSubTrigger",
+            "required": true,
+            "type": "TemplateRef<unknown>",
+          },
+          {
+            "name": "capsMenuTriggerData",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "type",
+            "required": false,
+            "type": "'button' | 'submit' | 'reset'",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "MenuAlign",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "MenuSide",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "opened",
+            "type": "void",
+          },
+          {
+            "name": "closed",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenuSubTrigger]",
+      },
+    },
+  },
   "menubar": {
+    "caps": {
+      "CapsMenubar": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-menubar",
+      },
+      "CapsMenubarTrigger": {
+        "inputs": [
+          {
+            "name": "capsMenubarTrigger",
+            "required": true,
+            "type": "TemplateRef<unknown>",
+          },
+          {
+            "name": "capsMenubarTriggerData",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "MenuAlign",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "MenuSide",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "opened",
+            "type": "void",
+          },
+          {
+            "name": "closed",
+            "type": "void",
+          },
+        ],
+        "selector": "button[capsMenubarTrigger]",
+      },
+    },
     "helm": {
       "HlmMenubar": {
         "inputs": [],
@@ -6903,6 +9859,50 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "message": {
+    "caps": {
+      "CapsMessage": {
+        "inputs": [
+          {
+            "name": "align",
+            "required": false,
+            "type": "CapsMessageAlign",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message",
+      },
+      "CapsMessageAvatar": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-avatar",
+      },
+      "CapsMessageContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-content",
+      },
+      "CapsMessageFooter": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-footer",
+      },
+      "CapsMessageGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-group",
+      },
+      "CapsMessageHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-header",
+      },
+    },
     "helm": {
       "HlmMessage": {
         "inputs": [
@@ -7071,6 +10071,162 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnMessageScrollerViewport],brn-message-scroller-viewport",
+      },
+    },
+    "caps": {
+      "CapsMessageScroller": {
+        "exportAs": "capsMessageScroller",
+        "inputs": [
+          {
+            "name": "autoScroll",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "defaultScrollPosition",
+            "required": false,
+            "type": "CapsMessageScrollerDefaultScrollPosition",
+          },
+          {
+            "name": "scrollEdgeThreshold",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollPreviousItemPeek",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "scrollMargin",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "preserveScrollOnPrepend",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "contentClass",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "spacerClassName",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "tabindex",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "aria-relevant",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "aria-live",
+            "required": false,
+            "type": "'off' | 'polite' | 'assertive'",
+          },
+          {
+            "name": "aria-busy",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "announcement",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-scroller",
+      },
+      "CapsMessageScrollerButton": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant | undefined",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsButtonSize | undefined",
+          },
+          {
+            "name": "direction",
+            "required": false,
+            "type": "CapsMessageScrollerButtonDirection",
+          },
+          {
+            "name": "behavior",
+            "required": false,
+            "type": "ScrollBehavior",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[caps-message-scroller-button]",
+      },
+      "CapsMessageScrollerItem": {
+        "inputs": [
+          {
+            "name": "messageId",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "scrollAnchor",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-message-scroller-item",
+      },
+      "CapsMessageScrollerItemDirective": {
+        "inputs": [
+          {
+            "name": "messageId",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "scrollAnchor",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsMessageScrollerItem]",
       },
     },
     "helm": {
@@ -7393,6 +10549,113 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "button[brnNavigationMenuTrigger]",
       },
     },
+    "caps": {
+      "CapsNavigationMenu": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "delayDuration",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "skipDelayDuration",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+          {
+            "name": "openOn",
+            "required": false,
+            "type": "'hover' | 'click'",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "string",
+          },
+        ],
+        "selector": "caps-navigation-menu",
+      },
+      "CapsNavigationMenuContent": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "navOffset",
+            "required": false,
+            "type": "number",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "ng-template[capsNavigationMenuContent]",
+      },
+      "CapsNavigationMenuItem": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "li[capsNavigationMenuItem]",
+      },
+      "CapsNavigationMenuLink": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "active",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsNavigationMenuLink]",
+      },
+      "CapsNavigationMenuTrigger": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "align",
+            "required": false,
+            "type": "MenuAlign",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[caps-navigation-menu-trigger]",
+      },
+    },
     "helm": {
       "HlmNavigationMenu": {
         "inputs": [
@@ -7616,6 +10879,115 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "pagination": {
+    "caps": {
+      "CapsNumberedPagination": {
+        "inputs": [
+          {
+            "name": "totalDataLength",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "numOfItemsToShow",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "showEdges",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "itemsPerPageOptions",
+            "required": false,
+            "type": "number[]",
+          },
+        ],
+        "models": [
+          {
+            "name": "currentPage",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "itemsPerPage",
+            "required": false,
+            "type": "number",
+          },
+        ],
+        "outputs": [],
+        "selector": "caps-numbered-pagination",
+      },
+      "CapsPagination": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-pagination",
+      },
+      "CapsPaginationEllipsis": {
+        "inputs": [
+          {
+            "name": "srOnlyText",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-pagination-ellipsis",
+      },
+      "CapsPaginationLink": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsPaginationLink],button[capsPaginationLink]",
+      },
+      "CapsPaginationNext": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsPaginationNext],button[capsPaginationNext]",
+      },
+      "CapsPaginationPrevious": {
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsPaginationPrevious],button[capsPaginationPrevious]",
+      },
+    },
     "helm": {
       "HlmNumberedPagination": {
         "inputs": [
@@ -8235,6 +11607,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "brn-progress-indicator",
       },
     },
+    "caps": {
+      "CapsProgress": {
+        "inputs": [
+          {
+            "name": "value",
+            "required": false,
+            "type": "number | null | undefined",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "getValueLabel",
+            "required": false,
+            "type": "BrnProgressLabelFn",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-progress",
+      },
+    },
     "helm": {
       "HlmProgress": {
         "inputs": [
@@ -8551,6 +11947,310 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "legend[brnQuestionnaireTitle]",
+      },
+    },
+    "caps": {
+      "CapsQuestionnaire": {
+        "exportAs": "capsQuestionnaire",
+        "inputs": [
+          {
+            "name": "items",
+            "required": false,
+            "type": "readonly BrnQuestionnaireItemDefinition[] | undefined",
+          },
+          {
+            "name": "defaultItem",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "shortcuts",
+            "required": false,
+            "type": "BrnQuestionnaireShortcutMode | null",
+          },
+          {
+            "name": "noValidate",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [
+          {
+            "name": "item",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "outputs": [],
+        "selector": "form[capsQuestionnaire]",
+      },
+      "CapsQuestionnaireActions": {
+        "exportAs": "capsQuestionnaireActions",
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-actions",
+      },
+      "CapsQuestionnaireChoice": {
+        "exportAs": "capsQuestionnaireChoice",
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "value",
+            "required": true,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "defaultChecked",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "checked",
+            "required": false,
+            "type": "boolean | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "checkedChange",
+            "type": "Event",
+          },
+        ],
+        "selector": "caps-questionnaire-choice",
+      },
+      "CapsQuestionnaireChoiceDescription": {
+        "exportAs": "capsQuestionnaireChoiceDescription",
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-choice-description",
+      },
+      "CapsQuestionnaireChoices": {
+        "exportAs": "capsQuestionnaireChoices",
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-choices",
+      },
+      "CapsQuestionnaireDescription": {
+        "exportAs": "capsQuestionnaireDescription",
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-description",
+      },
+      "CapsQuestionnaireError": {
+        "exportAs": "capsQuestionnaireError",
+        "inputs": [
+          {
+            "name": "message",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "id",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "requiredMessage",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "optionalMessage",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-error",
+      },
+      "CapsQuestionnaireInput": {
+        "exportAs": "capsQuestionnaireInput",
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "BrnQuestionnaireInputType",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "defaultValue",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsQuestionnaireInput]",
+      },
+      "CapsQuestionnaireItem": {
+        "exportAs": "capsQuestionnaireItem",
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "name",
+            "required": true,
+            "type": "string",
+          },
+          {
+            "name": "multiple",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "required",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "itemInvalid",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "aria-keyshortcuts",
+            "required": false,
+            "type": "string | undefined",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "statusChange",
+            "type": "BrnQuestionnaireItemStatus",
+          },
+        ],
+        "selector": "caps-questionnaire-item",
+      },
+      "CapsQuestionnaireNext": {
+        "exportAs": "capsQuestionnaireNext",
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsQuestionnaireNext]",
+      },
+      "CapsQuestionnairePrevious": {
+        "exportAs": "capsQuestionnairePrevious",
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsQuestionnairePrevious]",
+      },
+      "CapsQuestionnaireProgress": {
+        "exportAs": "capsQuestionnaireProgress",
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "valueText",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-progress",
+      },
+      "CapsQuestionnaireSkip": {
+        "exportAs": "capsQuestionnaireSkip",
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsQuestionnaireSkip]",
+      },
+      "CapsQuestionnaireSubmit": {
+        "exportAs": "capsQuestionnaireSubmit",
+        "inputs": [
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsQuestionnaireSubmit]",
+      },
+      "CapsQuestionnaireTitle": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-questionnaire-title",
       },
     },
     "helm": {
@@ -9254,6 +12954,95 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "brn-resizable-panel, [brnResizablePanel]",
       },
     },
+    "caps": {
+      "CapsResizableGroup": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "direction",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+        ],
+        "models": [
+          {
+            "name": "layout",
+            "required": false,
+            "type": "number[]",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "dragStart",
+            "type": "void",
+          },
+          {
+            "name": "dragEnd",
+            "type": "void",
+          },
+          {
+            "name": "layoutChanged",
+            "type": "number[]",
+          },
+        ],
+        "selector": "caps-resizable-group",
+      },
+      "CapsResizableHandle": {
+        "exportAs": "capsResizableHandle",
+        "inputs": [
+          {
+            "name": "withHandle",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-resizable-handle",
+      },
+      "CapsResizablePanel": {
+        "exportAs": "capsResizablePanel",
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "defaultSize",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "minSize",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "maxSize",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "collapsible",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-resizable-panel",
+      },
+    },
     "helm": {
       "HlmResizableGroup": {
         "inputs": [
@@ -9339,6 +13128,110 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "scroll-area": {
+    "caps": {
+      "CapsScrollArea": {
+        "exportAs": "capsScrollArea",
+        "inputs": [
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "ScrollbarOrientation",
+          },
+          {
+            "name": "visibility",
+            "required": false,
+            "type": "ScrollbarVisibility",
+          },
+          {
+            "name": "appearance",
+            "required": false,
+            "type": "ScrollbarAppearance",
+          },
+          {
+            "name": "position",
+            "required": false,
+            "type": "ScrollbarPosition",
+          },
+          {
+            "name": "withButtons",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disableInteraction",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disableSensor",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "hoverOffset",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "sensorThrottleTime",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "trackScrollDuration",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "trackClass",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "thumbClass",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "buttonClass",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "tabindex",
+            "required": false,
+            "type": "number",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "afterInit",
+            "type": "void",
+          },
+          {
+            "name": "afterUpdate",
+            "type": "void",
+          },
+        ],
+        "selector": "caps-scroll-area",
+      },
+    },
     "helm": {
       "HlmScrollArea": {
         "inputs": [],
@@ -10387,6 +14280,141 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "button[brnSheetTrigger]",
       },
     },
+    "caps": {
+      "CapsSheet": {
+        "exportAs": "capsSheet",
+        "inputs": [
+          {
+            "name": "disableClose",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "closeOnOutsidePointerEvents",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "autoFocus",
+            "required": false,
+            "type": "BrnDialogOptions['autoFocus']",
+          },
+          {
+            "name": "restoreFocus",
+            "required": false,
+            "type": "BrnDialogOptions['restoreFocus']",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "BrnDialogOptions['ariaLabel']",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "BrnDialogOptions['ariaLabelledBy']",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "BrnDialogOptions['ariaDescribedBy']",
+          },
+          {
+            "name": "hasBackdrop",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [
+          {
+            "name": "open",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "outputs": [
+          {
+            "name": "closed",
+            "type": "unknown",
+          },
+        ],
+        "selector": "caps-sheet",
+      },
+      "CapsSheetClose": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSheetClose]",
+      },
+      "CapsSheetContent": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "'top' | 'bottom' | 'left' | 'right'",
+          },
+          {
+            "name": "showCloseButton",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "closeLabel",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "ng-template[capsSheetContent]",
+      },
+      "CapsSheetDescription": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sheet-description",
+      },
+      "CapsSheetFooter": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sheet-footer",
+      },
+      "CapsSheetHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sheet-header",
+      },
+      "CapsSheetTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sheet-title",
+      },
+      "CapsSheetTrigger": {
+        "inputs": [
+          {
+            "name": "capsSheetTriggerFor",
+            "required": false,
+            "type": "CapsSheet",
+          },
+          {
+            "name": "side",
+            "required": false,
+            "type": "'top' | 'bottom' | 'left' | 'right'",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSheetTrigger],button[capsSheetTriggerFor]",
+      },
+    },
     "helm": {
       "HlmSheet": {
         "exportAs": "hlmSheet",
@@ -10586,6 +14614,312 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "sidebar": {
+    "caps": {
+      "CapsSidebar": {
+        "inputs": [
+          {
+            "name": "side",
+            "required": false,
+            "type": "'left' | 'right'",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "SidebarVariant",
+          },
+          {
+            "name": "collapsible",
+            "required": false,
+            "type": "'offcanvas' | 'icon' | 'none'",
+          },
+          {
+            "name": "sidebarWidthMobile",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "srOnlySheetTitle",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "srOnlySheetDescription",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "sidebarContainerClass",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar",
+      },
+      "CapsSidebarContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-content",
+      },
+      "CapsSidebarFooter": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-footer",
+      },
+      "CapsSidebarGroup": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-group",
+      },
+      "CapsSidebarGroupAction": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarGroupAction]",
+      },
+      "CapsSidebarGroupContent": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-group-content",
+      },
+      "CapsSidebarGroupLabel": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-group-label",
+      },
+      "CapsSidebarGroupLabelButton": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarGroupLabel]",
+      },
+      "CapsSidebarHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-header",
+      },
+      "CapsSidebarInput": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "input[capsSidebarInput]",
+      },
+      "CapsSidebarInset": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-inset",
+      },
+      "CapsSidebarMenu": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu",
+      },
+      "CapsSidebarMenuAction": {
+        "inputs": [
+          {
+            "name": "showOnHover",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarMenuAction]",
+      },
+      "CapsSidebarMenuBadge": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-badge",
+      },
+      "CapsSidebarMenuButton": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "'default' | 'outline'",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "'default' | 'sm' | 'lg'",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "closeMobileSidebarOnClick",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "tooltip",
+            "required": false,
+            "type": "BrnTooltipType",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsSidebarMenuButton],button[capsSidebarMenuButton]",
+      },
+      "CapsSidebarMenuItem": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-item",
+      },
+      "CapsSidebarMenuSkeleton": {
+        "inputs": [
+          {
+            "name": "showIcon",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-skeleton",
+      },
+      "CapsSidebarMenuSub": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-sub",
+      },
+      "CapsSidebarMenuSubButton": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "'sm' | 'md'",
+          },
+          {
+            "name": "isActive",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "closeMobileSidebarOnClick",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "a[capsSidebarMenuSubButton],button[capsSidebarMenuSubButton]",
+      },
+      "CapsSidebarMenuSubItem": {
+        "inputs": [
+          {
+            "name": "class",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-menu-sub-item",
+      },
+      "CapsSidebarRail": {
+        "inputs": [
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "unknown",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarRail]",
+      },
+      "CapsSidebarSeparator": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-separator",
+      },
+      "CapsSidebarTrigger": {
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsButtonVariant",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsButtonSize",
+          },
+          {
+            "name": "srOnlyText",
+            "required": false,
+            "type": "unknown",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsSidebarTrigger]",
+      },
+      "CapsSidebarWrapper": {
+        "inputs": [
+          {
+            "name": "sidebarWidth",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "sidebarWidthIcon",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-sidebar-wrapper",
+      },
+    },
     "helm": {
       "HlmSidebar": {
         "inputs": [
@@ -10851,6 +15185,14 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "skeleton": {
+    "caps": {
+      "CapsSkeleton": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-skeleton",
+      },
+    },
     "helm": {
       "HlmSkeleton": {
         "inputs": [],
@@ -10993,6 +15335,130 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "[brnSliderTrack]",
+      },
+    },
+    "caps": {
+      "CapsSlider": {
+        "inputs": [
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "number[]",
+          },
+          {
+            "name": "min",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "max",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "step",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "'horizontal' | 'vertical'",
+          },
+          {
+            "name": "inverted",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "minStepsBetweenThumbs",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "maxStepsBetweenThumbs",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "preventStepOverThumb",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "draggableRange",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "draggableRangeOnly",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "showTicks",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "maxTicks",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "tickLabelInterval",
+            "required": false,
+            "type": "number",
+          },
+          {
+            "name": "formatTick",
+            "required": false,
+            "type": "(value: number) => string",
+          },
+          {
+            "name": "thumbLabels",
+            "required": false,
+            "type": "readonly string[]",
+          },
+          {
+            "name": "valueText",
+            "required": false,
+            "type": "((value: number) => string) | null",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-labelledby",
+            "required": false,
+            "type": "string | null",
+          },
+          {
+            "name": "aria-describedby",
+            "required": false,
+            "type": "string | null",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "number[]",
+          },
+        ],
+        "selector": "caps-slider",
       },
     },
     "helm": {
@@ -11320,6 +15786,80 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "[brnToastCancelAction]",
       },
     },
+    "caps": {
+      "CapsToaster": {
+        "inputs": [
+          {
+            "name": "invert",
+            "required": false,
+            "type": "ToasterProps['invert']",
+          },
+          {
+            "name": "theme",
+            "required": false,
+            "type": "ToasterProps['theme']",
+          },
+          {
+            "name": "position",
+            "required": false,
+            "type": "ToasterProps['position']",
+          },
+          {
+            "name": "hotKey",
+            "required": false,
+            "type": "ToasterProps['hotkey']",
+          },
+          {
+            "name": "richColors",
+            "required": false,
+            "type": "ToasterProps['richColors']",
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "type": "ToasterProps['expand']",
+          },
+          {
+            "name": "duration",
+            "required": false,
+            "type": "ToasterProps['duration']",
+          },
+          {
+            "name": "visibleToasts",
+            "required": false,
+            "type": "ToasterProps['visibleToasts']",
+          },
+          {
+            "name": "closeButton",
+            "required": false,
+            "type": "ToasterProps['closeButton']",
+          },
+          {
+            "name": "toastOptions",
+            "required": false,
+            "type": "ToasterProps['toastOptions']",
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "type": "ToasterProps['offset']",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "style",
+            "required": false,
+            "type": "Record<string, string>",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-toaster",
+      },
+    },
     "helm": {
       "HlmToaster": {
         "inputs": [
@@ -11396,6 +15936,30 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "spinner": {
+    "caps": {
+      "CapsSpinner": {
+        "inputs": [
+          {
+            "name": "icon",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "aria-hidden",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-spinner",
+      },
+    },
     "helm": {
       "HlmSpinner": {
         "inputs": [
@@ -11642,6 +16206,36 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
     },
   },
   "table": {
+    "caps": {
+      "CapsTable": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+          },
+          {
+            "name": "striped",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "noBorder",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "table[capsTable]",
+      },
+      "CapsTableContainer": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-table-container",
+      },
+    },
     "helm": {
       "HlmCaption": {
         "inputs": [],
@@ -11796,6 +16390,132 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "models": [],
         "outputs": [],
         "selector": "button[brnTabsTrigger]",
+      },
+    },
+    "caps": {
+      "CapsTabs": {
+        "inputs": [
+          {
+            "name": "followFocus",
+            "required": false,
+            "type": "boolean",
+          },
+          {
+            "name": "id",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "value",
+            "required": false,
+            "type": "string | undefined",
+          },
+          {
+            "name": "orientation",
+            "required": false,
+            "type": "BrnTabsOrientation",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "valueChange",
+            "type": "string | undefined",
+          },
+          {
+            "name": "tabActivated",
+            "type": "string",
+          },
+        ],
+        "selector": "caps-tabs",
+      },
+      "CapsTabsContent": {
+        "inputs": [
+          {
+            "name": "value",
+            "required": true,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-tabs-content",
+      },
+      "CapsTabsContentLazy": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "ng-template[capsTabsContentLazy]",
+      },
+      "CapsTabsList": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "CapsTabsType",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-tabs-list",
+      },
+      "CapsTabsPaginatedList": {
+        "inputs": [
+          {
+            "name": "type",
+            "required": false,
+            "type": "CapsTabsType",
+          },
+          {
+            "name": "ariaLabel",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "tabListClass",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "paginationButtonClass",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "disablePagination",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [
+          {
+            "name": "selectFocusedIndex",
+            "type": "number",
+          },
+          {
+            "name": "indexFocused",
+            "type": "number",
+          },
+        ],
+        "selector": "caps-tabs-paginated-list",
+      },
+      "CapsTabsTrigger": {
+        "inputs": [
+          {
+            "name": "value",
+            "required": true,
+            "type": "string",
+          },
+          {
+            "name": "disabled",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "button[capsTabsTrigger]",
       },
     },
     "helm": {

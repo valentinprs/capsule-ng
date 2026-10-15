@@ -132,12 +132,15 @@ marked.use(
 		}
 		<div class="absolute top-1.5 right-4 z-(--caps-z-10) flex items-center gap-0.5">
 			@if (!_disableCopy) {
-				<button (click)="copyToClipBoard()" hlmBtn variant="ghost" size="icon-xs">
+				<button (click)="copyToClipBoard()" hlmBtn variant="ghost" size="icon-xs" aria-label="Copy code">
 					<ng-icon [name]="_copied ? 'lucideCheck' : 'lucideClipboard'" />
 				</button>
 			}
 		</div>
-		<div class="max-h-[650px] w-full overflow-auto p-4 whitespace-nowrap">
+		<div
+			tabindex="0"
+			class="focus-visible:outline-ring max-h-[650px] w-full overflow-auto p-4 whitespace-nowrap focus-visible:outline-2 focus-visible:-outline-offset-2"
+		>
 			<div class="max-w-full max-w-screen" [innerHTML]="_content"></div>
 		</div>
 	`,

@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronsUpDown } from '@ng-icons/lucide';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-collapsible-rtl',
-	imports: [HlmCollapsibleImports, HlmButtonImports, NgIcon],
+	imports: [CapsCollapsibleImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideChevronsUpDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-collapsible class="flex w-[350px] flex-col gap-2" [dir]="_dir()">
+		<caps-collapsible class="flex w-full max-w-[350px] flex-col gap-2" [dir]="_dir()">
 			<div class="flex items-center justify-between gap-4 px-4">
 				<h4 class="text-sm font-semibold">{{ _t()['orderNumber'] }}</h4>
-				<button hlmCollapsibleTrigger hlmBtn variant="ghost" size="icon" class="size-8">
+				<button capsCollapsibleTrigger capsButton variant="ghost" size="icon" class="size-8">
 					<ng-icon name="lucideChevronsUpDown" />
 					<span class="sr-only">Toggle</span>
 				</button>
@@ -23,7 +23,7 @@ import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 				<span class="text-muted-foreground">{{ _t()['status'] }}</span>
 				<span class="font-medium">{{ _t()['shipped'] }}</span>
 			</div>
-			<hlm-collapsible-content class="flex flex-col gap-2">
+			<caps-collapsible-content class="flex flex-col gap-2">
 				<div class="rounded-md border px-4 py-2 text-sm">
 					<p class="font-medium">{{ _t()['shippingAddress'] }}</p>
 					<p class="text-muted-foreground">{{ _t()['address'] }}</p>
@@ -32,8 +32,8 @@ import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 					<p class="font-medium">{{ _t()['items'] }}</p>
 					<p class="text-muted-foreground">{{ _t()['itemsDescription'] }}</p>
 				</div>
-			</hlm-collapsible-content>
-		</hlm-collapsible>
+			</caps-collapsible-content>
+		</caps-collapsible>
 	`,
 })
 export class CollapsibleRtl {

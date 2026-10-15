@@ -1,39 +1,36 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 
 @Component({
 	selector: 'spartan-dropdown-shortcuts',
-	imports: [HlmDropdownMenuImports, HlmButtonImports],
+	imports: [CapsDropdownMenuImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="menu" align="start">Open</button>
+		<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom-start">Open</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>My Account</hlm-dropdown-menu-label>
-					<button hlmDropdownMenuItem>
+			<caps-menu>
+				<caps-menu-group label="My Account">
+					<button capsMenuItem>
 						Profile
-						<hlm-dropdown-menu-shortcut>⇧⌘P</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⇧⌘P</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						Billing
-						<hlm-dropdown-menu-shortcut>⌘B</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘B</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						Settings
-						<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘S</caps-menu-shortcut>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
-						Log out
-						<hlm-dropdown-menu-shortcut>⇧⌘Q</hlm-dropdown-menu-shortcut>
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem>
+					Log out
+					<caps-menu-shortcut>⇧⌘Q</caps-menu-shortcut>
+				</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

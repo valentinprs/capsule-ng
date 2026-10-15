@@ -1,17 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 
 @Component({
 	selector: 'spartan-tabs-line',
-	imports: [HlmTabsImports],
+	imports: [CapsTabsImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-tabs tab="home">
-			<hlm-tabs-list variant="line">
-				<button hlmTabsTrigger="home">Home</button>
-				<button hlmTabsTrigger="settings">Settings</button>
-			</hlm-tabs-list>
-		</hlm-tabs>
+		<caps-tabs value="home">
+			<caps-tabs-list aria-label="Sections" type="line">
+				<button capsTabsTrigger value="home">Home</button>
+				<button capsTabsTrigger value="settings">Settings</button>
+			</caps-tabs-list>
+			<caps-tabs-content value="home">Home overview</caps-tabs-content>
+			<caps-tabs-content value="settings">Account settings</caps-tabs-content>
+		</caps-tabs>
 	`,
 })
 export class TabsLinePreview {}

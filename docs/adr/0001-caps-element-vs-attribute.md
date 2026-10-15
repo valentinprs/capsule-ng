@@ -181,3 +181,31 @@ ARIA and keeps the native value synchronized with Brain without altering its val
 Input Group follows the ordinary rule: `<caps-input-group>` and its addon/text components project
 consumer-owned native `input capsInput`, `textarea capsTextarea` and `button capsButton` controls.
 It has no value accessor. This keeps fields and actions independently labeled and controlled.
+
+## Amendment 5: native table content model (2026-10-07)
+
+For issue #52, `caps-table-container` owns responsive overflow, while `table capsTable`
+retains native caption/thead/tbody/tfoot/tr/th/td descendants. This is a targeted
+exception for non-interactive structure: custom Angular hosts inside a table would
+violate HTML's content model and risk browser parser repairs during SSR hydration.
+One table directive styles its native descendants; consumers keep scope, spans,
+headers and interactive cell content. Pagination uses a navigation host and directly
+projected native links/buttons; Capsule remains router-free. See
+[the anatomy and Carbon Angular mappings](../specs/caps-tables.md).
+
+## Slider anatomy clarification (2026-10-07)
+
+For issue #48, `<caps-slider>` owns its rail, selected range, optional decorative ticks and native
+`button type="button"` thumbs with `role="slider"`. Like the form choices and OTP exceptions above,
+the composite hides structural directives while retaining one native focus target per editable
+value. The generic host has no second interactive role. IDs, names, descriptions, numeric values,
+units, invalid state and disabled state belong to those thumbs; a Field label targets the first.
+
+The public value accessor accepts and emits number arrays, including for a single thumb, following
+[Spartan Slider](https://www.spartan.ng/components/slider) and the local Brain implementation.
+Nullable form reset ignores the null write as Brain does; programmatic writes emit no change.
+Its private thumb adapter extends the exported Brain class to own the ARIA bindings; Brain
+algorithms and source remain unchanged. Field association, per-thumb labels and `aria-valuetext`
+implement the issue's accessibility contract. Bounds, steps, orientation, ticks, gap limits and
+range dragging retain the public Spartan contracts, as documented in
+[`docs/specs/caps-slider.md`](../specs/caps-slider.md).

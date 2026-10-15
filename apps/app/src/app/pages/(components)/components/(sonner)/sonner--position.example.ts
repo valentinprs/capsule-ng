@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { toast } from '@capsule-ng/caps/sonner';
 
 @Component({
 	selector: 'spartan-sonner-position-example',
-	imports: [HlmButtonImports],
+	imports: [CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-wrap justify-center gap-2">
-			<button hlmBtn variant="outline" (click)="showTopLeft()">Top Left</button>
-			<button hlmBtn variant="outline" (click)="showTopCenter()">Top Center</button>
-			<button hlmBtn variant="outline" (click)="showTopRight()">Top Right</button>
-			<button hlmBtn variant="outline" (click)="showBottomLeft()">Bottom Left</button>
-			<button hlmBtn variant="outline" (click)="showBottomCenter()">Bottom Center</button>
-			<button hlmBtn variant="outline" (click)="showBottomRight()">Bottom Right</button>
+			<button capsButton type="button" variant="outline" (click)="showTopLeft()">Top Left</button>
+			<button capsButton type="button" variant="outline" (click)="showTopCenter()">Top Center</button>
+			<button capsButton type="button" variant="outline" (click)="showTopRight()">Top Right</button>
+			<button capsButton type="button" variant="outline" (click)="showBottomLeft()">Bottom Left</button>
+			<button capsButton type="button" variant="outline" (click)="showBottomCenter()">Bottom Center</button>
+			<button capsButton type="button" variant="outline" (click)="showBottomRight()">Bottom Right</button>
 		</div>
 	`,
 })

@@ -1,21 +1,17 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSlider } from '@spartan-ng/helm/slider';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSlider } from '@capsule-ng/caps/slider';
 
 @Component({
 	selector: 'spartan-field-slider',
-	imports: [HlmSlider, HlmFieldImports],
+	imports: [CapsSlider, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<fieldset hlmFieldSet>
-			<div hlmFieldGroup>
-				<div hlmField>
-					<label hlmFieldLabel for="field-input-preview-firstname">Price Range</label>
-					<p hlmFieldDescription>Set your budget range ($0 - {{ sliderValue() }}).</p>
-					<hlm-slider [max]="1000" [step]="10" [(value)]="sliderValue" />
-				</div>
-			</div>
-		</fieldset>
+		<caps-field>
+			<caps-field-label>Price Range</caps-field-label>
+			<caps-field-description>Set your budget range ($0 - {{ sliderValue() }}).</caps-field-description>
+			<caps-slider [max]="1000" [step]="10" [(value)]="sliderValue" />
+		</caps-field>
 	`,
 })
 export class FieldSlider {

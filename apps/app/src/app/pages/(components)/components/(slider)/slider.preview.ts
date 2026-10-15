@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 
 @Component({
 	selector: 'spartan-slider-preview',
-	imports: [HlmSliderImports],
+	imports: [CapsSliderImports],
 	styles: `
 		:host {
 			display: block;
@@ -11,7 +11,7 @@ import { HlmSliderImports } from '@spartan-ng/helm/slider';
 		}
 	`,
 	template: `
-		<hlm-slider [(value)]="value" />
+		<caps-slider aria-label="Volume" [(value)]="value" />
 	`,
 })
 export class SliderPreview {
@@ -19,8 +19,8 @@ export class SliderPreview {
 }
 
 export const defaultImports = `
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 `;
 export const defaultSkeleton = `
-<hlm-slider />
+<caps-slider aria-label="Volume" />
 `;

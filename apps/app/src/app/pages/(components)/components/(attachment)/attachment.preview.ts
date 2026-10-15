@@ -1,61 +1,61 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAttachmentImports } from '@capsule-ng/caps/attachment';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFileCode, lucideX } from '@ng-icons/lucide';
-import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-attachment-preview',
-	imports: [HlmAttachmentImports, HlmSpinner, NgIcon],
+	imports: [CapsAttachmentImports, CapsSpinner, NgIcon],
 	providers: [provideIcons({ lucideFileCode, lucideX })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-3 py-12',
 	},
 	template: `
-		<div hlmAttachmentGroup>
+		<caps-attachment-group>
 			@for (image of _images; track image.name) {
-				<div hlmAttachment orientation="vertical">
-					<div hlmAttachmentMedia variant="image">
+				<caps-attachment orientation="vertical">
+					<caps-attachment-media variant="image">
 						<img [src]="image.src" [alt]="image.alt" />
-					</div>
-					<div hlmAttachmentContent>
-						<span hlmAttachmentTitle>{{ image.name }}</span>
-						<span hlmAttachmentDescription>{{ image.meta }}</span>
-					</div>
-				</div>
+					</caps-attachment-media>
+					<caps-attachment-content>
+						<caps-attachment-title>{{ image.name }}</caps-attachment-title>
+						<caps-attachment-description>{{ image.meta }}</caps-attachment-description>
+					</caps-attachment-content>
+				</caps-attachment>
 			}
-		</div>
+		</caps-attachment-group>
 
-		<div hlmAttachment state="uploading" class="w-full">
-			<div hlmAttachmentMedia>
-				<hlm-spinner />
-			</div>
-			<div hlmAttachmentContent>
-				<span hlmAttachmentTitle>sales-dashboard.pdf</span>
-				<span hlmAttachmentDescription>Uploading · 64%</span>
-			</div>
-			<div hlmAttachmentActions>
-				<button hlmAttachmentAction aria-label="Cancel upload">
+		<caps-attachment state="uploading" class="w-full">
+			<caps-attachment-media>
+				<caps-spinner aria-hidden="true" />
+			</caps-attachment-media>
+			<caps-attachment-content>
+				<caps-attachment-title>sales-dashboard.pdf</caps-attachment-title>
+				<caps-attachment-description>Uploading · 64%</caps-attachment-description>
+			</caps-attachment-content>
+			<caps-attachment-actions>
+				<button capsAttachmentAction aria-label="Cancel upload">
 					<ng-icon name="lucideX" />
 				</button>
-			</div>
-		</div>
+			</caps-attachment-actions>
+		</caps-attachment>
 
-		<div hlmAttachment class="w-full">
-			<div hlmAttachmentMedia>
+		<caps-attachment class="w-full">
+			<caps-attachment-media>
 				<ng-icon name="lucideFileCode" />
-			</div>
-			<div hlmAttachmentContent>
-				<span hlmAttachmentTitle>message-renderer.tsx</span>
-				<span hlmAttachmentDescription>TypeScript · 12 KB</span>
-			</div>
-			<div hlmAttachmentActions>
-				<button hlmAttachmentAction aria-label="Remove message-renderer.tsx">
+			</caps-attachment-media>
+			<caps-attachment-content>
+				<caps-attachment-title>message-renderer.tsx</caps-attachment-title>
+				<caps-attachment-description>TypeScript · 12 KB</caps-attachment-description>
+			</caps-attachment-content>
+			<caps-attachment-actions>
+				<button capsAttachmentAction aria-label="Remove message-renderer.tsx">
 					<ng-icon name="lucideX" />
 				</button>
-			</div>
-		</div>
+			</caps-attachment-actions>
+		</caps-attachment>
 	`,
 })
 export class AttachmentPreview {
@@ -82,17 +82,17 @@ export class AttachmentPreview {
 }
 
 export const defaultImports = `
-import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
+import { CapsAttachmentImports } from '@capsule-ng/caps/attachment';
 `;
 
 export const defaultSkeleton = `
-<div hlmAttachment>
-  <div hlmAttachmentMedia>
+<caps-attachment>
+  <caps-attachment-media>
     <ng-icon name="lucideFileCode" />
-  </div>
-  <div hlmAttachmentContent>
-    <span hlmAttachmentTitle>report.pdf</span>
-    <span hlmAttachmentDescription>PDF · 1.2 MB</span>
-  </div>
-</div>
+  </caps-attachment-media>
+  <caps-attachment-content>
+    <caps-attachment-title>report.pdf</caps-attachment-title>
+    <caps-attachment-description>PDF · 1.2 MB</caps-attachment-description>
+  </caps-attachment-content>
+</caps-attachment>
 `;

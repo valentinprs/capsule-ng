@@ -1,24 +1,23 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
 
 @Component({
 	selector: 'spartan-autocomplete-clear-preview',
-	imports: [HlmAutocompleteImports],
+	imports: [CapsAutocompleteImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-autocomplete [(search)]="search">
-			<hlm-autocomplete-input placeholder="Search components" showClear />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No components found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
-					@for (option of filteredOptions(); track $index) {
-						<hlm-autocomplete-item [value]="option">
-							{{ option }}
-						</hlm-autocomplete-item>
-					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+		<caps-autocomplete [(search)]="search">
+			<caps-autocomplete-input placeholder="Search components" showClear />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No components found.</caps-autocomplete-empty>
+
+				@for (option of filteredOptions(); track $index) {
+					<caps-autocomplete-option [value]="option">
+						{{ option }}
+					</caps-autocomplete-option>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 })
 export class AutocompleteClearPreview {

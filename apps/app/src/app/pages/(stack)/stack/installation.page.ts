@@ -1,9 +1,9 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 
+import { CapsAlertImports } from '@capsule-ng/caps/alert';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideTriangleAlert } from '@ng-icons/lucide';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 
@@ -35,7 +35,7 @@ export const routeMeta: RouteMeta = {
 		PageNav,
 		Code,
 		Tabs,
-		HlmAlertImports,
+		CapsAlertImports,
 		NgIcon,
 		HlmButton,
 		SectionSubSubHeading,
@@ -98,21 +98,21 @@ export const routeMeta: RouteMeta = {
 			</p>
 			<spartan-code class="mt-3" language="sh" code="npm install drizzle-orm postgres" />
 
-			<div class="mt-4 mb-6" hlmAlert>
-				<ng-icon name="lucideTriangleAlert" />
-				<h4 hlmAlertTitle>Dealing with postgres & CommonJs</h4>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-4 mb-6">
+				<caps-alert-media><ng-icon name="lucideTriangleAlert" aria-hidden="true" /></caps-alert-media>
+				<caps-alert-title>Dealing with postgres & CommonJs</caps-alert-title>
+				<caps-alert-description>
 					<p>
-						<code class="${hlmCode}">postgres</code>
+						<code class="${hlmCode} text-foreground">postgres</code>
 						is a CommonJs package, which directly exposes an augmented function. Therefore, we need to adjust our
-						<code class="${hlmCode}">[YOUR_APP_NAME]/tsconfig.json</code>
+						<code class="${hlmCode} text-foreground">[YOUR_APP_NAME]/tsconfig.json</code>
 						file to tell the TS compiler how to deal with it properly. Add the following line to
-						<code class="${hlmCode}">compilerOptions</code>
+						<code class="${hlmCode} text-foreground">compilerOptions</code>
 						:
 					</p>
 					<spartan-code class="mt-3" language="sh" code='"allowSyntheticDefaultImports": true' />
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<p class="${hlmP}">
 				Finally, we need to set up our DB connection and create a typescript schema that matches our database structure.
@@ -243,20 +243,20 @@ export const noteRouter = router({
 						code='DATABASE_URL="postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-SUPABASE-REFERENCE-ID].supabase.co:5432/postgres"'
 					/>
 
-					<div class="mt-4" hlmAlert>
-						<ng-icon name="lucideTriangleAlert" />
-						<p hlmAlertTitle>Make sure to add .env to your .gitignore file.</p>
-						<div hlmAlertDescription>
+					<caps-alert class="mt-4">
+						<caps-alert-media><ng-icon name="lucideTriangleAlert" aria-hidden="true" /></caps-alert-media>
+						<caps-alert-title>Make sure to add .env to your .gitignore file.</caps-alert-title>
+						<caps-alert-description>
 							<p>
 								You do not want to accidentally commit your secrets to GitHub. To exclude the file from git add a new
 								line to the
-								<code class="${hlmCode}">.gitignore</code>
+								<code class="${hlmCode} text-foreground">.gitignore</code>
 								-file and add
-								<code class="${hlmCode}">.env</code>
+								<code class="${hlmCode} text-foreground">.env</code>
 								on a new line.
 							</p>
-						</div>
-					</div>
+						</caps-alert-description>
+					</caps-alert>
 				</div>
 
 				<div class="px-4 pt-4 pb-8" secondTab>
@@ -298,14 +298,14 @@ git init"
 					<spartan-code code="supabase init" />
 					<spartan-code class="mt-3" code="supabase start" />
 
-					<div class="mt-8" hlmAlert variant="destructive">
-						<ng-icon name="lucideTriangleAlert" />
-						<h4 hlmAlertTitle>Important: Make sure Docker is running</h4>
-						<p hlmAlertDescription>
+					<caps-alert class="mt-8" variant="destructive">
+						<caps-alert-media><ng-icon name="lucideTriangleAlert" aria-hidden="true" /></caps-alert-media>
+						<caps-alert-title>Important: Make sure Docker is running</caps-alert-title>
+						<caps-alert-description>
 							Make sure Docker is running and configured correctly! I had Docker already installed and running. However,
 							my setup is not compatible with the config Supabase expects by default.
-						</p>
-					</div>
+						</caps-alert-description>
+					</caps-alert>
 
 					<p class="${hlmP} mb-2">To get it to work for now I ran:</p>
 					<spartan-code

@@ -1,29 +1,29 @@
 import { Component, input } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideEllipsis } from '@ng-icons/lucide';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import type { Row } from '@tanstack/angular-table';
 import type { DataTableFeatures, Payment } from './data-table.preview';
 
 @Component({
 	selector: 'spartan-action-dropdown',
-	imports: [HlmButtonImports, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsButtonImports, NgIcon, CapsDropdownMenuImports],
 	providers: [provideIcons({ lucideEllipsis })],
 	template: `
-		<button hlmBtn size="icon-sm" variant="ghost" [hlmDropdownMenuTrigger]="ActionDropDownMenu">
-			<span class="sr-only">Open menu</span>
+		<button capsButton size="icon-sm" variant="ghost" [capsDropdownMenuTrigger]="ActionDropDownMenu">
+			<span class="sr-only">Open menu for payment {{ row().id }}</span>
 			<ng-icon name="lucideEllipsis" />
 		</button>
 
 		<ng-template #ActionDropDownMenu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-label>Actions</hlm-dropdown-menu-label>
-				<button hlmDropdownMenuItem (click)="copyPaymentId()">Copy payment ID</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>View customer</button>
-				<button hlmDropdownMenuItem>View payment details</button>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<caps-menu-label>Actions</caps-menu-label>
+				<button capsMenuItem (itemClick)="copyPaymentId()">Copy payment ID</button>
+				<caps-menu-separator />
+				<button capsMenuItem>View customer</button>
+				<button capsMenuItem>View payment details</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

@@ -1,24 +1,33 @@
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
-import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
-
-const meta: Meta<HlmSpinner> = {
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
+import {
+	type Meta,
+	type StoryObj,
+	argsToTemplate,
+	componentWrapperDecorator,
+	moduleMetadata,
+} from '@storybook/angular';
+const meta: Meta<CapsSpinner> = {
 	title: 'Spinner',
-	component: HlmSpinner,
+	component: CapsSpinner,
 	tags: ['autodocs'],
 	decorators: [
-		moduleMetadata({
-			imports: [HlmSpinner],
-		}),
+		moduleMetadata({ imports: [CapsSpinner, CapsButtonImports] }),
+		componentWrapperDecorator(
+			(story) => `<main><h1 class="mb-4 text-lg font-semibold">Spinner examples</h1>${story}</main>`,
+		),
 	],
-	render: ({ ...args }) => ({
-		props: args,
-		template: `
-    		<hlm-spinner  class="size-8" />
-		`,
+	render: (args) => ({ props: args, template: `<caps-spinner ${argsToTemplate(args)} />` }),
+};
+export default meta;
+type Story = StoryObj<CapsSpinner>;
+export const Default: Story = { args: { ariaLabel: 'Loading documents' } };
+export const Small: Story = {
+	render: () => ({ template: `<caps-spinner class="text-sm" aria-label="Loading documents" />` }),
+};
+export const CustomName: Story = { args: { ariaLabel: 'Saving document' } };
+export const Decorative: Story = {
+	render: () => ({
+		template: `<button capsButton type="button" disabled><caps-spinner aria-hidden="true" class="text-sm" />Saving…</button>`,
 	}),
 };
-
-export default meta;
-type Story = StoryObj<HlmSpinner>;
-
-export const Default: Story = {};

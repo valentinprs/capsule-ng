@@ -1,38 +1,38 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDrawerImports } from '@spartan-ng/helm/drawer';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmInputImports } from '@spartan-ng/helm/input';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDrawerImports } from '@capsule-ng/caps/drawer';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsInputImports } from '@capsule-ng/caps/input';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-drawer-rtl',
-	imports: [HlmDrawerImports, HlmFieldImports, HlmButtonImports, HlmInputImports],
+	imports: [CapsDrawerImports, CapsFieldImports, CapsButtonImports, CapsInputImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-drawer [dir]="_dir()">
-			<button hlmDrawerTrigger hlmBtn variant="outline">{{ _t()['open'] }}</button>
-			<hlm-drawer-content *hlmDrawerPortal="let ctx" [dir]="_dir()">
-				<hlm-drawer-header>
-					<h3 hlmDrawerTitle>{{ _t()['editProfile'] }}</h3>
-					<p hlmDrawerDescription>{{ _t()['description'] }}</p>
-				</hlm-drawer-header>
-				<hlm-field-group class="px-4">
-					<hlm-field>
-						<label hlmFieldLabel for="name-rtl">{{ _t()['name'] }}</label>
-						<input hlmInput id="name-rtl" value="Pedro Duarte" />
-					</hlm-field>
-					<hlm-field>
-						<label hlmFieldLabel for="username-rtl">{{ _t()['username'] }}</label>
-						<input hlmInput id="username-rtl" value="peduarte" />
-					</hlm-field>
-				</hlm-field-group>
-				<hlm-drawer-footer>
-					<button hlmBtn type="submit">{{ _t()['save'] }}</button>
-					<button hlmDrawerClose hlmBtn variant="outline">{{ _t()['close'] }}</button>
-				</hlm-drawer-footer>
-			</hlm-drawer-content>
-		</hlm-drawer>
+		<caps-drawer [dir]="_dir()">
+			<button capsDrawerTrigger capsButton variant="outline">{{ _t()['open'] }}</button>
+			<ng-template capsDrawerContent [class]="_font()">
+				<caps-drawer-header>
+					<caps-drawer-title>{{ _t()['editProfile'] }}</caps-drawer-title>
+					<caps-drawer-description>{{ _t()['description'] }}</caps-drawer-description>
+				</caps-drawer-header>
+				<caps-field-group class="px-4">
+					<caps-field>
+						<caps-field-label>{{ _t()['name'] }}</caps-field-label>
+						<input capsInput value="Pedro Duarte" />
+					</caps-field>
+					<caps-field>
+						<caps-field-label>{{ _t()['username'] }}</caps-field-label>
+						<input capsInput value="peduarte" />
+					</caps-field>
+				</caps-field-group>
+				<caps-drawer-footer>
+					<button capsButton type="submit">{{ _t()['save'] }}</button>
+					<button capsDrawerClose capsButton variant="outline">{{ _t()['close'] }}</button>
+				</caps-drawer-footer>
+			</ng-template>
+		</caps-drawer>
 	`,
 })
 export class DrawerRtl {
@@ -80,4 +80,7 @@ export class DrawerRtl {
 	private readonly _translation = computed(() => this._translations[this._language()]);
 	protected readonly _t = computed(() => this._translation().values);
 	protected readonly _dir = computed(() => this._translation().dir);
+	protected readonly _font = computed(() =>
+		this._language() === 'ar' ? 'font-ar' : this._language() === 'he' ? 'font-he' : '',
+	);
 }

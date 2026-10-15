@@ -1,6 +1,8 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsAlertImports } from '@capsule-ng/caps/alert';
+import { CapsLink } from '@capsule-ng/caps/link';
 import { CodePreview } from '@spartan-ng/app/app/shared/code/code-preview';
 import { MainSection } from '@spartan-ng/app/app/shared/layout/main-section';
 import { PageBottomNav } from '@spartan-ng/app/app/shared/layout/page-bottom-nav/page-bottom-nav';
@@ -9,7 +11,6 @@ import { PageNav } from '@spartan-ng/app/app/shared/layout/page-nav/page-nav';
 import { SectionIntro } from '@spartan-ng/app/app/shared/layout/section-intro';
 import { SectionSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-heading';
 import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { STYLES } from '@spartan-ng/styles';
 import { StylesShowcase } from './styles--button-showcase.example';
@@ -25,13 +26,14 @@ export const routeMeta: RouteMeta = {
 @Component({
 	selector: 'spartan-styles',
 	imports: [
+		CapsLink,
 		MainSection,
 		SectionIntro,
 		PageBottomNav,
 		PageBottomNavLink,
 		PageNav,
 		SectionSubHeading,
-		HlmAlertImports,
+		CapsAlertImports,
 		CodePreview,
 		StylesSelector,
 		StylesShowcase,
@@ -115,17 +117,17 @@ export const routeMeta: RouteMeta = {
 				instead.
 			</p>
 
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						See
-						<a class="font-medium underline" routerLink="/components/field" fragment="validation-and-errors">
+						<a capsLink class="font-medium underline" routerLink="/components/field" fragment="validation-and-errors">
 							Field → Validation and Errors
 						</a>
 						for the correct structure.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="dark-mode" label="Dark Mode" />

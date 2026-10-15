@@ -54,9 +54,9 @@ describe('item', () => {
 
 		it('should open dropdown and show items', () => {
 			cy.get('button[capsButton]').click();
-			cy.get('hlm-dropdown-menu').should('exist');
-			cy.get('[hlmDropdownMenuItem]').should('have.length', 3);
-			cy.get('[hlmDropdownMenuItem]').first().find('caps-item').should('exist');
+			cy.get('caps-menu').should('exist');
+			cy.get('[capsMenuItem]').should('have.length', 3);
+			cy.get('[capsMenuItem]').first().find('caps-item').should('exist');
 		});
 
 		it('should pass accessibility checks', () => {
@@ -67,8 +67,8 @@ describe('item', () => {
 				},
 			});
 			cy.get('button[capsButton]').click();
-			cy.get('hlm-dropdown-menu').should('exist');
-			cy.checkA11y('hlm-dropdown-menu', {
+			cy.get('caps-menu').should('exist');
+			cy.checkA11y('caps-menu', {
 				rules: {
 					'color-contrast': { enabled: false },
 				},

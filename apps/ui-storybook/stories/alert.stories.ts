@@ -1,67 +1,71 @@
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { CapsAlert, CapsAlertImports } from '@capsule-ng/caps/alert';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleAlert, lucideInfo } from '@ng-icons/lucide';
-import { HlmAlert, HlmAlertImports } from '@spartan-ng/helm/alert';
 import type { Meta, StoryObj } from '@storybook/angular';
 import { argsToTemplate, moduleMetadata } from '@storybook/angular';
 
-const meta: Meta<HlmAlert> = {
+@Component({
+	selector: 'caps-urgent-alert-story',
+	imports: [CapsAlertImports, CapsButton],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	template: `
+		<button capsButton type="button" variant="outline" (click)="_failed.set(true)">Simulate payment failure</button>
+		@if (_failed()) {
+			<caps-alert variant="destructive" role="alert" class="mt-3 max-w-md">
+				<caps-alert-title>Payment failed</caps-alert-title>
+				<caps-alert-description>Check your payment method and try again.</caps-alert-description>
+				<caps-alert-actions>
+					<button capsButton type="button" variant="outline" (click)="_failed.set(false)">Try again</button>
+				</caps-alert-actions>
+			</caps-alert>
+		}
+	`,
+})
+class UrgentAlertStory {
+	protected readonly _failed = signal(false);
+}
+
+const meta: Meta<CapsAlert> = {
 	title: 'Alert',
-	component: HlmAlert,
+	component: CapsAlert,
 	tags: ['autodocs'],
 	argTypes: {
-		variant: {
-			options: ['default', 'destructive'],
-			control: {
-				type: 'select',
-			},
-		},
+		variant: { options: ['default', 'destructive'], control: 'select' },
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmAlertImports, NgIcon],
+			imports: [CapsAlertImports, CapsButton, NgIcon, UrgentAlertStory],
 			providers: [provideIcons({ lucideInfo, lucideCircleAlert })],
 		}),
 	],
-	render: ({ ...args }) => ({
+	render: (args) => ({
 		props: args,
 		template: `
-     <div class='max-w-xl' hlmAlert ${argsToTemplate(args)}>
-      <ng-icon name='lucideInfo' />
-      <h4 hlmAlertTitle>Introducing SPARTAN helm & brain</h4>
-      <p hlmAlertDescription>
-        The components used on this page are also the initial building blocks of a new UI library. It is made up of
-        headless UI providers, the brain components/directives, which add ARIA compliant markup and interactions. On top
-        of the brain we add helm(et) directives, which add shadcn-like styles to
-        our application.
-      </p>
-    </div>
-    `,
+  <caps-alert class="max-w-xl" ${argsToTemplate(args)}>
+   <caps-alert-media><ng-icon name="lucideInfo" aria-hidden="true" /></caps-alert-media>
+   <caps-alert-title>Welcome to Capsule</caps-alert-title>
+   <caps-alert-description>Import components from the Capsule package and use the shared foundations to style your application.</caps-alert-description>
+  </caps-alert>
+ `,
 	}),
 };
-
 export default meta;
-type Story = StoryObj<HlmAlert>;
-
-export const Default: Story = {
-	args: {
-		variant: 'default',
-	},
-};
-
+type Story = StoryObj<CapsAlert>;
+export const Default: Story = { args: { variant: 'default' } };
 export const Destructive: Story = {
-	args: {
-		variant: 'destructive',
-	},
-	render: ({ ...args }) => ({
+	args: { variant: 'destructive' },
+	render: (args) => ({
 		props: args,
 		template: `
-     <div hlmAlert class='max-w-xl' ${argsToTemplate(args)}>
-      <ng-icon name='lucideCircleAlert' />
-      <h4 hlmAlertTitle>Something went wrong...</h4>
-      <p hlmAlertDescription>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam at autem culpa debitis eius eveniet exercitationem, facilis illo magni mollitia, necessitatibus nesciunt quam quos recusandae tempore ullam velit veniam!
-      </p>
-     </div>
-    `,
+  <caps-alert class="max-w-xl" ${argsToTemplate(args)}>
+   <caps-alert-media><ng-icon name="lucideCircleAlert" aria-hidden="true" /></caps-alert-media>
+   <caps-alert-title>Payment could not be processed</caps-alert-title>
+   <caps-alert-description>This callout preserves the default Spartan alert role and projects a native link action.</caps-alert-description>
+   <caps-alert-actions><a capsButton href="/components" variant="outline">View components</a></caps-alert-actions>
+  </caps-alert>
+ `,
 	}),
 };
+export const Urgent: Story = { render: () => ({ template: '<caps-urgent-alert-story />' }) };

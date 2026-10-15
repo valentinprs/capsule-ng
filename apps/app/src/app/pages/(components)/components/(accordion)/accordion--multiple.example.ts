@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
-import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
+import { CapsAccordionImports } from '@capsule-ng/caps/accordion';
 
 @Component({
 	selector: 'spartan-accordion-multiple',
-	imports: [HlmAccordionImports],
+	imports: [CapsAccordionImports],
 	host: {
-		class: 'max-w-sm h-[380px] flex flex-col justify-between',
+		class: 'max-w-sm  block',
 	},
 	template: `
-		<hlm-accordion type="multiple">
+		<caps-accordion>
 			@for (item of items; track item.value; let i = $index) {
-				<hlm-accordion-item [isOpened]="i === 0">
-					<hlm-accordion-trigger>{{ item.trigger }}</hlm-accordion-trigger>
-					<hlm-accordion-content>{{ item.content }}</hlm-accordion-content>
-				</hlm-accordion-item>
+				<caps-accordion-item [expanded]="i === 0" [title]="item.trigger">
+					{{ item.content }}
+				</caps-accordion-item>
 			}
-		</hlm-accordion>
+		</caps-accordion>
 	`,
 })
 export class AccordionMultiple {

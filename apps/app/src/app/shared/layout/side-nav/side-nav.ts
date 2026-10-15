@@ -1,35 +1,36 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { sidenavItems } from '@spartan-ng/app/app/shared/components/navigation-items';
 import { SpartanNewMarker } from '@spartan-ng/app/app/shared/spartan-new-marker';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-side-nav',
-	imports: [HlmSidebarImports, RouterLink, RouterLinkActive, SpartanNewMarker],
+	imports: [CapsSidebarImports, RouterLink, RouterLinkActive, SpartanNewMarker],
 	host: {
 		class: 'contents',
 	},
 	template: `
-		<div
-			hlmSidebarWrapper
+		<caps-sidebar-wrapper
 			class="flex-1 [--sidebar-width:220px]! [--top-spacing:0] lg:[--sidebar-width:240px]! lg:[--top-spacing:calc(var(--spacing)*4)]"
 		>
-			<hlm-sidebar
+			<caps-sidebar
 				sidebarContainerClass="text-sidebar-foreground sticky top-[calc(var(--header-height)+1px)] z-(--caps-z-30) hidden h-[calc(100svh-var(--footer-height)+2rem-var(--stable-height))] w-(--sidebar-width) flex-col border-r-transparent bg-transparent lg:flex"
 			>
-				<div hlmSidebarContent class="no-scrollbar bg-background overflow-x-hidden px-2 pb-12">
+				<caps-sidebar-content class="no-scrollbar bg-background overflow-x-hidden px-2 pb-12">
 					<div class="h-(--top-spacing) shrink-0"></div>
 
 					@for (item of _items; track item.label) {
-						<div hlmSidebarGroup class="px-0">
-							<div hlmSidebarGroupLabel class="text-muted-foreground font-medium">{{ item.label }}</div>
-							<div hlmSidebarGroupContent>
-								<ul hlmSidebarMenu>
+						<caps-sidebar-group class="px-0">
+							<caps-sidebar-group-label class="text-muted-foreground font-medium">
+								{{ item.label }}
+							</caps-sidebar-group-label>
+							<caps-sidebar-group-content>
+								<caps-sidebar-menu>
 									@for (link of item.links; track link.url) {
-										<li hlmSidebarMenuItem>
+										<caps-sidebar-menu-item>
 											@if (link.wip) {
-												<button disabled hlmSidebarMenuButton class="text-[0.8rem] font-medium">
+												<button disabled capsSidebarMenuButton class="text-[0.8rem] font-medium">
 													<span>
 														{{ link.label }}
 													</span>
@@ -37,7 +38,7 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 												</button>
 											} @else {
 												<a
-													hlmSidebarMenuButton
+													capsSidebarMenuButton
 													[routerLink]="item.url + link.url"
 													[routerLinkActive]="['bg-accent', 'border-accent']"
 													[routerLinkActiveOptions]="{ exact: link.exact || false }"
@@ -51,16 +52,16 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 													</span>
 												</a>
 											}
-										</li>
+										</caps-sidebar-menu-item>
 									}
-								</ul>
-							</div>
-						</div>
+								</caps-sidebar-menu>
+							</caps-sidebar-group-content>
+						</caps-sidebar-group>
 					}
-				</div>
-			</hlm-sidebar>
+				</caps-sidebar-content>
+			</caps-sidebar>
 			<ng-content />
-		</div>
+		</caps-sidebar-wrapper>
 	`,
 })
 export class SideNav {

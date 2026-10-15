@@ -262,7 +262,7 @@ export const routeMeta: RouteMeta = {
 			<h3 id="examples__dropdown-menu" spartanH4>Dropdown Menu</h3>
 			<p class="${hlmP} mb-2">
 				Create a split button group with a
-				<code class="${hlmCode} mr-0.5">HlmDropdownMenu</code>
+				<code class="${hlmCode} mr-0.5">CapsMenu</code>
 				component .
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">

@@ -410,9 +410,10 @@ export const demoForceShowCode = `
 </caps-field>`;
 
 export const demoSubmittingState = `
+<!-- Import CapsSpinnerImports from @capsule-ng/caps/spinner in the consuming component. -->
 <button capsButton type="submit" [disabled]="form().submitting()">
   @if (form().submitting()) {
-    <hlm-spinner />
+    <caps-spinner aria-hidden="true" />
   }
   Submit
 </button>

@@ -33,9 +33,9 @@ export const routeMeta: RouteMeta = {
 				Use the
 				<code class="${hlmCode}">inset</code>
 				variant on
-				<code class="${hlmCode}">hlm-sidebar</code>
+				<code class="${hlmCode}">caps-sidebar</code>
 				and the
-				<code class="${hlmCode}">hlmSidebarInset</code>
+				<code class="${hlmCode}">caps-sidebar-inset</code>
 				directive on your
 				<code class="${hlmCode}">main</code>
 				element to create an inset sidebar layout. Both elements must be siblings for the styles to apply correctly.

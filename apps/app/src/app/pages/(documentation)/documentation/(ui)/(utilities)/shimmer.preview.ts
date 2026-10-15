@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 
 @Component({
 	selector: 'spartan-shimmer-preview',
@@ -17,32 +17,32 @@ export const shimmerDemoCode = `<p class="text-muted-foreground shimmer text-sm"
 
 @Component({
 	selector: 'spartan-shimmer-marker-preview',
-	imports: [HlmMarkerImports, HlmSpinner],
+	imports: [CapsMarkerImports, CapsSpinner],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'flex w-full max-w-sm flex-col gap-4' },
 	template: `
-		<div hlmMarker role="status">
-			<span hlmMarkerIcon>
-				<hlm-spinner />
-			</span>
-			<span hlmMarkerContent class="shimmer">Thinking...</span>
-		</div>
-		<div hlmMarker variant="separator" role="status">
-			<span hlmMarkerContent class="shimmer">Reading 4 files</span>
-		</div>
+		<caps-marker role="status">
+			<caps-marker-icon>
+				<caps-spinner aria-hidden="true" />
+			</caps-marker-icon>
+			<caps-marker-content class="shimmer">Thinking...</caps-marker-content>
+		</caps-marker>
+		<caps-marker variant="separator" role="status">
+			<caps-marker-content class="shimmer">Reading 4 files</caps-marker-content>
+		</caps-marker>
 	`,
 })
 export class ShimmerMarkerPreview {}
 
-export const shimmerMarkerCode = `<div hlmMarker role="status">
-  <span hlmMarkerIcon>
-    <hlm-spinner />
-  </span>
-  <span hlmMarkerContent class="shimmer">Thinking...</span>
-</div>
-<div hlmMarker variant="separator" role="status">
-  <span hlmMarkerContent class="shimmer">Reading 4 files</span>
-</div>`;
+export const shimmerMarkerCode = `<caps-marker role="status">
+  <caps-marker-icon>
+    <caps-spinner aria-hidden="true" />
+  </caps-marker-icon>
+  <caps-marker-content class="shimmer">Thinking...</caps-marker-content>
+</caps-marker>
+<caps-marker variant="separator" role="status">
+  <caps-marker-content class="shimmer">Reading 4 files</caps-marker-content>
+</caps-marker>`;
 
 @Component({
 	selector: 'spartan-shimmer-color-preview',
@@ -123,7 +123,7 @@ export const shimmerAngleCode = `<p class="shimmer shimmer-angle-45">Generating 
 
 @Component({
 	selector: 'spartan-shimmer-once-preview',
-	imports: [HlmButton],
+	imports: [CapsButton],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'flex flex-col items-center gap-4' },
 	template: `
@@ -133,7 +133,7 @@ export const shimmerAngleCode = `<p class="shimmer shimmer-angle-45">Generating 
 				Generating response…
 			</p>
 		}
-		<button hlmBtn variant="outline" size="sm" type="button" (click)="replay()">Replay</button>
+		<button capsButton variant="outline" size="sm" type="button" (click)="replay()">Replay</button>
 	`,
 })
 export class ShimmerOncePreview {

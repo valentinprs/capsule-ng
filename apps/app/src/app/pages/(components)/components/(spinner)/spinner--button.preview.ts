@@ -1,23 +1,23 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
 
 @Component({
 	selector: 'spartan-spinner-button-preview',
-	imports: [HlmSpinnerImports, HlmButtonImports],
+	imports: [CapsSpinnerImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-col items-center gap-4">
-			<button hlmBtn size="sm" disabled>
-				<hlm-spinner />
+			<button capsButton size="sm" disabled>
+				<caps-spinner aria-hidden="true" />
 				Loading...
 			</button>
-			<button hlmBtn variant="outline" size="sm" disabled>
-				<hlm-spinner />
+			<button capsButton variant="outline" size="sm" disabled>
+				<caps-spinner aria-hidden="true" />
 				Please wait
 			</button>
-			<button hlmBtn variant="secondary" size="sm" disabled>
-				<hlm-spinner />
+			<button capsButton variant="secondary" size="sm" disabled>
+				<caps-spinner aria-hidden="true" />
 				Processing
 			</button>
 		</div>

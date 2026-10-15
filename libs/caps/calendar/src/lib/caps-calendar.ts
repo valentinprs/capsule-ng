@@ -1,0 +1,181 @@
+import { NgTemplateOutlet } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { buttonVariants, CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
+import { BrnCalendar, BrnCalendarImports, injectBrnCalendarI18n } from '@spartan-ng/brain/calendar';
+import { injectDateAdapter } from '@spartan-ng/brain/date-time';
+import { classes, hlm } from '@spartan-ng/helm/utils';
+import { CapsCalendarMonthSelect, CapsCalendarYearSelect } from './caps-calendar-select';
+
+@Component({
+	selector: 'caps-calendar',
+	imports: [
+		BrnCalendarImports,
+		NgIcon,
+		CapsSelectImports,
+		CapsCalendarMonthSelect,
+		CapsCalendarYearSelect,
+		NgTemplateOutlet,
+		CapsButtonImports,
+	],
+	viewProviders: [provideIcons({ lucideChevronLeft, lucideChevronRight })],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	hostDirectives: [
+		{
+			directive: BrnCalendar,
+			inputs: ['min', 'max', 'disabled', 'date', 'dateDisabled', 'weekStartsOn', 'highlightDays', 'defaultFocusedDate'],
+			outputs: ['dateChange'],
+		},
+	],
+	host: { 'data-slot': 'calendar' },
+	template: `
+		<div class="inline-flex flex-col gap-4">
+			<!-- Header -->
+			<div class="flex w-full items-center justify-between gap-1.5">
+				<ng-template #month>
+					<caps-select
+						capsCalendarMonthSelect
+						size="sm"
+						class="order-1"
+						[triggerClass]="_selectClass"
+						aria-label="Month"
+					>
+						@for (month of _i18n.config().months(); track month) {
+							<caps-select-option [value]="month">{{ month }}</caps-select-option>
+						}
+					</caps-select>
+				</ng-template>
+				<ng-template #year>
+					<caps-select capsCalendarYearSelect size="sm" class="order-3" [triggerClass]="_selectClass" aria-label="Year">
+						@for (year of _i18n.config().years(); track year) {
+							<caps-select-option [value]="year">{{ year }}</caps-select-option>
+						}
+					</caps-select>
+				</ng-template>
+				@let heading = _heading();
+
+				<button
+					brnCalendarPreviousButton
+					variant="ghost"
+					capsButton
+					class="order-first size-(--cell-size) p-0 select-none aria-disabled:opacity-50"
+				>
+					<ng-icon name="lucideChevronLeft" class="rtl:rotate-180" aria-hidden="true" />
+				</button>
+
+				@switch (captionLayout()) {
+					@case ('dropdown') {
+						<ng-container [ngTemplateOutlet]="month" />
+						<ng-container [ngTemplateOutlet]="year" />
+					}
+					@case ('dropdown-months') {
+						<ng-container [ngTemplateOutlet]="month" />
+						<div brnCalendarHeader class="order-4 text-sm font-medium">{{ heading.year }}</div>
+					}
+					@case ('dropdown-years') {
+						<div brnCalendarHeader class="order-2 text-sm font-medium">{{ heading.month }}</div>
+						<ng-container [ngTemplateOutlet]="year" />
+					}
+					@case ('label') {
+						<div brnCalendarHeader class="order-5 text-sm font-medium">{{ heading.header }}</div>
+					}
+				}
+
+				<button
+					brnCalendarNextButton
+					capsButton
+					variant="ghost"
+					class="order-last size-(--cell-size) p-0 select-none aria-disabled:opacity-50"
+				>
+					<ng-icon name="lucideChevronRight" class="rtl:rotate-180" aria-hidden="true" />
+				</button>
+			</div>
+
+			<table class="w-full border-collapse space-y-1" brnCalendarGrid [attr.aria-label]="_heading().header">
+				<thead aria-hidden="true">
+					<tr class="flex">
+						<th
+							*brnCalendarWeekday="let weekday"
+							scope="col"
+							class="text-muted-foreground flex-1 rounded-(--cell-radius) text-[0.8rem] font-normal select-none"
+							[attr.aria-label]="_i18n.config().labelWeekday(weekday)"
+						>
+							{{ _i18n.config().formatWeekdayName(weekday) }}
+						</th>
+					</tr>
+				</thead>
+
+				<tbody role="rowgroup">
+					<tr *brnCalendarWeek="let week" class="mt-2 flex w-full">
+						@for (date of week; track _dateAdapter.getTime(date)) {
+							<td
+								brnCalendarCell
+								class="group/day relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none [&:first-child[data-selected=true]_button]:rounded-s-(--cell-radius) [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)"
+							>
+								<button brnCalendarCellButton [attr.aria-label]="_dayLabel(date)" [date]="date" [class]="_btnClass">
+									{{ _dateAdapter.getDate(date) }}
+								</button>
+							</td>
+						}
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	`,
+})
+export class CapsCalendar<T> {
+	/** Access the calendar i18n */
+	protected readonly _i18n = injectBrnCalendarI18n();
+
+	/** Access the date time adapter */
+	protected readonly _dateAdapter = injectDateAdapter<T>();
+
+	/** Show dropdowns to navigate between months or years. */
+	public readonly captionLayout = input<'dropdown' | 'label' | 'dropdown-months' | 'dropdown-years'>('label');
+
+	/** Access the calendar directive */
+	private readonly _calendar = inject(BrnCalendar);
+
+	/** Get the heading for the current month and year */
+	protected readonly _heading = computed(() => {
+		const config = this._i18n.config();
+		const date = this._calendar.focusedDate();
+
+		return {
+			header: config.formatHeader(this._dateAdapter.getMonth(date), this._dateAdapter.getYear(date)),
+			month: config.formatMonth(this._dateAdapter.getMonth(date)),
+			year: config.formatYear(this._dateAdapter.getYear(date)),
+		};
+	});
+
+	protected _dayLabel(date: T): string {
+		const config = this._i18n.config();
+		return `${config.labelWeekday(this._dateAdapter.getDay(date))}, ${this._dateAdapter.getDate(date)} ${config.formatMonth(this._dateAdapter.getMonth(date))} ${config.formatYear(this._dateAdapter.getYear(date))}`;
+	}
+
+	protected readonly _btnClass = hlm(
+		buttonVariants({ variant: 'ghost', size: 'icon' }),
+		'data-[today=true]:bg-muted group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:bg-muted data-[range-middle=true]:text-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:bg-muted/50 dark:hover:text-foreground relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-(--cell-radius) data-[range-end=true]:rounded-e-(--cell-radius) data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-s-(--cell-radius) [&>span]:text-xs [&>span]:opacity-70',
+		'data-[outside=true]:text-muted-foreground',
+		"data-[highlighted]:before:content-['']",
+		'data-[highlighted]:before:absolute',
+		'data-[highlighted]:before:bottom-1',
+		'data-[highlighted]:before:start-1/2',
+		'data-[highlighted]:before:h-1',
+		'data-[highlighted]:before:w-1',
+		'data-[highlighted]:before:-translate-x-1/2',
+		'data-[highlighted]:before:rounded-full',
+		'data-[highlighted]:before:bg-destructive',
+	);
+
+	protected readonly _selectClass = 'gap-0 px-1.5 py-2 [&>ng-icon]:ms-1';
+
+	constructor() {
+		classes(
+			() =>
+				'caps-calendar group/calendar bg-background block in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent',
+		);
+	}
+}

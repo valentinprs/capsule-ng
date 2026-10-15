@@ -1,44 +1,44 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { toast } from '@spartan-ng/brain/sonner';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmButton } from '@spartan-ng/helm/button';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { toast } from '@capsule-ng/caps/sonner';
 
 @Component({
 	selector: 'spartan-bubble-reactions-preview',
-	imports: [HlmBubbleImports, HlmButton],
+	imports: [CapsBubbleImports, CapsButton],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-12 py-12',
 	},
 	template: `
-		<div hlmBubble variant="muted" align="end">
-			<div hlmBubbleContent>I don't need tests, I know my code works.</div>
-			<div hlmBubbleReactions align="start" role="img" aria-label="Reactions: thumbs up, surprised">
+		<caps-bubble variant="muted" align="end">
+			<caps-bubble-content>I don't need tests, I know my code works.</caps-bubble-content>
+			<caps-bubble-reactions align="start" role="img" aria-label="Reactions: thumbs up, surprised">
 				<span>👍</span>
 				<span>😮</span>
-			</div>
-		</div>
-		<div hlmBubble variant="muted">
-			<div hlmBubbleContent>Bold. Fine I'll add some tests. I'll let you know when they're done.</div>
-			<div hlmBubbleReactions role="img" aria-label="Reactions: eyes, rocket, and 2 more">
+			</caps-bubble-reactions>
+		</caps-bubble>
+		<caps-bubble variant="muted">
+			<caps-bubble-content>Bold. Fine I'll add some tests. I'll let you know when they're done.</caps-bubble-content>
+			<caps-bubble-reactions role="img" aria-label="Reactions: eyes, rocket, and 2 more">
 				<span>👀</span>
 				<span>🚀</span>
 				<span>+2</span>
-			</div>
-		</div>
-		<div hlmBubble variant="default" align="end">
-			<div hlmBubbleContent>Tests passed on the first try. All 142 of them. Looking good!</div>
-			<div hlmBubbleReactions side="top" align="start" role="img" aria-label="Reactions: party popper, clapping hands">
+			</caps-bubble-reactions>
+		</caps-bubble>
+		<caps-bubble variant="default" align="end">
+			<caps-bubble-content>Tests passed on the first try. All 142 of them. Looking good!</caps-bubble-content>
+			<caps-bubble-reactions side="top" align="start" role="img" aria-label="Reactions: party popper, clapping hands">
 				<span>🎉</span>
 				<span>👏</span>
-			</div>
-		</div>
-		<div hlmBubble variant="destructive">
-			<div hlmBubbleContent>Are you sure I can run this command?</div>
-			<div hlmBubbleReactions>
-				<button hlmBtn variant="ghost" size="xs" (click)="onYes()">Yes, run it</button>
-			</div>
-		</div>
+			</caps-bubble-reactions>
+		</caps-bubble>
+		<caps-bubble variant="destructive">
+			<caps-bubble-content>Are you sure I can run this command?</caps-bubble-content>
+			<caps-bubble-reactions>
+				<button capsButton variant="ghost" size="xs" (click)="onYes()">Yes, run it</button>
+			</caps-bubble-reactions>
+		</caps-bubble>
 	`,
 })
 export class BubbleReactionsPreview {

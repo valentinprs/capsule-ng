@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsCalendar } from '@capsule-ng/caps/calendar';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmCalendar } from '@spartan-ng/helm/calendar';
 
 @Component({
 	selector: 'spartan-calendar-preview',
-	imports: [HlmCalendar, CapsCardImports],
+	imports: [CapsCalendar, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'p-0 w-fit mx-auto',
@@ -12,7 +12,7 @@ import { HlmCalendar } from '@spartan-ng/helm/calendar';
 	template: `
 		<caps-card class="p-0">
 			<caps-card-content class="p-0">
-				<hlm-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" />
+				<caps-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" />
 			</caps-card-content>
 		</caps-card>
 	`,
@@ -29,15 +29,15 @@ export class CalendarPreview {
 }
 
 export const defaultImports = `
-import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
+import { CapsCalendarImports } from '@capsule-ng/caps/calendar';
 `;
 
 export const i18nRuntimeChange = `
-import { injectBrnCalendarI18n } from '@spartan-ng/brain/calendar';
+import { injectCapsCalendarI18n } from '@capsule-ng/caps/calendar';
 
 @Component({...})
 export class CalendarPage {
-  private readonly _i18n = injectBrnCalendarI18n();
+  private readonly _i18n = injectCapsCalendarI18n();
 
   switchToFrench() {
     this._i18n.use({
@@ -52,10 +52,10 @@ export class CalendarPage {
 
 export const i18nProviders = `
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideBrnCalendarI18n } from '@spartan-ng/brain/calendar';
+import { provideCapsCalendarI18n } from '@capsule-ng/caps/calendar';
 bootstrapApplication(App, {
 	providers: [
-		provideBrnCalendarI18n({
+		provideCapsCalendarI18n({
 			formatWeekdayName: (i) => ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'][i],
 			formatHeader: (m, y) =>
 				new Date(y, m).toLocaleDateString('de-DE', {
@@ -72,5 +72,5 @@ bootstrapApplication(App, {
 `;
 
 export const defaultSkeleton = `
-<hlm-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" />
+<caps-calendar [(date)]="selectedDate" [min]="minDate" [max]="maxDate" />
 `;

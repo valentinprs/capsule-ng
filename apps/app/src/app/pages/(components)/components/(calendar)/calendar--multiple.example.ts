@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsCalendarImports } from '@capsule-ng/caps/calendar';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 
 @Component({
 	selector: 'spartan-calendar-multiple',
-	imports: [HlmCalendarImports, CapsCardImports],
+	imports: [CapsCalendarImports, CapsCardImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'p-0 w-fit mx-auto',
@@ -12,7 +12,7 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 	template: `
 		<caps-card class="p-0">
 			<caps-card-content class="p-0">
-				<hlm-calendar-multi
+				<caps-calendar-multi
 					[(date)]="selectedDates"
 					[min]="minDate"
 					[max]="maxDate"
@@ -24,8 +24,13 @@ import { HlmCalendarImports } from '@spartan-ng/helm/calendar';
 	`,
 })
 export class CalendarMultipleExample {
-	/** The selected date */
-	public selectedDates = [new Date()];
+	private readonly _today = new Date();
+
+	/** The initial selection already satisfies minSelection=2. */
+	public selectedDates = [
+		this._today,
+		new Date(this._today.getFullYear(), this._today.getMonth(), this._today.getDate() + 1),
+	];
 
 	/** The minimum date */
 	public minDate = new Date(2023, 0, 1);

@@ -1,11 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, input, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsResizableImports } from '@capsule-ng/caps/resizable';
 import { CapsSeparatorImports } from '@capsule-ng/caps/separator';
 import { CapsToggleGroupImports } from '@capsule-ng/caps/toggle-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFullscreen, lucideMonitor, lucideSmartphone, lucideTablet } from '@ng-icons/lucide';
 import { ToggleValue } from '@spartan-ng/brain/toggle-group';
-import { HlmResizableImports, HlmResizablePanel } from '@spartan-ng/helm/resizable';
 import { BlockLink } from './block-link';
 import { BlockPreview } from './block-preview';
 import { OpenInButton } from './open-in-button';
@@ -13,7 +13,7 @@ import { OpenInButton } from './open-in-button';
 @Component({
 	selector: 'spartan-block-viewer',
 	imports: [
-		HlmResizableImports,
+		CapsResizableImports,
 		CapsToggleGroupImports,
 		CapsSeparatorImports,
 		CapsButtonImports,
@@ -61,24 +61,24 @@ import { OpenInButton } from './open-in-button';
 		</div>
 
 		<!-- description -->
-		<ng-content />
+		<div data-slot="block-description" class="[&_code]:text-foreground contents">
+			<ng-content />
+		</div>
 
 		<!-- resizable preview -->
-		<hlm-resizable-group>
-			<hlm-resizable-panel #viewerPanel="hlmResizablePanel" defaultSize="100">
+		<caps-resizable-group [(layout)]="_layout">
+			<caps-resizable-panel defaultSize="100">
 				<spartan-block-preview [name]="block()" />
-			</hlm-resizable-panel>
-			<hlm-resizable-handle
-				class="after:bg-border relative hidden w-3 bg-transparent p-0 after:absolute after:top-1/2 after:right-0 after:h-8 after:w-1.5 after:translate-x-px after:-translate-y-1/2 after:rounded-full after:transition-all after:hover:h-10 md:block"
+			</caps-resizable-panel>
+			<caps-resizable-handle
+				aria-label="Preview width"
+				class="after:bg-border relative hidden w-3 bg-transparent p-0 after:absolute after:top-1/2 after:right-0 after:h-8 after:w-1.5 after:translate-x-px after:-translate-y-1/2 after:rounded-full after:transition-[height] after:hover:h-10 md:block"
 			/>
-			<hlm-resizable-panel #invisiblePanel="hlmResizablePanel" defaultSize="0" minSize="0" />
-		</hlm-resizable-group>
+			<caps-resizable-panel defaultSize="0" minSize="0" />
+		</caps-resizable-group>
 	`,
 })
 export class BlockViewer {
-	protected readonly _viewerPanel = viewChild.required<HlmResizablePanel>('viewerPanel');
-	protected readonly _invisiblePanel = viewChild.required<HlmResizablePanel>('invisiblePanel');
-
 	public readonly block = input.required<string>();
 	protected readonly _previewUrl = computed(() => `/blocks-preview/${this.block()}`);
 
@@ -86,11 +86,11 @@ export class BlockViewer {
 	public readonly id = input.required<string>();
 
 	protected readonly _size = signal(100);
+	protected readonly _layout = signal([100, 0]);
 
 	public changeSize(size: ToggleValue<number>) {
 		if (typeof size === 'number') {
-			this._viewerPanel().setSize(size);
-			this._invisiblePanel().setSize(100 - size);
+			this._layout.set([size, 100 - size]);
 		}
 	}
 }

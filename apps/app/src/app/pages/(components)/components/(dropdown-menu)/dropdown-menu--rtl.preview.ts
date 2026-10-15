@@ -1,145 +1,127 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectionStrategy, Component, computed, effect, inject, signal, untracked } from '@angular/core';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCreditCard, lucideSettings, lucideUser } from '@ng-icons/lucide';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
 import { MenuSide } from '@spartan-ng/brain/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-dropdown-rtl',
-	imports: [HlmDropdownMenuImports, HlmButtonImports, NgIcon],
+	imports: [CapsDropdownMenuImports, CapsButtonImports, NgIcon],
 	providers: [provideIcons({ lucideUser, lucideCreditCard, lucideSettings }), Directionality],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		'[dir]': '_dir()',
 	},
 	template: `
-		<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="menu" align="start">
+		<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom-start">
 			{{ _t()['open'] }}
 		</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-36">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]="accountMenu" side="right" align="start">
-						{{ _t()['account'] }}
-						<hlm-dropdown-menu-item-sub-indicator />
-					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>{{ _t()['team'] }}</hlm-dropdown-menu-label>
-					<button hlmDropdownMenuItem>
+			<caps-menu class="w-36">
+				<button [capsMenuSubTrigger]="accountMenu" side="right" align="start">
+					{{ _t()['account'] }}
+				</button>
+				<caps-menu-separator />
+				<caps-menu-group label="{{ _t()['team'] }}">
+					<button capsMenuItem>
 						{{ _t()['team'] }}
 					</button>
-					<button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]="inviteMenu" side="right" align="start">
+					<button [capsMenuSubTrigger]="inviteMenu" side="right" align="start">
 						{{ _t()['inviteUsers'] }}
-						<hlm-dropdown-menu-item-sub-indicator />
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						{{ _t()['newTeam'] }}
-						<hlm-dropdown-menu-shortcut>⌘+T</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘+T</caps-menu-shortcut>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>{{ _t()['view'] }}</hlm-dropdown-menu-label>
-					<button hlmDropdownMenuCheckbox [checked]="statusBar()" (triggered)="statusBar.set(!statusBar())">
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group label="{{ _t()['view'] }}">
+					<button capsMenuCheckboxItem [(checked)]="statusBar">
 						{{ _t()['statusBar'] }}
-						<hlm-dropdown-menu-checkbox-indicator />
 					</button>
 
-					<button hlmDropdownMenuCheckbox [checked]="activityBar()" (triggered)="activityBar.set(!activityBar())">
+					<button capsMenuCheckboxItem [(checked)]="activityBar">
 						{{ _t()['activityBar'] }}
-						<hlm-dropdown-menu-checkbox-indicator />
 					</button>
 
-					<button hlmDropdownMenuCheckbox [checked]="panel()" (triggered)="panel.set(!panel())">
+					<button capsMenuCheckboxItem [(checked)]="panel">
 						{{ _t()['panel'] }}
-						<hlm-dropdown-menu-checkbox-indicator />
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>{{ _t()['position'] }}</hlm-dropdown-menu-label>
-					@let p = position();
-					<button hlmDropdownMenuRadio [checked]="p === 'top'" (triggered)="position.set('top')">
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group label="{{ _t()['position'] }}" type="radio" [(value)]="position">
+					<button capsMenuRadioItem value="top">
 						{{ _t()['top'] }}
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-					<button hlmDropdownMenuRadio [checked]="p === 'bottom'" (triggered)="position.set('bottom')">
+					<button capsMenuRadioItem value="bottom">
 						{{ _t()['bottom'] }}
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-					<button hlmDropdownMenuRadio [checked]="p === 'right'" (triggered)="position.set('right')">
+					<button capsMenuRadioItem value="right">
 						{{ _t()['right'] }}
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-					<button hlmDropdownMenuRadio [checked]="p === 'left'" (triggered)="position.set('left')">
+					<button capsMenuRadioItem value="left">
 						{{ _t()['left'] }}
-						<hlm-dropdown-menu-radio-indicator />
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem variant="destructive">
-						{{ _t()['logout'] }}
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem danger>
+					{{ _t()['logout'] }}
+				</button>
+			</caps-menu>
 		</ng-template>
 
 		<ng-template #accountMenu>
-			<hlm-dropdown-menu-sub>
-				<button hlmDropdownMenuItem>
+			<caps-menu>
+				<button capsMenuItem>
 					<ng-icon name="lucideUser" />
 					{{ _t()['profile'] }}
 				</button>
-				<button hlmDropdownMenuItem>
+				<button capsMenuItem>
 					<ng-icon name="lucideCreditCard" />
 					{{ _t()['billing'] }}
 				</button>
-				<button hlmDropdownMenuItem>
+				<button capsMenuItem>
 					<ng-icon name="lucideSettings" />
 					{{ _t()['settings'] }}
 				</button>
-			</hlm-dropdown-menu-sub>
+			</caps-menu>
 		</ng-template>
 
 		<ng-template #inviteMenu>
-			<hlm-dropdown-menu-sub>
-				<button hlmDropdownMenuItem>
+			<caps-menu>
+				<button capsMenuItem>
 					{{ _t()['email'] }}
 				</button>
-				<button hlmDropdownMenuItem>
+				<button capsMenuItem>
 					{{ _t()['message'] }}
 				</button>
-				<button hlmDropdownMenuItem [hlmDropdownMenuSubTrigger]="moreMenu" side="right" align="start">
+				<button [capsMenuSubTrigger]="moreMenu" side="right" align="start">
 					{{ _t()['more'] }}
-					<hlm-dropdown-menu-item-sub-indicator />
 				</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>
+				<caps-menu-separator />
+				<button capsMenuItem>
 					{{ _t()['advanced'] }}
 				</button>
-			</hlm-dropdown-menu-sub>
+			</caps-menu>
 		</ng-template>
 
 		<ng-template #moreMenu>
-			<hlm-dropdown-menu-sub>
-				<button hlmDropdownMenuItem>
+			<caps-menu>
+				<button capsMenuItem>
 					{{ _t()['calendar'] }}
 				</button>
-				<button hlmDropdownMenuItem>
+				<button capsMenuItem>
 					{{ _t()['chat'] }}
 				</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>
+				<caps-menu-separator />
+				<button capsMenuItem>
 					{{ _t()['webhook'] }}
 				</button>
-			</hlm-dropdown-menu-sub>
+			</caps-menu>
 		</ng-template>
 	`,
 })

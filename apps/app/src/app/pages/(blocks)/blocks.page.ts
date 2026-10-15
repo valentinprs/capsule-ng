@@ -1,9 +1,9 @@
 import type { RouteMeta } from '@analogjs/router';
-import { Component, computed, inject, signal } from '@angular/core';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
-import { metaWith } from '@spartan-ng/app/app/shared/meta/meta.util';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsLink } from '@capsule-ng/caps/link';
+import { metaWith } from '../../shared/meta/meta.util';
 
 export const routeMeta: RouteMeta = {
 	meta: metaWith('spartan/blocks - Blocks', 'Blocks built with the spartan/ui'),
@@ -12,7 +12,7 @@ export const routeMeta: RouteMeta = {
 
 @Component({
 	selector: 'spartan-blocks',
-	imports: [RouterOutlet, HlmButton, RouterLink, HlmTabsImports],
+	imports: [RouterOutlet, CapsButton, RouterLink, RouterLinkActive, CapsLink],
 	host: {
 		class: 'block',
 	},
@@ -27,37 +27,28 @@ export const routeMeta: RouteMeta = {
 				Clean, modern building blocks for your Angular applications.
 			</p>
 			<div class="flex gap-2 pt-2">
-				<a hlmBtn size="sm" routerLink="/documentation">Get Started</a>
-				<a hlmBtn size="sm" variant="outline" routerLink="/components">Components</a>
+				<a capsButton size="sm" routerLink="/documentation">Get Started</a>
+				<a capsButton size="sm" variant="outline" routerLink="/components">Components</a>
 			</div>
 		</div>
 
 		<section class="container-wrapper px-6">
-			<hlm-tabs [tab]="_activeTab()" class="w-full pb-5">
-				<hlm-tabs-list
-					aria-label="Blocks Tabs"
-					class="bg-background dark:[&>a]:bg-background [&>a]:text-muted-foreground [&>a]:data-[state=active]:text-primary [&>a]:hover:text-primary dark:[&>a]:data-[state=active]:bg-background [&>a]:cursor-pointer [&>a]:data-[state=active]:shadow-none dark:[&>a]:data-[state=active]:border-none"
-				>
-					<a hlmTabsTrigger="sidebar" routerLink="/blocks/sidebar">Sidebar</a>
-					<a hlmTabsTrigger="login" routerLink="/blocks/login">Login</a>
-					<a hlmTabsTrigger="signup" routerLink="/blocks/signup">Signup</a>
-					<a hlmTabsTrigger="calendar" routerLink="/blocks/calendar">Calendar</a>
-					<a hlmTabsTrigger="stepper" routerLink="/blocks/stepper">Stepper</a>
-				</hlm-tabs-list>
-			</hlm-tabs>
+			<nav aria-label="Block categories" class="mb-4 flex flex-wrap gap-4">
+				<a capsLink routerLink="/blocks/sidebar" routerLinkActive="font-semibold" ariaCurrentWhenActive="page">
+					Sidebar
+				</a>
+				<a capsLink routerLink="/blocks/login" routerLinkActive="font-semibold" ariaCurrentWhenActive="page">Login</a>
+				<a capsLink routerLink="/blocks/signup" routerLinkActive="font-semibold" ariaCurrentWhenActive="page">Signup</a>
+				<a capsLink routerLink="/blocks/calendar" routerLinkActive="font-semibold" ariaCurrentWhenActive="page">
+					Calendar
+				</a>
+				<a capsLink routerLink="/blocks/stepper" routerLinkActive="font-semibold" ariaCurrentWhenActive="page">
+					Stepper
+				</a>
+			</nav>
 
 			<router-outlet />
 		</section>
 	`,
 })
-export default class BlocksPage {
-	private readonly _router = inject(Router);
-
-	private readonly _lastUrlSegment = computed(() => {
-		const segments = this._router.url.split('/');
-		const last = segments[segments.length - 1];
-		return last.includes('#') ? last.split('#')[0] : last;
-	});
-
-	protected readonly _activeTab = signal<string>(this._lastUrlSegment() || 'sidebar');
-}
+export default class BlocksPage {}

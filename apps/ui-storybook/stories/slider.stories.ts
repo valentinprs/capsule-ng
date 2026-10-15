@@ -2,12 +2,12 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CapsButton, CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { BrnSliderImports } from '@spartan-ng/brain/slider';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
-interface BrnSliderStoryArgs {
+interface CapsSliderStoryArgs {
 	value: number[];
+	thumbLabels: readonly string[];
 	disabled: boolean;
 	min: number;
 	max: number;
@@ -24,13 +24,13 @@ interface BrnSliderStoryArgs {
 
 @Component({
 	selector: 'slider-validation-tester',
-	imports: [HlmSliderImports, CapsFieldImports, ReactiveFormsModule, CapsButtonImports],
+	imports: [CapsSliderImports, CapsFieldImports, ReactiveFormsModule, CapsButtonImports],
 
 	template: `
 		<form [formGroup]="form" class="max-w-lg space-y-3">
 			<caps-field>
 				<caps-field-label>Temperature</caps-field-label>
-				<hlm-slider formControlName="temperature" [min]="0" [max]="100"></hlm-slider>
+				<caps-slider formControlName="temperature" [min]="0" [max]="100"></caps-slider>
 				<caps-field-error>Set the temperature before continuing.</caps-field-error>
 			</caps-field>
 
@@ -43,15 +43,16 @@ interface BrnSliderStoryArgs {
 })
 class SliderValidationTester {
 	public readonly form = inject(FormBuilder).group({
-		temperature: [[0], Validators.min(100)],
+		temperature: new FormControl<number[] | null>([0], Validators.min(100)),
 	});
 }
 
-const meta: Meta<BrnSliderStoryArgs> = {
+const meta: Meta<CapsSliderStoryArgs> = {
 	title: 'Slider',
 	tags: ['autodocs'],
 	args: {
 		value: [0],
+		thumbLabels: [],
 		disabled: false,
 		min: 0,
 		max: 100,
@@ -67,20 +68,13 @@ const meta: Meta<BrnSliderStoryArgs> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [
-				FormsModule,
-				ReactiveFormsModule,
-				HlmSliderImports,
-				BrnSliderImports,
-				CapsButton,
-				SliderValidationTester,
-			],
+			imports: [FormsModule, ReactiveFormsModule, CapsSliderImports, CapsButton, SliderValidationTester],
 		}),
 	],
 };
 
 export default meta;
-type Story = StoryObj<BrnSliderStoryArgs>;
+type Story = StoryObj<CapsSliderStoryArgs>;
 
 export const Default: Story = {
 	args: {
@@ -89,7 +83,7 @@ export const Default: Story = {
 	render: (args) => ({
 		props: { ...args },
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -99,11 +93,12 @@ export const Default: Story = {
 export const Range: Story = {
 	args: {
 		value: [20, 50],
+		thumbLabels: ['Minimum', 'Maximum'],
 	},
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -118,7 +113,7 @@ export const Disabled: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} />
 		`,
 	}),
 };
@@ -130,7 +125,7 @@ export const Min: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -145,7 +140,7 @@ export const Max: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -160,7 +155,7 @@ export const MinMax: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -174,7 +169,7 @@ export const Step: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -191,7 +186,7 @@ export const MinStepsBetweenThumbs: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -205,7 +200,7 @@ export const Inverted: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -219,7 +214,7 @@ export const Vertical: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -234,7 +229,7 @@ export const Ticks: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -250,7 +245,7 @@ export const TickLabelInterval: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -268,7 +263,7 @@ export const DraggableRange: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -287,7 +282,7 @@ export const DraggableRangeOnly: Story = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: /* HTML */ `
-			<hlm-slider ${argsToTemplate(args)} (valueChange)="value = $event" />
+			<caps-slider aria-label="Temperature" ${argsToTemplate(args)} (valueChange)="value = $event" />
 
 			<div>{{value}}</div>
 		`,
@@ -302,7 +297,7 @@ export const TemplateDrivenForm: Story = {
 				<div>
 					<pre>{{temperature()}}</pre>
 				</div>
-				<hlm-slider ${argsToTemplate(args)} [(ngModel)]="temperature" name="temperature" />
+				<caps-slider aria-label="Temperature" ${argsToTemplate(args)} [(ngModel)]="temperature" name="temperature" />
 
 				<button capsButton class="mt-3" (click)="temperature.set([25])">Change temperature value</button>
 			</form>
@@ -312,13 +307,13 @@ export const TemplateDrivenForm: Story = {
 
 export const ReactiveFormControl: Story = {
 	render: (args) => ({
-		props: { ...args, temperatureGroup: new FormGroup({ temperature: new FormControl() }) },
+		props: { ...args, temperatureGroup: new FormGroup({ temperature: new FormControl<number[] | null>(null) }) },
 		template: /* HTML */ `
 			<div class="mb-3">
 				<pre>Form Control Value: {{ temperatureGroup.controls.temperature.valueChanges | async | json }}</pre>
 			</div>
 			<form [formGroup]="temperatureGroup">
-				<hlm-slider ${argsToTemplate(args)} formControlName="temperature" />
+				<caps-slider aria-label="Temperature" ${argsToTemplate(args)} formControlName="temperature" />
 			</form>
 		`,
 	}),
@@ -326,13 +321,13 @@ export const ReactiveFormControl: Story = {
 
 export const ReactiveFormControlWithInitialValue: Story = {
 	render: (args) => ({
-		props: { ...args, temperatureGroup: new FormGroup({ temperature: new FormControl([26]) }) },
+		props: { ...args, temperatureGroup: new FormGroup({ temperature: new FormControl<number[] | null>([26]) }) },
 		template: /* HTML */ `
 			<div class="mb-3">
 				<pre>Form Control Value: {{ temperatureGroup.controls.temperature.valueChanges | async | json }}</pre>
 			</div>
 			<form [formGroup]="temperatureGroup">
-				<hlm-slider ${argsToTemplate(args)} formControlName="temperature" />
+				<caps-slider aria-label="Temperature" ${argsToTemplate(args)} formControlName="temperature" />
 			</form>
 		`,
 	}),

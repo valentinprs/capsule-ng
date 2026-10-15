@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsButtonGroupImports } from '@capsule-ng/caps/button-group';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCheck,
@@ -12,11 +13,10 @@ import {
 	lucideUserRoundX,
 	lucideVolumeOff,
 } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-button-group-dropdown-menu',
-	imports: [CapsButtonImports, CapsButtonGroupImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsButtonImports, CapsButtonGroupImports, CapsDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideChevronDown,
@@ -37,52 +37,46 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 				variant="outline"
 				size="icon"
 				aria-label="Conversation options"
-				[hlmDropdownMenuTrigger]="menu"
-				align="end"
+				[capsDropdownMenuTrigger]="menu"
+				placement="bottom-end"
 			>
 				<ng-icon name="lucideChevronDown" />
 			</button>
 		</caps-button-group>
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-[49] [--radius:1rem]">
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu class="w-[49] [--radius:1rem]">
+				<caps-menu-group>
+					<button capsMenuItem>
 						<ng-icon name="lucideVolumeOff" />
 						<span>Muted Conversation</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideCheck" />
 						<span>Mark as Read</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideTriangleAlert" />
 						<span>Report Conversation</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideUserRoundX" />
 						<span>Block User</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideShare" />
 						<span>Share Conversation</span>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideCopy" />
 						<span>Copy Conversation</span>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button
-						hlmDropdownMenuItem
-						variant="destructive"
-						class="hover:bg-destructive/10 dark:hover:bg-destructive/40"
-					>
-						<ng-icon name="lucideTrash" class="!text-destructive" />
-						<span>Delete Conversation</span>
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem danger>
+					<ng-icon name="lucideTrash" class="!text-destructive" />
+					<span>Delete Conversation</span>
+				</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

@@ -1,18 +1,18 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 
 @Component({
 	selector: 'spartan-kbd-group-preview',
-	imports: [HlmKbdImports],
+	imports: [CapsKbdImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-col items-center gap-4">
 			<p class="text-muted-foreground text-sm">
 				Use
-				<kbd hlmKbdGroup>
-					<kbd hlmKbd>Ctrl + B</kbd>
-					<kbd hlmKbd>Ctrl + K</kbd>
-				</kbd>
+				<caps-kbd-group>
+					<kbd capsKbd>Ctrl + B</kbd>
+					<kbd capsKbd>Ctrl + K</kbd>
+				</caps-kbd-group>
 				to open the command palette
 			</p>
 		</div>

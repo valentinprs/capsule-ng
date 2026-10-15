@@ -1,28 +1,27 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
 
 @Component({
 	selector: 'spartan-autocomplete-group-separator-preview',
-	imports: [HlmAutocompleteImports],
+	imports: [CapsAutocompleteImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-autocomplete [(search)]="search">
-			<hlm-autocomplete-input placeholder="Select a timezone" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No items found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
-					@for (timezoneGroup of filteredTimezones(); track $index) {
-						<div hlmAutocompleteGroup>
-							<div hlmAutocompleteLabel>{{ timezoneGroup.value }}</div>
-							@for (timezone of timezoneGroup.items; track $index) {
-								<hlm-autocomplete-item [value]="timezone">{{ timezone }}</hlm-autocomplete-item>
-							}
-							<div hlmAutocompleteSeparator></div>
-						</div>
-					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+		<caps-autocomplete [(search)]="search">
+			<caps-autocomplete-input placeholder="Select a timezone" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No items found.</caps-autocomplete-empty>
+
+				@for (timezoneGroup of filteredTimezones(); track $index) {
+					<caps-autocomplete-group>
+						<caps-autocomplete-label>{{ timezoneGroup.value }}</caps-autocomplete-label>
+						@for (timezone of timezoneGroup.items; track $index) {
+							<caps-autocomplete-option [value]="timezone">{{ timezone }}</caps-autocomplete-option>
+						}
+						<caps-autocomplete-separator></caps-autocomplete-separator>
+					</caps-autocomplete-group>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 })
 export class AutocompleteGroupSeparatorPreview {

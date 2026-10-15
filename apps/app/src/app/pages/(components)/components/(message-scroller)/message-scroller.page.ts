@@ -1,5 +1,6 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
+import { CapsSonnerImports } from '@capsule-ng/caps/sonner';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
@@ -39,6 +40,7 @@ export const routeMeta: RouteMeta = {
 @Component({
 	selector: 'spartan-message-scroller',
 	imports: [
+		CapsSonnerImports,
 		UIApiDocs,
 		MainSection,
 		Code,
@@ -193,9 +195,9 @@ export const routeMeta: RouteMeta = {
 			<h3 id="core-concepts__commands" spartanH4>Jumping to Messages</h3>
 			<p class="${hlmP} mb-2">
 				Use
-				<code class="${hlmCode}">injectBrnMessageScroller()</code>
-				for search results, permalinks, outline items, and toolbar buttons that drive the transcript from outside the
-				message list.
+				<code class="${hlmCode}">CapsMessageScroller reference</code>
+				and its scrollToMessage / scrollToStart / scrollToEnd methods for search results, permalinks, outline items, and
+				toolbar buttons that drive the transcript from outside the message list.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab class="theme-blue !h-auto !min-h-0">
@@ -234,11 +236,17 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_scrollableCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<p class="${hlmP}">
+				Capsule keeps the transcript log quiet by default so loading history and streaming tokens do not repeat
+				announcements. Bind a localized completion message to
+				<code class="${hlmCode}">announcement</code>
+				, and forward streaming state with
+				<code class="${hlmCode}">aria-busy</code>
+				. Opting the full log into live announcements requires an application policy for history.
+			</p>
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<h3 id="caps-api-components" class="mt-6 text-xl font-semibold tracking-tight">Components</h3>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="native-select" label="Native Select" />
@@ -246,6 +254,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-page-bottom-nav>
 		</section>
 		<spartan-page-nav />
+		<caps-toaster />
 	`,
 })
 export default class MessageScrollerPage {

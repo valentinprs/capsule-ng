@@ -1,22 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 
 @Component({
 	selector: 'spartan-combobox-clear-preview',
-	imports: [HlmComboboxImports],
+	imports: [CapsComboboxImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-combobox>
-			<hlm-combobox-input placeholder="Select a framework" showClear />
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
-					@for (framework of frameworks; track $index) {
-						<hlm-combobox-item [value]="framework">{{ framework }}</hlm-combobox-item>
-					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox>
+		<caps-combobox>
+			<caps-combobox-input placeholder="Select a framework" showClear />
+			<caps-combobox-content>
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+				@for (framework of frameworks; track $index) {
+					<caps-combobox-option [value]="framework">{{ framework }}</caps-combobox-option>
+				}
+			</caps-combobox-content>
+		</caps-combobox>
 	`,
 })
 export class ComboboxClearPreview {

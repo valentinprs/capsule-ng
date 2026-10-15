@@ -3,10 +3,11 @@ import 'zone.js/node';
 
 import { provideServerContext } from '@analogjs/router/server';
 import type { ServerContext } from '@analogjs/router/tokens';
-import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
+import { enableProdMode, provideZoneChangeDetection, REQUEST } from '@angular/core';
 import type { BootstrapContext } from '@angular/platform-browser';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { renderApplication } from '@angular/platform-server';
+import { createWebRequestFromNodeRequest } from '@angular/ssr/node';
 import { config } from './app.config.server';
 import { App } from './app/app';
 
@@ -19,7 +20,10 @@ export default async function render(url: string, document: string, serverContex
 	const html = await renderApplication(bootstrap, {
 		document,
 		url,
-		platformProviders: [provideServerContext(serverContext)],
+		platformProviders: [
+			provideServerContext(serverContext),
+			{ provide: REQUEST, useValue: createWebRequestFromNodeRequest(serverContext.req) },
+		],
 	});
 
 	return html;

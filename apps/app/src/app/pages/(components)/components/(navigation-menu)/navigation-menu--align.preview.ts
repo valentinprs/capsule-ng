@@ -1,62 +1,54 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
+import { CapsNavigationMenuImports } from '@capsule-ng/caps/navigation-menu';
 
 @Component({
 	selector: 'spartan-navigation-menu-align',
-	imports: [HlmNavigationMenuImports],
+	imports: [CapsNavigationMenuImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<nav hlmNavigationMenu>
-			<ul hlmNavigationMenuList class="flex-wrap">
-				<li hlmNavigationMenuItem>
-					<button hlmNavigationMenuTrigger align="start">Start</button>
-					<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-						<ul class="w-48">
-							<li>
-								<a hlmNavigationMenuLink href="/">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">Aligned Start</div>
-										<div class="text-muted-foreground line-clamp-2">Content aligns to the start of the trigger.</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</hlm-navigation-menu-content>
-				</li>
+		<caps-navigation-menu aria-label="Alignment examples">
+			<li capsNavigationMenuItem>
+				<button caps-navigation-menu-trigger align="start">Start</button>
+				<ng-template capsNavigationMenuContent>
+					<div class="w-48">
+						<a capsNavigationMenuLink href="/">
+							<div class="flex flex-col gap-1 text-sm">
+								<div class="leading-none font-medium">Aligned Start</div>
+								<div class="text-muted-foreground line-clamp-2">Content aligns to the start of the trigger.</div>
+							</div>
+						</a>
+					</div>
+				</ng-template>
+			</li>
 
-				<li hlmNavigationMenuItem>
-					<button hlmNavigationMenuTrigger align="center">Center</button>
-					<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-						<ul class="w-48">
-							<li>
-								<a hlmNavigationMenuLink href="/">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">Aligned Center</div>
-										<div class="text-muted-foreground line-clamp-2">Content aligns to the center of the trigger.</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</hlm-navigation-menu-content>
-				</li>
+			<li capsNavigationMenuItem>
+				<button caps-navigation-menu-trigger align="center">Center</button>
+				<ng-template capsNavigationMenuContent>
+					<div class="w-48">
+						<a capsNavigationMenuLink href="/">
+							<div class="flex flex-col gap-1 text-sm">
+								<div class="leading-none font-medium">Aligned Center</div>
+								<div class="text-muted-foreground line-clamp-2">Content aligns to the center of the trigger.</div>
+							</div>
+						</a>
+					</div>
+				</ng-template>
+			</li>
 
-				<li hlmNavigationMenuItem>
-					<button hlmNavigationMenuTrigger align="end">End</button>
-					<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-						<ul class="w-48">
-							<li>
-								<a hlmNavigationMenuLink href="/">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">Aligned End</div>
-										<div class="text-muted-foreground line-clamp-2">Content aligns to the end of the trigger.</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</hlm-navigation-menu-content>
-				</li>
-			</ul>
-		</nav>
+			<li capsNavigationMenuItem>
+				<button caps-navigation-menu-trigger align="end">End</button>
+				<ng-template capsNavigationMenuContent>
+					<div class="w-48">
+						<a capsNavigationMenuLink href="/">
+							<div class="flex flex-col gap-1 text-sm">
+								<div class="leading-none font-medium">Aligned End</div>
+								<div class="text-muted-foreground line-clamp-2">Content aligns to the end of the trigger.</div>
+							</div>
+						</a>
+					</div>
+				</ng-template>
+			</li>
+		</caps-navigation-menu>
 	`,
 })
 export class NavigationMenuAlign {}

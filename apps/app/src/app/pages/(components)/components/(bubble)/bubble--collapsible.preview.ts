@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsButton } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmButton } from '@spartan-ng/helm/button';
 
 const text = `The accessibility review found two focus states that were visually too subtle in dark mode.
 
@@ -16,23 +16,23 @@ const previewLength = 180;
 
 @Component({
 	selector: 'spartan-bubble-collapsible-preview',
-	imports: [HlmBubbleImports, HlmButton, NgIcon],
+	imports: [CapsBubbleImports, CapsButton, NgIcon],
 	providers: [provideIcons({ lucideChevronDown })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-8 py-12',
 	},
 	template: `
-		<div hlmBubble variant="muted">
-			<div hlmBubbleContent>How can I help you today?</div>
-		</div>
+		<caps-bubble variant="muted">
+			<caps-bubble-content>How can I help you today?</caps-bubble-content>
+		</caps-bubble>
 
-		<div hlmBubble variant="muted" align="end">
-			<div hlmBubbleContent class="whitespace-pre-line">
+		<caps-bubble variant="muted" align="end">
+			<caps-bubble-content class="whitespace-pre-line">
 				<div>{{ _open() || !_isLong ? _text : _preview }}</div>
 				@if (_isLong) {
 					<button
-						hlmBtn
+						capsButton
 						variant="link"
 						class="text-muted-foreground gap-1 p-0"
 						[attr.aria-expanded]="_open()"
@@ -42,8 +42,8 @@ const previewLength = 180;
 						<ng-icon name="lucideChevronDown" class="transition-transform" [class.rotate-180]="_open()" />
 					</button>
 				}
-			</div>
-		</div>
+			</caps-bubble-content>
+		</caps-bubble>
 	`,
 })
 export class BubbleCollapsiblePreview {

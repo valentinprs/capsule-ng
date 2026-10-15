@@ -1,14 +1,14 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsAlertImports } from '@capsule-ng/caps/alert';
+import { CapsLink } from '@capsule-ng/caps/link';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { DataTableRtl } from '@spartan-ng/app/app/pages/(components)/components/(data-table)/data-table--rtl.preview';
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { link } from '@spartan-ng/app/app/shared/typography/link';
-import { HlmAlertImports } from '@spartan-ng/helm/alert';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
@@ -59,7 +59,7 @@ export const routeMeta: RouteMeta = {
 	imports: [
 		MainSection,
 		Code,
-		HlmAlertImports,
+		CapsAlertImports,
 		SectionIntro,
 		SectionSubHeading,
 		SectionSubSubHeading,
@@ -71,6 +71,7 @@ export const routeMeta: RouteMeta = {
 		PageBottomNavLink,
 		DataTablePreview,
 		RouterLink,
+		CapsLink,
 		RtlHeader,
 		CodeRtlPreview,
 		DataTableRtl,
@@ -102,35 +103,36 @@ export const routeMeta: RouteMeta = {
 					href="https://tanstack.com/table/latest/docs/overview#what-is-headless-ui"
 					target="_blank"
 					rel="noreferrer"
-					class="${link}"
+					capsLink
 				>
 					headless UI
 				</a>
 				provides.
 			</p>
 			<p class="${hlmP}">
-				So instead of a data-table component, this page is a guide on how to build your own. We'll start with the basic
-				<a class="${link}" routerLink="/components/table">Table</a>
-				directives and build a complex data table from scratch using
-				<a href="https://tanstack.com/table" target="_blank" rel="noreferrer" class="${link}">TanStack Table</a>
+				Data Table is a Capsule composition recipe, with no dedicated data-table entrypoint. This page shows how to
+				build your own. We'll start with the basic
+				<a capsLink routerLink="/components/table">Table</a>
+				primitives and build a complex data table from scratch using
+				<a href="https://tanstack.com/table" target="_blank" rel="noreferrer" capsLink>TanStack Table</a>
 				.
 			</p>
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Tip:</span>
 						If you find yourself using the same table in multiple places in your app, you can always extract it into a
 						reusable component.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-section-sub-heading id="installation">Installation</spartan-section-sub-heading>
 			<p class="${hlmP} mb-6">
 				Add the
 				<code class="${hlmCode}">&#64;tanstack/angular-table</code>
 				dependency. This guide uses
-				<a href="https://tanstack.com/table/v9/docs/framework/angular" target="_blank" rel="noreferrer" class="${link}">
+				<a href="https://tanstack.com/table/v9/docs/framework/angular" target="_blank" rel="noreferrer" capsLink>
 					TanStack Table v9.
 				</a>
 			</p>
@@ -162,19 +164,19 @@ export const routeMeta: RouteMeta = {
 				).
 			</p>
 			<spartan-code fileName="data-table-features.ts" [code]="_featuresCode" />
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Note:</span>
 						The core row model is always included, so you never register it yourself. Row models for optional features
 						are created with
-						<code class="${hlmCode}">create*RowModel()</code>
+						<code class="${hlmCode} text-foreground">create*RowModel()</code>
 						and registered on the features object — there are no more
-						<code class="${hlmCode}">get*RowModel</code>
+						<code class="${hlmCode} text-foreground">get*RowModel</code>
 						table options.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<spartan-section-sub-heading id="basic-table">Basic Table</spartan-section-sub-heading>
 			<p class="${hlmP}">Let's start by building a basic table.</p>
@@ -182,15 +184,15 @@ export const routeMeta: RouteMeta = {
 			<h3 id="column-definitions" spartanH4>Column definitions</h3>
 			<p class="${hlmP} mb-6">First, we'll define our columns.</p>
 			<spartan-code fileName="columns.ts" [code]="_columnsCode" />
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Note:</span>
 						Columns are where you define the core of what your table will look like. They define the data that will be
 						displayed, how it will be formatted, sorted and filtered.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<h3 id="data-table-component" spartanH4>Data table component</h3>
 			<p class="${hlmP} mb-6">
@@ -200,28 +202,29 @@ export const routeMeta: RouteMeta = {
 				<code class="${hlmCode}">columns</code>
 				and
 				<code class="${hlmCode}">data</code>
-				as inputs. We create the table instance with
+				as inputs. Records have a stable id, passed to getRowId so selection survives sorting, filtering and pagination.
+				We create the table instance with
 				<code class="${hlmCode}">injectTable()</code>
 				, passing it our features together with those inputs, and render headers and cells with the
 				<code class="${hlmCode}">*flexRender</code>
 				directive.
 			</p>
 			<spartan-code fileName="data-table.ts" [code]="_basicTableCode" />
-			<div class="mt-6" hlmAlert>
-				<div hlmAlertDescription>
+			<caps-alert class="mt-6">
+				<caps-alert-description>
 					<p>
 						<span class="font-semibold">Rendering with FlexRender:</span>
 						A column's
-						<code class="${hlmCode}">header</code>
+						<code class="${hlmCode} text-foreground">header</code>
 						and
-						<code class="${hlmCode}">cell</code>
+						<code class="${hlmCode} text-foreground">cell</code>
 						definitions can return a plain string, an HTML string (rendered above via
-						<code class="${hlmCode}">[innerHTML]</code>
+						<code class="${hlmCode} text-foreground">[innerHTML]</code>
 						) or an Angular component class — we'll use components for the sorting button, the selection checkboxes and
 						the actions dropdown later in this guide.
 					</p>
-				</div>
-			</div>
+				</caps-alert-description>
+			</caps-alert>
 
 			<h3 id="render-the-table" spartanH4>Render the table</h3>
 			<p class="${hlmP} mb-6">Finally, we'll render our table in our page component.</p>
@@ -250,7 +253,7 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="row-actions">Row Actions</spartan-section-sub-heading>
 			<p class="${hlmP} mb-6">
 				Let's add row actions to our table. We'll use a
-				<a class="${link}" routerLink="/components/dropdown-menu">Dropdown Menu</a>
+				<a capsLink routerLink="/components/dropdown-menu">Dropdown Menu</a>
 				for this and create a component that renders it inside a cell. The component receives the
 				<code class="${hlmCode}">row</code>
 				as an input, so you can access the row data using
@@ -276,7 +279,7 @@ export const routeMeta: RouteMeta = {
 				, the table automatically paginates rows into pages of 10 — there's nothing to add to
 				<code class="${hlmCode}">injectTable</code>
 				. We can add pagination controls to our table using the
-				<a class="${link}" routerLink="/components/button">Button</a>
+				<a capsLink routerLink="/components/button">Button</a>
 				component and the
 				<code class="${hlmCode}">table.previousPage()</code>
 				and
@@ -290,7 +293,7 @@ export const routeMeta: RouteMeta = {
 					href="https://tanstack.com/table/latest/docs/framework/angular/guide/pagination"
 					target="_blank"
 					rel="noreferrer"
-					class="${link}"
+					capsLink
 				>
 					pagination docs
 				</a>
@@ -325,7 +328,8 @@ export const routeMeta: RouteMeta = {
 			</p>
 			<spartan-code fileName="columns.ts" [code]="_sortingColumnCode" />
 			<p class="${hlmP}">
-				This will automatically sort the table (asc and desc) when the user toggles on the header cell.
+				The native button sorts ascending and descending. The table template updates aria-sort on its native th, which
+				retains scope="col".
 			</p>
 
 			<spartan-section-sub-heading id="filtering">Filtering</spartan-section-sub-heading>
@@ -334,19 +338,19 @@ export const routeMeta: RouteMeta = {
 				<code class="${hlmCode}">columnFilteringFeature</code>
 				and filtered row model are already part of our features object, so we only need to wire up the filter state and
 				render an
-				<a class="${link}" routerLink="/components/input">Input</a>
+				<a capsLink routerLink="/components/input">Input</a>
 				.
 			</p>
 			<spartan-code fileName="data-table.ts" [code]="_filteringCode" />
 			<p class="${hlmP}">
-				Filtering is now enabled for the
+				Filtering resets the page to its first index and preserves selected row IDs. Filtering is enabled for the
 				<code class="${hlmCode}">email</code>
 				column. You can add filters to other columns as well. See the
 				<a
 					href="https://tanstack.com/table/latest/docs/framework/angular/guide/column-filtering"
 					target="_blank"
 					rel="noreferrer"
-					class="${link}"
+					capsLink
 				>
 					filtering docs
 				</a>
@@ -356,19 +360,22 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-sub-heading id="visibility">Visibility</spartan-section-sub-heading>
 			<p class="${hlmP} mb-6">
 				Adding column visibility is fairly simple using the visibility API. We add a
-				<a class="${link}" routerLink="/components/dropdown-menu">Dropdown Menu</a>
+				<a capsLink routerLink="/components/dropdown-menu">Dropdown Menu</a>
 				that toggles the visibility of every column that can be hidden:
 			</p>
 			<spartan-code fileName="data-table.ts" [code]="_visibilityCode" />
 			<p class="${hlmP}">This adds a dropdown menu that you can use to toggle column visibility.</p>
 
 			<spartan-section-sub-heading id="row-selection">Row Selection</spartan-section-sub-heading>
-			<p class="${hlmP}">Next, we're going to add row selection to our table.</p>
+			<p class="${hlmP}">
+				The header selects rows on the current page. Its checked and indeterminate states use that same page model,
+				while selected record IDs persist across sorting, filtering and pagination.
+			</p>
 
 			<h3 id="row-selection-column" spartanH4>Create selection components</h3>
 			<p class="${hlmP} mb-6">
 				We create two small
-				<a class="${link}" routerLink="/components/checkbox">Checkbox</a>
+				<a capsLink routerLink="/components/checkbox">Checkbox</a>
 				components: one for the header to select all rows on the page and one for each row.
 			</p>
 			<spartan-code fileName="selection-column.ts" [code]="_selectionColumnCode" />
@@ -385,7 +392,7 @@ export const routeMeta: RouteMeta = {
 
 			<h3 id="row-selection-count" spartanH4>Show selected rows</h3>
 			<p class="${hlmP} mb-6">
-				You can show the number of selected rows using the
+				Show the total selected rows separately from the filtered result count using the
 				<code class="${hlmCode}">table.getSelectedRowModel()</code>
 				API.
 			</p>
@@ -393,8 +400,9 @@ export const routeMeta: RouteMeta = {
 
 			<spartan-section-sub-heading id="reusable-components">Reusable Components</spartan-section-sub-heading>
 			<p class="${hlmP}">
-				Here are some components you can use to build your data tables. Components rendered inside a column (like the
-				column header) receive their context from
+				Here are some components you can use to build your data tables. These are application recipe components, not
+				additional Capsule exports. Components rendered inside a column (like the column header) receive their context
+				from
 				<code class="${hlmCode}">*flexRender</code>
 				. Components rendered outside the table (pagination, column toggle) read the table instance from DI with
 				<code class="${hlmCode}">injectTableContext()</code>
@@ -419,8 +427,8 @@ export const routeMeta: RouteMeta = {
 
 			<h3 id="pagination-controls" spartanH4>Pagination</h3>
 			<p class="${hlmP} mb-6">
-				Add pagination controls to your table including page size and selection count. The current page index and size
-				are read from the signal-backed
+				Compose Capsule numbered pagination with the table page size and selection count. Map its one-based currentPage
+				to TanStack’s zero-based pageIndex. The current page index and size are read from the signal-backed
 				<code class="${hlmCode}">table.atoms.pagination</code>
 				atom, so the component stays in sync with the table.
 			</p>

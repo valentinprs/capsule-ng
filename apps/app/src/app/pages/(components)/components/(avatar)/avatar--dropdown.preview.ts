@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 
 @Component({
 	selector: 'spartan-avatar-dropdown-preview',
-	imports: [CapsAvatarImports, HlmDropdownMenuImports, CapsButtonImports],
+	imports: [CapsAvatarImports, CapsDropdownMenuImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button capsButton variant="ghost" size="icon" class="rounded-full" [hlmDropdownMenuTrigger]="menu">
+		<button capsButton variant="ghost" size="icon" class="rounded-full" [capsDropdownMenuTrigger]="menu">
 			<caps-avatar>
 				<img capsAvatarImage src="/assets/avatar.png" alt="@spartan-ui logo" />
 				<caps-avatar-fallback>RG</caps-avatar-fallback>
@@ -16,17 +16,15 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 		</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>Profile</button>
-					<button hlmDropdownMenuItem>Billing</button>
-					<button hlmDropdownMenuItem>Settings</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem variant="destructive">Log out</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+			<caps-menu>
+				<caps-menu-group>
+					<button capsMenuItem>Profile</button>
+					<button capsMenuItem>Billing</button>
+					<button capsMenuItem>Settings</button>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem danger>Log out</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

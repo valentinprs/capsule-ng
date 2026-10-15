@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { tablerChevronDown, tablerColumns2, tablerPlus } from '@ng-icons/tabler-icons';
-import { HlmButton } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { DashboardTableSection } from './table-section';
 
 @Component({
 	selector: 'spartan-dashboard-table-actions',
 
-	imports: [HlmButton, NgIcon, HlmDropdownMenuImports],
+	imports: [CapsButton, NgIcon, CapsDropdownMenuImports],
 	providers: [
 		provideIcons({
 			tablerChevronDown,
@@ -22,29 +22,28 @@ import { DashboardTableSection } from './table-section';
 	},
 	template: `
 		<div class="wip-table-search flex flex-col justify-between gap-2 sm:flex-row">
-			<button hlmBtn variant="outline" align="end" size="sm" [hlmDropdownMenuTrigger]="columns">
+			<button capsButton variant="outline" size="sm" [capsDropdownMenuTrigger]="columns" placement="bottom-end">
 				<ng-icon name="tablerColumns2" />
 				Customize Columns
 				<ng-icon name="tablerChevronDown" />
 			</button>
-			<button hlmBtn variant="outline" align="end" size="sm">
+			<button capsButton variant="outline" align="end" size="sm">
 				<ng-icon name="tablerPlus" />
 				Add section
 			</button>
 			<ng-template #columns>
-				<hlm-dropdown-menu class="w-32">
+				<caps-menu class="w-32">
 					@for (column of _hidableColumns; track column.id) {
 						<button
-							hlmDropdownMenuCheckbox
+							capsMenuCheckboxItem
 							class="capitalize"
 							[checked]="column.getIsVisible()"
-							(triggered)="column.toggleVisibility()"
+							(itemClick)="column.toggleVisibility()"
 						>
-							<hlm-dropdown-menu-checkbox-indicator />
 							{{ column.columnDef.id }}
 						</button>
 					}
-				</hlm-dropdown-menu>
+				</caps-menu>
 			</ng-template>
 		</div>
 	`,

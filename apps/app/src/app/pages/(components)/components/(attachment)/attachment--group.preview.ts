@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsAttachmentImports } from '@capsule-ng/caps/attachment';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideFileCode, lucideFileText, lucideTable, lucideX } from '@ng-icons/lucide';
-import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 
 @Component({
 	selector: 'spartan-attachment-group-preview',
-	imports: [HlmAttachmentImports, NgIcon],
+	imports: [CapsAttachmentImports, NgIcon],
 	providers: [provideIcons({ lucideFileText, lucideTable, lucideFileCode, lucideX })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
@@ -13,30 +13,30 @@ import { HlmAttachmentImports } from '@spartan-ng/helm/attachment';
 	},
 	template: `
 		<div class="mx-auto w-full max-w-sm py-12">
-			<div hlmAttachmentGroup class="w-full">
+			<caps-attachment-group class="w-full">
 				@for (item of _items; track item.name) {
-					<div hlmAttachment class="w-64">
+					<caps-attachment class="w-64">
 						@if (item.src) {
-							<div hlmAttachmentMedia variant="image">
+							<caps-attachment-media variant="image">
 								<img [src]="item.src" [alt]="item.name" />
-							</div>
+							</caps-attachment-media>
 						} @else if (item.icon) {
-							<div hlmAttachmentMedia>
+							<caps-attachment-media>
 								<ng-icon [name]="item.icon" />
-							</div>
+							</caps-attachment-media>
 						}
-						<div hlmAttachmentContent>
-							<span hlmAttachmentTitle>{{ item.name }}</span>
-							<span hlmAttachmentDescription>{{ item.meta }}</span>
-						</div>
-						<div hlmAttachmentActions>
-							<button hlmAttachmentAction [attr.aria-label]="'Remove ' + item.name">
+						<caps-attachment-content>
+							<caps-attachment-title>{{ item.name }}</caps-attachment-title>
+							<caps-attachment-description>{{ item.meta }}</caps-attachment-description>
+						</caps-attachment-content>
+						<caps-attachment-actions>
+							<button capsAttachmentAction [attr.aria-label]="'Remove ' + item.name">
 								<ng-icon name="lucideX" />
 							</button>
-						</div>
-					</div>
+						</caps-attachment-actions>
+					</caps-attachment>
 				}
-			</div>
+			</caps-attachment-group>
 		</div>
 	`,
 })

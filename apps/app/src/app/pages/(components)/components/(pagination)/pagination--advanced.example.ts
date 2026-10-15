@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { HlmNumberedPagination } from '@spartan-ng/helm/pagination';
+import { CapsNumberedPagination } from '@capsule-ng/caps/pagination';
 
 @Component({
 	selector: 'spartan-pagination-advanced',
-	imports: [HlmNumberedPagination],
+	imports: [CapsNumberedPagination],
 	template: `
-		<hlm-numbered-pagination [(currentPage)]="page" [(itemsPerPage)]="pageSize" [totalItems]="totalProducts()" />
+		<caps-numbered-pagination [(currentPage)]="page" [(itemsPerPage)]="pageSize" [totalDataLength]="totalProducts()" />
 	`,
 })
 export class PaginationAdvanced {

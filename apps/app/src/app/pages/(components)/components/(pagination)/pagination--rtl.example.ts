@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { CapsPaginationImports } from '@capsule-ng/caps/pagination';
 import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
 
 function toArabicNumerals(num: number): string {
 	const arabicNumerals = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -13,31 +13,21 @@ function toArabicNumerals(num: number): string {
 
 @Component({
 	selector: 'spartan-pagination-rtl',
-	imports: [HlmPaginationImports],
+	imports: [CapsPaginationImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<nav hlmPagination [dir]="_dir()">
-			<ul hlmPaginationContent>
-				<li hlmPaginationItem>
-					<hlm-pagination-previous [text]="_t()['previous']" />
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#">{{ formatNumber()(1) }}</a>
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#" isActive>{{ formatNumber()(2) }}</a>
-				</li>
-				<li hlmPaginationItem>
-					<a hlmPaginationLink link="#">{{ formatNumber()(3) }}</a>
-				</li>
-				<li hlmPaginationItem>
-					<hlm-pagination-ellipsis />
-				</li>
-				<li hlmPaginationItem>
-					<hlm-pagination-next [text]="_t()['next']" />
-				</li>
-			</ul>
-		</nav>
+		<caps-pagination [dir]="_dir()">
+			<button type="button" capsPaginationPrevious>
+				<span>{{ _t()['previous'] }}</span>
+			</button>
+			<a capsPaginationLink href="#">{{ formatNumber()(1) }}</a>
+			<a capsPaginationLink href="#" isActive>{{ formatNumber()(2) }}</a>
+			<a capsPaginationLink href="#">{{ formatNumber()(3) }}</a>
+			<caps-pagination-ellipsis />
+			<button type="button" capsPaginationNext>
+				<span>{{ _t()['next'] }}</span>
+			</button>
+		</caps-pagination>
 	`,
 })
 export class PaginationRtl {

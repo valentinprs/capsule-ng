@@ -129,3 +129,30 @@ Capsule's public rendered structure. Build both applications after token changes
   6 px gap, 1 px border, semantic colors, opacity, shadow and 150 ms easing.
 - Separate standards/spec reviews: no outstanding findings. The installation
   page now explicitly lists the private Capsule/Helm archives and font peers.
+
+Calendar (`caps-calendar`) shares each existing skin’s cell spacing and radius declarations;
+selection, today, disabled and focus styles consume the existing semantic colors and focus tokens.
+
+## Command and Kbd — issue 45
+
+Command and Kbd reuse their six theme rules through Capsule selectors. Compact search owns the
+native input and decorative icon; logical padding, shared focus ring, disabled opacity and bounded
+dialog widths come from the Capsule preset. `command.css`/`kbd.css` are packaged assets imported by
+that preset. No independent theme or global shortcut behavior is introduced.
+
+## Search and selection
+
+Autocomplete/Combobox use `choices.css` in the existing Capsule preset. Floating content, options,
+labels, separators, empty/status messages and chips use existing theme colors and shared duration,
+control height, border and opacity tokens. Input, InputGroup and Button compose their public Capsule
+foundations at the shared default control height; no second
+theme source is introduced. Direction is forwarded to floating content and logical padding/end
+positions keep chips and indicators correct in RTL.
+
+## Alert and Empty (issue43)
+
+`messages-states.css` is included in the shared preset and distributed package. Alert uses shared
+surface, text, border and destructive tokens; its responsive media/text/actions grid keeps native
+actions on a separate row. Empty uses shared spacing, muted text and media surfaces. Six style
+choices reuse their existing Empty and Alert text rules through Capsule hooks. No additional theme source is introduced. Alert retains the documented Spartan alert role;
+Empty has no default role. See `docs/specs/caps-alert-empty.md`.

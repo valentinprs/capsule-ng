@@ -1,7 +1,10 @@
 import { Component, computed, inject, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
+import { CapsDropdownMenuImports, type CapsMenuPlacement } from '@capsule-ng/caps/dropdown-menu';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { CapsSidebarImports, CapsSidebarService } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideBadgeCheck,
@@ -27,18 +30,15 @@ import {
 	lucideTrash2,
 } from '@ng-icons/lucide';
 import { TranslateService, Translations, type Language } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 @Component({
 	selector: 'spartan-sidebar-rtl',
 	imports: [
-		HlmSidebarImports,
+		CapsSidebarImports,
 		NgIcon,
-		HlmCollapsibleImports,
+		CapsCollapsibleImports,
 		RouterLink,
 		CapsAvatarImports,
-		HlmDropdownMenuImports,
+		CapsDropdownMenuImports,
 		CapsSelectImports,
 	],
 	providers: [
@@ -69,115 +69,116 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper [attr.dir]="_dir()">
-			<hlm-sidebar collapsible="icon" [side]="_sidebarSide()">
-				<hlm-sidebar-header>
-					<ul hlmSidebarMenu>
-						<li hlmSidebarMenuItem>
-							<button hlmSidebarMenuButton size="lg">
+		<caps-sidebar-wrapper
+			[attr.dir]="_dir()"
+			[attr.lang]="_languageService.language()"
+			[attr.data-lang]="_languageService.language()"
+		>
+			<caps-sidebar collapsible="icon" [side]="_sidebarSide()">
+				<caps-sidebar-header>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
+							<button capsSidebarMenuButton size="lg">
 								<div
 									class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 								>
-									<ng-icon name="lucideGalleryVerticalEnd" />
+									<ng-icon aria-hidden="true" name="lucideGalleryVerticalEnd" />
 								</div>
 								<div class="grid flex-1 text-start text-sm leading-tight">
 									<span class="truncate font-medium">{{ _t()['teamName'] }}</span>
 									<span class="truncate text-xs">{{ _t()['teamPlan'] }}</span>
 								</div>
 							</button>
-						</li>
-					</ul>
-				</hlm-sidebar-header>
-				<hlm-sidebar-content>
-					<hlm-sidebar-group>
-						<div hlmSidebarGroupLabel>{{ _t()['platform'] }}</div>
-						<ul hlmSidebarMenu>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
+				</caps-sidebar-header>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>{{ _t()['platform'] }}</caps-sidebar-group-label>
+						<caps-sidebar-menu>
 							@for (item of _platforms; track $index) {
-								<hlm-collapsible [expanded]="item.isActive ?? false" class="group/collapsible">
-									<li hlmSidebarMenuItem>
-										<button hlmSidebarMenuButton hlmCollapsibleTrigger>
-											<ng-icon [name]="item.icon" />
+								<caps-sidebar-menu-item>
+									<caps-collapsible [expanded]="item.isActive ?? false" class="group/collapsible">
+										<button capsSidebarMenuButton capsCollapsibleTrigger [tooltip]="_t()[item.titleKey]">
+											<ng-icon aria-hidden="true" [name]="item.icon" />
 											{{ _t()[item.titleKey] }}
 											<ng-icon
+												aria-hidden="true"
 												name="lucideChevronRight"
 												class="ms-auto transition-transform duration-(--caps-duration-200) group-data-open/collapsible:rotate-90 rtl:rotate-180 rtl:group-data-open/collapsible:rotate-90"
 											/>
 										</button>
-										<hlm-collapsible-content>
-											<ul hlmSidebarMenuSub>
+										<caps-collapsible-content>
+											<caps-sidebar-menu-sub>
 												@for (subItem of item.items; track $index) {
-													<li hlmSidebarMenuSubItem>
-														<a hlmSidebarMenuSubButton [routerLink]="subItem.url">{{ _t()[subItem.titleKey] }}</a>
-													</li>
+													<caps-sidebar-menu-sub-item>
+														<a capsSidebarMenuSubButton [routerLink]="subItem.url">{{ _t()[subItem.titleKey] }}</a>
+													</caps-sidebar-menu-sub-item>
 												}
-											</ul>
-										</hlm-collapsible-content>
-									</li>
-								</hlm-collapsible>
+											</caps-sidebar-menu-sub>
+										</caps-collapsible-content>
+									</caps-collapsible>
+								</caps-sidebar-menu-item>
 							}
-						</ul>
-					</hlm-sidebar-group>
-					<hlm-sidebar-group class="group-data-[collapsible=icon]:hidden">
-						<div hlmSidebarGroupLabel>{{ _t()['projects'] }}</div>
-						<ul hlmSidebarMenu>
+						</caps-sidebar-menu>
+					</caps-sidebar-group>
+					<caps-sidebar-group class="group-data-[collapsible=icon]:hidden">
+						<caps-sidebar-group-label>{{ _t()['projects'] }}</caps-sidebar-group-label>
+						<caps-sidebar-menu>
 							@for (project of _projects; track $index) {
-								<li hlmSidebarMenuItem>
-									<a hlmSidebarMenuButton [routerLink]="project.url">
-										<ng-icon [name]="project.icon" />
+								<caps-sidebar-menu-item>
+									<a capsSidebarMenuButton [routerLink]="project.url">
+										<ng-icon aria-hidden="true" [name]="project.icon" />
 										{{ _t()[project.nameKey] }}
 									</a>
 									<button
-										hlmSidebarMenuAction
+										capsSidebarMenuAction
 										showOnHover
-										[hlmDropdownMenuTrigger]="projectMenu"
-										[hlmDropdownMenuTriggerData]="{ $implicit: { project } }"
-										[side]="_menuSide()"
-										[align]="_menuAlign()"
+										[capsDropdownMenuTrigger]="projectMenu"
+										[capsDropdownMenuTriggerData]="{ $implicit: { project } }"
+										[placement]="_menuPlacement()"
 									>
-										<ng-icon name="lucideEllipsis" />
+										<ng-icon aria-hidden="true" name="lucideEllipsis" />
 										<span class="sr-only">{{ _t()['more'] }}</span>
 									</button>
-								</li>
+								</caps-sidebar-menu-item>
 							}
-							<li hlmSidebarMenuItem>
-								<button hlmSidebarMenuButton>
-									<ng-icon name="lucideEllipsis" />
+							<caps-sidebar-menu-item>
+								<button capsSidebarMenuButton>
+									<ng-icon aria-hidden="true" name="lucideEllipsis" />
 									{{ _t()['more'] }}
 								</button>
-							</li>
-						</ul>
-					</hlm-sidebar-group>
+							</caps-sidebar-menu-item>
+						</caps-sidebar-menu>
+					</caps-sidebar-group>
 					<ng-template #projectMenu let-ctx>
-						<hlm-dropdown-menu class="w-48">
-							<hlm-dropdown-menu-group>
-								<hlm-dropdown-menu-label>{{ _t()[ctx.project.nameKey] }}</hlm-dropdown-menu-label>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
-								<ng-icon name="lucideFolder" />
+						<caps-menu class="w-48">
+							<caps-menu-label>{{ _t()[ctx.project.nameKey] }}</caps-menu-label>
+							<caps-menu-separator />
+							<button capsMenuItem>
+								<ng-icon aria-hidden="true" name="lucideFolder" />
 								{{ _t()['viewProject'] }}
 							</button>
-							<button hlmDropdownMenuItem>
-								<ng-icon name="lucideShare" />
+							<button capsMenuItem>
+								<ng-icon aria-hidden="true" name="lucideShare" />
 								{{ _t()['shareProject'] }}
 							</button>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
-								<ng-icon name="lucideTrash2" />
+							<caps-menu-separator />
+							<button capsMenuItem>
+								<ng-icon aria-hidden="true" name="lucideTrash2" />
 								{{ _t()['deleteProject'] }}
 							</button>
-						</hlm-dropdown-menu>
+						</caps-menu>
 					</ng-template>
-				</hlm-sidebar-content>
-				<hlm-sidebar-footer>
-					<ul hlmSidebarMenu>
-						<li hlmSidebarMenuItem>
+				</caps-sidebar-content>
+				<caps-sidebar-footer>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
 							<button
-								hlmSidebarMenuButton
+								capsSidebarMenuButton
 								size="lg"
-								[hlmDropdownMenuTrigger]="avatarMenu"
-								[side]="_menuSide()"
-								align="end"
+								[capsDropdownMenuTrigger]="avatarMenu"
+								[placement]="_avatarPlacement()"
 							>
 								<caps-avatar class="rounded-lg">
 									<img src="/assets/avatar.png" alt="spartan" capsAvatarImage />
@@ -187,13 +188,13 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 									<span class="truncate font-medium">spartan</span>
 									<span class="truncate text-xs">hello@spartan.com</span>
 								</div>
-								<ng-icon name="lucideChevronsUpDown" class="ms-auto text-base" />
+								<ng-icon aria-hidden="true" name="lucideChevronsUpDown" class="ms-auto text-base" />
 							</button>
-						</li>
-					</ul>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
 					<ng-template #avatarMenu>
-						<hlm-dropdown-menu class="min-w-56 rounded-lg">
-							<hlm-dropdown-menu-label>
+						<caps-menu class="min-w-56 rounded-lg">
+							<caps-menu-label>
 								<div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
 									<caps-avatar class="rounded-lg">
 										<img src="/assets/avatar.png" alt="spartan" capsAvatarImage />
@@ -204,69 +205,71 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 										<span class="truncate text-xs">hello@spartan.com</span>
 									</div>
 								</div>
-							</hlm-dropdown-menu-label>
-							<hlm-dropdown-menu-separator />
-							<hlm-dropdown-menu-group>
-								<button hlmDropdownMenuItem>
-									<ng-icon name="lucideSparkles" />
-									{{ _t()['upgradeToPro'] }}
-								</button>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<hlm-dropdown-menu-group>
-								<button hlmDropdownMenuItem>
-									<ng-icon name="lucideBadgeCheck" />
+							</caps-menu-label>
+							<caps-menu-separator />
+							<button capsMenuItem>
+								<ng-icon aria-hidden="true" name="lucideSparkles" />
+								{{ _t()['upgradeToPro'] }}
+							</button>
+							<caps-menu-separator />
+							<caps-menu-group>
+								<button capsMenuItem>
+									<ng-icon aria-hidden="true" name="lucideBadgeCheck" />
 									{{ _t()['account'] }}
 								</button>
-								<button hlmDropdownMenuItem>
-									<ng-icon name="lucideCreditCard" />
+								<button capsMenuItem>
+									<ng-icon aria-hidden="true" name="lucideCreditCard" />
 									{{ _t()['billing'] }}
 								</button>
-								<button hlmDropdownMenuItem>
-									<ng-icon name="lucideBell" />
+								<button capsMenuItem>
+									<ng-icon aria-hidden="true" name="lucideBell" />
 									{{ _t()['notifications'] }}
 								</button>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
-								<ng-icon name="lucideLogOut" />
+							</caps-menu-group>
+							<caps-menu-separator />
+							<button capsMenuItem>
+								<ng-icon aria-hidden="true" name="lucideLogOut" />
 								{{ _t()['logOut'] }}
 							</button>
-						</hlm-dropdown-menu>
+						</caps-menu>
 					</ng-template>
-				</hlm-sidebar-footer>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between gap-4 px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-					<caps-select
-						aria-label="Preview language"
-						[(value)]="_languageService.language"
-						[itemToString]="itemToString"
-						[dir]="_dir()"
-						class="inline-block w-52"
-					>
-						@for (language of languages; track language.value) {
-							<caps-select-option [value]="language.value">
-								{{ language.label }}
-							</caps-select-option>
-						}
-					</caps-select>
-				</header>
-				<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
-					<div class="grid auto-rows-min gap-4 md:grid-cols-3">
-						<div class="bg-muted/50 aspect-video rounded-xl"></div>
-						<div class="bg-muted/50 aspect-video rounded-xl"></div>
-						<div class="bg-muted/50 aspect-video rounded-xl"></div>
+				</caps-sidebar-footer>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between gap-4 px-4">
+						<button capsSidebarTrigger></button>
+						<caps-select
+							aria-label="Preview language"
+							[(value)]="_languageService.language"
+							[itemToString]="itemToString"
+							[dir]="_dir()"
+							class="inline-block w-52"
+						>
+							@for (language of languages; track language.value) {
+								<caps-select-option [value]="language.value">
+									{{ language.label }}
+								</caps-select-option>
+							}
+						</caps-select>
+					</header>
+					<div class="flex flex-1 flex-col gap-4 p-4 pt-0">
+						<div class="grid auto-rows-min gap-4 md:grid-cols-3">
+							<div class="bg-muted/50 aspect-video rounded-xl"></div>
+							<div class="bg-muted/50 aspect-video rounded-xl"></div>
+							<div class="bg-muted/50 aspect-video rounded-xl"></div>
+						</div>
+						<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
 					</div>
-					<div class="bg-muted/50 min-h-screen flex-1 rounded-xl md:min-h-min"></div>
 				</div>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarRtlPage {
-	private readonly _sidebarService = inject(HlmSidebarService);
+	protected readonly _avatarPlacement = computed<CapsMenuPlacement>(() => `${this._menuSide()}-end`);
+	protected readonly _menuPlacement = computed<CapsMenuPlacement>(() => `${this._menuSide()}-${this._menuAlign()}`);
+	private readonly _sidebarService = inject(CapsSidebarService);
 	protected readonly _languageService = inject(TranslateService);
 	protected readonly _sidebarSide = computed(() => (this._dir() === 'rtl' ? 'right' : 'left'));
 	protected readonly _menuSide = computed(() => {

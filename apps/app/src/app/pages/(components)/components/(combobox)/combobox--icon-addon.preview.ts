@@ -1,36 +1,35 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 import { CapsInputGroupAddon } from '@capsule-ng/caps/input-group';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGlobe } from '@ng-icons/lucide';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
 
 @Component({
 	selector: 'spartan-combobox-icon-addon-preview',
-	imports: [HlmComboboxImports, CapsInputGroupAddon, NgIcon],
+	imports: [CapsComboboxImports, CapsInputGroupAddon, NgIcon],
 	providers: [provideIcons({ lucideGlobe })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-combobox>
-			<hlm-combobox-input placeholder="Select a timezone">
+		<caps-combobox>
+			<caps-combobox-input placeholder="Select a timezone">
 				<caps-input-group-addon>
 					<ng-icon name="lucideGlobe" />
 				</caps-input-group-addon>
-			</hlm-combobox-input>
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
-					@for (timezoneGroup of timezones; track $index) {
-						<div hlmComboboxGroup>
-							<div hlmComboboxLabel>{{ timezoneGroup.value }}</div>
-							@for (timezone of timezoneGroup.items; track $index) {
-								<hlm-combobox-item [value]="timezone">{{ timezone }}</hlm-combobox-item>
-							}
-							<div hlmComboboxSeparator></div>
-						</div>
-					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox>
+			</caps-combobox-input>
+			<caps-combobox-content>
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+				@for (timezoneGroup of timezones; track $index) {
+					<caps-combobox-group>
+						<caps-combobox-label>{{ timezoneGroup.value }}</caps-combobox-label>
+						@for (timezone of timezoneGroup.items; track $index) {
+							<caps-combobox-option [value]="timezone">{{ timezone }}</caps-combobox-option>
+						}
+						<caps-combobox-separator></caps-combobox-separator>
+					</caps-combobox-group>
+				}
+			</caps-combobox-content>
+		</caps-combobox>
 	`,
 })
 export class ComboboxIconAddonPreview {

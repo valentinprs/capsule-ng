@@ -1,36 +1,32 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDatePickerImports } from '@spartan-ng/helm/date-picker';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDatePickerImports } from '@capsule-ng/caps/date-picker';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-date-picker-form',
-	imports: [HlmDatePickerImports, FormRoot, FormField, HlmButtonImports, HlmFieldImports],
+	imports: [CapsDatePickerImports, FormRoot, FormField, CapsButtonImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-xs',
 	},
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label for="date-birthday" hlmFieldLabel>Date of birth</label>
-					<hlm-date-picker
-						[minDate]="minDate"
-						[maxDate]="maxDate"
-						captionLayout="dropdown"
-						[formField]="form.birthday"
-						[autoCloseOnSelect]="true"
-					>
-						<hlm-date-picker-trigger buttonId="date-birthday">Pick a date</hlm-date-picker-trigger>
-					</hlm-date-picker>
-					<hlm-field-description>Your date of birth is used to calculate your age.</hlm-field-description>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button type="submit" hlmBtn [disabled]="form().submitting()">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+			<caps-field>
+				<caps-field-label>Date of birth</caps-field-label>
+				<caps-date-picker
+					[minDate]="minDate"
+					[maxDate]="maxDate"
+					captionLayout="dropdown"
+					[formField]="form.birthday"
+					[autoCloseOnSelect]="true"
+				>
+					<caps-date-picker-trigger buttonId="date-birthday">Pick a date</caps-date-picker-trigger>
+				</caps-date-picker>
+				<caps-field-description>Your date of birth is used to calculate your age.</caps-field-description>
+			</caps-field>
+			<button type="submit" capsButton [disabled]="form().submitting()">Submit</button>
 		</form>
 	`,
 })

@@ -1,17 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
 import { provideIcons } from '@ng-icons/core';
 import { lucideLoader } from '@ng-icons/lucide';
-import { HlmSpinnerImports } from '@spartan-ng/helm/spinner';
 
 @Component({
 	selector: 'spartan-spinner-custom-preview',
-	imports: [HlmSpinnerImports],
+	imports: [CapsSpinnerImports],
 	providers: [provideIcons({ lucideLoader })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<div class="flex items-center">
-			<hlm-spinner icon="lucideLoader" />
-		</div>
+		<caps-spinner icon="lucideLoader" aria-label="Loading with a custom icon" />
 	`,
 })
 export class SpartanSpinnerCustomPreview {}

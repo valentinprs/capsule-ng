@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-header',
-	imports: [HlmSidebarImports, HlmDropdownMenuImports, NgIcon],
+	imports: [CapsSidebarImports, CapsDropdownMenuImports, NgIcon],
 	providers: [
 		provideIcons({
 			lucideChevronDown,
@@ -15,31 +15,33 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarHeader>
-					<ul hlmSidebarMenu>
-						<li hlmSidebarMenuItem>
-							<button hlmSidebarMenuButton [hlmDropdownMenuTrigger]="menu">
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-header>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
+							<button capsSidebarMenuButton [capsDropdownMenuTrigger]="menu">
 								Select Workspace
-								<ng-icon name="lucideChevronDown" class="ml-auto" />
+								<ng-icon aria-hidden="true" name="lucideChevronDown" class="ml-auto" />
 							</button>
 							<ng-template #menu>
-								<hlm-dropdown-menu class="w-60">
-									<button hlmDropdownMenuItem>Acme Inc</button>
-									<button hlmDropdownMenuItem>Acme Corp.</button>
-								</hlm-dropdown-menu>
+								<caps-menu class="w-60">
+									<button capsMenuItem>Acme Inc</button>
+									<button capsMenuItem>Acme Corp.</button>
+								</caps-menu>
 							</ng-template>
-						</li>
-					</ul>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
+				</caps-sidebar-header>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
 				</div>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarHeaderPage {}

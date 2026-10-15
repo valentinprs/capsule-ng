@@ -1,51 +1,51 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
-import { TranslateService, Translations } from '@spartan-ng/app/app/shared/translate.service';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmMessageImports } from '@spartan-ng/helm/message';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
+import { CapsMessageImports } from '@capsule-ng/caps/message';
+import { TranslateService, Translations } from '../../../../shared/translate.service';
 
 @Component({
 	selector: 'spartan-message-rtl-preview',
-	imports: [HlmMessageImports, HlmBubbleImports, CapsAvatarImports, HlmMarkerImports],
+	imports: [CapsMessageImports, CapsBubbleImports, CapsAvatarImports, CapsMarkerImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'theme-blue flex w-full max-w-sm flex-col gap-6',
 	},
 	template: `
 		<div class="flex w-full flex-col gap-6" [dir]="_dir()">
-			<div hlmMessage align="end">
-				<div hlmMessageAvatar>
+			<caps-message align="end">
+				<caps-message-avatar>
 					<caps-avatar>
 						<img capsAvatarImage src="/assets/avatar.png" alt="@me" class="grayscale" />
 						<caps-avatar-fallback>ME</caps-avatar-fallback>
 					</caps-avatar>
-				</div>
-				<div hlmMessageContent>
-					<div hlmBubble>
-						<div hlmBubbleContent>{{ _t()['user'] }}</div>
-					</div>
-					<div hlmMessageFooter>{{ _t()['delivered'] }}</div>
-				</div>
-			</div>
+				</caps-message-avatar>
+				<caps-message-content>
+					<caps-bubble>
+						<caps-bubble-content>{{ _t()['user'] }}</caps-bubble-content>
+					</caps-bubble>
+					<caps-message-footer>{{ _t()['delivered'] }}</caps-message-footer>
+				</caps-message-content>
+			</caps-message>
 
-			<div hlmMessage>
-				<div hlmMessageAvatar>
+			<caps-message>
+				<caps-message-avatar>
 					<caps-avatar>
 						<img capsAvatarImage src="/assets/capsule.svg" alt="Capsule" class="grayscale" />
 						<caps-avatar-fallback>SP</caps-avatar-fallback>
 					</caps-avatar>
-				</div>
-				<div hlmMessageContent>
-					<div hlmBubble variant="muted">
-						<div hlmBubbleContent>{{ _t()['assistant'] }}</div>
-					</div>
-				</div>
-			</div>
+				</caps-message-avatar>
+				<caps-message-content>
+					<caps-bubble variant="muted">
+						<caps-bubble-content>{{ _t()['assistant'] }}</caps-bubble-content>
+					</caps-bubble>
+				</caps-message-content>
+			</caps-message>
 
-			<div hlmMarker role="status">
-				<span hlmMarkerContent class="shimmer">{{ _t()['typing'] }}</span>
-			</div>
+			<caps-marker role="status">
+				<caps-marker-content class="shimmer">{{ _t()['typing'] }}</caps-marker-content>
+			</caps-marker>
 		</div>
 	`,
 })

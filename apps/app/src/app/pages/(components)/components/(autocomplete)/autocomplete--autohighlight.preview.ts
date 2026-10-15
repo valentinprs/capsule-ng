@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
 
 interface SpartanComponent {
 	id: string;
@@ -8,22 +8,21 @@ interface SpartanComponent {
 
 @Component({
 	selector: 'spartan-autocomplete-autohighlight-preview',
-	imports: [HlmAutocompleteImports],
+	imports: [CapsAutocompleteImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-autocomplete [(search)]="search" autoHighlight>
-			<hlm-autocomplete-input placeholder="Search components" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No components found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
-					@for (component of filteredOptions(); track $index) {
-						<hlm-autocomplete-item [value]="component.value">
-							{{ component.value }}
-						</hlm-autocomplete-item>
-					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+		<caps-autocomplete [(search)]="search" autoHighlight>
+			<caps-autocomplete-input placeholder="Search components" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No components found.</caps-autocomplete-empty>
+
+				@for (component of filteredOptions(); track $index) {
+					<caps-autocomplete-option [value]="component.value">
+						{{ component.value }}
+					</caps-autocomplete-option>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 })
 export class AutocompleteAutohighlightPreview {

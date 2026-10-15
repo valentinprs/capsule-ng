@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { CapsCollapsibleImports } from '@capsule-ng/caps/collapsible';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown, lucideLifeBuoy, lucideSend } from '@ng-icons/lucide';
-import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 
 @Component({
 	selector: 'spartan-sidebar-collapsable',
-	imports: [NgIcon, HlmCollapsibleImports, HlmSidebarImports],
+	imports: [NgIcon, CapsCollapsibleImports, CapsSidebarImports],
 	providers: [
 		provideIcons({
 			lucideLifeBuoy,
@@ -18,51 +18,54 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<div hlmSidebarWrapper>
-			<hlm-sidebar>
-				<div hlmSidebarContent>
-					<hlm-collapsible [expanded]="true" class="group/collapsible">
-						<div hlmSidebarGroup>
+		<caps-sidebar-wrapper>
+			<caps-sidebar>
+				<caps-sidebar-content>
+					<caps-collapsible [expanded]="true" class="group/collapsible">
+						<caps-sidebar-group>
 							<button
-								hlmCollapsibleTrigger
-								hlmSidebarGroupLabel
+								capsCollapsibleTrigger
+								capsSidebarGroupLabel
 								class="hover:bg-sidebar-accent hover:text-sidebar-accent-foreground text-sm"
 							>
 								Help
 								<ng-icon
+									aria-hidden="true"
 									hlm
 									name="lucideChevronDown"
 									class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"
 								/>
 							</button>
-							<hlm-collapsible-content>
-								<div hlmSidebarGroupContent>
-									<ul hlmSidebarMenu>
-										<li hlmSidebarMenuItem>
-											<a hlmSidebarMenuButton>
-												<ng-icon name="lucideLifeBuoy" />
+							<caps-collapsible-content>
+								<caps-sidebar-group-content>
+									<caps-sidebar-menu>
+										<caps-sidebar-menu-item>
+											<a capsSidebarMenuButton href="#">
+												<ng-icon aria-hidden="true" name="lucideLifeBuoy" />
 												<span>Support</span>
 											</a>
-										</li>
-										<li hlmSidebarMenuItem>
-											<a hlmSidebarMenuButton>
-												<ng-icon name="lucideSend" />
+										</caps-sidebar-menu-item>
+										<caps-sidebar-menu-item>
+											<a capsSidebarMenuButton href="#">
+												<ng-icon aria-hidden="true" name="lucideSend" />
 												<span>Feedback</span>
 											</a>
-										</li>
-									</ul>
-								</div>
-							</hlm-collapsible-content>
-						</div>
-					</hlm-collapsible>
+										</caps-sidebar-menu-item>
+									</caps-sidebar-menu>
+								</caps-sidebar-group-content>
+							</caps-collapsible-content>
+						</caps-sidebar-group>
+					</caps-collapsible>
+				</caps-sidebar-content>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<div class="flex min-w-0 flex-1 flex-col">
+					<header class="flex h-12 items-center justify-between px-4">
+						<button capsSidebarTrigger></button>
+					</header>
 				</div>
-			</hlm-sidebar>
-			<main hlmSidebarInset>
-				<header class="flex h-12 items-center justify-between px-4">
-					<button hlmSidebarTrigger><span class="sr-only"></span></button>
-				</header>
-			</main>
-		</div>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
 	`,
 })
 export default class SidebarCollapsablePage {}

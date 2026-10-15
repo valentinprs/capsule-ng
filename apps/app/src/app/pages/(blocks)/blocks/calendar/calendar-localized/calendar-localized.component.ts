@@ -1,14 +1,14 @@
 import { ChangeDetectionStrategy, Component, inject, Injectable, OnInit, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import {
+	CapsCalendar,
+	CapsCalendarI18nService,
+	injectCapsCalendarI18n,
+	MonthLabels,
+	provideCapsCalendarI18n,
+} from '@capsule-ng/caps/calendar';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
-import {
-	BrnCalendarI18nService,
-	injectBrnCalendarI18n,
-	MonthLabels,
-	provideBrnCalendarI18n,
-} from '@spartan-ng/brain/calendar';
-import { HlmCalendar } from '@spartan-ng/helm/calendar';
 
 const localizedStrings = {
 	vi: {
@@ -93,8 +93,8 @@ export class LanguageService {
 }
 @Component({
 	selector: 'spartan-calendar-localized',
-	imports: [HlmCalendar, CapsSelectImports, CapsCardImports, CapsButtonImports],
-	providers: [provideBrnCalendarI18n(CALENDAR_I18N.vi)],
+	imports: [CapsCalendar, CapsSelectImports, CapsCardImports, CapsButtonImports],
+	providers: [provideCapsCalendarI18n(CALENDAR_I18N.vi)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex justify-center items-start p-3 md:p-20 w-full h-auto md:h-[600px] bg-surface rounded-lg',
@@ -115,7 +115,7 @@ export class LanguageService {
 			</caps-card-header>
 
 			<caps-card-content class="flex flex-row gap-3 px-6">
-				<hlm-calendar class="h-80" />
+				<caps-calendar class="h-80" />
 				<div class="no-scrollbar flex h-80 scroll-pb-6 flex-col gap-2 overflow-y-auto">
 					@for (time of _timeSlots; track time) {
 						<button capsButton class="w-full shadow-none">
@@ -133,7 +133,7 @@ export class CalendarLocalizedComponent implements OnInit {
 	protected readonly _strings = localizedStrings;
 	protected readonly _supportedLanguages = ['vi', 'de', 'en'] as const;
 	protected readonly _i18nService =
-		inject(BrnCalendarI18nService, { optional: true, self: true }) ?? injectBrnCalendarI18n();
+		inject(CapsCalendarI18nService, { optional: true, self: true }) ?? injectCapsCalendarI18n();
 
 	ngOnInit() {
 		const lang = this._languageService.language();

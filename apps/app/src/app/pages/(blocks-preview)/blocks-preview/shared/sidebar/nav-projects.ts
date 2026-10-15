@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsDropdownMenuImports, type CapsMenuPlacement } from '@capsule-ng/caps/dropdown-menu';
+import { CapsSidebarImports, CapsSidebarService } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideChartPie,
@@ -10,73 +12,69 @@ import {
 	lucideShare,
 	lucideTrash2,
 } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-nav-projects',
-	imports: [HlmSidebarImports, NgIcon, RouterLink, HlmDropdownMenuImports],
+	imports: [CapsSidebarImports, NgIcon, RouterLink, CapsDropdownMenuImports],
 	providers: [
 		provideIcons({ lucideFrame, lucideChartPie, lucideMap, lucideEllipsis, lucideFolder, lucideShare, lucideTrash2 }),
 	],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-sidebar-group>
-			<div hlmSidebarGroupLabel>Projects</div>
-			<ul hlmSidebarMenu>
+		<caps-sidebar-group>
+			<caps-sidebar-group-label>Projects</caps-sidebar-group-label>
+			<caps-sidebar-menu>
 				@for (project of projects(); track $index) {
-					<li hlmSidebarMenuItem>
-						<a hlmSidebarMenuButton [routerLink]="project.url">
-							<ng-icon [name]="project.icon" />
+					<caps-sidebar-menu-item>
+						<a capsSidebarMenuButton [routerLink]="project.url">
+							<ng-icon aria-hidden="true" [name]="project.icon" />
 							{{ project.name }}
 						</a>
 						<button
-							hlmSidebarMenuAction
+							capsSidebarMenuAction
 							showOnHover
-							[hlmDropdownMenuTrigger]="menu"
-							[hlmDropdownMenuTriggerData]="{ $implicit: { project } }"
-							[side]="_menuSide()"
-							[align]="_menuAlign()"
+							[capsDropdownMenuTrigger]="menu"
+							[capsDropdownMenuTriggerData]="{ $implicit: { project } }"
+							[placement]="_menuPlacement()"
 						>
-							<ng-icon name="lucideEllipsis" />
+							<ng-icon aria-hidden="true" name="lucideEllipsis" />
 							<span class="sr-only">More</span>
 						</button>
-					</li>
+					</caps-sidebar-menu-item>
 				}
-				<li hlmSidebarMenuItem>
-					<button hlmSidebarMenuButton>
-						<ng-icon name="lucideEllipsis" />
+				<caps-sidebar-menu-item>
+					<button capsSidebarMenuButton>
+						<ng-icon aria-hidden="true" name="lucideEllipsis" />
 						More
 					</button>
-				</li>
-			</ul>
-		</hlm-sidebar-group>
+				</caps-sidebar-menu-item>
+			</caps-sidebar-menu>
+		</caps-sidebar-group>
 
 		<ng-template #menu let-ctx>
-			<hlm-dropdown-menu class="w-48">
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>{{ ctx.project.name }}</hlm-dropdown-menu-label>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>
-					<ng-icon name="lucideFolder" />
+			<caps-menu class="w-48">
+				<caps-menu-label>{{ ctx.project.name }}</caps-menu-label>
+				<caps-menu-separator />
+				<button capsMenuItem>
+					<ng-icon aria-hidden="true" name="lucideFolder" />
 					View Project
 				</button>
-				<button hlmDropdownMenuItem>
-					<ng-icon name="lucideShare" />
+				<button capsMenuItem>
+					<ng-icon aria-hidden="true" name="lucideShare" />
 					Share Project
 				</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>
-					<ng-icon name="lucideTrash2" />
+				<caps-menu-separator />
+				<button capsMenuItem>
+					<ng-icon aria-hidden="true" name="lucideTrash2" />
 					Delete Project
 				</button>
-			</hlm-dropdown-menu>
+			</caps-menu>
 		</ng-template>
 	`,
 })
 export class NavProjects {
-	private readonly _sidebarService = inject(HlmSidebarService);
+	protected readonly _menuPlacement = computed<CapsMenuPlacement>(() => `${this._menuSide()}-${this._menuAlign()}`);
+	private readonly _sidebarService = inject(CapsSidebarService);
 	protected readonly _menuSide = computed(() => (this._sidebarService.isMobile() ? 'bottom' : 'right'));
 	protected readonly _menuAlign = computed(() => (this._sidebarService.isMobile() ? 'end' : 'start'));
 

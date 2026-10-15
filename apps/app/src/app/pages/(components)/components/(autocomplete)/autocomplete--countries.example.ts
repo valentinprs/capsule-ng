@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
 
 type Country = {
 	name: string;
@@ -9,20 +9,19 @@ type Country = {
 
 @Component({
 	selector: 'spartan-autocomplete-countries',
-	imports: [HlmAutocompleteImports],
+	imports: [CapsAutocompleteImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-autocomplete [(search)]="search" [itemToString]="itemToString">
-			<hlm-autocomplete-input placeholder="Search countries" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No countries found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
-					@for (option of filteredCountries(); track $index) {
-						<hlm-autocomplete-item [value]="option">{{ option.flag }} {{ option.name }}</hlm-autocomplete-item>
-					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+		<caps-autocomplete [(search)]="search" [itemToString]="itemToString">
+			<caps-autocomplete-input placeholder="Search countries" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No countries found.</caps-autocomplete-empty>
+
+				@for (option of filteredCountries(); track $index) {
+					<caps-autocomplete-option [value]="option">{{ option.flag }} {{ option.name }}</caps-autocomplete-option>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 })
 export class AutocompleteCountriesPreview {

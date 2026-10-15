@@ -1,25 +1,25 @@
 import { Component, signal } from '@angular/core';
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
-import { HlmSliderImports } from '@spartan-ng/helm/slider';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
+import { CapsSliderImports } from '@capsule-ng/caps/slider';
 
 @Component({
 	selector: 'spartan-slider-form',
-	imports: [HlmSliderImports, FormRoot, FormField, HlmButtonImports, HlmFieldImports],
+	imports: [CapsSliderImports, FormRoot, FormField, CapsButtonImports, CapsFieldImports],
 	host: { class: 'w-full max-w-xs' },
 	template: `
 		<form [formRoot]="form">
-			<hlm-field-group>
-				<hlm-field>
-					<label hlmFieldLabel for="volume">Volume</label>
-					<hlm-slider id="volume" [formField]="form.volume" />
-					<p hlmFieldDescription>Set your speaker volume.</p>
-				</hlm-field>
-				<hlm-field orientation="horizontal">
-					<button hlmBtn type="submit">Submit</button>
-				</hlm-field>
-			</hlm-field-group>
+			<caps-field-group>
+				<caps-field>
+					<caps-field-label>Volume</caps-field-label>
+					<caps-slider [formField]="form.volume" />
+					<caps-field-description>Set your speaker volume.</caps-field-description>
+				</caps-field>
+				<div>
+					<button capsButton type="submit">Submit</button>
+				</div>
+			</caps-field-group>
 		</form>
 	`,
 })

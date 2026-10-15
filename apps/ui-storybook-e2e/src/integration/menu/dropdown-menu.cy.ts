@@ -50,7 +50,9 @@ describe('dropdown-menu', () => {
 
 			cy.findByText(/more/i).realHover();
 
-			cy.findByText(/open/i).realClick().should('have.attr', 'aria-expanded', 'false');
+			cy.findByText(/open/i).realClick();
+			cy.findByText(/open/i).should('have.attr', 'aria-expanded', 'false');
+			cy.findAllByRole('menu').should('not.exist');
 		});
 
 		it('down on open button should open, up and down should navigate, right over sub menu should open submenu, and left on sub should close it, and escape open should close dropdown completely', () => {

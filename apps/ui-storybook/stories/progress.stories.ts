@@ -1,83 +1,70 @@
-import { CapsLabel } from '@capsule-ng/caps/label';
-import { BrnProgress, BrnProgressImports } from '@spartan-ng/brain/progress';
-import { HlmProgressImports } from '@spartan-ng/helm/progress';
-import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
+import { CapsProgress, CapsProgressImports } from '@capsule-ng/caps/progress';
+import type { BrnProgressLabelFn } from '@spartan-ng/brain/progress';
+import {
+	type Meta,
+	type StoryObj,
+	argsToTemplate,
+	componentWrapperDecorator,
+	moduleMetadata,
+} from '@storybook/angular';
 
-const meta: Meta<BrnProgress> = {
+type ProgressArgs = { value: number | null | undefined; max: number; getValueLabel: BrnProgressLabelFn };
+const meta: Meta<ProgressArgs> = {
 	title: 'Progress',
-	component: BrnProgress,
+	component: CapsProgress,
 	tags: ['autodocs'],
-	args: {
-		value: 30,
-	},
-	argTypes: {
-		value: {
-			control: { type: 'range', min: 0, max: 100, step: 2 },
-		},
-	},
+	args: { value: 30 },
+	argTypes: { value: { control: { type: 'range', min: 0, max: 100, step: 2 } } },
 	decorators: [
-		moduleMetadata({
-			imports: [BrnProgressImports, HlmProgressImports, CapsLabel],
-		}),
+		moduleMetadata({ imports: [CapsProgressImports] }),
+		componentWrapperDecorator(
+			(story) => `<main><h1 class="mb-4 text-lg font-semibold">Progress examples</h1>${story}</main>`,
+		),
 	],
+	render: (args) => ({
+		props: args,
+		template: `<div class="grid w-full max-w-sm gap-2"><span id="loading-label">Loading (started)</span><caps-progress aria-labelledby="loading-label" ${argsToTemplate(args)} /></div>`,
+	}),
 };
-
 export default meta;
-type Story = StoryObj<BrnProgress>;
-
+type Story = StoryObj<ProgressArgs>;
 export const LoadingNotStarted: Story = {
-	args: {
-		value: 0,
-	},
-	render: ({ ...args }) => ({
-		props: { ...args },
-		template: `
-    <h2 capsLabel id='loading'>Loading (not started)</h2>
-    <hlm-progress class='mt-2 mb-8' aria-labelledby='loading' ${argsToTemplate(args)}>
-      <hlm-progress-indicator />
-    </hlm-progress>
-    `,
+	args: { value: 0 },
+	render: (args) => ({
+		props: args,
+		template: `<div class="grid w-full max-w-sm gap-2"><span id="loading-label">Loading (not started)</span><caps-progress aria-labelledby="loading-label" ${argsToTemplate(args)} /></div>`,
 	}),
 };
-
-export const LoadingStarted: Story = {
-	render: ({ ...args }) => ({
-		props: { ...args },
-		template: `
-    <h2 capsLabel id='loading'>Loading (started)</h2>
-    <hlm-progress class='mt-2 mb-8' aria-labelledby='loading' ${argsToTemplate(args)}>
-      <hlm-progress-indicator />
-    </hlm-progress>
-    `,
-	}),
-};
-
+export const LoadingStarted: Story = {};
 export const Indeterminate: Story = {
-	args: {
-		value: null,
-	},
-	render: ({ ...args }) => ({
+	args: { value: null },
+	render: (args) => ({
 		props: args,
-		template: `
-    <h2 capsLabel id='indeterminate'>Indeterminate</h2>
-    <hlm-progress class='mt-2 mb-8' aria-labelledby='indeterminate' ${argsToTemplate(args)}>
-      <hlm-progress-indicator />
-    </hlm-progress>
-    `,
+		template: `<div class="grid w-full max-w-sm gap-2"><span id="indeterminate-label">Indeterminate</span><caps-progress aria-labelledby="indeterminate-label" ${argsToTemplate(args)} /></div>`,
 	}),
 };
-
 export const Complete: Story = {
-	args: {
-		value: 100,
-	},
-	render: ({ ...args }) => ({
+	args: { value: 100 },
+	render: (args) => ({
 		props: args,
-		template: `
-    <h2 capsLabel id='complete'>Complete</h2>
-    <hlm-progress class='mt-2 mb-8' aria-labelledby='complete' ${argsToTemplate(args)}>
-      <hlm-progress-indicator />
-    </hlm-progress>
-    `,
+		template: `<div class="grid w-full max-w-sm gap-2"><span id="complete-label">Complete</span><caps-progress aria-labelledby="complete-label" ${argsToTemplate(args)} /></div>`,
+	}),
+};
+export const Small: Story = {
+	render: () => ({ template: `<caps-progress class="h-1 w-full max-w-sm" [value]="40" aria-label="Upload" />` }),
+};
+export const CustomMaximum: Story = {
+	args: { value: 75, max: 150 },
+	render: (args) => ({
+		props: args,
+		template: `<div class="grid w-full max-w-sm gap-2"><span id="upload-label">Upload</span><caps-progress aria-labelledby="upload-label" aria-describedby="upload-help" ${argsToTemplate(args)} /><span id="upload-help">75 of 150 MB</span></div>`,
+	}),
+};
+export const CustomValueLabel: Story = {
+	args: { value: 75, max: 150, getValueLabel: (value, max) => `${value} of ${max} MB` },
+};
+export const NativeName: Story = {
+	render: () => ({
+		template: `<caps-progress class="w-full max-w-sm" [value]="30" aria-label="Uploading document" />`,
 	}),
 };

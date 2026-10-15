@@ -1,98 +1,92 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsNavigationMenuImports } from '@capsule-ng/caps/navigation-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck, lucideCircle, lucideInfo } from '@ng-icons/lucide';
-import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
 
 @Component({
 	selector: 'spartan-navigation-menu-preview',
-	imports: [HlmNavigationMenuImports, NgIcon, RouterLink],
+	imports: [CapsNavigationMenuImports, NgIcon, RouterLink],
 	providers: [provideIcons({ lucideCircle, lucideCheck, lucideInfo })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<nav hlmNavigationMenu>
-			<ul hlmNavigationMenuList class="flex-wrap">
-				<li hlmNavigationMenuItem>
-					<button hlmNavigationMenuTrigger>Getting started</button>
-					<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-						<ul class="w-96">
-							<li>
-								<a hlmNavigationMenuLink routerLink="/documentation/introduction">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">Introduction</div>
-										<div class="text-muted-foreground line-clamp-2">Re-usable components built with Tailwind CSS.</div>
+		<caps-navigation-menu aria-label="Component navigation">
+			<li capsNavigationMenuItem>
+				<button caps-navigation-menu-trigger>Getting started</button>
+				<ng-template capsNavigationMenuContent>
+					<ul class="w-96 max-w-[calc(100vw-2rem)]">
+						<li>
+							<a capsNavigationMenuLink routerLink="/documentation/introduction">
+								<div class="flex flex-col gap-1 text-sm">
+									<div class="leading-none font-medium">Introduction</div>
+									<div class="text-muted-foreground line-clamp-2">Re-usable components built with Tailwind CSS.</div>
+								</div>
+							</a>
+						</li>
+
+						<li>
+							<a capsNavigationMenuLink routerLink="/documentation/installation">
+								<div class="flex flex-col gap-1 text-sm">
+									<div class="leading-none font-medium">Installation</div>
+									<div class="text-muted-foreground line-clamp-2">
+										How to install dependencies and structure your app.
 									</div>
-								</a>
-							</li>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a capsNavigationMenuLink routerLink="/documentation/typography">
+								<div class="flex flex-col gap-1 text-sm">
+									<div class="leading-none font-medium">Typography</div>
+									<div class="text-muted-foreground line-clamp-2">Styles for headings, paragraphs, lists...etc</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</ng-template>
+			</li>
 
-							<li>
-								<a hlmNavigationMenuLink routerLink="/documentation/installation">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">Installation</div>
-										<div class="text-muted-foreground line-clamp-2">
-											How to install dependencies and structure your app.
-										</div>
-									</div>
-								</a>
-							</li>
-							<li>
-								<a hlmNavigationMenuLink routerLink="/documentation/typography">
-									<div class="flex flex-col gap-1 text-sm">
-										<div class="leading-none font-medium">Typography</div>
-										<div class="text-muted-foreground line-clamp-2">Styles for headings, paragraphs, lists...etc</div>
-									</div>
-								</a>
-							</li>
-						</ul>
-					</hlm-navigation-menu-content>
-				</li>
+			<!-- Components Menu -->
+			<li capsNavigationMenuItem class="hidden md:flex">
+				<button caps-navigation-menu-trigger align="center">Components</button>
+				<ng-template capsNavigationMenuContent>
+					<div class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+						@for (component of _components; track $index) {
+							<a capsNavigationMenuLink [href]="component.href">
+								<div class="flex flex-col gap-1 text-sm">
+									<div class="leading-none font-medium">{{ component.title }}</div>
+									<div class="text-muted-foreground line-clamp-2">{{ component.description }}</div>
+								</div>
+							</a>
+						}
+					</div>
+				</ng-template>
+			</li>
 
-				<!-- Components Menu -->
-				<li hlmNavigationMenuItem class="hidden md:flex">
-					<button hlmNavigationMenuTrigger align="center">Components</button>
-					<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-						<ul class="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-							@for (component of _components; track $index) {
-								<li>
-									<a hlmNavigationMenuLink [href]="component.href">
-										<div class="flex flex-col gap-1 text-sm">
-											<div class="leading-none font-medium">{{ component.title }}</div>
-											<div class="text-muted-foreground line-clamp-2">{{ component.description }}</div>
-										</div>
-									</a>
-								</li>
-							}
-						</ul>
-					</hlm-navigation-menu-content>
-				</li>
+			<li capsNavigationMenuItem>
+				<button caps-navigation-menu-trigger align="end">With Icon</button>
+				<ng-template capsNavigationMenuContent>
+					<div>
+						<a capsNavigationMenuLink href="#">
+							<ng-icon name="lucideInfo" />
+							Backlog
+						</a>
+						<a capsNavigationMenuLink href="#">
+							<ng-icon name="lucideCircle" />
+							To Do
+						</a>
+						<a capsNavigationMenuLink href="#">
+							<ng-icon name="lucideCheck" />
+							Done
+						</a>
+					</div>
+				</ng-template>
+			</li>
 
-				<li hlmNavigationMenuItem>
-					<button hlmNavigationMenuTrigger align="end">With Icon</button>
-					<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-						<ul>
-							<li>
-								<a hlmNavigationMenuLink href="#">
-									<ng-icon name="lucideInfo" />
-									Backlog
-								</a>
-								<a hlmNavigationMenuLink href="#">
-									<ng-icon name="lucideCircle" />
-									To Do
-								</a>
-								<a hlmNavigationMenuLink href="#">
-									<ng-icon name="lucideCheck" />
-									Done
-								</a>
-							</li>
-						</ul>
-					</hlm-navigation-menu-content>
-				</li>
-
-				<li hlmNavigationMenuItem>
-					<a hlmNavigationMenuLink href="/documentation/introduction">Docs</a>
-				</li>
-			</ul>
-		</nav>
+			<li capsNavigationMenuItem>
+				<a capsNavigationMenuLink href="/documentation/introduction" active>Docs</a>
+			</li>
+		</caps-navigation-menu>
 	`,
 })
 export class NavigationMenuPreview {
@@ -131,18 +125,17 @@ export class NavigationMenuPreview {
 }
 
 export const defaultImports = `
-import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
+import { CapsNavigationMenuImports } from '@capsule-ng/caps/navigation-menu';
 `;
 
 export const defaultSkeleton = `
-<nav hlmNavigationMenu>
-	<ul hlmNavigationMenuList>
-		<li hlmNavigationMenuItem>
-			<button hlmNavigationMenuTrigger>Home</button>
-			<hlm-navigation-menu-content *hlmNavigationMenuPortal>
-				<div>Content</div>
-			</hlm-navigation-menu-content>
-		<li>
-	</ul>
-</nav>
+<caps-navigation-menu aria-label="Primary navigation">
+ <li capsNavigationMenuItem>
+  <button caps-navigation-menu-trigger>Documentation</button>
+  <ng-template capsNavigationMenuContent>
+   <a capsNavigationMenuLink href="/documentation/introduction" active>Introduction</a>
+  </ng-template>
+ </li>
+ <li capsNavigationMenuItem><a capsNavigationMenuLink href="/components">Components</a></li>
+</caps-navigation-menu>
 `;

@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
 
 @Component({
 	selector: 'spartan-bubble-alignment-preview',
-	imports: [HlmBubbleImports],
+	imports: [CapsBubbleImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-8 py-12',
 	},
 	template: `
-		<div hlmBubble variant="muted">
-			<div hlmBubbleContent>This bubble is aligned to the start. This is the default alignment.</div>
-		</div>
-		<div hlmBubble align="end">
-			<div hlmBubbleContent>This bubble is aligned to the end. Use this for user messages.</div>
-		</div>
+		<caps-bubble variant="muted">
+			<caps-bubble-content>This bubble is aligned to the start. This is the default alignment.</caps-bubble-content>
+		</caps-bubble>
+		<caps-bubble align="end">
+			<caps-bubble-content>This bubble is aligned to the end. Use this for user messages.</caps-bubble-content>
+		</caps-bubble>
 	`,
 })
 export class BubbleAlignmentPreview {}

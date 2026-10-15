@@ -1,30 +1,30 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 
 @Component({
 	selector: 'spartan-kbd-preview',
-	imports: [HlmKbdImports],
+	imports: [CapsKbdImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-col items-center gap-4">
-			<kbd hlmKbdGroup>
-				<kbd hlmKbd>⌘</kbd>
-				<kbd hlmKbd>⇧</kbd>
-				<kbd hlmKbd>⌥</kbd>
-				<kbd hlmKbd>⌃</kbd>
-			</kbd>
-			<kbd hlmKbdGroup>
-				<kbd hlmKbd>Ctrl</kbd>
+			<caps-kbd-group>
+				<kbd capsKbd>⌘</kbd>
+				<kbd capsKbd>⇧</kbd>
+				<kbd capsKbd>⌥</kbd>
+				<kbd capsKbd>⌃</kbd>
+			</caps-kbd-group>
+			<caps-kbd-group>
+				<kbd capsKbd>Ctrl</kbd>
 				<span>+</span>
-				<kbd hlmKbd>B</kbd>
-			</kbd>
+				<kbd capsKbd>B</kbd>
+			</caps-kbd-group>
 		</div>
 	`,
 })
 export class KbdPreview {}
 
 export const defaultImports = `
-import { HlmKbdImports } from '@spartan-ng/helm/kbd';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 `;
 
-export const defaultSkeleton = '<kbd hlmKbd>⌘</kbd>';
+export const defaultSkeleton = '<kbd capsKbd>⌘</kbd>';

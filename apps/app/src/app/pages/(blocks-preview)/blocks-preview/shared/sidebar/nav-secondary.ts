@@ -1,29 +1,29 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideLifeBuoy, lucideSend } from '@ng-icons/lucide';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 
 @Component({
 	selector: 'spartan-nav-secondary',
-	imports: [HlmSidebarImports, NgIcon, RouterLink],
+	imports: [CapsSidebarImports, NgIcon, RouterLink],
 	providers: [provideIcons({ lucideLifeBuoy, lucideSend })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-sidebar-group>
-			<div hlmSidebarGroupContent>
-				<ul hlmSidebarMenu>
+		<caps-sidebar-group>
+			<caps-sidebar-group-content>
+				<caps-sidebar-menu>
 					@for (item of items(); track $index) {
-						<li hlmSidebarMenuItem>
-							<a hlmSidebarMenuButton size="sm" [routerLink]="item.url">
-								<ng-icon [name]="item.icon" />
+						<caps-sidebar-menu-item>
+							<a capsSidebarMenuButton size="sm" [routerLink]="item.url">
+								<ng-icon aria-hidden="true" [name]="item.icon" />
 								{{ item.title }}
 							</a>
-						</li>
+						</caps-sidebar-menu-item>
 					}
-				</ul>
-			</div>
-		</hlm-sidebar-group>
+				</caps-sidebar-menu>
+			</caps-sidebar-group-content>
+		</caps-sidebar-group>
 	`,
 })
 export class NavSecondary {

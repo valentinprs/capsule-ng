@@ -1,71 +1,68 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
-import { HlmFieldImports } from '@spartan-ng/helm/field';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
+import { CapsFieldImports } from '@capsule-ng/caps/field';
 
 @Component({
 	selector: 'spartan-combobox-invalid-preview',
-	imports: [HlmComboboxImports, HlmFieldImports],
+	imports: [CapsComboboxImports, CapsFieldImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { class: 'w-full max-w-xs' },
 	template: `
-		<hlm-field-group>
-			<hlm-field forceInvalid>
-				<label hlmFieldLabel>Framework</label>
-				<hlm-combobox>
-					<hlm-combobox-input forceInvalid placeholder="Select a framework" />
-					<hlm-combobox-content *hlmComboboxPortal>
-						<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-						<div hlmComboboxList>
-							@for (framework of frameworks; track $index) {
-								<hlm-combobox-item [value]="framework">{{ framework }}</hlm-combobox-item>
-							}
-						</div>
-					</hlm-combobox-content>
-				</hlm-combobox>
-				<hlm-field-error>Please select a framework.</hlm-field-error>
-			</hlm-field>
+		<caps-field-group>
+			<caps-field forceInvalid>
+				<caps-field-label>Framework</caps-field-label>
+				<caps-combobox>
+					<caps-combobox-input forceInvalid placeholder="Select a framework" />
+					<caps-combobox-content>
+						<caps-combobox-empty>No items found.</caps-combobox-empty>
 
-			<hlm-field forceInvalid>
-				<label hlmFieldLabel>Frameworks</label>
-				<hlm-combobox-multiple [(value)]="values">
-					<hlm-combobox-chips forceInvalid class="max-w-xs">
-						<ng-template hlmComboboxValues let-values>
+						@for (framework of frameworks; track $index) {
+							<caps-combobox-option [value]="framework">{{ framework }}</caps-combobox-option>
+						}
+					</caps-combobox-content>
+				</caps-combobox>
+				<caps-field-error>Please select a framework.</caps-field-error>
+			</caps-field>
+
+			<caps-field forceInvalid>
+				<caps-field-label>Frameworks</caps-field-label>
+				<caps-combobox-multiple [(value)]="values">
+					<caps-combobox-chips forceInvalid class="max-w-xs">
+						<ng-template capsComboboxValues let-values>
 							@for (value of values; track $index) {
-								<hlm-combobox-chip [value]="value">{{ value }}</hlm-combobox-chip>
+								<caps-combobox-chip [value]="value">{{ value }}</caps-combobox-chip>
 							}
 						</ng-template>
-						<input hlmComboboxChipInput placeholder="Add frameworks" />
-					</hlm-combobox-chips>
-					<hlm-combobox-content *hlmComboboxPortal>
-						<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-						<div hlmComboboxList>
-							@for (framework of frameworks; track $index) {
-								<hlm-combobox-item [value]="framework">{{ framework }}</hlm-combobox-item>
-							}
-						</div>
-					</hlm-combobox-content>
-				</hlm-combobox-multiple>
-				<hlm-field-error>Please select at least one framework.</hlm-field-error>
-			</hlm-field>
+						<input capsComboboxChipInput placeholder="Add frameworks" />
+					</caps-combobox-chips>
+					<caps-combobox-content>
+						<caps-combobox-empty>No items found.</caps-combobox-empty>
 
-			<hlm-field forceInvalid>
-				<label hlmFieldLabel>Frameworks</label>
-				<hlm-combobox>
-					<hlm-combobox-trigger forceInvalid class="w-full justify-between">
-						<hlm-combobox-value placeholder="Select a framework" />
-					</hlm-combobox-trigger>
-					<hlm-combobox-content *hlmComboboxPortal>
-						<hlm-combobox-input showTrigger="false" placeholder="Search" showClear />
-						<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-						<div hlmComboboxList>
-							@for (framework of frameworks; track $index) {
-								<hlm-combobox-item [value]="framework">{{ framework }}</hlm-combobox-item>
-							}
-						</div>
-					</hlm-combobox-content>
-				</hlm-combobox>
-			</hlm-field>
-		</hlm-field-group>
+						@for (framework of frameworks; track $index) {
+							<caps-combobox-option [value]="framework">{{ framework }}</caps-combobox-option>
+						}
+					</caps-combobox-content>
+				</caps-combobox-multiple>
+				<caps-field-error>Please select at least one framework.</caps-field-error>
+			</caps-field>
+
+			<caps-field forceInvalid>
+				<caps-field-label>Frameworks</caps-field-label>
+				<caps-combobox>
+					<caps-combobox-trigger forceInvalid class="w-full justify-between">
+						<caps-combobox-value placeholder="Select a framework" />
+					</caps-combobox-trigger>
+					<caps-combobox-content>
+						<caps-combobox-input showTrigger="false" placeholder="Search" showClear />
+						<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+						@for (framework of frameworks; track $index) {
+							<caps-combobox-option [value]="framework">{{ framework }}</caps-combobox-option>
+						}
+					</caps-combobox-content>
+				</caps-combobox>
+			</caps-field>
+		</caps-field-group>
 	`,
 })
 export class ComboboxInvalidPreview {

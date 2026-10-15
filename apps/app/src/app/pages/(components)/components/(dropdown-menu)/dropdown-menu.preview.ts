@@ -1,91 +1,86 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 
 @Component({
 	selector: 'spartan-dropdown-preview',
-	imports: [HlmDropdownMenuImports, HlmButtonImports],
+	imports: [CapsDropdownMenuImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="menu" align="start">Open</button>
+		<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu" placement="bottom-start">Open</button>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu class="w-40">
-				<hlm-dropdown-menu-group>
-					<hlm-dropdown-menu-label>My Account</hlm-dropdown-menu-label>
-					<button hlmDropdownMenuItem>
+			<caps-menu class="w-40">
+				<caps-menu-group label="My Account">
+					<button capsMenuItem>
 						Profile
-						<hlm-dropdown-menu-shortcut>⇧⌘P</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⇧⌘P</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						Billing
-						<hlm-dropdown-menu-shortcut>⌘B</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘B</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						Settings
-						<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘S</caps-menu-shortcut>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group>
+					<button capsMenuItem>
 						Team
-						<hlm-dropdown-menu-shortcut>⌘B</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘B</caps-menu-shortcut>
 					</button>
-					<button hlmDropdownMenuItem side="right" align="start" [hlmDropdownMenuSubTrigger]="invite">
-						Invite Users
-						<hlm-dropdown-menu-item-sub-indicator />
-					</button>
-					<button hlmDropdownMenuItem>
+					<button side="right" align="start" [capsMenuSubTrigger]="invite">Invite Users</button>
+					<button capsMenuItem>
 						New Team
-						<hlm-dropdown-menu-shortcut>⌘+T</hlm-dropdown-menu-shortcut>
+						<caps-menu-shortcut>⌘+T</caps-menu-shortcut>
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>GitHub</button>
-					<button hlmDropdownMenuItem>Support</button>
-					<button hlmDropdownMenuItem disabled>API</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<caps-menu-group>
+					<button capsMenuItem>GitHub</button>
+					<button capsMenuItem>Support</button>
+					<button capsMenuItem disabled>API</button>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem>
 					Log out
-					<hlm-dropdown-menu-shortcut>⇧⌘Q</hlm-dropdown-menu-shortcut>
+					<caps-menu-shortcut>⇧⌘Q</caps-menu-shortcut>
 				</button>
-			</hlm-dropdown-menu>
+			</caps-menu>
 		</ng-template>
 
 		<ng-template #invite>
-			<hlm-dropdown-menu-sub>
-				<button hlmDropdownMenuItem>Email</button>
-				<button hlmDropdownMenuItem>Message</button>
-				<hlm-dropdown-menu-separator />
-				<button hlmDropdownMenuItem>More...</button>
-			</hlm-dropdown-menu-sub>
+			<caps-menu>
+				<button capsMenuItem>Email</button>
+				<button capsMenuItem>Message</button>
+				<caps-menu-separator />
+				<button capsMenuItem>More...</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })
 export class DropdownPreview {}
 
 export const defaultImports = `
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 `;
 
 export const defaultSkeleton = `
-<button hlmBtn variant="outline" [hlmDropdownMenuTrigger]="menu">Open</button>
+<button capsButton variant="outline" [capsDropdownMenuTrigger]="menu">Open</button>
 
 <ng-template #menu>
-  <hlm-dropdown-menu>
-    <hlm-dropdown-menu-group>
-      <hlm-dropdown-menu-label>My Account</hlm-dropdown-menu-label>
-      <button hlmDropdownMenuItem>Profile</button>
-      <button hlmDropdownMenuItem>Billing</button>
-    </hlm-dropdown-menu-group>
-    <hlm-dropdown-menu-separator />
-    <hlm-dropdown-menu-group>
-      <button hlmDropdownMenuItem>Team</button>
-      <button hlmDropdownMenuItem>Subscription</button>
-    </hlm-dropdown-menu-group>
-  </hlm-dropdown-menu>
+  <caps-menu>
+    <caps-menu-group label="My Account">
+      <button capsMenuItem>Profile</button>
+      <button capsMenuItem>Billing</button>
+    </caps-menu-group>
+    <caps-menu-separator />
+    <caps-menu-group>
+      <button capsMenuItem>Team</button>
+      <button capsMenuItem>Subscription</button>
+    </caps-menu-group>
+  </caps-menu>
 </ng-template>
 `;

@@ -1,42 +1,42 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDrawerImports } from '@spartan-ng/helm/drawer';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDrawerImports } from '@capsule-ng/caps/drawer';
 
 @Component({
 	selector: 'spartan-drawer-nested-preview',
-	imports: [HlmDrawerImports, HlmButtonImports],
+	imports: [CapsDrawerImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-drawer>
-			<button hlmDrawerTrigger hlmBtn variant="outline">Open Drawer</button>
-			<hlm-drawer-content *hlmDrawerPortal="let ctx">
-				<hlm-drawer-header>
-					<h3 hlmDrawerTitle>Profile Settings</h3>
-					<p hlmDrawerDescription>Manage your account settings.</p>
-				</hlm-drawer-header>
+		<caps-drawer>
+			<button capsDrawerTrigger capsButton variant="outline">Open Drawer</button>
+			<ng-template capsDrawerContent>
+				<caps-drawer-header>
+					<caps-drawer-title>Profile Settings</caps-drawer-title>
+					<caps-drawer-description>Manage your account settings.</caps-drawer-description>
+				</caps-drawer-header>
 				<div class="px-4">
 					<p class="mb-4 leading-normal">This is the first drawer. You can open another drawer on top of this one.</p>
-					<hlm-drawer>
-						<button hlmDrawerTrigger hlmBtn variant="outline">Open Nested</button>
-						<hlm-drawer-content *hlmDrawerPortal="let nestedCtx">
-							<hlm-drawer-header>
-								<h3 hlmDrawerTitle>Nested Drawer</h3>
-								<p hlmDrawerDescription>This drawer is nested inside the first one.</p>
-							</hlm-drawer-header>
+					<caps-drawer>
+						<button capsDrawerTrigger capsButton variant="outline">Open Nested</button>
+						<ng-template capsDrawerContent>
+							<caps-drawer-header>
+								<caps-drawer-title>Nested Drawer</caps-drawer-title>
+								<caps-drawer-description>This drawer is nested inside the first one.</caps-drawer-description>
+							</caps-drawer-header>
 							<div class="px-4">
 								<p class="mb-4 leading-normal">Nested drawers allow you to layer content without losing context.</p>
 							</div>
-							<hlm-drawer-footer>
-								<button hlmDrawerClose hlmBtn variant="outline">Close</button>
-							</hlm-drawer-footer>
-						</hlm-drawer-content>
-					</hlm-drawer>
+							<caps-drawer-footer>
+								<button capsDrawerClose capsButton variant="outline">Close</button>
+							</caps-drawer-footer>
+						</ng-template>
+					</caps-drawer>
 				</div>
-				<hlm-drawer-footer>
-					<button hlmDrawerClose hlmBtn variant="outline">Close</button>
-				</hlm-drawer-footer>
-			</hlm-drawer-content>
-		</hlm-drawer>
+				<caps-drawer-footer>
+					<button capsDrawerClose capsButton variant="outline">Close</button>
+				</caps-drawer-footer>
+			</ng-template>
+		</caps-drawer>
 	`,
 })
 export class DrawerNestedPreview {}

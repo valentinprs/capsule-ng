@@ -1,49 +1,47 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsContextMenuImports } from '@capsule-ng/caps/context-menu';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideClipboardPaste, lucideCopy, lucideScissors, lucideTrash } from '@ng-icons/lucide';
-import { HlmContextMenuImports } from '@spartan-ng/helm/context-menu';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 
 @Component({
 	selector: 'spartan-context-menu-icons',
-	imports: [HlmDropdownMenuImports, HlmContextMenuImports, NgIcon],
+	imports: [CapsContextMenuImports, NgIcon],
 	providers: [provideIcons({ lucideCopy, lucideClipboardPaste, lucideScissors, lucideTrash })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div
-			[hlmContextMenuTrigger]="menu"
+			[capsContextMenuTrigger]="menu"
 			align="start"
 			side="right"
 			class="flex aspect-video w-full min-w-xs items-center justify-center rounded-xl border border-dashed text-sm"
+			tabindex="0"
 		>
 			<span class="hidden pointer-fine:inline-block">Right click here</span>
 			<span class="hidden pointer-coarse:inline-block">Long press here</span>
 		</div>
 
 		<ng-template #menu>
-			<hlm-dropdown-menu>
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem>
+			<caps-menu>
+				<caps-menu-group>
+					<button capsMenuItem>
 						<ng-icon name="lucideCopy" />
 						Copy
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideScissors" />
 						Cut
 					</button>
-					<button hlmDropdownMenuItem>
+					<button capsMenuItem>
 						<ng-icon name="lucideClipboardPaste" />
 						Paste
 					</button>
-				</hlm-dropdown-menu-group>
-				<hlm-dropdown-menu-separator />
-				<hlm-dropdown-menu-group>
-					<button hlmDropdownMenuItem variant="destructive">
-						<ng-icon name="lucideTrash" />
-						Delete
-					</button>
-				</hlm-dropdown-menu-group>
-			</hlm-dropdown-menu>
+				</caps-menu-group>
+				<caps-menu-separator />
+				<button capsMenuItem danger>
+					<ng-icon name="lucideTrash" />
+					Delete
+				</button>
+			</caps-menu>
 		</ng-template>
 	`,
 })

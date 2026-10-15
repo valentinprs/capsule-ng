@@ -2,8 +2,10 @@ import { Component, inject, signal, type TrackByFunction } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDropdownMenuImports } from '@capsule-ng/caps/dropdown-menu';
 import { CapsLabel } from '@capsule-ng/caps/label';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
+import { CapsTableImports } from '@capsule-ng/caps/table';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideArrowUpDown,
@@ -28,8 +30,6 @@ import {
 	lucideLogOut,
 	lucideUser,
 } from '@ng-icons/lucide';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 import {
 	columnFilteringFeature,
 	type ColumnFiltersState,
@@ -46,6 +46,7 @@ import {
 	type PaginationState,
 	rowPaginationFeature,
 	rowSelectionFeature,
+	type RowSelectionState,
 	rowSortingFeature,
 	sortFn_alphanumeric,
 	sortFn_text,
@@ -109,6 +110,7 @@ const columns = columnHelper.columns([
 	}),
 	columnHelper.display({
 		id: 'actions',
+		header: '<span class="sr-only">Actions</span>',
 		cell: () => ActionDropdown,
 		enableHiding: false,
 	}),
@@ -117,8 +119,8 @@ const columns = columnHelper.columns([
 	selector: 'spartan-tasks-example',
 	imports: [
 		FormsModule,
-		HlmDropdownMenuImports,
-		HlmTableImports,
+		CapsDropdownMenuImports,
+		CapsTableImports,
 		CapsButtonImports,
 		CapsSelectImports,
 		TableActions,
@@ -166,54 +168,74 @@ const columns = columnHelper.columns([
 					<h2 class="text-2xl font-bold tracking-tight">Welcome back!</h2>
 					<p class="text-muted-foreground">Here's a list of your tasks for this month!</p>
 				</div>
-				<caps-avatar [hlmDropdownMenuTrigger]="profile" align="end">
-					<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
-					<caps-avatar-fallback class="bg-red-700 text-white">KL</caps-avatar-fallback>
-				</caps-avatar>
+				<button
+					capsButton
+					variant="ghost"
+					size="icon"
+					[capsDropdownMenuTrigger]="profile"
+					placement="bottom-end"
+					aria-label="Open profile menu"
+				>
+					<caps-avatar>
+						<img src="/assets/avatar.png" alt="spartan logo. Resembling a spartanic shield" capsAvatarImage />
+						<caps-avatar-fallback class="bg-red-700 text-white">KL</caps-avatar-fallback>
+					</caps-avatar>
+				</button>
 				<ng-template #profile>
-					<hlm-dropdown-menu class="min-w-56">
-						<div class="flex flex-col items-start gap-1" hlmDropdownMenuItem>
+					<caps-menu class="min-w-56">
+						<caps-menu-label class="flex flex-col items-start gap-1">
 							<p class="text-sm leading-none font-medium">spartan</p>
 							<p class="text-muted-foreground text-xs leading-none">m&#64;example.com</p>
-						</div>
-						<hlm-dropdown-menu-separator />
-						<hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-group>
-								<button hlmDropdownMenuItem>
+						</caps-menu-label>
+						<caps-menu-separator />
+						<caps-menu-group>
+							<caps-menu-group>
+								<button capsMenuItem>
 									<ng-icon name="lucideUser" />
 									<span>Profile</span>
-									<hlm-dropdown-menu-shortcut>⇧⌘P</hlm-dropdown-menu-shortcut>
+									<caps-menu-shortcut>⇧⌘P</caps-menu-shortcut>
 								</button>
-								<button hlmDropdownMenuItem>
+								<button capsMenuItem>
 									<ng-icon name="lucideLayers" />
 									<span>Billing</span>
-									<hlm-dropdown-menu-shortcut>⌘B</hlm-dropdown-menu-shortcut>
+									<caps-menu-shortcut>⌘B</caps-menu-shortcut>
 								</button>
-								<button hlmDropdownMenuItem>
+								<button capsMenuItem>
 									<ng-icon name="lucideCog" />
 									<span>Settings</span>
-									<hlm-dropdown-menu-shortcut>⌘S</hlm-dropdown-menu-shortcut>
+									<caps-menu-shortcut>⌘S</caps-menu-shortcut>
 								</button>
-							</hlm-dropdown-menu-group>
-							<hlm-dropdown-menu-separator />
-							<button hlmDropdownMenuItem>
+							</caps-menu-group>
+							<caps-menu-separator />
+							<button capsMenuItem>
 								<ng-icon name="lucideLogOut" />
 								<span>Logout</span>
-								<hlm-dropdown-menu-shortcut>⇧⌘Q</hlm-dropdown-menu-shortcut>
+								<caps-menu-shortcut>⇧⌘Q</caps-menu-shortcut>
 							</button>
-						</hlm-dropdown-menu-group>
-					</hlm-dropdown-menu>
+						</caps-menu-group>
+					</caps-menu>
 				</ng-template>
 			</div>
 			<spartan-table-actions table="table" />
 			<div class="max-h-[700px] w-full overflow-auto rounded-md border">
-				<div hlmTableContainer>
-					<table hlmTable>
-						<thead hlmTHead class="bg-background sticky top-0 z-(--caps-z-10)">
+				<caps-table-container>
+					<table capsTable aria-label="Tasks">
+						<caption class="sr-only">Tasks</caption>
+						<thead class="bg-background sticky top-0 z-(--caps-z-10)">
 							@for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
-								<tr hlmTr>
+								<tr>
 									@for (header of headerGroup.headers; track header.id) {
-										<th hlmTh [attr.colSpan]="header.colSpan">
+										<th
+											scope="col"
+											[attr.colSpan]="header.colSpan"
+											[attr.aria-sort]="
+												header.column.getIsSorted() === 'asc'
+													? 'ascending'
+													: header.column.getIsSorted() === 'desc'
+														? 'descending'
+														: null
+											"
+										>
 											@if (!header.isPlaceholder) {
 												<ng-container
 													*flexRender="header.column.columnDef.header; props: header.getContext(); let headerText"
@@ -226,11 +248,11 @@ const columns = columnHelper.columns([
 								</tr>
 							}
 						</thead>
-						<tbody hlmTBody class="w-full">
+						<tbody class="w-full">
 							@for (row of table.getRowModel().rows; track row.id) {
-								<tr hlmTr [attr.key]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
-									@for (cell of row.getVisibleCells(); track $index) {
-										<td hlmTd>
+								<tr [attr.data-row-id]="row.id" [attr.data-state]="row.getIsSelected() && 'selected'">
+									@for (cell of row.getVisibleCells(); track cell.id) {
+										<td>
 											<ng-container *flexRender="cell.column.columnDef.cell; props: cell.getContext(); let cell">
 												<div [innerHTML]="cell"></div>
 											</ng-container>
@@ -238,17 +260,18 @@ const columns = columnHelper.columns([
 									}
 								</tr>
 							} @empty {
-								<tr hlmTr>
-									<td hlmTd class="h-24 text-center" [attr.colspan]="_columns.length">No results.</td>
+								<tr>
+									<td class="h-24 text-center" [attr.colspan]="table.getVisibleLeafColumns().length">No results.</td>
 								</tr>
 							}
 						</tbody>
 					</table>
-				</div>
+				</caps-table-container>
 			</div>
 			<div class="mt-4 flex flex-col justify-between sm:flex-row sm:items-center">
-				<span class="text-muted-foreground text-sm">
-					{{ table.getSelectedRowModel().rows.length }} of {{ table.getRowCount() }} row(s) selected
+				<span class="text-muted-foreground text-sm" role="status">
+					{{ table.getSelectedRowModel().rows.length }} of {{ table.getPreFilteredRowModel().rows.length }} row(s)
+					selected; {{ table.getRowCount() }} results
 				</span>
 				<div class="mt-2 flex gap-8 sm:mt-0">
 					<div class="flex gap-2">
@@ -277,6 +300,7 @@ const columns = columnHelper.columns([
 							variant="outline"
 							capsButton
 							[disabled]="!table.getCanPreviousPage()"
+							aria-label="Go to first page"
 							(click)="table.firstPage()"
 						>
 							<ng-icon name="lucideChevronsLeft" />
@@ -286,6 +310,7 @@ const columns = columnHelper.columns([
 							variant="outline"
 							capsButton
 							[disabled]="!table.getCanPreviousPage()"
+							aria-label="Go to previous page"
 							(click)="table.previousPage()"
 						>
 							<ng-icon name="lucideChevronLeft" />
@@ -295,6 +320,7 @@ const columns = columnHelper.columns([
 							variant="outline"
 							capsButton
 							[disabled]="!table.getCanNextPage()"
+							aria-label="Go to next page"
 							(click)="table.nextPage()"
 						>
 							<ng-icon name="lucideChevronRight" />
@@ -304,6 +330,7 @@ const columns = columnHelper.columns([
 							variant="outline"
 							capsButton
 							[disabled]="!table.getCanNextPage()"
+							aria-label="Go to last page"
 							(click)="table.lastPage()"
 						>
 							<ng-icon name="lucideChevronsRight" />
@@ -329,6 +356,7 @@ export class TasksExample {
 
 	private readonly _visibility = signal<ColumnVisibilityState>(DEFAULT_TASK_TABLE_COLUMNS);
 	private readonly _columnFilters = signal<ColumnFiltersState>([]);
+	private readonly _rowSelection = signal<RowSelectionState>({});
 	private readonly _sorting = signal<SortingState>([]);
 	private readonly _pagination = signal<PaginationState>({
 		pageSize: 20,
@@ -339,11 +367,16 @@ export class TasksExample {
 		features,
 		columns,
 		data: TASK_DATA,
+		getRowId: (row) => String(row.id),
 		state: {
 			columnFilters: this._columnFilters(),
+			rowSelection: this._rowSelection(),
 			sorting: this._sorting(),
 			pagination: this._pagination(),
 			columnVisibility: this._visibility(),
+		},
+		onRowSelectionChange: (updater) => {
+			updater instanceof Function ? this._rowSelection.update(updater) : this._rowSelection.set(updater);
 		},
 		onColumnVisibilityChange: (updater) => {
 			updater instanceof Function ? this._visibility.update(updater) : this._visibility.set(updater);
@@ -351,6 +384,7 @@ export class TasksExample {
 		},
 		onColumnFiltersChange: (updater) => {
 			updater instanceof Function ? this._columnFilters.update(updater) : this._columnFilters.set(updater);
+			this._pagination.update((state) => ({ ...state, pageIndex: 0 }));
 		},
 		onSortingChange: (updater) => {
 			updater instanceof Function ? this._sorting.update(updater) : this._sorting.set(updater);

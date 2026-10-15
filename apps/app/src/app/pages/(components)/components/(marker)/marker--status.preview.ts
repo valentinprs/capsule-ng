@@ -1,27 +1,27 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmMarkerImports } from '@spartan-ng/helm/marker';
-import { HlmSpinner } from '@spartan-ng/helm/spinner';
+import { CapsMarkerImports } from '@capsule-ng/caps/marker';
+import { CapsSpinner } from '@capsule-ng/caps/spinner';
 
 @Component({
 	selector: 'spartan-marker-status-preview',
-	imports: [HlmMarkerImports, HlmSpinner],
+	imports: [CapsMarkerImports, CapsSpinner],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-8 py-12',
 	},
 	template: `
-		<div hlmMarker role="status">
-			<span hlmMarkerIcon>
-				<hlm-spinner />
-			</span>
-			<span hlmMarkerContent>Compacting conversation</span>
-		</div>
-		<div hlmMarker variant="separator" role="status">
-			<span hlmMarkerIcon>
-				<hlm-spinner />
-			</span>
-			<span hlmMarkerContent>Running tests</span>
-		</div>
+		<caps-marker role="status">
+			<caps-marker-icon>
+				<caps-spinner aria-hidden="true" />
+			</caps-marker-icon>
+			<caps-marker-content>Compacting conversation</caps-marker-content>
+		</caps-marker>
+		<caps-marker variant="separator" role="status">
+			<caps-marker-icon>
+				<caps-spinner aria-hidden="true" />
+			</caps-marker-icon>
+			<caps-marker-content>Running tests</caps-marker-content>
+		</caps-marker>
 	`,
 })
 export class MarkerStatusPreview {}

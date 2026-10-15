@@ -1,7 +1,13 @@
+import {
+	type CapsCalendarI18n,
+	CapsJalaliDateAdapter,
+	type JalaliDate,
+	type MonthLabels,
+	provideCapsCalendarI18n,
+	provideCapsDateAdapter,
+} from '@capsule-ng/caps/calendar';
+import { CapsDatePicker, CapsDatePickerImports, provideCapsDatePickerConfig } from '@capsule-ng/caps/date-picker';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
-import { type BrnCalendarI18n, type MonthLabels, provideBrnCalendarI18n } from '@spartan-ng/brain/calendar';
-import { BrnJalaliDateAdapter, JalaliDate, provideDateAdapter } from '@spartan-ng/brain/date-time';
-import { HlmDatePicker, HlmDatePickerImports, provideHlmDatePickerConfig } from '@spartan-ng/helm/date-picker';
 import { type Meta, type StoryObj, moduleMetadata } from '@storybook/angular';
 
 const JALALI_MONTHS = [
@@ -19,7 +25,7 @@ const JALALI_MONTHS = [
 	'اسفند',
 ] as MonthLabels;
 
-const jalaliCalendarI18n: BrnCalendarI18n = {
+const jalaliCalendarI18n: CapsCalendarI18n = {
 	formatWeekdayName: (i) => ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'][i],
 	months: () => JALALI_MONTHS,
 	years: (startYear = 1300, endYear = 1420) => Array.from({ length: endYear - startYear + 1 }, (_, i) => startYear + i),
@@ -32,9 +38,9 @@ const jalaliCalendarI18n: BrnCalendarI18n = {
 	firstDayOfWeek: () => 6,
 };
 
-const meta: Meta<HlmDatePicker<JalaliDate>> = {
+const meta: Meta<CapsDatePicker<JalaliDate>> = {
 	title: 'Date Picker / Jalali (Persian)',
-	component: HlmDatePicker,
+	component: CapsDatePicker,
 	tags: ['autodocs'],
 	args: {
 		captionLayout: 'dropdown',
@@ -49,11 +55,11 @@ const meta: Meta<HlmDatePicker<JalaliDate>> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [HlmDatePickerImports, CapsFieldImports],
+			imports: [CapsDatePickerImports, CapsFieldImports],
 			providers: [
-				provideDateAdapter(BrnJalaliDateAdapter),
-				provideBrnCalendarI18n(jalaliCalendarI18n),
-				provideHlmDatePickerConfig({
+				provideCapsDateAdapter(CapsJalaliDateAdapter),
+				provideCapsCalendarI18n(jalaliCalendarI18n),
+				provideCapsDatePickerConfig({
 					formatDate: (date: JalaliDate) =>
 						`${date.year}/${String(date.month).padStart(2, '0')}/${String(date.day).padStart(2, '0')}`,
 				}),
@@ -63,10 +69,10 @@ const meta: Meta<HlmDatePicker<JalaliDate>> = {
 	render: ({ ...args }) => ({
 		props: args,
 		template: `
-		<div class="preview flex min-h-[350px] w-full justify-center p-10 items-center" dir="rtl">
-			<hlm-date-picker [captionLayout]="captionLayout">
-                <hlm-date-picker-trigger buttonId="date-jalali">انتخاب تاریخ</hlm-date-picker-trigger>
-            </hlm-date-picker>
+		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center" dir="rtl" lang="fa" data-lang="ar">
+			<caps-date-picker [captionLayout]="captionLayout">
+                <caps-date-picker-trigger buttonId="date-jalali">انتخاب تاریخ</caps-date-picker-trigger>
+            </caps-date-picker>
 		</div>
 		`,
 	}),
@@ -74,7 +80,7 @@ const meta: Meta<HlmDatePicker<JalaliDate>> = {
 
 export default meta;
 
-type Story = StoryObj<HlmDatePicker<JalaliDate>>;
+type Story = StoryObj<CapsDatePicker<JalaliDate>>;
 
 export const Default: Story = {
 	args: { captionLayout: 'dropdown' },

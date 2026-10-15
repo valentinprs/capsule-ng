@@ -1,25 +1,25 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
 import { CapsButton } from '@capsule-ng/caps/button';
 import { CapsPopoverImports } from '@capsule-ng/caps/popover';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideInfo } from '@ng-icons/lucide';
-import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 
 @Component({
 	selector: 'spartan-bubble-popover-preview',
-	imports: [HlmBubbleImports, CapsPopoverImports, CapsButton, NgIcon],
+	imports: [CapsBubbleImports, CapsPopoverImports, CapsButton, NgIcon],
 	providers: [provideIcons({ lucideInfo })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'flex w-full max-w-sm flex-col gap-4 py-12',
 	},
 	template: `
-		<div hlmBubble align="end">
-			<div hlmBubbleContent>Run the build script.</div>
-		</div>
-		<div hlmBubble variant="destructive">
-			<div hlmBubbleContent>Failed to run the command.</div>
-			<div hlmBubbleReactions>
+		<caps-bubble align="end">
+			<caps-bubble-content>Run the build script.</caps-bubble-content>
+		</caps-bubble>
+		<caps-bubble variant="destructive">
+			<caps-bubble-content>Failed to run the command.</caps-bubble-content>
+			<caps-bubble-reactions>
 				<caps-popover>
 					<button
 						capsPopoverTrigger
@@ -38,8 +38,8 @@ import { HlmBubbleImports } from '@spartan-ng/helm/bubble';
 						</div>
 					</ng-template>
 				</caps-popover>
-			</div>
-		</div>
+			</caps-bubble-reactions>
+		</caps-bubble>
 	`,
 })
 export class BubblePopoverPreview {}

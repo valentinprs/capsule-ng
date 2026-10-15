@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
-import { HlmAutocompleteImports } from '@spartan-ng/helm/autocomplete';
+import { CapsAutocompleteImports } from '@capsule-ng/caps/autocomplete';
 
 type Assignee = {
 	id: string;
@@ -8,23 +8,22 @@ type Assignee = {
 
 @Component({
 	selector: 'spartan-autocomplete-resolve-value-id',
-	imports: [HlmAutocompleteImports],
+	imports: [CapsAutocompleteImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		class: 'w-full max-w-xs',
 	},
 	template: `
-		<hlm-autocomplete [(search)]="search" [itemToString]="itemToString">
-			<hlm-autocomplete-input placeholder="Search reviewers" />
-			<hlm-autocomplete-content *hlmAutocompletePortal>
-				<hlm-autocomplete-empty>No reviewer found.</hlm-autocomplete-empty>
-				<div hlmAutocompleteList>
-					@for (option of filteredOptions(); track $index) {
-						<hlm-autocomplete-item [value]="option.id">{{ option.name }}</hlm-autocomplete-item>
-					}
-				</div>
-			</hlm-autocomplete-content>
-		</hlm-autocomplete>
+		<caps-autocomplete [(search)]="search" [itemToString]="itemToString">
+			<caps-autocomplete-input placeholder="Search reviewers" />
+			<caps-autocomplete-content>
+				<caps-autocomplete-empty>No reviewer found.</caps-autocomplete-empty>
+
+				@for (option of filteredOptions(); track $index) {
+					<caps-autocomplete-option [value]="option.id">{{ option.name }}</caps-autocomplete-option>
+				}
+			</caps-autocomplete-content>
+		</caps-autocomplete>
 	`,
 })
 export class AutocompleteResolveValueIdPreview {

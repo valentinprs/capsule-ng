@@ -1,24 +1,26 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDrawerImports } from '@spartan-ng/helm/drawer';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { CapsDrawerImports } from '@capsule-ng/caps/drawer';
 
 @Component({
 	selector: 'spartan-drawer-direction-preview',
-	imports: [HlmDrawerImports, HlmButtonImports],
+	imports: [CapsDrawerImports, CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-drawer>
+		<caps-drawer>
 			<div class="flex flex-wrap gap-2">
-				<button id="bottom" hlmDrawerTrigger direction="bottom" hlmBtn variant="outline">Bottom</button>
-				<button id="top" hlmDrawerTrigger direction="top" hlmBtn variant="outline">Top</button>
-				<button id="left" hlmDrawerTrigger direction="left" hlmBtn variant="outline">Left</button>
-				<button id="right" hlmDrawerTrigger direction="right" hlmBtn variant="outline">Right</button>
+				<button id="bottom" capsDrawerTrigger side="bottom" capsButton variant="outline">Bottom</button>
+				<button id="top" capsDrawerTrigger side="top" capsButton variant="outline">Top</button>
+				<button id="left" capsDrawerTrigger side="left" capsButton variant="outline">Left</button>
+				<button id="right" capsDrawerTrigger side="right" capsButton variant="outline">Right</button>
 			</div>
-			<hlm-drawer-content *hlmDrawerPortal="let ctx">
-				<hlm-drawer-header>
-					<h3 hlmDrawerTitle>Edit profile</h3>
-					<p hlmDrawerDescription>Make changes to your profile here. Click save when you're done.</p>
-				</hlm-drawer-header>
+			<ng-template capsDrawerContent>
+				<caps-drawer-header>
+					<caps-drawer-title>Edit profile</caps-drawer-title>
+					<caps-drawer-description>
+						Make changes to your profile here. Click save when you're done.
+					</caps-drawer-description>
+				</caps-drawer-header>
 				<div class="px-4">
 					@for (item of _items; track item) {
 						<p class="mb-4 leading-normal">
@@ -27,12 +29,12 @@ import { HlmDrawerImports } from '@spartan-ng/helm/drawer';
 						</p>
 					}
 				</div>
-				<hlm-drawer-footer>
-					<button hlmBtn>Save changes</button>
-					<button hlmBtn variant="outline" hlmDrawerClose>Cancel</button>
-				</hlm-drawer-footer>
-			</hlm-drawer-content>
-		</hlm-drawer>
+				<caps-drawer-footer>
+					<button capsButton>Save changes</button>
+					<button capsButton variant="outline" capsDrawerClose>Cancel</button>
+				</caps-drawer-footer>
+			</ng-template>
+		</caps-drawer>
 	`,
 })
 export class DrawerDirectionPreview {

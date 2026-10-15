@@ -1,26 +1,30 @@
-import { Component } from '@angular/core';
-import { HlmAccordionImports } from '@spartan-ng/helm/accordion';
+import { Component, signal } from '@angular/core';
+import { CapsAccordionImports } from '@capsule-ng/caps/accordion';
 
 @Component({
 	selector: 'spartan-accordion-borders',
-	imports: [HlmAccordionImports],
+	imports: [CapsAccordionImports],
 	host: {
-		class: 'max-w-lg h-[320px] flex flex-col justify-between',
+		class: 'block max-w-lg',
 	},
 	template: `
-		<hlm-accordion class="rounded-lg border">
+		<caps-accordion class="rounded-lg border">
 			@for (item of items; track $index) {
-				<hlm-accordion-item class="border-b px-4 last:border-b-0">
-					<hlm-accordion-trigger>
-						{{ item.trigger }}
-					</hlm-accordion-trigger>
-					<hlm-accordion-content>{{ item.content }}</hlm-accordion-content>
-				</hlm-accordion-item>
+				<caps-accordion-item
+					class="border-b px-4 last:border-b-0"
+					[title]="item.trigger"
+					[id]="'accordion--borders-example-' + item.value"
+					[expanded]="_activeItem() === 'accordion--borders-example-' + item.value"
+					(selected)="_activeItem.set($event.expanded ? $event.id : null)"
+				>
+					{{ item.content }}
+				</caps-accordion-item>
 			}
-		</hlm-accordion>
+		</caps-accordion>
 	`,
 })
 export class AccordionBorders {
+	protected readonly _activeItem = signal<string | null>(null);
 	public items = [
 		{
 			value: 'billing',

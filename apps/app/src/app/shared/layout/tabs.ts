@@ -1,33 +1,31 @@
 import { Component, computed, EventEmitter, Input, input, Output } from '@angular/core';
-import { BrnTabs, BrnTabsContent, BrnTabsList, BrnTabsTrigger } from '@spartan-ng/brain/tabs';
+import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 
-export const tabBtn =
-	'inline-flex items-center justify-center whitespace-nowrap py-1 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-(--caps-opacity-50) data-[state=active]:bg-background relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none';
 export const tabContent =
 	'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md border border-border';
 @Component({
 	selector: 'spartan-tabs',
-	imports: [BrnTabs, BrnTabsList, BrnTabsTrigger, BrnTabsContent],
+	imports: [CapsTabsImports],
 	host: {
 		class: 'block mt-4',
 	},
 	template: `
-		<div [brnTabs]="_tabValue()" class="block" (tabActivated)="onTabActivated($event)">
-			<div
-				brnTabsList
+		<caps-tabs [value]="_tabValue()" class="block" (tabActivated)="onTabActivated($event)">
+			<caps-tabs-list
+				type="line"
 				class="border-border text-muted-foreground mb-4 inline-flex h-9 w-full items-center justify-start rounded-none border-b bg-transparent p-0"
 				[attr.aria-label]="'Tablist showing ' + firstTab + ' and ' + secondTab"
 			>
-				<button class="${tabBtn}" [brnTabsTrigger]="firstTab">{{ firstTab }}</button>
-				<button class="${tabBtn}" [brnTabsTrigger]="secondTab">{{ secondTab }}</button>
-			</div>
-			<div class="${tabContent}" [brnTabsContent]="firstTab">
+				<button capsTabsTrigger [value]="firstTab">{{ firstTab }}</button>
+				<button capsTabsTrigger [value]="secondTab">{{ secondTab }}</button>
+			</caps-tabs-list>
+			<caps-tabs-content class="${tabContent}" [value]="firstTab">
 				<ng-content select="[firstTab]" />
-			</div>
-			<div class="${tabContent}" [brnTabsContent]="secondTab">
+			</caps-tabs-content>
+			<caps-tabs-content class="${tabContent}" [value]="secondTab">
 				<ng-content select="[secondTab]" />
-			</div>
-		</div>
+			</caps-tabs-content>
+		</caps-tabs>
 	`,
 })
 export class Tabs {

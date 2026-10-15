@@ -1,0 +1,28 @@
+/* The six shared theme sheets supply the existing command visual variants. */
+.caps-command-input-wrapper {
+	display: block;
+}
+.caps-command-input-group {
+	@apply flex items-center gap-2 border ps-2;
+}
+.caps-command-input-group:focus-within {
+	@apply border-ring ring-ring/50 ring-[length:var(--caps-focus-ring-width)];
+}
+.caps-command-input {
+	@apply min-w-0 bg-transparent px-2 py-1.5 outline-none disabled:cursor-not-allowed disabled:opacity-50;
+}
+.caps-command-input-icon {
+	@apply size-4;
+}
+.caps-command-empty[hidden] {
+	display: none;
+}
+.caps-command-shortcut {
+	display: inline-flex;
+}
+.caps-command-dialog {
+	@apply w-96 max-w-[calc(100vw-2rem)] gap-0 p-0;
+}
+.caps-command-dialog > .caps-command {
+	@apply min-h-0;
+}

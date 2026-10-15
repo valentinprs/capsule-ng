@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, input, linkedSignal, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
 import { FormValueControl } from '@angular/forms/signals';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 
 export type Country = {
 	code: string;
@@ -12,25 +12,25 @@ export type Country = {
 
 @Component({
 	selector: 'spartan-country-picker',
-	imports: [HlmComboboxImports],
+	imports: [CapsComboboxImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<hlm-combobox
-			[value]="_displayValue()"
-			[disabled]="disabled()"
+		<caps-combobox
+			[value]="value()"
+			[itemToString]="countryLabel"
+			[disabled]="disabled() || readonly()"
 			(valueChange)="updateValue($event)"
 			(closed)="touchedChange.emit(true)"
 		>
-			<hlm-combobox-input [inputId]="inputId()" placeholder="Select a country" showClear />
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
-					@for (country of countries; track country.code) {
-						<hlm-combobox-item [value]="country.code">{{ country.flag }} {{ country.label }}</hlm-combobox-item>
-					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox>
+			<caps-combobox-input [inputId]="inputId()" placeholder="Select a country" showClear />
+			<caps-combobox-content>
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
+				@for (country of countries; track country.code) {
+					<caps-combobox-option [value]="country.code">{{ country.flag }} {{ country.label }}</caps-combobox-option>
+				}
+			</caps-combobox-content>
+		</caps-combobox>
 	`,
 })
 export class CountryPicker implements FormValueControl<string | null> {
@@ -46,10 +46,10 @@ export class CountryPicker implements FormValueControl<string | null> {
 
 	public readonly inputId = input<string>(`country-picker-${CountryPicker._id++}`);
 
-	protected readonly _displayValue = linkedSignal(() => {
-		const country = this.countries.find((c) => c.code === this.value());
-		return country ? `${country.flag} ${country.label}` : null;
-	});
+	public readonly countryLabel = (code: string): string => {
+		const country = this.countries.find((country) => country.code === code);
+		return country ? `${country.flag} ${country.label}` : code;
+	};
 
 	public readonly countries: Country[] = [
 		{ code: 'af', value: 'afghanistan', label: 'Afghanistan', continent: 'Asia', flag: '🇦🇫' },
@@ -114,9 +114,9 @@ export class CountryPicker implements FormValueControl<string | null> {
 
 export const countryPickerCode = `
 // country-picker.ts
-import { ChangeDetectionStrategy, Component, input, linkedSignal, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
 import { FormValueControl } from '@angular/forms/signals';
-import { HlmComboboxImports } from '@spartan-ng/helm/combobox';
+import { CapsComboboxImports } from '@capsule-ng/caps/combobox';
 
 export type Country = {
 	code: string;
@@ -128,25 +128,26 @@ export type Country = {
 
 @Component({
 	selector: 'spartan-country-picker',
-	imports: [HlmComboboxImports],
+	imports: [CapsComboboxImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: \`
-		<hlm-combobox
-			[value]="_displayValue()"
-			[disabled]="disabled()"
+		<caps-combobox
+			[value]="value()"
+   [itemToString]="countryLabel"
+			[disabled]="disabled() || readonly()"
 			(valueChange)="updateValue($event)"
 			(closed)="touchedChange.emit(true)"
 		>
-			<hlm-combobox-input [inputId]="inputId()" placeholder="Select a country" showClear />
-			<hlm-combobox-content *hlmComboboxPortal>
-				<hlm-combobox-empty>No items found.</hlm-combobox-empty>
-				<div hlmComboboxList>
+			<caps-combobox-input [inputId]="inputId()" placeholder="Select a country" showClear />
+			<caps-combobox-content>
+				<caps-combobox-empty>No items found.</caps-combobox-empty>
+
 					@for (country of countries; track country.code) {
-						<hlm-combobox-item [value]="country.code">{{ country.flag }} {{ country.label }}</hlm-combobox-item>
+						<caps-combobox-option [value]="country.code">{{ country.flag }} {{ country.label }}</caps-combobox-option>
 					}
-				</div>
-			</hlm-combobox-content>
-		</hlm-combobox>
+
+			</caps-combobox-content>
+		</caps-combobox>
 	\`,
 })
 export class CountryPicker implements FormValueControl<string | null> {
@@ -162,10 +163,10 @@ export class CountryPicker implements FormValueControl<string | null> {
 
 	public readonly inputId = input<string>(\`country-picker-\${CountryPicker._id++}\`);
 
-	protected readonly _displayValue = linkedSignal(() => {
-		const country = this.countries.find((c) => c.code === this.value());
-		return country ? \`\${country.flag} \${country.label}\` : null;
-	});
+	public readonly countryLabel = (code: string): string => {
+  const country = this.countries.find((country) => country.code === code);
+  return country ? \`\${country.flag} \${country.label}\` : code;
+ };
 
 	public readonly countries: Country[] = [
 		{ code: 'af', value: 'afghanistan', label: 'Afghanistan', continent: 'Asia', flag: '🇦🇫' },

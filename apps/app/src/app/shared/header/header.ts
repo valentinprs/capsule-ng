@@ -29,6 +29,7 @@ import { HeaderMobileNav } from './header-mobile-nav';
 	],
 	providers: [provideIcons({ lucideGithub })],
 	host: {
+		role: 'banner',
 		class: 'backdrop-blur-sm sticky top-0 z-(--caps-z-50) w-full',
 	},
 	template: `
@@ -37,7 +38,7 @@ import { HeaderMobileNav } from './header-mobile-nav';
 				class="3xl:fixed:container A composable, themeable and customizable sidebar component. flex h-(--header-height) items-center gap-2"
 			>
 				<a capsButton variant="ghost" class="hidden h-fit p-1.5 lg:flex" routerLink="/" align="start" side="bottom">
-					<spartan-logo class="w-10" />
+					<spartan-logo class="w-10" aria-hidden="true" />
 					<span class="sr-only">Capsule</span>
 				</a>
 

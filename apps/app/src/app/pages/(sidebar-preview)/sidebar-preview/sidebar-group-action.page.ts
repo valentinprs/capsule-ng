@@ -1,13 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
+import { CapsSonnerImports, toast } from '@capsule-ng/caps/sonner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChartPie, lucideFrame, lucideMap, lucidePlus } from '@ng-icons/lucide';
-import { toast } from '@spartan-ng/brain/sonner';
-import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 
 @Component({
 	selector: 'spartan-sidebar-group-action',
-	imports: [CapsSidebarImports, NgIcon, HlmToasterImports],
+	imports: [CapsSidebarImports, NgIcon, CapsSonnerImports],
 	providers: [
 		provideIcons({
 			lucideFrame,
@@ -19,7 +18,7 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 	encapsulation: ViewEncapsulation.None,
 	styleUrl: 'sidebar-default.css',
 	template: `
-		<hlm-toaster />
+		<caps-toaster />
 		<caps-sidebar-wrapper>
 			<caps-sidebar>
 				<caps-sidebar-content>

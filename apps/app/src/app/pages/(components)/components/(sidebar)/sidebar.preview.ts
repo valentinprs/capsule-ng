@@ -520,14 +520,14 @@ import {
   lucideMap,
   lucidePlus,
 } from '@ng-icons/lucide';
-import { toast } from '@spartan-ng/brain/sonner';
-import { HlmToasterImports } from '@spartan-ng/helm/sonner';
+import { toast } from '@capsule-ng/caps/sonner';
+import { CapsSonnerImports } from '@capsule-ng/caps/sonner';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CapsSidebarImports, NgIcon,  HlmToasterImports],
+  imports: [CapsSidebarImports, NgIcon,  CapsSonnerImports],
   template: \`
-    <hlm-toaster />
+    <caps-toaster />
     <caps-sidebar-wrapper>
       <caps-sidebar>
         <caps-sidebar-content>

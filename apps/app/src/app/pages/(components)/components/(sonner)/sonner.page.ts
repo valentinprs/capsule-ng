@@ -50,6 +50,13 @@ export const routeMeta: RouteMeta = {
 		<section spartanMainSection>
 			<spartan-section-intro name="Sonner" lead="An opinionated toast component for Angular." showThemeToggle />
 
+			<p class="${hlmP}" data-sonner-accessibility-limits>
+				Known accessibility limits: the unchanged Brain notification list has a native list-child mismatch and its list
+				item uses the status role. These can affect list and announcement semantics. Tests report both findings with
+				targeted exceptions; this is not a claim of complete accessibility conformance. Keep essential messages and
+				actions available in the application.
+			</p>
+
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
 					<spartan-sonner-preview />
@@ -59,7 +66,7 @@ export const routeMeta: RouteMeta = {
 
 			<p class="${hlmP}">
 				Add the
-				<code class="${hlmCode}">HlmToaster</code>
+				<code class="${hlmCode}">CapsToaster</code>
 				component to your root component.
 			</p>
 
@@ -70,7 +77,7 @@ export const routeMeta: RouteMeta = {
 				If you are using Angular 21+, the CDK overlay now defaults to using the
 				<code class="${hlmCode}">popover</code>
 				attribute, which causes overlay-based components (sheets, dialogs, etc.) to always render above
-				<code class="${hlmCode}">&lt;hlm-toaster&gt;</code>
+				<code class="${hlmCode}">&lt;caps-toaster&gt;</code>
 				. To fix this, add
 				<code class="${hlmCode}">provideSpartanHlm()</code>
 				to your application config:
@@ -108,11 +115,9 @@ export const routeMeta: RouteMeta = {
 				<spartan-code secondTab [code]="_positionCode()" />
 			</spartan-tabs>
 
-			<spartan-section-sub-heading id="brn-api">Brain API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="brain" />
-
-			<spartan-section-sub-heading id="hlm-api">Helm API</spartan-section-sub-heading>
-			<spartan-ui-api-docs docType="helm" />
+			<spartan-section-sub-heading id="caps-api">Capsule API</spartan-section-sub-heading>
+			<h3 id="caps-api-components" class="mt-6 text-xl font-semibold tracking-tight">Components</h3>
+			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
 				<spartan-page-bottom-nav-link href="spinner" label="Spinner" />

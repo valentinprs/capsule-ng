@@ -493,3 +493,23 @@
 		min-width: 3rem;
 	}
 }
+
+/* Sonner: Brain owns placement/timers; Capsule owns the shared visual foundation. */
+@layer caps {
+	.caps-toast {
+		border-radius: var(--radius);
+		font-family: var(--font-sans);
+	}
+	.caps-toast [data-close-button]:focus-visible {
+		outline: 2px solid var(--ring);
+		outline-offset: 2px;
+	}
+	.caps-toast [data-caps-toast-action],
+	.caps-toast [data-caps-toast-cancel] {
+		flex-shrink: 0;
+	}
+	.caps-toast [data-content] {
+		min-width: 0;
+		overflow-wrap: anywhere;
+	}
+}

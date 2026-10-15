@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { form, FormField, FormRoot, required } from '@angular/forms/signals';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
-import { toast } from '@spartan-ng/brain/sonner';
+import { toast } from '@capsule-ng/caps/sonner';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({

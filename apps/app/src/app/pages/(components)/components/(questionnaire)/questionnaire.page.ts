@@ -1,6 +1,6 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
-import { HlmToasterImports } from '@spartan-ng/helm/sonner';
+import { CapsSonnerImports } from '@capsule-ng/caps/sonner';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { injectComponentDocs } from '../../../../core/services/component-docs';
 import { PrimitiveSnippetsService } from '../../../../core/services/primitive-snippets.service';
@@ -68,10 +68,10 @@ export const routeMeta: RouteMeta = {
 		QuestionnaireAnimatedPreview,
 		QuestionnaireCardPreview,
 		QuestionnaireDialogPreview,
-		HlmToasterImports,
+		CapsSonnerImports,
 	],
 	template: `
-		<hlm-toaster />
+		<caps-toaster />
 		<section spartanMainSection>
 			<spartan-section-intro
 				name="Questionnaire"

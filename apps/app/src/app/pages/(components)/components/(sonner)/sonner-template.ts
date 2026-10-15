@@ -2,15 +2,15 @@ export const defaultTemplate = `
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { HlmToasterImports } from '@spartan-ng/helm/sonner';
+import { CapsSonnerImports } from '@capsule-ng/caps/sonner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HlmToasterImports],
+  imports: [RouterOutlet, CapsSonnerImports],
   template: \`
     <router-outlet />
 
-    <hlm-toaster />
+    <caps-toaster />
   \`,
 })
 export class App {}

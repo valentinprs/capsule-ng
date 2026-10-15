@@ -4,10 +4,9 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsFieldImports } from '@capsule-ng/caps/field';
 import { CapsInputOtpImports } from '@capsule-ng/caps/input-otp';
+import { CapsSonnerImports, toast } from '@capsule-ng/caps/sonner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRefreshCw } from '@ng-icons/lucide';
-import { toast } from '@spartan-ng/brain/sonner';
-import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 
 @Component({
 	selector: 'spartan-input-otp-form',
@@ -16,7 +15,7 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 		FormField,
 		NgIcon,
 		CapsButtonImports,
-		HlmToasterImports,
+		CapsSonnerImports,
 		CapsCardImports,
 		CapsFieldImports,
 		CapsInputOtpImports,
@@ -26,7 +25,7 @@ import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 		class: 'preview flex min-h-[350px] w-full justify-center items-center max-w-lg',
 	},
 	template: `
-		<hlm-toaster />
+		<caps-toaster />
 		<caps-card class="mx-auto">
 			<caps-card-header>
 				<caps-card-title>Verify your login</caps-card-title>

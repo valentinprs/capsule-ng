@@ -1,3 +1,5 @@
+import { partitionKnownSonnerViolations } from '@capsule-ng/test-support/sonner';
+import type { AxeResults } from 'axe-core';
 import 'cypress-real-events';
 // Catalogue runs in DEV. Hydration statistics are distinct from font/layout readiness.
 function visitHydrated(url: string): void {
@@ -112,7 +114,7 @@ describe('Capsule conversation flow', { retries: 0 }, () => {
 				hydration: Reflect.get(win, '__lot26Hydration'),
 				statistics: Reflect.get(win, 'ngDevMode'),
 				nativeEvents: Reflect.get(win, '__lot26NativeEvents'),
-				toasterCount: win.document.querySelectorAll('hlm-toaster').length,
+				toasterCount: win.document.querySelectorAll('caps-toaster').length,
 				toastTitles: Array.from(win.document.querySelectorAll('[data-sonner-toast] [data-title]')).map(
 					(el) => el.textContent,
 				),
@@ -134,7 +136,7 @@ describe('Capsule conversation flow', { retries: 0 }, () => {
 					expect(JSON.stringify(data)).not.to.contain('@spartan-ng/helm/' + family);
 				});
 			cy.get('button button,button a,a button,a a').should('not.exist');
-			cy.get('hlm-toaster').should('have.length', 1);
+			cy.get('caps-toaster').should('have.length', 1);
 		}
 	});
 	it('uses a native Marker keyboard action with decorative status icons', () => {
@@ -147,6 +149,8 @@ describe('Capsule conversation flow', { retries: 0 }, () => {
 		cy.get(preview + ' button[capsMarker]').should('be.focused');
 		cy.realPress('Enter');
 		cy.contains('[data-sonner-toast] [data-title]', 'You clicked the revert button').should('be.visible');
+		cy.get('[data-sonner-toast]').should('have.attr', 'data-mounted', 'true');
+		cy.get('[data-sonner-toaster]').realHover();
 		cy.get(preview + ' button[capsMarker]').should('have.attr', 'type', 'button');
 		cy.get(preview + ' a[capsMarker]').should('have.attr', 'href', '#examples__links_and_buttons');
 		cy.get('spartan-marker-status-preview caps-marker-icon').should('have.attr', 'aria-hidden', 'true');
@@ -154,14 +158,22 @@ describe('Capsule conversation flow', { retries: 0 }, () => {
 		cy.injectAxe();
 		cy.checkA11y(preview);
 		cy.checkA11y('spartan-marker-status-preview');
-		// Record unfiltered full-document interference separately; no global axe PASS is claimed.
+		// Keep the native notification mounted while the full document audit runs.
 		cy.window()
 			.then((win) => Reflect.get(win, 'axe').run(win.document))
-			.then((result) =>
-				cy.writeFile(
-					Cypress.config('projectRoot') + '/../../work/sonner-existing-full-document-axe-' + Date.now() + '.json',
-					result,
-				),
+			.then((raw: AxeResults) =>
+				cy.document().then((document) => {
+					const classified = partitionKnownSonnerViolations(raw.violations, document);
+					return cy
+						.writeFile(
+							Cypress.config('projectRoot') + '/../../work/sonner-existing-full-document-axe-' + Date.now() + '.json',
+							raw,
+						)
+						.then(() => {
+							expect(classified.remaining, 'all other full-document axe nodes and checks').to.deep.equal([]);
+							expect(classified.missingExpected, 'obsolete Sonner exceptions require review/removal').to.deep.equal([]);
+						});
+				}),
 			);
 	});
 	it('preserves a visible logical row across real history loading without transcript announcements', () => {

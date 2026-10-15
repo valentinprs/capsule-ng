@@ -3,10 +3,10 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsMessageScrollerImports } from '@capsule-ng/caps/message-scroller';
+import { toast } from '@capsule-ng/caps/sonner';
 import { CapsTooltipImports } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideRotateCw } from '@ng-icons/lucide';
-import { toast } from '@spartan-ng/brain/sonner';
 import { MessageScrollerTranscriptRow } from './message-scroller-transcript-row';
 import { HISTORY_SCRIPT } from './message-scroller.shared';
 

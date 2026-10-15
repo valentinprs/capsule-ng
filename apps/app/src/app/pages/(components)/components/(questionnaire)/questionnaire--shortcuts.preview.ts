@@ -4,7 +4,7 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
 import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
 import { CapsSelectImports } from '@capsule-ng/caps/select';
-import { toast } from '@spartan-ng/brain/sonner';
+import { toast } from '@capsule-ng/caps/sonner';
 import { answerLabel, type QuestionnaireShortcutMode } from './questionnaire.shared';
 
 type ShortcutSelectValue = 'none' | 'letters' | 'numbers';

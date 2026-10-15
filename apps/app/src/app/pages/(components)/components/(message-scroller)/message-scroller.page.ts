@@ -1,8 +1,8 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
+import { CapsSonnerImports } from '@capsule-ng/caps/sonner';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
-import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
@@ -40,7 +40,7 @@ export const routeMeta: RouteMeta = {
 @Component({
 	selector: 'spartan-message-scroller',
 	imports: [
-		HlmToasterImports,
+		CapsSonnerImports,
 		UIApiDocs,
 		MainSection,
 		Code,
@@ -254,7 +254,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-page-bottom-nav>
 		</section>
 		<spartan-page-nav />
-		<hlm-toaster />
+		<caps-toaster />
 	`,
 })
 export default class MessageScrollerPage {

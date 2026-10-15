@@ -173,6 +173,8 @@
 			"@spartan-ng/tools": ["libs/tools/src/index.ts"],
 			"@spartan-ng/trpc": ["libs/trpc/src/index.ts"],
 			"@capsule-ng/caps/slider": ["libs/caps/slider/src/index.ts"],
+			"@capsule-ng/caps/sonner": ["libs/caps/sonner/src/index.ts"],
+			"@capsule-ng/test-support/sonner": ["libs/caps/sonner/testing/known-axe-violations.ts"],
 			"@capsule-ng/caps/select": ["libs/caps/select/src/index.ts"],
 			"@capsule-ng/caps/native-select": ["libs/caps/native-select/src/index.ts"],
 			"@capsule-ng/caps/dialog": ["libs/caps/dialog/src/index.ts"],

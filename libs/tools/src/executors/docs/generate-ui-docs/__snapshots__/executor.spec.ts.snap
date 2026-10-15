@@ -15786,6 +15786,80 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "[brnToastCancelAction]",
       },
     },
+    "caps": {
+      "CapsToaster": {
+        "inputs": [
+          {
+            "name": "invert",
+            "required": false,
+            "type": "ToasterProps['invert']",
+          },
+          {
+            "name": "theme",
+            "required": false,
+            "type": "ToasterProps['theme']",
+          },
+          {
+            "name": "position",
+            "required": false,
+            "type": "ToasterProps['position']",
+          },
+          {
+            "name": "hotKey",
+            "required": false,
+            "type": "ToasterProps['hotkey']",
+          },
+          {
+            "name": "richColors",
+            "required": false,
+            "type": "ToasterProps['richColors']",
+          },
+          {
+            "name": "expand",
+            "required": false,
+            "type": "ToasterProps['expand']",
+          },
+          {
+            "name": "duration",
+            "required": false,
+            "type": "ToasterProps['duration']",
+          },
+          {
+            "name": "visibleToasts",
+            "required": false,
+            "type": "ToasterProps['visibleToasts']",
+          },
+          {
+            "name": "closeButton",
+            "required": false,
+            "type": "ToasterProps['closeButton']",
+          },
+          {
+            "name": "toastOptions",
+            "required": false,
+            "type": "ToasterProps['toastOptions']",
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "type": "ToasterProps['offset']",
+          },
+          {
+            "name": "class",
+            "required": false,
+            "type": "ClassValue",
+          },
+          {
+            "name": "style",
+            "required": false,
+            "type": "Record<string, string>",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-toaster",
+      },
+    },
     "helm": {
       "HlmToaster": {
         "inputs": [

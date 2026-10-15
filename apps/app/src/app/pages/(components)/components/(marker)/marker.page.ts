@@ -1,11 +1,11 @@
 import type { RouteMeta } from '@analogjs/router';
 import { Component, computed, inject } from '@angular/core';
+import { CapsSonnerImports } from '@capsule-ng/caps/sonner';
 import { injectComponentDocs } from '@spartan-ng/app/app/core/services/component-docs';
 import { PrimitiveSnippetsService } from '@spartan-ng/app/app/core/services/primitive-snippets.service';
 import { CodeRtlPreview } from '@spartan-ng/app/app/shared/code/code-rtl-preview';
 import { RtlHeader } from '@spartan-ng/app/app/shared/code/rtl-header';
 import { SectionSubSubHeading } from '@spartan-ng/app/app/shared/layout/section-sub-sub-heading';
-import { HlmToasterImports } from '@spartan-ng/helm/sonner';
 import { hlmCode, hlmP } from '@spartan-ng/helm/typography';
 import { Code } from '../../../../shared/code/code';
 import { CodePreview } from '../../../../shared/code/code-preview';
@@ -40,7 +40,7 @@ export const routeMeta: RouteMeta = {
 @Component({
 	selector: 'spartan-marker',
 	imports: [
-		HlmToasterImports,
+		CapsSonnerImports,
 		UIApiDocs,
 		MainSection,
 		Code,
@@ -178,7 +178,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-page-bottom-nav>
 		</section>
 		<spartan-page-nav />
-		<hlm-toaster />
+		<caps-toaster />
 	`,
 })
 export default class MarkerPage {

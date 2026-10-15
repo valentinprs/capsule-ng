@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsMarkerImports } from '@capsule-ng/caps/marker';
+import { toast } from '@capsule-ng/caps/sonner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideGitBranch, lucideRotateCcw } from '@ng-icons/lucide';
-import { toast } from '@spartan-ng/brain/sonner';
 
 @Component({
 	selector: 'spartan-marker-link-button-preview',

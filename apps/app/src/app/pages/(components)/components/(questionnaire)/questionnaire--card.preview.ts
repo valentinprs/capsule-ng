@@ -4,7 +4,7 @@ import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import type { CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
 import { CapsQuestionnaireImports } from '@capsule-ng/caps/questionnaire';
-import { toast } from '@spartan-ng/brain/sonner';
+import { toast } from '@capsule-ng/caps/sonner';
 import { answerLabel } from './questionnaire.shared';
 
 @Component({

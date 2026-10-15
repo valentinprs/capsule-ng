@@ -3,7 +3,7 @@ import { form, FormField, FormRoot, required, validate } from '@angular/forms/si
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsQuestionnaireImports, type CapsQuestionnaireItemDefinition } from '@capsule-ng/caps/questionnaire';
-import { toast } from '@spartan-ng/brain/sonner';
+import { toast } from '@capsule-ng/caps/sonner';
 
 const items: readonly CapsQuestionnaireItemDefinition[] = [
 	{ name: 'detail', required: true },

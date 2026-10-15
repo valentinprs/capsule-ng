@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CapsBubbleImports } from '@capsule-ng/caps/bubble';
-import { toast } from '@spartan-ng/brain/sonner';
+import { toast } from '@capsule-ng/caps/sonner';
 
 @Component({
 	selector: 'spartan-bubble-link-button-preview',

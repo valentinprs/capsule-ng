@@ -1,19 +1,19 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { toast } from '@spartan-ng/brain/sonner';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { CapsButtonImports } from '@capsule-ng/caps/button';
+import { toast } from '@capsule-ng/caps/sonner';
 
 @Component({
 	selector: 'spartan-sonner-types-example',
-	imports: [HlmButtonImports],
+	imports: [CapsButtonImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-wrap justify-center gap-2">
-			<button hlmBtn variant="outline" (click)="showToast()">Default</button>
-			<button hlmBtn variant="outline" (click)="showSuccess()">Success</button>
-			<button hlmBtn variant="outline" (click)="showInfo()">Info</button>
-			<button hlmBtn variant="outline" (click)="showError()">Error</button>
-			<button hlmBtn variant="outline" (click)="showWarning()">Warning</button>
-			<button hlmBtn variant="outline" (click)="showPromise()">Promise</button>
+			<button capsButton type="button" variant="outline" (click)="showToast()">Default</button>
+			<button capsButton type="button" variant="outline" (click)="showSuccess()">Success</button>
+			<button capsButton type="button" variant="outline" (click)="showInfo()">Info</button>
+			<button capsButton type="button" variant="outline" (click)="showError()">Error</button>
+			<button capsButton type="button" variant="outline" (click)="showWarning()">Warning</button>
+			<button capsButton type="button" variant="outline" (click)="showPromise()">Promise</button>
 		</div>
 	`,
 })

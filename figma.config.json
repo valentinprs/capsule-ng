@@ -1,0 +1,7 @@
+{
+	"codeConnect": {
+		"include": ["libs/caps/**/*.figma.ts", "code-connect/**/*.figma.batch.json"],
+		"label": "Angular",
+		"language": "html"
+	}
+}

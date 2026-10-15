@@ -26,6 +26,8 @@ module.exports = [
 						'{projectRoot}/**/test-setup.ts',
 						'{projectRoot}/**/*.spec.ts',
 						'{projectRoot}/**/*.stories.ts',
+						'{projectRoot}/**/*.figma.ts',
+						'{projectRoot}/code-connect/**',
 					],
 				},
 			],

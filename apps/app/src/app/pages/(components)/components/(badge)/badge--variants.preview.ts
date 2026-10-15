@@ -7,6 +7,13 @@ import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex flex-wrap gap-2">
+			<caps-badge variant="primary">primary</caps-badge>
+			<caps-badge variant="secondary">secondary</caps-badge>
+			<caps-badge variant="outline">outline</caps-badge>
+			<caps-badge variant="ghost">ghost</caps-badge>
+			<caps-badge variant="destructive">destructive</caps-badge>
+		</div>
+		<div class="mt-2 flex flex-wrap gap-2">
 			<caps-badge variant="red">red</caps-badge>
 			<caps-badge variant="magenta">magenta</caps-badge>
 			<caps-badge variant="purple">purple</caps-badge>
@@ -18,7 +25,6 @@ import { CapsBadgeImports } from '@capsule-ng/caps/badge';
 			<caps-badge variant="cool-gray">cool-gray</caps-badge>
 			<caps-badge variant="warm-gray">warm-gray</caps-badge>
 			<caps-badge variant="high-contrast">high-contrast</caps-badge>
-			<caps-badge variant="outline">outline</caps-badge>
 		</div>
 	`,
 })

@@ -3,6 +3,10 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, Directive, inject
 import { classes } from '@spartan-ng/helm/utils';
 
 export type CapsBadgeVariant =
+	| 'primary'
+	| 'secondary'
+	| 'ghost'
+	| 'destructive'
 	| 'red'
 	| 'magenta'
 	| 'purple'

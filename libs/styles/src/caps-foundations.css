@@ -433,8 +433,8 @@
 		flex-direction: column;
 	}
 	.caps-badge {
-		@apply gap-1 rounded-full border border-transparent px-2 text-xs font-medium;
-		min-height: 1.5rem;
+		@apply gap-1 rounded-full border border-transparent px-2 text-xs font-semibold [&>ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
+		min-height: 1.25rem;
 	}
 	.caps-badge[data-size='sm'] {
 		min-height: 1.125rem;
@@ -450,7 +450,19 @@
 		@apply bg-primary text-primary-foreground;
 	}
 	.caps-badge[data-variant='outline'] {
-		@apply border-border text-foreground;
+		@apply border-border bg-background text-foreground;
+	}
+	.caps-badge[data-variant='primary'] {
+		@apply bg-primary text-primary-foreground;
+	}
+	.caps-badge[data-variant='secondary'] {
+		@apply bg-secondary text-secondary-foreground;
+	}
+	.caps-badge[data-variant='ghost'] {
+		@apply text-foreground bg-transparent;
+	}
+	.caps-badge[data-variant='destructive'] {
+		@apply bg-destructive/10 text-destructive dark:bg-destructive/20;
 	}
 
 	.caps-badge[data-skeleton] > * {

@@ -7,8 +7,7 @@ import { buttonLabel } from '../../../code-connect/helpers';
 const dialog = figma.selectedInstance;
 
 // The Figma component is the open dialog. In code it is declared with its trigger, so the snippet
-// shows an example trigger to replace. `Size` has no input in code; the decorative icon has no
-// Code Connect yet, so it is a placeholder in `caps-alert-dialog-media`.
+// shows an example trigger to replace. `Size` has no input in code.
 // The footer buttons come from the `.Alert Dialog Footer` slot: the first one cancels, the last one
 // confirms (destructive for `Variant=Destructive`).
 const footer = dialog.findInstance('.Alert Dialog Footer');
@@ -16,9 +15,11 @@ const buttons = footer.type === 'INSTANCE' ? (footer.getSlot('Button group')?.co
 const cancel = buttonLabel(buttons[0], 'Cancel');
 const action = buttonLabel(buttons.length > 1 ? buttons[buttons.length - 1] : undefined, 'Continue');
 const destructive = dialog.getEnum('Variant', { Regular: '', Destructive: ' variant="destructive"' });
-const media = dialog.getBoolean('Show decorative icon')
-	? '\n\t\t\t<caps-alert-dialog-media><!-- icon --></caps-alert-dialog-media>'
-	: '';
+const icon = dialog.findInstance('Decorative Icon (OC)');
+const media =
+	dialog.getBoolean('Show decorative icon') && icon.type === 'INSTANCE' && icon.hasCodeConnect()
+		? figma.code`\n\t\t\t<caps-alert-dialog-media>${icon.executeTemplate().example}</caps-alert-dialog-media>`
+		: '';
 
 export default {
 	example: figma.code`<caps-alert-dialog>

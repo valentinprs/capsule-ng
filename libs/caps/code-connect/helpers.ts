@@ -152,3 +152,29 @@ export function overlayBody(owner: InstanceHandle, slot: string, indent: string)
 	const content = slotContent(owner, slot);
 	return content.length === 0 ? `\n${indent}<!-- content -->` : lines(content, indent);
 }
+
+/** Re-indents a nested snippet (the example of another template) so that it lines up at `indent`. */
+export function indented(part: Part, indent: string): Part {
+	const shift = (sections: ResultSection[]): ResultSection[] =>
+		sections.map((section) => {
+			if (section.type === 'CODE') {
+				return { ...section, code: section.code.replace(/\n/g, `\n${indent}`) };
+			}
+			if (section.type === 'INSTANCE' && section.resultSections) {
+				return { ...section, resultSections: shift(section.resultSections) };
+			}
+			return section;
+		});
+	if (typeof part === 'string') {
+		return part.replace(/\n/g, `\n${indent}`);
+	}
+	return Array.isArray(part) ? shift(part) : { ...part, sections: shift(part.sections) };
+}
+
+/** Nested snippets, one per line at `indent`, each re-indented. */
+export function nested(parts: Part[], indent: string): TemplateStringResult {
+	return lines(
+		parts.map((part) => indented(part, indent)),
+		indent,
+	);
+}

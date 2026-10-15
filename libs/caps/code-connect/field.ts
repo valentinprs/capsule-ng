@@ -95,14 +95,6 @@ export function choiceCard(owner: InstanceHandle, kind: Control) {
 	};
 }
 
-/** Controls whose Figma component is not connected yet. */
-const fallbacks: Record<string, { markup: string; imports: string[] }> = {
-	'Select & Combobox': {
-		markup: '<caps-select placeholder=""></caps-select>',
-		imports: ["import { CapsSelectImports } from '@capsule-ng/caps/select';"],
-	},
-};
-
 /** Vertical Field / Horizontal Field. */
 export function field(owner: InstanceHandle, orientation: 'vertical' | 'horizontal') {
 	const type = owner.getEnum('Type', {
@@ -143,12 +135,8 @@ export function field(owner: InstanceHandle, orientation: 'vertical' | 'horizont
 	} else if (type) {
 		parts.push(`<caps-field-label>${label}</caps-field-label>`);
 		const input = owner.findInstance(type);
-		const fallback = fallbacks[type];
 		if (input.type === 'INSTANCE' && input.hasCodeConnect()) {
 			parts.push(input.executeTemplate().example);
-		} else if (fallback) {
-			parts.push(fallback.markup);
-			imports.push(...fallback.imports);
 		}
 	}
 

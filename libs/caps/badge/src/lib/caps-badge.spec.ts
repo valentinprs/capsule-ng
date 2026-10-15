@@ -21,6 +21,10 @@ describe('CapsBadge public composition', () => {
 		expect(badge?.getAttribute('data-size')).toBe('md');
 		expect(badge?.textContent).toContain('Member');
 		for (const value of [
+			'primary',
+			'secondary',
+			'ghost',
+			'destructive',
 			'red',
 			'magenta',
 			'purple',

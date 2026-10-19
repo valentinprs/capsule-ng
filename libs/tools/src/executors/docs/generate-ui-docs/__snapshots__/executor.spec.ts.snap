@@ -1979,9 +1979,9 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
             "type": "CapsBadgeVariant",
           },
           {
-            "name": "size",
+            "name": "highContrast",
             "required": false,
-            "type": "CapsBadgeSize",
+            "type": "boolean",
           },
           {
             "name": "skeleton",
@@ -2001,9 +2001,9 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
             "type": "CapsBadgeVariant",
           },
           {
-            "name": "size",
+            "name": "highContrast",
             "required": false,
-            "type": "CapsBadgeSize",
+            "type": "boolean",
           },
           {
             "name": "skeleton",

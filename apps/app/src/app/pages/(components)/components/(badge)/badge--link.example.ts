@@ -12,7 +12,7 @@ import { lucideArrowUpRight } from '@ng-icons/lucide';
 	template: `
 		<div class="flex gap-2">
 			<a capsBadge routerLink=".">Angular Route</a>
-			<a capsBadge variant="gray" href="/components" target="_blank" rel="noopener noreferrer">
+			<a capsBadge variant="cool-gray" href="/components" target="_blank" rel="noopener noreferrer">
 				External Link
 				<ng-icon name="lucideArrowUpRight" />
 			</a>

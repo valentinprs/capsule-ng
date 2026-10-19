@@ -12,14 +12,11 @@ import { TranslateService, Translations } from '@spartan-ng/app/app/shared/trans
 	template: `
 		<div class="flex w-full flex-wrap justify-center gap-2" [dir]="_dir()">
 			<caps-badge>{{ _t()['badge'] }}</caps-badge>
-			<caps-badge variant="gray">{{ _t()['secondary'] }}</caps-badge>
-			<caps-badge variant="red">{{ _t()['destructive'] }}</caps-badge>
-			<caps-badge variant="outline">{{ _t()['outline'] }}</caps-badge>
-			<caps-badge variant="gray">
+			<caps-badge variant="cool-gray">
 				<ng-icon name="lucideBadgeCheck" />
 				{{ _t()['verified'] }}
 			</caps-badge>
-			<caps-badge variant="outline">
+			<caps-badge variant="cool-gray">
 				{{ _t()['bookmark'] }}
 				<ng-icon name="lucideBookmark" />
 			</caps-badge>
@@ -34,9 +31,6 @@ export class BadgeRtl {
 			dir: 'ltr',
 			values: {
 				badge: 'Badge',
-				secondary: 'Secondary',
-				destructive: 'Destructive',
-				outline: 'Outline',
 				verified: 'Verified',
 				bookmark: 'Bookmark',
 			},
@@ -45,9 +39,6 @@ export class BadgeRtl {
 			dir: 'rtl',
 			values: {
 				badge: 'شارة',
-				secondary: 'ثانوي',
-				destructive: 'مدمر',
-				outline: 'مخطط',
 				verified: 'متحقق',
 				bookmark: 'إشارة مرجعية',
 			},
@@ -56,9 +47,6 @@ export class BadgeRtl {
 			dir: 'rtl',
 			values: {
 				badge: 'תג',
-				secondary: 'משני',
-				destructive: 'הרסני',
-				outline: 'קווי מתאר',
 				verified: 'מאומת',
 				bookmark: 'סימנייה',
 			},

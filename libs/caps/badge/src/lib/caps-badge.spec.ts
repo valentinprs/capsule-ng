@@ -6,10 +6,11 @@ import { CapsBadgeImports, type CapsBadgeVariant } from '../index';
 	imports: [CapsBadgeImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template:
-		'<caps-badge [variant]="variant()" [skeleton]="skeleton()"><span aria-hidden="true">●</span>Member</caps-badge><a capsBadge href="#tag">Angular</a>',
+		'<caps-badge [variant]="variant()" [highContrast]="highContrast()" [skeleton]="skeleton()"><span aria-hidden="true">●</span>Member</caps-badge><a capsBadge href="#tag">Angular</a>',
 })
 class BadgeHost {
-	public readonly variant = signal<CapsBadgeVariant>('gray');
+	public readonly variant = signal<CapsBadgeVariant>('blue');
+	public readonly highContrast = signal(false);
 	public readonly skeleton = signal(false);
 }
 describe('CapsBadge public composition', () => {
@@ -18,25 +19,17 @@ describe('CapsBadge public composition', () => {
 		fixture.detectChanges();
 		const root: HTMLElement = fixture.nativeElement;
 		const badge = root.querySelector('caps-badge');
-		expect(badge?.getAttribute('data-size')).toBe('md');
 		expect(badge?.textContent).toContain('Member');
 		for (const value of [
-			'primary',
-			'secondary',
-			'ghost',
-			'destructive',
+			'blue',
+			'cool-gray',
 			'red',
 			'magenta',
 			'purple',
-			'blue',
 			'cyan',
-			'teal',
+			'orange',
+			'yellow',
 			'green',
-			'gray',
-			'cool-gray',
-			'warm-gray',
-			'high-contrast',
-			'outline',
 		] as const) {
 			fixture.componentInstance.variant.set(value);
 			fixture.detectChanges();
@@ -44,6 +37,10 @@ describe('CapsBadge public composition', () => {
 		}
 		expect(root.querySelector('a')?.getAttribute('href')).toBe('#tag');
 		expect(root.querySelector('a')?.hasAttribute('role')).toBe(false);
+		expect(badge?.hasAttribute('data-high-contrast')).toBe(false);
+		fixture.componentInstance.highContrast.set(true);
+		fixture.detectChanges();
+		expect(badge?.hasAttribute('data-high-contrast')).toBe(true);
 		fixture.componentInstance.skeleton.set(true);
 		fixture.detectChanges();
 		expect(badge?.getAttribute('aria-busy')).toBe('true');

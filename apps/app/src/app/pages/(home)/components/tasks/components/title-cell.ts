@@ -8,7 +8,7 @@ import { type TaskFeatures } from '../tasks';
 	selector: 'spartan-title-cell',
 	imports: [CapsBadgeImports],
 	template: `
-		<caps-badge variant="outline">
+		<caps-badge variant="cool-gray">
 			{{ _data().type }}
 		</caps-badge>
 		{{ _data().title }}

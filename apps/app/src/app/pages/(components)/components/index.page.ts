@@ -51,7 +51,7 @@ export const routeMeta: RouteMeta = {
 							<span spartanNewMarker></span>
 						}
 						@if (component.wip) {
-							<caps-badge>soon</caps-badge>
+							<caps-badge variant="cool-gray">soon</caps-badge>
 						}
 					</a>
 				}

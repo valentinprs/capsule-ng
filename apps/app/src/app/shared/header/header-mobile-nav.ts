@@ -80,7 +80,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 										<span spartanNewMarker></span>
 									}
 									@if (link.wip) {
-										<caps-badge>soon</caps-badge>
+										<caps-badge variant="cool-gray">soon</caps-badge>
 									}
 								</a>
 							}

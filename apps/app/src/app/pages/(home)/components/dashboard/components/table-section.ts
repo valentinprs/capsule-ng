@@ -148,11 +148,11 @@ const columns = columnHelper.columns([
 					<button capsTabsTrigger value="account">Outline</button>
 					<button capsTabsTrigger value="past-performance">
 						Past Performance
-						<caps-badge variant="gray">3</caps-badge>
+						<caps-badge variant="cool-gray">3</caps-badge>
 					</button>
 					<button capsTabsTrigger value="key-personnel">
 						Key Personnel
-						<caps-badge variant="gray">2</caps-badge>
+						<caps-badge variant="cool-gray">2</caps-badge>
 					</button>
 					<button capsTabsTrigger value="focus-documents">Focus Documents</button>
 				</caps-tabs-list>

@@ -41,5 +41,30 @@ export const SHADCN_ALIASED_TOKENS = [
 	'surface-foreground',
 ] as const;
 
+/** Accent colors, each with a subtle and a strong background/foreground pair and a border. */
+export const CAPS_ACCENT_COLORS = [
+	'red',
+	'magenta',
+	'purple',
+	'blue',
+	'cyan',
+	'orange',
+	'yellow',
+	'green',
+	'cool-gray',
+] as const;
+
+/** Accent tokens (`--caps-background-accent-red-subtle`…), flattened from the Figma `…/accent/…` variables. */
+export const CAPS_ACCENT_TOKENS = CAPS_ACCENT_COLORS.flatMap(
+	(color) =>
+		[
+			`background-accent-${color}-subtle`,
+			`foreground-accent-${color}-subtle`,
+			`border-accent-${color}`,
+			`background-accent-${color}-strong`,
+			`foreground-accent-${color}-strong`,
+		] as const,
+);
+
 /** Every `--caps-*` color token, defined for light (`:root`) and dark (`.dark`) in `caps-tokens.css`. */
-export const CAPS_COLOR_TOKENS = [...SHADCN_ALIASED_TOKENS, 'ring-error'] as const;
+export const CAPS_COLOR_TOKENS = [...SHADCN_ALIASED_TOKENS, 'ring-error', ...CAPS_ACCENT_TOKENS] as const;

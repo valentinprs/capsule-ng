@@ -12,7 +12,7 @@ import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
 				<caps-spinner aria-hidden="true" class="text-xs" />
 				Deleting
 			</caps-badge>
-			<caps-badge variant="outline">
+			<caps-badge variant="cool-gray">
 				Bookmark
 				<caps-spinner aria-hidden="true" class="text-xs" />
 			</caps-badge>

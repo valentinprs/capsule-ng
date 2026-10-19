@@ -6,15 +6,20 @@ import { element, iconImports, labelWithIcons } from '../../../code-connect/help
 
 const badge = figma.selectedInstance;
 
-// `State` (Focus) is not mapped: it is a CSS state.
 const variant = badge.getEnum('Variant', {
-	Primary: ' variant="primary"',
-	Secondary: ' variant="secondary"',
-	Outline: ' variant="outline"',
-	Ghost: ' variant="ghost"',
-	Destructive: ' variant="destructive"',
+	// `blue` is the default variant, so it is omitted.
+	Blue: '',
+	'Cool gray': ' variant="cool-gray"',
+	Red: ' variant="red"',
+	Magenta: ' variant="magenta"',
+	Purple: ' variant="purple"',
+	Cyan: ' variant="cyan"',
+	Orange: ' variant="orange"',
+	Yellow: ' variant="yellow"',
+	Green: ' variant="green"',
 });
 
+const highContrast = badge.getEnum('High contrast', { True: ' highContrast', False: '' });
 const spinner = badge.getBoolean('Show spinner');
 const { children, icons } = labelWithIcons(badge, false);
 
@@ -24,7 +29,7 @@ if (spinner) {
 }
 
 const snippet = element(
-	`<caps-badge${variant}>`,
+	`<caps-badge${variant}${highContrast}>`,
 	[spinner ? '<caps-spinner aria-hidden="true" class="text-xs" />' : null, ...children],
 	'</caps-badge>',
 );

@@ -67,7 +67,7 @@ export const Transposed: Story = {
   <caps-card [width]="width" [maxWidth]="maxWidth" [density]="density" class="mx-auto">
    <caps-card-header>
     <caps-card-title [level]="2">AngularGPT</caps-card-title>
-    <caps-card-action><caps-badge variant="gray">beta</caps-badge></caps-card-action>
+    <caps-card-action><caps-badge variant="cool-gray">beta</caps-badge></caps-card-action>
    </caps-card-header>
    <caps-card-content>
     <caps-field-group>

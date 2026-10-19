@@ -41,6 +41,53 @@
 	--caps-chart-5: var(--color-blue-800);
 	--caps-surface: oklch(0.98 0 0);
 	--caps-surface-foreground: var(--caps-foreground);
+	/* Accent colors (Figma `background|foreground|border/accent/<color>`): `subtle` text sits on a
+	   `subtle` background, `strong` text on a `strong` background. */
+	--caps-background-accent-red-subtle: var(--color-red-100);
+	--caps-foreground-accent-red-subtle: var(--color-red-700);
+	--caps-border-accent-red: var(--color-red-500);
+	--caps-background-accent-red-strong: var(--color-red-700);
+	--caps-foreground-accent-red-strong: var(--color-red-50);
+	--caps-background-accent-magenta-subtle: var(--color-pink-100);
+	--caps-foreground-accent-magenta-subtle: var(--color-pink-700);
+	--caps-border-accent-magenta: var(--color-pink-500);
+	--caps-background-accent-magenta-strong: var(--color-pink-700);
+	--caps-foreground-accent-magenta-strong: var(--color-pink-50);
+	--caps-background-accent-purple-subtle: var(--color-purple-100);
+	--caps-foreground-accent-purple-subtle: var(--color-purple-700);
+	--caps-border-accent-purple: var(--color-purple-500);
+	--caps-background-accent-purple-strong: var(--color-purple-700);
+	--caps-foreground-accent-purple-strong: var(--color-purple-50);
+	--caps-background-accent-blue-subtle: var(--color-blue-100);
+	--caps-foreground-accent-blue-subtle: var(--color-blue-700);
+	--caps-border-accent-blue: var(--color-blue-500);
+	--caps-background-accent-blue-strong: var(--color-blue-700);
+	--caps-foreground-accent-blue-strong: var(--color-blue-50);
+	--caps-background-accent-cyan-subtle: var(--color-cyan-100);
+	--caps-foreground-accent-cyan-subtle: var(--color-cyan-700);
+	--caps-border-accent-cyan: var(--color-cyan-500);
+	--caps-background-accent-cyan-strong: var(--color-cyan-700);
+	--caps-foreground-accent-cyan-strong: var(--color-cyan-50);
+	--caps-background-accent-orange-subtle: var(--color-orange-100);
+	--caps-foreground-accent-orange-subtle: var(--color-orange-700);
+	--caps-border-accent-orange: var(--color-orange-500);
+	--caps-background-accent-orange-strong: var(--color-orange-700);
+	--caps-foreground-accent-orange-strong: var(--color-orange-50);
+	--caps-background-accent-yellow-subtle: var(--color-yellow-100);
+	--caps-foreground-accent-yellow-subtle: var(--color-yellow-700);
+	--caps-border-accent-yellow: var(--color-yellow-500);
+	--caps-background-accent-yellow-strong: var(--color-yellow-700);
+	--caps-foreground-accent-yellow-strong: var(--color-yellow-50);
+	--caps-background-accent-green-subtle: var(--color-green-100);
+	--caps-foreground-accent-green-subtle: var(--color-green-700);
+	--caps-border-accent-green: var(--color-green-500);
+	--caps-background-accent-green-strong: var(--color-green-700);
+	--caps-foreground-accent-green-strong: var(--color-green-50);
+	--caps-background-accent-cool-gray-subtle: var(--color-slate-100);
+	--caps-foreground-accent-cool-gray-subtle: var(--color-slate-700);
+	--caps-border-accent-cool-gray: var(--color-slate-500);
+	--caps-background-accent-cool-gray-strong: var(--color-slate-700);
+	--caps-foreground-accent-cool-gray-strong: var(--color-slate-50);
 }
 
 .dark {
@@ -79,6 +126,53 @@
 	--caps-chart-5: var(--color-blue-800);
 	--caps-surface: oklch(0.2 0 0);
 	--caps-surface-foreground: oklch(0.708 0 0);
+	/* Accent colors (Figma `background|foreground|border/accent/<color>`): `subtle` text sits on a
+	   `subtle` background, `strong` text on a `strong` background. */
+	--caps-background-accent-red-subtle: var(--color-red-950);
+	--caps-foreground-accent-red-subtle: var(--color-red-200);
+	--caps-border-accent-red: var(--color-red-900);
+	--caps-background-accent-red-strong: var(--color-red-200);
+	--caps-foreground-accent-red-strong: var(--color-red-950);
+	--caps-background-accent-magenta-subtle: var(--color-pink-950);
+	--caps-foreground-accent-magenta-subtle: var(--color-pink-200);
+	--caps-border-accent-magenta: var(--color-pink-900);
+	--caps-background-accent-magenta-strong: var(--color-pink-200);
+	--caps-foreground-accent-magenta-strong: var(--color-pink-950);
+	--caps-background-accent-purple-subtle: var(--color-purple-950);
+	--caps-foreground-accent-purple-subtle: var(--color-purple-200);
+	--caps-border-accent-purple: var(--color-purple-900);
+	--caps-background-accent-purple-strong: var(--color-purple-200);
+	--caps-foreground-accent-purple-strong: var(--color-purple-950);
+	--caps-background-accent-blue-subtle: var(--color-blue-950);
+	--caps-foreground-accent-blue-subtle: var(--color-blue-200);
+	--caps-border-accent-blue: var(--color-blue-900);
+	--caps-background-accent-blue-strong: var(--color-blue-200);
+	--caps-foreground-accent-blue-strong: var(--color-blue-950);
+	--caps-background-accent-cyan-subtle: var(--color-cyan-950);
+	--caps-foreground-accent-cyan-subtle: var(--color-cyan-200);
+	--caps-border-accent-cyan: var(--color-cyan-900);
+	--caps-background-accent-cyan-strong: var(--color-cyan-200);
+	--caps-foreground-accent-cyan-strong: var(--color-cyan-950);
+	--caps-background-accent-orange-subtle: var(--color-orange-950);
+	--caps-foreground-accent-orange-subtle: var(--color-orange-200);
+	--caps-border-accent-orange: var(--color-orange-900);
+	--caps-background-accent-orange-strong: var(--color-orange-200);
+	--caps-foreground-accent-orange-strong: var(--color-orange-950);
+	--caps-background-accent-yellow-subtle: var(--color-yellow-950);
+	--caps-foreground-accent-yellow-subtle: var(--color-yellow-200);
+	--caps-border-accent-yellow: var(--color-yellow-900);
+	--caps-background-accent-yellow-strong: var(--color-yellow-200);
+	--caps-foreground-accent-yellow-strong: var(--color-yellow-950);
+	--caps-background-accent-green-subtle: var(--color-green-950);
+	--caps-foreground-accent-green-subtle: var(--color-green-200);
+	--caps-border-accent-green: var(--color-green-900);
+	--caps-background-accent-green-strong: var(--color-green-200);
+	--caps-foreground-accent-green-strong: var(--color-green-950);
+	--caps-background-accent-cool-gray-subtle: var(--color-slate-950);
+	--caps-foreground-accent-cool-gray-subtle: var(--color-slate-200);
+	--caps-border-accent-cool-gray: var(--color-slate-900);
+	--caps-background-accent-cool-gray-strong: var(--color-slate-200);
+	--caps-foreground-accent-cool-gray-strong: var(--color-slate-950);
 }
 
 /* shadcn aliases. Re-declared on `.dark` so they resolve against the dark caps values wherever

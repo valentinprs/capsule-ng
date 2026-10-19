@@ -12,7 +12,7 @@ import { CapsInputImports } from '@capsule-ng/caps/input';
 		<caps-field>
 			<caps-field-label for="input-badge">
 				Webhook URL
-				<caps-badge variant="gray" class="ml-auto">Beta</caps-badge>
+				<caps-badge variant="cool-gray" class="ml-auto">Beta</caps-badge>
 			</caps-field-label>
 			<input capsInput id="input-badge" type="url" placeholder="https://api.example.com/webhook" />
 		</caps-field>

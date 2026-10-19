@@ -9,7 +9,11 @@ import { type DashboardFeatures } from './table-section';
 	imports: [CapsBadgeImports],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<caps-badge id="{{ _data().id }}-type" variant="outline" class="text-muted-foreground rounded-full px-1.5 text-xs">
+		<caps-badge
+			id="{{ _data().id }}-type"
+			variant="cool-gray"
+			class="text-muted-foreground rounded-full px-1.5 text-xs"
+		>
 			{{ _data().type }}
 		</caps-badge>
 	`,

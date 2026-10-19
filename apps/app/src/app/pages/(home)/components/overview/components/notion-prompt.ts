@@ -157,7 +157,7 @@ type GroupedItems = {
 									<span>{{ model.name }}</span>
 									@if (model.badge) {
 										<caps-badge
-											variant="gray"
+											variant="secondary"
 											class="ml-2 h-5 rounded-sm bg-blue-100 px-1 text-xs text-blue-800 dark:bg-blue-900 dark:text-blue-100"
 										>
 											{{ model.badge }}

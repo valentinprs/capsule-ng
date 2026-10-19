@@ -19,7 +19,7 @@ import { CapsCardImports } from '@capsule-ng/caps/card';
 			/>
 			<caps-card-header>
 				<caps-card-action>
-					<caps-badge variant="gray">Featured</caps-badge>
+					<caps-badge variant="cool-gray">Featured</caps-badge>
 				</caps-card-action>
 				<caps-card-title [level]="3">Design systems meetup</caps-card-title>
 				<caps-card-description>

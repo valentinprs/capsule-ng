@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { describe, expect, it } from 'vitest';
-import { CAPS_COLOR_TOKENS, CAPS_TOKENS_CSS, SHADCN_ALIASED_TOKENS } from './caps-tokens';
+import { CAPS_ACCENT_COLORS, CAPS_COLOR_TOKENS, CAPS_TOKENS_CSS, SHADCN_ALIASED_TOKENS } from './caps-tokens';
 
 const stylesheet = readFileSync(new URL('./caps-tokens.css', import.meta.url), 'utf8');
 
@@ -85,6 +85,47 @@ describe('caps color tokens', () => {
 	it('defines ring-error as red-200 in light mode and red-900 in dark mode', () => {
 		expect(light['--caps-ring-error']).toBe('oklch(0.885 0.062 18.334)');
 		expect(dark['--caps-ring-error']).toBe('oklch(0.396 0.141 25.723)');
+	});
+
+	it('maps the accent tokens to the Figma palette steps', () => {
+		const families: Record<(typeof CAPS_ACCENT_COLORS)[number], string> = {
+			red: 'red',
+			magenta: 'pink',
+			purple: 'purple',
+			blue: 'blue',
+			cyan: 'cyan',
+			orange: 'orange',
+			yellow: 'yellow',
+			green: 'green',
+			'cool-gray': 'slate',
+		};
+		const steps = {
+			light: {
+				'background-#-subtle': 100,
+				'foreground-#-subtle': 700,
+				'border-#': 500,
+				'background-#-strong': 700,
+				'foreground-#-strong': 50,
+			},
+			dark: {
+				'background-#-subtle': 950,
+				'foreground-#-subtle': 200,
+				'border-#': 900,
+				'background-#-strong': 200,
+				'foreground-#-strong': 950,
+			},
+		};
+		for (const [mode, tokens] of [
+			['light', light],
+			['dark', dark],
+		] as const) {
+			for (const color of CAPS_ACCENT_COLORS) {
+				for (const [token, step] of Object.entries(steps[mode])) {
+					const name = `--caps-${token.replace('#', `accent-${color}`)}`;
+					expect(tokens[name], `${mode} ${name}`).toBe(palette[`--color-${families[color]}-${step}`]);
+				}
+			}
+		}
 	});
 
 	it('aliases every shadcn token to its caps token in both modes', () => {

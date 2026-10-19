@@ -53,21 +53,21 @@ export const routeMeta: RouteMeta = {
 			<div class="mt-4 flex flex-col gap-4 rounded-lg border p-6">
 				<div class="flex flex-wrap items-center justify-between gap-3">
 					<div class="flex flex-wrap items-center gap-3">
-						<caps-badge variant="high-contrast">Angular {{ version + 1 }}</caps-badge>
+						<caps-badge>Angular {{ version + 1 }}</caps-badge>
 						<span class="text-muted-foreground text-sm">Actively supported</span>
 					</div>
 					<span class="text-muted-foreground text-sm">Until {{ getSupportEndDate(version + 1) }}</span>
 				</div>
 				<div class="flex flex-wrap items-center justify-between gap-3">
 					<div class="flex flex-wrap items-center gap-3">
-						<caps-badge variant="outline">Angular {{ version }}</caps-badge>
+						<caps-badge variant="cool-gray">Angular {{ version }}</caps-badge>
 						<span class="text-muted-foreground text-sm">Actively supported</span>
 					</div>
 					<span class="text-muted-foreground text-sm">Until {{ getSupportEndDate(version) }}</span>
 				</div>
 				<div class="flex flex-wrap items-center justify-between gap-3">
 					<div class="flex flex-wrap items-center gap-3">
-						<caps-badge variant="gray">Angular {{ version - 1 }}</caps-badge>
+						<caps-badge variant="cool-gray">Angular {{ version - 1 }}</caps-badge>
 						<span class="text-muted-foreground text-sm">Not supported</span>
 					</div>
 					<span class="text-muted-foreground text-sm">Support ended</span>

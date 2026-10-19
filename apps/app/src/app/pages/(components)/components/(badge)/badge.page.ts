@@ -79,7 +79,9 @@ export const routeMeta: RouteMeta = {
 			<p class="${hlmP}">
 				Use the
 				<code class="${hlmCode}">variant</code>
-				prop to change the variant of the badge.
+				prop to change the variant of the badge. Add
+				<code class="${hlmCode}">highContrast</code>
+				to fill it with the foreground colour.
 			</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
@@ -115,9 +117,7 @@ export const routeMeta: RouteMeta = {
 			</spartan-tabs>
 
 			<h3 id="examples__colors" spartanH4>Custom Colors</h3>
-			<p class="${hlmP}">
-				Choose a Carbon color with variant. Use size sm, md (default) or lg. Set skeleton while content is loading.
-			</p>
+			<p class="${hlmP}">Choose a Carbon color with variant. Set skeleton while content is loading.</p>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
 					<spartan-badge-colors-preview />

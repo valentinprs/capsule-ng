@@ -26,7 +26,7 @@ import { tablerTrendingDown, tablerTrendingUp } from '@ng-icons/tabler-icons';
 					</caps-card-title>
 
 					<caps-card-action>
-						<caps-badge variant="outline">
+						<caps-badge variant="cool-gray">
 							<ng-icon name="tablerTrendingUp" />
 							+12.5%
 						</caps-badge>
@@ -48,7 +48,7 @@ import { tablerTrendingDown, tablerTrendingUp } from '@ng-icons/tabler-icons';
 					</caps-card-title>
 
 					<caps-card-action>
-						<caps-badge variant="outline">
+						<caps-badge variant="cool-gray">
 							<ng-icon name="tablerTrendingDown" />
 							-20.4%
 						</caps-badge>
@@ -70,7 +70,7 @@ import { tablerTrendingDown, tablerTrendingUp } from '@ng-icons/tabler-icons';
 					</caps-card-title>
 
 					<caps-card-action>
-						<caps-badge variant="outline">
+						<caps-badge variant="cool-gray">
 							<ng-icon name="tablerTrendingUp" />
 							+12.5%
 						</caps-badge>
@@ -92,7 +92,7 @@ import { tablerTrendingDown, tablerTrendingUp } from '@ng-icons/tabler-icons';
 					</caps-card-title>
 
 					<caps-card-action>
-						<caps-badge variant="outline">
+						<caps-badge variant="cool-gray">
 							<ng-icon name="tablerTrendingUp" />
 							4.5%
 						</caps-badge>

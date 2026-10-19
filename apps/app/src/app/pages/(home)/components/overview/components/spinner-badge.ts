@@ -14,11 +14,11 @@ import { CapsSpinner } from '@capsule-ng/caps/spinner';
 			<caps-spinner aria-hidden="true" class="text-xs" />
 			Loading
 		</caps-badge>
-		<caps-badge variant="gray">
+		<caps-badge variant="cool-gray">
 			<caps-spinner aria-hidden="true" class="text-xs" />
 			Syncing
 		</caps-badge>
-		<caps-badge variant="outline">
+		<caps-badge variant="cool-gray">
 			<caps-spinner aria-hidden="true" class="text-xs" />
 			Updating
 		</caps-badge>

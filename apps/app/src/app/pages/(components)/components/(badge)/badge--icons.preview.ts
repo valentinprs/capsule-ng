@@ -10,11 +10,11 @@ import { lucideBadgeCheck, lucideBookmark } from '@ng-icons/lucide';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<div class="flex w-full flex-wrap justify-center gap-2">
-			<caps-badge variant="gray">
+			<caps-badge variant="cool-gray">
 				<ng-icon name="lucideBadgeCheck" />
 				Verified
 			</caps-badge>
-			<caps-badge variant="outline">
+			<caps-badge variant="cool-gray">
 				Bookmark
 				<ng-icon name="lucideBookmark" />
 			</caps-badge>

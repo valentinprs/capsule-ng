@@ -3,37 +3,29 @@ import { booleanAttribute, ChangeDetectionStrategy, Component, Directive, inject
 import { classes } from '@spartan-ng/helm/utils';
 
 export type CapsBadgeVariant =
-	| 'primary'
-	| 'secondary'
-	| 'ghost'
-	| 'destructive'
+	| 'blue'
+	| 'cool-gray'
 	| 'red'
 	| 'magenta'
 	| 'purple'
-	| 'blue'
 	| 'cyan'
-	| 'teal'
-	| 'green'
-	| 'gray'
-	| 'cool-gray'
-	| 'warm-gray'
-	| 'high-contrast'
-	| 'outline';
-export type CapsBadgeSize = 'sm' | 'md' | 'lg';
+	| 'orange'
+	| 'yellow'
+	| 'green';
 
 @Directive({
 	selector: 'a[capsBadge], button[capsBadge]',
 	host: {
 		'data-slot': 'badge',
 		'[attr.data-variant]': 'variant()',
-		'[attr.data-size]': 'size()',
+		'[attr.data-high-contrast]': 'highContrast() || null',
 		'[attr.data-skeleton]': 'skeleton() || null',
 		'[attr.aria-busy]': 'skeleton() || null',
 	},
 })
 export class CapsBadgeDirective {
-	public readonly variant = input<CapsBadgeVariant>('gray');
-	public readonly size = input<CapsBadgeSize>('md');
+	public readonly variant = input<CapsBadgeVariant>('blue');
+	public readonly highContrast = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
 	public readonly skeleton = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
 	constructor() {
 		classes(
@@ -46,7 +38,7 @@ export class CapsBadgeDirective {
 @Component({
 	selector: 'caps-badge',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	hostDirectives: [{ directive: CapsBadgeDirective, inputs: ['variant', 'size', 'skeleton'] }],
+	hostDirectives: [{ directive: CapsBadgeDirective, inputs: ['variant', 'highContrast', 'skeleton'] }],
 	template: '@if (!_badge.skeleton()) { <ng-content /> }',
 })
 export class CapsBadge {

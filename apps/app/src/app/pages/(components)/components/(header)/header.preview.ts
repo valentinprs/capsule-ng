@@ -11,7 +11,9 @@ import { lucideCommand, lucideMoon } from '@ng-icons/lucide';
 	imports: [CapsHeaderImports, CapsNavigationMenuImports, CapsButtonImports, CapsAvatarImports, NgIcon],
 	providers: [provideIcons({ lucideCommand, lucideMoon })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	host: { class: 'w-full' },
+	// Demo only: the header links, including those of the menu sheet rendered in an overlay, do not
+	// navigate away from the documentation page.
+	host: { class: 'w-full', '(document:click)': '_stayOnPage($event)' },
 	template: `
 		<caps-header>
 			<caps-header-menu title="Capsule navigation">
@@ -32,8 +34,8 @@ import { lucideCommand, lucideMoon } from '@ng-icons/lucide';
 					<li capsNavigationMenuItem>
 						<a capsNavigationMenuLink href="/documentation/introduction" active>Docs</a>
 					</li>
-					<li capsNavigationMenuItem><a capsNavigationMenuLink href="/components">Components</a></li>
-					<li capsNavigationMenuItem><a capsNavigationMenuLink href="/blocks">Blocks</a></li>
+					<li capsNavigationMenuItem><a capsNavigationMenuLink href="/components" [active]="false">Components</a></li>
+					<li capsNavigationMenuItem><a capsNavigationMenuLink href="/blocks" [active]="false">Blocks</a></li>
 				</caps-navigation-menu>
 			</caps-header-nav>
 			<caps-header-actions>
@@ -47,7 +49,12 @@ import { lucideCommand, lucideMoon } from '@ng-icons/lucide';
 		</caps-header>
 	`,
 })
-export class HeaderPreview {}
+export class HeaderPreview {
+	protected _stayOnPage(event: MouseEvent): void {
+		const link = (event.target as Element | null)?.closest('a[href]');
+		if (link?.closest('spartan-header-preview, [data-slot="header-menu-content"]')) event.preventDefault();
+	}
+}
 
 export const defaultImports = `
 import { CapsHeaderImports } from '@capsule-ng/caps/header';

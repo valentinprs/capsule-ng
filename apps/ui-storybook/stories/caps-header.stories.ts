@@ -30,9 +30,9 @@ export const Default: Story = {
 		template: `
 			<caps-header>
 				<caps-header-menu title="Capsule navigation">
-					<nav aria-label="Primary">
+					<nav aria-label="Primary" (click)="$event.preventDefault()">
 						@for (link of links; track link) {
-							<a capsButton variant="ghost" class="w-full justify-start" href="#">{{ link }}</a>
+							<a capsButton variant="ghost" class="w-full justify-start" href="/components">{{ link }}</a>
 						}
 					</nav>
 				</caps-header-menu>
@@ -42,10 +42,10 @@ export const Default: Story = {
 					</span>
 				</caps-header-visual>
 				<caps-header-title>Capsule</caps-header-title>
-				<caps-header-nav>
+				<caps-header-nav (click)="$event.preventDefault()">
 					<caps-navigation-menu aria-label="Primary">
 						@for (link of links; track link; let first = $first) {
-							<li capsNavigationMenuItem><a capsNavigationMenuLink href="#" [active]="first">{{ link }}</a></li>
+							<li capsNavigationMenuItem><a capsNavigationMenuLink href="/components" [active]="first">{{ link }}</a></li>
 						}
 					</caps-navigation-menu>
 				</caps-header-nav>

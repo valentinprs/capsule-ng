@@ -119,15 +119,31 @@ jobs:
         run: pnpm nx affected -t test --parallel=3
 
   e2e:
+    name: e2e (${{ matrix.project }} ${{ matrix.shard }})
     needs: [commitlint, format-and-lint, types, unit]
     if: github.event_name == 'push' || !github.event.pull_request.draft
     timeout-minutes: 50
     runs-on: ubuntu-latest
     # Not gated on `build`: each e2e project serves what it tests itself, so the job is independent
     # of the docs-app build and runs in parallel with it.
+    # Parallel matrix jobs: storybook, and the docs app split into 3 shards balanced by measured
+    # spec duration (tools/ci/e2e-plan.mjs). On PRs a job skips its project when nx does not see it
+    # as affected, unless the CI itself changed; pushes to main/develop run everything.
+    # `needs.e2e.result` stays a single result (failure if any job fails), so `ci-complete` and
+    # tools/ci/policy.mjs are unchanged.
     # - ui-storybook-e2e: cypress against storybook (devServerTarget ui-storybook:static-storybook).
     # - app-e2e: cypress-axe accessibility audit of docs pages (breadcrumb) against the docs app
     #   Vite dev server (devServerTarget app:serve:e2e, port 4300). Any axe violation fails the job.
+    # trpc-app-e2e is not listed: it is not tagged scope:e2e and was never run in CI (it needs a
+    # database/health endpoint that is not provisioned here).
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { project: ui-storybook-e2e, shard: 1/1 }
+          - { project: app-e2e, shard: 1/3 }
+          - { project: app-e2e, shard: 2/3 }
+          - { project: app-e2e, shard: 3/3 }
     steps:
       - uses: actions/checkout@v6
         with:
@@ -143,13 +159,21 @@ jobs:
       - uses: nrwl/nx-set-shas@v5
         with:
           main-branch-name: ${{ github.base_ref || github.ref_name }}
+      - name: Plan
+        id: plan
+        env:
+          E2E_PROJECT: ${{ matrix.project }}
+          E2E_SHARD: ${{ matrix.shard }}
+        run: node tools/ci/e2e.mjs --plan
       - name: Install Cypress
+        if: steps.plan.outputs.run == 'true'
         run: npx cypress install
       - name: End-to-end test
-        # Exclude trpc-app-e2e: it is not tagged scope:e2e and was never run in CI (it needs a
-        # database/health endpoint that is not provisioned here). The storybook and docs-app (axe)
-        # e2e projects run.
-        run: pnpm run e2e
+        if: steps.plan.outputs.run == 'true'
+        env:
+          E2E_PROJECT: ${{ matrix.project }}
+          E2E_SHARD: ${{ matrix.shard }}
+        run: node tools/ci/e2e.mjs
 
   types:
     timeout-minutes: 15

@@ -13,6 +13,7 @@
 @import './table-pagination.css';
 @import './command.css';
 @import './kbd.css';
+@import './header.css';
 
 /* MARK: Breadcrumb */
 .caps-breadcrumb-list {

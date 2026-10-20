@@ -1,0 +1,52 @@
+/* MARK: Header */
+/* The 56 px application bar. Below `md`, the navigation hides and the menu button opens it in a Sheet. */
+.caps-header {
+	@apply bg-background border-border flex h-[calc(--spacing(14)+1px)] w-full min-w-0 shrink-0 items-center justify-between gap-2 border-b px-4;
+}
+
+.caps-header-start,
+.caps-header-brand {
+	@apply flex min-w-0 items-center gap-4;
+}
+
+.caps-header-end {
+	@apply flex shrink-0 items-center gap-2;
+}
+
+.caps-header-menu {
+	@apply flex shrink-0 md:hidden;
+}
+
+.caps-header-menu-panel {
+	@apply w-[min(18rem,calc(100vw-2rem))];
+}
+
+.caps-header-menu-content {
+	@apply flex flex-col items-stretch gap-1 px-4 [&>nav]:flex [&>nav]:flex-col [&>nav]:items-stretch [&>nav]:gap-1;
+}
+
+/* The visual identifier is always 40 × 40 px; larger content is clipped. */
+.caps-header-visual {
+	@apply flex size-10 shrink-0 items-center justify-center overflow-hidden [&>img]:size-full [&>img]:object-contain [&>svg]:size-full;
+}
+
+.caps-header-title {
+	@apply block max-w-40 min-w-0 shrink truncate text-sm font-semibold tracking-tight sm:max-w-56;
+}
+
+.caps-header-nav {
+	@apply hidden shrink-0 md:flex;
+}
+
+/* The bar is one line high: navigation items never wrap. */
+.caps-header-nav .caps-navigation-menu-list {
+	flex-wrap: nowrap;
+}
+
+.caps-header-actions {
+	@apply flex shrink-0 items-center gap-2;
+}
+
+.caps-header-logo {
+	@apply flex size-14 shrink-0 items-center justify-center [&>img]:size-full [&>img]:object-contain [&>svg]:size-full;
+}

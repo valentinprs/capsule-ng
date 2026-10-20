@@ -211,6 +211,7 @@
 			"@capsule-ng/caps/scroll-area": ["libs/caps/scroll-area/src/index.ts"],
 			"@capsule-ng/caps/resizable": ["libs/caps/resizable/src/index.ts"],
 			"@capsule-ng/caps/command": ["libs/caps/command/src/index.ts"],
+			"@capsule-ng/caps/header": ["libs/caps/header/src/index.ts"],
 			"@capsule-ng/caps/kbd": ["libs/caps/kbd/src/index.ts"]
 		}
 	},

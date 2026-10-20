@@ -6,33 +6,16 @@ import { indented, lines, slotContent, type Part } from '../../../code-connect/h
 
 const header = figma.selectedInstance;
 
-// Not mapped: `Show menu button`. In code the menu button replaces the navigation below the `md`
-// breakpoint through CSS, so `caps-header-menu` is always written next to `caps-header-nav`.
+// Not mapped: `Show menu button`. In code, `caps-header` shows the menu button itself below the
+// `md` breakpoint whenever a `*capsHeaderNav` navigation is present, and renders that same
+// navigation in its sheet. The nested Navigation Menu snippet cannot take the structural
+// directive, so it is wrapped in an `ng-container`.
 // The brand logo has no property: it is always shown in Figma, so the logo slot is always
 // written. Capsule does not ship the logo asset; the app provides it.
+const slot = (name: string) => slotContent(header, name).map((part) => indented(part, '\t\t'));
 const parts: Part[] = [];
-const labels: string[] = [];
-let navigation: Part | null = null;
-if (header.getBoolean('Show navigation')) {
-	const menu = header.findInstance('Navigation Menu');
-	if (menu.type === 'INSTANCE') {
-		navigation = menu.executeTemplate().example;
-		for (const item of menu.getSlot('Slot')?.connectedInstances ?? []) {
-			labels.push(item.getString('Label'));
-		}
-	}
-}
-if (navigation !== null) {
-	const links =
-		labels.length === 0
-			? ['<!-- links -->']
-			: labels.map((label) => `<a capsButton variant="ghost" href="">${label}</a>`);
-	parts.push(
-		`<caps-header-menu>\n\t\t<nav aria-label="Primary">\n\t\t\t${links.join('\n\t\t\t')}\n\t\t</nav>\n\t</caps-header-menu>`,
-	);
-}
 if (header.getBoolean('Show visual ID')) {
-	const visual = slotContent(header, 'Visual ID');
+	const visual = slot('Visual ID');
 	parts.push(
 		visual.length === 0
 			? '<caps-header-visual><img src="" alt="" /></caps-header-visual>'
@@ -40,21 +23,20 @@ if (header.getBoolean('Show visual ID')) {
 	);
 }
 parts.push(`<caps-header-title>${header.getString('App name')}</caps-header-title>`);
-if (navigation !== null) {
-	parts.push(figma.code`<caps-header-nav>\n\t\t${indented(navigation, '\t\t')}\n\t</caps-header-nav>`);
+if (header.getBoolean('Show navigation')) {
+	const menu = header.findInstance('Navigation Menu');
+	if (menu.type === 'INSTANCE') {
+		const navigation = indented(menu.executeTemplate().example, '\t\t');
+		parts.push(figma.code`<ng-container *capsHeaderNav>\n\t\t${navigation}\n\t</ng-container>`);
+	}
 }
 if (header.getBoolean('Show actions')) {
-	parts.push(
-		figma.code`<caps-header-actions>${lines(slotContent(header, 'Actions'), '\t\t')}\n\t</caps-header-actions>`,
-	);
+	parts.push(figma.code`<caps-header-actions>${lines(slot('Actions'), '\t\t')}\n\t</caps-header-actions>`);
 }
 parts.push('<caps-header-logo><img src="" alt="Logo" /></caps-header-logo>');
 
 export default {
 	example: figma.code`<caps-header>${lines(parts, '\t')}\n</caps-header>`,
-	imports: [
-		"import { CapsHeaderImports } from '@capsule-ng/caps/header';",
-		"import { CapsButtonImports } from '@capsule-ng/caps/button';",
-	],
+	imports: ["import { CapsHeaderImports } from '@capsule-ng/caps/header';"],
 	id: 'caps-header',
 };

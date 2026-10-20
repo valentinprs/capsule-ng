@@ -1,5 +1,5 @@
 /* MARK: Header */
-/* The 56 px application bar. Below `md`, the navigation hides and the menu button opens it in a Sheet. */
+/* The 56 px application bar. Below `md`, the navigation leaves the bar and the menu button opens it in a Sheet. */
 .caps-header {
 	@apply bg-background border-border flex h-[calc(--spacing(14)+1px)] w-full min-w-0 shrink-0 items-center justify-between gap-2 border-b px-4;
 }
@@ -22,7 +22,19 @@
 }
 
 .caps-header-menu-content {
-	@apply flex flex-col items-stretch gap-1 px-4 [&>nav]:flex [&>nav]:flex-col [&>nav]:items-stretch [&>nav]:gap-1;
+	@apply flex flex-col items-stretch gap-1 px-4;
+}
+
+/* In the sheet, the same navigation stacks vertically and its entries span the panel. */
+.caps-header-menu-content .caps-navigation-menu-list {
+	@apply flex-col flex-nowrap items-stretch gap-1;
+}
+
+.caps-header-menu-content
+	.caps-navigation-menu-list
+	> li
+	> :is(a.caps-navigation-menu-link, .caps-navigation-menu-trigger) {
+	@apply flex w-full justify-start;
 }
 
 /* The visual identifier is always 40 × 40 px; larger content is clipped. */

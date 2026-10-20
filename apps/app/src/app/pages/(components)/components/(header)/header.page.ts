@@ -67,11 +67,12 @@ export const routeMeta: RouteMeta = {
 				<span hlmCode>caps-header-logo</span>
 				goes at the end and holds the brand logo, which the app provides. The visual identifier is 40 × 40 px. Below the
 				<span hlmCode>md</span>
-				breakpoint,
-				<span hlmCode>caps-header-nav</span>
-				is hidden and
+				breakpoint, the
+				<span hlmCode>*capsHeaderNav</span>
+				navigation leaves the bar and the header shows a menu button that opens the same navigation in a left sheet:
+				write it once. The optional
 				<span hlmCode>caps-header-menu</span>
-				shows a menu button that opens its projected navigation in a left sheet.
+				element only sets the button label and the sheet title and description.
 			</p>
 
 			<spartan-section-sub-heading id="examples">Examples</spartan-section-sub-heading>

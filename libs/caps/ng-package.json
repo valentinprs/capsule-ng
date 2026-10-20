@@ -20,6 +20,7 @@
 		"messages.css",
 		"command.css",
 		"kbd.css",
+		"header.css",
 		"messages-states.css"
 	]
 }

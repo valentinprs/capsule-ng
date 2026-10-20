@@ -49,6 +49,7 @@ export const components: Link[] = [
 	{ label: 'Dropdown Menu', url: '/dropdown-menu' },
 	{ label: 'Empty', url: '/empty' },
 	{ label: 'Field', url: '/field' },
+	{ label: 'Header', url: '/header' },
 	{ label: 'Hover Card', url: '/hover-card' },
 	{ label: 'Input Group', url: '/input-group' },
 	{ label: 'Input OTP', url: '/input-otp' },

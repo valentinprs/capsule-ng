@@ -138,19 +138,18 @@ export class CapsCarousel {
 		this._canScrollNext.set(api.canScrollNext());
 		this._currentSlide.set(api.selectedScrollSnap());
 		this._slideCount.set(api.scrollSnapList().length);
-		// IntersectionObserver threshold zero also reports edge-touching slides with no visible area.
+		// Visibility comes from geometry, not from Embla's IntersectionObserver (`slidesInView`): the
+		// observer can stay silent (e.g. in a throttled frame) and also reports edge-touching slides.
+		// The `slidesInView` and `settle` events still trigger this update while and after scrolling.
 		const viewport = api.rootNode().getBoundingClientRect();
 		this._visibleSlides.set(
-			api
-				.slidesInView()
-				.map((index) => api.slideNodes()[index])
-				.filter((slide) => {
-					const bounds = slide.getBoundingClientRect();
-					return (
-						Math.min(bounds.right, viewport.right) > Math.max(bounds.left, viewport.left) &&
-						Math.min(bounds.bottom, viewport.bottom) > Math.max(bounds.top, viewport.top)
-					);
-				}),
+			api.slideNodes().filter((slide) => {
+				const bounds = slide.getBoundingClientRect();
+				return (
+					Math.min(bounds.right, viewport.right) > Math.max(bounds.left, viewport.left) &&
+					Math.min(bounds.bottom, viewport.bottom) > Math.max(bounds.top, viewport.top)
+				);
+			}),
 		);
 		this._initialized.set(true);
 		const autoplay = this.autoplay();

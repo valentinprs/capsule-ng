@@ -25,6 +25,7 @@ module.exports = [
 						'{projectRoot}/vite.config.{ts,mts}',
 						'{projectRoot}/**/test-setup.ts',
 						'{projectRoot}/**/*.spec.ts',
+						'{projectRoot}/**/testing/**',
 						'{projectRoot}/**/*.stories.ts',
 						'{projectRoot}/**/*.figma.ts',
 						'{projectRoot}/code-connect/**',

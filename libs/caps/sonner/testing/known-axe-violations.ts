@@ -49,10 +49,10 @@ function exactListCheck(check: CheckResult, root: AuditRoot, list: Element): boo
 		check.id !== 'only-listitems' ||
 		check.impact !== 'serious' ||
 		JSON.stringify(check.data) !== JSON.stringify({ values: 'brn-sonner-toast' }) ||
-		check.relatedNodes.length !== hosts.length
+		(check.relatedNodes ?? []).length !== hosts.length
 	)
 		return false;
-	const related = check.relatedNodes.map((node) => {
+	const related = (check.relatedNodes ?? []).map((node) => {
 		if (!snapshotMatches(root, node.html, 'brn-sonner-toast')) return null;
 		return resolve(root, node.target);
 	});
@@ -86,7 +86,7 @@ function isKnown(rule: Result, node: NodeResult, root: AuditRoot): boolean {
 			check.id === 'aria-allowed-role' &&
 			check.impact === 'minor' &&
 			JSON.stringify(check.data) === JSON.stringify(['status']) &&
-			check.relatedNodes.length === 0
+			(check.relatedNodes ?? []).length === 0
 		);
 	}
 	return false;

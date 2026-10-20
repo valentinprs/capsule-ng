@@ -384,7 +384,7 @@ export const routeMeta: RouteMeta = {
 			<spartan-ui-api-docs docType="caps" />
 
 			<spartan-page-bottom-nav>
-				<spartan-page-bottom-nav-link href="hover-card" label="Hover Card" />
+				<spartan-page-bottom-nav-link href="header" label="Header" />
 				<spartan-page-bottom-nav-link direction="previous" href="empty" label="Empty" />
 			</spartan-page-bottom-nav>
 		</section>

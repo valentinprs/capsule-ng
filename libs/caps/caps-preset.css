@@ -507,7 +507,7 @@ caps-questionnaire-item[hidden] {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 0.25rem;
+	gap: 0;
 }
 .caps-navigation-menu[data-orientation='vertical'] > .caps-navigation-menu-list {
 	flex-direction: column;
@@ -527,15 +527,23 @@ a.caps-navigation-menu-link {
 		background-color var(--caps-duration-150),
 		box-shadow var(--caps-duration-150);
 }
-.caps-navigation-menu-trigger {
+/* Top-level entries follow the Figma Navigation Menu Button (and Spartan Nova): 32 px high,
+   8 px inline padding, large radius, medium weight. Panel links keep the rules above. */
+.caps-navigation-menu-trigger,
+.caps-navigation-menu-list > li > a.caps-navigation-menu-link {
+	min-height: calc(var(--caps-spacing) * 8);
+	padding: calc(var(--caps-spacing) * 1.5) calc(var(--caps-spacing) * 2);
+	border-radius: var(--radius-lg);
 	font-weight: 500;
+}
+.caps-navigation-menu-trigger {
 	cursor: pointer;
 }
 .caps-navigation-menu-trigger:hover,
 a.caps-navigation-menu-link:hover,
 .caps-navigation-menu-trigger[data-state='open'],
 a.caps-navigation-menu-link[aria-current='page'] {
-	background: var(--muted);
+	background: var(--secondary);
 }
 .caps-navigation-menu-trigger:focus-visible,
 a.caps-navigation-menu-link:focus-visible {

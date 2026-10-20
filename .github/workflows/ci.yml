@@ -125,9 +125,17 @@ jobs:
     runs-on: ubuntu-latest
     # Not gated on `build`: each e2e project serves what it tests itself, so the job is independent
     # of the docs-app build and runs in parallel with it.
+    # The two e2e projects run as parallel matrix jobs. `needs.e2e.result` stays a single result
+    # (failure if either fails), so `ci-complete` and tools/ci/policy.mjs are unchanged.
     # - ui-storybook-e2e: cypress against storybook (devServerTarget ui-storybook:static-storybook).
     # - app-e2e: cypress-axe accessibility audit of docs pages (breadcrumb) against the docs app
     #   Vite dev server (devServerTarget app:serve:e2e, port 4300). Any axe violation fails the job.
+    # trpc-app-e2e is not listed: it is not tagged scope:e2e and was never run in CI (it needs a
+    # database/health endpoint that is not provisioned here).
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [ui-storybook-e2e, app-e2e]
     steps:
       - uses: actions/checkout@v6
         with:
@@ -146,10 +154,7 @@ jobs:
       - name: Install Cypress
         run: npx cypress install
       - name: End-to-end test
-        # Exclude trpc-app-e2e: it is not tagged scope:e2e and was never run in CI (it needs a
-        # database/health endpoint that is not provisioned here). The storybook and docs-app (axe)
-        # e2e projects run.
-        run: pnpm run e2e
+        run: pnpm nx run ${{ matrix.project }}:e2e --outputStyle=stream
 
   types:
     timeout-minutes: 15

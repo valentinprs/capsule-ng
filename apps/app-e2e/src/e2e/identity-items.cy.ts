@@ -70,6 +70,6 @@ describe('Capsule identity and item compositions', () => {
 		cy.visit('/components/badge');
 		cy.get('spartan-badge-link a[capsBadge]').first().focus();
 		cy.get('spartan-badge-link a[capsBadge]').first().should('have.focus').and('have.attr', 'href');
-		cy.get('spartan-badge-variants-preview caps-badge').should('have.length', 12);
+		cy.get('spartan-badge-variants-preview caps-badge').should('have.length', 18);
 	});
 });

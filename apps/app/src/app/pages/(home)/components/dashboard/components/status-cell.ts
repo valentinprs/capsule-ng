@@ -14,7 +14,7 @@ import { type DashboardFeatures } from './table-section';
 	template: `
 		<caps-badge
 			id="{{ _data().id }}-status"
-			variant="outline"
+			variant="cool-gray"
 			class="text-muted-foreground rounded-full px-1.5 text-xs"
 		>
 			@if (_data().status === 'Done') {

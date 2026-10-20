@@ -29,26 +29,18 @@ export const Default: Story = {
 		props: { links },
 		template: `
 			<caps-header>
-				<caps-header-menu title="Capsule navigation">
-					<nav aria-label="Primary" (click)="$event.preventDefault()">
-						@for (link of links; track link) {
-							<a capsButton variant="ghost" class="w-full justify-start" href="/components">{{ link }}</a>
-						}
-					</nav>
-				</caps-header-menu>
+				<caps-header-menu title="Capsule navigation" />
 				<caps-header-visual>
 					<span class="bg-primary text-primary-foreground flex size-10 items-center justify-center rounded-lg">
 						<ng-icon name="lucideCommand" aria-hidden="true" />
 					</span>
 				</caps-header-visual>
 				<caps-header-title>Capsule</caps-header-title>
-				<caps-header-nav (click)="$event.preventDefault()">
-					<caps-navigation-menu aria-label="Primary">
-						@for (link of links; track link; let first = $first) {
-							<li capsNavigationMenuItem><a capsNavigationMenuLink href="/components" [active]="first">{{ link }}</a></li>
-						}
-					</caps-navigation-menu>
-				</caps-header-nav>
+				<caps-navigation-menu *capsHeaderNav aria-label="Primary" (click)="$event.preventDefault()">
+					@for (link of links; track link; let first = $first) {
+						<li capsNavigationMenuItem><a capsNavigationMenuLink href="/components" [active]="first">{{ link }}</a></li>
+					}
+				</caps-navigation-menu>
 				<caps-header-actions>
 					<button capsButton variant="ghost" size="icon" type="button" aria-label="Toggle theme">
 						<ng-icon name="lucideMoon" aria-hidden="true" />

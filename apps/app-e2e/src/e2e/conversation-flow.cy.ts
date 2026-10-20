@@ -150,7 +150,9 @@ describe('Capsule conversation flow', { retries: 0 }, () => {
 		cy.realPress('Enter');
 		cy.contains('[data-sonner-toast] [data-title]', 'You clicked the revert button').should('be.visible');
 		cy.get('[data-sonner-toast]').should('have.attr', 'data-mounted', 'true');
-		cy.get('[data-sonner-toaster]').realHover();
+		// Hover the toast itself: the toaster list is 0 px high, so its centre sits on the toast edge and
+		// can miss it while the toast slides in; without hover, Sonner's timer dismisses the toast.
+		cy.get('[data-sonner-toast]').realHover();
 		cy.get(preview + ' button[capsMarker]').should('have.attr', 'type', 'button');
 		cy.get(preview + ' a[capsMarker]').should('have.attr', 'href', '#examples__links_and_buttons');
 		cy.get('spartan-marker-status-preview caps-marker-icon').should('have.attr', 'aria-hidden', 'true');
@@ -159,6 +161,7 @@ describe('Capsule conversation flow', { retries: 0 }, () => {
 		cy.checkA11y(preview);
 		cy.checkA11y('spartan-marker-status-preview');
 		// Keep the native notification mounted while the full document audit runs.
+		cy.get('[data-sonner-toast]').should('have.attr', 'data-mounted', 'true');
 		cy.window()
 			.then((win) => Reflect.get(win, 'axe').run(win.document))
 			.then((raw: AxeResults) =>

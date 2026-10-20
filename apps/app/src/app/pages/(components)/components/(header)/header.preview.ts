@@ -16,28 +16,20 @@ import { lucideCommand, lucideMoon } from '@ng-icons/lucide';
 	host: { class: 'w-full', '(document:click)': '_stayOnPage($event)' },
 	template: `
 		<caps-header>
-			<caps-header-menu title="Capsule navigation">
-				<nav aria-label="Primary">
-					<a capsButton variant="ghost" class="w-full justify-start" href="/documentation/introduction">Docs</a>
-					<a capsButton variant="ghost" class="w-full justify-start" href="/components">Components</a>
-					<a capsButton variant="ghost" class="w-full justify-start" href="/blocks">Blocks</a>
-				</nav>
-			</caps-header-menu>
+			<caps-header-menu title="Capsule navigation" />
 			<caps-header-visual>
 				<span class="bg-primary text-primary-foreground flex size-10 items-center justify-center rounded-lg">
 					<ng-icon name="lucideCommand" aria-hidden="true" />
 				</span>
 			</caps-header-visual>
 			<caps-header-title>Capsule</caps-header-title>
-			<caps-header-nav>
-				<caps-navigation-menu aria-label="Primary">
-					<li capsNavigationMenuItem>
-						<a capsNavigationMenuLink href="/documentation/introduction" active>Docs</a>
-					</li>
-					<li capsNavigationMenuItem><a capsNavigationMenuLink href="/components" [active]="false">Components</a></li>
-					<li capsNavigationMenuItem><a capsNavigationMenuLink href="/blocks" [active]="false">Blocks</a></li>
-				</caps-navigation-menu>
-			</caps-header-nav>
+			<caps-navigation-menu *capsHeaderNav aria-label="Primary">
+				<li capsNavigationMenuItem>
+					<a capsNavigationMenuLink href="/documentation/introduction" active>Docs</a>
+				</li>
+				<li capsNavigationMenuItem><a capsNavigationMenuLink href="/components" [active]="false">Components</a></li>
+				<li capsNavigationMenuItem><a capsNavigationMenuLink href="/blocks" [active]="false">Blocks</a></li>
+			</caps-navigation-menu>
 			<caps-header-actions>
 				<button capsButton variant="ghost" size="icon" type="button" aria-label="Toggle theme">
 					<ng-icon name="lucideMoon" aria-hidden="true" />
@@ -62,14 +54,9 @@ import { CapsHeaderImports } from '@capsule-ng/caps/header';
 
 export const defaultSkeleton = `
 <caps-header>
-  <caps-header-menu>
-    <nav aria-label="Primary">…</nav>
-  </caps-header-menu>
   <caps-header-visual>…</caps-header-visual>
   <caps-header-title>App name</caps-header-title>
-  <caps-header-nav>
-    <caps-navigation-menu aria-label="Primary">…</caps-navigation-menu>
-  </caps-header-nav>
+  <caps-navigation-menu *capsHeaderNav aria-label="Primary">…</caps-navigation-menu>
   <caps-header-actions>…</caps-header-actions>
   <caps-header-logo><img src="…" alt="…" /></caps-header-logo>
 </caps-header>

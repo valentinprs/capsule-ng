@@ -14,7 +14,9 @@ describe('Capsule Sonner', () => {
 			.and('have.attr', 'aria-live', 'polite');
 		cy.get('[data-sonner-toast]').should('contain.text', 'Sunday, December 03, 2023 at 9:00 AM');
 		cy.get('[data-sonner-toast]').should('have.attr', 'data-mounted', 'true');
-		cy.get('[data-sonner-toaster]').realHover();
+		// Hover the toast itself: the toaster list is 0 px high, so its centre sits on the toast edge and
+		// can miss it while the toast slides in; without hover, Sonner's timer dismisses the toast.
+		cy.get('[data-sonner-toast]').realHover();
 		cy.injectAxe();
 		cy.window()
 			.then((win) => Reflect.get(win, 'axe').run(win.document))

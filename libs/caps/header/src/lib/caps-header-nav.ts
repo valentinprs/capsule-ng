@@ -1,17 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { classes } from '@spartan-ng/helm/utils';
+import { Directive, inject, TemplateRef } from '@angular/core';
 
-/** Holds the primary navigation, usually a `caps-navigation-menu`. Hidden below the `md` breakpoint. */
-@Component({
-	selector: 'caps-header-nav',
-	changeDetection: ChangeDetectionStrategy.OnPush,
-	host: { 'data-slot': 'header-nav' },
-	template: `
-		<ng-content />
-	`,
-})
+/**
+ * Marks the primary navigation, usually a `caps-navigation-menu`, written once. `caps-header`
+ * renders it in the bar from the `md` breakpoint, and in the menu sheet below it.
+ */
+@Directive({ selector: '[capsHeaderNav]' })
 export class CapsHeaderNav {
-	constructor() {
-		classes(() => 'caps-header-nav');
-	}
+	/** @internal */
+	public readonly template = inject(TemplateRef);
 }

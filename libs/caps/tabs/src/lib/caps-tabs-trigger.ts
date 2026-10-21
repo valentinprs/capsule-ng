@@ -24,7 +24,7 @@ export class CapsTabsTrigger {
 	constructor() {
 		classes(
 			() =>
-				'caps-tabs-trigger relative inline-flex flex-1 items-center justify-center whitespace-nowrap transition-colors disabled:pointer-events-none disabled:opacity-(--caps-disabled-opacity) [&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0',
+				'caps-tabs-trigger relative inline-flex flex-1 items-center justify-center whitespace-nowrap transition-colors disabled:pointer-events-none disabled:opacity-(--caps-opacity-disabled) [&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0',
 		);
 	}
 }

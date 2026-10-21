@@ -43,11 +43,11 @@
 }
 
 .caps-button-variant-ghost {
-	@apply hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground;
+	@apply hover:text-foreground aria-expanded:text-foreground hover:bg-(--caps-alpha-black-switch-5) aria-expanded:bg-(--caps-alpha-black-switch-5);
 }
 
 .caps-button-variant-outline {
-	@apply border-input bg-background text-foreground hover:bg-muted hover:text-foreground dark:bg-input/30 dark:hover:bg-input/50;
+	@apply border-input text-foreground hover:text-foreground bg-(--caps-alpha-white-outline-bg) hover:bg-(--caps-alpha-black-switch-5);
 }
 
 .caps-button-size-default {
@@ -109,12 +109,12 @@
 
 /* MARK: Input */
 .caps-input {
-	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base transition-colors file:h-(--caps-control-height-xs) file:text-sm file:font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base transition-colors file:h-(--caps-control-height-xs) file:text-sm file:font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 /* MARK: Textarea */
 .caps-textarea {
-	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-2 text-base transition-colors focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-2 text-base transition-colors focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 /* MARK: Label */
@@ -170,7 +170,7 @@
 .caps-field[data-matches-spartan-invalid='true'] .caps-input,
 .caps-field[data-matches-spartan-invalid='true'] .caps-textarea,
 .caps-field[data-matches-spartan-invalid='true'] .caps-select-trigger {
-	@apply border-destructive ring-destructive/20 dark:border-destructive/50 dark:ring-destructive/40 ring-[length:var(--caps-focus-ring-width)];
+	@apply border-destructive dark:border-destructive/50;
 }
 .caps-field:has(:disabled) > .caps-field-label,
 .caps-field:has(:disabled) > caps-field-content > .caps-field-label {
@@ -226,7 +226,22 @@
 .caps-checkbox[data-matches-spartan-invalid='true'],
 .caps-switch[data-matches-spartan-invalid='true'],
 .caps-radio[data-matches-spartan-invalid='true'] .caps-radio-indicator {
-	@apply border-destructive ring-destructive/20 dark:ring-destructive/40 ring-[length:var(--caps-focus-ring-width)];
+	@apply border-destructive;
+}
+/* Invalid controls (Figma `Error` / `Error focus`): the destructive border alone at rest, a 2px
+   `--caps-ring-error` ring on focus. */
+.caps-input[data-matches-spartan-invalid='true']:focus-visible,
+.caps-textarea[data-matches-spartan-invalid='true']:focus-visible,
+.caps-select-trigger[data-matches-spartan-invalid='true']:focus-visible,
+.caps-questionnaire-input[aria-invalid='true']:focus-visible,
+.caps-combobox-chips[data-matches-spartan-invalid='true']:focus-within,
+.caps-field[data-matches-spartan-invalid='true'] .caps-input:focus-visible,
+.caps-field[data-matches-spartan-invalid='true'] .caps-textarea:focus-visible,
+.caps-field[data-matches-spartan-invalid='true'] .caps-select-trigger:focus-visible,
+.caps-checkbox[data-matches-spartan-invalid='true']:focus-visible,
+.caps-switch[data-matches-spartan-invalid='true']:focus-visible,
+.caps-radio[data-matches-spartan-invalid='true']:has(input:focus-visible) .caps-radio-indicator {
+	@apply border-destructive ring-ring-error ring-[length:var(--caps-size-2px)];
 }
 @media (prefers-reduced-motion: reduce) {
 	.caps-checkbox,
@@ -244,7 +259,7 @@
 /* MARK: Dialogs */
 
 .caps-alert-dialog-content {
-	@apply data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-popover text-popover-foreground ring-foreground/10 gap-4 rounded-xl p-4 ring-1 duration-(--caps-duration-100) data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm;
+	@apply data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-popover text-popover-foreground ring-border gap-4 rounded-xl p-4 ring-1 duration-(--caps-duration-100) data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm;
 }
 
 .caps-alert-dialog-header {
@@ -273,7 +288,7 @@
 }
 
 .caps-dialog-content {
-	@apply bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 ring-foreground/10 grid max-w-[calc(100%-var(--spacing)*8)] gap-4 rounded-xl p-4 text-sm ring-1 duration-(--caps-duration-100) sm:max-w-sm;
+	@apply bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 ring-border grid max-w-[calc(100%-var(--spacing)*8)] gap-4 rounded-xl p-4 text-sm ring-1 duration-(--caps-duration-100) sm:max-w-sm;
 }
 
 .caps-dialog-close {
@@ -302,7 +317,7 @@
 	min-width: 0;
 	width: 100%;
 	max-width: 100%;
-	@apply ring-foreground/10 bg-card text-card-foreground gap-(--card-spacing) overflow-hidden rounded-xl py-(--card-spacing) text-sm ring-1 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[density=compact]:[--card-spacing:--spacing(3)] data-[density=compact]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl;
+	@apply ring-border bg-card text-card-foreground gap-(--card-spacing) overflow-hidden rounded-xl py-(--card-spacing) text-sm ring-1 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[density=compact]:[--card-spacing:--spacing(3)] data-[density=compact]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl;
 }
 .caps-card-header {
 	@apply gap-1 rounded-t-xl px-(--card-spacing) [.border-b]:pb-(--card-spacing);
@@ -335,7 +350,7 @@
 
 /* MARK: Selection — shared Capsule control and surface tokens. */
 .caps-select-trigger {
-	@apply border-input text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive data-[matches-spartan-invalid=true]:ring-destructive/20 h-(--caps-control-height) rounded-lg border bg-(--caps-input) px-3 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-8;
+	@apply border-input text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive h-(--caps-control-height) rounded-lg border bg-(--caps-input) px-3 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-8;
 }
 .caps-select-content {
 	@apply bg-popover text-popover-foreground rounded-lg border p-1 shadow-md;
@@ -438,7 +453,7 @@
 }
 
 .caps-questionnaire-input {
-	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] aria-invalid:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 .caps-questionnaire-error {

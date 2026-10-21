@@ -187,7 +187,7 @@
 		@apply shadow-md;
 	}
 	.caps-popover-content {
-		@apply ring-foreground/10 flex w-72 flex-col gap-2.5 ring-1;
+		@apply ring-border flex w-72 flex-col gap-2.5 ring-1;
 	}
 	.caps-tooltip-content {
 		@apply w-fit rounded-md px-3 py-1.5 text-xs;
@@ -264,7 +264,7 @@
 	}
 
 	.caps-toggle-variant-outline {
-		@apply border-input hover:bg-muted border bg-transparent;
+		@apply border-input border bg-(--caps-alpha-white-outline-bg);
 	}
 
 	.caps-toggle-size-default {
@@ -390,7 +390,7 @@
 		@apply hover:bg-muted focus-visible:ring-ring rounded-sm outline-none focus-visible:ring-2;
 	}
 	.caps-item-interactive[data-disabled] {
-		opacity: var(--caps-disabled-opacity);
+		opacity: var(--caps-opacity-disabled);
 	}
 	.caps-item-group-header {
 		@apply flex items-center justify-between gap-2 text-sm font-medium;

@@ -186,10 +186,10 @@
 		@apply ring-border flex w-72 flex-col gap-2.5 ring-1;
 	}
 	.caps-tooltip-content {
-		@apply w-fit rounded-md px-3 py-1.5 text-xs;
+		@apply w-fit rounded-lg px-2 py-1.5 text-xs;
 	}
 	.caps-hover-card-content {
-		@apply w-80;
+		@apply ring-border w-fit p-2 ring-1;
 	}
 	.caps-floating-content[data-state='open'] {
 		@apply animate-in fade-in-0 zoom-in-95;
@@ -526,13 +526,24 @@
 		border-radius: var(--radius);
 		font-family: var(--font-sans);
 	}
-	.caps-toast [data-close-button]:focus-visible {
-		outline: 2px solid var(--ring);
-		outline-offset: 2px;
+	/* Capsule toasts have no close button (Figma Sonner): this also hides Brain's per-toast
+	   `closeButton` option. Dismiss with an action, a timer or `toast.dismiss()`. */
+	.caps-toast [data-close-button] {
+		display: none !important;
 	}
 	.caps-toast [data-caps-toast-action],
 	.caps-toast [data-caps-toast-cancel] {
 		flex-shrink: 0;
+	}
+	.caps-toast {
+		box-shadow: var(--shadow-sm) !important;
+	}
+	.caps-toast :is([data-title], [data-description]) {
+		font-size: var(--text-sm) !important;
+		line-height: var(--text-sm--line-height) !important;
+	}
+	.caps-toast [data-description] {
+		color: var(--muted-foreground) !important;
 	}
 	.caps-toast [data-content] {
 		min-width: 0;

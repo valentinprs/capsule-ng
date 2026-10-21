@@ -57,7 +57,7 @@ export class CapsMenu {
 	private readonly _menuSide = inject(MENU_SIDE, { optional: true });
 	protected readonly _state = signal('open');
 	protected readonly _side = signal<MenuSide>(this._menuSide?.side() ?? 'bottom');
-	public readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('lg');
+	public readonly size = input<'xs' | 'sm' | 'md' | 'lg'>('sm');
 	constructor() {
 		classes(() => 'caps-menu block overflow-x-hidden overflow-y-auto outline-none');
 		this._menu.closed.pipe(takeUntilDestroyed()).subscribe(() => this._state.set('closed'));

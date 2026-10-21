@@ -6,7 +6,7 @@ import { CapsSonnerImports, toast, type ToastT } from '@capsule-ng/caps/sonner';
 	selector: 'spartan-sonner-preview',
 	imports: [CapsSonnerImports, CapsButtonImports],
 	template: `
-		<caps-toaster closeButton />
+		<caps-toaster />
 		<div class="flex flex-wrap justify-center gap-2">
 			<button capsButton type="button" variant="outline" (click)="showToast()">Show Toast</button>
 			<button capsButton type="button" variant="outline" (click)="save()">Update by ID</button>
@@ -23,7 +23,6 @@ export class SonnerPreview {
 		this._latest = toast('Event has been created', {
 			description: 'Sunday, December 03, 2023 at 9:00 AM',
 			duration: 10000,
-			closeButton: true,
 			action: { label: 'Undo', onClick: () => this._result.set('Event creation undone') },
 		});
 	}

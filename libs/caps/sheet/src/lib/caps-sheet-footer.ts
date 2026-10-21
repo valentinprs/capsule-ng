@@ -10,6 +10,6 @@ import { classes } from '@spartan-ng/helm/utils';
 })
 export class CapsSheetFooter {
 	constructor() {
-		classes(() => 'caps-sheet-footer mt-auto flex shrink-0 flex-col');
+		classes(() => 'caps-sheet-footer mt-auto flex shrink-0 flex-row justify-end');
 	}
 }

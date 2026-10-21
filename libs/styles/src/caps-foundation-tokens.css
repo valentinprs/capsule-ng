@@ -16,6 +16,8 @@
 	--caps-control-height-lg: calc(var(--caps-spacing) * 9);
 	--caps-control-radius-xs: min(var(--radius-md), var(--caps-size-10px));
 	--caps-control-radius-sm: min(var(--radius-md), var(--caps-size-12px));
+	--caps-dialog-width: 390px;
+	--caps-sheet-width: 342px;
 	--caps-textarea-min-height: calc(var(--caps-spacing) * 19);
 	--caps-button-active-offset: var(--caps-border-width);
 	--caps-duration-fast: var(--caps-duration-100);
@@ -68,6 +70,7 @@
 	--caps-size-12px: 12px;
 	--caps-size-14px: 14px;
 	--caps-size-16-6px: 16.6px;
+	--caps-size-16px: 16px;
 	--caps-size-18-4px: 18.4px;
 	--caps-size-24px: 24px;
 	--caps-size-28px: 28px;

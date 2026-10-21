@@ -10,7 +10,7 @@ import { moduleMetadata } from '@storybook/angular';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<h1 class="sr-only">Sonner notifications</h1>
-		<caps-toaster closeButton [expand]="expand()" [richColors]="richColors()" [theme]="theme()" />
+		<caps-toaster [expand]="expand()" [richColors]="richColors()" [theme]="theme()" />
 		<div class="flex flex-wrap gap-2">
 			<button capsButton type="button" (click)="showToast()">Show Toast</button>
 			<button capsButton type="button" variant="outline" (click)="update()">Update by ID</button>
@@ -30,7 +30,6 @@ export class SonnerStory {
 		toast('Event has been created', {
 			description: 'Sunday, December 03, 2023 at 9:00 AM',
 			duration: Number.POSITIVE_INFINITY,
-			closeButton: true,
 			action: { label: 'Undo', onClick: () => this.result.set('Event creation undone') },
 			cancel: { label: 'Keep', onClick: () => this.result.set('Event retained') },
 		});
@@ -50,7 +49,6 @@ export class SonnerStory {
 		toast.warning('Review needed', {
 			description: 'This stays until closed.',
 			duration: Number.POSITIVE_INFINITY,
-			closeButton: true,
 		});
 	}
 	public dismiss() {

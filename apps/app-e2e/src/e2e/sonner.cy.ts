@@ -107,8 +107,8 @@ describe('Capsule Sonner', () => {
 						expect(bounds.right).to.be.at.most(width);
 					});
 				cy.get('[data-caps-toast-action]').should('be.visible');
-				cy.get('[data-close-button]').should('have.attr', 'aria-label', 'Close toast');
-				nativeClick('[data-close-button]');
+				cy.get('[data-close-button]').should('not.exist');
+				nativeClick('[data-caps-toast-action]');
 				cy.get('[data-sonner-toast]').should('not.exist');
 			});
 		}

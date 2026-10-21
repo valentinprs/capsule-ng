@@ -1,11 +1,12 @@
 import type { BooleanInput, NumberInput } from '@angular/cdk/coercion';
-import { ChangeDetectionStrategy, Component, booleanAttribute, computed, input, numberAttribute } from '@angular/core';
+import { booleanAttribute, ChangeDetectionStrategy, Component, computed, input, numberAttribute } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCircleCheck, lucideInfo, lucideLoader2, lucideOctagonX, lucideTriangleAlert } from '@ng-icons/lucide';
-import { BrnSonnerImports, type ToasterProps } from '@spartan-ng/brain/sonner';
+import { BrnSonnerImports, type ToasterProps, type ToastT } from '@spartan-ng/brain/sonner';
 import { hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
+import { CAPS_TOAST_CLOSE } from './caps-toast';
 
 @Component({
 	selector: 'caps-toaster',
@@ -23,7 +24,7 @@ import type { ClassValue } from 'clsx';
 			[expand]="expand()"
 			[duration]="duration()"
 			[visibleToasts]="visibleToasts()"
-			[closeButton]="closeButton()"
+			[closeButton]="false"
 			[toastOptions]="_computedToastOptions()"
 			[offset]="offset()"
 			[style]="userStyle()"
@@ -53,23 +54,37 @@ import type { ClassValue } from 'clsx';
 				data-caps-toast-action
 				[style]="toast.actionButtonStyle"
 				capsButton
-				size="sm"
+				size="xs"
 				(click)="action.onClick($event)"
 			>
 				{{ action.label }}
 			</button>
-			<button
-				*brnToastCancelAction="let cancel; let toast = toast"
-				type="button"
-				data-caps-toast-cancel
-				[style]="toast.cancelButtonStyle"
-				capsButton
-				size="sm"
-				variant="secondary"
-				(click)="cancel.onClick($event)"
-			>
-				{{ cancel.label }}
-			</button>
+			<ng-template brnToastCancelAction let-cancel let-toast="toast">
+				@if (toast.cancel !== _close) {
+					<button
+						type="button"
+						data-caps-toast-cancel
+						[style]="toast.cancelButtonStyle"
+						capsButton
+						size="xs"
+						variant="secondary"
+						(click)="cancel.onClick($event)"
+					>
+						{{ cancel.label }}
+					</button>
+				} @else if (_isPersistent(toast)) {
+					<button
+						type="button"
+						data-caps-toast-close
+						capsButton
+						size="xs"
+						variant="outline"
+						(click)="cancel.onClick($event)"
+					>
+						{{ cancel.label }}
+					</button>
+				}
+			</ng-template>
 		</brn-sonner-toaster>
 	`,
 })
@@ -91,9 +106,6 @@ export class CapsToaster {
 	});
 	public readonly visibleToasts = input<ToasterProps['visibleToasts'], NumberInput>(3, {
 		transform: numberAttribute,
-	});
-	public readonly closeButton = input<ToasterProps['closeButton'], BooleanInput>(false, {
-		transform: booleanAttribute,
 	});
 	public readonly toastOptions = input<ToasterProps['toastOptions']>({});
 
@@ -120,4 +132,11 @@ export class CapsToaster {
 	);
 
 	protected readonly _computedClass = computed(() => hlm('caps-toaster group', this.userClass()));
+
+	protected readonly _close = CAPS_TOAST_CLOSE;
+
+	/** A toast that never closes by itself gets the Figma outline "Close" button. */
+	protected _isPersistent(toast: ToastT): boolean {
+		return (toast.duration ?? this.toastOptions()?.duration ?? this.duration()) === Number.POSITIVE_INFINITY;
+	}
 }

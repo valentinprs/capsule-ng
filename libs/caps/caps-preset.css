@@ -109,12 +109,12 @@
 
 /* MARK: Input */
 .caps-input {
-	@apply dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-2.5 py-1 text-base transition-colors file:h-(--caps-control-height-xs) file:text-sm file:font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base transition-colors file:h-(--caps-control-height-xs) file:text-sm file:font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 /* MARK: Textarea */
 .caps-textarea {
-	@apply border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-2.5 py-2 text-base transition-colors focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-2 text-base transition-colors focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 /* MARK: Label */
@@ -335,7 +335,7 @@
 
 /* MARK: Selection — shared Capsule control and surface tokens. */
 .caps-select-trigger {
-	@apply border-input bg-background text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive data-[matches-spartan-invalid=true]:ring-destructive/20 h-(--caps-control-height) rounded-lg border px-3 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-8;
+	@apply border-input text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive data-[matches-spartan-invalid=true]:ring-destructive/20 h-(--caps-control-height) rounded-lg border bg-(--caps-input) px-3 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-8;
 }
 .caps-select-content {
 	@apply bg-popover text-popover-foreground rounded-lg border p-1 shadow-md;
@@ -438,7 +438,7 @@
 }
 
 .caps-questionnaire-input {
-	@apply dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] aria-invalid:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] aria-invalid:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 .caps-questionnaire-error {

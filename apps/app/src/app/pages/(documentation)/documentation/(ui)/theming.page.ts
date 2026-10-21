@@ -189,14 +189,14 @@ export const routeMeta: RouteMeta = {
 
 			<spartan-section-sub-heading id="base-colors">Base Colors</spartan-section-sub-heading>
 
-			<p class="${hlmP}">The five base colors below share the chart colors listed above.</p>
+			<p class="${hlmP}">The base colors below share the chart colors listed above.</p>
 
-			<h3 id="color-neutral" spartanH4>Neutral</h3>
+			<h3 id="color-default" spartanH4>Default</h3>
 
 			<p class="${hlmP}">
-				Neutral is the default: the values of
+				Zinc neutrals with a blue primary, as in Figma: the values of
 				<code class="${hlmCode}">caps-tokens.css</code>
-				above.
+				above. The other base colors swap the neutrals and use a near-black primary.
 			</p>
 
 			<h3 id="color-stone" spartanH4>Stone</h3>
@@ -222,12 +222,10 @@ export const routeMeta: RouteMeta = {
   --caps-accent-foreground: oklch(0.216 0.006 56.043);
   --caps-destructive: oklch(0.577 0.245 27.325);
   --caps-border: oklch(0.923 0.003 48.717);
-  --caps-input: oklch(0.923 0.003 48.717);
+  --caps-input: oklch(1 0 0);
   --caps-ring: oklch(0.709 0.01 56.259);
   --caps-sidebar: oklch(0.985 0.001 106.423);
   --caps-sidebar-foreground: oklch(0.147 0.004 49.25);
-  --caps-sidebar-primary: oklch(0.216 0.006 56.043);
-  --caps-sidebar-primary-foreground: oklch(0.985 0.001 106.423);
   --caps-sidebar-accent: oklch(0.97 0.001 106.424);
   --caps-sidebar-accent-foreground: oklch(0.216 0.006 56.043);
   --caps-sidebar-border: oklch(0.923 0.003 48.717);
@@ -251,12 +249,10 @@ export const routeMeta: RouteMeta = {
   --caps-accent-foreground: oklch(0.985 0.001 106.423);
   --caps-destructive: oklch(0.704 0.191 22.216);
   --caps-border: oklch(1 0 0 / 10%);
-  --caps-input: oklch(1 0 0 / 15%);
+  --caps-input: oklch(1 0 0 / 5%);
   --caps-ring: oklch(0.553 0.013 58.071);
   --caps-sidebar: oklch(0.216 0.006 56.043);
   --caps-sidebar-foreground: oklch(0.985 0.001 106.423);
-  --caps-sidebar-primary: oklch(0.985 0.001 106.423);
-  --caps-sidebar-primary-foreground: oklch(0.216 0.006 56.043);
   --caps-sidebar-accent: oklch(0.268 0.007 34.298);
   --caps-sidebar-accent-foreground: oklch(0.985 0.001 106.423);
   --caps-sidebar-border: oklch(1 0 0 / 10%);
@@ -287,12 +283,10 @@ export const routeMeta: RouteMeta = {
   --caps-accent-foreground: oklch(0.21 0.006 285.885);
   --caps-destructive: oklch(0.577 0.245 27.325);
   --caps-border: oklch(0.92 0.004 286.32);
-  --caps-input: oklch(0.92 0.004 286.32);
+  --caps-input: oklch(1 0 0);
   --caps-ring: oklch(0.705 0.015 286.067);
   --caps-sidebar: oklch(0.985 0 0);
   --caps-sidebar-foreground: oklch(0.141 0.005 285.823);
-  --caps-sidebar-primary: oklch(0.21 0.006 285.885);
-  --caps-sidebar-primary-foreground: oklch(0.985 0 0);
   --caps-sidebar-accent: oklch(0.967 0.001 286.375);
   --caps-sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --caps-sidebar-border: oklch(0.92 0.004 286.32);
@@ -316,12 +310,10 @@ export const routeMeta: RouteMeta = {
   --caps-accent-foreground: oklch(0.985 0 0);
   --caps-destructive: oklch(0.704 0.191 22.216);
   --caps-border: oklch(1 0 0 / 10%);
-  --caps-input: oklch(1 0 0 / 15%);
+  --caps-input: oklch(1 0 0 / 5%);
   --caps-ring: oklch(0.552 0.016 285.938);
   --caps-sidebar: oklch(0.21 0.006 285.885);
   --caps-sidebar-foreground: oklch(0.985 0 0);
-  --caps-sidebar-primary: oklch(0.985 0 0);
-  --caps-sidebar-primary-foreground: oklch(0.21 0.006 285.885);
   --caps-sidebar-accent: oklch(0.274 0.006 286.033);
   --caps-sidebar-accent-foreground: oklch(0.985 0 0);
   --caps-sidebar-border: oklch(1 0 0 / 10%);
@@ -352,12 +344,10 @@ export const routeMeta: RouteMeta = {
   --caps-accent-foreground: oklch(0.21 0.034 264.665);
   --caps-destructive: oklch(0.577 0.245 27.325);
   --caps-border: oklch(0.928 0.006 264.531);
-  --caps-input: oklch(0.928 0.006 264.531);
+  --caps-input: oklch(1 0 0);
   --caps-ring: oklch(0.707 0.022 261.325);
   --caps-sidebar: oklch(0.985 0.002 247.839);
   --caps-sidebar-foreground: oklch(0.13 0.028 261.692);
-  --caps-sidebar-primary: oklch(0.21 0.034 264.665);
-  --caps-sidebar-primary-foreground: oklch(0.985 0.002 247.839);
   --caps-sidebar-accent: oklch(0.967 0.003 264.542);
   --caps-sidebar-accent-foreground: oklch(0.21 0.034 264.665);
   --caps-sidebar-border: oklch(0.928 0.006 264.531);
@@ -381,12 +371,10 @@ export const routeMeta: RouteMeta = {
   --caps-accent-foreground: oklch(0.985 0.002 247.839);
   --caps-destructive: oklch(0.704 0.191 22.216);
   --caps-border: oklch(1 0 0 / 10%);
-  --caps-input: oklch(1 0 0 / 15%);
+  --caps-input: oklch(1 0 0 / 5%);
   --caps-ring: oklch(0.551 0.027 264.364);
   --caps-sidebar: oklch(0.21 0.034 264.665);
   --caps-sidebar-foreground: oklch(0.985 0.002 247.839);
-  --caps-sidebar-primary: oklch(0.985 0.002 247.839);
-  --caps-sidebar-primary-foreground: oklch(0.21 0.034 264.665);
   --caps-sidebar-accent: oklch(0.278 0.033 256.848);
   --caps-sidebar-accent-foreground: oklch(0.985 0.002 247.839);
   --caps-sidebar-border: oklch(1 0 0 / 10%);
@@ -417,12 +405,10 @@ export const routeMeta: RouteMeta = {
   --caps-accent-foreground: oklch(0.208 0.042 265.755);
   --caps-destructive: oklch(0.577 0.245 27.325);
   --caps-border: oklch(0.929 0.013 255.508);
-  --caps-input: oklch(0.929 0.013 255.508);
+  --caps-input: oklch(1 0 0);
   --caps-ring: oklch(0.704 0.04 256.788);
   --caps-sidebar: oklch(0.984 0.003 247.858);
   --caps-sidebar-foreground: oklch(0.129 0.042 264.695);
-  --caps-sidebar-primary: oklch(0.208 0.042 265.755);
-  --caps-sidebar-primary-foreground: oklch(0.984 0.003 247.858);
   --caps-sidebar-accent: oklch(0.968 0.007 247.896);
   --caps-sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --caps-sidebar-border: oklch(0.929 0.013 255.508);
@@ -446,12 +432,10 @@ export const routeMeta: RouteMeta = {
   --caps-accent-foreground: oklch(0.984 0.003 247.858);
   --caps-destructive: oklch(0.704 0.191 22.216);
   --caps-border: oklch(1 0 0 / 10%);
-  --caps-input: oklch(1 0 0 / 15%);
+  --caps-input: oklch(1 0 0 / 5%);
   --caps-ring: oklch(0.551 0.027 264.364);
   --caps-sidebar: oklch(0.208 0.042 265.755);
   --caps-sidebar-foreground: oklch(0.984 0.003 247.858);
-  --caps-sidebar-primary: oklch(0.984 0.003 247.858);
-  --caps-sidebar-primary-foreground: oklch(0.208 0.042 265.755);
   --caps-sidebar-accent: oklch(0.279 0.041 260.031);
   --caps-sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --caps-sidebar-border: oklch(1 0 0 / 10%);

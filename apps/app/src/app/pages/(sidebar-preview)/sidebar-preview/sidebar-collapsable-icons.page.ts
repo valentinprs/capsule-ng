@@ -68,7 +68,7 @@ import { CapsSidebarImports, CapsSidebarService } from '@capsule-ng/caps/sidebar
 						<caps-sidebar-menu-item>
 							<button capsSidebarMenuButton size="lg">
 								<div
-									class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+									class="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 								>
 									<ng-icon aria-hidden="true" name="lucideGalleryVerticalEnd" />
 								</div>

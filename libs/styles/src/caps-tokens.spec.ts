@@ -71,15 +71,32 @@ describe('caps color tokens', () => {
 		});
 	}
 
-	it('keeps the shadcn neutral values', () => {
+	it('uses the Figma zinc neutrals and blue primary', () => {
 		expect(light['--caps-background']).toBe('oklch(1 0 0)');
-		expect(light['--caps-foreground']).toBe('oklch(0.145 0 0)');
-		expect(light['--caps-primary']).toBe('oklch(0.205 0 0)');
-		expect(light['--caps-ring']).toBe('oklch(0.708 0 0)');
-		expect(light['--caps-surface-foreground']).toBe('var(--caps-foreground)');
-		expect(dark['--caps-border']).toBe('oklch(1 0 0 / 10%)');
+		expect(light['--caps-foreground']).toBe(palette['--color-zinc-950']);
+		expect(light['--caps-primary']).toBe(blue[600]);
+		expect(light['--caps-border']).toBe(palette['--color-zinc-300']);
+		expect(light['--caps-ring']).toBe(palette['--color-zinc-400']);
+		expect(dark['--caps-background']).toBe(palette['--color-zinc-950']);
+		expect(dark['--caps-primary']).toBe(blue[500]);
+		expect(dark['--caps-border']).toBe('oklch(1 0 0 / 20%)');
 		expect(dark['--caps-sidebar-border']).toBe('oklch(1 0 0 / 10%)');
-		expect(dark['--caps-input']).toBe('oklch(1 0 0 / 15%)');
+	});
+
+	it('uses --caps-input as the field background', () => {
+		expect(light['--caps-input']).toBe('oklch(1 0 0)');
+		expect(dark['--caps-input']).toBe('oklch(1 0 0 / 5%)');
+	});
+
+	it('swaps black and white in dark mode for the switch alpha scales only', () => {
+		expect(light['--caps-alpha-black-switch-5']).toBe('oklch(0 0 0 / 5%)');
+		expect(dark['--caps-alpha-black-switch-5']).toBe('oklch(1 0 0 / 5%)');
+		expect(light['--caps-alpha-white-switch-50']).toBe('oklch(1 0 0 / 50%)');
+		expect(dark['--caps-alpha-white-switch-50']).toBe('oklch(0 0 0 / 50%)');
+		expect(dark['--caps-alpha-black-switch-100']).toBe('oklch(1 0 0)');
+		expect(light['--caps-alpha-black-no-switch-25']).toBe(dark['--caps-alpha-black-no-switch-25']);
+		expect(light['--caps-alpha-white-outline-bg']).toBe('oklch(1 0 0)');
+		expect(dark['--caps-alpha-white-outline-bg']).toBe('transparent');
 	});
 
 	it('defines ring-error as red-200 in light mode and red-900 in dark mode', () => {
@@ -128,11 +145,12 @@ describe('caps color tokens', () => {
 		}
 	});
 
-	it('aliases every shadcn token to its caps token in both modes', () => {
+	it('aliases every shadcn token to its caps token in both modes, and --input to the border', () => {
 		const aliases = declarations(':root,\n.dark');
-		expect(aliases).toEqual(
-			Object.fromEntries(SHADCN_ALIASED_TOKENS.map((token) => [`--${token}`, `var(--caps-${token})`])),
-		);
+		expect(aliases).toEqual({
+			...Object.fromEntries(SHADCN_ALIASED_TOKENS.map((token) => [`--${token}`, `var(--caps-${token})`])),
+			'--input': 'var(--caps-border)',
+		});
 	});
 
 	it('exposes the caps-only colors to Tailwind', () => {
@@ -140,7 +158,6 @@ describe('caps color tokens', () => {
 		expect(theme).toEqual({
 			'--color-ring-error': 'var(--caps-ring-error)',
 			'--color-surface': 'var(--surface)',
-			'--color-surface-foreground': 'var(--surface-foreground)',
 		});
 	});
 });

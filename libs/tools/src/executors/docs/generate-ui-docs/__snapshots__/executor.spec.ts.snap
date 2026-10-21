@@ -8655,6 +8655,68 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
       },
     },
   },
+  "header": {
+    "caps": {
+      "CapsHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header",
+      },
+      "CapsHeaderActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-actions",
+      },
+      "CapsHeaderLogo": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-logo",
+      },
+      "CapsHeaderMenu": {
+        "inputs": [
+          {
+            "name": "label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "title",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "description",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-menu",
+      },
+      "CapsHeaderNav": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsHeaderNav]",
+      },
+      "CapsHeaderTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-title",
+      },
+      "CapsHeaderVisual": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-visual",
+      },
+    },
+  },
   "hover-card": {
     "brain": {
       "BrnHoverCard": {

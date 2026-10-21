@@ -465,7 +465,7 @@
 }
 
 .caps-questionnaire-choice {
-	/* Figma Rich Radio / Checkbox Container: 12px padding (border included), 12px gap, on the card. */
+	/* Figma Rich Radio / Checkbox Container: padding and gap of 3 spacing units (border included), on the card. */
 	@apply border-border hover:bg-muted/50 has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-ring/50 data-invalid:border-destructive dark:bg-input/20 data-checked:border-primary/40 data-checked:bg-muted dark:data-checked:bg-muted bg-card gap-3 rounded-lg border-[length:var(--caps-border-width)] p-[calc(--spacing(3)-var(--caps-border-width))] text-sm/5 transition-colors has-[>input:focus-visible]:ring-[length:var(--caps-focus-ring-width)] data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-(--caps-opacity-disabled);
 }
 

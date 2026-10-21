@@ -1,10 +1,13 @@
-import type { ChartTheme } from '@tanstack/charts';
+import type { ChartAxisTickLabelOptions, ChartTheme } from '@tanstack/charts';
 
 /** A TanStack Charts theme backed by Capsule's semantic color tokens. */
 export const CAPS_CHART_THEME = {
 	foreground: 'var(--foreground)',
 	muted: 'var(--muted-foreground)',
-	grid: 'var(--muted-foreground)',
+	grid: 'var(--border)',
 	background: 'transparent',
 	palette: ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)', 'var(--chart-5)'],
 } as const satisfies ChartTheme;
+
+/** The Figma Chart 12px tick labels, for each `scales.*.axis.tickLabels` (TanStack defaults to 11px). */
+export const CAPS_CHART_TICK_LABELS = { fontSize: 12 } as const satisfies ChartAxisTickLabelOptions;

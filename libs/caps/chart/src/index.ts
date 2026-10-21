@@ -4,6 +4,7 @@ import { CapsChart } from './lib/caps-chart';
 export { ChartTooltipBodyDirective } from '@tanstack/angular-charts';
 export type { ChartOptions, ChartTooltipBodyTemplateContext } from '@tanstack/angular-charts';
 export * from './lib/caps-chart';
+export * from './lib/caps-chart-legend';
 export * from './lib/caps-chart-theme';
 export * from './lib/caps-chart-tooltip';
 

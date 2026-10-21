@@ -320,6 +320,19 @@
 	width: min(100%, calc(100vw - var(--spacing) * 8));
 }
 
+/* MARK: Calendar */
+/* Figma Calendar: no padding of its own, 28px cells with a 6px radius. */
+.caps-calendar:is([data-slot='calendar'], [data-slot='month-year-calendar']) {
+	@apply p-0 [--cell-radius:var(--radius-sm)] [--cell-size:--spacing(7)];
+}
+
+/* MARK: Date picker */
+/* Figma Date Picker: a field, not a button. Input background, regular weight, muted placeholder,
+   calendar icon at the start. */
+.caps-date-picker-trigger.caps-button {
+	@apply border-input text-foreground data-placeholder:text-muted-foreground gap-2 bg-(--caps-input) px-2.5 font-normal shadow-xs hover:bg-(--caps-input);
+}
+
 /* MARK: Card */
 .caps-card {
 	box-sizing: border-box;

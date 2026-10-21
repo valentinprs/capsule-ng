@@ -1,10 +1,17 @@
 import { ChangeDetectionStrategy, Component, computed, input, signal } from '@angular/core';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
-import { CAPS_CHART_THEME, CapsChart, CapsChartImports, capsChartTooltip } from '@capsule-ng/caps/chart';
+import {
+	CAPS_CHART_THEME,
+	CAPS_CHART_TICK_LABELS,
+	CapsChart,
+	CapsChartImports,
+	capsChartLegend,
+	capsChartTooltip,
+} from '@capsule-ng/caps/chart';
 import { CapsTableImports } from '@capsule-ng/caps/table';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { barY, colorLegend, defineChart, lineY } from '@tanstack/charts';
+import { barY, defineChart, lineY } from '@tanstack/charts';
 import { scaleBand } from '@tanstack/charts/scales/band';
 import { scaleLinear } from '@tanstack/charts/scales/linear';
 import { scalePoint } from '@tanstack/charts/scales/point';
@@ -118,10 +125,10 @@ class ChartStory {
 		]);
 		const marks =
 			kind === 'legend'
-				? [lineY(grouped, { x: 'month', y: 'visitors', z: 'channel', points: true, strokeWidth: 2.5 })]
+				? [lineY(grouped, { x: 'month', y: 'visitors', z: 'channel', strokeWidth: 2 })]
 				: kind === 'line'
-					? [lineY(data, { x: 'month', y: 'downloads', points: true, stroke: 'var(--chart-2)', strokeWidth: 2.5 })]
-					: [barY(data, { x: 'month', y: metric, fill: metric === 'desktop' ? 'var(--chart-2)' : 'var(--chart-1)' })];
+					? [lineY(data, { x: 'month', y: 'downloads', stroke: 'var(--chart-1)', strokeWidth: 2 })]
+					: [barY(data, { x: 'month', y: metric, fill: 'var(--chart-1)' })];
 		return {
 			definition: defineChart(
 				{
@@ -132,16 +139,19 @@ class ChartStory {
 								kind === 'interactive' || kind === 'empty'
 									? () => scaleBand<string>().padding(0.2)
 									: () => scalePoint<string>().padding(0.2),
+							axis: { tickLabels: CAPS_CHART_TICK_LABELS },
 						},
 						y: {
 							scale: scaleLinear,
 							grid: true,
 							nice: true,
-							axis: { label: kind === 'line' ? 'Downloads (thousands)' : 'Visitors' },
+							axis: {
+								label: kind === 'line' ? 'Downloads (thousands)' : 'Visitors',
+								tickLabels: CAPS_CHART_TICK_LABELS,
+							},
 						},
 					},
-					color:
-						kind === 'legend' ? { domain: ['Desktop', 'Mobile'], legend: colorLegend({ label: 'Device' }) } : undefined,
+					color: kind === 'legend' ? { domain: ['Desktop', 'Mobile'], legend: capsChartLegend() } : undefined,
 					theme: CAPS_CHART_THEME,
 				},
 				{ focus: kind === 'line' ? 'nearest-x' : 'group-x', tooltip: capsChartTooltip() },

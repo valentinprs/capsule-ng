@@ -72,7 +72,7 @@ export const CAPS_MONTH_YEAR_PICKER_VALUE_ACCESSOR = {
 				/>
 			}
 
-			<ng-template capsPopoverContent [class]="'w-fit p-0'">
+			<ng-template capsPopoverContent [class]="'w-fit p-4'">
 				<ng-content select="[capsDatePickerHeader]" />
 				<div capsDatePickerBoundary>
 					<caps-month-year-calendar

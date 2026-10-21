@@ -38,7 +38,7 @@ const meta: Meta<CapsDateRangePicker<Date>> = {
 		template: `
 		<h1 class="sr-only">Date Picker demonstration</h1><div class="preview flex min-h-[350px] w-full justify-center p-10 items-center">
 			<caps-date-range-picker [minDate]="minDate" [maxDate]="maxDate" [captionLayout]="captionLayout">
-                <caps-date-picker-trigger buttonId="date">Pick a date</caps-date-picker-trigger>
+                <caps-date-picker-trigger buttonId="date">Pick a date range</caps-date-picker-trigger>
             </caps-date-range-picker>
 		</div>
 		`,

@@ -58,9 +58,9 @@ import { CapsCalendarMonthSelect, CapsCalendarYearSelect } from './caps-calendar
 
 				<button
 					brnCalendarPreviousButton
-					variant="ghost"
+					variant="outline"
 					capsButton
-					class="order-first size-(--cell-size) p-0 select-none aria-disabled:opacity-50"
+					class="order-first size-(--cell-size) rounded-md p-0 select-none aria-disabled:opacity-50"
 				>
 					<ng-icon name="lucideChevronLeft" class="rtl:rotate-180" aria-hidden="true" />
 				</button>
@@ -86,8 +86,8 @@ import { CapsCalendarMonthSelect, CapsCalendarYearSelect } from './caps-calendar
 				<button
 					brnCalendarNextButton
 					capsButton
-					variant="ghost"
-					class="order-last size-(--cell-size) p-0 select-none aria-disabled:opacity-50"
+					variant="outline"
+					class="order-last size-(--cell-size) rounded-md p-0 select-none aria-disabled:opacity-50"
 				>
 					<ng-icon name="lucideChevronRight" class="rtl:rotate-180" aria-hidden="true" />
 				</button>
@@ -99,7 +99,7 @@ import { CapsCalendarMonthSelect, CapsCalendarYearSelect } from './caps-calendar
 						<th
 							*brnCalendarWeekday="let weekday"
 							scope="col"
-							class="text-muted-foreground flex-1 rounded-(--cell-radius) text-[0.8rem] font-normal select-none"
+							class="text-muted-foreground flex-1 rounded-(--cell-radius) text-xs/4 font-normal select-none"
 							[attr.aria-label]="_i18n.config().labelWeekday(weekday)"
 						>
 							{{ _i18n.config().formatWeekdayName(weekday) }}
@@ -157,7 +157,7 @@ export class CapsCalendar<T> {
 
 	protected readonly _btnClass = hlm(
 		buttonVariants({ variant: 'ghost', size: 'icon' }),
-		'data-[today=true]:bg-muted group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:bg-muted data-[range-middle=true]:text-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:bg-muted/50 dark:hover:text-foreground relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 border-0 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-(--cell-radius) data-[range-end=true]:rounded-e-(--cell-radius) data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-s-(--cell-radius) [&>span]:text-xs [&>span]:opacity-70',
+		'data-[today=true]:bg-muted group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:bg-muted data-[range-middle=true]:text-foreground data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground dark:hover:bg-muted/50 dark:hover:text-foreground relative isolate z-10 flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 rounded-(--cell-radius) border-0 leading-none font-normal group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:ring-[3px] data-[range-end=true]:rounded-(--cell-radius) data-[range-end=true]:rounded-e-(--cell-radius) data-[range-middle=true]:rounded-none data-[range-start=true]:rounded-(--cell-radius) data-[range-start=true]:rounded-s-(--cell-radius) [&>span]:text-xs [&>span]:opacity-70',
 		'data-[outside=true]:text-muted-foreground',
 		"data-[highlighted]:before:content-['']",
 		'data-[highlighted]:before:absolute',

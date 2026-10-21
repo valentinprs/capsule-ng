@@ -56,7 +56,7 @@ import { injectCapsMonthYearPickerConfig } from './caps-month-year-picker.token'
 					<button
 						capsButton
 						type="button"
-						size="icon"
+						size="icon-xs"
 						variant="ghost"
 						[attr.aria-label]="clearAriaLabel()"
 						(click)="_clear()"
@@ -65,10 +65,12 @@ import { injectCapsMonthYearPickerConfig } from './caps-month-year-picker.token'
 						<ng-icon name="lucideX" aria-hidden="true" />
 					</button>
 				}
+				<!-- Figma Date Picker: a ghost icon button inside the 32px field, not a filled primary one. -->
 				<button
 					capsButton
 					type="button"
-					size="icon"
+					size="icon-xs"
+					variant="ghost"
 					[attr.aria-label]="calendarAriaLabel()"
 					(click)="_openFromButton()"
 					aria-haspopup="dialog"

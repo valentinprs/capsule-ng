@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { CapsButtonImports, type CapsButtonVariant } from '@capsule-ng/caps/button';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown } from '@ng-icons/lucide';
+import { lucideCalendar } from '@ng-icons/lucide';
 import {
 	type BrnDatePickerTriggerBase,
 	injectBrnDatePicker,
@@ -25,7 +25,7 @@ import { CapsDatePickerAnchor } from './caps-date-picker-anchor';
 @Component({
 	selector: 'caps-date-picker-trigger',
 	imports: [CapsButtonImports, NgIcon, BrnFieldControlDescribedBy, CapsDatePickerAnchor],
-	providers: [provideIcons({ lucideChevronDown }), provideBrnDatePickerTrigger(CapsDatePickerTrigger)],
+	providers: [provideIcons({ lucideCalendar }), provideBrnDatePickerTrigger(CapsDatePickerTrigger)],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: {
 		'data-slot': 'date-picker-trigger',
@@ -58,6 +58,9 @@ import { CapsDatePickerAnchor } from './caps-date-picker-anchor';
 			[aria-describedby]="ariaDescribedby()"
 			[attr.data-placeholder]="_isPlaceholder() ? '' : null"
 		>
+			@if (showTrigger()) {
+				<ng-icon name="lucideCalendar" aria-hidden="true" />
+			}
 			<span class="truncate">
 				@if (_formattedDate(); as formattedDate) {
 					{{ formattedDate }}
@@ -65,10 +68,6 @@ import { CapsDatePickerAnchor } from './caps-date-picker-anchor';
 					<ng-content />
 				}
 			</span>
-
-			@if (showTrigger()) {
-				<ng-icon name="lucideChevronDown" aria-hidden="true" />
-			}
 		</button>
 	`,
 })
@@ -86,7 +85,7 @@ export class CapsDatePickerTrigger implements BrnDatePickerTriggerBase {
 	protected readonly _ariaInvalid = computed(() => (this._invalid?.() ? 'true' : null));
 
 	public readonly userClass = input<ClassValue>('', { alias: 'class' });
-	protected readonly _computedClass = computed(() => hlm('caps-date-picker-trigger justify-between', this.userClass()));
+	protected readonly _computedClass = computed(() => hlm('caps-date-picker-trigger justify-start', this.userClass()));
 
 	protected readonly _isPlaceholder = computed(() => !this._datePicker.hasDate());
 
@@ -104,6 +103,7 @@ export class CapsDatePickerTrigger implements BrnDatePickerTriggerBase {
 
 	public readonly variant = input<CapsButtonVariant>('outline');
 
+	/** Shows the calendar icon at the start of the field, as in the Figma Date Picker. */
 	public readonly showTrigger = input<boolean, BooleanInput>(true, { transform: booleanAttribute });
 
 	protected _open() {

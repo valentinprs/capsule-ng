@@ -74,7 +74,7 @@ export const CAPS_DATE_PICKER_MULTI_VALUE_ACCESSOR = {
 				/>
 			}
 
-			<ng-template capsPopoverContent [class]="'w-fit p-0'">
+			<ng-template capsPopoverContent [class]="'w-fit p-4'">
 				<ng-content select="[capsDatePickerHeader]" />
 				<div capsDatePickerBoundary>
 					<caps-calendar-multi

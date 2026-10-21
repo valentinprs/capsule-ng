@@ -18,7 +18,8 @@
 	--caps-primary-foreground: var(--color-zinc-50);
 	--caps-secondary: var(--color-zinc-100);
 	--caps-secondary-foreground: var(--color-zinc-900);
-	--caps-muted: var(--color-zinc-100);
+	/* Lighter than Figma's zinc-100 so muted-foreground text on it meets WCAG AA (4.55:1, not 4.39:1). */
+	--caps-muted: oklch(0.978 0.001 286.375);
 	--caps-muted-foreground: var(--color-zinc-500);
 	--caps-accent: var(--color-zinc-100);
 	--caps-accent-foreground: var(--color-zinc-900);

@@ -333,12 +333,6 @@
 	@apply border-input text-foreground data-placeholder:text-muted-foreground gap-2 bg-(--caps-input) px-2.5 font-normal shadow-xs hover:bg-(--caps-input);
 }
 
-/* MARK: Avatar */
-.caps-avatar-fallback {
-	/* Figma sets the initials in muted-foreground, which misses WCAG AA on the zinc muted fill. */
-	@apply text-foreground;
-}
-
 /* MARK: Card */
 .caps-card {
 	box-sizing: border-box;

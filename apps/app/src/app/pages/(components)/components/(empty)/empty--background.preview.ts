@@ -9,7 +9,7 @@ import { lucideBell, lucideRefreshCcw } from '@ng-icons/lucide';
 	imports: [NgIcon, CapsButton, CapsEmptyImports],
 	providers: [provideIcons({ lucideBell, lucideRefreshCcw })],
 	template: `
-		<caps-empty class="from-muted/50 to-background h-full w-full bg-gradient-to-b from-30%">
+		<caps-empty class="bg-muted h-full w-full">
 			<caps-empty-media variant="icon">
 				<ng-icon aria-hidden="true" name="lucideBell" />
 			</caps-empty-media>

@@ -1,3 +1,4 @@
+import { CapsDecorativeIcon } from './lib/caps-decorative-icon';
 import { CapsItem, CapsItemDirective } from './lib/caps-item';
 import { CapsItemActions } from './lib/caps-item-actions';
 import { CapsItemContent } from './lib/caps-item-content';
@@ -7,6 +8,7 @@ import { CapsItemGroup } from './lib/caps-item-group';
 import { CapsItemHeader } from './lib/caps-item-header';
 import { CapsItemMedia } from './lib/caps-item-media';
 import { CapsItemTitle } from './lib/caps-item-title';
+export * from './lib/caps-decorative-icon';
 export * from './lib/caps-item';
 export * from './lib/caps-item-actions';
 export * from './lib/caps-item-content';
@@ -27,4 +29,5 @@ export const CapsItemImports = [
 	CapsItemMedia,
 	CapsItemTitle,
 	CapsItemDirective,
+	CapsDecorativeIcon,
 ] as const;

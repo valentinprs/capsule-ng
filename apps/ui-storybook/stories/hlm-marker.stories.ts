@@ -1,3 +1,4 @@
+import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsMarkerImports } from '@capsule-ng/caps/marker';
 import { CapsSpinner } from '@capsule-ng/caps/spinner';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -16,7 +17,7 @@ const meta: Meta = {
 			providers: [provideIcons({ lucideGitBranch, lucideSearch })],
 		}),
 		moduleMetadata({
-			imports: [CapsMarkerImports, CapsSpinner, NgIcon],
+			imports: [CapsMarkerImports, CapsButtonImports, CapsSpinner, NgIcon],
 		}),
 	],
 };
@@ -42,6 +43,13 @@ export const Default: Story = {
 				<caps-marker>
 					<caps-marker-icon><ng-icon name="lucideSearch" /></caps-marker-icon>
 					<caps-marker-content>Explored 4 files</caps-marker-content>
+				</caps-marker>
+				<!-- Figma Marker Separator, Variant=Button: an outline button between the lines. -->
+				<caps-marker variant="separator">
+					<button capsButton variant="outline" type="button" class="text-muted-foreground">
+						<ng-icon name="lucideGitBranch" />
+						Show earlier messages
+					</button>
 				</caps-marker>
 			</div>
 		`,

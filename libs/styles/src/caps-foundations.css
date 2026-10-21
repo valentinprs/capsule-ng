@@ -36,7 +36,8 @@
 		@apply flex;
 	}
 	.caps-accordion-trigger {
-		@apply focus-visible:border-ring focus-visible:ring-ring/50 relative flex w-full items-start gap-4 rounded-lg border border-transparent py-2.5 text-start text-sm font-medium transition-colors outline-none hover:underline focus-visible:ring-3;
+		/* Figma Accordion Trigger: 44px, 14/20 medium, the chevron centred on the title. */
+		@apply focus-visible:border-ring focus-visible:ring-ring/50 relative flex w-full items-center gap-4 rounded-lg border border-transparent py-[calc(--spacing(3)-var(--caps-border-width))] text-start text-sm font-medium transition-colors outline-none hover:underline focus-visible:ring-3;
 		transition-duration: var(--caps-duration-normal);
 	}
 	.caps-accordion-trigger:disabled {
@@ -47,7 +48,7 @@
 		@apply min-w-0 flex-1;
 	}
 	.caps-accordion-chevron {
-		@apply text-muted-foreground ms-auto size-4 shrink-0;
+		@apply text-foreground ms-auto size-4 shrink-0;
 		transition: transform var(--caps-duration-normal);
 	}
 	.caps-accordion-trigger[aria-expanded='true'] > .caps-accordion-chevron {
@@ -78,6 +79,15 @@
 	}
 	.caps-accordion:not([data-flush='true']) .caps-accordion-content-inner {
 		@apply pe-8;
+	}
+	.caps-accordion[data-variant='bordered'] {
+		@apply overflow-hidden rounded-[var(--caps-size-16px)] border;
+	}
+	.caps-accordion[data-variant='bordered'] .caps-accordion-trigger {
+		@apply px-3;
+	}
+	.caps-accordion[data-variant='bordered'] .caps-accordion-content-inner {
+		@apply px-3 pt-0 pb-3;
 	}
 	.caps-accordion-skeleton-line {
 		@apply bg-muted my-2 block h-4 w-4/5 rounded;
@@ -328,7 +338,7 @@
 	}
 
 	.caps-avatar-fallback {
-		@apply bg-muted text-foreground rounded-full;
+		@apply bg-muted text-muted-foreground rounded-full;
 	}
 
 	.caps-avatar-image {
@@ -344,7 +354,7 @@
 	}
 
 	.caps-item-content {
-		@apply gap-1 group-data-[size=xs]/item:gap-0;
+		@apply gap-1 group-data-[size=sm]/item:gap-0 group-data-[size=xs]/item:gap-0;
 	}
 
 	.caps-item-title {
@@ -372,12 +382,45 @@
 		width: 100%;
 		height: 100%;
 	}
+	/* Figma Item: Default 10px by 12px padding and 16px gap; Small and Extra small 8px by 10px and 8px. */
 	.caps-item {
-		@apply gap-2.5 px-3 py-2.5 text-sm;
+		@apply gap-4 px-3 py-2.5 text-sm;
 		min-width: 0;
+	}
+	.caps-item:is([data-size='sm'], [data-size='xs']) {
+		@apply gap-2 px-2.5 py-2;
+	}
+	.caps-item[data-variant='outline'] {
+		@apply inset-ring-border rounded-lg bg-(--caps-alpha-white-outline-bg) inset-ring;
+	}
+	.caps-item[data-variant='muted'] {
+		@apply bg-muted rounded-lg;
 	}
 	.caps-item-content {
 		min-width: 0;
+	}
+	/* Figma Decorative Icon: 32px box with a 20px icon and a 6px radius; 40 to 56px with a 24px icon
+	   and a 10px radius. */
+	.caps-decorative-icon {
+		@apply bg-muted text-foreground size-10 rounded-lg [&_ng-icon]:pointer-events-none [&_ng-icon]:text-[length:--spacing(6)];
+	}
+	.caps-decorative-icon[data-size='sm'] {
+		@apply size-8 rounded-sm [&_ng-icon]:text-[length:--spacing(5)];
+	}
+	.caps-decorative-icon[data-size='lg'] {
+		@apply size-12;
+	}
+	.caps-decorative-icon[data-size='xl'] {
+		@apply size-14;
+	}
+	.caps-decorative-icon[data-variant='primary'] {
+		@apply bg-primary text-primary-foreground;
+	}
+	.caps-decorative-icon[data-variant='destructive'] {
+		@apply bg-destructive/10 text-destructive;
+	}
+	.caps-decorative-icon[data-round] {
+		@apply rounded-full;
 	}
 	.caps-item-media {
 		@apply gap-2 [&_img]:rounded-sm [&_ng-icon]:text-base;

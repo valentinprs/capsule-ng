@@ -14,7 +14,9 @@
 		width: 100%;
 		caption-side: bottom;
 		border-collapse: collapse;
-		font-size: var(--text-sm);
+		/* Figma Basic Table: 16/24 text. */
+		font-size: var(--text-base);
+		line-height: var(--text-base--line-height);
 	}
 	.caps-table > caption {
 		padding-block-start: calc(var(--caps-spacing) * 4);

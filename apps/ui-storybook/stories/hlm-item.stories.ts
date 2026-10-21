@@ -8,6 +8,7 @@ import {
 	lucideChevronDown,
 	lucideChevronRight,
 	lucideExternalLink,
+	lucideInbox,
 	lucidePlus,
 	lucideShieldAlert,
 } from '@ng-icons/lucide';
@@ -29,6 +30,7 @@ export default {
 					lucideChevronDown,
 					lucideShieldAlert,
 					lucideExternalLink,
+					lucideInbox,
 				}),
 			],
 		}),
@@ -394,5 +396,30 @@ export const Variants: Story = {
 		template: `
  <div class="flex w-full max-w-md flex-col gap-6 p-4">
 <caps-item-group kind="on-page" label="on-page"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group><caps-item-group kind="disclosed" label="disclosed"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group></div>`,
+	}),
+};
+
+/** Figma Item `Size` (Default, Small, Extra small) and `Variant` (Default, Outline, Muted). */
+export const FigmaSizesAndVariants: Story = {
+	render: () => ({
+		template: /* HTML */ `
+			<div class="flex max-w-xl flex-col gap-4">
+				@for (variant of ['default', 'outline', 'muted']; track variant) { @for (size of ['default', 'sm', 'xs']; track
+				size) {
+				<caps-item [variant]="variant" [size]="size">
+					<caps-item-media>
+						<caps-decorative-icon size="sm"><ng-icon name="lucideInbox" aria-hidden="true" /></caps-decorative-icon>
+					</caps-item-media>
+					<caps-item-content>
+						<caps-item-title>Inbox ({{ variant }}, {{ size }})</caps-item-title>
+						<caps-item-description>New messages from your team.</caps-item-description>
+					</caps-item-content>
+					<caps-item-actions>
+						<button capsButton type="button" variant="outline" size="sm">Open</button>
+					</caps-item-actions>
+				</caps-item>
+				} }
+			</div>
+		`,
 	}),
 };

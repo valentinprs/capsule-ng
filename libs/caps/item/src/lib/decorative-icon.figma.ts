@@ -4,10 +4,10 @@
 import figma from 'figma';
 import { icon, iconImports } from '../../../code-connect/helpers';
 
-// The decorative icon placed in media slots (Item, Empty, Alert Dialog, Card). In code it is the
-// icon alone: its box is drawn by the container it is projected into (`caps-item-media`,
-// `caps-empty-media variant="icon"`, `caps-alert-dialog-media`). Not mapped: `Variant`, `Size` and
-// `Roundness` (no equivalent in code).
+// The decorative icon placed in media slots (Item, Empty, Alert Dialog, Card). There it is the icon
+// alone: its box is drawn by the container it is projected into (`caps-item-media`,
+// `caps-empty-media variant="icon"`, `caps-alert-dialog-media`). On its own, wrap it in
+// `caps-decorative-icon`, which has the Figma `Variant`, `Size` and `Roundness`.
 const glyph = icon(figma.selectedInstance, 'Icon', ' aria-hidden="true"');
 
 export default {

@@ -68,32 +68,34 @@
 }
 
 /* MARK: Attachment */
+/* Figma Attachment Card: Default 8px padding and 40px media (56px card), Small 6px and 32px,
+   Extra small 6px and 28px; the vertical card is 118px wide. */
 .caps-attachment {
-	@apply bg-card text-card-foreground rounded-lg border;
+	@apply bg-card text-card-foreground rounded-xl border;
 }
 
 .caps-attachment-size-default {
-	@apply gap-1.5 text-xs/relaxed has-data-[slot=attachment-content]:px-2 has-data-[slot=attachment-content]:py-1.5 has-data-[slot=attachment-media]:p-1.5;
+	@apply gap-2 p-[calc(--spacing(2)-var(--caps-border-width))] text-sm;
 }
 
 .caps-attachment-size-sm {
-	@apply gap-1.5 text-[length:var(--caps-size-0-625rem)] has-data-[slot=attachment-content]:px-1.5 has-data-[slot=attachment-content]:py-1 has-data-[slot=attachment-media]:p-1;
+	@apply gap-2.5 p-[calc(--spacing(1.5)-var(--caps-border-width))] text-xs;
 }
 
 .caps-attachment-size-xs {
-	@apply gap-1 rounded-md text-[length:var(--caps-size-0-625rem)] has-data-[slot=attachment-content]:px-1.5 has-data-[slot=attachment-content]:py-1 has-data-[slot=attachment-media]:p-1;
+	@apply gap-1.5 rounded-lg p-[calc(--spacing(1.5)-var(--caps-border-width))] text-xs;
 }
 
 .caps-attachment-orientation-horizontal {
-	@apply min-w-36 items-center;
+	@apply min-w-40;
 }
 
 .caps-attachment-orientation-vertical {
-	@apply w-20 flex-col has-data-[slot=attachment-content]:w-28;
+	@apply w-[calc(--spacing(29.5))] gap-2 p-[calc(--spacing(2)-var(--caps-border-width))];
 }
 
 .caps-attachment-media {
-	@apply bg-muted text-foreground w-8 rounded-md;
+	@apply bg-muted text-foreground w-10 rounded-lg group-data-[size=xs]/attachment:rounded-md;
 }
 
 .caps-attachment-media-variant-icon {
@@ -105,15 +107,15 @@
 }
 
 .caps-attachment-content {
-	@apply min-w-0 flex-1 leading-tight;
+	@apply min-w-0 flex-1;
 }
 
 .caps-attachment-title {
-	@apply truncate text-xs/relaxed font-medium;
+	@apply truncate text-sm/5 font-semibold group-data-[orientation=vertical]/attachment:line-clamp-2 group-data-[orientation=vertical]/attachment:whitespace-normal group-data-[size=sm]/attachment:text-xs/4 group-data-[size=xs]/attachment:text-xs/4;
 }
 
 .caps-attachment-description {
-	@apply text-muted-foreground mt-0.5 truncate text-[length:var(--caps-size-0-625rem)];
+	@apply text-muted-foreground mt-0.5 truncate text-xs/4;
 }
 
 .caps-attachment-actions {

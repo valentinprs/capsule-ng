@@ -1,7 +1,9 @@
-import { ChangeDetectionStrategy, Component, Directive } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';
 import { classes } from '@spartan-ng/helm/utils';
-@Directive({ selector: 'kbd[capsKbd]', host: { 'data-slot': 'kbd' } })
+@Directive({ selector: 'kbd[capsKbd]', host: { 'data-slot': 'kbd', '[attr.data-variant]': 'variant()' } })
 export class CapsKbd {
+	/** Figma kbd `Style`: Default on muted, Alt on the background with a border. */
+	public readonly variant = input<'default' | 'alt'>('default');
 	constructor() {
 		classes(() => 'caps-kbd pointer-events-none inline-flex items-center justify-center select-none');
 	}

@@ -4,7 +4,7 @@
 import figma from 'figma';
 
 // The content is projected into the `caps-accordion-item` of its trigger. `Type=End` is the last
-// item of a bordered accordion, styled by `last:border-b-0`.
+// item of a `variant="bordered"` accordion.
 const content = figma.selectedInstance.findText('This is the content shown when opening an accordion.');
 
 export default {

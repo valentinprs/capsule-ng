@@ -326,10 +326,11 @@
 	min-width: 0;
 	width: 100%;
 	max-width: 100%;
-	@apply ring-border bg-card text-card-foreground gap-(--card-spacing) overflow-hidden rounded-xl py-(--card-spacing) text-sm ring-1 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[density=compact]:[--card-spacing:--spacing(3)] data-[density=compact]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl;
+	/* Figma Card: stacked sections with their own padding (Default, or Small when compact), no gap. */
+	@apply ring-border bg-card text-card-foreground gap-0 overflow-hidden rounded-xl text-sm ring-1 [--card-spacing:--spacing(4)] data-[density=compact]:[--card-spacing:--spacing(3)] *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl;
 }
 .caps-card-header {
-	@apply gap-1 rounded-t-xl px-(--card-spacing) [.border-b]:pb-(--card-spacing);
+	@apply gap-1 rounded-t-xl p-(--card-spacing);
 }
 .caps-card-title {
 	@apply text-base leading-snug font-medium group-data-[density=compact]/card:text-sm;
@@ -338,10 +339,10 @@
 	@apply text-muted-foreground text-sm;
 }
 .caps-card-content {
-	@apply px-(--card-spacing);
+	@apply p-(--card-spacing);
 }
 .caps-card-footer {
-	@apply bg-muted/50 rounded-b-xl border-t p-(--card-spacing);
+	@apply bg-muted rounded-b-xl border-t p-(--card-spacing);
 }
 
 .caps-card[data-width='auto'] {
@@ -505,8 +506,19 @@ caps-questionnaire-item[hidden] {
 	@apply bg-muted block rounded-md;
 	animation: caps-skeleton-pulse 2s ease-in-out infinite;
 }
+/* Figma Aspect Ratio: the frame clips its media to the large radius. */
+.caps-aspect-ratio {
+	@apply overflow-hidden rounded-lg;
+}
+/* Figma Separator: Regular 4px (2px when vertical) and Spacious 7.5px on each side. */
+.caps-separator[data-spacing='regular'] {
+	@apply data-horizontal:my-1 data-vertical:mx-0.5;
+}
+.caps-separator[data-spacing='spacious'] {
+	@apply data-horizontal:my-[calc(--spacing(1.875))] data-vertical:mx-[calc(--spacing(1.875))];
+}
 .caps-progress {
-	@apply bg-primary/20 relative block h-2 w-full overflow-hidden rounded-full;
+	@apply bg-muted relative block h-1 w-full overflow-hidden rounded-full;
 }
 .caps-progress-indicator {
 	@apply bg-primary absolute inset-y-0 block rounded-full;
@@ -681,10 +693,11 @@ a.caps-navigation-menu-link:focus-visible {
 		min-height: 0;
 		flex: 1;
 		width: 100%;
-		--scrollbar-thumb-color: var(--border);
+		/* Figma Scrollbar: a 6px muted thumb (9px track minus the 1.5px offsets). */
+		--scrollbar-thumb-color: var(--muted);
 		--scrollbar-thumb-hover-color: var(--border);
 		--scrollbar-track-color: transparent;
-		--scrollbar-track-thickness: 0.625rem;
+		--scrollbar-track-thickness: 0.5625rem;
 		--scrollbar-track-offset: 1.5px;
 	}
 	.caps-scroll-area-viewport {
@@ -759,8 +772,9 @@ a.caps-navigation-menu-link:focus-visible {
 	.caps-resizable-handle[aria-disabled='true'] {
 		cursor: default;
 	}
+	/* Figma Resizable Handle: 4 by 24px with a 4px radius; it must not shrink to the 1px divider. */
 	.caps-resizable-handle-icon {
-		@apply bg-border h-6 w-1 rounded-lg;
+		@apply bg-border h-6 w-1 shrink-0 rounded-[var(--caps-size-4px)];
 		z-index: 1;
 		display: block;
 	}

@@ -76,7 +76,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Questionnaire"
 				lead="A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

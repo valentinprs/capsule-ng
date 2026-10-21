@@ -56,7 +56,6 @@ export const routeMeta: RouteMeta = {
 	template: `
 		<section spartanMainSection>
 			<spartan-section-intro
-				showThemeToggle
 				name="Menubar"
 				lead="A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands."
 			/>

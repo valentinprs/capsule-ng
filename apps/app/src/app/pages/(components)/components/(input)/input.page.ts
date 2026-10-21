@@ -79,7 +79,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Input"
 				lead="Styles native input elements while preserving browser behavior and Angular forms."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

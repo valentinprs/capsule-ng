@@ -63,7 +63,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Attachment"
 				lead="Displays file and image attachments with media, metadata, upload state, and actions."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

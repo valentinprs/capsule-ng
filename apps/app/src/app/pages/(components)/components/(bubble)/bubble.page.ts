@@ -69,7 +69,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Bubble"
 				lead="Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and collapsible content."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

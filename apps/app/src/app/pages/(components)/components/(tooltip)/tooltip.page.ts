@@ -72,7 +72,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Tooltip"
 				lead="A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

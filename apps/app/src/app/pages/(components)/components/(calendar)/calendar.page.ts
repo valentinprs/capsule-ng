@@ -63,7 +63,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Calendar"
 				lead="An inline calendar for selecting dates, multiple days, ranges, months and years."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

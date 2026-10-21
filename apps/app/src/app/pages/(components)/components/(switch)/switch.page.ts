@@ -61,7 +61,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Switch"
 				lead="A control that allows the user to toggle between checked and not checked."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

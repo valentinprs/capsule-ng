@@ -1,8 +1,12 @@
 import { Component, computed, EventEmitter, Input, input, Output } from '@angular/core';
 import { CapsTabsImports } from '@capsule-ng/caps/tabs';
 
+// Spartan's docs tab look (left-aligned, semibold), keeping Capsule's primary line indicator. h-9 without
+// the trigger's transparent border lets the indicator overlap the list's bottom border, as in spartan.
+const tabTrigger = 'h-9 flex-none border-0 px-4 pt-2 pb-3 font-semibold';
+
 export const tabContent =
-	'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md border border-border';
+	'block mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md border border-border';
 @Component({
 	selector: 'spartan-tabs',
 	imports: [CapsTabsImports],
@@ -16,8 +20,8 @@ export const tabContent =
 				class="border-border text-muted-foreground mb-4 inline-flex h-9 w-full items-center justify-start rounded-none border-b bg-transparent p-0"
 				[attr.aria-label]="'Tablist showing ' + firstTab + ' and ' + secondTab"
 			>
-				<button capsTabsTrigger [value]="firstTab">{{ firstTab }}</button>
-				<button capsTabsTrigger [value]="secondTab">{{ secondTab }}</button>
+				<button capsTabsTrigger class="${tabTrigger}" [value]="firstTab">{{ firstTab }}</button>
+				<button capsTabsTrigger class="${tabTrigger}" [value]="secondTab">{{ secondTab }}</button>
 			</caps-tabs-list>
 			<caps-tabs-content class="${tabContent}" [value]="firstTab">
 				<ng-content select="[firstTab]" />

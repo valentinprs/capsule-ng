@@ -74,7 +74,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Breadcrumb"
 				lead="Displays the path to the current resource using a hierarchy of links."
-				showThemeToggle
 			/>
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

@@ -20,7 +20,7 @@ const angularCdkPackageInstallationCommands = {
 } as const;
 
 const tabContent =
-	'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md border border-border';
+	'block mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 relative rounded-md border border-border';
 
 const globalValue = signal<PackageKey>('pnpm');
 

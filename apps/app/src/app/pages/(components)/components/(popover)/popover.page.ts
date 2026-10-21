@@ -50,11 +50,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Popover"
-				lead="Displays rich content in a portal, triggered by a button."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Popover" lead="Displays rich content in a portal, triggered by a button." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

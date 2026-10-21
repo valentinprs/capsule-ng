@@ -58,11 +58,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Navigation Menu"
-				lead="A collection of links for navigating websites"
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Navigation Menu" lead="A collection of links for navigating websites" />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

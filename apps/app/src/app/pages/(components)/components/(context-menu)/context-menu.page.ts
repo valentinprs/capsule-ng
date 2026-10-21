@@ -67,11 +67,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Context Menu"
-				lead="Displays a menu of actions triggered by a right click."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Context Menu" lead="Displays a menu of actions triggered by a right click." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

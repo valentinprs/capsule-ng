@@ -79,11 +79,7 @@ export const routeMeta: RouteMeta = {
 	providers: [provideIcons({ lucideExternalLink })],
 	template: `
 		<section spartanMainSection class="space-y-4">
-			<spartan-section-intro
-				name="Sidebar"
-				lead="A composable, themeable and customizable sidebar component."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Sidebar" lead="A composable, themeable and customizable sidebar component." />
 
 			<spartan-sidebar-preview name="sidebar-collapsable-icons" caption="A sidebar that collapses to icons." />
 

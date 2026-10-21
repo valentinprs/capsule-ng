@@ -60,11 +60,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Carousel"
-				lead="A carousel with motion and swipe built using Embla."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Carousel" lead="A carousel with motion and swipe built using Embla." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

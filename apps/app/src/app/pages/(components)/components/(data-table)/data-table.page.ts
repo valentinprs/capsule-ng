@@ -78,11 +78,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Data Table"
-				lead="Powerful table and datagrids built using TanStack Table."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Data Table" lead="Powerful table and datagrids built using TanStack Table." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

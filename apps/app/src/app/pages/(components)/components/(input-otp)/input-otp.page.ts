@@ -56,7 +56,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Input OTP" lead="Accessible one-time password component." showThemeToggle />
+			<spartan-section-intro name="Input OTP" lead="Accessible one-time password component." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

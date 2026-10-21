@@ -55,7 +55,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Command" lead="Fast, composable, command menu for Angular." showThemeToggle />
+			<spartan-section-intro name="Command" lead="Fast, composable, command menu for Angular." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

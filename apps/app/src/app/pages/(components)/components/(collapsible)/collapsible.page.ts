@@ -56,11 +56,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Collapsible"
-				lead="An interactive component which expands/collapses a panel."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Collapsible" lead="An interactive component which expands/collapses a panel." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

@@ -82,7 +82,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Input Group"
 				lead="A flexible input group that combines inputs with addons, prefixes, and suffixes to improve usability."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

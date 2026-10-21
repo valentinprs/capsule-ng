@@ -64,11 +64,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Avatar"
-				lead="An image element with a fallback for representing the user."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Avatar" lead="An image element with a fallback for representing the user." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

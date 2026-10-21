@@ -70,11 +70,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Item"
-				lead="A versatile component that you can use to display any content."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Item" lead="A versatile component that you can use to display any content." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

@@ -73,7 +73,6 @@ export const routeMeta: RouteMeta = {
 	template: `
 		<section spartanMainSection>
 			<spartan-section-intro
-				showThemeToggle
 				name="Button Group"
 				lead="A container that groups related buttons together with consistent styling."
 			/>

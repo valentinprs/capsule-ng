@@ -57,7 +57,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Textarea" lead="Styles a native multiline textarea with Capsule." showThemeToggle />
+			<spartan-section-intro name="Textarea" lead="Styles a native multiline textarea with Capsule." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

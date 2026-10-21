@@ -57,7 +57,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Radio Group"
 				lead="A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

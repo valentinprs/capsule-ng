@@ -51,7 +51,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Chart" lead="Accessible charts powered by TanStack Charts." showThemeToggle />
+			<spartan-section-intro name="Chart" lead="Accessible charts powered by TanStack Charts." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

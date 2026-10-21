@@ -63,7 +63,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Message"
 				lead="Displays a message in a conversation, with optional avatar, header, footer, and alignment."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

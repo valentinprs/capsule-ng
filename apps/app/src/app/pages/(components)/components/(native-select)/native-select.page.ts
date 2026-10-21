@@ -62,7 +62,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Native Select"
 				lead="A styled native HTML select element with consistent design system integration."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

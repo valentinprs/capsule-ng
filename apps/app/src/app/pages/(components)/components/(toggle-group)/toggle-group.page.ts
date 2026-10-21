@@ -65,7 +65,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Toggle Group" lead="A group of toggle buttons." showThemeToggle />
+			<spartan-section-intro name="Toggle Group" lead="A group of toggle buttons." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

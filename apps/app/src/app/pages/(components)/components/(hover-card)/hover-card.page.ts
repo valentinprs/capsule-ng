@@ -46,11 +46,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Hover Card"
-				lead="For sighted users to preview content available behind a link."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Hover Card" lead="For sighted users to preview content available behind a link." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

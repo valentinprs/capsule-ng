@@ -69,7 +69,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Marker"
 				lead="Displays status updates, system notes, and labeled separators in a conversation."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

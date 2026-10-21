@@ -68,15 +68,19 @@
 }
 
 .caps-combobox-chips {
-	@apply border-input focus-within:border-ring focus-within:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 flex min-h-8 flex-wrap items-center gap-1 rounded-lg border bg-(--caps-input) bg-clip-padding px-2.5 py-1 text-sm shadow-xs transition-[color,box-shadow] focus-within:ring-3 has-data-[slot=combobox-chip]:px-1;
+	@apply border-input focus-within:border-ring focus-within:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 flex min-h-8 flex-wrap items-center gap-2 rounded-lg border bg-(--caps-input) bg-clip-padding py-1 ps-2.5 pe-1.5 text-sm shadow-xs transition-[color,box-shadow] focus-within:ring-3;
 }
 
 .caps-combobox-chip {
-	@apply bg-muted text-foreground flex h-[calc(--spacing(5.25))] w-fit items-center justify-center gap-1 rounded-sm px-1.5 text-xs font-medium whitespace-nowrap has-data-[slot=combobox-chip-remove]:pe-0;
+	@apply bg-muted text-foreground flex h-5 w-fit items-center justify-center gap-1 rounded-sm ps-2 pe-1.5 text-xs font-medium whitespace-nowrap has-data-[slot=combobox-chip-remove]:pe-0;
 }
 
 .caps-combobox-chip-remove {
-	@apply -ms-1 opacity-(--caps-opacity-50) hover:opacity-100;
+	@apply size-5 opacity-(--caps-opacity-50) hover:opacity-100;
+}
+
+.caps-combobox-chips-icon {
+	@apply text-muted-foreground pointer-events-none ms-auto shrink-0 text-[length:--spacing(4)];
 }
 
 .caps-combobox-chip-input {

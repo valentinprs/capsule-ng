@@ -10,14 +10,13 @@
 	--caps-border-width: 1px;
 	--caps-focus-ring-width: var(--caps-size-3px);
 	--caps-opacity-disabled: var(--caps-opacity-50);
-	--caps-control-height-xs: calc(var(--caps-spacing) * 6);
+	--caps-control-height-xs: calc(var(--caps-spacing) * 5.5);
 	--caps-control-height-sm: calc(var(--caps-spacing) * 7);
 	--caps-control-height: calc(var(--caps-spacing) * 8);
 	--caps-control-height-lg: calc(var(--caps-spacing) * 9);
 	--caps-control-radius-xs: min(var(--radius-md), var(--caps-size-10px));
 	--caps-control-radius-sm: min(var(--radius-md), var(--caps-size-12px));
-	--caps-control-text-sm: var(--caps-size-0-8rem);
-	--caps-textarea-min-height: calc(var(--caps-spacing) * 16);
+	--caps-textarea-min-height: calc(var(--caps-spacing) * 19);
 	--caps-button-active-offset: var(--caps-border-width);
 	--caps-duration-fast: var(--caps-duration-100);
 	--caps-duration-normal: var(--caps-duration-150);

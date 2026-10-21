@@ -47,7 +47,7 @@
 }
 
 .caps-button-variant-outline {
-	@apply border-input text-foreground hover:text-foreground bg-(--caps-alpha-white-outline-bg) hover:bg-(--caps-alpha-black-switch-5);
+	@apply border-input text-foreground hover:text-foreground bg-(--caps-alpha-white-outline-bg) hover:bg-(--caps-alpha-black-switch-5) hover:shadow-xs;
 }
 
 .caps-button-size-default {
@@ -71,11 +71,11 @@
 }
 
 .caps-button-size-xs {
-	@apply h-(--caps-control-height-xs) gap-1 rounded-(--caps-control-radius-xs) px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
+	@apply h-(--caps-control-height-xs) gap-1 rounded-(--caps-control-radius-xs) px-2 text-xs has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
 }
 
 .caps-button-size-sm {
-	@apply h-(--caps-control-height-sm) gap-1 rounded-(--caps-control-radius-sm) px-2.5 text-[length:var(--caps-control-text-sm)] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
+	@apply h-(--caps-control-height-sm) gap-1 rounded-(--caps-control-radius-sm) px-2.5 text-sm has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
 }
 
 .caps-button-size-lg {
@@ -83,11 +83,11 @@
 }
 
 .caps-button-size-icon-xs {
-	@apply size-(--caps-control-height-xs) rounded-(--caps-control-radius-xs) in-data-[slot=button-group]:rounded-lg [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
+	@apply size-(--caps-control-height-xs) rounded-(--caps-control-radius-xs) [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
 }
 
 .caps-button-size-icon-sm {
-	@apply size-(--caps-control-height-sm) rounded-(--caps-control-radius-sm) in-data-[slot=button-group]:rounded-lg;
+	@apply size-(--caps-control-height-sm) rounded-(--caps-control-radius-sm);
 }
 
 .caps-button-size-icon-lg {
@@ -109,17 +109,17 @@
 
 /* MARK: Input */
 .caps-input {
-	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base transition-colors file:h-(--caps-control-height-xs) file:text-sm file:font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base transition-colors file:me-3 file:h-(--caps-control-height-xs) file:text-sm file:font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 /* MARK: Textarea */
 .caps-textarea {
-	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-2 text-base transition-colors focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-2 text-base shadow-xs transition-colors focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 /* MARK: Label */
 .caps-label {
-	@apply gap-2 text-sm leading-none font-medium group-data-[disabled=true]:opacity-(--caps-opacity-disabled) peer-disabled:opacity-(--caps-opacity-disabled);
+	@apply gap-2 text-sm leading-5 font-medium group-data-[disabled=true]:opacity-(--caps-opacity-disabled) peer-disabled:opacity-(--caps-opacity-disabled);
 }
 
 /* MARK: Field */
@@ -139,13 +139,13 @@
 	@apply mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base;
 }
 .caps-field-label {
-	@apply gap-2 leading-snug group-data-[disabled=true]/field:opacity-(--caps-opacity-disabled);
+	@apply gap-2 leading-5 group-data-[disabled=true]/field:opacity-(--caps-opacity-disabled);
 }
 .caps-label:has(> [data-slot='field']) {
-	@apply has-data-checked:bg-primary/5 has-data-checked:border-primary/30 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 gap-2 rounded-lg border-[length:var(--caps-border-width)] leading-snug;
+	@apply has-data-checked:bg-primary/5 has-data-checked:border-primary/30 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 bg-card gap-2 rounded-lg border-[length:var(--caps-border-width)] leading-5 hover:bg-[linear-gradient(var(--caps-alpha-black-switch-333),var(--caps-alpha-black-switch-333))];
 }
 .caps-label > [data-slot='field'] {
-	@apply p-2.5;
+	@apply gap-3 p-3;
 }
 .caps-field-description {
 	@apply text-muted-foreground text-sm;
@@ -179,7 +179,7 @@
 
 /* MARK: Form choices */
 .caps-checkbox {
-	@apply border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 flex size-4 items-center justify-center rounded-[var(--caps-size-4px)] border-[length:var(--caps-border-width)] shadow-xs transition-shadow focus-visible:ring-[length:var(--caps-focus-ring-width)];
+	@apply border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 flex size-4 items-center justify-center rounded-[var(--caps-size-4px)] border-[length:var(--caps-border-width)] transition-shadow focus-visible:ring-[length:var(--caps-focus-ring-width)];
 }
 .caps-checkbox[data-state='checked'],
 .caps-checkbox[data-state='indeterminate'] {
@@ -189,10 +189,10 @@
 	@apply flex items-center justify-center [&>ng-icon]:text-[length:--spacing(3.5)];
 }
 .caps-switch {
-	@apply bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/80 relative inline-flex shrink-0 items-center rounded-full border-[length:var(--caps-border-width)] border-transparent transition-[background-color,box-shadow] focus-visible:ring-[length:var(--caps-focus-ring-width)];
+	@apply bg-muted focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex shrink-0 items-center rounded-full border-[length:var(--caps-border-width)] border-transparent bg-[linear-gradient(var(--caps-alpha-black-switch-20),var(--caps-alpha-black-switch-20))] transition-[background-color,box-shadow] focus-visible:ring-[length:var(--caps-focus-ring-width)];
 }
 .caps-switch[data-state='checked'] {
-	@apply bg-primary;
+	@apply bg-primary bg-none;
 }
 .caps-switch[data-size='default'] {
 	height: var(--caps-size-18-4px);
@@ -218,7 +218,10 @@
 	@apply grid gap-2;
 }
 .caps-radio-indicator {
-	@apply border-input text-primary dark:bg-input/30 relative flex size-4 shrink-0 items-center justify-center rounded-full border-[length:var(--caps-border-width)] shadow-xs transition-shadow;
+	@apply border-input text-primary dark:bg-input/30 relative flex size-4 shrink-0 items-center justify-center rounded-full border-[length:var(--caps-border-width)] transition-[color,background-color,border-color,box-shadow];
+}
+.caps-radio[data-checked='true'] .caps-radio-indicator {
+	@apply border-primary bg-primary;
 }
 .caps-radio:has(input:focus-visible) .caps-radio-indicator {
 	@apply border-ring ring-ring/50 ring-[length:var(--caps-focus-ring-width)];
@@ -235,6 +238,7 @@
 .caps-select-trigger[data-matches-spartan-invalid='true']:focus-visible,
 .caps-questionnaire-input[aria-invalid='true']:focus-visible,
 .caps-combobox-chips[data-matches-spartan-invalid='true']:focus-within,
+.caps-input-group:has([data-matches-spartan-invalid='true']):focus-within,
 .caps-field[data-matches-spartan-invalid='true'] .caps-input:focus-visible,
 .caps-field[data-matches-spartan-invalid='true'] .caps-textarea:focus-visible,
 .caps-field[data-matches-spartan-invalid='true'] .caps-select-trigger:focus-visible,
@@ -350,7 +354,7 @@
 
 /* MARK: Selection — shared Capsule control and surface tokens. */
 .caps-select-trigger {
-	@apply border-input text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive h-(--caps-control-height) rounded-lg border bg-(--caps-input) px-3 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-8;
+	@apply border-input text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive h-(--caps-control-height) rounded-lg border bg-(--caps-input) ps-2.5 pe-2 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-(--caps-control-height-sm);
 }
 .caps-select-content {
 	@apply bg-popover text-popover-foreground rounded-lg border p-1 shadow-md;
@@ -365,7 +369,7 @@
 	@apply text-muted-foreground px-2 py-1.5 text-xs font-medium;
 }
 .caps-native-select {
-	@apply h-(--caps-control-height) px-3 data-[size=sm]:h-8;
+	@apply h-(--caps-control-height) ps-2.5 pe-2 data-[size=sm]:h-(--caps-control-height-sm);
 }
 
 .caps-native-select[multiple],
@@ -453,7 +457,7 @@
 }
 
 .caps-questionnaire-input {
-	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 .caps-questionnaire-error {
@@ -615,13 +619,13 @@ a.caps-navigation-menu-link:focus-visible {
 	@apply relative flex w-full items-center group-data-vertical:w-auto group-data-vertical:flex-col;
 }
 .caps-slider-track {
-	@apply bg-muted relative grow rounded-full data-horizontal:h-1.5 data-horizontal:w-full data-vertical:h-full data-vertical:w-1.5;
+	@apply bg-muted relative grow rounded-full data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1;
 }
 .caps-slider-range {
 	@apply bg-primary absolute rounded-full select-none data-draggable-range:cursor-move data-horizontal:h-full data-vertical:w-full;
 }
 .caps-slider-thumb {
-	@apply border-primary bg-background ring-ring/50 absolute block size-4 shrink-0 rounded-full border shadow-sm transition-shadow select-none after:absolute after:-inset-2 hover:ring-4 focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none active:ring-4;
+	@apply border-ring bg-background ring-ring/50 absolute block size-3 shrink-0 rounded-full border shadow-sm transition-shadow select-none after:absolute after:-inset-2 hover:ring-4 focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none active:ring-4;
 }
 .caps-slider-host[data-matches-spartan-invalid='true'] .caps-slider-thumb {
 	@apply border-destructive ring-destructive/20;

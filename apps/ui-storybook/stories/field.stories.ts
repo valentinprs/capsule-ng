@@ -354,6 +354,31 @@ export const HorizontalOrientation: Story = {
 		`,
 	}),
 };
+export const HorizontalWithControls: Story = {
+	name: 'Horizontal With Input, Select and Textarea',
+	render: () => ({
+		template: `
+			<caps-field-group class="w-full max-w-xl">
+				<caps-field orientation="horizontal">
+					<caps-field-label for="field-horizontal-name">Name</caps-field-label>
+					<input capsInput id="field-horizontal-name" type="text" placeholder="John Doe" />
+				</caps-field>
+				<caps-field orientation="horizontal">
+					<caps-field-label for="field-horizontal-country">Country</caps-field-label>
+					<caps-select id="field-horizontal-country" placeholder="Select a country" class="inline-block w-full">
+						<caps-select-option value="fr">France</caps-select-option>
+						<caps-select-option value="de">Germany</caps-select-option>
+						<caps-select-option value="uk">United Kingdom</caps-select-option>
+					</caps-select>
+				</caps-field>
+				<caps-field orientation="horizontal">
+					<caps-field-label for="field-horizontal-bio">Bio</caps-field-label>
+					<textarea capsTextarea id="field-horizontal-bio" class="resize-none" rows="3"></textarea>
+				</caps-field>
+			</caps-field-group>
+		`,
+	}),
+};
 export const WithFieldContent: Story = {
 	name: 'With Field Content',
 	render: () => ({

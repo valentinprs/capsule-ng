@@ -3,7 +3,12 @@
 	@apply gap-1;
 }
 
-/* A key hint must remain readable on muted surfaces; tooltip colors keep their existing inverse treatment. */
+/* Figma kbd: 12/16 regular in muted-foreground, 16px minimum width. Tooltip colors keep their
+   existing inverse treatment. */
 .caps-kbd:not([data-slot='tooltip-content'] *) {
-	@apply text-foreground;
+	@apply text-muted-foreground min-w-4 font-normal;
+}
+/* Figma kbd `Style=Alt`: on the background, with a border. */
+.caps-kbd[data-variant='alt']:not([data-slot='tooltip-content'] *) {
+	@apply bg-background border;
 }

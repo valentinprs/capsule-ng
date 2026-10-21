@@ -88,6 +88,11 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
             "type": "'sm' | 'md' | 'lg'",
           },
           {
+            "name": "variant",
+            "required": false,
+            "type": "'line' | 'bordered'",
+          },
+          {
             "name": "isFlush",
             "required": false,
             "type": "boolean",
@@ -8655,6 +8660,68 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
       },
     },
   },
+  "header": {
+    "caps": {
+      "CapsHeader": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header",
+      },
+      "CapsHeaderActions": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-actions",
+      },
+      "CapsHeaderLogo": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-logo",
+      },
+      "CapsHeaderMenu": {
+        "inputs": [
+          {
+            "name": "label",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "title",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "description",
+            "required": false,
+            "type": "string",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-menu",
+      },
+      "CapsHeaderNav": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "[capsHeaderNav]",
+      },
+      "CapsHeaderTitle": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-title",
+      },
+      "CapsHeaderVisual": {
+        "inputs": [],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-header-visual",
+      },
+    },
+  },
   "hover-card": {
     "brain": {
       "BrnHoverCard": {
@@ -9221,12 +9288,44 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
   },
   "item": {
     "caps": {
+      "CapsDecorativeIcon": {
+        "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsDecorativeIconSize",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsDecorativeIconVariant",
+          },
+          {
+            "name": "round",
+            "required": false,
+            "type": "boolean",
+          },
+        ],
+        "models": [],
+        "outputs": [],
+        "selector": "caps-decorative-icon",
+      },
       "CapsItem": {
         "inputs": [
           {
             "name": "disabled",
             "required": false,
             "type": "boolean",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsItemSize",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsItemVariant",
           },
         ],
         "models": [],
@@ -9253,6 +9352,16 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
       },
       "CapsItemDirective": {
         "inputs": [
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsItemSize",
+          },
+          {
+            "name": "variant",
+            "required": false,
+            "type": "CapsItemVariant",
+          },
           {
             "name": "disabled",
             "required": false,
@@ -9409,7 +9518,13 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
   "kbd": {
     "caps": {
       "CapsKbd": {
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "'default' | 'alt'",
+          },
+        ],
         "models": [],
         "outputs": [],
         "selector": "kbd[capsKbd]",
@@ -14066,6 +14181,11 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
       "CapsSeparator": {
         "inputs": [
           {
+            "name": "spacing",
+            "required": false,
+            "type": "'none' | 'regular' | 'spacious'",
+          },
+          {
             "name": "orientation",
             "required": false,
             "type": "SeparatorOrientation",
@@ -14746,7 +14866,13 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
         "selector": "button[capsSidebarMenuAction]",
       },
       "CapsSidebarMenuBadge": {
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "variant",
+            "required": false,
+            "type": "'default' | 'primary'",
+          },
+        ],
         "models": [],
         "outputs": [],
         "selector": "caps-sidebar-menu-badge",
@@ -15830,11 +15956,6 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
             "type": "ToasterProps['visibleToasts']",
           },
           {
-            "name": "closeButton",
-            "required": false,
-            "type": "ToasterProps['closeButton']",
-          },
-          {
             "name": "toastOptions",
             "required": false,
             "type": "ToasterProps['toastOptions']",
@@ -16454,6 +16575,11 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
             "required": false,
             "type": "CapsTabsType",
           },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsTabsSize",
+          },
         ],
         "models": [],
         "outputs": [],
@@ -16465,6 +16591,11 @@ exports[`generate-ui-docs executor > produces stable output 1`] = `
             "name": "type",
             "required": false,
             "type": "CapsTabsType",
+          },
+          {
+            "name": "size",
+            "required": false,
+            "type": "CapsTabsSize",
           },
           {
             "name": "ariaLabel",

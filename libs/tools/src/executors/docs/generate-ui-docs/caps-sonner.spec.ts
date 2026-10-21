@@ -17,7 +17,6 @@ describe('Sonner public API metadata', () => {
 				'position',
 				'theme',
 				'duration',
-				'closeButton',
 				'expand',
 				'visibleToasts',
 				'hotKey',

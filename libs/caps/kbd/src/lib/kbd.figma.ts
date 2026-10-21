@@ -3,9 +3,10 @@
 // component=CapsKbd
 import figma from 'figma';
 
-// `Style` (Default / Alt) has no equivalent in code.
+const variant = figma.selectedInstance.getEnum('Style', { Default: '', Alt: ' variant="alt"' });
+
 export default {
-	example: figma.code`<kbd capsKbd>${figma.selectedInstance.getString('Key')}</kbd>`,
+	example: figma.code`<kbd capsKbd${variant}>${figma.selectedInstance.getString('Key')}</kbd>`,
 	imports: ["import { CapsKbdImports } from '@capsule-ng/caps/kbd';"],
 	id: 'caps-kbd',
 };

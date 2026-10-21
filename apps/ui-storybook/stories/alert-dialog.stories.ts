@@ -40,3 +40,47 @@ export const Default: Story = {
     `,
 	}),
 };
+
+export const Small: Story = {
+	render: () => ({
+		template: `
+    <caps-alert-dialog>
+      <button variant="outline" capsAlertDialogTrigger capsButton>Open small dialog</button>
+      <ng-template capsAlertDialogContent size="sm" let-ctx>
+        <caps-alert-dialog-header>
+          <caps-alert-dialog-title>Allow notifications?</caps-alert-dialog-title>
+          <caps-alert-dialog-description>
+            You can change this later in your account settings.
+          </caps-alert-dialog-description>
+        </caps-alert-dialog-header>
+        <caps-alert-dialog-footer>
+          <button capsAlertDialogCancel capsButton variant="outline" (click)="ctx.close()">Don't allow</button>
+          <button capsButton (click)="ctx.close()">Allow</button>
+        </caps-alert-dialog-footer>
+      </ng-template>
+    </caps-alert-dialog>
+    `,
+	}),
+};
+
+export const Destructive: Story = {
+	render: () => ({
+		template: `
+    <caps-alert-dialog>
+      <button variant="destructive" capsAlertDialogTrigger capsButton>Delete project</button>
+      <ng-template capsAlertDialogContent let-ctx>
+        <caps-alert-dialog-header>
+          <caps-alert-dialog-title>Delete this project?</caps-alert-dialog-title>
+          <caps-alert-dialog-description>
+            This action cannot be undone. The project and all of its data will be permanently deleted.
+          </caps-alert-dialog-description>
+        </caps-alert-dialog-header>
+        <caps-alert-dialog-footer>
+          <button capsAlertDialogCancel capsButton variant="outline" (click)="ctx.close()">Cancel</button>
+          <button capsButton variant="destructive" (click)="ctx.close()">Delete</button>
+        </caps-alert-dialog-footer>
+      </ng-template>
+    </caps-alert-dialog>
+    `,
+	}),
+};

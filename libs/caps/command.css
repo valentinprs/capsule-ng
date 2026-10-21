@@ -26,3 +26,20 @@
 .caps-command-dialog > .caps-command {
 	@apply min-h-0;
 }
+
+/* Figma Command: a bordered panel, 36px items, a distinct active (keyboard) and hover state. */
+.caps-command {
+	@apply border shadow-md;
+}
+.caps-command-dialog > .caps-command {
+	@apply border-0 shadow-none;
+}
+.caps-command-item {
+	@apply hover:bg-muted min-h-9 rounded-md py-2 data-selected:bg-(--caps-alpha-black-switch-5);
+}
+.caps-command-shortcut {
+	@apply text-sm tracking-normal;
+}
+.caps-command-group [data-slot='command-group-label'] {
+	@apply py-2;
+}

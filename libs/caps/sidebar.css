@@ -38,6 +38,10 @@
 	@apply bg-sidebar text-sidebar-foreground;
 	min-height: 0;
 }
+/* Figma Sidebar: 16px around the content when expanded (8px here plus 8px per group). */
+.caps-sidebar:not([data-collapsible='icon']) .caps-sidebar-inner {
+	padding: calc(var(--spacing) * 2);
+}
 .caps-sidebar[data-collapsible='offcanvas'] .caps-sidebar-gap {
 	width: 0;
 }
@@ -106,7 +110,7 @@
 	@apply text-sm;
 }
 .caps-sidebar-group-label {
-	@apply text-sidebar-foreground/70 focus-visible:ring-sidebar-ring h-8 rounded-md px-2 text-xs font-medium outline-hidden focus-visible:ring-2;
+	@apply text-sidebar-foreground focus-visible:ring-sidebar-ring h-8 rounded-md px-3 text-xs font-medium outline-hidden focus-visible:ring-2;
 }
 .caps-sidebar-menu {
 	gap: 0;
@@ -115,7 +119,7 @@
 	padding: 0;
 }
 .caps-sidebar-menu-button {
-	@apply focus-visible:ring-sidebar-ring gap-2 rounded-md p-2 text-start text-sm transition-[width,height,padding] focus-visible:ring-2 [&_ng-icon]:text-[length:--spacing(4)];
+	@apply focus-visible:ring-sidebar-ring gap-2 rounded-md px-3 py-1 text-start text-sm transition-[width,height,padding] focus-visible:ring-2 [&_ng-icon]:text-[length:--spacing(4)];
 }
 .caps-sidebar-menu-button:hover,
 .caps-sidebar-menu-button:active,
@@ -124,10 +128,6 @@
 .caps-sidebar-menu-sub-button:active,
 .caps-sidebar-menu-sub-button[data-active='true'] {
 	@apply bg-sidebar-accent text-sidebar-accent-foreground;
-}
-.caps-sidebar-menu-button[data-active='true'],
-.caps-sidebar-menu-sub-button[data-active='true'] {
-	@apply font-medium;
 }
 .caps-sidebar-menu-button:disabled,
 .caps-sidebar-menu-button[aria-disabled='true'],
@@ -166,9 +166,13 @@
 	top: calc(var(--spacing) * 1.5);
 }
 .caps-sidebar-menu-badge {
-	@apply text-sidebar-foreground pointer-events-none absolute h-5 min-w-5 rounded-md px-1 text-xs font-medium;
-	inset-inline-end: var(--spacing);
-	top: calc(var(--spacing) * 1.5);
+	/* Figma Sidebar Badge: 22px, 12/16 semibold, Default or Primary. */
+	@apply bg-sidebar text-sidebar-foreground pointer-events-none absolute h-[calc(--spacing(5.5))] min-w-[calc(--spacing(5.5))] rounded-lg px-2 text-xs font-semibold;
+	inset-inline-end: calc(var(--spacing) * 3);
+	top: calc(var(--spacing) * 1.25);
+}
+.caps-sidebar-menu-badge[data-variant='primary'] {
+	@apply bg-primary text-primary-foreground;
 }
 .caps-sidebar-menu li:has(> [data-size='lg']) > [data-sidebar='menu-action'],
 .caps-sidebar-menu li:has(> [data-size='lg']) > [data-sidebar='menu-badge'] {
@@ -183,7 +187,7 @@
 	list-style: none;
 }
 .caps-sidebar-menu-sub-button {
-	@apply text-sidebar-foreground focus-visible:ring-sidebar-ring h-7 gap-2 rounded-md px-2 outline-hidden focus-visible:ring-2 [&_ng-icon]:text-[length:--spacing(4)];
+	@apply text-sidebar-foreground focus-visible:ring-sidebar-ring h-7 gap-2 rounded-sm px-2 outline-hidden focus-visible:ring-2 [&_ng-icon]:text-[length:--spacing(4)];
 }
 .caps-sidebar-menu-sub-button[data-size='md'] {
 	@apply text-sm;
@@ -230,10 +234,12 @@
 .caps-sidebar-rail:hover::after {
 	@apply bg-sidebar-border;
 }
+/* Figma Sidebar Item / Collapsed: 36px square buttons in the 52px rail. */
 .caps-sidebar[data-collapsible='icon'] .caps-sidebar-menu-button {
 	width: calc(var(--sidebar-width-icon) - var(--spacing) * 4);
+	height: calc(var(--spacing) * 9);
 	min-width: calc(var(--spacing) * 8);
-	padding: calc(var(--spacing) * 2);
+	padding: calc(var(--spacing) * 2.5);
 }
 .caps-sidebar[data-collapsible='icon'] .caps-sidebar-content {
 	overflow: hidden;

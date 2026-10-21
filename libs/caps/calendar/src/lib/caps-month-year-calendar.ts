@@ -26,8 +26,8 @@ import { classes, hlm } from '@spartan-ng/helm/utils';
 				<button
 					brnMonthYearCalendarPreviousButton
 					capsButton
-					variant="ghost"
-					class="order-first size-(--cell-size) p-0 select-none aria-disabled:opacity-50"
+					variant="outline"
+					class="order-first size-(--cell-size) rounded-md p-0 select-none aria-disabled:opacity-50"
 				>
 					<ng-icon name="lucideChevronLeft" class="rtl:rotate-180" aria-hidden="true" />
 				</button>
@@ -44,8 +44,8 @@ import { classes, hlm } from '@spartan-ng/helm/utils';
 				<button
 					brnMonthYearCalendarNextButton
 					capsButton
-					variant="ghost"
-					class="order-last size-(--cell-size) p-0 select-none aria-disabled:opacity-50"
+					variant="outline"
+					class="order-last size-(--cell-size) rounded-md p-0 select-none aria-disabled:opacity-50"
 				>
 					<ng-icon name="lucideChevronRight" class="rtl:rotate-180" aria-hidden="true" />
 				</button>
@@ -113,7 +113,7 @@ export class CapsMonthYearCalendar<T> {
 
 	protected readonly _btnClass = hlm(
 		buttonVariants({ variant: 'ghost' }),
-		'data-[today=true]:bg-muted',
+		'data-[today=true]:bg-muted rounded-(--cell-radius)',
 		'data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground data-[selected=true]:hover:bg-primary data-[selected=true]:hover:text-primary-foreground',
 		'data-[focused=true]:border-ring data-[focused=true]:ring-ring/50 data-[focused=true]:ring-[3px]',
 		'aria-disabled:pointer-events-none aria-disabled:opacity-50',

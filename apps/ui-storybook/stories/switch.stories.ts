@@ -116,6 +116,27 @@ export const Disabled: Story = {
 	}),
 };
 
+export const Small: Story = {
+	render: () => ({
+		template: `
+  <div class="flex flex-col gap-3">
+   <caps-field orientation="horizontal">
+    <caps-switch size="sm" />
+    <caps-field-label>Small switch</caps-field-label>
+   </caps-field>
+   <caps-field orientation="horizontal">
+    <caps-switch size="sm" checked />
+    <caps-field-label>Small switch (checked)</caps-field-label>
+   </caps-field>
+   <caps-field orientation="horizontal">
+    <caps-switch size="sm" disabled />
+    <caps-field-label>Small switch (disabled)</caps-field-label>
+   </caps-field>
+  </div>
+ `,
+	}),
+};
+
 type FormStory = StoryObj<SwitchForm>;
 export const Form: FormStory = {
 	render: () => ({
@@ -140,5 +161,42 @@ export const FormTrue: FormStory = {
 export const WithHintAndError: Story = {
 	render: () => ({
 		template: '<switch-hint-error-story />',
+	}),
+};
+
+/** Figma Rich Switch Container: a bordered card (label + description) holding the switch, highlighted when on. */
+export const RichSwitch: Story = {
+	render: () => ({
+		template: `
+			<caps-field-group class="w-full max-w-sm gap-3">
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-switch [checked]="true" />
+						<caps-field-content>
+							<span class="font-medium">Share usage data</span>
+							<caps-field-description>Help us improve the product with anonymous statistics.</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-label>
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-switch />
+						<caps-field-content>
+							<span class="font-medium">Beta features</span>
+							<caps-field-description>Try new features before they are released.</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-label>
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-field-content>
+							<span class="font-medium">Dark mode</span>
+							<caps-field-description>Flipped: the switch sits after the content.</caps-field-description>
+						</caps-field-content>
+						<caps-switch />
+					</caps-field>
+				</caps-field-label>
+			</caps-field-group>
+		`,
 	}),
 };

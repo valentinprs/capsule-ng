@@ -13,7 +13,7 @@ import { CapsSonnerImports, toast } from '../index';
 		<main>
 			<h1 class="sr-only">Sonner test</h1>
 			<button type="button" id="origin">Application action</button>
-			<div [dir]="direction()"><caps-toaster [expand]="true" [closeButton]="true" /></div>
+			<div [dir]="direction()"><caps-toaster [expand]="true" /></div>
 		</main>
 	`,
 })
@@ -51,13 +51,12 @@ afterEach(() => {
 	TestBed.resetTestingModule();
 });
 
-it('renders Spartan plain-text descriptions, four statuses and per-toast close options', async () => {
+it('renders Spartan plain-text descriptions and four statuses without a close button', async () => {
 	const f = setup();
 	for (const type of ['info', 'success', 'warning', 'error'] as const) {
 		toast[type](`${type} <b>plain</b>`, {
 			description: 'Details',
 			duration: Number.POSITIVE_INFINITY,
-			closeButton: type === 'error',
 		});
 	}
 	await render(f);
@@ -70,9 +69,8 @@ it('renders Spartan plain-text descriptions, four statuses and per-toast close o
 		expect(item.querySelector('b')).toBeNull();
 		expect(item.textContent).toContain('<b>plain</b>');
 		expect(item.textContent).toContain('Details');
-		expect(!!item.querySelector('[data-close-button]')).toBe(item.dataset.type === 'error');
+		expect(item.querySelector('[data-close-button]')).toBeNull();
 	}
-	expect(f.nativeElement.querySelector('[data-close-button]').getAttribute('aria-label')).toBe('Close toast');
 });
 
 it('retains native action and cancel keyboard activation and dismissal', async () => {
@@ -105,6 +103,27 @@ it('retains native action and cancel keyboard activation and dismissal', async (
 	await render(f);
 	expect(secondary).toHaveBeenCalledOnce();
 	await expect.poll(() => f.nativeElement.querySelectorAll('[data-sonner-toast]').length).toBe(0);
+});
+
+it('adds an outline Close button to persistent toasts only', async () => {
+	const f = setup();
+	toast('Timed notification', { duration: 60_000 });
+	toast('Kept notification', {
+		duration: Number.POSITIVE_INFINITY,
+		cancel: { label: 'Keep', onClick: () => undefined },
+	});
+	toast.success('Persistent notification', { duration: Number.POSITIVE_INFINITY });
+	await render(f);
+	const closes: HTMLButtonElement[] = Array.from(f.nativeElement.querySelectorAll('[data-caps-toast-close]'));
+	expect(closes).toHaveLength(1);
+	expect(closes[0].closest('[data-sonner-toast]')?.textContent).toContain('Persistent notification');
+	expect(closes[0].textContent?.trim()).toBe('Close');
+	expect(closes[0].classList).toContain('caps-button-variant-outline');
+	await readyToInteract(f);
+	await userEvent.click(closes[0]);
+	await render(f);
+	await expect.poll(() => f.nativeElement.textContent).not.toContain('Persistent notification');
+	expect(f.nativeElement.querySelectorAll('[data-sonner-toast]')).toHaveLength(2);
 });
 
 it('updates a loading notification by ID, preserves importance, and resolves public promises', async () => {
@@ -159,11 +178,6 @@ it('retains finite timers, literal zero duration and the native close button', a
 	toast('Zero duration', { duration: 0, onAutoClose });
 	await render(f);
 	await expect.poll(() => onAutoClose.mock.calls.length).toBe(1);
-	await expect.poll(() => f.nativeElement.querySelectorAll('[data-sonner-toast]').length).toBe(0);
-	toast('Closable', { duration: Number.POSITIVE_INFINITY, closeButton: true });
-	await render(f);
-	await readyToInteract(f);
-	await userEvent.click(f.nativeElement.querySelector('[data-close-button]'));
 	await expect.poll(() => f.nativeElement.querySelectorAll('[data-sonner-toast]').length).toBe(0);
 });
 

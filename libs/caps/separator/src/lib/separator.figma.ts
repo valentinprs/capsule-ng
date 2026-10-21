@@ -3,14 +3,18 @@
 // component=CapsSeparator
 import figma from 'figma';
 
-// `Spacing` has no input in code: the surrounding layout sets the margins.
+const spacing = figma.selectedInstance.getEnum('Spacing', {
+	None: '',
+	Regular: ' spacing="regular"',
+	Spacious: ' spacing="spacious"',
+});
 const orientation = figma.selectedInstance.getEnum('Orientation', {
 	Horizontal: '',
 	Vertical: ' orientation="vertical"',
 });
 
 export default {
-	example: figma.code`<caps-separator${orientation} />`,
+	example: figma.code`<caps-separator${orientation}${spacing} />`,
 	imports: ["import { CapsSeparatorImports } from '@capsule-ng/caps/separator';"],
 	id: 'caps-separator',
 };

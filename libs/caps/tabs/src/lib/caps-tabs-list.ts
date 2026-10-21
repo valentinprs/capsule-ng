@@ -3,6 +3,7 @@ import { BrnTabs, BrnTabsTrigger } from '@spartan-ng/brain/tabs';
 import { classes } from '@spartan-ng/helm/utils';
 
 export type CapsTabsType = 'line' | 'contained';
+export type CapsTabsSize = 'sm' | 'default' | 'lg';
 /** The tablist owns keyboard focus; Brain triggers own activation and selection. */
 @Component({
 	selector: 'caps-tabs-list',
@@ -13,6 +14,7 @@ export type CapsTabsType = 'line' | 'contained';
 		'[attr.aria-orientation]': '_root.orientation()',
 		'[attr.data-orientation]': '_root.orientation()',
 		'[attr.data-type]': 'type()',
+		'[attr.data-size]': 'size()',
 		'(keydown)': '_onKeydown($event)',
 	},
 	template: `
@@ -21,6 +23,8 @@ export type CapsTabsType = 'line' | 'contained';
 })
 export class CapsTabsList {
 	public readonly type = input<CapsTabsType>('contained');
+	/** Figma Small, Default and Large: list height, trigger padding and text size. */
+	public readonly size = input<CapsTabsSize>('default');
 	protected readonly _root = inject(BrnTabs);
 	private readonly _element = inject<ElementRef<HTMLElement>>(ElementRef);
 	private readonly _triggers = contentChildren(BrnTabsTrigger, { descendants: true });

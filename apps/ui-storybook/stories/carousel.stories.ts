@@ -2,6 +2,8 @@ import { Dir } from '@angular/cdk/bidi';
 import { CapsButtonImports } from '@capsule-ng/caps/button';
 import { CapsCardImports } from '@capsule-ng/caps/card';
 import { CapsCarousel, CapsCarouselImports } from '@capsule-ng/caps/carousel';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideChevronDown, lucideChevronLeft, lucideChevronRight, lucideChevronUp } from '@ng-icons/lucide';
 import { argsToTemplate, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 import Autoplay from 'embla-carousel-autoplay';
 
@@ -9,7 +11,12 @@ const meta: Meta<CapsCarousel> = {
 	title: 'Carousel',
 	component: CapsCarousel,
 	tags: ['autodocs'],
-	decorators: [moduleMetadata({ imports: [CapsCarouselImports, CapsCardImports, CapsButtonImports, Dir] })],
+	decorators: [
+		moduleMetadata({
+			imports: [CapsCarouselImports, CapsCardImports, CapsButtonImports, Dir, NgIcon],
+			providers: [provideIcons({ lucideChevronLeft, lucideChevronRight, lucideChevronUp, lucideChevronDown })],
+		}),
+	],
 };
 export default meta;
 type Story = StoryObj<CapsCarousel>;
@@ -25,17 +32,24 @@ function slides(itemClass = '', vertical = false) {
  </caps-carousel-item>`,
 	).join('');
 }
-function navigation(previous = 'Previous', next = 'Next') {
-	return `<div class="mt-3 flex justify-center gap-2">
- <button capsButton capsCarouselPrevious variant="outline">${previous}</button>
- <button capsButton capsCarouselNext variant="outline">${next}</button>
- </div>`;
+/** Figma Carousel: outline icon buttons on either side of the slides, 16px away. */
+function navigation(vertical: boolean) {
+	const [previous, next] = vertical
+		? ['lucideChevronUp', 'lucideChevronDown']
+		: ['lucideChevronLeft', 'lucideChevronRight'];
+	const [previousPlace, nextPlace] = vertical
+		? ['-top-12 left-1/2 -translate-x-1/2', '-bottom-12 left-1/2 -translate-x-1/2']
+		: ['-start-12 top-1/2 -translate-y-1/2', '-end-12 top-1/2 -translate-y-1/2'];
+	const flip = vertical ? '' : ' class="rtl:rotate-180"';
+	return `<button capsButton capsCarouselPrevious variant="outline" size="icon" class="absolute ${previousPlace}" aria-label="Previous slide"><ng-icon name="${previous}"${flip} /></button>
+ <button capsButton capsCarouselNext variant="outline" size="icon" class="absolute ${nextPlace}" aria-label="Next slide"><ng-icon name="${next}"${flip} /></button>`;
 }
 function example(content = slides(), trackClass = '', attributes = '', after = '', before = '') {
-	return `<div class="flex w-full items-center justify-center p-4">
+	const vertical = attributes.includes('orientation="vertical"');
+	return `<div class="flex w-full items-center justify-center ${vertical ? 'py-16' : 'px-16 py-4'}">
  <caps-carousel #carousel="capsCarousel" aria-label="Example slides" class="w-full max-w-48 sm:max-w-xs" ${attributes}>
  ${before}<caps-carousel-content class="${trackClass}">${content}</caps-carousel-content>
- ${navigation()}${after}
+ ${navigation(vertical)}${after}
  </caps-carousel></div>`;
 }
 export const Default: Story = { render: () => ({ template: example() }) };
@@ -76,6 +90,6 @@ export const SlideCount: Story = {
 };
 export const Rtl: Story = {
 	render: () => ({
-		template: `<div dir="rtl" data-lang="ar">${example().replace('Example slides', 'الموارد').replace('>Previous<', '>السابق<').replace('>Next<', '>التالي<')}</div>`,
+		template: `<div dir="rtl" data-lang="ar">${example().replace('Example slides', 'الموارد').replace('"Previous slide"', '"الشريحة السابقة"').replace('"Next slide"', '"الشريحة التالية"')}</div>`,
 	}),
 };

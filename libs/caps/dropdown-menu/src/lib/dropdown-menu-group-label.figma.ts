@@ -3,7 +3,7 @@
 // component=CapsMenuLabel
 import figma from 'figma';
 
-// `Type` and `Indented` have no input in code.
+// `Indented` has no input in code. The label has a single size, Figma Small (32px).
 export default {
 	example: figma.code`<caps-menu-label>${figma.selectedInstance.getString('Label')}</caps-menu-label>`,
 	imports: ["import { CapsMenuImports } from '@capsule-ng/caps/menu';"],

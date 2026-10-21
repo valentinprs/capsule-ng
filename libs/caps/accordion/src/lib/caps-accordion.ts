@@ -12,6 +12,7 @@ import { CapsAccordionBehavior } from './caps-accordion-behavior';
 		'data-slot': 'accordion',
 		'[attr.data-align]': 'align()',
 		'[attr.data-size]': 'size()',
+		'[attr.data-variant]': 'variant()',
 		'[attr.data-flush]': 'isFlush() && align() !== "start"',
 	},
 	template: `
@@ -22,6 +23,8 @@ export class CapsAccordion {
 	/** Position of the chevron in the reading direction. */
 	public readonly align = input<'start' | 'end'>('end');
 	public readonly size = input<'sm' | 'md' | 'lg'>('md');
+	/** Figma Line Accordion or Bordered Accordion (a 16px-radius box around the items). */
+	public readonly variant = input<'line' | 'bordered'>('line');
 	/** Flush text with the container. Ignored with align="start", as in Carbon Angular. */
 	public readonly isFlush = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
 	public readonly disabled = input<boolean, BooleanInput>(false, { transform: booleanAttribute });

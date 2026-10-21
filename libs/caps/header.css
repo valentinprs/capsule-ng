@@ -43,7 +43,7 @@
 }
 
 .caps-header-title {
-	@apply block max-w-40 min-w-0 shrink truncate text-sm font-semibold tracking-tight sm:max-w-56;
+	@apply block max-w-40 min-w-0 shrink truncate text-sm font-semibold sm:max-w-56;
 }
 
 .caps-header-nav {

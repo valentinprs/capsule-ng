@@ -1,6 +1,7 @@
 /* Caps color tokens - the single source of color truth, aligned with the Figma file Capsule-2
-   (collection `Theme`, modes `shadcn` / `shadcn-dark`). The Figma hierarchy is flattened
-   (`general/primary` -> `--caps-primary`, `sidebar/sidebar-accent` -> `--caps-sidebar-accent`).
+   (collection `Theme`, modes `Light` / `Dark`): zinc neutrals and a blue primary. The Figma hierarchy
+   is flattened (`general/primary` -> `--caps-primary`, `sidebar/sidebar-accent` ->
+   `--caps-sidebar-accent`, `alpha/black/switch/alpha-5` -> `--caps-alpha-black-switch-5`).
 
    The shadcn tokens used by helm and the Tailwind preset alias the caps tokens below, so theme a
    whole app by overriding the `--caps-*` tokens in `:root` (light) and `.dark` (dark). */
@@ -8,39 +9,60 @@
 :root {
 	color-scheme: light;
 	--caps-background: var(--color-white);
-	--caps-foreground: oklch(0.145 0 0);
+	--caps-foreground: var(--color-zinc-950);
 	--caps-card: var(--color-white);
-	--caps-card-foreground: oklch(0.145 0 0);
+	--caps-card-foreground: var(--color-zinc-950);
 	--caps-popover: var(--color-white);
-	--caps-popover-foreground: oklch(0.145 0 0);
-	--caps-primary: oklch(0.205 0 0);
-	--caps-primary-foreground: oklch(0.985 0 0);
-	--caps-secondary: oklch(0.97 0 0);
-	--caps-secondary-foreground: oklch(0.205 0 0);
-	--caps-muted: oklch(0.97 0 0);
-	--caps-muted-foreground: oklch(0.556 0 0);
-	--caps-accent: oklch(0.97 0 0);
-	--caps-accent-foreground: oklch(0.205 0 0);
+	--caps-popover-foreground: var(--color-zinc-950);
+	--caps-primary: var(--color-blue-600);
+	--caps-primary-foreground: var(--color-zinc-50);
+	--caps-secondary: var(--color-zinc-100);
+	--caps-secondary-foreground: var(--color-zinc-900);
+	/* Lighter than Figma's zinc-100 so muted-foreground text on it meets WCAG AA (4.55:1, not 4.39:1). */
+	--caps-muted: oklch(0.978 0.001 286.375);
+	--caps-muted-foreground: var(--color-zinc-500);
+	--caps-accent: var(--color-zinc-100);
+	--caps-accent-foreground: var(--color-zinc-900);
 	--caps-destructive: oklch(0.577 0.245 27.325);
-	--caps-border: oklch(0.922 0 0);
-	--caps-input: oklch(0.922 0 0);
-	--caps-ring: oklch(0.708 0 0);
+	--caps-border: var(--color-zinc-300);
+	--caps-input: var(--color-white);
+	--caps-ring: var(--color-zinc-400);
 	--caps-ring-error: var(--color-red-200);
-	--caps-sidebar: oklch(0.985 0 0);
-	--caps-sidebar-foreground: oklch(0.145 0 0);
-	--caps-sidebar-primary: oklch(0.205 0 0);
-	--caps-sidebar-primary-foreground: oklch(0.985 0 0);
-	--caps-sidebar-accent: oklch(0.97 0 0);
-	--caps-sidebar-accent-foreground: oklch(0.205 0 0);
-	--caps-sidebar-border: oklch(0.922 0 0);
-	--caps-sidebar-ring: oklch(0.708 0 0);
+	--caps-sidebar: var(--color-zinc-50);
+	--caps-sidebar-foreground: var(--color-zinc-950);
+	--caps-sidebar-accent: var(--color-zinc-100);
+	--caps-sidebar-accent-foreground: var(--color-zinc-900);
+	--caps-sidebar-border: var(--color-zinc-200);
+	--caps-sidebar-ring: var(--color-zinc-400);
 	--caps-chart-1: var(--color-blue-300);
 	--caps-chart-2: var(--color-blue-500);
 	--caps-chart-3: var(--color-blue-600);
 	--caps-chart-4: var(--color-blue-700);
 	--caps-chart-5: var(--color-blue-800);
-	--caps-surface: oklch(0.98 0 0);
-	--caps-surface-foreground: var(--caps-foreground);
+	--caps-surface: var(--color-zinc-50);
+	/* Alpha scales (Figma `alpha/<black|white>/<switch|no-switch>/alpha-<n>`, `333` = 3.33 %,
+	   `001` = 0.01 %): `switch` scales swap black and white in dark mode, `no-switch` ones do not. Only
+	   the steps used by the Figma components are exposed. */
+	--caps-alpha-black-switch-333: oklch(0 0 0 / 3.33%);
+	--caps-alpha-black-switch-5: oklch(0 0 0 / 5%);
+	--caps-alpha-black-switch-10: oklch(0 0 0 / 10%);
+	--caps-alpha-black-switch-15: oklch(0 0 0 / 15%);
+	--caps-alpha-black-switch-20: oklch(0 0 0 / 20%);
+	--caps-alpha-black-switch-30: oklch(0 0 0 / 30%);
+	--caps-alpha-black-switch-40: oklch(0 0 0 / 40%);
+	--caps-alpha-black-switch-100: var(--color-black);
+	--caps-alpha-black-no-switch-25: oklch(0 0 0 / 25%);
+	--caps-alpha-white-switch-001: oklch(1 0 0 / 0.01%);
+	--caps-alpha-white-switch-30: oklch(1 0 0 / 30%);
+	--caps-alpha-white-switch-50: oklch(1 0 0 / 50%);
+	--caps-alpha-white-switch-70: oklch(1 0 0 / 70%);
+	--caps-alpha-white-switch-75: oklch(1 0 0 / 75%);
+	--caps-alpha-white-switch-80: oklch(1 0 0 / 80%);
+	--caps-alpha-white-switch-85: oklch(1 0 0 / 85%);
+	--caps-alpha-white-switch-90: oklch(1 0 0 / 90%);
+	--caps-alpha-white-switch-95: oklch(1 0 0 / 95%);
+	--caps-alpha-white-switch-100: var(--color-white);
+	--caps-alpha-white-outline-bg: var(--color-white);
 	/* Accent colors (Figma `background|foreground|border/accent/<color>`): `subtle` text sits on a
 	   `subtle` background, `strong` text on a `strong` background. */
 	--caps-background-accent-red-subtle: var(--color-red-100);
@@ -92,40 +114,60 @@
 
 .dark {
 	color-scheme: dark;
-	--caps-background: oklch(0.145 0 0);
-	--caps-foreground: oklch(0.985 0 0);
-	--caps-card: oklch(0.205 0 0);
-	--caps-card-foreground: oklch(0.985 0 0);
-	--caps-popover: oklch(0.205 0 0);
-	--caps-popover-foreground: oklch(0.985 0 0);
-	--caps-primary: oklch(0.922 0 0);
-	--caps-primary-foreground: oklch(0.205 0 0);
-	--caps-secondary: oklch(0.269 0 0);
-	--caps-secondary-foreground: oklch(0.985 0 0);
-	--caps-muted: oklch(0.269 0 0);
-	--caps-muted-foreground: oklch(0.708 0 0);
-	--caps-accent: oklch(0.269 0 0);
-	--caps-accent-foreground: oklch(0.985 0 0);
+	--caps-background: var(--color-zinc-950);
+	--caps-foreground: var(--color-zinc-50);
+	--caps-card: var(--color-zinc-900);
+	--caps-card-foreground: var(--color-zinc-50);
+	--caps-popover: var(--color-zinc-900);
+	--caps-popover-foreground: var(--color-zinc-50);
+	--caps-primary: var(--color-blue-500);
+	--caps-primary-foreground: var(--color-zinc-900);
+	--caps-secondary: var(--color-zinc-800);
+	--caps-secondary-foreground: var(--color-zinc-50);
+	--caps-muted: var(--color-zinc-800);
+	--caps-muted-foreground: var(--color-zinc-400);
+	--caps-accent: var(--color-zinc-800);
+	--caps-accent-foreground: var(--color-zinc-50);
 	--caps-destructive: oklch(0.704 0.191 22.216);
-	--caps-border: oklch(1 0 0 / 10%);
-	--caps-input: oklch(1 0 0 / 15%);
-	--caps-ring: oklch(0.556 0 0);
+	--caps-border: oklch(1 0 0 / 20%);
+	--caps-input: oklch(1 0 0 / 5%);
+	--caps-ring: var(--color-zinc-500);
 	--caps-ring-error: var(--color-red-900);
-	--caps-sidebar: oklch(0.205 0 0);
-	--caps-sidebar-foreground: oklch(0.985 0 0);
-	--caps-sidebar-primary: oklch(0.985 0 0);
-	--caps-sidebar-primary-foreground: oklch(0.205 0 0);
-	--caps-sidebar-accent: oklch(0.269 0 0);
-	--caps-sidebar-accent-foreground: oklch(0.985 0 0);
+	--caps-sidebar: var(--color-zinc-900);
+	--caps-sidebar-foreground: var(--color-zinc-50);
+	--caps-sidebar-accent: var(--color-zinc-800);
+	--caps-sidebar-accent-foreground: var(--color-zinc-50);
 	--caps-sidebar-border: oklch(1 0 0 / 10%);
-	--caps-sidebar-ring: oklch(0.556 0 0);
+	--caps-sidebar-ring: var(--color-zinc-500);
 	--caps-chart-1: var(--color-blue-300);
 	--caps-chart-2: var(--color-blue-500);
 	--caps-chart-3: var(--color-blue-600);
 	--caps-chart-4: var(--color-blue-700);
 	--caps-chart-5: var(--color-blue-800);
-	--caps-surface: oklch(0.2 0 0);
-	--caps-surface-foreground: oklch(0.708 0 0);
+	--caps-surface: var(--color-zinc-900);
+	/* Alpha scales (Figma `alpha/<black|white>/<switch|no-switch>/alpha-<n>`, `333` = 3.33 %,
+	   `001` = 0.01 %): `switch` scales swap black and white in dark mode, `no-switch` ones do not. Only
+	   the steps used by the Figma components are exposed. */
+	--caps-alpha-black-switch-333: oklch(1 0 0 / 3.33%);
+	--caps-alpha-black-switch-5: oklch(1 0 0 / 5%);
+	--caps-alpha-black-switch-10: oklch(1 0 0 / 10%);
+	--caps-alpha-black-switch-15: oklch(1 0 0 / 15%);
+	--caps-alpha-black-switch-20: oklch(1 0 0 / 20%);
+	--caps-alpha-black-switch-30: oklch(1 0 0 / 30%);
+	--caps-alpha-black-switch-40: oklch(1 0 0 / 40%);
+	--caps-alpha-black-switch-100: var(--color-white);
+	--caps-alpha-black-no-switch-25: oklch(0 0 0 / 25%);
+	--caps-alpha-white-switch-001: oklch(0 0 0 / 0.01%);
+	--caps-alpha-white-switch-30: oklch(0 0 0 / 30%);
+	--caps-alpha-white-switch-50: oklch(0 0 0 / 50%);
+	--caps-alpha-white-switch-70: oklch(0 0 0 / 70%);
+	--caps-alpha-white-switch-75: oklch(0 0 0 / 75%);
+	--caps-alpha-white-switch-80: oklch(0 0 0 / 80%);
+	--caps-alpha-white-switch-85: oklch(0 0 0 / 85%);
+	--caps-alpha-white-switch-90: oklch(0 0 0 / 90%);
+	--caps-alpha-white-switch-95: oklch(0 0 0 / 95%);
+	--caps-alpha-white-switch-100: var(--color-black);
+	--caps-alpha-white-outline-bg: transparent;
 	/* Accent colors (Figma `background|foreground|border/accent/<color>`): `subtle` text sits on a
 	   `subtle` background, `strong` text on a `strong` background. */
 	--caps-background-accent-red-subtle: var(--color-red-950);
@@ -176,7 +218,9 @@
 }
 
 /* shadcn aliases. Re-declared on `.dark` so they resolve against the dark caps values wherever
-   `.dark` is applied (a custom property referencing `var()` is computed where it is declared). */
+   `.dark` is applied (a custom property referencing `var()` is computed where it is declared).
+   helm draws field borders with `--input` (`border-input`), so it aliases `--caps-border`;
+   `--caps-input` is the field background, as in Figma. */
 :root,
 .dark {
 	--background: var(--caps-background);
@@ -195,12 +239,10 @@
 	--accent-foreground: var(--caps-accent-foreground);
 	--destructive: var(--caps-destructive);
 	--border: var(--caps-border);
-	--input: var(--caps-input);
+	--input: var(--caps-border);
 	--ring: var(--caps-ring);
 	--sidebar: var(--caps-sidebar);
 	--sidebar-foreground: var(--caps-sidebar-foreground);
-	--sidebar-primary: var(--caps-sidebar-primary);
-	--sidebar-primary-foreground: var(--caps-sidebar-primary-foreground);
 	--sidebar-accent: var(--caps-sidebar-accent);
 	--sidebar-accent-foreground: var(--caps-sidebar-accent-foreground);
 	--sidebar-border: var(--caps-sidebar-border);
@@ -211,7 +253,6 @@
 	--chart-4: var(--caps-chart-4);
 	--chart-5: var(--caps-chart-5);
 	--surface: var(--caps-surface);
-	--surface-foreground: var(--caps-surface-foreground);
 }
 
 /* The shadcn colors are registered with Tailwind by `@spartan-ng/brain/hlm-tailwind-preset.css`
@@ -219,7 +260,6 @@
 @theme inline {
 	--color-ring-error: var(--caps-ring-error);
 	--color-surface: var(--surface);
-	--color-surface-foreground: var(--surface-foreground);
 }
 
 /*
@@ -229,13 +269,9 @@
 .theme-blue {
 	--primary: var(--color-blue-700);
 	--primary-foreground: var(--color-blue-50);
-	--sidebar-primary: var(--color-blue-600);
-	--sidebar-primary-foreground: var(--color-blue-50);
 }
 
 .dark .theme-blue {
 	--primary: var(--color-blue-800);
 	--primary-foreground: var(--color-blue-50);
-	--sidebar-primary: var(--color-blue-500);
-	--sidebar-primary-foreground: var(--color-blue-50);
 }

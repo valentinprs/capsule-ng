@@ -13,7 +13,7 @@ const fieldVariants = cva('caps-field group/field flex w-full', {
 		orientation: {
 			vertical: 'flex-col *:w-full [&>.sr-only]:w-auto',
 			horizontal:
-				'flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto',
+				'flex-row items-center has-[>[data-slot=field-content]]:items-start has-[>[data-slot=field-label]:first-child]:items-start has-[>[data-slot=field-label]:first-child]:gap-1 *:data-[slot=field-label]:flex-auto [&>[data-slot=field-label]:first-child]:w-30 [&>[data-slot=field-label]:first-child]:flex-none [&>[data-slot=field-label]:first-child]:pt-1.5',
 			responsive:
 				'flex-col *:w-full @md/field-group:flex-row @md/field-group:items-center @md/field-group:*:w-auto @md/field-group:has-[>[data-slot=field-content]]:items-start @md/field-group:*:data-[slot=field-label]:flex-auto [&>.sr-only]:w-auto',
 		},

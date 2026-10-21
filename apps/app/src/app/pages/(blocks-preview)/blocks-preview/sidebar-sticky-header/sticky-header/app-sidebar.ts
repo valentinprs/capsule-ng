@@ -23,7 +23,7 @@ import { NavUser } from '../../shared/sidebar/nav-user';
 							<caps-sidebar-menu-item>
 								<a capsSidebarMenuButton size="lg" href="#">
 									<div
-										class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+										class="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
 									>
 										<ng-icon aria-hidden="true" name="lucideCommand" class="text-base" />
 									</div>

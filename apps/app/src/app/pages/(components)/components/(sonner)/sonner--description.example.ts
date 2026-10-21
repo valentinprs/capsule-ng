@@ -14,7 +14,6 @@ export class SonnerDescriptionExample {
 	showToast() {
 		toast('Event has been created', {
 			description: 'Monday, January 3rd at 6:00pm',
-			closeButton: true,
 		});
 	}
 }

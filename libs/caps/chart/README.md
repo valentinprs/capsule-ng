@@ -1,7 +1,13 @@
 # Chart
 
 ```ts
-import { CAPS_CHART_THEME, CapsChartImports, capsChartTooltip } from '@capsule-ng/caps/chart';
+import {
+	CAPS_CHART_THEME,
+	CAPS_CHART_TICK_LABELS,
+	CapsChartImports,
+	capsChartLegend,
+	capsChartTooltip,
+} from '@capsule-ng/caps/chart';
 ```
 
 ```html
@@ -10,7 +16,9 @@ import { CAPS_CHART_THEME, CapsChartImports, capsChartTooltip } from '@capsule-n
 
 `options` is the generic TanStack `ChartOptions` contract. Keep the existing `defineChart` marks,
 scales, legends, callbacks and dimension options. Set `ariaLabel` and `ariaDescription`, use
-`CAPS_CHART_THEME` in the definition and `capsChartTooltip()` for the optional DOM tooltip. Replace
+`CAPS_CHART_THEME` in the definition and `capsChartTooltip()` for the optional DOM tooltip. Use
+`capsChartLegend()` as `color.legend` for the Figma legend (centered below the chart, 12px labels) and
+pass `CAPS_CHART_TICK_LABELS` to each `scales.*.axis.tickLabels` for the 12px ticks. Replace
 options immutably when data changes. Capsule owns the surface and maps the shared semantic tokens.
 
 Load the package's `foundations.css` and apply `style-nova` to the body for the default chart

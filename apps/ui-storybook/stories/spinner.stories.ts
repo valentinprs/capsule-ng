@@ -23,7 +23,7 @@ export default meta;
 type Story = StoryObj<CapsSpinner>;
 export const Default: Story = { args: { ariaLabel: 'Loading documents' } };
 export const Small: Story = {
-	render: () => ({ template: `<caps-spinner class="text-sm" aria-label="Loading documents" />` }),
+	render: () => ({ template: `<caps-spinner class="text-xs" aria-label="Loading documents" />` }),
 };
 export const CustomName: Story = { args: { ariaLabel: 'Saving document' } };
 export const Decorative: Story = {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { BrnSeparator } from '@spartan-ng/brain/separator';
 import { classes } from '@spartan-ng/helm/utils';
 
@@ -6,10 +6,12 @@ import { classes } from '@spartan-ng/helm/utils';
 	selector: 'caps-separator',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	hostDirectives: [{ directive: BrnSeparator, inputs: ['orientation', 'decorative'] }],
-	host: { 'data-slot': 'separator' },
+	host: { 'data-slot': 'separator', '[attr.data-spacing]': 'spacing()' },
 	template: ``,
 })
 export class CapsSeparator {
+	/** Figma Separator `Spacing`: the margin on each side of the line. */
+	public readonly spacing = input<'none' | 'regular' | 'spacious'>('none');
 	constructor() {
 		classes(
 			() =>

@@ -32,6 +32,6 @@ import { classes } from '@spartan-ng/helm/utils';
 export class CapsNavigationMenuLink {
 	public readonly disabled = input<boolean, BooleanInput>(false, { transform: booleanAttribute });
 	constructor() {
-		classes(() => 'caps-navigation-menu-link flex items-center gap-1.5');
+		classes(() => 'caps-navigation-menu-link flex items-center gap-2');
 	}
 }

@@ -14,6 +14,7 @@ const bubbleVariants = cva(
 				outline: 'caps-bubble-variant-outline',
 				ghost: 'caps-bubble-variant-ghost',
 				destructive: 'caps-bubble-variant-destructive',
+				suggestion: 'caps-bubble-variant-suggestion',
 			},
 		},
 		defaultVariants: {

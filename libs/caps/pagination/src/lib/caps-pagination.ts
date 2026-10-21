@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, Directive, input } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideEllipsis } from '@ng-icons/lucide';
 import { classes } from '@spartan-ng/helm/utils';
 import { CapsPaginationLinkBehavior } from './caps-pagination-link-behavior';
 
@@ -41,9 +43,11 @@ export class CapsPaginationNext {
 
 @Component({
 	selector: 'caps-pagination-ellipsis',
+	imports: [NgIcon],
+	providers: [provideIcons({ lucideEllipsis })],
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	host: { 'data-slot': 'pagination-ellipsis' },
-	template: '<span aria-hidden="true">…</span><span class="sr-only">{{ srOnlyText() }}</span>',
+	template: '<ng-icon aria-hidden="true" name="lucideEllipsis" /><span class="sr-only">{{ srOnlyText() }}</span>',
 })
 export class CapsPaginationEllipsis {
 	public readonly srOnlyText = input<string>('More pages');

@@ -168,3 +168,40 @@ export const WithHintAndError: Story = {
 		template: `<radio-group-hint-error-story></radio-group-hint-error-story>`,
 	}),
 };
+
+/** Figma Rich Radio Container: each option is a bordered card (label + description), highlighted when selected. */
+export const RichRadio: Story = {
+	render: () => ({
+		template: `
+			<caps-radio-group value="pro" aria-label="Plan" class="w-full max-w-sm gap-3">
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-radio value="starter" />
+						<caps-field-content>
+							<span class="font-medium">Starter</span>
+							<caps-field-description>For individuals getting started.</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-label>
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-radio value="pro" />
+						<caps-field-content>
+							<span class="font-medium">Pro</span>
+							<caps-field-description>For growing teams that need more seats.</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-label>
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-radio value="enterprise" />
+						<caps-field-content>
+							<span class="font-medium">Enterprise</span>
+							<caps-field-description>For organizations with advanced security needs.</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-label>
+			</caps-radio-group>
+		`,
+	}),
+};

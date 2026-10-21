@@ -3,7 +3,7 @@
 Import `CapsSonnerImports` and `toast` from `@capsule-ng/caps/sonner`. Put one host in the application shell:
 
 ```html
-<caps-toaster closeButton />
+<caps-toaster />
 ```
 
 Trigger notifications from browser event handlers using the [documented Spartan API](https://spartan.ng/components/sonner):
@@ -12,7 +12,6 @@ Trigger notifications from browser event handlers using the [documented Spartan 
 notify() {
   toast('Document saved', {
     description: 'Your changes have been applied.',
-    closeButton: true,
     duration: 6000,
     action: { label: 'Undo', onClick: () => this.undo() },
     cancel: { label: 'Keep', onClick: () => this.keep() },
@@ -34,13 +33,13 @@ toast.promise(saveDocument(), {
 });
 ```
 
-`toast.custom`, custom icons/components and props, description content, action/cancel callbacks, per-toast position, importance, classes/styles and lifecycle callbacks remain available. The function is re-exported unchanged. Use `Number.POSITIVE_INFINITY` for persistence; duration zero keeps its literal upstream timer behavior. `toast.dismiss()` clears all notifications, while `toast.dismiss(id)` targets one. `event.preventDefault()` in an action prevents automatic dismissal.
+`toast.custom`, custom icons/components and props, description content, action/cancel callbacks, per-toast position, importance, classes/styles and lifecycle callbacks remain available. The function wraps Brain's `toast` with the same API. Use `Number.POSITIVE_INFINITY` for persistence; duration zero keeps its literal upstream timer behavior. `toast.dismiss()` clears all notifications, while `toast.dismiss(id)` targets one. `event.preventDefault()` in an action prevents automatic dismissal.
 
-The host preserves the documented container inputs and defaults: `invert=false`, `theme='light'`, `position='bottom-right'`, `hotKey=['altKey','KeyT']`, `richColors=false`, `expand=false`, `duration=4000`, `visibleToasts=3`, `closeButton=false`, `toastOptions={}`, `offset=null`, `class=''` and the existing four normal-surface/radius `style` variables. Set `theme="system"` explicitly when desired. Normal surfaces resolve against the shared Capsule tokens.
+The host preserves the documented container inputs and defaults: `invert=false`, `theme='light'`, `position='bottom-right'`, `hotKey=['altKey','KeyT']`, `richColors=false`, `expand=false`, `duration=4000`, `visibleToasts=3`, `toastOptions={}`, `offset=null`, `class=''` and the existing four normal-surface/radius `style` variables. Set `theme="system"` explicitly when desired. Normal surfaces resolve against the shared Capsule tokens.
 
 The entry point also exports `ExternalToast`, `ToastT`, `ToastTypes`, `ToastAction`, `ToastOptions`, `ToastClassnames`, `ToasterProps`, `Position`, `Theme`, `PromiseData`, `PromiseT`, `BrnSonnerToasterConfig` and `provideCapsSonnerToasterConfig`. The provider retains the existing width, gap, offset and swipe configuration; documented host defaults still take precedence for lifetime and visible count unless bound explicitly.
 
-Brain owns the live status regions, stack, swipe, RTL, timers and Alt+T shortcut. Capsule supplies decorative icons, native Capsule actions and shared styling. The native close button retains its upstream accessible name “Close toast”. Keep essential actions available with an explicit persistent duration.
+Brain owns the live status regions, stack, swipe, RTL, timers and Alt+T shortcut. Capsule supplies decorative icons, native Capsule actions and shared styling. Capsule toasts have no corner close button, as in Figma: the host has no `closeButton` input and the button of the per-toast `closeButton` option is hidden. A toast that never closes by itself (infinite duration) shows an outline "Close" button instead, unless you pass your own `cancel`. Other toasts close on their timer, through an action or with `toast.dismiss()`.
 
 The host delegates SSR behavior to Brain, and examples invoke notifications only after browser interaction. The raw function receives no additional SSR guard or guarantee.
 

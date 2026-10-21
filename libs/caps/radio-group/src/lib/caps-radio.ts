@@ -35,7 +35,7 @@ import { CapsRadioGroup } from './caps-radio-group';
 	template: `
 		<brn-radio
 			#radio
-			class="caps-radio-control relative flex items-center gap-3"
+			class="caps-radio-control relative flex min-h-6 items-center gap-2"
 			[id]="id()"
 			[value]="value()"
 			[disabled]="disabled()"
@@ -45,7 +45,7 @@ import { CapsRadioGroup } from './caps-radio-group';
 			[aria-describedby]="_describedBy()"
 		>
 			<span indicator class="caps-radio-indicator" aria-hidden="true" (click)="_activateIndicator($event)">
-				<span class="size-2 rounded-full" [class.bg-primary]="_checked()"></span>
+				<span class="size-2 rounded-full" [class.bg-(--caps-alpha-white-switch-100)]="_checked()"></span>
 			</span>
 			<span class="caps-radio-content empty:hidden has-[>label:empty]:hidden">
 				@if (_enclosingLabel) {

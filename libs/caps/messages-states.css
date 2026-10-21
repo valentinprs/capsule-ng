@@ -1,6 +1,7 @@
 /* Informative callouts and empty states use the shared Capsule foundation tokens. */
 .caps-alert {
-	@apply bg-card text-card-foreground grid w-full min-w-0 gap-x-2 gap-y-1 rounded-lg border px-3 py-2.5 text-start text-sm;
+	/* Figma Alert: 8px by 12px padding, 12px from the icon, 2px between title and description. */
+	@apply bg-card text-card-foreground grid w-full min-w-0 gap-x-3 gap-y-0.5 rounded-lg border px-3 py-2 text-start text-sm;
 }
 .caps-alert:has(> .caps-alert-media) {
 	grid-template-columns: auto minmax(0, 1fr);
@@ -23,8 +24,9 @@
 .caps-alert-description {
 	@apply text-muted-foreground block text-sm [&_p:not(:last-child)]:mb-4;
 }
+/* Figma Alert Error keeps the neutral border; only the text turns destructive. */
 .caps-alert-variant-destructive {
-	@apply border-destructive/40 text-destructive;
+	@apply text-destructive;
 }
 .caps-alert-variant-destructive > .caps-alert-description {
 	@apply text-destructive;
@@ -33,22 +35,23 @@
 	@apply mt-2 flex flex-wrap items-center gap-2;
 }
 .caps-empty {
-	@apply flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-xl border-dashed p-6 text-center text-balance;
+	@apply flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-xl border-dashed p-8 text-center text-balance;
 }
 .caps-empty-header {
-	@apply flex w-full max-w-sm min-w-0 flex-col items-center gap-2;
+	@apply flex w-full max-w-sm min-w-0 flex-col items-center gap-1;
 }
+/* Figma Empty: 16px from the media to the title, 4px from the title to the description. */
 .caps-empty-media {
-	@apply mb-2 flex shrink-0 items-center justify-center [&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0;
+	@apply mb-3 flex shrink-0 items-center justify-center [&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0;
 }
 .caps-empty-media-icon {
-	@apply bg-muted text-foreground size-8 rounded-md [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+	@apply bg-muted text-foreground size-10 rounded-lg [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(6)];
 }
 .caps-empty-title {
-	@apply block text-base font-medium tracking-tight;
+	@apply block text-base font-medium;
 }
 .caps-empty-description {
-	@apply text-muted-foreground block w-full max-w-sm text-sm/relaxed;
+	@apply text-muted-foreground block w-full max-w-sm text-sm/5;
 }
 .caps-empty-content {
 	@apply flex w-full max-w-sm min-w-0 flex-col items-center gap-2.5 text-sm;

@@ -8,10 +8,9 @@ import { CapsAccordionImports } from '@capsule-ng/caps/accordion';
 		class: 'block max-w-lg',
 	},
 	template: `
-		<caps-accordion class="rounded-lg border">
+		<caps-accordion variant="bordered">
 			@for (item of items; track $index) {
 				<caps-accordion-item
-					class="border-b px-4 last:border-b-0"
 					[title]="item.trigger"
 					[id]="'accordion--borders-example-' + item.value"
 					[expanded]="_activeItem() === 'accordion--borders-example-' + item.value"

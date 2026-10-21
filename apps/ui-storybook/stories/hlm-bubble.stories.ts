@@ -57,6 +57,7 @@ export const Variants: Story = {
 				<caps-bubble variant="outline"><caps-bubble-content>outline</caps-bubble-content></caps-bubble>
 				<caps-bubble variant="ghost"><caps-bubble-content>ghost</caps-bubble-content></caps-bubble>
 				<caps-bubble variant="destructive"><caps-bubble-content>destructive</caps-bubble-content></caps-bubble>
+				<caps-bubble variant="suggestion"><caps-bubble-content>suggestion</caps-bubble-content></caps-bubble>
 			</div>
 		`,
 	}),

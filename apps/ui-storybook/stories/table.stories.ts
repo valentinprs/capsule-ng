@@ -22,7 +22,7 @@ const createUsers = (numUsers = 5) => {
 				<thead>
 					<tr>
 						<th scope="col" truncate>Name</th>
-						<th scope="col" class="justify-end">Age</th>
+						<th scope="col" class="text-end">Age</th>
 						<th scope="col" class="justify-center">Height</th>
 					</tr>
 				</thead>
@@ -30,7 +30,7 @@ const createUsers = (numUsers = 5) => {
 					@for (row of _data(); track row) {
 						<tr>
 							<td truncate>{{ row.name }}</td>
-							<td class="justify-end">{{ row.age }}</td>
+							<td class="text-end">{{ row.age }}</td>
 							<td class="justify-center">{{ row.height }}</td>
 						</tr>
 					}

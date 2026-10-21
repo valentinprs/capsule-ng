@@ -40,6 +40,6 @@ export class CapsNavigationMenuTrigger implements AfterViewChecked {
 		}
 	}
 	constructor() {
-		classes(() => 'caps-navigation-menu-trigger inline-flex items-center justify-center gap-1.5');
+		classes(() => 'caps-navigation-menu-trigger inline-flex items-center justify-center gap-2');
 	}
 }

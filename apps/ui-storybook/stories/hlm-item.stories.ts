@@ -8,6 +8,7 @@ import {
 	lucideChevronDown,
 	lucideChevronRight,
 	lucideExternalLink,
+	lucideInbox,
 	lucidePlus,
 	lucideShieldAlert,
 } from '@ng-icons/lucide';
@@ -29,6 +30,7 @@ export default {
 					lucideChevronDown,
 					lucideShieldAlert,
 					lucideExternalLink,
+					lucideInbox,
 				}),
 			],
 		}),
@@ -395,4 +397,64 @@ export const Variants: Story = {
  <div class="flex w-full max-w-md flex-col gap-6 p-4">
 <caps-item-group kind="on-page" label="on-page"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group><caps-item-group kind="disclosed" label="disclosed"><caps-item><caps-item-content><caps-item-title>Inbox</caps-item-title><caps-item-description>New messages from your team.</caps-item-description></caps-item-content><caps-item-actions><button capsButton type="button" variant="outline" size="sm">Open</button></caps-item-actions></caps-item></caps-item-group></div>`,
 	}),
+};
+
+/** Figma Item `Size` (Default, Small, Extra small) and `Variant` (Default, Outline, Muted). */
+export const FigmaSizesAndVariants: Story = {
+	render: () => ({
+		template: /* HTML */ `
+			<div class="flex max-w-xl flex-col gap-4">
+				@for (variant of ['default', 'outline', 'muted']; track variant) { @for (size of ['default', 'sm', 'xs']; track
+				size) {
+				<caps-item [variant]="variant" [size]="size">
+					<caps-item-media>
+						<caps-decorative-icon size="sm"><ng-icon name="lucideInbox" aria-hidden="true" /></caps-decorative-icon>
+					</caps-item-media>
+					<caps-item-content>
+						<caps-item-title>Inbox ({{ variant }}, {{ size }})</caps-item-title>
+						<caps-item-description>New messages from your team.</caps-item-description>
+					</caps-item-content>
+					<caps-item-actions>
+						<button capsButton type="button" variant="outline" size="sm">Open</button>
+					</caps-item-actions>
+				</caps-item>
+				} }
+			</div>
+		`,
+	}),
+};
+
+const variantTemplate = (variant: 'outline' | 'muted') => /* HTML */ `
+	<div class="flex w-full max-w-md flex-col gap-6 p-4">
+		<caps-item variant="${variant}">
+			<caps-item-content>
+				<caps-item-title>Basic Item</caps-item-title>
+				<caps-item-description>A simple item with title and description.</caps-item-description>
+			</caps-item-content>
+			<caps-item-actions>
+				<button capsButton type="button" variant="outline" size="sm">Action</button>
+			</caps-item-actions>
+		</caps-item>
+		<a capsItem variant="${variant}" size="sm" href="#verified">
+			<caps-item-media>
+				<ng-icon name="lucideBadgeCheck" class="text-[length:--spacing(5)]" />
+			</caps-item-media>
+			<caps-item-content>
+				<caps-item-title>Your profile has been verified.</caps-item-title>
+			</caps-item-content>
+			<caps-item-actions>
+				<ng-icon name="lucideChevronRight" />
+			</caps-item-actions>
+		</a>
+	</div>
+`;
+
+/** Figma Item `Variant=Outline`: a bordered item. */
+export const Outline: Story = {
+	render: () => ({ template: variantTemplate('outline') }),
+};
+
+/** Figma Item `Variant=Muted`: an item on a muted background. */
+export const Muted: Story = {
+	render: () => ({ template: variantTemplate('muted') }),
 };

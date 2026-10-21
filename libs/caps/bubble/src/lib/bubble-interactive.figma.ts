@@ -7,9 +7,8 @@ import { bubbleImport, bubbleVariant } from '../../../code-connect/chat';
 const bubble = figma.selectedInstance;
 
 // A whole-content native action: `button[capsBubbleContent]`. `State` (Hover / Focus) is a CSS
-// state. Figma's Suggestion (an outline with a stronger border) has no variant in code and is mapped
-// to `outline`. The text is a fixed layer, not a property.
-const variant = bubble.getEnum('Variant', { ...bubbleVariant, Suggestion: ' variant="outline"' }) ?? '';
+// state. The text is a fixed layer, not a property.
+const variant = bubble.getEnum('Variant', { ...bubbleVariant, Suggestion: ' variant="suggestion"' }) ?? '';
 const text = bubble.findText('Bubble text');
 
 export default {

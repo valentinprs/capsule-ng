@@ -17,11 +17,11 @@
 
 /* MARK: Breadcrumb */
 .caps-breadcrumb-list {
-	@apply text-muted-foreground gap-1.5 text-sm;
+	@apply text-muted-foreground gap-1 text-sm;
 }
 
 .caps-breadcrumb-item {
-	@apply aria-[current=page]:text-foreground gap-1.5;
+	@apply aria-[current=page]:text-foreground gap-1;
 }
 
 .caps-breadcrumb-separator {
@@ -30,7 +30,7 @@
 }
 
 .caps-breadcrumb-ellipsis {
-	@apply size-5 [&>ng-icon]:text-[length:--spacing(4)];
+	@apply size-4 [&>ng-icon]:text-[length:--spacing(4)];
 }
 
 /* MARK: Button */
@@ -43,11 +43,11 @@
 }
 
 .caps-button-variant-ghost {
-	@apply hover:bg-muted hover:text-foreground dark:hover:bg-muted/50 aria-expanded:bg-muted aria-expanded:text-foreground;
+	@apply hover:text-foreground aria-expanded:text-foreground hover:bg-(--caps-alpha-black-switch-5) aria-expanded:bg-(--caps-alpha-black-switch-5);
 }
 
 .caps-button-variant-outline {
-	@apply border-input bg-background text-foreground hover:bg-muted hover:text-foreground dark:bg-input/30 dark:hover:bg-input/50;
+	@apply border-input text-foreground hover:text-foreground bg-(--caps-alpha-white-outline-bg) hover:bg-(--caps-alpha-black-switch-5) hover:shadow-xs;
 }
 
 .caps-button-size-default {
@@ -71,11 +71,11 @@
 }
 
 .caps-button-size-xs {
-	@apply h-(--caps-control-height-xs) gap-1 rounded-(--caps-control-radius-xs) px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
+	@apply h-(--caps-control-height-xs) gap-1 rounded-(--caps-control-radius-xs) px-2 text-xs has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
 }
 
 .caps-button-size-sm {
-	@apply h-(--caps-control-height-sm) gap-1 rounded-(--caps-control-radius-sm) px-2.5 text-[length:var(--caps-control-text-sm)] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
+	@apply h-(--caps-control-height-sm) gap-1 rounded-(--caps-control-radius-sm) px-2.5 text-sm has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
 }
 
 .caps-button-size-lg {
@@ -83,11 +83,11 @@
 }
 
 .caps-button-size-icon-xs {
-	@apply size-(--caps-control-height-xs) rounded-(--caps-control-radius-xs) in-data-[slot=button-group]:rounded-lg [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
+	@apply size-(--caps-control-height-xs) rounded-(--caps-control-radius-xs) [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3)];
 }
 
 .caps-button-size-icon-sm {
-	@apply size-(--caps-control-height-sm) rounded-(--caps-control-radius-sm) in-data-[slot=button-group]:rounded-lg;
+	@apply size-(--caps-control-height-sm) rounded-(--caps-control-radius-sm);
 }
 
 .caps-button-size-icon-lg {
@@ -109,17 +109,17 @@
 
 /* MARK: Input */
 .caps-input {
-	@apply dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-2.5 py-1 text-base transition-colors file:h-(--caps-control-height-xs) file:text-sm file:font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base transition-colors file:me-3 file:h-(--caps-control-height-xs) file:text-sm file:font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 /* MARK: Textarea */
 .caps-textarea {
-	@apply border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:ring-destructive/20 dark:data-[matches-spartan-invalid=true]:ring-destructive/40 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-2.5 py-2 text-base transition-colors focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 data-[matches-spartan-invalid=true]:border-destructive dark:data-[matches-spartan-invalid=true]:border-destructive/50 rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-2 text-base shadow-xs transition-colors focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 /* MARK: Label */
 .caps-label {
-	@apply gap-2 text-sm leading-none font-medium group-data-[disabled=true]:opacity-(--caps-opacity-disabled) peer-disabled:opacity-(--caps-opacity-disabled);
+	@apply gap-2 text-sm leading-5 font-medium group-data-[disabled=true]:opacity-(--caps-opacity-disabled) peer-disabled:opacity-(--caps-opacity-disabled);
 }
 
 /* MARK: Field */
@@ -139,13 +139,13 @@
 	@apply mb-1.5 font-medium data-[variant=label]:text-sm data-[variant=legend]:text-base;
 }
 .caps-field-label {
-	@apply gap-2 leading-snug group-data-[disabled=true]/field:opacity-(--caps-opacity-disabled);
+	@apply gap-2 leading-5 group-data-[disabled=true]/field:opacity-(--caps-opacity-disabled);
 }
 .caps-label:has(> [data-slot='field']) {
-	@apply has-data-checked:bg-primary/5 has-data-checked:border-primary/30 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 gap-2 rounded-lg border-[length:var(--caps-border-width)] leading-snug;
+	@apply has-data-checked:bg-primary/5 has-data-checked:border-primary/30 dark:has-data-checked:border-primary/20 dark:has-data-checked:bg-primary/10 bg-card gap-2 rounded-lg border-[length:var(--caps-border-width)] leading-5 hover:bg-[linear-gradient(var(--caps-alpha-black-switch-333),var(--caps-alpha-black-switch-333))];
 }
 .caps-label > [data-slot='field'] {
-	@apply p-2.5;
+	@apply gap-3 p-3;
 }
 .caps-field-description {
 	@apply text-muted-foreground text-sm;
@@ -170,7 +170,7 @@
 .caps-field[data-matches-spartan-invalid='true'] .caps-input,
 .caps-field[data-matches-spartan-invalid='true'] .caps-textarea,
 .caps-field[data-matches-spartan-invalid='true'] .caps-select-trigger {
-	@apply border-destructive ring-destructive/20 dark:border-destructive/50 dark:ring-destructive/40 ring-[length:var(--caps-focus-ring-width)];
+	@apply border-destructive dark:border-destructive/50;
 }
 .caps-field:has(:disabled) > .caps-field-label,
 .caps-field:has(:disabled) > caps-field-content > .caps-field-label {
@@ -179,7 +179,7 @@
 
 /* MARK: Form choices */
 .caps-checkbox {
-	@apply border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 flex size-4 items-center justify-center rounded-[var(--caps-size-4px)] border-[length:var(--caps-border-width)] shadow-xs transition-shadow focus-visible:ring-[length:var(--caps-focus-ring-width)];
+	@apply border-input dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 flex size-4 items-center justify-center rounded-[var(--caps-size-4px)] border-[length:var(--caps-border-width)] transition-shadow focus-visible:ring-[length:var(--caps-focus-ring-width)];
 }
 .caps-checkbox[data-state='checked'],
 .caps-checkbox[data-state='indeterminate'] {
@@ -189,10 +189,10 @@
 	@apply flex items-center justify-center [&>ng-icon]:text-[length:--spacing(3.5)];
 }
 .caps-switch {
-	@apply bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:bg-input/80 relative inline-flex shrink-0 items-center rounded-full border-[length:var(--caps-border-width)] border-transparent transition-[background-color,box-shadow] focus-visible:ring-[length:var(--caps-focus-ring-width)];
+	@apply bg-muted focus-visible:border-ring focus-visible:ring-ring/50 relative inline-flex shrink-0 items-center rounded-full border-[length:var(--caps-border-width)] border-transparent bg-[linear-gradient(var(--caps-alpha-black-switch-20),var(--caps-alpha-black-switch-20))] transition-[background-color,box-shadow] focus-visible:ring-[length:var(--caps-focus-ring-width)];
 }
 .caps-switch[data-state='checked'] {
-	@apply bg-primary;
+	@apply bg-primary bg-none;
 }
 .caps-switch[data-size='default'] {
 	height: var(--caps-size-18-4px);
@@ -218,7 +218,10 @@
 	@apply grid gap-2;
 }
 .caps-radio-indicator {
-	@apply border-input text-primary dark:bg-input/30 relative flex size-4 shrink-0 items-center justify-center rounded-full border-[length:var(--caps-border-width)] shadow-xs transition-shadow;
+	@apply border-input text-primary dark:bg-input/30 relative flex size-4 shrink-0 items-center justify-center rounded-full border-[length:var(--caps-border-width)] transition-[color,background-color,border-color,box-shadow];
+}
+.caps-radio[data-checked='true'] .caps-radio-indicator {
+	@apply border-primary bg-primary;
 }
 .caps-radio:has(input:focus-visible) .caps-radio-indicator {
 	@apply border-ring ring-ring/50 ring-[length:var(--caps-focus-ring-width)];
@@ -226,7 +229,23 @@
 .caps-checkbox[data-matches-spartan-invalid='true'],
 .caps-switch[data-matches-spartan-invalid='true'],
 .caps-radio[data-matches-spartan-invalid='true'] .caps-radio-indicator {
-	@apply border-destructive ring-destructive/20 dark:ring-destructive/40 ring-[length:var(--caps-focus-ring-width)];
+	@apply border-destructive;
+}
+/* Invalid controls (Figma `Error` / `Error focus`): the destructive border alone at rest, a 2px
+   `--caps-ring-error` ring on focus. */
+.caps-input[data-matches-spartan-invalid='true']:focus-visible,
+.caps-textarea[data-matches-spartan-invalid='true']:focus-visible,
+.caps-select-trigger[data-matches-spartan-invalid='true']:focus-visible,
+.caps-questionnaire-input[aria-invalid='true']:focus-visible,
+.caps-combobox-chips[data-matches-spartan-invalid='true']:focus-within,
+.caps-input-group:has([data-matches-spartan-invalid='true']):focus-within,
+.caps-field[data-matches-spartan-invalid='true'] .caps-input:focus-visible,
+.caps-field[data-matches-spartan-invalid='true'] .caps-textarea:focus-visible,
+.caps-field[data-matches-spartan-invalid='true'] .caps-select-trigger:focus-visible,
+.caps-checkbox[data-matches-spartan-invalid='true']:focus-visible,
+.caps-switch[data-matches-spartan-invalid='true']:focus-visible,
+.caps-radio[data-matches-spartan-invalid='true']:has(input:focus-visible) .caps-radio-indicator {
+	@apply border-destructive ring-ring-error ring-[length:var(--caps-size-2px)];
 }
 @media (prefers-reduced-motion: reduce) {
 	.caps-checkbox,
@@ -244,11 +263,11 @@
 /* MARK: Dialogs */
 
 .caps-alert-dialog-content {
-	@apply data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-popover text-popover-foreground ring-foreground/10 gap-4 rounded-xl p-4 ring-1 duration-(--caps-duration-100) data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm;
+	@apply data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 bg-popover text-popover-foreground ring-border gap-4 rounded-xl p-4 shadow-lg ring-1 duration-(--caps-duration-100) data-[size=default]:max-w-xs data-[size=sm]:max-w-xs data-[size=default]:sm:max-w-sm;
 }
 
 .caps-alert-dialog-header {
-	@apply grid grid-rows-[auto_1fr] place-items-center gap-1.5 text-center has-data-[slot=alert-dialog-media]:grid-rows-[auto_auto_1fr] has-data-[slot=alert-dialog-media]:gap-x-4 sm:group-data-[size=default]/alert-dialog-content:place-items-start sm:group-data-[size=default]/alert-dialog-content:text-start sm:group-data-[size=default]/alert-dialog-content:has-data-[slot=alert-dialog-media]:grid-rows-[auto_1fr];
+	@apply grid grid-rows-[auto_1fr] place-items-center gap-4 text-center has-data-[slot=alert-dialog-media]:grid-rows-[auto_auto_1fr] has-data-[slot=alert-dialog-media]:gap-x-4 sm:group-data-[size=default]/alert-dialog-content:place-items-start sm:group-data-[size=default]/alert-dialog-content:text-start sm:group-data-[size=default]/alert-dialog-content:has-data-[slot=alert-dialog-media]:grid-rows-[auto_1fr];
 }
 
 .caps-alert-dialog-media {
@@ -263,9 +282,13 @@
 	@apply text-muted-foreground *:[a]:hover:text-foreground text-sm text-balance md:text-pretty *:[a]:underline *:[a]:underline-offset-3;
 }
 
+/* 64px tall as in Figma: the top border is taken from the 16px padding. */
 .caps-alert-dialog-footer,
 .caps-dialog-footer {
-	@apply bg-muted/50 -mx-4 -mb-4 rounded-b-xl border-t p-4;
+	@apply bg-muted/50 -mx-4 -mb-4 rounded-b-xl border-t p-4 pt-[calc(--spacing(4)-var(--caps-border-width))];
+}
+.caps-dialog-footer {
+	@apply -mx-6 -mb-6 rounded-b-[var(--caps-size-16px)];
 }
 
 .caps-dialog-overlay {
@@ -273,11 +296,12 @@
 }
 
 .caps-dialog-content {
-	@apply bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 ring-foreground/10 grid max-w-[calc(100%-var(--spacing)*8)] gap-4 rounded-xl p-4 text-sm ring-1 duration-(--caps-duration-100) sm:max-w-sm;
+	@apply bg-popover text-popover-foreground data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 ring-border grid max-w-[calc(100%-var(--spacing)*8)] gap-4 rounded-[var(--caps-size-16px)] p-6 text-sm shadow-lg ring-1 duration-(--caps-duration-100) sm:max-w-[var(--caps-dialog-width)];
 }
 
 .caps-dialog-close {
-	@apply absolute end-2 top-2;
+	/* Figma: a bare 16px icon 16px from the corner; the button keeps a larger hit area around it. */
+	@apply absolute end-3 top-3 size-6;
 }
 
 .caps-dialog-header {
@@ -296,16 +320,30 @@
 	width: min(100%, calc(100vw - var(--spacing) * 8));
 }
 
+/* MARK: Calendar */
+/* Figma Calendar: no padding of its own, 28px cells with a 6px radius. */
+.caps-calendar:is([data-slot='calendar'], [data-slot='month-year-calendar']) {
+	@apply p-0 [--cell-radius:var(--radius-sm)] [--cell-size:--spacing(7)];
+}
+
+/* MARK: Date picker */
+/* Figma Date Picker: a field, not a button. Input background, regular weight, muted placeholder,
+   calendar icon at the start. */
+.caps-date-picker-trigger.caps-button {
+	@apply border-input text-foreground data-placeholder:text-muted-foreground gap-2 bg-(--caps-input) px-2.5 font-normal shadow-xs hover:bg-(--caps-input);
+}
+
 /* MARK: Card */
 .caps-card {
 	box-sizing: border-box;
 	min-width: 0;
 	width: 100%;
 	max-width: 100%;
-	@apply ring-foreground/10 bg-card text-card-foreground gap-(--card-spacing) overflow-hidden rounded-xl py-(--card-spacing) text-sm ring-1 [--card-spacing:--spacing(4)] has-data-[slot=card-footer]:pb-0 has-[>img:first-child]:pt-0 data-[density=compact]:[--card-spacing:--spacing(3)] data-[density=compact]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl;
+	/* Figma Card: stacked sections with their own padding (Default, or Small when compact), no gap. */
+	@apply ring-border bg-card text-card-foreground gap-0 overflow-hidden rounded-xl text-sm ring-1 [--card-spacing:--spacing(4)] data-[density=compact]:[--card-spacing:--spacing(3)] *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl;
 }
 .caps-card-header {
-	@apply gap-1 rounded-t-xl px-(--card-spacing) [.border-b]:pb-(--card-spacing);
+	@apply gap-1 rounded-t-xl p-(--card-spacing);
 }
 .caps-card-title {
 	@apply text-base leading-snug font-medium group-data-[density=compact]/card:text-sm;
@@ -314,10 +352,10 @@
 	@apply text-muted-foreground text-sm;
 }
 .caps-card-content {
-	@apply px-(--card-spacing);
+	@apply p-(--card-spacing);
 }
 .caps-card-footer {
-	@apply bg-muted/50 rounded-b-xl border-t p-(--card-spacing);
+	@apply bg-muted rounded-b-xl border-t p-(--card-spacing);
 }
 
 .caps-card[data-width='auto'] {
@@ -335,7 +373,7 @@
 
 /* MARK: Selection — shared Capsule control and surface tokens. */
 .caps-select-trigger {
-	@apply border-input bg-background text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive data-[matches-spartan-invalid=true]:ring-destructive/20 h-(--caps-control-height) rounded-lg border px-3 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[matches-spartan-invalid=true]:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-8;
+	@apply border-input text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-placeholder:text-muted-foreground data-[matches-spartan-invalid=true]:border-destructive h-(--caps-control-height) rounded-lg border bg-(--caps-input) ps-2.5 pe-2 text-sm focus-visible:ring-[length:var(--caps-focus-ring-width)] data-[size=sm]:h-(--caps-control-height-sm);
 }
 .caps-select-content {
 	@apply bg-popover text-popover-foreground rounded-lg border p-1 shadow-md;
@@ -350,7 +388,7 @@
 	@apply text-muted-foreground px-2 py-1.5 text-xs font-medium;
 }
 .caps-native-select {
-	@apply h-(--caps-control-height) px-3 data-[size=sm]:h-8;
+	@apply h-(--caps-control-height) ps-2.5 pe-2 data-[size=sm]:h-(--caps-control-height-sm);
 }
 
 .caps-native-select[multiple],
@@ -359,8 +397,15 @@
 }
 
 /* MARK: Tabs */
+/* Figma Tabs: Small 24px, Default 35px and Large 40px lists; the triggers fill the list height. */
 .caps-tabs-list {
-	@apply text-muted-foreground gap-1 rounded-lg p-[var(--caps-size-3px)] data-[orientation=horizontal]:h-(--caps-control-height);
+	@apply text-muted-foreground gap-0 rounded-lg p-[var(--caps-size-3px)] data-[orientation=horizontal]:h-[calc(--spacing(8.75))];
+}
+.caps-tabs-list[data-size='sm'] {
+	@apply p-0.5 data-[orientation=horizontal]:h-6;
+}
+.caps-tabs-list[data-size='lg'] {
+	@apply rounded-xl p-1 data-[orientation=horizontal]:h-10;
 }
 .caps-tabs-list[data-type='contained'] {
 	@apply bg-muted;
@@ -369,13 +414,23 @@
 	@apply rounded-none bg-transparent;
 }
 .caps-tabs-trigger {
-	@apply text-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:bg-background data-[state=active]:text-foreground h-full gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+	@apply text-muted-foreground hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:text-foreground h-full gap-1.5 rounded-lg border border-transparent px-2 py-1 text-sm font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
 }
+.caps-tabs-list[data-size='sm'] .caps-tabs-trigger {
+	@apply gap-1 rounded-md px-1.5 py-px text-xs [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
+}
+.caps-tabs-list[data-size='lg'] .caps-tabs-trigger {
+	@apply gap-2 px-2.5 py-[calc(--spacing(1.375))];
+}
+.caps-tabs-list[data-type='contained'] .caps-tabs-trigger {
+	@apply hover:bg-muted data-[state=active]:bg-background data-[state=active]:shadow-sm;
+}
+/* Figma Tab → Line: a 2px primary indicator across the whole trigger. */
 .caps-tabs-list[data-type='line'] .caps-tabs-trigger[data-state='active'] {
-	@apply border-b-primary rounded-none bg-transparent shadow-none;
+	@apply after:bg-primary rounded-none after:absolute after:inset-x-0 after:bottom-0 after:h-0.5;
 }
 .caps-tabs-list[data-type='line'][data-orientation='vertical'] .caps-tabs-trigger[data-state='active'] {
-	@apply border-e-primary border-b-transparent;
+	@apply after:inset-x-auto after:inset-y-0 after:end-0 after:h-auto after:w-0.5;
 }
 .caps-tabs-content {
 	@apply focus-visible:outline-ring;
@@ -398,11 +453,11 @@
 }
 
 .caps-questionnaire-title {
-	@apply text-base leading-snug font-medium [&:not(:has(~[data-slot=questionnaire-description]))]:mb-4;
+	@apply text-base/6 font-medium [&:not(:has(~[data-slot=questionnaire-description]))]:mb-4;
 }
 
 .caps-questionnaire-description {
-	@apply text-sm;
+	@apply text-sm/5;
 }
 
 .caps-questionnaire-choices {
@@ -410,7 +465,8 @@
 }
 
 .caps-questionnaire-choice {
-	@apply border-input hover:bg-muted/50 has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-ring/50 data-invalid:border-destructive dark:bg-input/20 data-checked:border-primary/40 data-checked:bg-muted dark:data-checked:bg-muted gap-2.5 rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-3 py-2.5 text-sm transition-colors has-[>input:focus-visible]:ring-[length:var(--caps-focus-ring-width)] data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-(--caps-opacity-disabled);
+	/* Figma Rich Radio / Checkbox Container: padding and gap of 3 spacing units (border included), on the card. */
+	@apply border-border hover:bg-muted/50 has-[>input:focus-visible]:border-ring has-[>input:focus-visible]:ring-ring/50 data-invalid:border-destructive dark:bg-input/20 data-checked:border-primary/40 data-checked:bg-muted dark:data-checked:bg-muted bg-card gap-3 rounded-lg border-[length:var(--caps-border-width)] p-[calc(--spacing(3)-var(--caps-border-width))] text-sm/5 transition-colors has-[>input:focus-visible]:ring-[length:var(--caps-focus-ring-width)] data-disabled:pointer-events-none data-disabled:cursor-not-allowed data-disabled:opacity-(--caps-opacity-disabled);
 }
 
 .caps-questionnaire-choice-indicator {
@@ -426,19 +482,19 @@
 }
 
 .caps-questionnaire-choice-content {
-	@apply gap-0.5;
+	@apply gap-1.5;
 }
 
 .caps-questionnaire-choice-description {
-	@apply text-muted-foreground;
+	@apply text-muted-foreground text-xs/4;
 }
 
 .caps-questionnaire-shortcut {
-	@apply border-input bg-background text-muted-foreground pointer-events-none ms-auto inline-flex size-5 shrink-0 translate-y-[--spacing(0.45)] items-center justify-center rounded-md border font-mono text-[length:var(--caps-size-0-625rem)] leading-none font-medium group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5;
+	@apply border-input bg-background text-muted-foreground pointer-events-none ms-auto inline-flex h-5 min-w-4 shrink-0 translate-y-[--spacing(0.45)] items-center justify-center rounded-sm border px-1 font-sans text-xs/4 font-normal group-has-data-[slot=questionnaire-choice-description]/questionnaire-choice:translate-y-0.5;
 }
 
 .caps-questionnaire-input {
-	@apply dark:bg-input/30 border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 disabled:bg-input/50 dark:disabled:bg-input/80 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-transparent px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] aria-invalid:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
+	@apply border-input focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 h-(--caps-control-height) rounded-lg border-[length:var(--caps-border-width)] bg-(--caps-input) px-2.5 py-1 text-base focus-visible:ring-[length:var(--caps-focus-ring-width)] md:text-sm;
 }
 
 .caps-questionnaire-error {
@@ -464,8 +520,19 @@ caps-questionnaire-item[hidden] {
 	@apply bg-muted block rounded-md;
 	animation: caps-skeleton-pulse 2s ease-in-out infinite;
 }
+/* Figma Aspect Ratio: the frame clips its media to the large radius. */
+.caps-aspect-ratio {
+	@apply overflow-hidden rounded-lg;
+}
+/* Figma Separator: Regular 4px (2px when vertical) and Spacious 7.5px on each side. */
+.caps-separator[data-spacing='regular'] {
+	@apply data-horizontal:my-1 data-vertical:mx-0.5;
+}
+.caps-separator[data-spacing='spacious'] {
+	@apply data-horizontal:my-[calc(--spacing(1.875))] data-vertical:mx-[calc(--spacing(1.875))];
+}
 .caps-progress {
-	@apply bg-primary/20 relative block h-2 w-full overflow-hidden rounded-full;
+	@apply bg-muted relative block h-1 w-full overflow-hidden rounded-full;
 }
 .caps-progress-indicator {
 	@apply bg-primary absolute inset-y-0 block rounded-full;
@@ -515,25 +582,23 @@ caps-questionnaire-item[hidden] {
 }
 .caps-navigation-menu-trigger,
 a.caps-navigation-menu-link {
-	min-height: calc(var(--caps-spacing) * 10);
-	padding: calc(var(--caps-spacing) * 2) calc(var(--caps-spacing) * 3);
-	border-radius: var(--radius-md);
+	/* Figma Navigation Menu Item: 14/20, 5.5px by 8px padding, large radius. */
+	padding: calc(var(--caps-spacing) * 1.375) calc(var(--caps-spacing) * 2);
+	border-radius: var(--radius-lg);
 	color: var(--foreground);
 	background: transparent;
-	font-size: 0.875rem;
+	font-size: var(--text-sm);
+	line-height: calc(var(--caps-spacing) * 5);
 	text-decoration: none;
 	outline: none;
 	transition:
 		background-color var(--caps-duration-150),
 		box-shadow var(--caps-duration-150);
 }
-/* Top-level entries follow the Figma Navigation Menu Button (and Spartan Nova): 32 px high,
-   8 px inline padding, large radius, medium weight. Panel links keep the rules above. */
+/* Top-level entries follow the Figma Navigation Menu Button: 32 px high, medium weight. */
 .caps-navigation-menu-trigger,
 .caps-navigation-menu-list > li > a.caps-navigation-menu-link {
 	min-height: calc(var(--caps-spacing) * 8);
-	padding: calc(var(--caps-spacing) * 1.5) calc(var(--caps-spacing) * 2);
-	border-radius: var(--radius-lg);
 	font-weight: 500;
 }
 .caps-navigation-menu-trigger {
@@ -554,7 +619,7 @@ a.caps-navigation-menu-link:focus-visible {
 	opacity: var(--caps-opacity-disabled);
 }
 .caps-navigation-menu-chevron {
-	font-size: 0.75rem;
+	font-size: calc(var(--caps-spacing) * 4);
 	transition: transform var(--caps-duration-150);
 }
 .caps-navigation-menu-trigger[data-state='open'] .caps-navigation-menu-chevron {
@@ -600,13 +665,13 @@ a.caps-navigation-menu-link:focus-visible {
 	@apply relative flex w-full items-center group-data-vertical:w-auto group-data-vertical:flex-col;
 }
 .caps-slider-track {
-	@apply bg-muted relative grow rounded-full data-horizontal:h-1.5 data-horizontal:w-full data-vertical:h-full data-vertical:w-1.5;
+	@apply bg-muted relative grow rounded-full data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1;
 }
 .caps-slider-range {
 	@apply bg-primary absolute rounded-full select-none data-draggable-range:cursor-move data-horizontal:h-full data-vertical:w-full;
 }
 .caps-slider-thumb {
-	@apply border-primary bg-background ring-ring/50 absolute block size-4 shrink-0 rounded-full border shadow-sm transition-shadow select-none after:absolute after:-inset-2 hover:ring-4 focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none active:ring-4;
+	@apply border-ring bg-background ring-ring/50 absolute block size-3 shrink-0 rounded-full border shadow-sm transition-shadow select-none after:absolute after:-inset-2 hover:ring-4 focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none active:ring-4;
 }
 .caps-slider-host[data-matches-spartan-invalid='true'] .caps-slider-thumb {
 	@apply border-destructive ring-destructive/20;
@@ -642,10 +707,11 @@ a.caps-navigation-menu-link:focus-visible {
 		min-height: 0;
 		flex: 1;
 		width: 100%;
-		--scrollbar-thumb-color: var(--border);
+		/* Figma Scrollbar: a 6px muted thumb (9px track minus the 1.5px offsets). */
+		--scrollbar-thumb-color: var(--muted);
 		--scrollbar-thumb-hover-color: var(--border);
 		--scrollbar-track-color: transparent;
-		--scrollbar-track-thickness: 0.625rem;
+		--scrollbar-track-thickness: 0.5625rem;
 		--scrollbar-track-offset: 1.5px;
 	}
 	.caps-scroll-area-viewport {
@@ -720,8 +786,9 @@ a.caps-navigation-menu-link:focus-visible {
 	.caps-resizable-handle[aria-disabled='true'] {
 		cursor: default;
 	}
+	/* Figma Resizable Handle: 4 by 24px with a 4px radius; it must not shrink to the 1px divider. */
 	.caps-resizable-handle-icon {
-		@apply bg-border h-6 w-1 rounded-lg;
+		@apply bg-border h-6 w-1 shrink-0 rounded-[var(--caps-size-4px)];
 		z-index: 1;
 		display: block;
 	}
@@ -770,7 +837,8 @@ button.caps-marker:disabled {
 	@apply pointer-events-none opacity-(--caps-opacity-disabled);
 }
 .caps-message-scroller-content {
-	@apply gap-6;
+	/* Figma Message Scroller: 32px between messages. */
+	@apply gap-8;
 }
 .caps-message-scroller-viewport {
 	@apply contain-content;

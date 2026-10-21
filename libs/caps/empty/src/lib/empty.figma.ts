@@ -11,7 +11,7 @@ const variant = empty.getEnum('Variant', {
 	Default: '',
 	Outline: ' class="border"',
 	'Outline dashed': ' class="border border-dashed"',
-	Background: ' class="from-muted/50 to-background bg-gradient-to-b from-30%"',
+	Background: ' class="bg-muted"',
 });
 
 const parts: Part[] = [];

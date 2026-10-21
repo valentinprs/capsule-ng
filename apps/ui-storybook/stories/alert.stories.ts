@@ -68,4 +68,17 @@ export const Destructive: Story = {
  `,
 	}),
 };
+export const TitleOnly: Story = {
+	name: 'Title Only',
+	args: { variant: 'default' },
+	render: (args) => ({
+		props: args,
+		template: `
+  <caps-alert class="max-w-xl" ${argsToTemplate(args)}>
+   <caps-alert-media><ng-icon name="lucideInfo" aria-hidden="true" /></caps-alert-media>
+   <caps-alert-title>Your changes have been saved</caps-alert-title>
+  </caps-alert>
+ `,
+	}),
+};
 export const Urgent: Story = { render: () => ({ template: '<caps-urgent-alert-story />' }) };

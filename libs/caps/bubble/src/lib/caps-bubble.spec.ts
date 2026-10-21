@@ -37,7 +37,16 @@ describe('CapsBubble public composition', () => {
 	it('preserves projected content, class merging and all seven variants without interactive semantics', async () => {
 		const view = await render(Host);
 		const bubble = view.container.querySelector('caps-bubble')!;
-		for (const variant of ['default', 'secondary', 'muted', 'tinted', 'outline', 'ghost', 'destructive'] as const) {
+		for (const variant of [
+			'default',
+			'secondary',
+			'muted',
+			'tinted',
+			'outline',
+			'ghost',
+			'destructive',
+			'suggestion',
+		] as const) {
 			view.fixture.componentInstance.variant.set(variant);
 			view.detectChanges();
 			expect(bubble).toHaveAttribute('data-variant', variant);

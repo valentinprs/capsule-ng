@@ -359,3 +359,18 @@ export const CompactFlush: Story = {
 		template: `<caps-accordion size="sm" isFlush><caps-accordion-item title="Compact section" expanded>Text aligned with the container.</caps-accordion-item><caps-accordion-item title="Another section">Independent details.</caps-accordion-item></caps-accordion>`,
 	}),
 };
+
+/** Figma Bordered Accordion: one box with a 16px radius around the items. */
+export const Bordered: Story = {
+	render: () => ({
+		template: /* HTML */ `
+			<caps-accordion variant="bordered" class="max-w-lg">
+				<caps-accordion-item title="Is it accessible?" expanded>
+					Yes. It adheres to the WAI-ARIA design pattern.
+				</caps-accordion-item>
+				<caps-accordion-item title="Is it styled?">It comes with default styles from Figma.</caps-accordion-item>
+				<caps-accordion-item title="Is it animated?">Yes. It's animated by default.</caps-accordion-item>
+			</caps-accordion>
+		`,
+	}),
+};

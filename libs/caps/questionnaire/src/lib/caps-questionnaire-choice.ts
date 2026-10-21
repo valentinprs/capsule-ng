@@ -53,7 +53,7 @@ import { hlm } from '@spartan-ng/helm/utils';
 			<span
 				brnQuestionnaireChoiceLabel
 				data-slot="questionnaire-choice-label"
-				class="caps-questionnaire-choice-content flex min-w-0 flex-1 flex-col leading-snug"
+				class="caps-questionnaire-choice-content flex min-w-0 flex-1 flex-col"
 			>
 				<ng-content />
 			</span>

@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsKbdImports } from '@capsule-ng/caps/kbd';
 import { CapsTooltip } from '@capsule-ng/caps/tooltip';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePlus } from '@ng-icons/lucide';
@@ -12,7 +13,7 @@ const meta: Meta<CapsTooltip & { placement: string }> = {
 	argTypes: {},
 	decorators: [
 		moduleMetadata({
-			imports: [CapsButton, CapsTooltip, NgIcon],
+			imports: [CapsButton, CapsTooltip, CapsKbdImports, NgIcon],
 			providers: [provideIcons({ lucidePlus })],
 		}),
 	],
@@ -114,5 +115,37 @@ export const Disabled: Story = {
 			imports: [DisabledTooltip],
 		},
 		template: '<disabled-tooltip-story/>',
+	}),
+};
+
+export const Shortcut: Story = {
+	render: () => ({
+		template: `
+<div class="p-40">
+	<button [capsTooltip]="tooltip" capsButton variant="outline">Save</button>
+	<ng-template #tooltip>
+		<span class="flex items-center gap-2">
+			Save changes
+			<kbd capsKbd>⌘S</kbd>
+		</span>
+	</ng-template>
+</div>
+`,
+	}),
+};
+
+export const Formatted: Story = {
+	render: () => ({
+		template: `
+<div class="p-40">
+	<button [capsTooltip]="tooltip" capsButton variant="outline">Storage</button>
+	<ng-template #tooltip>
+		<span class="flex flex-col">
+			<span class="font-semibold">Storage almost full</span>
+			<span class="opacity-70">9.2 GB of 10 GB used</span>
+		</span>
+	</ng-template>
+</div>
+`,
 	}),
 };

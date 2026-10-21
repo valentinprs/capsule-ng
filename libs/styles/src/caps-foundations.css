@@ -36,7 +36,8 @@
 		@apply flex;
 	}
 	.caps-accordion-trigger {
-		@apply focus-visible:border-ring focus-visible:ring-ring/50 relative flex w-full items-start gap-4 rounded-lg border border-transparent py-2.5 text-start text-sm font-medium transition-colors outline-none hover:underline focus-visible:ring-3;
+		/* Figma Accordion Trigger: 44px, 14/20 medium, the chevron centred on the title. */
+		@apply focus-visible:border-ring focus-visible:ring-ring/50 relative flex w-full items-center gap-4 rounded-lg border border-transparent py-[calc(--spacing(3)-var(--caps-border-width))] text-start text-sm font-medium transition-colors outline-none hover:underline focus-visible:ring-3;
 		transition-duration: var(--caps-duration-normal);
 	}
 	.caps-accordion-trigger:disabled {
@@ -47,7 +48,7 @@
 		@apply min-w-0 flex-1;
 	}
 	.caps-accordion-chevron {
-		@apply text-muted-foreground ms-auto size-4 shrink-0;
+		@apply text-foreground ms-auto size-4 shrink-0;
 		transition: transform var(--caps-duration-normal);
 	}
 	.caps-accordion-trigger[aria-expanded='true'] > .caps-accordion-chevron {
@@ -79,6 +80,15 @@
 	.caps-accordion:not([data-flush='true']) .caps-accordion-content-inner {
 		@apply pe-8;
 	}
+	.caps-accordion[data-variant='bordered'] {
+		@apply overflow-hidden rounded-[var(--caps-size-16px)] border;
+	}
+	.caps-accordion[data-variant='bordered'] .caps-accordion-trigger {
+		@apply px-3;
+	}
+	.caps-accordion[data-variant='bordered'] .caps-accordion-content-inner {
+		@apply px-3 pt-0 pb-3;
+	}
 	.caps-accordion-skeleton-line {
 		@apply bg-muted my-2 block h-4 w-4/5 rounded;
 	}
@@ -98,7 +108,7 @@
 	}
 
 	.caps-input-group {
-		@apply border-input dark:bg-input/30 rounded-lg border transition-colors;
+		@apply border-input rounded-lg border bg-(--caps-input) transition-colors;
 		min-height: var(--caps-control-height);
 	}
 	.caps-input-group:not(:has(> textarea, > [data-align='block-start'], > [data-align='block-end'])) > input.caps-input {
@@ -112,12 +122,8 @@
 		@apply border-ring ring-ring/50 ring-3;
 	}
 	.caps-input-group:has([data-matches-spartan-invalid='true']) {
-		@apply border-destructive ring-destructive/20 dark:ring-destructive/40 ring-3;
+		@apply border-destructive dark:border-destructive/50;
 	}
-	.caps-input-group:has(input:disabled, textarea:disabled) {
-		@apply bg-input/50 dark:bg-input/80;
-	}
-
 	.caps-input-group:has(input:disabled, textarea:disabled) :is(.caps-input-group-addon, .caps-input-group-text) {
 		color: var(--foreground);
 	}
@@ -128,10 +134,10 @@
 		@apply h-auto flex-col;
 	}
 	.caps-input-group-addon {
-		@apply text-muted-foreground gap-2 py-1.5 text-sm font-medium [&>ng-icon]:text-base;
+		@apply text-muted-foreground gap-2 py-1.5 text-sm font-normal [&>ng-icon]:text-[length:--spacing(5)];
 	}
 	.caps-input-group-addon[data-align='inline-start'] {
-		@apply order-first ps-2;
+		@apply order-first ps-3;
 	}
 	.caps-input-group-addon[data-align='inline-end'] {
 		@apply order-last pe-2;
@@ -187,13 +193,13 @@
 		@apply shadow-md;
 	}
 	.caps-popover-content {
-		@apply ring-foreground/10 flex w-72 flex-col gap-2.5 ring-1;
+		@apply ring-border flex w-72 flex-col gap-2.5 ring-1;
 	}
 	.caps-tooltip-content {
-		@apply w-fit rounded-md px-3 py-1.5 text-xs;
+		@apply w-fit rounded-lg px-2 py-1.5 text-xs;
 	}
 	.caps-hover-card-content {
-		@apply w-80;
+		@apply ring-border w-fit p-2 ring-1;
 	}
 	.caps-floating-content[data-state='open'] {
 		@apply animate-in fade-in-0 zoom-in-95;
@@ -264,7 +270,7 @@
 	}
 
 	.caps-toggle-variant-outline {
-		@apply border-input hover:bg-muted border bg-transparent;
+		@apply border-input border bg-(--caps-alpha-white-outline-bg);
 	}
 
 	.caps-toggle-size-default {
@@ -272,7 +278,7 @@
 	}
 
 	.caps-toggle-size-sm {
-		@apply h-7 min-w-7 rounded-[min(var(--radius-md),var(--caps-size-12px))] px-2.5 text-[length:var(--caps-size-0-8rem)] [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
+		@apply h-7 min-w-7 rounded-[min(var(--radius-md),var(--caps-size-12px))] px-2.5 text-xs [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
 	}
 
 	.caps-toggle-size-lg {
@@ -285,7 +291,7 @@
 	}
 
 	.caps-toggle-group-item {
-		@apply group-data-[spacing=0]/toggle-group:rounded-none group-data-[spacing=0]/toggle-group:px-2 group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-s-lg group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-lg group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-e-lg group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-lg;
+		@apply group-data-[spacing=0]/toggle-group:rounded-none group-data-horizontal/toggle-group:data-[spacing=0]:first:rounded-s-[inherit] group-data-vertical/toggle-group:data-[spacing=0]:first:rounded-t-[inherit] group-data-horizontal/toggle-group:data-[spacing=0]:last:rounded-e-[inherit] group-data-vertical/toggle-group:data-[spacing=0]:last:rounded-b-[inherit];
 	}
 
 	.caps-button-group {
@@ -332,7 +338,7 @@
 	}
 
 	.caps-avatar-fallback {
-		@apply bg-muted text-foreground rounded-full;
+		@apply bg-muted text-muted-foreground rounded-full;
 	}
 
 	.caps-avatar-image {
@@ -348,7 +354,7 @@
 	}
 
 	.caps-item-content {
-		@apply gap-1 group-data-[size=xs]/item:gap-0;
+		@apply gap-1 group-data-[size=sm]/item:gap-0 group-data-[size=xs]/item:gap-0;
 	}
 
 	.caps-item-title {
@@ -376,12 +382,45 @@
 		width: 100%;
 		height: 100%;
 	}
+	/* Figma Item: Default 10px by 12px padding and 16px gap; Small and Extra small 8px by 10px and 8px. */
 	.caps-item {
-		@apply gap-2.5 px-3 py-2.5 text-sm;
+		@apply gap-4 px-3 py-2.5 text-sm;
 		min-width: 0;
+	}
+	.caps-item:is([data-size='sm'], [data-size='xs']) {
+		@apply gap-2 px-2.5 py-2;
+	}
+	.caps-item[data-variant='outline'] {
+		@apply inset-ring-border rounded-lg bg-(--caps-alpha-white-outline-bg) inset-ring;
+	}
+	.caps-item[data-variant='muted'] {
+		@apply bg-muted rounded-lg;
 	}
 	.caps-item-content {
 		min-width: 0;
+	}
+	/* Figma Decorative Icon: 32px box with a 20px icon and a 6px radius; 40 to 56px with a 24px icon
+	   and a 10px radius. */
+	.caps-decorative-icon {
+		@apply bg-muted text-foreground size-10 rounded-lg [&_ng-icon]:pointer-events-none [&_ng-icon]:text-[length:--spacing(6)];
+	}
+	.caps-decorative-icon[data-size='sm'] {
+		@apply size-8 rounded-sm [&_ng-icon]:text-[length:--spacing(5)];
+	}
+	.caps-decorative-icon[data-size='lg'] {
+		@apply size-12;
+	}
+	.caps-decorative-icon[data-size='xl'] {
+		@apply size-14;
+	}
+	.caps-decorative-icon[data-variant='primary'] {
+		@apply bg-primary text-primary-foreground;
+	}
+	.caps-decorative-icon[data-variant='destructive'] {
+		@apply bg-destructive/10 text-destructive;
+	}
+	.caps-decorative-icon[data-round] {
+		@apply rounded-full;
 	}
 	.caps-item-media {
 		@apply gap-2 [&_img]:rounded-sm [&_ng-icon]:text-base;
@@ -390,7 +429,7 @@
 		@apply hover:bg-muted focus-visible:ring-ring rounded-sm outline-none focus-visible:ring-2;
 	}
 	.caps-item-interactive[data-disabled] {
-		opacity: var(--caps-disabled-opacity);
+		opacity: var(--caps-opacity-disabled);
 	}
 	.caps-item-group-header {
 		@apply flex items-center justify-between gap-2 text-sm font-medium;
@@ -530,13 +569,24 @@
 		border-radius: var(--radius);
 		font-family: var(--font-sans);
 	}
-	.caps-toast [data-close-button]:focus-visible {
-		outline: 2px solid var(--ring);
-		outline-offset: 2px;
+	/* Capsule toasts have no close button (Figma Sonner): this also hides Brain's per-toast
+	   `closeButton` option. Dismiss with an action, a timer or `toast.dismiss()`. */
+	.caps-toast [data-close-button] {
+		display: none !important;
 	}
 	.caps-toast [data-caps-toast-action],
 	.caps-toast [data-caps-toast-cancel] {
 		flex-shrink: 0;
+	}
+	.caps-toast {
+		box-shadow: var(--shadow-sm) !important;
+	}
+	.caps-toast :is([data-title], [data-description]) {
+		font-size: var(--text-sm) !important;
+		line-height: var(--text-sm--line-height) !important;
+	}
+	.caps-toast [data-description] {
+		color: var(--muted-foreground) !important;
 	}
 	.caps-toast [data-content] {
 		min-width: 0;

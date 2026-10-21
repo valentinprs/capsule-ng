@@ -157,7 +157,7 @@ describe('generate-ui-docs executor', () => {
 		const generated = readGeneratedJson() as NestedStructure;
 		const menu = generated['menu']['caps'];
 		expect(menu['CapsMenu'].inputs).toContainEqual(
-			expect.objectContaining({ name: 'size', type: "'xs' | 'sm' | 'md' | 'lg'", defaultValue: "'lg'" }),
+			expect.objectContaining({ name: 'size', type: "'xs' | 'sm' | 'md' | 'lg'", defaultValue: "'sm'" }),
 		);
 		expect(menu['CapsMenuItem'].selector).toBe('button[capsMenuItem],a[capsMenuItem]');
 		expect(menu['CapsMenuItem'].outputs.map(({ name }) => name)).toEqual(['itemClick']);

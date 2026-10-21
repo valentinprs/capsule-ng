@@ -7,13 +7,13 @@ const trigger = figma.selectedInstance;
 
 // The trigger is the `title` of a `caps-accordion-item`, which projects its content. `State` is a
 // CSS state.
-// A bordered accordion is `<caps-accordion class="rounded-lg border">` with bordered items; `Position`
-// and `Show border` follow from it.
+// The item goes in a `<caps-accordion variant="bordered">`, which draws the box and the dividers:
+// `Position` and `Show border` follow from it.
 const expanded = trigger.getEnum('Open', { True: ' expanded', False: '' });
 const disabled = trigger.getEnum('Disabled', { True: ' disabled', False: '' });
 
 export default {
-	example: figma.code`<caps-accordion-item title="${trigger.getString('Title')}" class="border-b px-4 last:border-b-0"${expanded}${disabled}>
+	example: figma.code`<caps-accordion-item title="${trigger.getString('Title')}"${expanded}${disabled}>
 	<!-- content -->
 </caps-accordion-item>`,
 	imports: ["import { CapsAccordionImports } from '@capsule-ng/caps/accordion';"],

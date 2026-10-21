@@ -16,7 +16,7 @@ import { type BrnPaginatedTabHeaderItem, BrnTabsPaginatedList, BrnTabsTrigger } 
 import { classes, hlm } from '@spartan-ng/helm/utils';
 import type { ClassValue } from 'clsx';
 import type { Observable } from 'rxjs';
-import type { CapsTabsType } from './caps-tabs-list';
+import type { CapsTabsSize, CapsTabsType } from './caps-tabs-list';
 
 @Component({
 	selector: 'caps-tabs-paginated-list',
@@ -51,7 +51,13 @@ import type { CapsTabsType } from './caps-tabs-list';
 				[attr.aria-label]="ariaLabel()"
 				(cdkObserveContent)="_onContentChanges()"
 			>
-				<div #tabListInner data-orientation="horizontal" [attr.data-type]="type()" [class]="_tabListClass()">
+				<div
+					#tabListInner
+					data-orientation="horizontal"
+					[attr.data-type]="type()"
+					[attr.data-size]="size()"
+					[class]="_tabListClass()"
+				>
 					<ng-content />
 				</div>
 			</div>
@@ -90,6 +96,7 @@ export class CapsTabsPaginatedList extends BrnTabsPaginatedList {
 	public readonly previousPaginator = viewChild.required<ElementRef<HTMLElement>>('previousPaginator');
 
 	public readonly type = input<CapsTabsType>('contained');
+	public readonly size = input<CapsTabsSize>('default');
 	public readonly ariaLabel = input<string>('Tabs');
 	public readonly tabListClass = input<ClassValue>('', { alias: 'tabListClass' });
 	protected readonly _tabListClass = computed(() =>

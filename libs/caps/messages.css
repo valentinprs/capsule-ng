@@ -1,5 +1,6 @@
+/* Figma Message: 8px between the avatar and the bubble, 14/20 text. */
 .caps-message {
-	@apply gap-1.5 text-xs/relaxed;
+	@apply gap-2 text-sm/5;
 }
 
 .caps-message-group {
@@ -7,7 +8,7 @@
 }
 
 .caps-message-avatar {
-	@apply bg-muted min-w-7 rounded-full;
+	@apply bg-muted min-w-8 rounded-full;
 }
 
 .caps-message-content {
@@ -31,12 +32,15 @@
 	@apply gap-1.5;
 }
 
+/* Figma Bubble content: 14/20 text, 10px by 14px padding (border included), 14px radius. The
+   transparent border lives here, not in a host utility, so the outline variants can color it. */
 .caps-bubble-content {
-	@apply rounded-lg px-2.5 py-1.5 text-xs/relaxed leading-relaxed;
+	@apply rounded-xl border border-transparent px-[calc(--spacing(3.5)-var(--caps-border-width))] py-[calc(--spacing(2.5)-var(--caps-border-width))] text-sm/5;
 }
 
+/* Figma Reaction: 24px high, 14px emoji, ringed with the background. */
 .caps-bubble-reactions {
-	@apply bg-muted ring-card gap-0.5 rounded-full px-1.5 py-0.5 text-[length:var(--caps-size-0-625rem)] ring-2;
+	@apply bg-muted ring-background gap-1 rounded-full px-1.5 py-0.5 text-sm/5 ring-2;
 }
 
 .caps-bubble-variant-default {
@@ -59,12 +63,17 @@
 	@apply *:data-[slot=bubble-content]:border-border *:data-[slot=bubble-content]:bg-input/20 dark:*:data-[slot=bubble-content]:bg-input/30 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-input/50 [&>[data-slot=bubble-content]:is(button,a):hover]:text-foreground *:data-[slot=bubble-content]:border;
 }
 
+/* Figma Bubble Suggestion: a dashed foreground border on the background. */
+.caps-bubble-variant-suggestion {
+	@apply *:data-[slot=bubble-content]:bg-background *:data-[slot=bubble-content]:border-foreground [&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted *:data-[slot=bubble-content]:border-dashed;
+}
+
 .caps-bubble-variant-ghost {
 	@apply [&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted [&>[data-slot=bubble-content]:is(button,a):hover]:text-foreground dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-muted/50 border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-0;
 }
 
 .caps-bubble-variant-destructive {
-	@apply *:data-[slot=bubble-content]:bg-destructive/10 *:data-[slot=bubble-content]:text-foreground dark:*:data-[slot=bubble-content]:bg-destructive/20 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/20 dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/30;
+	@apply *:data-[slot=bubble-content]:bg-destructive/10 *:data-[slot=bubble-content]:text-destructive dark:*:data-[slot=bubble-content]:bg-destructive/20 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/20 dark:[&>[data-slot=bubble-content]:is(button,a):hover]:bg-destructive/30;
 }
 
 /* MARK: Attachment */

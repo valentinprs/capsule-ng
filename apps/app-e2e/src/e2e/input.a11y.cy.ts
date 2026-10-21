@@ -59,6 +59,13 @@ describe('Capsule input docs accessibility and native behavior', { testIsolation
 			cy.get('spartan-input-invalid input[capsInput]')
 				.should('have.attr', 'data-matches-spartan-invalid', 'true')
 				.and('not.have.attr', 'aria-invalid');
+			// Figma `Error`: the destructive border alone at rest, the error ring on focus.
+			cy.get('spartan-input-basic input[capsInput]').then(($basic) => {
+				cy.get('spartan-input-invalid input[capsInput]').should(($input) => {
+					expect(getComputedStyle($input[0]).borderTopColor).not.to.equal(getComputedStyle($basic[0]).borderTopColor);
+				});
+			});
+			cy.get('spartan-input-invalid input[capsInput]').focus();
 			cy.get('spartan-input-invalid input[capsInput]').should(($input) => {
 				expect(getComputedStyle($input[0]).boxShadow).not.to.equal('none');
 			});

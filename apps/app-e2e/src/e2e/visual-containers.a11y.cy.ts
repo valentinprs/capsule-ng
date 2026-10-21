@@ -88,7 +88,9 @@ for (const family of ['card', 'separator', 'aspect-ratio'] as const) {
 							expect(card.scrollWidth).to.be.at.most(card.clientWidth + 1);
 						});
 						cy.get('spartan-card-density-preview caps-card').then(($card) => {
-							expect(getComputedStyle($card[0]).paddingTop).to.equal('12px');
+							// The Figma card pads its sections, not the card: compact spacing is 12px.
+							const section = $card[0].querySelector('caps-card-header, caps-card-content')!;
+							expect(getComputedStyle(section).paddingTop).to.equal('12px');
 							const title = $card[0].querySelector('caps-card-title')!;
 							expect(getComputedStyle(title).fontSize).to.equal('14px');
 						});

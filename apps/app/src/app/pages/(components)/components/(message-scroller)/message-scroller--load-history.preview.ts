@@ -85,7 +85,7 @@ const INITIAL_VISIBLE_COUNT = 5;
 					>
 						{{ _canLoadHistory() ? 'Load History' : 'History Loaded' }}
 					</button>
-					<p class="text-muted-foreground text-xs">Restore earlier messages while keeping your place.</p>
+					<p class="text-xs">Restore earlier messages while keeping your place.</p>
 				</caps-card-footer>
 			</caps-card>
 		</div>

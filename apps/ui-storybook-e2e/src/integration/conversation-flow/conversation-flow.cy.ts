@@ -1,7 +1,7 @@
 describe('Capsule conversation flow stories', { retries: 0 }, () => {
 	it('renders readable Marker variants and one explicit status', () => {
 		cy.visit('/iframe.html?id=marker--default');
-		cy.get('#storybook-root caps-marker').should('have.length', 4);
+		cy.get('#storybook-root caps-marker').should('have.length', 5);
 		cy.get('#storybook-root caps-marker[role="status"]').should('have.length', 1);
 		cy.get('#storybook-root caps-marker[variant="separator"] caps-marker-content').should(
 			'contain',

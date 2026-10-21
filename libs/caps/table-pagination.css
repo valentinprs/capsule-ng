@@ -88,12 +88,13 @@
 		padding-inline-end: 0;
 	}
 }
+/* Figma Pagination: 8px gaps, label-only Previous/Next and a 16px ellipsis icon in a 32px box. */
 .caps-pagination {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
-	gap: var(--caps-spacing);
+	gap: calc(var(--caps-spacing) * 2);
 }
 .caps-pagination-ellipsis {
 	display: inline-flex;
@@ -101,31 +102,13 @@
 	justify-content: center;
 	width: var(--caps-control-height);
 	height: var(--caps-control-height);
+	font-size: calc(var(--caps-spacing) * 4);
 }
 .caps-pagination-link.caps-pagination-previous,
 .caps-pagination-link.caps-pagination-next {
 	width: auto;
 	min-width: var(--caps-control-height);
-	gap: calc(var(--caps-spacing) * 2);
-	padding-inline: calc(var(--caps-spacing) * 3);
-}
-.caps-pagination-previous::before,
-.caps-pagination-next::after {
-	content: '';
-	width: calc(var(--caps-spacing) * 1.5);
-	height: calc(var(--caps-spacing) * 1.5);
-	border-inline-start: var(--caps-border-width) solid currentColor;
-	border-block-end: var(--caps-border-width) solid currentColor;
-	transform: rotate(45deg);
-}
-.caps-pagination-next::after {
-	transform: rotate(225deg);
-}
-:dir(rtl).caps-pagination-previous::before {
-	transform: rotate(225deg);
-}
-:dir(rtl).caps-pagination-next::after {
-	transform: rotate(45deg);
+	padding-inline: calc(var(--caps-spacing) * 2.5);
 }
 .caps-numbered-pagination {
 	display: flex;

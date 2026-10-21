@@ -101,8 +101,8 @@ export function slider(owner: InstanceHandle, orientation: 'horizontal' | 'verti
 
 /**
  * Tabs → Segmented / Line: `caps-tabs` with the triggers of the slot, rendered by their own
- * templates, and one content panel per tab. The selected tab is the active trigger. `Size` has no
- * equivalent in code.
+ * templates, and one content panel per tab. The selected tab is the active trigger. `Size` maps to
+ * the list `size`.
  */
 export function tabs(owner: InstanceHandle, type: 'contained' | 'line') {
 	const triggers = owner.getSlot('Slot')?.connectedInstances ?? [];
@@ -112,9 +112,10 @@ export function tabs(owner: InstanceHandle, type: 'contained' | 'line') {
 		(code, trigger) => figma.code`${code}\n\t\t${trigger.executeTemplate().example}`,
 		figma.code``,
 	);
+	const size = owner.getEnum('Size', { Small: ' size="sm"', Default: '', Large: ' size="lg"' });
 	const panels = values.map((value) => `\n\t<caps-tabs-content value="${value}"></caps-tabs-content>`).join('');
 	return figma.code`<caps-tabs value="${values[active] ?? values[0] ?? ''}">
-	<caps-tabs-list aria-label=""${type === 'line' ? ' type="line"' : ''}>${list}
+	<caps-tabs-list aria-label=""${type === 'line' ? ' type="line"' : ''}${size}>${list}
 	</caps-tabs-list>${panels}
 </caps-tabs>`;
 }

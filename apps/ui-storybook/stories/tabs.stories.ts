@@ -330,3 +330,22 @@ export const Disabled: Story = {
 		`,
 	}),
 };
+
+/** Figma Tabs `Size`: Small, Default and Large, for the Segmented and Line types. */
+export const Sizes: Story = {
+	render: () => ({
+		template: /* HTML */ `
+			<div class="flex flex-col items-start gap-4">
+				@for (type of ['contained', 'line']; track type) { @for (size of ['sm', 'default', 'lg']; track size) {
+				<caps-tabs value="overview">
+					<caps-tabs-list [type]="type" [size]="size" [attr.aria-label]="type + ' ' + size + ' tabs'">
+						<button capsTabsTrigger value="overview">Overview</button>
+						<button capsTabsTrigger value="activity">Activity</button>
+						<button capsTabsTrigger value="settings">Settings</button>
+					</caps-tabs-list>
+				</caps-tabs>
+				} }
+			</div>
+		`,
+	}),
+};

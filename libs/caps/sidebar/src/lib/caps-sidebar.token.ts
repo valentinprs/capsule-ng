@@ -14,9 +14,9 @@ export interface CapsSidebarConfig {
 
 const defaultConfig: CapsSidebarConfig = {
 	defaultOpen: true,
-	sidebarWidth: '16rem',
+	sidebarWidth: '15rem',
 	sidebarWidthMobile: '18rem',
-	sidebarWidthIcon: '3rem',
+	sidebarWidthIcon: '3.25rem',
 	sidebarCookieName: 'sidebar_state',
 	sidebarCookieMaxAge: 60 * 60 * 24 * 7, // 7 days in seconds
 	sidebarKeyboardShortcut: 'b',

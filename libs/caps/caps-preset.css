@@ -17,11 +17,11 @@
 
 /* MARK: Breadcrumb */
 .caps-breadcrumb-list {
-	@apply text-muted-foreground gap-1.5 text-sm;
+	@apply text-muted-foreground gap-1 text-sm;
 }
 
 .caps-breadcrumb-item {
-	@apply aria-[current=page]:text-foreground gap-1.5;
+	@apply aria-[current=page]:text-foreground gap-1;
 }
 
 .caps-breadcrumb-separator {
@@ -30,7 +30,7 @@
 }
 
 .caps-breadcrumb-ellipsis {
-	@apply size-5 [&>ng-icon]:text-[length:--spacing(4)];
+	@apply size-4 [&>ng-icon]:text-[length:--spacing(4)];
 }
 
 /* MARK: Button */
@@ -383,8 +383,15 @@
 }
 
 /* MARK: Tabs */
+/* Figma Tabs: Small 24px, Default 35px and Large 40px lists; the triggers fill the list height. */
 .caps-tabs-list {
-	@apply text-muted-foreground gap-1 rounded-lg p-[var(--caps-size-3px)] data-[orientation=horizontal]:h-(--caps-control-height);
+	@apply text-muted-foreground gap-0 rounded-lg p-[var(--caps-size-3px)] data-[orientation=horizontal]:h-[calc(--spacing(8.75))];
+}
+.caps-tabs-list[data-size='sm'] {
+	@apply p-0.5 data-[orientation=horizontal]:h-6;
+}
+.caps-tabs-list[data-size='lg'] {
+	@apply rounded-xl p-1 data-[orientation=horizontal]:h-10;
 }
 .caps-tabs-list[data-type='contained'] {
 	@apply bg-muted;
@@ -393,13 +400,23 @@
 	@apply rounded-none bg-transparent;
 }
 .caps-tabs-trigger {
-	@apply text-foreground/80 hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:bg-background data-[state=active]:text-foreground h-full gap-1.5 rounded-md border border-transparent px-2 py-1 text-sm font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
+	@apply text-muted-foreground hover:text-foreground focus-visible:border-ring focus-visible:ring-ring/50 data-[state=active]:text-foreground h-full gap-1.5 rounded-lg border border-transparent px-2 py-1 text-sm font-medium focus-visible:ring-[length:var(--caps-focus-ring-width)] focus-visible:outline-none data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(4)];
 }
+.caps-tabs-list[data-size='sm'] .caps-tabs-trigger {
+	@apply gap-1 rounded-md px-1.5 py-px text-xs [&_ng-icon:not([class*='text-'])]:text-[length:--spacing(3.5)];
+}
+.caps-tabs-list[data-size='lg'] .caps-tabs-trigger {
+	@apply gap-2 px-2.5 py-[calc(--spacing(1.375))];
+}
+.caps-tabs-list[data-type='contained'] .caps-tabs-trigger {
+	@apply hover:bg-muted data-[state=active]:bg-background data-[state=active]:shadow-sm;
+}
+/* Figma Tab → Line: a 2px primary indicator across the whole trigger. */
 .caps-tabs-list[data-type='line'] .caps-tabs-trigger[data-state='active'] {
-	@apply border-b-primary rounded-none bg-transparent shadow-none;
+	@apply after:bg-primary rounded-none after:absolute after:inset-x-0 after:bottom-0 after:h-0.5;
 }
 .caps-tabs-list[data-type='line'][data-orientation='vertical'] .caps-tabs-trigger[data-state='active'] {
-	@apply border-e-primary border-b-transparent;
+	@apply after:inset-x-auto after:inset-y-0 after:end-0 after:h-auto after:w-0.5;
 }
 .caps-tabs-content {
 	@apply focus-visible:outline-ring;
@@ -539,25 +556,23 @@ caps-questionnaire-item[hidden] {
 }
 .caps-navigation-menu-trigger,
 a.caps-navigation-menu-link {
-	min-height: calc(var(--caps-spacing) * 10);
-	padding: calc(var(--caps-spacing) * 2) calc(var(--caps-spacing) * 3);
-	border-radius: var(--radius-md);
+	/* Figma Navigation Menu Item: 14/20, 5.5px by 8px padding, large radius. */
+	padding: calc(var(--caps-spacing) * 1.375) calc(var(--caps-spacing) * 2);
+	border-radius: var(--radius-lg);
 	color: var(--foreground);
 	background: transparent;
-	font-size: 0.875rem;
+	font-size: var(--text-sm);
+	line-height: calc(var(--caps-spacing) * 5);
 	text-decoration: none;
 	outline: none;
 	transition:
 		background-color var(--caps-duration-150),
 		box-shadow var(--caps-duration-150);
 }
-/* Top-level entries follow the Figma Navigation Menu Button (and Spartan Nova): 32 px high,
-   8 px inline padding, large radius, medium weight. Panel links keep the rules above. */
+/* Top-level entries follow the Figma Navigation Menu Button: 32 px high, medium weight. */
 .caps-navigation-menu-trigger,
 .caps-navigation-menu-list > li > a.caps-navigation-menu-link {
 	min-height: calc(var(--caps-spacing) * 8);
-	padding: calc(var(--caps-spacing) * 1.5) calc(var(--caps-spacing) * 2);
-	border-radius: var(--radius-lg);
 	font-weight: 500;
 }
 .caps-navigation-menu-trigger {
@@ -578,7 +593,7 @@ a.caps-navigation-menu-link:focus-visible {
 	opacity: var(--caps-opacity-disabled);
 }
 .caps-navigation-menu-chevron {
-	font-size: 0.75rem;
+	font-size: calc(var(--caps-spacing) * 4);
 	transition: transform var(--caps-duration-150);
 }
 .caps-navigation-menu-trigger[data-state='open'] .caps-navigation-menu-chevron {

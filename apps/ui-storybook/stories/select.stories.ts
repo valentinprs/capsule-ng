@@ -64,6 +64,25 @@ export const Default: Story = {
 	}),
 };
 
+export const Small: Story = {
+	render: (args) => ({
+		props: { ...args },
+		template: /* HTML */ `
+			<caps-select
+				aria-label="Fruit"
+				size="sm"
+				${argsToTemplate(args, { exclude: ['value', 'placeholder'] })}
+				${argsToTemplate(args, { include: ['placeholder'] })}
+				class="w-48"
+			>
+				<caps-select-option value="apple">Apple</caps-select-option>
+				<caps-select-option value="banana">Banana</caps-select-option>
+				<caps-select-option value="blueberry">Blueberry</caps-select-option>
+			</caps-select>
+		`,
+	}),
+};
+
 export const Multiple: Story = {
 	render: (args) => ({
 		props: { ...args },

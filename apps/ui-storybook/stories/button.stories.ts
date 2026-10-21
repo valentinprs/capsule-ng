@@ -1,4 +1,5 @@
 import { CapsButton } from '@capsule-ng/caps/button';
+import { CapsSpinnerImports } from '@capsule-ng/caps/spinner';
 import { type Meta, type StoryObj, argsToTemplate, moduleMetadata } from '@storybook/angular';
 
 const meta: Meta<CapsButton> = {
@@ -25,7 +26,7 @@ const meta: Meta<CapsButton> = {
 	},
 	decorators: [
 		moduleMetadata({
-			imports: [CapsButton],
+			imports: [CapsButton, CapsSpinnerImports],
 		}),
 	],
 	render: ({ ...args }) => ({
@@ -77,4 +78,51 @@ export const Link: Story = {
 		variant: 'link',
 		size: 'default',
 	},
+};
+
+export const Sizes: Story = {
+	render: ({ variant }) => ({
+		props: { variant },
+		template: `
+			<div class="flex flex-wrap items-center gap-2">
+				<button capsButton [variant]="variant" size="xs">Extra small</button>
+				<button capsButton [variant]="variant" size="sm">Small</button>
+				<button capsButton [variant]="variant" size="default">Default</button>
+				<button capsButton [variant]="variant" size="lg">Large</button>
+			</div>
+		`,
+	}),
+};
+
+export const Disabled: Story = {
+	render: () => ({
+		template: `
+			<div class="flex flex-wrap items-center gap-2">
+				<button capsButton disabled>Default</button>
+				<button capsButton variant="secondary" disabled>Secondary</button>
+				<button capsButton variant="outline" disabled>Outline</button>
+				<button capsButton variant="ghost" disabled>Ghost</button>
+				<button capsButton variant="destructive" disabled>Destructive</button>
+				<button capsButton variant="link" disabled>Link</button>
+			</div>
+		`,
+	}),
+};
+
+export const WithSpinner: Story = {
+	name: 'With Spinner (loading)',
+	render: () => ({
+		template: `
+			<div class="flex flex-wrap items-center gap-2">
+				<button capsButton disabled>
+					<caps-spinner aria-label="Submitting" />
+					Submit
+				</button>
+				<button capsButton variant="outline" size="sm" disabled>
+					<caps-spinner aria-label="Saving" />
+					Saving
+				</button>
+			</div>
+		`,
+	}),
 };

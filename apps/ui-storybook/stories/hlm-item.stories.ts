@@ -423,3 +423,38 @@ export const FigmaSizesAndVariants: Story = {
 		`,
 	}),
 };
+
+const variantTemplate = (variant: 'outline' | 'muted') => /* HTML */ `
+	<div class="flex w-full max-w-md flex-col gap-6 p-4">
+		<caps-item variant="${variant}">
+			<caps-item-content>
+				<caps-item-title>Basic Item</caps-item-title>
+				<caps-item-description>A simple item with title and description.</caps-item-description>
+			</caps-item-content>
+			<caps-item-actions>
+				<button capsButton type="button" variant="outline" size="sm">Action</button>
+			</caps-item-actions>
+		</caps-item>
+		<a capsItem variant="${variant}" size="sm" href="#verified">
+			<caps-item-media>
+				<ng-icon name="lucideBadgeCheck" class="text-[length:--spacing(5)]" />
+			</caps-item-media>
+			<caps-item-content>
+				<caps-item-title>Your profile has been verified.</caps-item-title>
+			</caps-item-content>
+			<caps-item-actions>
+				<ng-icon name="lucideChevronRight" />
+			</caps-item-actions>
+		</a>
+	</div>
+`;
+
+/** Figma Item `Variant=Outline`: a bordered item. */
+export const Outline: Story = {
+	render: () => ({ template: variantTemplate('outline') }),
+};
+
+/** Figma Item `Variant=Muted`: an item on a muted background. */
+export const Muted: Story = {
+	render: () => ({ template: variantTemplate('muted') }),
+};

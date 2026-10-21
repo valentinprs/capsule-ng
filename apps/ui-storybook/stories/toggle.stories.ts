@@ -33,6 +33,32 @@ export const Default: Story = {
 	}),
 };
 
+export const Ghost: Story = {
+	name: 'Variant: Default (ghost)',
+	render: () => ({
+		template: `
+    <div class='space-x-3'>
+    <button aria-label='Italic Toggle' variant='default' capsToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' variant='default' state='on' capsToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' variant='default' disabled capsToggle><ng-icon name='lucideItalic'/></button>
+    </div>
+    `,
+	}),
+};
+
+export const Outline: Story = {
+	name: 'Variant: Outline',
+	render: () => ({
+		template: `
+    <div class='space-x-3'>
+    <button aria-label='Italic Toggle' variant='outline' capsToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' variant='outline' state='on' capsToggle><ng-icon name='lucideItalic'/></button>
+    <button aria-label='Italic Toggle' variant='outline' disabled capsToggle><ng-icon name='lucideItalic'/></button>
+    </div>
+    `,
+	}),
+};
+
 export const WithText: Story = {
 	name: 'With Text',
 	render: () => ({

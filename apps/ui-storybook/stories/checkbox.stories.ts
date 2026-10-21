@@ -161,3 +161,40 @@ export const WithHintAndError: Story = {
 		template: `<caps-checkbox-hint-error-story />`,
 	}),
 };
+
+/** Figma Rich Checkbox Container: a bordered card (label + description) holding the checkbox, highlighted when checked. */
+export const RichCheckbox: Story = {
+	render: () => ({
+		template: `
+			<caps-field-group class="w-full max-w-sm gap-3">
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-checkbox [checked]="true" />
+						<caps-field-content>
+							<span class="font-medium">Email notifications</span>
+							<caps-field-description>Receive a summary of the activity of your projects.</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-label>
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-checkbox />
+						<caps-field-content>
+							<span class="font-medium">Push notifications</span>
+							<caps-field-description>Get notified on this device when a task is assigned to you.</caps-field-description>
+						</caps-field-content>
+					</caps-field>
+				</caps-field-label>
+				<caps-field-label>
+					<caps-field orientation="horizontal">
+						<caps-field-content>
+							<span class="font-medium">SMS notifications</span>
+							<caps-field-description>Flipped: the checkbox sits after the content.</caps-field-description>
+						</caps-field-content>
+						<caps-checkbox />
+					</caps-field>
+				</caps-field-label>
+			</caps-field-group>
+		`,
+	}),
+};

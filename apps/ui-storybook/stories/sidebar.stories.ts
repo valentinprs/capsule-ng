@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CapsSidebarImports } from '@capsule-ng/caps/sidebar';
+import { CapsAvatarImports } from '@capsule-ng/caps/avatar';
+import { CapsSidebarImports, provideCapsSidebarConfig } from '@capsule-ng/caps/sidebar';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
 	lucideCalendar,
+	lucideChevronsUpDown,
 	lucideEllipsis,
 	lucideHouse,
 	lucideInbox,
@@ -11,7 +13,7 @@ import {
 	lucideSearch,
 	lucideSettings,
 } from '@ng-icons/lucide';
-import { type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
+import { applicationConfig, type Meta, moduleMetadata, type StoryObj } from '@storybook/angular';
 
 const meta: Meta<object> = {
 	title: 'Sidebar',
@@ -439,4 +441,116 @@ class SidebarConfiguredWidths {}
 export const ConfiguredWidths: Story = {
 	decorators: [moduleMetadata({ imports: [SidebarConfiguredWidths] })],
 	render: () => ({ template: '<sidebar-configured-widths />' }),
+};
+
+const navItems = [
+	{ title: 'Home', url: '#home', icon: 'lucideHouse', active: true },
+	{ title: 'Inbox', url: '#inbox', icon: 'lucideInbox', active: false },
+	{ title: 'Calendar', url: '#calendar', icon: 'lucideCalendar', active: false },
+	{ title: 'Search', url: '#search', icon: 'lucideSearch', active: false },
+	{ title: 'Settings', url: '#settings', icon: 'lucideSettings', active: false },
+];
+
+@Component({
+	selector: 'sidebar-header-footer',
+	imports: [CapsSidebarImports, CapsAvatarImports, NgIcon],
+	providers: [
+		provideIcons({
+			lucideHouse,
+			lucideInbox,
+			lucideCalendar,
+			lucideSearch,
+			lucideSettings,
+			lucideChevronsUpDown,
+		}),
+	],
+	changeDetection: ChangeDetectionStrategy.OnPush,
+	template: `
+		<caps-sidebar-wrapper>
+			<caps-sidebar [collapsible]="collapsible()" aria-label="Workspace">
+				<caps-sidebar-header>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
+							<a capsSidebarMenuButton size="lg" href="#workspace" tooltip="Acme Inc.">
+								<caps-avatar size="sm">
+									<caps-avatar-fallback>AI</caps-avatar-fallback>
+								</caps-avatar>
+								<span class="flex min-w-0 flex-col leading-tight">
+									<span class="truncate font-medium">Acme Inc.</span>
+									<span class="text-muted-foreground truncate text-xs">Enterprise</span>
+								</span>
+							</a>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
+				</caps-sidebar-header>
+				<caps-sidebar-content>
+					<caps-sidebar-group>
+						<caps-sidebar-group-label>Application</caps-sidebar-group-label>
+						<caps-sidebar-group-content>
+							<caps-sidebar-menu>
+								@for (item of _items; track item.title) {
+									<caps-sidebar-menu-item>
+										<a capsSidebarMenuButton [href]="item.url" [tooltip]="item.title" [isActive]="item.active">
+											<ng-icon aria-hidden="true" [name]="item.icon" />
+											<span>{{ item.title }}</span>
+										</a>
+									</caps-sidebar-menu-item>
+								}
+							</caps-sidebar-menu>
+						</caps-sidebar-group-content>
+					</caps-sidebar-group>
+				</caps-sidebar-content>
+				<caps-sidebar-footer>
+					<caps-sidebar-menu>
+						<caps-sidebar-menu-item>
+							<button capsSidebarMenuButton size="lg" tooltip="Jane Doe">
+								<caps-avatar size="sm">
+									<caps-avatar-fallback>JD</caps-avatar-fallback>
+								</caps-avatar>
+								<span class="flex min-w-0 flex-1 flex-col leading-tight">
+									<span class="truncate font-medium">Jane Doe</span>
+									<span class="text-muted-foreground truncate text-xs">jane&#64;example.com</span>
+								</span>
+								<ng-icon aria-hidden="true" name="lucideChevronsUpDown" />
+							</button>
+						</caps-sidebar-menu-item>
+					</caps-sidebar-menu>
+				</caps-sidebar-footer>
+				<button capsSidebarRail></button>
+			</caps-sidebar>
+			<caps-sidebar-inset>
+				<main class="flex min-w-0 flex-1 flex-col">
+					<div class="flex h-screen w-full flex-col items-center justify-center">
+						<button capsSidebarTrigger></button>
+						<h1 class="text-2xl font-bold">Hello World</h1>
+					</div>
+				</main>
+			</caps-sidebar-inset>
+		</caps-sidebar-wrapper>
+	`,
+})
+class SidebarHeaderFooter {
+	public readonly collapsible = input<'offcanvas' | 'icon' | 'none'>('offcanvas');
+	protected readonly _items = navItems;
+}
+
+/** A sidebar header (workspace) and footer (user menu), both built from menu buttons. */
+export const WithHeaderAndFooter: Story = {
+	decorators: [moduleMetadata({ imports: [SidebarHeaderFooter] })],
+	render: () => ({ template: '<sidebar-header-footer />' }),
+};
+
+/**
+ * Figma Sidebar Collapsed: `collapsible="icon"` keeps an icon rail when collapsed and shows the labels
+ * as tooltips. The story starts collapsed with `provideCapsSidebarConfig({ defaultOpen: false })`; its
+ * own cookie name keeps the state of the other stories untouched.
+ */
+export const IconCollapsed: Story = {
+	decorators: [
+		applicationConfig({
+			providers: [provideCapsSidebarConfig({ defaultOpen: false, sidebarCookieName: 'sidebar_icon_story_state' })],
+		}),
+		moduleMetadata({ imports: [SidebarHeaderFooter] }),
+	],
+	render: () => ({ template: '<sidebar-header-footer collapsible="icon" />' }),
 };

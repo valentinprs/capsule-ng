@@ -11,7 +11,7 @@ import {
 } from '@capsule-ng/caps/chart';
 import { CapsTableImports } from '@capsule-ng/caps/table';
 import { moduleMetadata, type Meta, type StoryObj } from '@storybook/angular';
-import { barY, defineChart, lineY } from '@tanstack/charts';
+import { areaY, barY, defineChart, group, lineY } from '@tanstack/charts';
 import { scaleBand } from '@tanstack/charts/scales/band';
 import { scaleLinear } from '@tanstack/charts/scales/linear';
 import { scalePoint } from '@tanstack/charts/scales/point';
@@ -24,7 +24,7 @@ const data = [
 	{ month: 'May', desktop: 209, mobile: 130, downloads: 81 },
 	{ month: 'Jun', desktop: 314, mobile: 140, downloads: 96 },
 ];
-type Composition = 'interactive' | 'line' | 'legend' | 'empty';
+type Composition = 'interactive' | 'line' | 'legend' | 'area' | 'bar' | 'empty';
 
 @Component({
 	selector: 'caps-chart-story',
@@ -123,12 +123,17 @@ class ChartStory {
 			{ ...row, channel: 'Desktop', visitors: row.desktop },
 			{ ...row, channel: 'Mobile', visitors: row.mobile },
 		]);
+		const multiSeries = kind === 'legend' || kind === 'area' || kind === 'bar';
 		const marks =
 			kind === 'legend'
 				? [lineY(grouped, { x: 'month', y: 'visitors', z: 'channel', strokeWidth: 2 })]
-				: kind === 'line'
-					? [lineY(data, { x: 'month', y: 'downloads', stroke: 'var(--chart-1)', strokeWidth: 2 })]
-					: [barY(data, { x: 'month', y: metric, fill: 'var(--chart-1)' })];
+				: kind === 'area'
+					? [areaY(grouped, { x: 'month', y: 'visitors', z: 'channel', fillOpacity: 0.4 })]
+					: kind === 'bar'
+						? [barY(grouped, { x: 'month', y: 'visitors', z: 'channel', layout: group({ padding: 0.1 }) })]
+						: kind === 'line'
+							? [lineY(data, { x: 'month', y: 'downloads', stroke: 'var(--chart-1)', strokeWidth: 2 })]
+							: [barY(data, { x: 'month', y: metric, fill: 'var(--chart-1)' })];
 		return {
 			definition: defineChart(
 				{
@@ -136,7 +141,7 @@ class ChartStory {
 					scales: {
 						x: {
 							scale:
-								kind === 'interactive' || kind === 'empty'
+								kind === 'interactive' || kind === 'empty' || kind === 'bar'
 									? () => scaleBand<string>().padding(0.2)
 									: () => scalePoint<string>().padding(0.2),
 							axis: { tickLabels: CAPS_CHART_TICK_LABELS },
@@ -151,7 +156,7 @@ class ChartStory {
 							},
 						},
 					},
-					color: kind === 'legend' ? { domain: ['Desktop', 'Mobile'], legend: capsChartLegend() } : undefined,
+					color: multiSeries ? { domain: ['Desktop', 'Mobile'], legend: capsChartLegend() } : undefined,
 					theme: CAPS_CHART_THEME,
 				},
 				{ focus: kind === 'line' ? 'nearest-x' : 'group-x', tooltip: capsChartTooltip() },
@@ -184,3 +189,7 @@ export const Interactive: Story = { render: () => ({ template: '<caps-chart-stor
 export const Line: Story = { render: () => ({ template: '<caps-chart-story composition="line" />' }) };
 export const Legend: Story = { render: () => ({ template: '<caps-chart-story composition="legend" />' }) };
 export const Empty: Story = { render: () => ({ template: '<caps-chart-story composition="empty" />' }) };
+/** Figma Chart, Area type: stacked Desktop and Mobile areas with a legend. */
+export const Area: Story = { render: () => ({ template: '<caps-chart-story composition="area" />' }) };
+/** Figma Chart, Bar type: grouped Desktop and Mobile bars with a legend. */
+export const Bar: Story = { render: () => ({ template: '<caps-chart-story composition="bar" />' }) };

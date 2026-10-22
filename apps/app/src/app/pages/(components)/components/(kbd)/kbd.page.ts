@@ -56,7 +56,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Kbd" lead="Used to display textual user input from keyboard." showThemeToggle />
+			<spartan-section-intro name="Kbd" lead="Used to display textual user input from keyboard." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

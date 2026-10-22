@@ -76,7 +76,7 @@ export const routeMeta: RouteMeta = {
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Date Picker" lead="A date picker component." showThemeToggle />
+			<spartan-section-intro name="Date Picker" lead="A date picker component." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

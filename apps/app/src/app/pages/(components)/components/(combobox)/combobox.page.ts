@@ -84,11 +84,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Combobox"
-				lead="An input combined with a list of predefined items to select."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Combobox" lead="An input combined with a list of predefined items to select." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

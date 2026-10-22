@@ -70,7 +70,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Spinner"
 				lead="Shows a Loading spinner to indicate that the app is busy or the page is still loading."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

@@ -65,7 +65,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Accordion"
 				lead="A vertically stacked set of interactive headings that each reveal a section of content."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

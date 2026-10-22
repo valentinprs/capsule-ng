@@ -83,7 +83,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Field"
 				lead="Combine labels, controls, and help text to compose accessible form fields and grouped inputs."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

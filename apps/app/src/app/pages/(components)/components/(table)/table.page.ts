@@ -55,7 +55,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Table" lead="Apply responsive styles to a native HTML table." showThemeToggle />
+			<spartan-section-intro name="Table" lead="Apply responsive styles to a native HTML table." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

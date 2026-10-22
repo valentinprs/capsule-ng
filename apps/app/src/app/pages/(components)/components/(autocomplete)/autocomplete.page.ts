@@ -84,7 +84,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Autocomplete"
 				lead="Autocomplete input and dropdown selection with filtering options."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

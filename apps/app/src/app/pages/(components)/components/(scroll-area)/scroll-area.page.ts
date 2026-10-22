@@ -54,7 +54,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Scroll Area"
 				lead="Augments native scroll functionality for custom, cross-browser styling."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

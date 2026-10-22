@@ -55,7 +55,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Progress"
 				lead="Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

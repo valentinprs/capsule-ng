@@ -64,7 +64,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Sheet"
 				lead="Extends the Dialog component to display content that complements the main content of the screen."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

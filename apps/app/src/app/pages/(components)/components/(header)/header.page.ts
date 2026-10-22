@@ -45,7 +45,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Header"
 				lead="The application bar shown at the top of every page: app name, primary navigation, actions and the brand logo."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

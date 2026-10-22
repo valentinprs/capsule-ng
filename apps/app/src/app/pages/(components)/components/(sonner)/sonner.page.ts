@@ -48,7 +48,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Sonner" lead="An opinionated toast component for Angular." showThemeToggle />
+			<spartan-section-intro name="Sonner" lead="An opinionated toast component for Angular." />
 
 			<p class="${hlmP}" data-sonner-accessibility-limits>
 				Known accessibility limits: the unchanged Brain notification list has a native list-child mismatch and its list

@@ -69,7 +69,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Message Scroller"
 				lead="A chat transcript scroller that anchors turns, follows streamed replies, and preserves position when history loads."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

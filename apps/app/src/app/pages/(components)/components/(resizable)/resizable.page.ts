@@ -56,11 +56,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Resizable"
-				lead="A group of resizable horizontal and vertical panels."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Resizable" lead="A group of resizable horizontal and vertical panels." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

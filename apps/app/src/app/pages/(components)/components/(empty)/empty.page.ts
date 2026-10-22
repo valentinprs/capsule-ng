@@ -58,7 +58,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Empty" lead="Use the Empty component to display a empty state." showThemeToggle />
+			<spartan-section-intro name="Empty" lead="Use the Empty component to display a empty state." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

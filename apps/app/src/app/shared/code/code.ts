@@ -15,9 +15,12 @@ import 'prismjs/components/prism-json';
 import 'prismjs/components/prism-markup';
 import 'prismjs/components/prism-typescript';
 import { PrimitiveSnippetsService } from '../../core/services/primitive-snippets.service';
+import { Tabs } from '../layout/tabs';
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 declare const Prism: typeof import('prismjs');
+
+const LANGUAGES = { ts: 'typescript', sh: 'bash', js: 'javascript', css: 'css', html: 'html' } as const;
 
 // `marked` is a module-level singleton and `marked.use()` is additive: every call stacks another
 // renderer/highlight hook that runs on every subsequent parse. Registering once at module scope
@@ -63,44 +66,136 @@ marked.use(
 	providers: [provideIcons({ lucideClipboard, lucideCheck })],
 	encapsulation: ViewEncapsulation.None,
 	host: {
+		'[attr.data-code-theme]': '_theme',
 		class:
 			'spartan-scroll relative block font-mono rounded-md text-sm text-black dark:text-white bg-[#f8f8f8] dark:bg-zinc-900',
 	},
 	styles: [
 		`
-			.spartan-scroll .token.class-name {
-				opacity: 1;
+			/*
+			 * Prism tokens in the colors of the shadcn/ui docs themes: component sources (the Preview / Code
+			 * tabs) use github-light / github-dark, other code blocks github-light-default / vesper. Prism's
+			 * grammars are coarser than the TextMate ones those themes target, so the match is close, not exact.
+			 */
+			.spartan-scroll[data-code-theme='source'] {
+				--code-fg: #24292e;
+				--code-comment: #6a737d;
+				--code-keyword: #d73a49;
+				--code-string: #032f62;
+				--code-constant: #005cc5;
+				--code-entity: #6f42c1;
+				--code-type: #6f42c1;
+				--code-tag: #22863a;
+				--code-tag-punctuation: var(--code-fg);
+				--code-attr: #6f42c1;
+				--code-variable: #e36209;
+				--code-css-property: #005cc5;
+			}
+			.dark .spartan-scroll[data-code-theme='source'] {
+				--code-fg: #e1e4e8;
+				--code-comment: #6a737d;
+				--code-keyword: #f97583;
+				--code-string: #9ecbff;
+				--code-constant: #79b8ff;
+				--code-entity: #b392f0;
+				--code-type: #b392f0;
+				--code-tag: #85e89d;
+				--code-attr: #b392f0;
+				--code-variable: #ffab70;
+				--code-css-property: #79b8ff;
+			}
+			.spartan-scroll[data-code-theme='docs'] {
+				--code-fg: #1f2328;
+				--code-comment: #6e7781;
+				--code-keyword: #cf222e;
+				--code-string: #0a3069;
+				--code-constant: #0550ae;
+				--code-entity: #8250df;
+				--code-type: #953800;
+				--code-tag: #116329;
+				--code-tag-punctuation: var(--code-fg);
+				--code-attr: #0550ae;
+				--code-variable: #953800;
+				--code-css-property: #0550ae;
+			}
+			.dark .spartan-scroll[data-code-theme='docs'] {
+				--code-fg: #fff;
+				--code-comment: #8b8b8b94;
+				--code-keyword: #a0a0a0;
+				--code-string: #99ffe4;
+				--code-constant: #ffc799;
+				--code-entity: #ffc799;
+				--code-type: #ffc799;
+				--code-tag: #ffc799;
+				--code-tag-punctuation: #a0a0a0;
+				--code-attr: #ffc799;
+				--code-variable: #fff;
+				--code-css-property: #fff;
 			}
 
-			.spartan-scroll .token.property,
-			.spartan-scroll .token.tag,
-			.spartan-scroll .token.boolean,
+			.spartan-scroll pre,
+			.spartan-scroll .token {
+				color: var(--code-fg);
+			}
+			.spartan-scroll .token.comment,
+			.spartan-scroll .token.prolog,
+			.spartan-scroll .token.doctype,
+			.spartan-scroll .token.cdata {
+				color: var(--code-comment);
+			}
+			.spartan-scroll .token.keyword,
+			.spartan-scroll .token.operator,
+			.spartan-scroll .token.important,
+			.spartan-scroll .token.atrule .token.rule {
+				color: var(--code-keyword);
+			}
+			.spartan-scroll .token.string,
+			.spartan-scroll .token.template-string,
+			.spartan-scroll .token.char,
+			.spartan-scroll .token.regex,
+			.spartan-scroll .token.url,
+			.spartan-scroll .token.attr-value,
+			.spartan-scroll .token.attr-value > .token.punctuation:not(.attr-equals) {
+				color: var(--code-string);
+			}
 			.spartan-scroll .token.number,
+			.spartan-scroll .token.boolean,
 			.spartan-scroll .token.constant,
 			.spartan-scroll .token.symbol,
-			.spartan-scroll .token.deleted,
-			.spartan-scroll .token.selector,
-			.spartan-scroll .token.attr-name,
-			.spartan-scroll .token.string,
-			.spartan-scroll .token.char,
-			.spartan-scroll .token.builtin,
-			.spartan-scroll .token.inserted,
-			.spartan-scroll .token.atrule,
-			.spartan-scroll .token.attr-value,
-			.spartan-scroll .token.function,
-			.spartan-scroll .token.regex,
-			.spartan-scroll .token.important,
-			.spartan-scroll .token.variable {
-				opacity: 0.533;
+			.spartan-scroll .token.builtin {
+				color: var(--code-constant);
 			}
-
-			.spartan-scroll .token.operator,
-			.spartan-scroll .token.entity,
-			.spartan-scroll .token.url,
-			.spartan-scroll .token.keyword,
-			.spartan-scroll .language-css .token.string,
-			.spartan-scroll .style .token.string {
-				opacity: 0.733;
+			.spartan-scroll .token.function,
+			.spartan-scroll .token.decorator,
+			.spartan-scroll .token.selector {
+				color: var(--code-entity);
+			}
+			.spartan-scroll .token.class-name {
+				color: var(--code-type);
+			}
+			.spartan-scroll .token.tag {
+				color: var(--code-tag);
+			}
+			.spartan-scroll .token.tag > .token.punctuation,
+			.spartan-scroll .token.tag > .token.tag > .token.punctuation {
+				color: var(--code-tag-punctuation);
+			}
+			.spartan-scroll .token.attr-name {
+				color: var(--code-attr);
+			}
+			.spartan-scroll .token.attr-value > .token.attr-equals,
+			.spartan-scroll .token.punctuation {
+				color: var(--code-fg);
+			}
+			.spartan-scroll .token.variable,
+			.spartan-scroll .token.parameter {
+				color: var(--code-variable);
+			}
+			.spartan-scroll .language-css .token.property {
+				color: var(--code-css-property);
+			}
+			.spartan-scroll code {
+				font-variant-ligatures: none;
 			}
 		`,
 	],
@@ -149,6 +244,8 @@ export class Code {
 	private readonly _clipboard = inject(Clipboard);
 	private readonly _snippets = inject(PrimitiveSnippetsService);
 	private readonly _marked: typeof marked;
+	// shadcn/ui colors component sources (the Preview / Code tabs) and docs snippets with different themes.
+	protected readonly _theme = inject(Tabs, { optional: true }) ? 'source' : 'docs';
 	protected _content = '';
 	protected _copied = false;
 
@@ -174,13 +271,11 @@ export class Code {
 	@Input()
 	public set code(value: string | null | undefined) {
 		this._code = value;
-		// A template-only main preview snippet is highlighted as HTML.
-		const lang = this._snippets.getPreviewSource(value) || this._language === 'html' ? 'html' : 'typescript';
-		const source =
-			this._language === 'sh'
-				? (value?.trim() ?? '')
-				: `\`\`\`${lang}
-${value?.trim() ?? ''}
+		const code = value?.trim() ?? '';
+		// Template-only snippets (a main preview, or a usage skeleton passed without a language) are HTML.
+		const isTemplate = this._snippets.getPreviewSource(value) || (this._language === 'ts' && code.startsWith('<'));
+		const source = `\`\`\`${isTemplate ? 'html' : LANGUAGES[this._language]}
+${code}
 \`\`\``;
 		this._content = this._marked.parse(source) as string;
 	}

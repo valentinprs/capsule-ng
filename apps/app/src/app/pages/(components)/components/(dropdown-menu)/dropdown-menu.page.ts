@@ -76,7 +76,6 @@ export const routeMeta: RouteMeta = {
 			<spartan-section-intro
 				name="Dropdown"
 				lead="Displays a menu to the user — such as a set of actions or functions — triggered by a button."
-				showThemeToggle
 			/>
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">

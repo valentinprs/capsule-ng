@@ -58,11 +58,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro
-				name="Skeleton"
-				lead="Use to show a placeholder while content is loading."
-				showThemeToggle
-			/>
+			<spartan-section-intro name="Skeleton" lead="Use to show a placeholder while content is loading." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>

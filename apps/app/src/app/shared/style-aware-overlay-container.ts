@@ -10,7 +10,7 @@ const DEFAULT_STYLE = 'style-nova';
  * container with the `.style-*` of whatever opened the overlay: chrome triggers live under the body's
  * `.style-nova`, preview triggers under a `.style-<theme>` island. The donut @scope then keeps nova out of
  * a themed panel. Replaces StyleService's old global stamping, which forced the selected style onto chrome
- * overlays (search, AI Assist, the style switcher itself) too.
+ * overlays (such as search) too.
  */
 @Injectable()
 export class StyleAwareOverlayContainer extends OverlayContainer {

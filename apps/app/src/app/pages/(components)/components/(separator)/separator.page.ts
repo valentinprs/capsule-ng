@@ -52,7 +52,7 @@ export const routeMeta: RouteMeta = {
 	],
 	template: `
 		<section spartanMainSection>
-			<spartan-section-intro name="Separator" lead="Visually or semantically separates content." showThemeToggle />
+			<spartan-section-intro name="Separator" lead="Visually or semantically separates content." />
 
 			<spartan-tabs firstTab="Preview" secondTab="Code">
 				<div spartanCodePreview firstTab>
